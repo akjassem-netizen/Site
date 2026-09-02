@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مكتب المحامي علي كاظم الهاشمي | استشارات وقضايا قانونية - بغداد</title>
+
+<meta name="description" content="مكتب المحامي علي كاظم الهاشمي للمحاماة والخدمات القانونية في بغداد زيونة. استشارات قانونية، تأسيس شركات، قضايا مدنية وجزائية، وعقود تجارية.">
+<meta name="keywords" content="محامي في بغداد, محامي زيونة, استشارات قانونية العراق, تأسيس شركات بغداد, قضايا مدنية, محامي عقارات العراق, علي كاظم الهاشمي">
+<meta name="author" content="علي كاظم الهاشمي">
+<meta name="robots" content="index, follow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+--primary: #0f1c2e;
+--secondary: #1f2e46;
+--accent: #c5a880;
+--accent-hover: #b09166;
+--text: #2b2d42;
+--light-bg: #f8fafc;
+--white: #ffffff;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
+body { background-color: var(--light-bg); color: var(--text); line-height: 1.7; }
+
+/* شريط الترجمة العلوي */
+.top-bar { background: #080f1a; padding: 0.4rem 1.5rem; text-align: left; display: flex; justify-content: flex-end; align-items: center; }
+#google_translate_element { display: inline-block; font-size: 0.85rem; }
+
+/* الهيدر */
+header { background: var(--primary); padding: 1rem 1.5rem; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
+.nav-container { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+.logo { color: var(--white); font-weight: 800; font-size: 1.15rem; }
+.logo span { color: var(--accent); }
+.btn-nav { background: var(--accent); color: var(--primary); padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 0.9rem; transition: 0.3s; }
+.btn-nav:hover { background: var(--accent-hover); }
+
+/* القسم الترحيبي */
+.hero { background: linear-gradient(135deg, rgba(15, 28, 46, 0.96), rgba(31, 46, 70, 0.92)), url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1600&q=80') center/cover; color: var(--white); padding: 4.5rem 1.5rem; text-align: center; }
+.hero-content { max-width: 850px; margin: 0 auto; }
+.hero h1 { font-size: 2.1rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.4; }
+.hero p { font-size: 1.1rem; color: #cbd5e1; margin-bottom: 2rem; }
+.hero-btns { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+.btn-primary { background: var(--accent); color: var(--primary); padding: 0.8rem 1.6rem; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: 0.3s; }
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-outline { background: transparent; border: 2px solid var(--accent); color: var(--white); padding: 0.8rem 1.6rem; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: 0.3s; }
+.btn-outline:hover { background: rgba(197, 168, 128, 0.15); }
+
+/* قسم الخدمات */
+.services { max-width: 1100px; margin: 3.5rem auto; padding: 0 1.5rem; }
+.section-title { text-align: center; margin-bottom: 2.5rem; }
+.section-title h2 { font-size: 1.9rem; color: var(--primary); font-weight: 800; }
+.section-title p { color: #64748b; font-size: 1rem; margin-top: 0.4rem; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+.card { background: var(--white); padding: 1.8rem 1.4rem; border-radius: 10px; border: 1px solid #e2e8f0; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.04); }
+.card:hover { transform: translateY(-4px); border-color: var(--accent); }
+.card-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+.card h3 { font-size: 1.2rem; color: var(--primary); margin-bottom: 0.5rem; font-weight: 700; }
+.card p { color: #64748b; font-size: 0.9rem; }
+
+/* صندوق التنويه */
+.banner { background: var(--white); border-right: 5px solid var(--accent); max-width: 1100px; margin: 2rem auto; padding: 1.5rem; border-radius: 8px; }
+.banner h3 { color: var(--primary); font-size: 1.15rem; margin-bottom: 0.6rem; }
+.banner ul { list-style: none; }
+.banner li { margin-bottom: 0.4rem; font-size: 0.95rem; color: #475569; }
+
+/* الفوتر */
+footer { background: var(--primary); color: #94a3b8; text-align: center; padding: 2.5rem 1.5rem 1.5rem; margin-top: 4rem; }
+footer .address { color: #f1f5f9; font-size: 1rem; margin-bottom: 0.8rem; }
+footer .copyright { font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.2rem; margin-top: 1.2rem; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+<div id="google_translate_element"></div>
+</div>
+
+<header>
+<div class="nav-container">
+<div class="logo">مكتب المحامي <span>علي كاظم الهاشمي</span></div>
+<a href="https://docs.google.com/forms/d/e/1FAIpQLSdVxyld_U5Mdp-4RLcuA8HdQvAvlYWdd1fiQ8QAavwJj_Ev7w/viewform" class="btn-nav" target="_blank">حجز موعد</a>
+</div>
+</header>
+
+<section class="hero">
+<div class="hero-content">
+<h1>تمثيل قانوني رصين واستشارات تخصصية لحماية حقوقك ومصالحك</h1>
+<p>خدمات قانونية متكاملة للشركات والأفراد برؤية مهنية ودقيقة من قلب العاصمة بغداد.</p>
+<div class="hero-btns">
+<a href="https://docs.google.com/forms/d/e/1FAIpQLSdVxyld_U5Mdp-4RLcuA8HdQvAvlYWdd1fiQ8QAavwJj_Ev7w/viewform" class="btn-primary" target="_blank">تقديم طلب استشارة قانونية</a>
+<a href="https://wa.me/9647702956021" class="btn-outline" target="_blank">محادثة إدارة المكتب واتساب</a>
+</div>
+</div>
+</section>
+
+<section class="services">
+<div class="section-title">
+<h2>المجالات والخدمات القانونية</h2>
+<p>تقديم الدعم القانوني الدقيق وفق أحدث التشريعات والقوانين العراقية النافذة</p>
+</div>
+<div class="grid">
+<div class="card">
+<div class="card-icon">🏢</div>
+<h3>قضايا الشركات والتجارة</h3>
+<p>تأسيس وتسجيل الشركات، صياغة العقود التجارية، وتسوية النزاعات الاستثمارية.</p>
+</div>
+<div class="card">
+<div class="card-icon">⚖️</div>
+<h3>الدعاوى المدنية والعقارية</h3>
+<p>قضايا الملكية، إخلاء العقارات، ونزاعات الإيجار وتوثيق البيوع أصولياً.</p>
+</div>
+<div class="card">
+<div class="card-icon">👨‍👩‍👧</div>
+<h3>الأحوال الشخصية والتركات</h3>
+<p>قضايا الميراث، القسامات الشرعية، النفقة، الحضانة، وتنظيم شؤون الأسرة.</p>
+</div>
+<div class="card">
+<div class="card-icon">🛡️</div>
+<h3>الترافع والدفاع الجزائي</h3>
+<p>التمثيل القانوني وحضور التحقيقات والترافع أمام محاكم التحقيق والجنايات والجنح.</p>
+</div>
+</div>
+</section>
+
+<section class="banner">
+<h3>📌 ضوابط حجز المواعيد والاستشارات:</h3>
+<ul>
+<li>• <strong>ساعات الدوام المكتبي:</strong> من الأحد إلى الخميس، من 8:00 صباحاً وحتى 4:00 عصراً.</li>
+<li>• <strong>مواعيد الاستشارات المباشرة:</strong> تبدأ بعد الظهر حصراً من 2:00 إلى 4:00 عصراً (لتفرغ المحامي صباحاً للمحاكم)، ومساءً بالتنسيق المسبق.</li>
+<li>• <strong>الأجور وتأكيد الحجز:</strong> خدماتنا الاستشارية مدفوعة الأجر وتبدأ أولياً من 75,000 دينار عراقي، وتُحدد بعد الاطلاع على الاستمارة، ويتم التواصل معكم عبر الواتساب لتأكيد الموعد وبيانات الدفع.</li>
+</ul>
+</section>
+
+<footer>
+<div class="address">📍 مقر المكتب: بغداد — زيونة — قرب دار الأزياء العراقية</div>
+<p>مكتب المحامي علي كاظم الهاشمي للمحاماة والخدمات القانونية</p>
+<div class="copyright">جميع الحقوق محفوظة © 2026 | akjassem.com</div>
+</footer>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+new google.translate.TranslateElement({
+pageLanguage: 'ar',
+includedLanguages: 'ar,en,hi,tr,ku,fa',
+layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+}, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>
+
