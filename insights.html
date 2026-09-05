@@ -1,30 +1,46 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl"><head>
+<html lang="ar" dir="rtl">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>الآراء القانونية | Legal Insights</title>
+  <title id="pageTitleMeta">الآراء والتحليلات القانونية | Law Office Of Ali Kadhem Hashimi</title>
+
+  <meta name="description" id="metaDesc" content="نافذة قانونية تنفيذية متخصصة بنشر التحليلات الإجرائية في فروع القانون العراقي.">
+  <meta property="og:type" content="article">
+  <meta property="og:title" id="ogTitle" content="الآراء والدراسات القانونية | Legal Insights">
+  <meta property="og:image" content="https://akjassem.com/1000019530.jpg">
+  <meta property="og:url" id="ogUrl" content="https://akjassem.com/insights.html">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Cairo', system-ui, -apple-system, sans-serif;
-      background-color: #ffffff;
+      font-family: 'Cairo', system-ui, sans-serif;
+      background-color: #f7f9fc;
       color: #1a1a1a;
-      line-height: 1.8;
-      padding: 50px 20px;
+      padding: 30px 16px;
       display: flex;
       justify-content: center;
     }
-    .container {
-      max-width: 650px;
-      width: 100%;
+    .container { max-width: 800px; width: 100%; }
+    .brand-section {
       text-align: center;
+      margin-bottom: 25px;
+      border-bottom: 1.5px solid #e2e8f0;
+      padding-bottom: 20px;
     }
-    .brand { margin-bottom: 40px; }
+    .brand-logo {
+      direction: ltr;
+      display: inline-block;
+      text-align: center;
+      margin-bottom: 12px;
+      text-decoration: none;
+    }
     .logo-text {
-      font-size: 56px;
+      font-size: 46px;
       font-weight: 800;
       letter-spacing: 2px;
       color: #0b1a30;
@@ -32,138 +48,449 @@
     }
     .logo-text span { color: #d32f2f; }
     .sub-brand {
-      font-size: 15px;
+      font-size: 13px;
       font-weight: 700;
       color: #111;
       letter-spacing: 3px;
-      margin-top: 10px;
+      margin-top: 6px;
+      direction: ltr;
     }
-    .sub-brand span { color: #d32f2f; margin-left: 4px; }
+    .sub-brand span { color: #d32f2f; margin-right: 4px; font-weight: 800; }
     .est {
-      font-size: 11px;
+      font-size: 10.5px;
       color: #777;
       letter-spacing: 2px;
-      margin-top: 5px;
-    }
-    h1 {
-      font-size: 26px;
-      font-weight: 800;
-      margin: 35px 0 20px;
-      color: #111;
-    }
-    .arabic-text {
-      font-size: 16px;
-      color: #2b2b2b;
-      text-align: justify;
-      text-align-last: center;
-      margin-bottom: 25px;
-      line-height: 1.9;
-    }
-    .arabic-note {
-      font-size: 15px;
-      color: #555;
-      margin-bottom: 35px;
-      font-weight: 600;
-    }
-    hr {
-      border: 0;
-      height: 1px;
-      background: #eee;
-      margin: 35px auto;
-      width: 75%;
-    }
-    .english-section {
+      margin-top: 3px;
       direction: ltr;
-      text-align: left;
     }
-    .english-text {
+    .page-title h1 {
+      font-size: 24px;
+      font-weight: 800;
+      color: #1a202c;
+      margin-top: 10px;
+    }
+    .page-title h2 {
       font-size: 15px;
-      color: #333;
-      line-height: 1.8;
-      margin-bottom: 15px;
+      font-weight: 700;
+      color: #718096;
+      direction: ltr;
+      margin-top: 2px;
     }
-    .english-note {
-      font-size: 14px;
-      color: #666;
-      font-style: italic;
+
+    .toolbar-box {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 12px 18px;
+      margin-bottom: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+    .lang-tabs { display: flex; gap: 8px; }
+    .lang-btn {
+      padding: 7px 18px;
+      border-radius: 6px;
+      border: 1.5px solid #0b1a30;
+      background: transparent;
+      color: #0b1a30;
+      font-weight: 700;
+      font-size: 13px;
+      font-family: inherit;
+      cursor: pointer;
+    }
+    .lang-btn.active { background: #0b1a30; color: #ffffff; }
+    .translate-widget-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #4a5568;
+    }
+
+    .intro-box {
+      background: #ffffff;
+      padding: 16px 20px;
+      border-radius: 10px;
+      border: 1px solid #e2e8f0;
+      color: #4a5568;
+      font-size: 14.5px;
+      line-height: 1.8;
+      margin-bottom: 25px;
+      text-align: justify;
+    }
+
+    .category-group {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+    .category-header {
+      padding: 18px 20px;
+      background: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 800;
+      font-size: 16px;
+      color: #0b1a30;
+      user-select: none;
+      border-left: 4px solid #d32f2f;
+    }
+    .category-header:hover { background-color: #fafafa; }
+    .badge-count {
+      background: #edf2f7;
+      color: #4a5568;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 20px;
+      margin-right: 8px;
+    }
+    .arrow-icon { font-size: 14px; color: #a0aec0; transition: transform 0.2s; }
+    .category-body {
+      display: none;
+      padding: 18px 20px;
+      background: #fcfdfe;
+      border-top: 1px solid #edf2f7;
+    }
+
+    .legal-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 22px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+    .legal-card.highlighted {
+      border: 2px solid #3182ce;
+      box-shadow: 0 0 15px rgba(49,130,206,0.2);
+    }
+    .legal-card:last-child { margin-bottom: 0; }
+
+    .share-bar {
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 1px dashed #cbd5e0;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .share-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #4a5568;
+      margin-left: 6px;
+    }
+    .btn-share {
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .btn-share:hover { opacity: 0.85; }
+    .btn-share-copy { background-color: #edf2f7; color: #2d3748; }
+    .btn-share-wa { background-color: #25d366; color: #ffffff; }
+    .btn-share-li { background-color: #0a66c2; color: #ffffff; }
+    .btn-share-x { background-color: #000000; color: #ffffff; }
+    .btn-share-native { background-color: #0b1a30; color: #ffffff; }
+
+    .goog-te-banner-frame.skiptranslate { display: none !important; }
+    body { top: 0px !important; }
+    .goog-logo-link { display: none !important; }
+    .goog-te-gadget { color: transparent !important; }
+    .goog-te-gadget .goog-te-combo {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e0;
+      font-family: inherit;
+      font-size: 13px;
+      color: #1a202c;
+      background-color: #f7f9fc;
+      outline: none;
+    }
+
+    #copyToast {
+      position: fixed;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #0b1a30;
+      color: #ffffff;
+      padding: 10px 22px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 700;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      display: none;
+      z-index: 99999;
     }
   </style>
+
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'ar',
+        includedLanguages: 'ar,ckb,ku,en,fr,es,de',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: true
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
 <body>
+
   <div class="container">
-    <div class="brand">
-      <div class="logo-text">A<span>K</span>H</div>
-      <div class="sub-brand"><span>/</span> LAW OFFICE</div>
-      <div class="est">EST. 2014</div>
-    </div>
-
-    <h1>الآراء القانونية | Legal Insights</h1>
-
-    <p class="arabic-text">
-      نافذة قانونية متخصصة تُعنى بنشر الدراسات والتحليلات التشريعية في فروع القانون العراقي: الدعاوى المدنية والتجارية، القضايا الجزائية، تأسيس وتسجيل الشركات، حماية العلامات التجارية والملكية الفكرية، وشؤون العمل والضمان والإقامة.
-    </p>
-    <div id="arabic-feed">
-
-    <!-- ARTICLE_START -->
-    <article class="legal-card" data-category="العمل والإقامة والضمان الاجتماعي" data-slug="www.akjassem.com/insights/labor-social-security-iraq" data-keywords="محامي في بغداد, محامي شركات في العراق, قانون العمل العراقي, قانون التقاعد والضمان الاجتماعي, عقود العمل الأجنبية, وزارة العمل والشؤون الاجتماعية, تأسيس شركات بغداد, استشارات قانونية عمالية, حقوق العمال الأجانب في العراق" data-publish-at="2026-09-05T18:14:06.383Z" style="border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; margin-bottom: 24px; text-align: right; direction: rtl; background: #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.04);">
-      <div style="font-size: 13px; color: #d32f2f; font-weight: 700; margin-bottom: 8px;">العمل والإقامة والضمان الاجتماعي • ٥ أيلول ٢٠٢٦</div>
-      <h2 style="font-size: 19px; font-weight: 800; color: #0b1a30; margin-bottom: 12px; line-height: 1.4;">امتثال العمالة الأجنبية وقانون الضمان الاجتماعي العراقي رقم 18 لسنة 2023: دليل الشركات والمستثمرين</h2>
-      <p style="font-size: 15px; color: #4a5568; line-height: 1.8; margin-bottom: 12px;">An executive legal guide for international companies in Iraq detailing national labor quotas, work permit protocols, and updated social security rates to avoid severe penalties.</p>
-      
-      <div class="article-expanded" style="display: none; border-top: 1px dashed #cbd5e0; padding-top: 16px; margin-top: 12px; font-size: 15px; color: #2d3748; line-height: 1.9;">
-        <div class="article-content-body" style="white-space: pre-line;">تُعد بيئة الأعمال والاستثمار في جمهورية العراق واعدة، إلا أنها محكومة بمنظومة تشريعية صارمة تتطلب من الشركات الأجنبية والمحلية إلماماً تاما بأحكام قانون العمل رقم (37) لسنة 2015 وقانون التقاعد والضمان الاجتماعي للعمال رقم (18) لسنة 2023. يهدف هذا التحليل إلى تسليط الضوء على أبرز الالتزامات القانونية والإجرائية الملقاة على عاتق أصحاب العمل.
-
-1. عقود العمل وصياغتها القانونية:
-يُحتم المشرع العراقي أن يُحرر عقد العمل خطياً وبنسختين باللغة العربية (ويمكن ترجمته للغة أجنبية مع الاعتماد النص العربي عند النزاع). يجب أن يتضمن العقد بوضوح طبيعة العمل، الأجر، ساعات العمل، وفترة الاختبار التي لا يجوز أن تزيد على ثلاثة أشهر. إن صياغة العقود بما يتوافق مع القواعد الآمرة لقانون العمل تحمي المنشأة من الغرامات والمنازعات العمالية أمام محاكم العمل.
-
-2. اشتراكات الضمان الاجتماعي (التزام جوهري):
-أوجب قانون التقاعد والضمان الاجتماعي النافذ على جميع أصحاب العمل شمول العاملين لديهم (سواء كانوا عراقيين أو أجانب) بأحكام الضمان الاجتماعي ودفع النسب المقررة قانوناً لصندوق التقاعد والضمان. إن التخلف عن التسجيل أو التأخير في سداد الاشتراكات يُعرض المنشأة لعقوبات مالية جسيمة وملاحقات قانونية قد تؤثر على رخصة العمل وتجديد الإقامات.
-
-3. استقدام العمالة الأجنبية وتراخيص العمل:
-تخضع العمالة الأجنبية في الشركات العاملة في العراق لضوابط دقيقة تشمل الحصول على موافقة وزارة العمل والشؤون الاجتماعية، وإصدار رخصة العمل وإجازة الإقامة الرسمية وفق النسب المقررة للتشغيل الوطني. ويتحمل صاحب العمل مسؤولية تأمين العمال وإعادتهم إلى بلدانهم عند انتهاء التعاقد.
-
-4. تسوية النزاعات العمالية:
-في حال حدوث نزاع بين صاحب العمل والعمال، يُفضل دائماً اللجوء إلى التسوية الودية أو لجان تفتيش العمل قبل تصعيد النزاع إلى القضاء العمالي المختص، لضمان استمرارية النشاط التجاري وحماية السمعة المؤسسية للشركة.
-
-خاتمة وتوصية تنفيذية:
-نظراً لدقة الإجراءات وتعدد الجهات الرقابية (مفتشو العمل، دائرة التقاعد والضمان الاجتماعي، ومجلس الإدارة للشركات)، نؤكد على ضرورة مراجعة وتدقيق كافة عقود العمل واللوائح الداخلية للشركات من قبل مستشار قانوني مختص لتجنب أي مخالفات قانونية غير مقصودة.</div>
-        
-        <div class="legal-footer-box" style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #edf2f7; font-size: 11.5px; color: #718096; line-height: 1.7;">
-          <p class="notranslate" translate="no" style="margin-bottom: 4px; font-weight: 700; color: #4a5568;">© جميع الحقوق محفوظة لمكتب المحامي علي كاظم الهاشمي (AKH Law Office).</p>
-          <p style="margin: 0;">إخلاء مسؤولية وحجية النص: المواد والتحليلات القانونية المنشورة مُعدّة لأغراض التوعية العامة لبيئة الأعمال ولا تُعد استشارة قانونية ملزمة. <strong>يُعد النص العربي هو الأصل المعتمد والمرجع الحصري لنفاذ المحتوى</strong>، وما توفره المنصة من ترجمات آلية هو لأغراض الاسترشاد والتيسير المعلوماتي فقط؛ ويُخلى جانب المكتب من أي تبعات ناجمة عن عدم دقة الترجمة الآلية، ويُرجى التحقق دائماً ومطابقة النص مع أصله القانوني المعتمد.</p>
-        </div>
-      
+    <div class="brand-section">
+      <a href="insights.html" class="brand-logo notranslate" translate="no">
+        <div class="logo-text">A<span>K</span>H</div>
+        <div class="sub-brand"><span>/</span> LAW OFFICE</div>
+        <div class="est">EST. 2014</div>
+      </a>
+      <div class="page-title">
+        <h1>الآراء والتحليلات القانونية</h1>
+        <h2 class="notranslate" translate="no">Law Office Of Ali Kadhem Hashimi</h2>
       </div>
-      
-      <button type="button" onclick="const b = this.previousElementSibling; const open = b.style.display==='block'; b.style.display = open?'none':'block'; this.innerText = open ? 'قراءة المزيد ←' : 'عرض أقل ↑';" style="background: none; border: 1.5px solid #0b1a30; color: #0b1a30; padding: 8px 18px; border-radius: 6px; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; margin-top: 10px; display: inline-block;">
-        قراءة المزيد ←
-      </button>
-    </article>
-        
-
-    <!-- ARTICLE_START -->
-    
-        
-
-    <!-- ARTICLE_START -->
-    
-        
-</div>
-
-    <hr>
-
-    <div class="english-section">
-      <p class="english-text">
-        A dedicated legal window into Iraqi law: legislative analysis, civil and commercial litigation, criminal defense, corporate incorporation, trademark and IP protection, labor compliance, and residency affairs.
-      </p>
-      <div id="english-feed">
-
-    <!-- ARTICLE_START -->
-    
-        
-</div>
     </div>
+
+    <div class="toolbar-box">
+      <div class="lang-tabs">
+        <button class="lang-btn active" onclick="switchTab('ar')">الأصل العربي</button>
+        <button class="lang-btn" onclick="switchTab('en')">English Insights</button>
+      </div>
+
+      <div class="translate-widget-container">
+        <span>🌐 الترجمة المعتمدة:</span>
+        <div id="google_translate_element"></div>
+      </div>
+    </div>
+
+    <div class="intro-box">
+      نافذة متخصصة تُعنى بنشر الدراسات والإيضاحات الإجرائية في فروع القانون العراقي: قانون العمل والإقامة والضمان الاجتماعي، تأسيس وتسجيل الشركات، العلامات التجارية، وقضايا الأحوال الشخصية والدعاوى المدنية والتجارية.
+    </div>
+
+    <div id="arabic-feed" style="display: none;"></div>
+    <div id="english-feed" style="display: none;"></div>
+
+    <div id="organized-feed"></div>
   </div>
 
+  <div id="copyToast">تم نسخ الرابط المباشر بنجاح 📋</div>
 
-</body></html>
+  <script>
+    let CURRENT_LANG = 'ar';
+
+    window.addEventListener('DOMContentLoaded', () => {
+      organizeArticles();
+    });
+
+    function switchTab(lang) {
+      CURRENT_LANG = lang;
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      organizeArticles();
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('copyToast');
+      toast.innerText = msg;
+      toast.style.display = 'block';
+      setTimeout(() => { toast.style.display = 'none'; }, 2500);
+    }
+
+    function getArticleUrl(slug) {
+      const baseUrl = window.location.href.split('?')[0].split('#')[0];
+      return `${baseUrl}?p=${slug}`;
+    }
+
+    function copyArticleLink(slug, title) {
+      const uniqueUrl = getArticleUrl(slug);
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(uniqueUrl).then(() => {
+          showToast(CURRENT_LANG === 'ar' ? 'تم نسخ الرابط المباشر بنجاح 📋' : 'Direct link copied! 📋');
+        });
+      } else {
+        showToast(uniqueUrl);
+      }
+    }
+
+    function shareNative(slug, title) {
+      const uniqueUrl = getArticleUrl(slug);
+      if (navigator.share) {
+        navigator.share({
+          title: title,
+          text: title + ' | Law Office Of Ali Kadhem Hashimi',
+          url: uniqueUrl
+        }).catch(() => {});
+      } else {
+        copyArticleLink(slug, title);
+      }
+    }
+
+    function organizeArticles() {
+      const sourceFeedId = CURRENT_LANG === 'ar' ? 'arabic-feed' : 'english-feed';
+      const sourceFeed = document.getElementById(sourceFeedId);
+      const targetContainer = document.getElementById('organized-feed');
+      targetContainer.innerHTML = '';
+      targetContainer.dir = CURRENT_LANG === 'ar' ? 'rtl' : 'ltr';
+
+      if (!sourceFeed) return;
+
+      const now = new Date();
+      const articles = Array.from(sourceFeed.querySelectorAll('article')).filter(art => {
+        const publishAt = art.getAttribute('data-publish-at');
+        if (!publishAt) return true;
+        return new Date(publishAt) <= now;
+      });
+
+      if (articles.length === 0) {
+        targetContainer.innerHTML = `
+          <div style="text-align: center; padding: 40px 15px; color: #718096; background: #fff; border-radius: 12px; border: 1px dashed #cbd5e0;">
+            ${CURRENT_LANG === 'ar' ? 'لا توجد دراسات منشورة في هذا القسم حالياً.' : 'No articles currently published in this section.'}
+          </div>
+        `;
+        return;
+      }
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const targetSlug = urlParams.get('p') || '';
+
+      const groups = {};
+
+      articles.forEach((art, index) => {
+        const cloned = art.cloneNode(true);
+        const h2 = cloned.querySelector('h2');
+        const titleText = h2 ? h2.innerText : 'مقال قانوني';
+        const p = cloned.querySelector('p');
+        const summaryText = p ? p.innerText : '';
+
+        let slug = cloned.getAttribute('data-slug');
+        if (!slug) {
+          slug = 'article-' + (index + 1);
+        }
+
+        cloned.setAttribute('id', `art-${slug}`);
+
+        let catText = cloned.getAttribute('data-category');
+        if (!catText) {
+          const metaDiv = cloned.querySelector('div');
+          catText = metaDiv ? metaDiv.innerText.split('•')[0].trim() : (CURRENT_LANG === 'ar' ? 'عام' : 'General');
+        }
+
+        let expanded = cloned.querySelector('.article-expanded');
+        if (expanded && !expanded.querySelector('.legal-footer-box')) {
+          const footerBox = document.createElement('div');
+          footerBox.className = 'legal-footer-box';
+          footerBox.style.cssText = 'margin-top: 25px; padding-top: 15px; border-top: 1px solid #edf2f7; font-size: 11.5px; color: #718096; line-height: 1.7;';
+          
+          if (CURRENT_LANG === 'ar') {
+            footerBox.innerHTML = `
+              <p class="notranslate" translate="no" style="margin-bottom: 4px; font-weight: 700; color: #4a5568;">© جميع الحقوق محفوظة لمكتب المحامي علي كاظم الهاشمي (AKH Law Office).</p>
+              <p style="margin: 0;">إخلاء مسؤولية وحجية النص: المواد والتحليلات القانونية المنشورة مُعدّة لأغراض التوعية العامة لبيئة الأعمال ولا تُعد استشارة قانونية ملزمة. <strong>يُعد النص العربي هو الأصل المعتمد والمرجع الحصري لنفاذ المحتوى</strong>، وما توفره المنصة من ترجمات آلية هو لأغراض الاسترشاد والتيسير المعلوماتي فقط؛ ويُخلى جانب المكتب من أي تبعات ناجمة عن عدم دقة الترجمة الآلية، ويُرجى التحقق دائماً ومطابقة النص مع أصله القانوني المعتمد.</p>
+            `;
+          } else {
+            footerBox.innerHTML = `
+              <p class="notranslate" translate="no" style="margin-bottom: 4px; font-weight: 700; color: #4a5568;">© All rights reserved to Law Office Of Ali Kadhem Hashimi (AKH Law Office).</p>
+              <p style="margin: 0;">Legal Disclaimer & Governing Language: The insights and legal analyses published on this platform are for general informational and corporate awareness purposes only and do not constitute binding legal advice. <strong>The original drafted text (English/Arabic) shall remain the legally authoritative version.</strong> Automated translations into other languages are provided solely for convenience; no liability is assumed for translation discrepancies. Readers must verify content against the authoritative source.</p>
+            `;
+          }
+          expanded.appendChild(footerBox);
+        }
+
+        if (!cloned.querySelector('.share-bar')) {
+          const uniqueUrlEnc = encodeURIComponent(getArticleUrl(slug));
+          const shareTextEnc = encodeURIComponent(titleText + ' | Law Office Of Ali Kadhem Hashimi');
+          
+          const shareBar = document.createElement('div');
+          shareBar.className = 'share-bar';
+          shareBar.innerHTML = `
+            <span class="share-label">${CURRENT_LANG === 'ar' ? 'مشاركة الرابط المباشر:' : 'Share Direct Link:'}</span>
+            <button class="btn-share btn-share-copy" onclick="copyArticleLink('${slug}', '${encodeURIComponent(titleText)}')">📋 ${CURRENT_LANG === 'ar' ? 'نسخ الرابط' : 'Copy'}</button>
+            <a class="btn-share btn-share-wa" href="https://api.whatsapp.com/send?text=${shareTextEnc}%20${uniqueUrlEnc}" target="_blank">🟢 WhatsApp</a>
+            <a class="btn-share btn-share-li" href="https://www.linkedin.com/sharing/share-offsite/?url=${uniqueUrlEnc}" target="_blank">💼 LinkedIn</a>
+            <a class="btn-share btn-share-x" href="https://twitter.com/intent/tweet?text=${shareTextEnc}&url=${uniqueUrlEnc}" target="_blank">𝕏 Post</a>
+            <button class="btn-share btn-share-native" onclick="shareNative('${slug}', '${encodeURIComponent(titleText)}')">🔗 ${CURRENT_LANG === 'ar' ? 'المزيد' : 'More'}</button>
+          `;
+          
+          if (expanded) {
+            expanded.appendChild(shareBar);
+          } else {
+            cloned.appendChild(shareBar);
+          }
+        }
+
+        if (targetSlug === slug) {
+          cloned.classList.add('highlighted');
+          if (expanded) expanded.style.display = 'block';
+          document.title = titleText + ' | Law Office Of Ali Kadhem Hashimi';
+          document.getElementById('metaDesc').content = summaryText;
+          document.getElementById('ogTitle').content = titleText;
+          document.getElementById('ogUrl').content = getArticleUrl(slug);
+        }
+
+        if (!groups[catText]) groups[catText] = [];
+        groups[catText].push(cloned);
+      });
+
+      Object.keys(groups).forEach(cat => {
+        const groupArticles = groups[cat];
+        const groupEl = document.createElement('div');
+        groupEl.className = 'category-group';
+
+        groupEl.innerHTML = `
+          <div class="category-header" onclick="toggleFolder(this)">
+            <div style="display: flex; align-items: center;">
+              <span>${cat}</span>
+              <span class="badge-count">${groupArticles.length} ${CURRENT_LANG === 'ar' ? 'موضوع' : 'Articles'}</span>
+            </div>
+            <span class="arrow-icon">${targetSlug ? '▲' : '▼'}</span>
+          </div>
+          <div class="category-body" style="${targetSlug ? 'display: block;' : ''}"></div>
+        `;
+
+        const body = groupEl.querySelector('.category-body');
+        groupArticles.forEach(a => body.appendChild(a));
+        targetContainer.appendChild(groupEl);
+      });
+
+      if (targetSlug) {
+        setTimeout(() => {
+          const targetCard = document.getElementById(`art-${targetSlug}`);
+          if (targetCard) {
+            targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 300);
+      }
+    }
+
+    function toggleFolder(header) {
+      const body = header.nextElementSibling;
+      const arrow = header.querySelector('.arrow-icon');
+      const isOpen = body.style.display === 'block';
+
+      body.style.display = isOpen ? 'none' : 'block';
+      arrow.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+      arrow.style.color = isOpen ? '#a0aec0' : '#d32f2f';
+    }
+  </script>
+</body>
+</html>
