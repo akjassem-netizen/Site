@@ -1,158 +1,506 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>مكتب المحامي علي كاظم الهاشمي | استشارات وقضايا قانونية - بغداد</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="pageTitleMeta">الآراء والتحليلات القانونية | Law Office Of Ali Kadhem Hashimi</title>
 
-<meta name="description" content="مكتب المحامي علي كاظم الهاشمي للمحاماة والخدمات القانونية في بغداد زيونة. استشارات قانونية، تأسيس شركات، قضايا مدنية وجزائية، وعقود تجارية.">
-<meta name="keywords" content="محامي في بغداد, محامي زيونة, استشارات قانونية العراق, تأسيس شركات بغداد, قضايا مدنية, محامي عقارات العراق, علي كاظم الهاشمي">
-<meta name="author" content="علي كاظم الهاشمي">
-<meta name="robots" content="index, follow">
+  <meta name="description" id="metaDesc" content="نافذة قانونية تنفيذية متخصصة بنشر التحليلات الإجرائية في فروع القانون العراقي، تأسيس الشركات، قانون العمل، والأحوال الشخصية.">
+  <meta name="keywords" id="metaKeywords" content="محامي في بغداد, محامي في العراق, محامي شركات, قانون العمل والضمان الاجتماعي, تأسيس شركات في العراق, محامي طلاق وأحوال شخصية, استشارات قانونية بغداد">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Law Office Of Ali Kadhem Hashimi">
+  <meta property="og:title" id="ogTitle" content="الآراء والدراسات القانونية الإجرائية | Legal Insights">
+  <meta property="og:description" id="ogDesc" content="نافذة قانونية تنفيذية متخصصة بنشر التحليلات الإجرائية في فروع القانون العراقي.">
+  <meta property="og:image" content="https://akjassem.com/1000019530.jpg">
+  <meta property="og:url" id="ogUrl" content="https://akjassem.com/insights.html">
 
-<style>
-:root {
---primary: #0f1c2e;
---secondary: #1f2e46;
---accent: #c5a880;
---accent-hover: #b09166;
---text: #2b2d42;
---light-bg: #f8fafc;
---white: #ffffff;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
-body { background-color: var(--light-bg); color: var(--text); line-height: 1.7; }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Cairo', system-ui, sans-serif;
+      background-color: #f7f9fc;
+      color: #1a1a1a;
+      padding: 30px 16px;
+      display: flex;
+      justify-content: center;
+    }
+    .container { max-width: 800px; width: 100%; }
+    .brand-section {
+      text-align: center;
+      margin-bottom: 25px;
+      border-bottom: 1.5px solid #e2e8f0;
+      padding-bottom: 20px;
+    }
+    .brand-logo {
+      direction: ltr;
+      display: inline-block;
+      text-align: center;
+      margin-bottom: 12px;
+      text-decoration: none;
+    }
+    .logo-text {
+      font-size: 46px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: #0b1a30;
+      line-height: 1;
+    }
+    .logo-text span { color: #d32f2f; }
+    .sub-brand {
+      font-size: 13px;
+      font-weight: 700;
+      color: #111;
+      letter-spacing: 3px;
+      margin-top: 6px;
+      direction: ltr;
+    }
+    .sub-brand span { color: #d32f2f; margin-right: 4px; font-weight: 800; }
+    .est {
+      font-size: 10.5px;
+      color: #777;
+      letter-spacing: 2px;
+      margin-top: 3px;
+      direction: ltr;
+    }
+    .page-title h1 {
+      font-size: 24px;
+      font-weight: 800;
+      color: #1a202c;
+      margin-top: 10px;
+    }
+    .page-title h2 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #718096;
+      direction: ltr;
+      margin-top: 2px;
+    }
 
-/* شريط الترجمة العلوي */
-.top-bar { background: #080f1a; padding: 0.4rem 1.5rem; text-align: left; display: flex; justify-content: flex-end; align-items: center; }
-#google_translate_element { display: inline-block; font-size: 0.85rem; }
+    .toolbar-box {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 12px 18px;
+      margin-bottom: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+    .lang-tabs { display: flex; gap: 8px; }
+    .lang-btn {
+      padding: 7px 18px;
+      border-radius: 6px;
+      border: 1.5px solid #0b1a30;
+      background: transparent;
+      color: #0b1a30;
+      font-weight: 700;
+      font-size: 13px;
+      font-family: inherit;
+      cursor: pointer;
+    }
+    .lang-btn.active { background: #0b1a30; color: #ffffff; }
+    .translate-widget-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #4a5568;
+    }
 
-/* الهيدر */
-header { background: var(--primary); padding: 1rem 1.5rem; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
-.nav-container { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-.logo { color: var(--white); font-weight: 800; font-size: 1.15rem; }
-.logo span { color: var(--accent); }
-.btn-nav { background: var(--accent); color: var(--primary); padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 0.9rem; transition: 0.3s; }
-.btn-nav:hover { background: var(--accent-hover); }
+    .intro-box {
+      background: #ffffff;
+      padding: 16px 20px;
+      border-radius: 10px;
+      border: 1px solid #e2e8f0;
+      color: #4a5568;
+      font-size: 14.5px;
+      line-height: 1.8;
+      margin-bottom: 25px;
+      text-align: justify;
+    }
 
-/* القسم الترحيبي */
-.hero { background: linear-gradient(135deg, rgba(15, 28, 46, 0.96), rgba(31, 46, 70, 0.92)), url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1600&q=80') center/cover; color: var(--white); padding: 4.5rem 1.5rem; text-align: center; }
-.hero-content { max-width: 850px; margin: 0 auto; }
-.hero h1 { font-size: 2.1rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.4; }
-.hero p { font-size: 1.1rem; color: #cbd5e1; margin-bottom: 2rem; }
-.hero-btns { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
-.btn-primary { background: var(--accent); color: var(--primary); padding: 0.8rem 1.6rem; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: 0.3s; }
-.btn-primary:hover { background: var(--accent-hover); }
-.btn-outline { background: transparent; border: 2px solid var(--accent); color: var(--white); padding: 0.8rem 1.6rem; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: 0.3s; }
-.btn-outline:hover { background: rgba(197, 168, 128, 0.15); }
+    .category-group {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+    .category-header {
+      padding: 18px 20px;
+      background: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 800;
+      font-size: 16px;
+      color: #0b1a30;
+      user-select: none;
+      border-left: 4px solid #d32f2f;
+    }
+    .category-header:hover { background-color: #fafafa; }
+    .badge-count {
+      background: #edf2f7;
+      color: #4a5568;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 20px;
+      margin-right: 8px;
+    }
+    .arrow-icon { font-size: 14px; color: #a0aec0; transition: transform 0.2s; }
+    .category-body {
+      display: none;
+      padding: 18px 20px;
+      background: #fcfdfe;
+      border-top: 1px solid #edf2f7;
+    }
 
-/* قسم الخدمات */
-.services { max-width: 1100px; margin: 3.5rem auto; padding: 0 1.5rem; }
-.section-title { text-align: center; margin-bottom: 2.5rem; }
-.section-title h2 { font-size: 1.9rem; color: var(--primary); font-weight: 800; }
-.section-title p { color: #64748b; font-size: 1rem; margin-top: 0.4rem; }
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
-.card { background: var(--white); padding: 1.8rem 1.4rem; border-radius: 10px; border: 1px solid #e2e8f0; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.04); }
-.card:hover { transform: translateY(-4px); border-color: var(--accent); }
-.card-icon { font-size: 2rem; margin-bottom: 0.8rem; }
-.card h3 { font-size: 1.2rem; color: var(--primary); margin-bottom: 0.5rem; font-weight: 700; }
-.card p { color: #64748b; font-size: 0.9rem; }
+    .legal-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 22px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+    .legal-card.highlighted {
+      border: 2px solid #3182ce;
+      box-shadow: 0 0 15px rgba(49,130,206,0.2);
+    }
+    .legal-card:last-child { margin-bottom: 0; }
 
-/* صندوق التنويه */
-.banner { background: var(--white); border-right: 5px solid var(--accent); max-width: 1100px; margin: 2rem auto; padding: 1.5rem; border-radius: 8px; }
-.banner h3 { color: var(--primary); font-size: 1.15rem; margin-bottom: 0.6rem; }
-.banner ul { list-style: none; }
-.banner li { margin-bottom: 0.4rem; font-size: 0.95rem; color: #475569; }
+    .share-bar {
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 1px dashed #cbd5e0;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .share-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #4a5568;
+      margin-left: 6px;
+    }
+    .btn-share {
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .btn-share:hover { opacity: 0.85; }
+    .btn-share-copy { background-color: #edf2f7; color: #2d3748; }
+    .btn-share-wa { background-color: #25d366; color: #ffffff; }
+    .btn-share-li { background-color: #0a66c2; color: #ffffff; }
+    .btn-share-x { background-color: #000000; color: #ffffff; }
+    .btn-share-native { background-color: #0b1a30; color: #ffffff; }
 
-/* الفوتر */
-footer { background: var(--primary); color: #94a3b8; text-align: center; padding: 2.5rem 1.5rem 1.5rem; margin-top: 4rem; }
-footer .address { color: #f1f5f9; font-size: 1rem; margin-bottom: 0.8rem; }
-footer .copyright { font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.2rem; margin-top: 1.2rem; }
-</style>
+    /* تنسيق أداة جوجل للترجمة لتظهر بشكل احترافي */
+    .goog-te-banner-frame.skiptranslate { display: none !important; }
+    body { top: 0px !important; }
+    .goog-logo-link { display: none !important; }
+    .goog-te-gadget { color: transparent !important; }
+    .goog-te-gadget .goog-te-combo {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1.5px solid #cbd5e0;
+      font-family: inherit;
+      font-size: 13px;
+      color: #1a202c;
+      background-color: #f7f9fc;
+      outline: none;
+    }
+
+    #copyToast {
+      position: fixed;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #0b1a30;
+      color: #ffffff;
+      padding: 10px 22px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 700;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      display: none;
+      z-index: 99999;
+    }
+  </style>
+
+  <!-- محرك الترجمة الفورية المعتمد -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'ar',
+        includedLanguages: 'ar,ckb,ku,en,fr,es,de',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: true
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
 <body>
 
-<div class="top-bar">
-<div id="google_translate_element"></div>
-</div>
+  <div class="container">
+    <div class="brand-section">
+      <a href="insights.html" class="brand-logo notranslate" translate="no">
+        <div class="logo-text">A<span>K</span>H</div>
+        <div class="sub-brand"><span>/</span> LAW OFFICE</div>
+        <div class="est">EST. 2014</div>
+      </a>
+      <div class="page-title">
+        <h1>الآراء والتحليلات القانونية</h1>
+        <h2 class="notranslate" translate="no">Law Office Of Ali Kadhem Hashimi</h2>
+      </div>
+    </div>
 
-<header>
-<div class="nav-container">
-<div class="logo">مكتب المحامي <span>علي كاظم الهاشمي</span></div>
-<a href="https://docs.google.com/forms/d/e/1FAIpQLSdVxyld_U5Mdp-4RLcuA8HdQvAvlYWdd1fiQ8QAavwJj_Ev7w/viewform" class="btn-nav" target="_blank">حجز موعد</a>
-</div>
-</header>
+    <!-- شريط الأدوات العلوي (الترجمة وتبديل اللغات) -->
+    <div class="toolbar-box">
+      <div class="lang-tabs">
+        <button class="lang-btn active" onclick="switchTab('ar')">الأصل العربي</button>
+        <button class="lang-btn" onclick="switchTab('en')">English Insights</button>
+      </div>
 
-<section class="hero">
-<div class="hero-content">
-<h1>تمثيل قانوني رصين واستشارات تخصصية لحماية حقوقك ومصالحك</h1>
-<p>خدمات قانونية متكاملة للشركات والأفراد برؤية مهنية ودقيقة من قلب العاصمة بغداد.</p>
-<div class="hero-btns">
-<a href="https://docs.google.com/forms/d/e/1FAIpQLSdVxyld_U5Mdp-4RLcuA8HdQvAvlYWdd1fiQ8QAavwJj_Ev7w/viewform" class="btn-primary" target="_blank">تقديم طلب استشارة قانونية</a>
-<a href="https://wa.me/9647702956021" class="btn-outline" target="_blank">محادثة إدارة المكتب واتساب</a>
-</div>
-</div>
-</section>
+      <div class="translate-widget-container">
+        <span>🌐 الترجمة المعتمدة:</span>
+        <div id="google_translate_element"></div>
+      </div>
+    </div>
 
-<section class="services">
-<div class="section-title">
-<h2>المجالات والخدمات القانونية</h2>
-<p>تقديم الدعم القانوني الدقيق وفق أحدث التشريعات والقوانين العراقية النافذة</p>
-</div>
-<div class="grid">
-<div class="card">
-<div class="card-icon">🏢</div>
-<h3>قضايا الشركات والتجارة</h3>
-<p>تأسيس وتسجيل الشركات، صياغة العقود التجارية، وتسوية النزاعات الاستثمارية.</p>
-</div>
-<div class="card">
-<div class="card-icon">⚖️</div>
-<h3>الدعاوى المدنية والعقارية</h3>
-<p>قضايا الملكية، إخلاء العقارات، ونزاعات الإيجار وتوثيق البيوع أصولياً.</p>
-</div>
-<div class="card">
-<div class="card-icon">👨‍👩‍👧</div>
-<h3>الأحوال الشخصية والتركات</h3>
-<p>قضايا الميراث، القسامات الشرعية، النفقة، الحضانة، وتنظيم شؤون الأسرة.</p>
-</div>
-<div class="card">
-<div class="card-icon">🛡️</div>
-<h3>الترافع والدفاع الجزائي</h3>
-<p>التمثيل القانوني وحضور التحقيقات والترافع أمام محاكم التحقيق والجنايات والجنح.</p>
-</div>
-</div>
-</section>
+    <div class="intro-box">
+      نافذة متخصصة تُعنى بنشر الدراسات والإيضاحات الإجرائية في فروع القانون العراقي: قانون العمل والإقامة والضمان الاجتماعي، تأسيس وتسجيل الشركات، العلامات التجارية، وقضايا الأحوال الشخصية والدعاوى المدنية والتجارية.
+    </div>
 
-<section class="banner">
-<h3>📌 ضوابط حجز المواعيد والاستشارات:</h3>
-<ul>
-<li>• <strong>ساعات الدوام المكتبي:</strong> من الأحد إلى الخميس، من 8:00 صباحاً وحتى 4:00 عصراً.</li>
-<li>• <strong>مواعيد الاستشارات المباشرة:</strong> تبدأ بعد الظهر حصراً من 2:00 إلى 4:00 عصراً (لتفرغ المحامي صباحاً للمحاكم)، ومساءً بالتنسيق المسبق.</li>
-<li>• <strong>الأجور وتأكيد الحجز:</strong> خدماتنا الاستشارية مدفوعة الأجر وتبدأ أولياً من 75,000 دينار عراقي، وتُحدد بعد الاطلاع على الاستمارة، ويتم التواصل معكم عبر الواتساب لتأكيد الموعد وبيانات الدفع.</li>
-</ul>
-</section>
+    <div id="arabic-feed" style="display: none;"></div>
+    <div id="english-feed" style="display: none;"></div>
 
-<footer>
-<div class="address">📍 مقر المكتب: بغداد — زيونة — قرب دار الأزياء العراقية</div>
-<p>مكتب المحامي علي كاظم الهاشمي للمحاماة والخدمات القانونية</p>
-<div class="copyright">جميع الحقوق محفوظة © 2026 | akjassem.com</div>
-</footer>
+    <div id="organized-feed"></div>
+  </div>
 
-<script type="text/javascript">
-function googleTranslateElementInit() {
-new google.translate.TranslateElement({
-pageLanguage: 'ar',
-includedLanguages: 'ar,en,hi,tr,ku,fa',
-layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-}, 'google_translate_element');
-}
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <div id="copyToast">تم نسخ الرابط المباشر بنجاح 📋</div>
 
+  <script>
+    let CURRENT_LANG = 'ar';
+
+    window.addEventListener('DOMContentLoaded', () => {
+      organizeArticles();
+    });
+
+    function switchTab(lang) {
+      CURRENT_LANG = lang;
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      organizeArticles();
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('copyToast');
+      toast.innerText = msg;
+      toast.style.display = 'block';
+      setTimeout(() => { toast.style.display = 'none'; }, 2500);
+    }
+
+    function getArticleUrl(slug) {
+      const baseUrl = window.location.href.split('?')[0].split('#')[0];
+      return `${baseUrl}?p=${slug}`;
+    }
+
+    function copyArticleLink(slug, title) {
+      const uniqueUrl = getArticleUrl(slug);
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(uniqueUrl).then(() => {
+          showToast(CURRENT_LANG === 'ar' ? 'تم نسخ الرابط المباشر بنجاح 📋' : 'Direct link copied! 📋');
+        });
+      } else {
+        showToast(uniqueUrl);
+      }
+    }
+
+    function shareNative(slug, title) {
+      const uniqueUrl = getArticleUrl(slug);
+      if (navigator.share) {
+        navigator.share({
+          title: title,
+          text: title + ' | Law Office Of Ali Kadhem Hashimi',
+          url: uniqueUrl
+        }).catch(() => {});
+      } else {
+        copyArticleLink(slug, title);
+      }
+    }
+
+    function organizeArticles() {
+      const sourceFeedId = CURRENT_LANG === 'ar' ? 'arabic-feed' : 'english-feed';
+      const sourceFeed = document.getElementById(sourceFeedId);
+      const targetContainer = document.getElementById('organized-feed');
+      targetContainer.innerHTML = '';
+      targetContainer.dir = CURRENT_LANG === 'ar' ? 'rtl' : 'ltr';
+
+      if (!sourceFeed) return;
+
+      const now = new Date();
+      const articles = Array.from(sourceFeed.querySelectorAll('article')).filter(art => {
+        const publishAt = art.getAttribute('data-publish-at');
+        if (!publishAt) return true;
+        return new Date(publishAt) <= now;
+      });
+
+      if (articles.length === 0) {
+        targetContainer.innerHTML = `
+          <div style="text-align: center; padding: 40px 15px; color: #718096; background: #fff; border-radius: 12px; border: 1px dashed #cbd5e0;">
+            ${CURRENT_LANG === 'ar' ? 'لا توجد دراسات منشورة في هذا القسم حالياً.' : 'No articles currently published in this section.'}
+          </div>
+        `;
+        return;
+      }
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const targetSlug = urlParams.get('p') || '';
+
+      const groups = {};
+
+      articles.forEach((art, index) => {
+        const cloned = art.cloneNode(true);
+        const h2 = cloned.querySelector('h2');
+        const titleText = h2 ? h2.innerText : 'مقال قانوني';
+        const p = cloned.querySelector('p');
+        const summaryText = p ? p.innerText : '';
+
+        let slug = cloned.getAttribute('data-slug');
+        if (!slug) {
+          slug = 'article-' + (index + 1);
+        }
+
+        cloned.setAttribute('id', `art-${slug}`);
+
+        let catText = cloned.getAttribute('data-category');
+        if (!catText) {
+          const metaDiv = cloned.querySelector('div');
+          catText = metaDiv ? metaDiv.innerText.split('•')[0].trim() : (CURRENT_LANG === 'ar' ? 'عام' : 'General');
+        }
+
+        // إخلاء المسؤولية وحجية النص والمحتوى التفاعلي المخصص (إن وجد)
+        let expanded = cloned.querySelector('.article-expanded');
+        if (expanded && !expanded.querySelector('.legal-footer-box')) {
+          const footerBox = document.createElement('div');
+          footerBox.className = 'legal-footer-box';
+          footerBox.style.cssText = 'margin-top: 25px; padding-top: 15px; border-top: 1px solid #edf2f7; font-size: 11.5px; color: #718096; line-height: 1.7;';
+          
+          if (CURRENT_LANG === 'ar') {
+            footerBox.innerHTML = `
+              <p class="notranslate" translate="no" style="margin-bottom: 4px; font-weight: 700; color: #4a5568;">© جميع الحقوق محفوظة لمكتب المحامي علي كاظم الهاشمي (AKH Law Office).</p>
+              <p style="margin: 0;">إخلاء مسؤولية وحجية النص: المواد والتحليلات القانونية المنشورة مُعدّة لأغراض التوعية العامة لبيئة الأعمال ولا تُعد استشارة قانونية ملزمة. <strong>يُعد النص العربي هو الأصل المعتمد والمرجع الحصري لنفاذ المحتوى</strong>، وما توفره المنصة من ترجمات آلية هو لأغراض الاسترشاد والتيسير المعلوماتي فقط؛ ويُخلى جانب المكتب من أي تبعات ناجمة عن عدم دقة الترجمة الآلية، ويُرجى التحقق دائماً ومطابقة النص مع أصله القانوني المعتمد.</p>
+            `;
+          } else {
+            footerBox.innerHTML = `
+              <p class="notranslate" translate="no" style="margin-bottom: 4px; font-weight: 700; color: #4a5568;">© All rights reserved to Law Office Of Ali Kadhem Hashimi (AKH Law Office).</p>
+              <p style="margin: 0;">Legal Disclaimer & Governing Language: The insights and legal analyses published on this platform are for general informational and corporate awareness purposes only and do not constitute binding legal advice. <strong>The original drafted text (English/Arabic) shall remain the legally authoritative version.</strong> Automated translations into other languages are provided solely for convenience; no liability is assumed for translation discrepancies. Readers must verify content against the authoritative source.</p>
+            `;
+          }
+          expanded.appendChild(footerBox);
+        }
+
+        // شريط المشاركة المباشر عبر الرابط المختصر ?p=...
+        if (!cloned.querySelector('.share-bar')) {
+          const uniqueUrlEnc = encodeURIComponent(getArticleUrl(slug));
+          const shareTextEnc = encodeURIComponent(titleText + ' | Law Office Of Ali Kadhem Hashimi');
+          
+          const shareBar = document.createElement('div');
+          shareBar.className = 'share-bar';
+          shareBar.innerHTML = `
+            <span class="share-label">${CURRENT_LANG === 'ar' ? 'مشاركة الرابط المباشر:' : 'Share Direct Link:'}</span>
+            <button class="btn-share btn-share-copy" onclick="copyArticleLink('${slug}', '${encodeURIComponent(titleText)}')">📋 ${CURRENT_LANG === 'ar' ? 'نسخ الرابط' : 'Copy'}</button>
+            <a class="btn-share btn-share-wa" href="https://api.whatsapp.com/send?text=${shareTextEnc}%20${uniqueUrlEnc}" target="_blank">🟢 WhatsApp</a>
+            <a class="btn-share btn-share-li" href="https://www.linkedin.com/sharing/share-offsite/?url=${uniqueUrlEnc}" target="_blank">💼 LinkedIn</a>
+            <a class="btn-share btn-share-x" href="https://twitter.com/intent/tweet?text=${shareTextEnc}&url=${uniqueUrlEnc}" target="_blank">𝕏 Post</a>
+            <button class="btn-share btn-share-native" onclick="shareNative('${slug}', '${encodeURIComponent(titleText)}')">🔗 ${CURRENT_LANG === 'ar' ? 'المزيد' : 'More'}</button>
+          `;
+          
+          if (expanded) {
+            expanded.appendChild(shareBar);
+          } else {
+            cloned.appendChild(shareBar);
+          }
+        }
+
+        if (targetSlug === slug) {
+          cloned.classList.add('highlighted');
+          if (expanded) expanded.style.display = 'block';
+          document.title = titleText + ' | Law Office Of Ali Kadhem Hashimi';
+          document.getElementById('metaDesc').content = summaryText;
+          document.getElementById('ogTitle').content = titleText;
+          document.getElementById('ogDesc').content = summaryText;
+          document.getElementById('ogUrl').content = getArticleUrl(slug);
+        }
+
+        if (!groups[catText]) groups[catText] = [];
+        groups[catText].push(cloned);
+      });
+
+      Object.keys(groups).forEach(cat => {
+        const groupArticles = groups[cat];
+        const groupEl = document.createElement('div');
+        groupEl.className = 'category-group';
+
+        groupEl.innerHTML = `
+          <div class="category-header" onclick="toggleFolder(this)">
+            <div style="display: flex; align-items: center;">
+              <span>${cat}</span>
+              <span class="badge-count">${groupArticles.length} ${CURRENT_LANG === 'ar' ? 'موضوع' : 'Articles'}</span>
+            </div>
+            <span class="arrow-icon">${targetSlug ? '▲' : '▼'}</span>
+          </div>
+          <div class="category-body" style="${targetSlug ? 'display: block;' : ''}"></div>
+        `;
+
+        const body = groupEl.querySelector('.category-body');
+        groupArticles.forEach(a => body.appendChild(a));
+        targetContainer.appendChild(groupEl);
+      });
+
+      if (targetSlug) {
+        setTimeout(() => {
+          const targetCard = document.getElementById(`art-${targetSlug}`);
+          if (targetCard) {
+            targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 300);
+      }
+    }
+
+    function toggleFolder(header) {
+      const body = header.nextElementSibling;
+      const arrow = header.querySelector('.arrow-icon');
+      const isOpen = body.style.display === 'block';
+
+      body.style.display = isOpen ? 'none' : 'block';
+      arrow.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+      arrow.style.color = isOpen ? '#a0aec0' : '#d32f2f';
+    }
+  </script>
 </body>
 </html>
-
