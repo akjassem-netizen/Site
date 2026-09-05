@@ -14,7 +14,6 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
-    /* حماية صارمة لمنع التحديد والنسخ دون إعاقة هيكل الترجمة */
     body {
       font-family: 'Cairo', system-ui, sans-serif;
       background-color: #f7f9fc;
@@ -26,7 +25,6 @@
       -webkit-user-select: none !important;
       -moz-user-select: none !important;
       -ms-user-select: none !important;
-      -webkit-touch-callout: none !important;
       transition: filter 0.3s ease;
     }
 
@@ -186,7 +184,7 @@
     .legal-card > * { position: relative; z-index: 1; }
     .legal-card.highlighted {
       border: 2px solid #0b1a30;
-      box-shadow: 0 0 15px rgba(11,26,48,0.15);
+      box-shadow: 0 0 15px rgba(49,130,206,0.2);
     }
 
     .article-meta-info {
@@ -274,19 +272,6 @@
       z-index: 99999;
     }
   </style>
-
-  <!-- محرك الترجمة المعياري النظيف -->
-  <script type="text/javascript">
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement({
-        pageLanguage: 'ar',
-        includedLanguages: 'ar,ckb,ku,en,fr,es,de',
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-        autoDisplay: false
-      }, 'google_translate_element');
-    }
-  </script>
-  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
 <body>
 
@@ -310,10 +295,6 @@
       <div class="lang-tabs">
         <button class="lang-btn active" onclick="switchTab('ar')">الأصل العربي</button>
         <button class="lang-btn" onclick="switchTab('en')">English Insights</button>
-      </div>
-      <div style="display:flex; align-items:center; gap:8px; font-size:13px; font-weight:700; color:#4a5568;">
-        <span>🌐 الترجمة المعتمدة:</span>
-        <div id="google_translate_element"></div>
       </div>
     </div>
 
