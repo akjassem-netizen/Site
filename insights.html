@@ -29,7 +29,6 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
-    /* منع تحديد النص، النسخ، واللصق نهائياً عبر CSS وتفعيل درع التشويش */
     body {
       font-family: 'Cairo', system-ui, sans-serif;
       background-color: #f7f9fc;
@@ -45,9 +44,7 @@
       transition: filter 0.3s ease;
     }
 
-    body.security-blur {
-      filter: blur(22px);
-    }
+    body.security-blur { filter: blur(22px); }
 
     .container { max-width: 800px; width: 100%; }
     .brand-section {
@@ -175,7 +172,6 @@
       border-top: 1px solid #edf2f7;
     }
 
-    /* كارت المقال والمعيار العالمي: العلامة المائية الفخمة خلف النصوص */
     .legal-card {
       background: #ffffff;
       border: 1px solid #e2e8f0;
@@ -311,14 +307,14 @@
 
   <div class="container">
     <div class="brand-section">
-      <a href="insights.html" class="brand-logo notranslate" style="text-decoration:none;">
+      <a href="insights.html" class="brand-logo" style="text-decoration:none;">
         <div class="logo-text">A<span>K</span>H</div>
         <div class="sub-brand"><span>/</span> LAW OFFICE</div>
         <div class="est">EST. 2014</div>
       </a>
       <div class="page-title">
-        <h1 class="notranslate">الآراء والتحليلات القانونية</h1>
-        <h2 style="font-size:14px; color:#718096; margin-top:2px;" class="notranslate">Law Office Of Ali Kadhem Hashimi</h2>
+        <h1>الآراء والتحليلات القانونية</h1>
+        <h2 style="font-size:14px; color:#718096; margin-top:2px;">Law Office Of Ali Kadhem Hashimi</h2>
       </div>
     </div>
 
@@ -327,24 +323,24 @@
         <button class="lang-btn active" onclick="switchTab('ar')">الأصل العربي</button>
         <button class="lang-btn" onclick="switchTab('en')">English Insights</button>
       </div>
-      <div style="display:flex; align-items:center; gap:8px; font-size:13px; font-weight:700; color:#4a5568;" class="notranslate">
+      <div style="display:flex; align-items:center; gap:8px; font-size:13px; font-weight:700; color:#4a5568;">
         <span>🌐 الترجمة المعتمدة:</span>
         <div id="google_translate_element"></div>
       </div>
     </div>
 
-    <div class="intro-box notranslate">
+    <div class="intro-box">
       نافذة متخصصة تُعنى بنشر الدراسات والإيضاحات الإجرائية في فروع القانون العراقي: قانون العمل والإقامة والضمان الاجتماعي، تأسيس وتسجيل الشركات، العلامات التجارية، وقضايا الأحوال الشخصية والدعاوى المدنية والتجارية.
     </div>
 
     <div id="arabic-feed">
       <div class="category-group">
-        <div class="category-header notranslate">
+        <div class="category-header">
           <div><span>العمل والإقامة والضمان الاجتماعي</span><span class="badge-count">1 مقال</span></div>
         </div>
         <div class="category-body">
           <article class="legal-card" data-slug="labor-social-security-iraq">
-            <div class="article-meta-info notranslate">
+            <div class="article-meta-info">
               <span style="color: #d32f2f; font-weight: 700;">العمل والإقامة والضمان الاجتماعي • 5 سبتمبر 2026</span>
               <span class="views-badge" id="views-labor-social-security-iraq">👁️ المشاهدات: 0</span>
             </div>
@@ -374,7 +370,7 @@
                 <a href="https://wa.me/9647702956021?text=مرحباً،%20أود%20حجز%20جلسة%20تدقيق%20امتثال%20عمالي%20لشركتنا%20مع%20مكتب%20المحامي%20علي%20كاظم%20الهاشمي" style="display: inline-block; background-color: #0b1a30; color: #ffffff; padding: 13px 25px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 15px; box-shadow: 0 4px 12px rgba(11,26,48,0.25); border: 1.5px solid #d32f2f;">طلب تدقيق الامتثال العمالي للشركات (مكتب AKH) ←</a>
               </div>
 
-              <div style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #edf2f7; font-size: 11.5px; color: #718096; line-height: 1.7;" class="notranslate">
+              <div style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #edf2f7; font-size: 11.5px; color: #718096; line-height: 1.7;">
                 <p style="margin-bottom: 4px; font-weight: 700; color: #4a5568;">© جميع الحقوق محفوظة لمكتب المحامي علي كاظم الهاشمي (AKH Law Office).</p>
                 <p style="margin: 0;">إخلاء مسؤولية وحجية النص: المواد والتحليلات القانونية المنشورة مُعدّة لأغراض التوعية العامة ولا تُعد استشارة قانونية ملزمة. <strong>يُعد النص العربي هو الأصل المعتمد</strong>.</p>
               </div>
@@ -398,10 +394,8 @@
   </div>
 
   <script>
-    // منع النقر بزر الماوس الأيمن (الزر الأيمن)
     document.addEventListener('contextmenu', e => e.preventDefault());
     
-    // منع اختصارات التحديد والنسخ (Ctrl+C, Ctrl+A, إلخ) وتصوير الشاشة
     document.addEventListener('keydown', e => {
       if (
         e.key === 'PrintScreen' ||
@@ -412,7 +406,6 @@
       }
     });
 
-    // درع التشويش الأمني عند محاولة التقاط الشاشة أو مغادرة المتصفح
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) {
         document.body.classList.add('security-blur');
