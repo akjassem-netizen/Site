@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>بوابة الإدارة القانونية | AKH Law Office</title>
+  <title>بوابة الإدارة القانونية المحمية | Law Office Of Ali Kadhem Hashimi</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
       align-items: flex-start;
     }
     .panel {
-      max-width: 680px;
+      max-width: 700px;
       width: 100%;
       background: #ffffff;
       border-radius: 14px;
@@ -63,39 +63,23 @@
       margin-top: 3px;
       direction: ltr;
     }
-    .page-title h1 {
-      font-size: 19px;
+    .page-title h1 { font-size: 19px; font-weight: 800; color: #1a202c; }
+    .page-title h2 { font-size: 14px; font-weight: 700; color: #718096; margin-top: 2px; direction: ltr; }
+
+    #lockScreen, #setupScreen { text-align: center; padding: 20px 10px; }
+    .lock-icon { font-size: 44px; margin-bottom: 12px; }
+    .lock-desc { font-size: 14.5px; color: #4a5568; margin-bottom: 20px; line-height: 1.6; }
+    #dashboardScreen { display: none; }
+    
+    .pin-input {
+      letter-spacing: 8px;
+      font-size: 24px;
       font-weight: 800;
-      color: #1a202c;
-    }
-    .page-title h2 {
-      font-size: 14px;
-      font-weight: 700;
-      color: #718096;
-      margin-top: 2px;
-      direction: ltr;
-    }
-
-    /* شاشة القفل */
-    #lockScreen {
       text-align: center;
-      padding: 20px 10px;
-    }
-    .lock-icon {
-      font-size: 42px;
-      margin-bottom: 12px;
-      color: #0b1a30;
-    }
-    .lock-desc {
-      font-size: 14.5px;
-      color: #4a5568;
-      margin-bottom: 20px;
+      max-width: 260px;
+      margin: 0 auto 16px;
     }
 
-    /* لوحة الإدارة بعد الدخول */
-    #dashboardScreen {
-      display: none;
-    }
     .top-bar {
       display: flex;
       justify-content: space-between;
@@ -105,7 +89,7 @@
       border-bottom: 1px dashed #cbd5e0;
     }
     .status-badge {
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 700;
       color: #03543f;
       background-color: #def7ec;
@@ -119,7 +103,30 @@
       padding: 5px 12px;
       border-radius: 6px;
       font-family: inherit;
-      font-size: 12.5px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    #editBanner {
+      display: none;
+      background-color: #ebf8ff;
+      border: 1.5px solid #bee3f8;
+      color: #2b6cb0;
+      padding: 10px 14px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .btn-cancel-edit {
+      background: #e53e3e;
+      color: white;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 5px;
+      font-family: inherit;
+      font-size: 12px;
       font-weight: 700;
       cursor: pointer;
     }
@@ -132,7 +139,7 @@
       margin-bottom: 6px;
       color: #2d3748;
     }
-    input[type="text"], input[type="password"], textarea, select {
+    input[type="text"], input[type="password"], input[type="datetime-local"], textarea, select {
       width: 100%;
       padding: 11px 13px;
       border: 1.5px solid #cbd5e0;
@@ -147,11 +154,7 @@
       border-color: #0b1a30;
       box-shadow: 0 0 0 3px rgba(11,26,48,0.1);
     }
-    textarea {
-      resize: vertical;
-      min-height: 160px;
-      line-height: 1.7;
-    }
+    textarea { resize: vertical; min-height: 160px; line-height: 1.7; }
     .btn-publish, .btn-unlock {
       width: 100%;
       padding: 13px;
@@ -166,10 +169,7 @@
       box-shadow: 0 4px 12px rgba(11,26,48,0.2);
       transition: all 0.2s;
     }
-    .btn-publish:active, .btn-unlock:active {
-      background-color: #1a365d;
-      transform: scale(0.99);
-    }
+    .btn-publish:active, .btn-unlock:active { background-color: #1a365d; transform: scale(0.99); }
     .alert {
       padding: 12px 15px;
       border-radius: 8px;
@@ -180,7 +180,6 @@
     .alert-success { background-color: #def7ec; color: #03543f; }
     .alert-error { background-color: #fde8e8; color: #9b1c1c; }
 
-    /* قسم إدارة وحذف المقالات */
     .manager-box {
       margin-top: 35px;
       border-top: 2px solid #edf2f7;
@@ -192,11 +191,7 @@
       align-items: center;
       margin-bottom: 15px;
     }
-    .manager-header h3 {
-      font-size: 16px;
-      font-weight: 800;
-      color: #0b1a30;
-    }
+    .manager-header h3 { font-size: 16px; font-weight: 800; color: #0b1a30; }
     .btn-reload {
       background-color: #edf2f7;
       border: 1px solid #cbd5e0;
@@ -212,35 +207,35 @@
       border: 1px solid #e2e8f0;
       border-radius: 8px;
       padding: 12px 14px;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .article-info { text-align: right; }
+    .article-info .item-title { font-size: 14.5px; font-weight: 700; color: #0b1a30; line-height: 1.4; }
+    .article-info .item-meta { font-size: 12px; color: #718096; margin-top: 4px; }
+    
+    .item-actions {
+      display: flex;
+      gap: 6px;
       align-items: center;
-      gap: 10px;
+      flex-wrap: wrap;
+      border-top: 1px dashed #edf2f7;
+      padding-top: 8px;
     }
-    .article-info { flex: 1; text-align: right; }
-    .article-info .item-title {
-      font-size: 14px;
-      font-weight: 700;
-      color: #0b1a30;
-      line-height: 1.3;
-    }
-    .article-info .item-meta {
-      font-size: 11.5px;
-      color: #718096;
-      margin-top: 3px;
-    }
-    .btn-delete {
-      background-color: #e53e3e;
-      color: #ffffff;
+    .btn-action {
       border: none;
-      padding: 7px 12px;
+      padding: 6px 11px;
       border-radius: 6px;
       font-size: 12px;
       font-weight: 700;
       cursor: pointer;
-      white-space: nowrap;
+      font-family: inherit;
     }
+    .btn-edit { background-color: #3182ce; color: #ffffff; }
+    .btn-quick-publish { background-color: #38a169; color: #ffffff; }
+    .btn-delete { background-color: #e53e3e; color: #ffffff; }
   </style>
 </head>
 <body>
@@ -254,27 +249,43 @@
       </div>
       <div class="page-title">
         <h1>إدارة ونشر الآراء القانونية</h1>
-        <h2>Legal Insights Publishing</h2>
+        <h2>Law Office Of Ali Kadhem Hashimi</h2>
       </div>
     </div>
 
     <div id="statusAlert" class="alert"></div>
 
-    <!-- 1. شاشة القفل الأولى (بوابة الدخول) -->
-    <div id="lockScreen">
-      <div class="lock-icon">🔒</div>
-      <p class="lock-desc">يرجى كتابة رمز المرور السري الخاص بك لفتح لوحة النشر وإدارة المقالات:</p>
-      <div class="form-group" style="max-width: 420px; margin: 0 auto 16px;">
-        <input type="password" id="accessInput" placeholder="أدخل رمز المرور السري..." dir="ltr" style="text-align: center;">
+    <div id="setupScreen" style="display: none;">
+      <div class="lock-icon">🛡️</div>
+      <p class="lock-desc"><strong>إعداد الحماية لأول مرة:</strong><br>أدخل مفتاح GitHub واختر رمز PIN سري (6 أرقام) خاص بك:</p>
+      <div class="form-group" style="max-width: 420px; margin: 0 auto 12px;">
+        <input type="password" id="setupTokenInput" placeholder="أدخل رمز GitHub (ghp_xxxx...)" dir="ltr">
       </div>
-      <button type="button" class="btn-unlock" style="max-width: 420px; margin: 0 auto;" onclick="attemptUnlock()">تسجيل الدخول وفتح اللوحة ←</button>
+      <div class="form-group" style="max-width: 260px; margin: 0 auto 16px;">
+        <input type="password" id="setupPinInput" class="pin-input" maxlength="6" placeholder="******" pattern="\d*">
+      </div>
+      <button type="button" class="btn-unlock" style="max-width: 420px; margin: 0 auto;" onclick="performSetup()">تشفير المفتاح وحفظ رمز الـ PIN 🔒</button>
     </div>
 
-    <!-- 2. لوحة الإدارة الكاملة (تظهر فقط بعد التحقق) -->
+    <div id="lockScreen" style="display: none;">
+      <div class="lock-icon">🔒</div>
+      <p class="lock-desc">أدخل رمز الـ PIN السري الخاص بك لفك تشفير اللوحة والدخول:</p>
+      <div class="form-group" style="max-width: 260px; margin: 0 auto 16px;">
+        <input type="password" id="unlockPinInput" class="pin-input" maxlength="6" placeholder="******" pattern="\d*" autofocus>
+      </div>
+      <button type="button" class="btn-unlock" style="max-width: 320px; margin: 0 auto;" onclick="attemptPinUnlock()">دخول سريع ←</button>
+      <p style="margin-top: 18px; font-size: 11.5px; color: #a0aec0; cursor: pointer;" onclick="resetVaultPrompt()">نسيت الرمز أو تريد إدخال مفتاح جديد؟ اضغط هنا لإعادة الضبط</p>
+    </div>
+
     <div id="dashboardScreen">
       <div class="top-bar">
-        <span class="status-badge">● متصل بالحساب واللوحة مفعلة</span>
-        <button type="button" class="btn-lock" onclick="lockPortal()">قفل اللوحة 🔒</button>
+        <span class="status-badge" id="autoLockStatus">● متصل بالحساب (القفل التلقائي مفعل: 5 دقائق)</span>
+        <button type="button" class="btn-lock" onclick="lockPortal('تم قفل اللوحة يدوياً بنجاح.')">قفل اللوحة 🔒</button>
+      </div>
+
+      <div id="editBanner">
+        <span id="editBannerText">✏️ أنت الآن تقوم بتعديل المقال...</span>
+        <button type="button" class="btn-cancel-edit" onclick="cancelEdit()">إلغاء التعديل ✕</button>
       </div>
 
       <form id="articleForm">
@@ -293,27 +304,38 @@
         </div>
 
         <div class="form-group">
-          <label id="lblTitle">عنوان المقال أو الدراسة:</label>
-          <input type="text" id="title" placeholder="مثال: إجراءات تأسيس الشركات المحدودة في القانون العراقي" required>
+          <label>توقيت النشر / Publication Timing:</label>
+          <select id="scheduleMode" onchange="onScheduleModeChange()">
+            <option value="now" selected>⚡ نشر فوري (الآن)</option>
+            <option value="schedule">⏳ جدولة لوقت وتاريخ لاحق...</option>
+          </select>
+          <div id="scheduleTimeBox" style="display: none; margin-top: 8px;">
+            <input type="datetime-local" id="publishTimestamp">
+            <p style="font-size: 11.5px; color: #718096; margin-top: 4px;">يظل المقال محجوباً تماماً عن كل الزوار حتى يحل هذا التوقيت تلقائياً.</p>
+          </div>
         </div>
 
         <div class="form-group">
-          <label id="lblSummary">الموجز لمحركات البحث (SEO Snippet):</label>
-          <input type="text" id="summary" placeholder="سطر ونصف يلخص مضمون الدراسة ليظهر في نتائج Google" required>
+          <label id="lblTitle">عنوان المقال أو الدراسة:</label>
+          <input type="text" id="title" placeholder="مثال: إجراءات تأسيس الشركات أو أحكام الحضانة والنفقة" required>
+        </div>
+
+        <div class="form-group">
+          <label id="lblSummary">الموجز لمحركات البحث ولينكد إن (SEO & Social):</label>
+          <input type="text" id="summary" placeholder="سطر ونصف يلخص مضمون الدراسة ليظهر في نتائج البحث والشبكات" required>
         </div>
 
         <div class="form-group">
           <label id="lblContent">نص الدراسة أو التحليل القانوني:</label>
-          <textarea id="content" placeholder="انسخ نص المقال والصقه هنا مباشرة..." required></textarea>
+          <textarea id="content" placeholder="انسخ نص المقال والصقه هنا مباشرة (تتم إضافة الحقوق والتنبيه تلقائياً)..." required></textarea>
         </div>
 
         <button type="submit" id="submitBtn" class="btn-publish">نـشـر الآن | Publish Now</button>
       </form>
 
-      <!-- إدارة وحذف المقالات -->
       <div class="manager-box">
         <div class="manager-header">
-          <h3>📚 المقالات المنشورة بالموقع (إدارة وحذف)</h3>
+          <h3>📚 المنشورات السابقة والمجدولة</h3>
           <button type="button" class="btn-reload" onclick="loadArticles()">تحديث 🔄</button>
         </div>
         <div id="articlesListContainer">
@@ -329,37 +351,187 @@
     const FILE_PATH = 'insights.html';
 
     const AR_CATEGORIES = [
+      "قانون الأحوال الشخصية والأسرة",
+      "العمل والإقامة والضمان الاجتماعي",
       "قانون الشركات والتجارة",
       "العلامات التجارية والملكية الفكرية",
       "القانون العقاري والمعاملات العقارية",
       "الدعاوى المدنية والتعويضات",
       "القضايا الجزائية والدفاع الجنائي",
-      "العمل والإقامة والضمان الاجتماعي",
       "التحكيم ومنازعات العقود",
       "CUSTOM"
     ];
 
     const EN_CATEGORIES = [
+      "Family & Personal Status Law",
+      "Employment & Social Security",
       "Corporate & Commercial Law",
       "Trademarks & Intellectual Property",
       "Real Estate & Property Law",
       "Civil Litigation & Compensation",
       "Criminal Defense & Penal Law",
-      "Employment & Social Security",
       "Arbitration & Dispute Resolution",
       "CUSTOM"
     ];
 
     let ACTIVE_TOKEN = '';
+    let EDITING_ARTICLE_INDEX = null;
+    let LOADED_ARTICLES_CACHE = [];
+    let IDLE_TIMER = null;
+    const IDLE_LIMIT_MS = 5 * 60 * 1000; // 5 دقائق خمول للقفل التلقائي
+
+    async function deriveKey(pin, salt) {
+      const enc = new TextEncoder();
+      const keyMaterial = await crypto.subtle.importKey('raw', enc.encode(pin), { name: 'PBKDF2' }, false, ['deriveKey']);
+      return crypto.subtle.deriveKey(
+        { name: 'PBKDF2', salt: salt, iterations: 100000, hash: 'SHA-256' },
+        keyMaterial,
+        { name: 'AES-GCM', length: 256 },
+        false,
+        ['encrypt', 'decrypt']
+      );
+    }
+
+    async function encryptToken(token, pin) {
+      const enc = new TextEncoder();
+      const salt = crypto.getRandomValues(new Uint8Array(16));
+      const iv = crypto.getRandomValues(new Uint8Array(12));
+      const key = await deriveKey(pin, salt);
+      const encrypted = await crypto.subtle.encrypt({ name: 'AES-GCM', iv: iv }, key, enc.encode(token));
+      return {
+        salt: Array.from(salt),
+        iv: Array.from(iv),
+        data: Array.from(new Uint8Array(encrypted))
+      };
+    }
+
+    async function decryptToken(encryptedObj, pin) {
+      const salt = new Uint8Array(encryptedObj.salt);
+      const iv = new Uint8Array(encryptedObj.iv);
+      const data = new Uint8Array(encryptedObj.data);
+      const key = await deriveKey(pin, salt);
+      const decrypted = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: iv }, key, data);
+      return new TextDecoder().decode(decrypted);
+    }
 
     window.onload = function() {
       populateCategories('ar');
-      const savedToken = localStorage.getItem('akh_master_token');
-      if (savedToken) {
-        document.getElementById('accessInput').value = savedToken;
-        attemptUnlock(true);
+      const vault = localStorage.getItem('akh_vault');
+      if (!vault) {
+        document.getElementById('setupScreen').style.display = 'block';
+      } else {
+        document.getElementById('lockScreen').style.display = 'block';
       }
     };
+
+    function resetIdleTimer() {
+      if (IDLE_TIMER) clearTimeout(IDLE_TIMER);
+      if (ACTIVE_TOKEN) {
+        IDLE_TIMER = setTimeout(() => {
+          lockPortal('تم قفل اللوحة تلقائياً بعد مرور 5 دقائق لسلامة وحماية حسابك 🛡️');
+        }, IDLE_LIMIT_MS);
+      }
+    }
+
+    ['mousemove', 'keydown', 'touchstart', 'scroll', 'click'].forEach(evt => {
+      window.addEventListener(evt, resetIdleTimer);
+    });
+
+    async function performSetup() {
+      const token = document.getElementById('setupTokenInput').value.trim();
+      const pin = document.getElementById('setupPinInput').value.trim();
+      if (!token.startsWith('ghp_') && !token.startsWith('github_pat_')) {
+        showAlert('يرجى التأكد من كتابة رمز GitHub بشكل صحيح.', false);
+        return;
+      }
+      if (pin.length !== 6 || isNaN(pin)) {
+        showAlert('يرجى اختيار رمز PIN مكون من 6 أرقام حصراً.', false);
+        return;
+      }
+
+      showAlert('جارٍ فحص المفتاح وتشفيره بالـ PIN...', true);
+      try {
+        const testRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (!testRes.ok) throw new Error('الرمز غير صالح للاتصال بـ GitHub.');
+
+        const vaultObj = await encryptToken(token, pin);
+        localStorage.setItem('akh_vault', JSON.stringify(vaultObj));
+
+        ACTIVE_TOKEN = token;
+        document.getElementById('setupScreen').style.display = 'none';
+        document.getElementById('dashboardScreen').style.display = 'block';
+        showAlert('تم تشفير المفتاح بنجاح وحفظ رمز الـ PIN! مرحباً بك.', true);
+        resetIdleTimer();
+        loadArticles();
+      } catch (err) {
+        showAlert(err.message, false);
+      }
+    }
+
+    async function attemptPinUnlock() {
+      const pin = document.getElementById('unlockPinInput').value.trim();
+      if (pin.length !== 6) {
+        showAlert('أدخل رمز الـ PIN المكون من 6 أرقام.', false);
+        return;
+      }
+
+      const vaultStr = localStorage.getItem('akh_vault');
+      if (!vaultStr) return;
+
+      showAlert('جارٍ فك التشفير والتحقق...', true);
+      try {
+        const vaultObj = JSON.parse(vaultStr);
+        const decryptedToken = await decryptToken(vaultObj, pin);
+
+        const testRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`, {
+          headers: { 'Authorization': `Bearer ${decryptedToken}` }
+        });
+        if (!testRes.ok) throw new Error('تم إلغاء المفتاح أو حذفه من GitHub.');
+
+        ACTIVE_TOKEN = decryptedToken;
+        document.getElementById('unlockPinInput').value = '';
+        document.getElementById('lockScreen').style.display = 'none';
+        document.getElementById('dashboardScreen').style.display = 'block';
+        document.getElementById('statusAlert').style.display = 'none';
+
+        resetIdleTimer();
+        loadArticles();
+      } catch (err) {
+        showAlert('رمز الـ PIN غير صحيح، تعذر فك التشفير.', false);
+        document.getElementById('unlockPinInput').value = '';
+      }
+    }
+
+    function lockPortal(msg = 'تم قفل اللوحة بنجاح.') {
+      ACTIVE_TOKEN = '';
+      if (IDLE_TIMER) clearTimeout(IDLE_TIMER);
+      document.getElementById('dashboardScreen').style.display = 'none';
+      document.getElementById('lockScreen').style.display = 'block';
+      showAlert(msg, true);
+    }
+
+    function resetVaultPrompt() {
+      if (confirm('هل ترغب بإعادة ضبط الخزنة وإدخال مفتاح GitHub ورمز PIN جديدين؟')) {
+        localStorage.removeItem('akh_vault');
+        location.reload();
+      }
+    }
+
+    function onScheduleModeChange() {
+      const mode = document.getElementById('scheduleMode').value;
+      const box = document.getElementById('scheduleTimeBox');
+      const input = document.getElementById('publishTimestamp');
+      if (mode === 'schedule') {
+        box.style.display = 'block';
+        input.required = true;
+      } else {
+        box.style.display = 'none';
+        input.required = false;
+        input.value = '';
+      }
+    }
 
     function showAlert(msg, isSuccess) {
       const el = document.getElementById('statusAlert');
@@ -367,45 +539,6 @@
       el.innerText = msg;
       el.style.display = 'block';
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    async function attemptUnlock(isAuto = false) {
-      const input = document.getElementById('accessInput').value.trim();
-      if (!input) {
-        if (!isAuto) showAlert('يرجى إدخال رمز المرور السري أولاً.', false);
-        return;
-      }
-
-      if (!isAuto) showAlert('جارٍ التحقق من الرمز والاتصال بالموقع...', true);
-
-      try {
-        const getUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
-        const res = await fetch(getUrl, { headers: { 'Authorization': `Bearer ${input}` } });
-        
-        if (!res.ok) throw new Error('الرمز السري غير صحيح أو ليس لديه إذن تعديل.');
-
-        ACTIVE_TOKEN = input;
-        localStorage.setItem('akh_master_token', input);
-
-        document.getElementById('lockScreen').style.display = 'none';
-        document.getElementById('dashboardScreen').style.display = 'block';
-        document.getElementById('statusAlert').style.display = 'none';
-
-        loadArticles();
-      } catch (err) {
-        document.getElementById('lockScreen').style.display = 'block';
-        document.getElementById('dashboardScreen').style.display = 'none';
-        showAlert(err.message, false);
-      }
-    }
-
-    function lockPortal() {
-      ACTIVE_TOKEN = '';
-      localStorage.removeItem('akh_master_token');
-      document.getElementById('accessInput').value = '';
-      document.getElementById('dashboardScreen').style.display = 'none';
-      document.getElementById('lockScreen').style.display = 'block';
-      showAlert('تم قفل اللوحة بنجاح.', true);
     }
 
     function populateCategories(lang) {
@@ -449,26 +582,26 @@
         summary.dir = 'ltr';
         content.dir = 'ltr';
         customCat.dir = 'ltr';
-        title.placeholder = "e.g. LLC Incorporation in Iraq";
-        summary.placeholder = "A brief 2-sentence summary for search engines...";
-        content.placeholder = "Paste your English legal article or insights here...";
+        title.placeholder = "e.g. Legal procedures under Iraqi Law";
+        summary.placeholder = "A brief 2-sentence summary for search engines & LinkedIn...";
+        content.placeholder = "Paste your English article here (Disclaimers are auto-added)...";
         customCat.placeholder = "Enter practice area in English...";
-        document.getElementById('lblTitle').innerText = "عنوان المقال (بالإنجليزي) / Article Title:";
-        document.getElementById('lblCategory').innerText = "التخصص القانوني / Practice Area:";
-        document.getElementById('lblSummary').innerText = "الموجز (SEO Summary):";
-        document.getElementById('lblContent').innerText = "نص المقال / Content:";
+        document.getElementById('lblTitle').innerText = "Article Title (English):";
+        document.getElementById('lblCategory').innerText = "Practice Area / Category:";
+        document.getElementById('lblSummary').innerText = "Summary (SEO & Social Preview):";
+        document.getElementById('lblContent').innerText = "Article Content / Insights:";
       } else {
         title.dir = 'rtl';
         summary.dir = 'rtl';
         content.dir = 'rtl';
         customCat.dir = 'rtl';
-        title.placeholder = "مثال: إجراءات تأسيس الشركات المحدودة في القانون العراقي";
-        summary.placeholder = "سطر ونصف يلخص مضمون الدراسة ليظهر في نتائج Google";
-        content.placeholder = "انسخ نص المقال والصقه هنا مباشرة...";
+        title.placeholder = "مثال: إجراءات تأسيس الشركات أو أحكام الحضانة والنفقة";
+        summary.placeholder = "سطر ونصف يلخص مضمون الدراسة ليظهر في نتائج البحث والشبكات";
+        content.placeholder = "انسخ نص المقال والصقه هنا مباشرة (تتم إضافة الحقوق والتنبيه تلقائياً)...";
         customCat.placeholder = "اكتب التخصص القانوني هنا بحرية...";
         document.getElementById('lblTitle').innerText = "عنوان المقال أو الدراسة:";
         document.getElementById('lblCategory').innerText = "الفرع / التخصص القانوني:";
-        document.getElementById('lblSummary').innerText = "الموجز لمحركات البحث (SEO Snippet):";
+        document.getElementById('lblSummary').innerText = "الموجز لمحركات البحث ولينكد إن:";
         document.getElementById('lblContent').innerText = "نص الدراسة أو التحليل القانوني:";
       }
     }
@@ -487,9 +620,10 @@
       return new TextDecoder().decode(bytes);
     }
 
-    /* نشر المقال */
     document.getElementById('articleForm').addEventListener('submit', async function(e) {
       e.preventDefault();
+      resetIdleTimer();
+
       const lang = document.getElementById('articleLang').value;
       const isEn = lang === 'en';
 
@@ -500,12 +634,33 @@
       const summary = document.getElementById('summary').value.trim();
       const content = document.getElementById('content').value.trim();
       
-      const date = isEn 
-        ? new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' })
-        : new Date().toLocaleDateString('ar-IQ', { year: 'numeric', month: 'long', day: 'numeric' });
+      const scheduleMode = document.getElementById('scheduleMode').value;
+      const scheduledVal = document.getElementById('publishTimestamp').value;
+      const publishAtIso = (scheduleMode === 'schedule' && scheduledVal) 
+        ? new Date(scheduledVal).toISOString() 
+        : new Date().toISOString();
 
+      const displayDate = (scheduleMode === 'schedule' && scheduledVal)
+        ? (isEn ? new Date(scheduledVal).toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' })
+                : new Date(scheduledVal).toLocaleDateString('ar-IQ', { year: 'numeric', month: 'long', day: 'numeric' }))
+        : (isEn ? new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' })
+                : new Date().toLocaleDateString('ar-IQ', { year: 'numeric', month: 'long', day: 'numeric' }));
+
+      const legalFooterHtml = isEn ? `
+        <div class="legal-footer-box" style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #edf2f7; font-size: 11.5px; color: #718096; line-height: 1.7;">
+          <p class="notranslate" translate="no" style="margin-bottom: 4px; font-weight: 700; color: #4a5568;">© All rights reserved to Law Office Of Ali Kadhem Hashimi (AKH Law Office).</p>
+          <p style="margin: 0;">Legal Disclaimer & Governing Language: The insights and legal analyses published on this platform are for general informational and corporate awareness purposes only and do not constitute binding legal advice. <strong>The original drafted text (English/Arabic) shall remain the legally authoritative version.</strong> Automated translations into other languages are provided solely for convenience; no liability is assumed for translation discrepancies. Readers must verify content against the authoritative source.</p>
+        </div>
+      ` : `
+        <div class="legal-footer-box" style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #edf2f7; font-size: 11.5px; color: #718096; line-height: 1.7;">
+          <p class="notranslate" translate="no" style="margin-bottom: 4px; font-weight: 700; color: #4a5568;">© جميع الحقوق محفوظة لمكتب المحامي علي كاظم الهاشمي (AKH Law Office).</p>
+          <p style="margin: 0;">إخلاء مسؤولية وحجية النص: المواد والتحليلات القانونية المنشورة مُعدّة لأغراض التوعية العامة لبيئة الأعمال ولا تُعد استشارة قانونية ملزمة. <strong>يُعد النص العربي هو الأصل المعتمد والمرجع الحصري لنفاذ المحتوى</strong>، وما توفره المنصة من ترجمات آلية هو لأغراض الاسترشاد والتيسير المعلوماتي فقط؛ ويُخلى جانب المكتب من أي تبعات ناجمة عن عدم دقة الترجمة الآلية، ويُرجى التحقق دائماً ومطابقة النص مع أصله القانوني المعتمد.</p>
+        </div>
+      `;
+
+      const isEditing = EDITING_ARTICLE_INDEX !== null;
       const btn = document.getElementById('submitBtn');
-      btn.innerText = 'جارٍ النشر... / Publishing...';
+      btn.innerText = isEditing ? 'جارٍ حفظ التعديلات... / Saving...' : 'جارٍ النشر والجدولة... / Publishing...';
       btn.disabled = true;
 
       try {
@@ -517,14 +672,14 @@
         let html = b64_to_utf8(fileData.content);
 
         const articleHtml = `
-    <!-- ARTICLE_START -->
-    <article class="legal-card" style="border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; margin-bottom: 24px; text-align: ${isEn ? 'left' : 'right'}; direction: ${isEn ? 'ltr' : 'rtl'}; background: #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.04);">
-      <div style="font-size: 13px; color: #d32f2f; font-weight: 700; margin-bottom: 8px;">${category} • ${date}</div>
+    <article class="legal-card" data-category="${category}" data-publish-at="${publishAtIso}" style="border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; margin-bottom: 24px; text-align: ${isEn ? 'left' : 'right'}; direction: ${isEn ? 'ltr' : 'rtl'}; background: #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.04);">
+      <div style="font-size: 13px; color: #d32f2f; font-weight: 700; margin-bottom: 8px;">${category} • ${displayDate}</div>
       <h2 style="font-size: 19px; font-weight: 800; color: #0b1a30; margin-bottom: 12px; line-height: 1.4;">${title}</h2>
       <p style="font-size: 15px; color: #4a5568; line-height: 1.8; margin-bottom: 12px;">${summary}</p>
       
-      <div class="article-expanded" style="display: none; border-top: 1px dashed #cbd5e0; padding-top: 16px; margin-top: 12px; font-size: 15px; color: #2d3748; line-height: 1.9; white-space: pre-line;">
-        ${content}
+      <div class="article-expanded" style="display: none; border-top: 1px dashed #cbd5e0; padding-top: 16px; margin-top: 12px; font-size: 15px; color: #2d3748; line-height: 1.9;">
+        <div class="article-content-body" style="white-space: pre-line;">${content}</div>
+        ${legalFooterHtml}
       </div>
       
       <button type="button" onclick="const b = this.previousElementSibling; const open = b.style.display==='block'; b.style.display = open?'none':'block'; this.innerText = open ? '${isEn ? 'Read More →' : 'قراءة المزيد ←'}' : '${isEn ? 'Show Less ↑' : 'عرض أقل ↑'}';" style="background: none; border: 1.5px solid #0b1a30; color: #0b1a30; padding: 8px 18px; border-radius: 6px; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; margin-top: 10px; display: inline-block;">
@@ -533,23 +688,25 @@
     </article>
         `;
 
-        if (isEn) {
-          if (html.includes('(Procedural insights & legal articles under preparation and forthcoming)')) {
-            html = html.replace('<p class="english-note">(Procedural insights & legal articles under preparation and forthcoming)</p>', '<div id="english-feed">\n' + articleHtml + '\n</div>');
-          } else if (html.includes('<div id="english-feed">')) {
-            html = html.replace('<div id="english-feed">', '<div id="english-feed">\n' + articleHtml);
+        let updatedHtml = html;
+
+        if (isEditing) {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+          const articles = doc.querySelectorAll('article');
+
+          if (articles[EDITING_ARTICLE_INDEX]) {
+            articles[EDITING_ARTICLE_INDEX].outerHTML = articleHtml;
+            updatedHtml = '<!DOCTYPE html>\n' + doc.documentElement.outerHTML;
           } else {
-            html = html.replace('</div>\n  </div>\n</body>', articleHtml + '\n</div>\n  </div>\n</body>');
+            throw new Error('تعذر العثور على المقال المراد تعديله.');
           }
         } else {
-          if (html.includes('(المقالات والبحوث الإجرائية قيد الإعداد والنشر قريباً)')) {
-            html = html.replace('<p class="arabic-note">(المقالات والبحوث الإجرائية قيد الإعداد والنشر قريباً)</p>', '<div id="arabic-feed">\n' + articleHtml + '\n</div>');
-          } else if (html.includes('<div id="arabic-feed">')) {
-            html = html.replace('<div id="arabic-feed">', '<div id="arabic-feed">\n' + articleHtml);
-          } else if (html.includes('<div id="articles-feed">')) {
-            html = html.replace('<div id="articles-feed">', '<div id="articles-feed">\n' + articleHtml);
+          const targetFeed = isEn ? 'english-feed' : 'arabic-feed';
+          if (updatedHtml.includes(`id="${targetFeed}">`)) {
+            updatedHtml = updatedHtml.replace(`id="${targetFeed}">`, `id="${targetFeed}">\n` + articleHtml);
           } else {
-            html = html.replace('<hr>', articleHtml + '\n<hr>');
+            updatedHtml = updatedHtml.replace('</div>\n  </div>\n</body>', articleHtml + '\n</div>\n  </div>\n</body>');
           }
         }
 
@@ -560,19 +717,16 @@
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            message: `Publish (${lang}): ${title}`,
-            content: utf8_to_b64(html),
+            message: isEditing ? `تعديل مقال: ${title}` : `نشر (${lang}): ${title}`,
+            content: utf8_to_b64(updatedHtml),
             sha: fileData.sha
           })
         });
 
-        if (!putRes.ok) throw new Error('فشل حفظ المقال.');
+        if (!putRes.ok) throw new Error('فشل حفظ التعديلات في GitHub.');
 
-        showAlert(isEn ? 'Article published successfully!' : 'تم نشر المقال بنجاح بنظام الكارت التفاعلي!', true);
-        document.getElementById('title').value = '';
-        document.getElementById('summary').value = '';
-        document.getElementById('content').value = '';
-        document.getElementById('customCategoryInput').value = '';
+        showAlert(isEditing ? `تم حفظ تعديلات مقال "${title}" بنجاح!` : `تم نشر المقال وجدولته بنجاح!`, true);
+        cancelEdit();
         loadArticles();
       } catch (err) {
         showAlert(err.message, false);
@@ -582,7 +736,6 @@
       }
     });
 
-    /* تحميل المقالات والحذف */
     async function loadArticles() {
       const container = document.getElementById('articlesListContainer');
       container.innerHTML = '<p style="font-size: 13px; color: #718096; text-align: center;">جارٍ جلب المقالات...</p>';
@@ -598,26 +751,67 @@
         const doc = parser.parseFromString(html, 'text/html');
         const articles = doc.querySelectorAll('article');
 
+        LOADED_ARTICLES_CACHE = [];
+
         if (articles.length === 0) {
-          container.innerHTML = '<p style="font-size: 13px; color: #718096; text-align: center;">لا توجد مقالات منشورة حالياً بالموقع.</p>';
+          container.innerHTML = '<p style="font-size: 13px; color: #718096; text-align: center;">لا توجد مقالات مسجلة حالياً.</p>';
           return;
         }
 
         container.innerHTML = '';
+        const now = new Date();
+
         articles.forEach((art, index) => {
           const h2 = art.querySelector('h2');
           const title = h2 ? h2.innerText : 'مقال بدون عنوان';
+          const p = art.querySelector('p');
+          const summary = p ? p.innerText : '';
+          
+          const bodyEl = art.querySelector('.article-content-body');
+          const expanded = art.querySelector('.article-expanded');
+          let content = '';
+          if (bodyEl) {
+            content = bodyEl.innerHTML.trim();
+          } else if (expanded) {
+            content = expanded.innerHTML.trim();
+          }
+
           const meta = art.querySelector('div') ? art.querySelector('div').innerText : '';
+          const publishAt = art.getAttribute('data-publish-at');
+          const category = art.getAttribute('data-category') || (meta ? meta.split('•')[0].trim() : '');
+          const isScheduled = publishAt && new Date(publishAt) > now;
           const isEn = art.style.direction === 'ltr';
+
+          LOADED_ARTICLES_CACHE.push({
+            index,
+            title,
+            summary,
+            content,
+            category,
+            publishAt,
+            isEn
+          });
+
+          const badge = isScheduled
+            ? `<span style="background: #fefcbf; color: #744210; padding: 2px 7px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-right: 6px;">⏳ مجدول: ${new Date(publishAt).toLocaleString('ar-IQ')}</span>`
+            : `<span style="background: #def7ec; color: #03543f; padding: 2px 7px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-right: 6px;">● منشور حالياً</span>`;
+
+          const quickPublishBtn = isScheduled
+            ? `<button class="btn-action btn-quick-publish" onclick="cancelScheduleAndPublishNow(${index})">إلغاء الجدولة ونشر فوري ⚡</button>`
+            : '';
 
           const item = document.createElement('div');
           item.className = 'article-item';
           item.innerHTML = `
             <div class="article-info" style="direction: ${isEn ? 'ltr' : 'rtl'}; text-align: ${isEn ? 'left' : 'right'};">
-              <div class="item-title">${title}</div>
+              <div class="item-title">${title} ${badge}</div>
               <div class="item-meta">${meta}</div>
             </div>
-            <button class="btn-delete" onclick="deleteArticle(${index}, '${encodeURIComponent(title)}')">حذف 🗑️</button>
+            <div class="item-actions">
+              <button class="btn-action btn-edit" onclick="startEdit(${index})">تعديل ✏️</button>
+              ${quickPublishBtn}
+              <button class="btn-action btn-delete" onclick="deleteArticle(${index}, '${encodeURIComponent(title)}')">حذف 🗑️</button>
+            </div>
           `;
           container.appendChild(item);
         });
@@ -626,11 +820,120 @@
       }
     }
 
-    async function deleteArticle(index, encodedTitle) {
-      const title = decodeURIComponent(encodedTitle);
-      if (!confirm(`هل أنت متأكد من رغبتك في حذف مقال:\n"${title}"\nنهائياً من الموقع؟`)) return;
+    async function cancelScheduleAndPublishNow(index) {
+      resetIdleTimer();
+      const art = LOADED_ARTICLES_CACHE[index];
+      if (!art) return;
+      if (!confirm(`هل ترغب بإلغاء الجدولة ونشر مقال:\n"${art.title}"\nفوراً الآن على الموقع؟`)) return;
 
-      showAlert('جارٍ حذف المقال من الموقع...', true);
+      showAlert('جارٍ نشر المقال فوراً على الموقع...', true);
+
+      try {
+        const getUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
+        const res = await fetch(getUrl, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
+        if (!res.ok) throw new Error('فشل جلب الملف.');
+        const fileData = await res.json();
+        let html = b64_to_utf8(fileData.content);
+
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const articles = doc.querySelectorAll('article');
+
+        if (articles[index]) {
+          articles[index].setAttribute('data-publish-at', new Date().toISOString());
+        }
+
+        const updatedHtml = '<!DOCTYPE html>\n' + doc.documentElement.outerHTML;
+
+        const putRes = await fetch(getUrl, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `Bearer ${ACTIVE_TOKEN}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            message: `Instant publish: ${art.title}`,
+            content: utf8_to_b64(updatedHtml),
+            sha: fileData.sha
+          })
+        });
+
+        if (!putRes.ok) throw new Error('فشل حفظ العملية.');
+
+        showAlert(`تم إلغاء الجدولة ونشر مقال "${art.title}" فوراً في الموقع!`, true);
+        loadArticles();
+      } catch (err) {
+        showAlert(err.message, false);
+      }
+    }
+
+    function startEdit(index) {
+      resetIdleTimer();
+      const art = LOADED_ARTICLES_CACHE[index];
+      if (!art) return;
+
+      EDITING_ARTICLE_INDEX = index;
+
+      document.getElementById('articleLang').value = art.isEn ? 'en' : 'ar';
+      onLanguageChange();
+
+      document.getElementById('title').value = art.title;
+      document.getElementById('summary').value = art.summary;
+      document.getElementById('content').value = art.content;
+
+      const catSelect = document.getElementById('categorySelect');
+      let found = false;
+      for (let i = 0; i < catSelect.options.length; i++) {
+        if (catSelect.options[i].value === art.category) {
+          catSelect.selectedIndex = i;
+          found = true;
+          break;
+        }
+      }
+      if (!found) {
+        catSelect.value = 'CUSTOM';
+        onCategoryChange();
+        document.getElementById('customCategoryInput').value = art.category;
+      } else {
+        onCategoryChange();
+      }
+
+      if (art.publishAt && new Date(art.publishAt) > new Date()) {
+        document.getElementById('scheduleMode').value = 'schedule';
+        onScheduleModeChange();
+        const d = new Date(art.publishAt);
+        d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+        document.getElementById('publishTimestamp').value = d.toISOString().slice(0, 16);
+      } else {
+        document.getElementById('scheduleMode').value = 'now';
+        onScheduleModeChange();
+      }
+
+      document.getElementById('editBanner').style.display = 'flex';
+      document.getElementById('editBannerText').innerText = `✏️ أنت الآن تقوم بتعديل: "${art.title}"`;
+      document.getElementById('submitBtn').innerText = 'حفظ التعديلات 💾 | Save Changes';
+
+      window.scrollTo({ top: 120, behavior: 'smooth' });
+    }
+
+    function cancelEdit() {
+      EDITING_ARTICLE_INDEX = null;
+      document.getElementById('editBanner').style.display = 'none';
+      document.getElementById('title').value = '';
+      document.getElementById('summary').value = '';
+      document.getElementById('content').value = '';
+      document.getElementById('customCategoryInput').value = '';
+      document.getElementById('scheduleMode').value = 'now';
+      onScheduleModeChange();
+      document.getElementById('submitBtn').innerText = 'نـشـر الآن | Publish Now';
+    }
+
+    async function deleteArticle(index, encodedTitle) {
+      resetIdleTimer();
+      const title = decodeURIComponent(encodedTitle);
+      if (!confirm(`هل أنت متأكد من رغبتك في حذف مقال:\n"${title}"\nنهائياً؟`)) return;
+
+      showAlert('جارٍ حذف المقال...', true);
 
       try {
         const getUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
@@ -667,6 +970,7 @@
         if (!putRes.ok) throw new Error('تعذر إتمام الحذف.');
 
         showAlert(`تم حذف مقال "${title}" بنجاح!`, true);
+        if (EDITING_ARTICLE_INDEX === index) cancelEdit();
         loadArticles();
       } catch (err) {
         showAlert(err.message, false);
