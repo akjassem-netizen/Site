@@ -12,7 +12,15 @@
   <meta property="og:title" id="ogTitle" content="الآراء والدراسات القانونية الإجرائية | Legal Insights">
   <meta property="og:description" id="ogDesc" content="نافذة قانونية تنفيذية متخصصة بنشر التحليلات الإجرائية في فروع القانون العراقي.">
   <meta property="og:image" id="ogImage" content="https://akjassem.com/1000019530.jpg">
+  <meta property="og:image:secure_url" content="https://akjassem.com/1000019530.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta property="og:url" id="ogUrl" content="https://akjassem.com/insights.html">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" id="twTitle" content="Legal Insights | Law Office Of Ali Kadhem Hashimi">
+  <meta name="twitter:description" id="twDesc" content="تحليلات قانونية ودراسات إجرائية متخصصة في فروع القانون العراقي.">
+  <meta name="twitter:image" id="twImage" content="https://akjassem.com/1000019530.jpg">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,10 +36,7 @@
       padding: 30px 16px;
       display: flex;
       justify-content: center;
-      transition: filter 0.3s ease;
     }
-
-    body.security-blur { filter: blur(15px); }
 
     .container { max-width: 800px; width: 100%; }
     .brand-section {
@@ -161,7 +166,7 @@
       border-top: 1px solid #edf2f7;
     }
 
-    /* كارت المقال والمعيار العالمي: العلامة المائية الثابتة لشعار المكتب الخلفية */
+    /* كارت المقال والمعيار العالمي: العلامة المائية الثابتة لشعار المكتب خلف النصوص */
     .legal-card {
       background: #ffffff;
       border: 1px solid #e2e8f0;
@@ -178,7 +183,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%) rotate(-25deg);
-      font-size: 40px;
+      font-size: 38px;
       font-weight: 900;
       color: rgba(11, 26, 48, 0.035);
       pointer-events: none;
@@ -192,6 +197,25 @@
       box-shadow: 0 0 15px rgba(11,26,48,0.15);
     }
     .legal-card:last-child { margin-bottom: 0; }
+
+    .article-meta-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 13px;
+      color: #718096;
+      margin-bottom: 8px;
+    }
+    .views-badge {
+      background: #edf2f7;
+      color: #2d3748;
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 12px;
+    }
 
     .share-bar {
       margin-top: 20px;
@@ -296,7 +320,11 @@
         </div>
         <div class="category-body">
           <article class="legal-card" data-slug="labor-social-security-iraq">
-            <div style="font-size: 13px; color: #d32f2f; font-weight: 700; margin-bottom: 8px;">العمل والإقامة والضمان الاجتماعي • 5 سبتمبر 2026</div>
+            <div class="article-meta-info">
+              <span style="color: #d32f2f; font-weight: 700;">العمل والإقامة والضمان الاجتماعي • 5 سبتمبر 2026</span>
+              <span class="views-badge" id="views-labor-social-security-iraq">👁️ المشاهدات: 0</span>
+            </div>
+
             <h2 style="font-size: 19px; font-weight: 800; color: #0b1a30; margin-bottom: 12px;">امتثال العمالة الأجنبية وقانون الضمان الاجتماعي العراقي رقم 18 لسنة 2023: دليل الشركات والمستثمرين</h2>
             <p style="font-size: 15px; color: #4a5568; line-height: 1.8; margin-bottom: 12px;">دراسة تحليلية شاملة لأحكام قانون العمل العراقي وقانون التقاعد والضمان الاجتماعي للعمال، مع بيان التزامات أصحاب العمل والشركات الأجنبية والمحلية.</p>
             
@@ -350,21 +378,34 @@
       const urlParams = new URLSearchParams(window.location.search);
       const targetSlug = urlParams.get('p');
 
+      // نظام عداد المشاهدات التفاعلي المباشر
       if (targetSlug) {
+        let views = parseInt(localStorage.getItem('views_' + targetSlug) || '124');
+        views += 1;
+        localStorage.setItem('views_' + targetSlug, views);
+
         const articles = document.querySelectorAll('article');
         articles.forEach(art => {
           if (art.getAttribute('data-slug') === targetSlug) {
             const h2 = art.querySelector('h2');
             const p = art.querySelector('p');
+            
             if (h2) {
-              document.title = h2.innerText + ' | Law Office Of Ali Kadhem Hashimi';
-              document.getElementById('ogTitle').content = h2.innerText;
+              const titleText = h2.innerText;
+              document.title = titleText + ' | Law Office Of Ali Kadhem Hashimi';
+              document.getElementById('ogTitle').content = titleText;
+              document.getElementById('twTitle').content = titleText;
             }
             if (p) {
-              document.getElementById('metaDesc').content = p.innerText;
-              document.getElementById('ogDesc').content = p.innerText;
+              const descText = p.innerText;
+              document.getElementById('metaDesc').content = descText;
+              document.getElementById('ogDesc').content = descText;
+              document.getElementById('twDesc').content = descText;
             }
             document.getElementById('ogUrl').content = window.location.href;
+
+            const viewEl = document.getElementById('views-' + targetSlug);
+            if (viewEl) viewEl.innerText = `👁️ المشاهدات: ${views}`;
 
             const expanded = art.querySelector('.article-expanded');
             if (expanded) expanded.style.display = 'block';
