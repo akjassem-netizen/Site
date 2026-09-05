@@ -36,15 +36,10 @@
       padding: 30px 16px;
       display: flex;
       justify-content: center;
-      user-select: none !important;
-      -webkit-user-select: none !important;
-      -moz-user-select: none !important;
-      -ms-user-select: none !important;
-      -webkit-touch-callout: none !important;
       transition: filter 0.3s ease;
     }
 
-    body.security-blur { filter: blur(22px); }
+    body.security-blur { filter: blur(20px); }
 
     .container { max-width: 800px; width: 100%; }
     .brand-section {
@@ -172,6 +167,7 @@
       border-top: 1px solid #edf2f7;
     }
 
+    /* كارت المقال مع العلامة المائية */
     .legal-card {
       background: #ffffff;
       border: 1px solid #e2e8f0;
@@ -455,16 +451,18 @@
             if (h2) {
               const titleText = h2.innerText;
               document.title = titleText + ' | Law Office Of Ali Kadhem Hashimi';
-              document.getElementById('ogTitle').content = titleText;
-              document.getElementById('twTitle').content = titleText;
+              document.getElementById('ogTitle').setAttribute('content', titleText);
+              document.getElementById('twTitle').setAttribute('content', titleText);
             }
             if (p) {
               const descText = p.innerText;
-              document.getElementById('metaDesc').content = descText;
-              document.getElementById('ogDesc').content = descText;
-              document.getElementById('twDesc').content = descText;
+              document.getElementById('metaDesc').setAttribute('content', descText);
+              document.getElementById('ogDesc').setAttribute('content', descText);
+              document.getElementById('twDesc').setAttribute('content', descText);
             }
-            document.getElementById('ogUrl').content = window.location.href;
+            document.getElementById('ogImage').setAttribute('content', 'https://akjassem.com/1000019530.jpg');
+            document.getElementById('twImage').setAttribute('content', 'https://akjassem.com/1000019530.jpg');
+            document.getElementById('ogUrl').setAttribute('content', window.location.href);
 
             const viewEl = document.getElementById('views-' + targetSlug);
             if (viewEl) viewEl.innerText = `👁️ المشاهدات: ${views}`;
