@@ -30,6 +30,7 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
+    /* منع التحديد والنسخ نهائياً على مستوى الصفحة بالكامل */
     body {
       font-family: 'Cairo', system-ui, sans-serif;
       background-color: #f7f9fc;
@@ -37,7 +38,6 @@
       padding: 30px 16px;
       display: flex;
       justify-content: center;
-      /* منع تحديد النص والنسخ عالمياً */
       user-select: none !important;
       -webkit-user-select: none !important;
       -moz-user-select: none !important;
@@ -291,7 +291,7 @@
     }
   </style>
 
-  <!-- إعداد ترجمة جوجل السلسة -->
+  <!-- أداة ترجمة جوجل النظيفة -->
   <script type="text/javascript">
     function googleTranslateElementInit() {
       new google.translate.TranslateElement({
