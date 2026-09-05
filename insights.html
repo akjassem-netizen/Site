@@ -29,7 +29,7 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
-    /* حماية أمنية شاملة تمنع التحديد والنسخ وتفعيل درع التشويش */
+    /* منع تحديد النص، النسخ، واللصق نهائياً عبر CSS وتفعيل درع التشويش */
     body {
       font-family: 'Cairo', system-ui, sans-serif;
       background-color: #f7f9fc;
@@ -37,10 +37,11 @@
       padding: 30px 16px;
       display: flex;
       justify-content: center;
-      user-select: none;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
+      user-select: none !important;
+      -webkit-user-select: none !important;
+      -moz-user-select: none !important;
+      -ms-user-select: none !important;
+      -webkit-touch-callout: none !important;
       transition: filter 0.3s ease;
     }
 
@@ -158,9 +159,7 @@
       font-size: 16px;
       color: #0b1a30;
       border-left: 4px solid #d32f2f;
-      transition: background-color 0.2s;
     }
-    .category-header:hover { background-color: #fafafa; }
     .badge-count {
       background: #edf2f7;
       color: #4a5568;
@@ -206,7 +205,6 @@
       border: 2px solid #0b1a30;
       box-shadow: 0 0 15px rgba(11,26,48,0.15);
     }
-    .legal-card:last-child { margin-bottom: 0; }
 
     .article-meta-info {
       display: flex;
@@ -273,7 +271,6 @@
       border-radius: 8px;
       font-size: 13px;
       font-weight: 700;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
       display: none;
       z-index: 99999;
     }
@@ -301,7 +298,7 @@
         pageLanguage: 'ar',
         includedLanguages: 'ar,ckb,ku,en,fr,es,de',
         layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-        autoDisplay: true
+        autoDisplay: false
       }, 'google_translate_element');
     }
   </script>
@@ -320,7 +317,7 @@
         <div class="est">EST. 2014</div>
       </a>
       <div class="page-title">
-        <h1>الآراء والتحليلات القانونية</h1>
+        <h1 class="notranslate">الآراء والتحليلات القانونية</h1>
         <h2 style="font-size:14px; color:#718096; margin-top:2px;" class="notranslate">Law Office Of Ali Kadhem Hashimi</h2>
       </div>
     </div>
@@ -330,24 +327,24 @@
         <button class="lang-btn active" onclick="switchTab('ar')">الأصل العربي</button>
         <button class="lang-btn" onclick="switchTab('en')">English Insights</button>
       </div>
-      <div style="display:flex; align-items:center; gap:8px; font-size:13px; font-weight:700; color:#4a5568;">
+      <div style="display:flex; align-items:center; gap:8px; font-size:13px; font-weight:700; color:#4a5568;" class="notranslate">
         <span>🌐 الترجمة المعتمدة:</span>
         <div id="google_translate_element"></div>
       </div>
     </div>
 
-    <div class="intro-box">
+    <div class="intro-box notranslate">
       نافذة متخصصة تُعنى بنشر الدراسات والإيضاحات الإجرائية في فروع القانون العراقي: قانون العمل والإقامة والضمان الاجتماعي، تأسيس وتسجيل الشركات، العلامات التجارية، وقضايا الأحوال الشخصية والدعاوى المدنية والتجارية.
     </div>
 
     <div id="arabic-feed">
       <div class="category-group">
-        <div class="category-header">
+        <div class="category-header notranslate">
           <div><span>العمل والإقامة والضمان الاجتماعي</span><span class="badge-count">1 مقال</span></div>
         </div>
         <div class="category-body">
           <article class="legal-card" data-slug="labor-social-security-iraq">
-            <div class="article-meta-info">
+            <div class="article-meta-info notranslate">
               <span style="color: #d32f2f; font-weight: 700;">العمل والإقامة والضمان الاجتماعي • 5 سبتمبر 2026</span>
               <span class="views-badge" id="views-labor-social-security-iraq">👁️ المشاهدات: 0</span>
             </div>
@@ -368,7 +365,7 @@
 تخضع العمالة الأجنبية في الشركات العاملة في العراق لضوابط دقيقة تشمل الحصول على موافقة وزارة العمل والشؤون الاجتماعية، وإصدار رخصة العمل وإجازة الإقامة الرسمية وفق النسب المقررة للتشغيل الوطني. ويتحمل صاحب العمل مسؤولية تأمين العمال وإعادتهم إلى بلدانهم عند انتهاء التعاقد.
 
 4. تسوية النزاعات العمالية:
- في حال حدوث نزاع بين صاحب العمل والعمال، يُفضل دائماً اللجوء إلى التسوية الودية أو لجان تفتيش العمل قبل تصعيد النزاع إلى القضاء العمالي المختص، لضمان استمرارية النشاط التجاري وحماية السمعة المؤسسية للشركة.
+في حال حدوث نزاع بين صاحب العمل والعمال، يُفضل دائماً اللجوء إلى التسوية الودية أو لجان تفتيش العمل قبل تصعيد النزاع إلى القضاء العمالي المختص، لضمان استمرارية النشاط التجاري وحماية السمعة المؤسسية للشركة.
 
 خاتمة وتوصية تنفيذية:
 نظراً لدقة الإجراءات وتعدد الجهات الرقابية (مفتشو العمل، دائرة التقاعد والضمان الاجتماعي، ومجلس الإدارة للشركات)، نؤكد على ضرورة مراجعة وتدقيق كافة عقود العمل واللوائح الداخلية للشركات من قبل مستشار قانوني مختص لتجنب أي مخالفات قانونية غير مقصودة.</div>
@@ -377,8 +374,8 @@
                 <a href="https://wa.me/9647702956021?text=مرحباً،%20أود%20حجز%20جلسة%20تدقيق%20امتثال%20عمالي%20لشركتنا%20مع%20مكتب%20المحامي%20علي%20كاظم%20الهاشمي" style="display: inline-block; background-color: #0b1a30; color: #ffffff; padding: 13px 25px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 15px; box-shadow: 0 4px 12px rgba(11,26,48,0.25); border: 1.5px solid #d32f2f;">طلب تدقيق الامتثال العمالي للشركات (مكتب AKH) ←</a>
               </div>
 
-              <div style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #edf2f7; font-size: 11.5px; color: #718096; line-height: 1.7;">
-                <p class="notranslate" translate="no" style="margin-bottom: 4px; font-weight: 700; color: #4a5568;">© جميع الحقوق محفوظة لمكتب المحامي علي كاظم الهاشمي (AKH Law Office).</p>
+              <div style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #edf2f7; font-size: 11.5px; color: #718096; line-height: 1.7;" class="notranslate">
+                <p style="margin-bottom: 4px; font-weight: 700; color: #4a5568;">© جميع الحقوق محفوظة لمكتب المحامي علي كاظم الهاشمي (AKH Law Office).</p>
                 <p style="margin: 0;">إخلاء مسؤولية وحجية النص: المواد والتحليلات القانونية المنشورة مُعدّة لأغراض التوعية العامة ولا تُعد استشارة قانونية ملزمة. <strong>يُعد النص العربي هو الأصل المعتمد</strong>.</p>
               </div>
             </div>
@@ -401,18 +398,21 @@
   </div>
 
   <script>
+    // منع النقر بزر الماوس الأيمن (الزر الأيمن)
     document.addEventListener('contextmenu', e => e.preventDefault());
     
+    // منع اختصارات التحديد والنسخ (Ctrl+C, Ctrl+A, إلخ) وتصوير الشاشة
     document.addEventListener('keydown', e => {
       if (
         e.key === 'PrintScreen' ||
-        (e.ctrlKey && (e.key === 'c' || e.key === 'u' || e.key === 's' || e.key === 'a' || e.key === 'p'))
+        (e.ctrlKey && (e.key === 'c' || e.key === 'u' || e.key === 's' || e.key === 'a' || e.key === 'p' || e.key === 'x'))
       ) {
         e.preventDefault();
         showSecurityWarning();
       }
     });
 
+    // درع التشويش الأمني عند محاولة التقاط الشاشة أو مغادرة المتصفح
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) {
         document.body.classList.add('security-blur');
@@ -444,9 +444,14 @@
       const targetSlug = urlParams.get('p');
 
       if (targetSlug) {
+        const sessionKey = 'viewed_' + targetSlug;
         let views = parseInt(localStorage.getItem('views_' + targetSlug) || '142');
-        views += 1;
-        localStorage.setItem('views_' + targetSlug, views);
+        
+        if (!sessionStorage.getItem(sessionKey)) {
+          sessionStorage.setItem(sessionKey, 'true');
+          views += 1;
+          localStorage.setItem('views_' + targetSlug, views);
+        }
 
         const articles = document.querySelectorAll('article');
         articles.forEach(art => {
