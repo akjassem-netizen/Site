@@ -3,10 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>بوابة الإدارة القانونية المحمية | Law Office Of Ali Kadhem Hashimi</title>
+  <title>الآراء والتحليلات القانونية | Law Office Of Ali Kadhem Hashimi</title>
+
+  <!-- وسوم المعاينة لـ LinkedIn و WhatsApp و Facebook و X -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Law Office Of Ali Kadhem Hashimi">
+  <meta property="og:title" content="الآراء والدراسات القانونية الإجرائية | Legal Insights">
+  <meta property="og:description" content="نافذة قانونية تنفيذية متخصصة بنشر التحليلات الإجرائية في فروع القانون العراقي.">
+  <meta property="og:image" content="https://akjassem.com/1000019530.jpg">
+  <meta property="og:image:secure_url" content="https://akjassem.com/1000019530.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:url" content="https://akjassem.com/insights">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Legal Insights | Law Office Of Ali Kadhem Hashimi">
+  <meta name="twitter:description" content="تحليلات قانونية ودراسات إجرائية متخصصة في فروع القانون العراقي.">
+  <meta name="twitter:image" content="https://akjassem.com/1000019530.jpg">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -16,28 +33,19 @@
       padding: 30px 16px;
       display: flex;
       justify-content: center;
-      min-height: 100vh;
-      align-items: flex-start;
     }
-    .panel {
-      max-width: 700px;
-      width: 100%;
-      background: #ffffff;
-      border-radius: 14px;
-      padding: 30px 22px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-    }
+    .container { max-width: 800px; width: 100%; }
     .brand-section {
       text-align: center;
-      margin-bottom: 22px;
-      border-bottom: 1.5px solid #edf2f7;
-      padding-bottom: 18px;
+      margin-bottom: 25px;
+      border-bottom: 1.5px solid #e2e8f0;
+      padding-bottom: 20px;
     }
     .brand-logo {
       direction: ltr;
       display: inline-block;
       text-align: center;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
     .logo-text {
       font-size: 46px;
@@ -63,918 +71,406 @@
       margin-top: 3px;
       direction: ltr;
     }
-    .page-title h1 { font-size: 19px; font-weight: 800; color: #1a202c; }
-    .page-title h2 { font-size: 14px; font-weight: 700; color: #718096; margin-top: 2px; direction: ltr; }
-
-    #lockScreen, #setupScreen { text-align: center; padding: 20px 10px; }
-    .lock-icon { font-size: 44px; margin-bottom: 12px; }
-    .lock-desc { font-size: 14.5px; color: #4a5568; margin-bottom: 20px; line-height: 1.6; }
-    #dashboardScreen { display: none; }
-    
-    .pin-input {
-      letter-spacing: 8px;
+    .page-title h1 {
       font-size: 24px;
       font-weight: 800;
-      text-align: center;
-      max-width: 260px;
-      margin: 0 auto 16px;
+      color: #1a202c;
+      margin-top: 10px;
+    }
+    .page-title h2 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #718096;
+      direction: ltr;
+      margin-top: 2px;
     }
 
-    .top-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-      padding-bottom: 12px;
-      border-bottom: 1px dashed #cbd5e0;
-    }
-    .status-badge {
-      font-size: 12.5px;
-      font-weight: 700;
-      color: #03543f;
-      background-color: #def7ec;
-      padding: 4px 10px;
-      border-radius: 6px;
-    }
-    .btn-lock {
-      background: none;
-      border: 1px solid #e53e3e;
-      color: #e53e3e;
-      padding: 5px 12px;
-      border-radius: 6px;
-      font-family: inherit;
-      font-size: 12px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    #editBanner {
-      display: none;
-      background-color: #ebf8ff;
-      border: 1.5px solid #bee3f8;
-      color: #2b6cb0;
-      padding: 10px 14px;
-      border-radius: 8px;
-      margin-bottom: 16px;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .btn-cancel-edit {
-      background: #e53e3e;
-      color: white;
-      border: none;
-      padding: 4px 10px;
-      border-radius: 5px;
-      font-family: inherit;
-      font-size: 12px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .form-group { margin-bottom: 16px; }
-    label {
-      display: block;
-      font-weight: 700;
-      font-size: 14px;
-      margin-bottom: 6px;
-      color: #2d3748;
-    }
-    input[type="text"], input[type="password"], input[type="datetime-local"], textarea, select {
-      width: 100%;
-      padding: 11px 13px;
-      border: 1.5px solid #cbd5e0;
-      border-radius: 8px;
-      font-family: inherit;
-      font-size: 14.5px;
-      transition: all 0.2s;
-      background-color: #fff;
-    }
-    input:focus, textarea:focus, select:focus {
-      outline: none;
-      border-color: #0b1a30;
-      box-shadow: 0 0 0 3px rgba(11,26,48,0.1);
-    }
-    textarea { resize: vertical; min-height: 160px; line-height: 1.7; }
-    .btn-publish, .btn-unlock {
-      width: 100%;
-      padding: 13px;
-      background-color: #0b1a30;
-      color: #ffffff;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: 700;
-      font-family: inherit;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(11,26,48,0.2);
-      transition: all 0.2s;
-    }
-    .btn-publish:active, .btn-unlock:active { background-color: #1a365d; transform: scale(0.99); }
-    .alert {
-      padding: 12px 15px;
-      border-radius: 8px;
-      margin-bottom: 18px;
-      font-size: 14px;
-      display: none;
-    }
-    .alert-success { background-color: #def7ec; color: #03543f; }
-    .alert-error { background-color: #fde8e8; color: #9b1c1c; }
-
-    .manager-box {
-      margin-top: 35px;
-      border-top: 2px solid #edf2f7;
-      padding-top: 25px;
-    }
-    .manager-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 15px;
-    }
-    .manager-header h3 { font-size: 16px; font-weight: 800; color: #0b1a30; }
-    .btn-reload {
-      background-color: #edf2f7;
-      border: 1px solid #cbd5e0;
-      color: #2d3748;
-      padding: 6px 12px;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-    .article-item {
-      background: #fafafa;
+    .toolbar-box {
+      background: #ffffff;
       border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      padding: 12px 14px;
-      margin-bottom: 12px;
+      border-radius: 12px;
+      padding: 12px 18px;
+      margin-bottom: 22px;
       display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .article-info { text-align: right; }
-    .article-info .item-title { font-size: 14.5px; font-weight: 700; color: #0b1a30; line-height: 1.4; }
-    .article-info .item-meta { font-size: 12px; color: #718096; margin-top: 4px; }
-    
-    .item-actions {
-      display: flex;
-      gap: 6px;
+      justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      border-top: 1px dashed #edf2f7;
-      padding-top: 8px;
+      gap: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
     }
-    .btn-action {
-      border: none;
-      padding: 6px 11px;
+    .lang-tabs { display: flex; gap: 8px; }
+    .lang-btn {
+      padding: 7px 18px;
       border-radius: 6px;
+      border: 1.5px solid #0b1a30;
+      background: transparent;
+      color: #0b1a30;
+      font-weight: 700;
+      font-size: 13px;
+      font-family: inherit;
+      cursor: pointer;
+    }
+    .lang-btn.active { background: #0b1a30; color: #ffffff; }
+    .translate-widget-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #4a5568;
+    }
+
+    .intro-box {
+      background: #ffffff;
+      padding: 16px 20px;
+      border-radius: 10px;
+      border: 1px solid #e2e8f0;
+      color: #4a5568;
+      font-size: 14.5px;
+      line-height: 1.8;
+      margin-bottom: 25px;
+      text-align: justify;
+    }
+
+    .category-group {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+    .category-header {
+      padding: 18px 20px;
+      background: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 800;
+      font-size: 16px;
+      color: #0b1a30;
+      user-select: none;
+      border-left: 4px solid #d32f2f;
+    }
+    .category-header:hover { background-color: #fafafa; }
+    .badge-count {
+      background: #edf2f7;
+      color: #4a5568;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 20px;
+      margin-right: 8px;
+    }
+    .arrow-icon { font-size: 14px; color: #a0aec0; transition: transform 0.2s; }
+    .category-body {
+      display: none;
+      padding: 18px 20px;
+      background: #fcfdfe;
+      border-top: 1px solid #edf2f7;
+    }
+
+    .legal-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 22px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+    .legal-card:last-child { margin-bottom: 0; }
+
+    /* شريط المشاركة عبر الشبكات الاجتماعية */
+    .share-bar {
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 1px dashed #cbd5e0;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .share-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #4a5568;
+      margin-left: 6px;
+    }
+    .btn-share {
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-family: inherit;
       font-size: 12px;
       font-weight: 700;
       cursor: pointer;
-      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      text-decoration: none;
+      transition: opacity 0.2s;
     }
-    .btn-edit { background-color: #3182ce; color: #ffffff; }
-    .btn-quick-publish { background-color: #38a169; color: #ffffff; }
-    .btn-delete { background-color: #e53e3e; color: #ffffff; }
+    .btn-share:hover { opacity: 0.85; }
+    .btn-share-copy { background-color: #edf2f7; color: #2d3748; }
+    .btn-share-wa { background-color: #25d366; color: #ffffff; }
+    .btn-share-li { background-color: #0a66c2; color: #ffffff; }
+    .btn-share-x { background-color: #000000; color: #ffffff; }
+    .btn-share-native { background-color: #0b1a30; color: #ffffff; }
+
+    /* إخفاء شريط جوجل الإجباري العلوي لجمالية التصميم */
+    .goog-te-banner-frame.skiptranslate { display: none !important; }
+    body { top: 0px !important; }
+    .goog-logo-link { display: none !important; }
+    .goog-te-gadget { color: transparent !important; }
+    .goog-te-gadget .goog-te-combo {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1.5px solid #cbd5e0;
+      font-family: inherit;
+      font-size: 13px;
+      color: #1a202c;
+      background-color: #f7f9fc;
+      outline: none;
+    }
+
+    /* إشعار تم نسخ الرابط */
+    #copyToast {
+      position: fixed;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #0b1a30;
+      color: #ffffff;
+      padding: 10px 22px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 700;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      display: none;
+      z-index: 99999;
+    }
   </style>
+
+  <!-- محرك الترجمة المعتمد: العربية، الكردية، الإنجليزية، الفرنسية، الإسبانية، الألمانية -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'ar',
+        includedLanguages: 'ar,ckb,ku,en,fr,es,de',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: true
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
 <body>
 
-  <div class="panel">
+  <div class="container">
     <div class="brand-section">
-      <div class="brand-logo">
+      <!-- الشعار والاسم محصنان تماماً ضد أي ترجمة -->
+      <div class="brand-logo notranslate" translate="no">
         <div class="logo-text">A<span>K</span>H</div>
         <div class="sub-brand"><span>/</span> LAW OFFICE</div>
         <div class="est">EST. 2014</div>
       </div>
       <div class="page-title">
-        <h1>إدارة ونشر الآراء القانونية</h1>
-        <h2>Law Office Of Ali Kadhem Hashimi</h2>
+        <h1>الآراء والتحليلات القانونية</h1>
+        <h2 class="notranslate" translate="no">Law Office Of Ali Kadhem Hashimi</h2>
       </div>
     </div>
 
-    <div id="statusAlert" class="alert"></div>
-
-    <div id="setupScreen" style="display: none;">
-      <div class="lock-icon">🛡️</div>
-      <p class="lock-desc"><strong>إعداد الحماية لأول مرة:</strong><br>أدخل مفتاح GitHub واختر رمز PIN سري (6 أرقام) خاص بك:</p>
-      <div class="form-group" style="max-width: 420px; margin: 0 auto 12px;">
-        <input type="password" id="setupTokenInput" placeholder="أدخل رمز GitHub (ghp_xxxx...)" dir="ltr">
-      </div>
-      <div class="form-group" style="max-width: 260px; margin: 0 auto 16px;">
-        <input type="password" id="setupPinInput" class="pin-input" maxlength="6" placeholder="******" pattern="\d*">
-      </div>
-      <button type="button" class="btn-unlock" style="max-width: 420px; margin: 0 auto;" onclick="performSetup()">تشفير المفتاح وحفظ رمز الـ PIN 🔒</button>
-    </div>
-
-    <div id="lockScreen" style="display: none;">
-      <div class="lock-icon">🔒</div>
-      <p class="lock-desc">أدخل رمز الـ PIN السري الخاص بك لفك تشفير اللوحة والدخول:</p>
-      <div class="form-group" style="max-width: 260px; margin: 0 auto 16px;">
-        <input type="password" id="unlockPinInput" class="pin-input" maxlength="6" placeholder="******" pattern="\d*" autofocus>
-      </div>
-      <button type="button" class="btn-unlock" style="max-width: 320px; margin: 0 auto;" onclick="attemptPinUnlock()">دخول سريع ←</button>
-      <p style="margin-top: 18px; font-size: 11.5px; color: #a0aec0; cursor: pointer;" onclick="resetVaultPrompt()">نسيت الرمز أو تريد إدخال مفتاح جديد؟ اضغط هنا لإعادة الضبط</p>
-    </div>
-
-    <div id="dashboardScreen">
-      <div class="top-bar">
-        <span class="status-badge" id="autoLockStatus">● متصل بالحساب (القفل التلقائي مفعل: 5 دقائق)</span>
-        <button type="button" class="btn-lock" onclick="lockPortal('تم قفل اللوحة يدوياً بنجاح.')">قفل اللوحة 🔒</button>
+    <!-- شريط التبديل والترجمة المعتمدة -->
+    <div class="toolbar-box">
+      <div class="lang-tabs">
+        <button class="lang-btn active" onclick="switchTab('ar')">الأصل العربي</button>
+        <button class="lang-btn" onclick="switchTab('en')">English Insights</button>
       </div>
 
-      <div id="editBanner">
-        <span id="editBannerText">✏️ أنت الآن تقوم بتعديل المقال...</span>
-        <button type="button" class="btn-cancel-edit" onclick="cancelEdit()">إلغاء التعديل ✕</button>
-      </div>
-
-      <form id="articleForm">
-        <div class="form-group">
-          <label>لغة المقال / Article Language:</label>
-          <select id="articleLang" onchange="onLanguageChange()">
-            <option value="ar" selected>العربية (Arabic)</option>
-            <option value="en">English (الإنجليزية)</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label id="lblCategory">الفرع / التخصص القانوني:</label>
-          <select id="categorySelect" onchange="onCategoryChange()"></select>
-          <input type="text" id="customCategoryInput" style="display: none; margin-top: 8px;" placeholder="اكتب التخصص القانوني هنا بحرية...">
-        </div>
-
-        <div class="form-group">
-          <label>توقيت النشر / Publication Timing:</label>
-          <select id="scheduleMode" onchange="onScheduleModeChange()">
-            <option value="now" selected>⚡ نشر فوري (الآن)</option>
-            <option value="schedule">⏳ جدولة لوقت وتاريخ لاحق...</option>
-          </select>
-          <div id="scheduleTimeBox" style="display: none; margin-top: 8px;">
-            <input type="datetime-local" id="publishTimestamp">
-            <p style="font-size: 11.5px; color: #718096; margin-top: 4px;">يظل المقال محجوباً تماماً عن كل الزوار حتى يحل هذا التوقيت تلقائياً.</p>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label id="lblTitle">عنوان المقال أو الدراسة:</label>
-          <input type="text" id="title" placeholder="مثال: إجراءات تأسيس الشركات أو أحكام الحضانة والنفقة" required>
-        </div>
-
-        <div class="form-group">
-          <label id="lblSummary">الموجز لمحركات البحث ولينكد إن (SEO & Social):</label>
-          <input type="text" id="summary" placeholder="سطر ونصف يلخص مضمون الدراسة ليظهر في نتائج البحث والشبكات" required>
-        </div>
-
-        <div class="form-group">
-          <label id="lblContent">نص الدراسة أو التحليل القانوني:</label>
-          <textarea id="content" placeholder="انسخ نص المقال والصقه هنا مباشرة (تتم إضافة الحقوق والتنبيه تلقائياً)..." required></textarea>
-        </div>
-
-        <button type="submit" id="submitBtn" class="btn-publish">نـشـر الآن | Publish Now</button>
-      </form>
-
-      <div class="manager-box">
-        <div class="manager-header">
-          <h3>📚 المنشورات السابقة والمجدولة</h3>
-          <button type="button" class="btn-reload" onclick="loadArticles()">تحديث 🔄</button>
-        </div>
-        <div id="articlesListContainer">
-          <p style="font-size: 13px; color: #718096; text-align: center;">جارٍ جلب المقالات...</p>
-        </div>
+      <div class="translate-widget-container">
+        <span>🌐 الترجمة المعتمدة:</span>
+        <div id="google_translate_element"></div>
       </div>
     </div>
+
+    <div class="intro-box">
+      نافذة متخصصة تُعنى بنشر الدراسات والإيضاحات الإجرائية في فروع القانون العراقي: قانون العمل والإقامة والضمان الاجتماعي، تأسيس وتسجيل الشركات، العلامات التجارية، وقضايا الأحوال الشخصية والدعاوى المدنية والتجارية.
+    </div>
+
+    <!-- المخازن البرمجية الداخلية للمقالات -->
+    <div id="arabic-feed" style="display: none;"></div>
+    <div id="english-feed" style="display: none;"></div>
+
+    <!-- العرض الذاتي المفرز تلقائياً بالمجلدات -->
+    <div id="organized-feed"></div>
   </div>
 
+  <div id="copyToast">تم نسخ رابط المقال بنجاح 📋</div>
+
   <script>
-    const REPO_OWNER = 'akjassem-netizen';
-    const REPO_NAME = 'Site';
-    const FILE_PATH = 'insights.html';
+    let CURRENT_LANG = 'ar';
 
-    const AR_CATEGORIES = [
-      "قانون الأحوال الشخصية والأسرة",
-      "العمل والإقامة والضمان الاجتماعي",
-      "قانون الشركات والتجارة",
-      "العلامات التجارية والملكية الفكرية",
-      "القانون العقاري والمعاملات العقارية",
-      "الدعاوى المدنية والتعويضات",
-      "القضايا الجزائية والدفاع الجنائي",
-      "التحكيم ومنازعات العقود",
-      "CUSTOM"
-    ];
-
-    const EN_CATEGORIES = [
-      "Family & Personal Status Law",
-      "Employment & Social Security",
-      "Corporate & Commercial Law",
-      "Trademarks & Intellectual Property",
-      "Real Estate & Property Law",
-      "Civil Litigation & Compensation",
-      "Criminal Defense & Penal Law",
-      "Arbitration & Dispute Resolution",
-      "CUSTOM"
-    ];
-
-    let ACTIVE_TOKEN = '';
-    let EDITING_ARTICLE_INDEX = null;
-    let LOADED_ARTICLES_CACHE = [];
-    let IDLE_TIMER = null;
-    const IDLE_LIMIT_MS = 5 * 60 * 1000; // 5 دقائق خمول للقفل التلقائي
-
-    async function deriveKey(pin, salt) {
-      const enc = new TextEncoder();
-      const keyMaterial = await crypto.subtle.importKey('raw', enc.encode(pin), { name: 'PBKDF2' }, false, ['deriveKey']);
-      return crypto.subtle.deriveKey(
-        { name: 'PBKDF2', salt: salt, iterations: 100000, hash: 'SHA-256' },
-        keyMaterial,
-        { name: 'AES-GCM', length: 256 },
-        false,
-        ['encrypt', 'decrypt']
-      );
-    }
-
-    async function encryptToken(token, pin) {
-      const enc = new TextEncoder();
-      const salt = crypto.getRandomValues(new Uint8Array(16));
-      const iv = crypto.getRandomValues(new Uint8Array(12));
-      const key = await deriveKey(pin, salt);
-      const encrypted = await crypto.subtle.encrypt({ name: 'AES-GCM', iv: iv }, key, enc.encode(token));
-      return {
-        salt: Array.from(salt),
-        iv: Array.from(iv),
-        data: Array.from(new Uint8Array(encrypted))
-      };
-    }
-
-    async function decryptToken(encryptedObj, pin) {
-      const salt = new Uint8Array(encryptedObj.salt);
-      const iv = new Uint8Array(encryptedObj.iv);
-      const data = new Uint8Array(encryptedObj.data);
-      const key = await deriveKey(pin, salt);
-      const decrypted = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: iv }, key, data);
-      return new TextDecoder().decode(decrypted);
-    }
-
-    window.onload = function() {
-      populateCategories('ar');
-      const vault = localStorage.getItem('akh_vault');
-      if (!vault) {
-        document.getElementById('setupScreen').style.display = 'block';
-      } else {
-        document.getElementById('lockScreen').style.display = 'block';
-      }
-    };
-
-    function resetIdleTimer() {
-      if (IDLE_TIMER) clearTimeout(IDLE_TIMER);
-      if (ACTIVE_TOKEN) {
-        IDLE_TIMER = setTimeout(() => {
-          lockPortal('تم قفل اللوحة تلقائياً بعد مرور 5 دقائق لسلامة وحماية حسابك 🛡️');
-        }, IDLE_LIMIT_MS);
-      }
-    }
-
-    ['mousemove', 'keydown', 'touchstart', 'scroll', 'click'].forEach(evt => {
-      window.addEventListener(evt, resetIdleTimer);
+    window.addEventListener('DOMContentLoaded', () => {
+      organizeArticles();
     });
 
-    async function performSetup() {
-      const token = document.getElementById('setupTokenInput').value.trim();
-      const pin = document.getElementById('setupPinInput').value.trim();
-      if (!token.startsWith('ghp_') && !token.startsWith('github_pat_')) {
-        showAlert('يرجى التأكد من كتابة رمز GitHub بشكل صحيح.', false);
-        return;
-      }
-      if (pin.length !== 6 || isNaN(pin)) {
-        showAlert('يرجى اختيار رمز PIN مكون من 6 أرقام حصراً.', false);
-        return;
-      }
+    function switchTab(lang) {
+      CURRENT_LANG = lang;
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      organizeArticles();
+    }
 
-      showAlert('جارٍ فحص المفتاح وتشفيره بالـ PIN...', true);
-      try {
-        const testRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`, {
-          headers: { 'Authorization': `Bearer ${token}` }
+    function showToast(msg) {
+      const toast = document.getElementById('copyToast');
+      toast.innerText = msg;
+      toast.style.display = 'block';
+      setTimeout(() => { toast.style.display = 'none'; }, 2500);
+    }
+
+    function copyArticleLink(title) {
+      const url = window.location.href.split('#')[0];
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(() => {
+          showToast(CURRENT_LANG === 'ar' ? 'تم نسخ رابط المقال بنجاح 📋' : 'Article link copied! 📋');
         });
-        if (!testRes.ok) throw new Error('الرمز غير صالح للاتصال بـ GitHub.');
-
-        const vaultObj = await encryptToken(token, pin);
-        localStorage.setItem('akh_vault', JSON.stringify(vaultObj));
-
-        ACTIVE_TOKEN = token;
-        document.getElementById('setupScreen').style.display = 'none';
-        document.getElementById('dashboardScreen').style.display = 'block';
-        showAlert('تم تشفير المفتاح بنجاح وحفظ رمز الـ PIN! مرحباً بك.', true);
-        resetIdleTimer();
-        loadArticles();
-      } catch (err) {
-        showAlert(err.message, false);
-      }
-    }
-
-    async function attemptPinUnlock() {
-      const pin = document.getElementById('unlockPinInput').value.trim();
-      if (pin.length !== 6) {
-        showAlert('أدخل رمز الـ PIN المكون من 6 أرقام.', false);
-        return;
-      }
-
-      const vaultStr = localStorage.getItem('akh_vault');
-      if (!vaultStr) return;
-
-      showAlert('جارٍ فك التشفير والتحقق...', true);
-      try {
-        const vaultObj = JSON.parse(vaultStr);
-        const decryptedToken = await decryptToken(vaultObj, pin);
-
-        const testRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`, {
-          headers: { 'Authorization': `Bearer ${decryptedToken}` }
-        });
-        if (!testRes.ok) throw new Error('تم إلغاء المفتاح أو حذفه من GitHub.');
-
-        ACTIVE_TOKEN = decryptedToken;
-        document.getElementById('unlockPinInput').value = '';
-        document.getElementById('lockScreen').style.display = 'none';
-        document.getElementById('dashboardScreen').style.display = 'block';
-        document.getElementById('statusAlert').style.display = 'none';
-
-        resetIdleTimer();
-        loadArticles();
-      } catch (err) {
-        showAlert('رمز الـ PIN غير صحيح، تعذر فك التشفير.', false);
-        document.getElementById('unlockPinInput').value = '';
-      }
-    }
-
-    function lockPortal(msg = 'تم قفل اللوحة بنجاح.') {
-      ACTIVE_TOKEN = '';
-      if (IDLE_TIMER) clearTimeout(IDLE_TIMER);
-      document.getElementById('dashboardScreen').style.display = 'none';
-      document.getElementById('lockScreen').style.display = 'block';
-      showAlert(msg, true);
-    }
-
-    function resetVaultPrompt() {
-      if (confirm('هل ترغب بإعادة ضبط الخزنة وإدخال مفتاح GitHub ورمز PIN جديدين؟')) {
-        localStorage.removeItem('akh_vault');
-        location.reload();
-      }
-    }
-
-    function onScheduleModeChange() {
-      const mode = document.getElementById('scheduleMode').value;
-      const box = document.getElementById('scheduleTimeBox');
-      const input = document.getElementById('publishTimestamp');
-      if (mode === 'schedule') {
-        box.style.display = 'block';
-        input.required = true;
       } else {
-        box.style.display = 'none';
-        input.required = false;
-        input.value = '';
+        showToast(url);
       }
     }
 
-    function showAlert(msg, isSuccess) {
-      const el = document.getElementById('statusAlert');
-      el.className = 'alert ' + (isSuccess ? 'alert-success' : 'alert-error');
-      el.innerText = msg;
-      el.style.display = 'block';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    function shareNative(title) {
+      const url = window.location.href.split('#')[0];
+      if (navigator.share) {
+        navigator.share({
+          title: title,
+          text: title + ' | Law Office Of Ali Kadhem Hashimi',
+          url: url
+        }).catch(() => {});
+      } else {
+        copyArticleLink(title);
+      }
     }
 
-    function populateCategories(lang) {
-      const select = document.getElementById('categorySelect');
-      select.innerHTML = '';
-      const list = lang === 'en' ? EN_CATEGORIES : AR_CATEGORIES;
-      list.forEach(cat => {
-        const opt = document.createElement('option');
-        opt.value = cat;
-        opt.innerText = cat === 'CUSTOM' ? (lang === 'en' ? '✍️ Other Practice Area (Custom)...' : '✍️ تخصص آخر (كتابة يدوية)...') : cat;
-        select.appendChild(opt);
+    function organizeArticles() {
+      const sourceFeedId = CURRENT_LANG === 'ar' ? 'arabic-feed' : 'english-feed';
+      const sourceFeed = document.getElementById(sourceFeedId);
+      const targetContainer = document.getElementById('organized-feed');
+      targetContainer.innerHTML = '';
+      targetContainer.dir = CURRENT_LANG === 'ar' ? 'rtl' : 'ltr';
+
+      if (!sourceFeed) return;
+
+      const now = new Date();
+      const articles = Array.from(sourceFeed.querySelectorAll('article')).filter(art => {
+        const publishAt = art.getAttribute('data-publish-at');
+        if (!publishAt) return true;
+        return new Date(publishAt) <= now;
       });
-      onCategoryChange();
-    }
 
-    function onCategoryChange() {
-      const select = document.getElementById('categorySelect');
-      const customInput = document.getElementById('customCategoryInput');
-      if (select.value === 'CUSTOM') {
-        customInput.style.display = 'block';
-        customInput.required = true;
-        customInput.focus();
-      } else {
-        customInput.style.display = 'none';
-        customInput.required = false;
+      if (articles.length === 0) {
+        targetContainer.innerHTML = `
+          <div style="text-align: center; padding: 40px 15px; color: #718096; background: #fff; border-radius: 12px; border: 1px dashed #cbd5e0;">
+            ${CURRENT_LANG === 'ar' ? 'لا توجد دراسات منشورة في هذا القسم حالياً.' : 'No articles currently published in this section.'}
+          </div>
+        `;
+        return;
       }
-    }
 
-    function onLanguageChange() {
-      const lang = document.getElementById('articleLang').value;
-      populateCategories(lang);
-      const isEn = lang === 'en';
-      
-      const title = document.getElementById('title');
-      const summary = document.getElementById('summary');
-      const content = document.getElementById('content');
-      const customCat = document.getElementById('customCategoryInput');
+      const groups = {};
 
-      if (isEn) {
-        title.dir = 'ltr';
-        summary.dir = 'ltr';
-        content.dir = 'ltr';
-        customCat.dir = 'ltr';
-        title.placeholder = "e.g. Legal procedures under Iraqi Law";
-        summary.placeholder = "A brief 2-sentence summary for search engines & LinkedIn...";
-        content.placeholder = "Paste your English article here (Disclaimers are auto-added)...";
-        customCat.placeholder = "Enter practice area in English...";
-        document.getElementById('lblTitle').innerText = "Article Title (English):";
-        document.getElementById('lblCategory').innerText = "Practice Area / Category:";
-        document.getElementById('lblSummary').innerText = "Summary (SEO & Social Preview):";
-        document.getElementById('lblContent').innerText = "Article Content / Insights:";
-      } else {
-        title.dir = 'rtl';
-        summary.dir = 'rtl';
-        content.dir = 'rtl';
-        customCat.dir = 'rtl';
-        title.placeholder = "مثال: إجراءات تأسيس الشركات أو أحكام الحضانة والنفقة";
-        summary.placeholder = "سطر ونصف يلخص مضمون الدراسة ليظهر في نتائج البحث والشبكات";
-        content.placeholder = "انسخ نص المقال والصقه هنا مباشرة (تتم إضافة الحقوق والتنبيه تلقائياً)...";
-        customCat.placeholder = "اكتب التخصص القانوني هنا بحرية...";
-        document.getElementById('lblTitle').innerText = "عنوان المقال أو الدراسة:";
-        document.getElementById('lblCategory').innerText = "الفرع / التخصص القانوني:";
-        document.getElementById('lblSummary').innerText = "الموجز لمحركات البحث ولينكد إن:";
-        document.getElementById('lblContent').innerText = "نص الدراسة أو التحليل القانوني:";
-      }
-    }
+      articles.forEach(art => {
+        // فحص وتحديث المقال (سواء كان قديماً أو جديداً)
+        const cloned = art.cloneNode(true);
+        const h2 = cloned.querySelector('h2');
+        const titleText = h2 ? h2.innerText : 'مقال قانوني';
 
-    function utf8_to_b64(str) {
-      const bytes = new TextEncoder().encode(str);
-      let binary = '';
-      for (let i = 0; i < bytes.byteLength; i++) binary += String.fromCharCode(bytes[i]);
-      return btoa(binary);
-    }
+        let catText = cloned.getAttribute('data-category');
+        if (!catText) {
+          const metaDiv = cloned.querySelector('div');
+          catText = metaDiv ? metaDiv.innerText.split('•')[0].trim() : (CURRENT_LANG === 'ar' ? 'عام' : 'General');
+        }
 
-    function b64_to_utf8(b64) {
-      const binary = atob(b64.replace(/\s/g, ''));
-      const bytes = new Uint8Array(binary.length);
-      for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
-      return new TextDecoder().decode(bytes);
-    }
+        // 1. ضمان وجود إخلاء المسؤولية التلقائي إذا لم يكن موجوداً في المنشور القديم
+        let expanded = cloned.querySelector('.article-expanded');
+        if (expanded && !expanded.querySelector('.legal-footer-box')) {
+          const footerBox = document.createElement('div');
+          footerBox.className = 'legal-footer-box';
+          footerBox.style.cssText = 'margin-top: 25px; padding-top: 15px; border-top: 1px solid #edf2f7; font-size: 11.5px; color: #718096; line-height: 1.7;';
+          
+          if (CURRENT_LANG === 'ar') {
+            footerBox.innerHTML = `
+              <p class="notranslate" translate="no" style="margin-bottom: 4px; font-weight: 700; color: #4a5568;">© جميع الحقوق محفوظة لمكتب المحامي علي كاظم الهاشمي (AKH Law Office).</p>
+              <p style="margin: 0;">إخلاء مسؤولية وحجية النص: المواد والتحليلات القانونية المنشورة مُعدّة لأغراض التوعية العامة لبيئة الأعمال ولا تُعد استشارة قانونية ملزمة. <strong>يُعد النص العربي هو الأصل المعتمد والمرجع الحصري لنفاذ المحتوى</strong>، وما توفره المنصة من ترجمات آلية هو لأغراض الاسترشاد والتيسير المعلوماتي فقط؛ ويُخلى جانب المكتب من أي تبعات ناجمة عن عدم دقة الترجمة الآلية، ويُرجى التحقق دائماً ومطابقة النص مع أصله القانوني المعتمد.</p>
+            `;
+          } else {
+            footerBox.innerHTML = `
+              <p class="notranslate" translate="no" style="margin-bottom: 4px; font-weight: 700; color: #4a5568;">© All rights reserved to Law Office Of Ali Kadhem Hashimi (AKH Law Office).</p>
+              <p style="margin: 0;">Legal Disclaimer & Governing Language: The insights and legal analyses published on this platform are for general informational and corporate awareness purposes only and do not constitute binding legal advice. <strong>The original drafted text (English/Arabic) shall remain the legally authoritative version.</strong> Automated translations into other languages are provided solely for convenience; no liability is assumed for translation discrepancies. Readers must verify content against the authoritative source.</p>
+            `;
+          }
+          expanded.appendChild(footerBox);
+        }
 
-    document.getElementById('articleForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      resetIdleTimer();
+        // 2. حقن شريط المشاركة الاجتماعي لكل مقال تلقائياً
+        if (!cloned.querySelector('.share-bar')) {
+          const shareUrl = encodeURIComponent(window.location.href.split('#')[0]);
+          const shareText = encodeURIComponent(titleText + ' | Law Office Of Ali Kadhem Hashimi');
+          
+          const shareBar = document.createElement('div');
+          shareBar.className = 'share-bar';
+          shareBar.innerHTML = `
+            <span class="share-label">${CURRENT_LANG === 'ar' ? 'مشاركة الدراسة:' : 'Share Insight:'}</span>
+            <button class="btn-share btn-share-copy" onclick="copyArticleLink('${encodeURIComponent(titleText)}')">📋 ${CURRENT_LANG === 'ar' ? 'نسخ الرابط' : 'Copy'}</button>
+            <a class="btn-share btn-share-wa" href="https://api.whatsapp.com/send?text=${shareText}%20${shareUrl}" target="_blank">🟢 WhatsApp</a>
+            <a class="btn-share btn-share-li" href="https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}" target="_blank">💼 LinkedIn</a>
+            <a class="btn-share btn-share-x" href="https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}" target="_blank">𝕏 Post</a>
+            <button class="btn-share btn-share-native" onclick="shareNative('${encodeURIComponent(titleText)}')">🔗 ${CURRENT_LANG === 'ar' ? 'المزيد' : 'More'}</button>
+          `;
+          
+          if (expanded) {
+            expanded.appendChild(shareBar);
+          } else {
+            cloned.appendChild(shareBar);
+          }
+        }
 
-      const lang = document.getElementById('articleLang').value;
-      const isEn = lang === 'en';
+        if (!groups[catText]) groups[catText] = [];
+        groups[catText].push(cloned);
+      });
 
-      const title = document.getElementById('title').value.trim();
-      const catSelect = document.getElementById('categorySelect');
-      const customCat = document.getElementById('customCategoryInput').value.trim();
-      const category = (catSelect.value === 'CUSTOM') ? customCat : catSelect.value;
-      const summary = document.getElementById('summary').value.trim();
-      const content = document.getElementById('content').value.trim();
-      
-      const scheduleMode = document.getElementById('scheduleMode').value;
-      const scheduledVal = document.getElementById('publishTimestamp').value;
-      const publishAtIso = (scheduleMode === 'schedule' && scheduledVal) 
-        ? new Date(scheduledVal).toISOString() 
-        : new Date().toISOString();
+      // إنشاء مجلدات التخصصات المفرزة
+      Object.keys(groups).forEach(cat => {
+        const groupArticles = groups[cat];
+        const groupEl = document.createElement('div');
+        groupEl.className = 'category-group';
 
-      const displayDate = (scheduleMode === 'schedule' && scheduledVal)
-        ? (isEn ? new Date(scheduledVal).toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' })
-                : new Date(scheduledVal).toLocaleDateString('ar-IQ', { year: 'numeric', month: 'long', day: 'numeric' }))
-        : (isEn ? new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' })
-                : new Date().toLocaleDateString('ar-IQ', { year: 'numeric', month: 'long', day: 'numeric' }));
-
-      const legalFooterHtml = isEn ? `
-        <div class="legal-footer-box" style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #edf2f7; font-size: 11.5px; color: #718096; line-height: 1.7;">
-          <p class="notranslate" translate="no" style="margin-bottom: 4px; font-weight: 700; color: #4a5568;">© All rights reserved to Law Office Of Ali Kadhem Hashimi (AKH Law Office).</p>
-          <p style="margin: 0;">Legal Disclaimer & Governing Language: The insights and legal analyses published on this platform are for general informational and corporate awareness purposes only and do not constitute binding legal advice. <strong>The original drafted text (English/Arabic) shall remain the legally authoritative version.</strong> Automated translations into other languages are provided solely for convenience; no liability is assumed for translation discrepancies. Readers must verify content against the authoritative source.</p>
-        </div>
-      ` : `
-        <div class="legal-footer-box" style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #edf2f7; font-size: 11.5px; color: #718096; line-height: 1.7;">
-          <p class="notranslate" translate="no" style="margin-bottom: 4px; font-weight: 700; color: #4a5568;">© جميع الحقوق محفوظة لمكتب المحامي علي كاظم الهاشمي (AKH Law Office).</p>
-          <p style="margin: 0;">إخلاء مسؤولية وحجية النص: المواد والتحليلات القانونية المنشورة مُعدّة لأغراض التوعية العامة لبيئة الأعمال ولا تُعد استشارة قانونية ملزمة. <strong>يُعد النص العربي هو الأصل المعتمد والمرجع الحصري لنفاذ المحتوى</strong>، وما توفره المنصة من ترجمات آلية هو لأغراض الاسترشاد والتيسير المعلوماتي فقط؛ ويُخلى جانب المكتب من أي تبعات ناجمة عن عدم دقة الترجمة الآلية، ويُرجى التحقق دائماً ومطابقة النص مع أصله القانوني المعتمد.</p>
-        </div>
-      `;
-
-      const isEditing = EDITING_ARTICLE_INDEX !== null;
-      const btn = document.getElementById('submitBtn');
-      btn.innerText = isEditing ? 'جارٍ حفظ التعديلات... / Saving...' : 'جارٍ النشر والجدولة... / Publishing...';
-      btn.disabled = true;
-
-      try {
-        const getUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
-        const res = await fetch(getUrl, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
-
-        if (!res.ok) throw new Error('فشل جلب ملف الموقع.');
-        const fileData = await res.json();
-        let html = b64_to_utf8(fileData.content);
-
-        const articleHtml = `
-    <article class="legal-card" data-category="${category}" data-publish-at="${publishAtIso}" style="border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; margin-bottom: 24px; text-align: ${isEn ? 'left' : 'right'}; direction: ${isEn ? 'ltr' : 'rtl'}; background: #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.04);">
-      <div style="font-size: 13px; color: #d32f2f; font-weight: 700; margin-bottom: 8px;">${category} • ${displayDate}</div>
-      <h2 style="font-size: 19px; font-weight: 800; color: #0b1a30; margin-bottom: 12px; line-height: 1.4;">${title}</h2>
-      <p style="font-size: 15px; color: #4a5568; line-height: 1.8; margin-bottom: 12px;">${summary}</p>
-      
-      <div class="article-expanded" style="display: none; border-top: 1px dashed #cbd5e0; padding-top: 16px; margin-top: 12px; font-size: 15px; color: #2d3748; line-height: 1.9;">
-        <div class="article-content-body" style="white-space: pre-line;">${content}</div>
-        ${legalFooterHtml}
-      </div>
-      
-      <button type="button" onclick="const b = this.previousElementSibling; const open = b.style.display==='block'; b.style.display = open?'none':'block'; this.innerText = open ? '${isEn ? 'Read More →' : 'قراءة المزيد ←'}' : '${isEn ? 'Show Less ↑' : 'عرض أقل ↑'}';" style="background: none; border: 1.5px solid #0b1a30; color: #0b1a30; padding: 8px 18px; border-radius: 6px; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; margin-top: 10px; display: inline-block;">
-        ${isEn ? 'Read More →' : 'قراءة المزيد ←'}
-      </button>
-    </article>
+        groupEl.innerHTML = `
+          <div class="category-header" onclick="toggleFolder(this)">
+            <div style="display: flex; align-items: center;">
+              <span>${cat}</span>
+              <span class="badge-count">${groupArticles.length} ${CURRENT_LANG === 'ar' ? 'موضوع' : 'Articles'}</span>
+            </div>
+            <span class="arrow-icon">▼</span>
+          </div>
+          <div class="category-body"></div>
         `;
 
-        let updatedHtml = html;
-
-        if (isEditing) {
-          const parser = new DOMParser();
-          const doc = parser.parseFromString(html, 'text/html');
-          const articles = doc.querySelectorAll('article');
-
-          if (articles[EDITING_ARTICLE_INDEX]) {
-            articles[EDITING_ARTICLE_INDEX].outerHTML = articleHtml;
-            updatedHtml = '<!DOCTYPE html>\n' + doc.documentElement.outerHTML;
-          } else {
-            throw new Error('تعذر العثور على المقال المراد تعديله.');
-          }
-        } else {
-          const targetFeed = isEn ? 'english-feed' : 'arabic-feed';
-          if (updatedHtml.includes(`id="${targetFeed}">`)) {
-            updatedHtml = updatedHtml.replace(`id="${targetFeed}">`, `id="${targetFeed}">\n` + articleHtml);
-          } else {
-            updatedHtml = updatedHtml.replace('</div>\n  </div>\n</body>', articleHtml + '\n</div>\n  </div>\n</body>');
-          }
-        }
-
-        const putRes = await fetch(getUrl, {
-          method: 'PUT',
-          headers: {
-            'Authorization': `Bearer ${ACTIVE_TOKEN}`,
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            message: isEditing ? `تعديل مقال: ${title}` : `نشر (${lang}): ${title}`,
-            content: utf8_to_b64(updatedHtml),
-            sha: fileData.sha
-          })
-        });
-
-        if (!putRes.ok) throw new Error('فشل حفظ التعديلات في GitHub.');
-
-        showAlert(isEditing ? `تم حفظ تعديلات مقال "${title}" بنجاح!` : `تم نشر المقال وجدولته بنجاح!`, true);
-        cancelEdit();
-        loadArticles();
-      } catch (err) {
-        showAlert(err.message, false);
-      } finally {
-        btn.innerText = 'نـشـر الآن | Publish Now';
-        btn.disabled = false;
-      }
-    });
-
-    async function loadArticles() {
-      const container = document.getElementById('articlesListContainer');
-      container.innerHTML = '<p style="font-size: 13px; color: #718096; text-align: center;">جارٍ جلب المقالات...</p>';
-
-      try {
-        const getUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
-        const res = await fetch(getUrl, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
-        if (!res.ok) throw new Error('تعذر جلب المقالات.');
-        const data = await res.json();
-        const html = b64_to_utf8(data.content);
-
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-        const articles = doc.querySelectorAll('article');
-
-        LOADED_ARTICLES_CACHE = [];
-
-        if (articles.length === 0) {
-          container.innerHTML = '<p style="font-size: 13px; color: #718096; text-align: center;">لا توجد مقالات مسجلة حالياً.</p>';
-          return;
-        }
-
-        container.innerHTML = '';
-        const now = new Date();
-
-        articles.forEach((art, index) => {
-          const h2 = art.querySelector('h2');
-          const title = h2 ? h2.innerText : 'مقال بدون عنوان';
-          const p = art.querySelector('p');
-          const summary = p ? p.innerText : '';
-          
-          const bodyEl = art.querySelector('.article-content-body');
-          const expanded = art.querySelector('.article-expanded');
-          let content = '';
-          if (bodyEl) {
-            content = bodyEl.innerHTML.trim();
-          } else if (expanded) {
-            content = expanded.innerHTML.trim();
-          }
-
-          const meta = art.querySelector('div') ? art.querySelector('div').innerText : '';
-          const publishAt = art.getAttribute('data-publish-at');
-          const category = art.getAttribute('data-category') || (meta ? meta.split('•')[0].trim() : '');
-          const isScheduled = publishAt && new Date(publishAt) > now;
-          const isEn = art.style.direction === 'ltr';
-
-          LOADED_ARTICLES_CACHE.push({
-            index,
-            title,
-            summary,
-            content,
-            category,
-            publishAt,
-            isEn
-          });
-
-          const badge = isScheduled
-            ? `<span style="background: #fefcbf; color: #744210; padding: 2px 7px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-right: 6px;">⏳ مجدول: ${new Date(publishAt).toLocaleString('ar-IQ')}</span>`
-            : `<span style="background: #def7ec; color: #03543f; padding: 2px 7px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-right: 6px;">● منشور حالياً</span>`;
-
-          const quickPublishBtn = isScheduled
-            ? `<button class="btn-action btn-quick-publish" onclick="cancelScheduleAndPublishNow(${index})">إلغاء الجدولة ونشر فوري ⚡</button>`
-            : '';
-
-          const item = document.createElement('div');
-          item.className = 'article-item';
-          item.innerHTML = `
-            <div class="article-info" style="direction: ${isEn ? 'ltr' : 'rtl'}; text-align: ${isEn ? 'left' : 'right'};">
-              <div class="item-title">${title} ${badge}</div>
-              <div class="item-meta">${meta}</div>
-            </div>
-            <div class="item-actions">
-              <button class="btn-action btn-edit" onclick="startEdit(${index})">تعديل ✏️</button>
-              ${quickPublishBtn}
-              <button class="btn-action btn-delete" onclick="deleteArticle(${index}, '${encodeURIComponent(title)}')">حذف 🗑️</button>
-            </div>
-          `;
-          container.appendChild(item);
-        });
-      } catch (err) {
-        container.innerHTML = `<p style="font-size: 13px; color: #e53e3e; text-align: center;">${err.message}</p>`;
-      }
+        const body = groupEl.querySelector('.category-body');
+        groupArticles.forEach(a => body.appendChild(a));
+        targetContainer.appendChild(groupEl);
+      });
     }
 
-    async function cancelScheduleAndPublishNow(index) {
-      resetIdleTimer();
-      const art = LOADED_ARTICLES_CACHE[index];
-      if (!art) return;
-      if (!confirm(`هل ترغب بإلغاء الجدولة ونشر مقال:\n"${art.title}"\nفوراً الآن على الموقع؟`)) return;
+    function toggleFolder(header) {
+      const body = header.nextElementSibling;
+      const arrow = header.querySelector('.arrow-icon');
+      const isOpen = body.style.display === 'block';
 
-      showAlert('جارٍ نشر المقال فوراً على الموقع...', true);
-
-      try {
-        const getUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
-        const res = await fetch(getUrl, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
-        if (!res.ok) throw new Error('فشل جلب الملف.');
-        const fileData = await res.json();
-        let html = b64_to_utf8(fileData.content);
-
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-        const articles = doc.querySelectorAll('article');
-
-        if (articles[index]) {
-          articles[index].setAttribute('data-publish-at', new Date().toISOString());
-        }
-
-        const updatedHtml = '<!DOCTYPE html>\n' + doc.documentElement.outerHTML;
-
-        const putRes = await fetch(getUrl, {
-          method: 'PUT',
-          headers: {
-            'Authorization': `Bearer ${ACTIVE_TOKEN}`,
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            message: `Instant publish: ${art.title}`,
-            content: utf8_to_b64(updatedHtml),
-            sha: fileData.sha
-          })
-        });
-
-        if (!putRes.ok) throw new Error('فشل حفظ العملية.');
-
-        showAlert(`تم إلغاء الجدولة ونشر مقال "${art.title}" فوراً في الموقع!`, true);
-        loadArticles();
-      } catch (err) {
-        showAlert(err.message, false);
-      }
-    }
-
-    function startEdit(index) {
-      resetIdleTimer();
-      const art = LOADED_ARTICLES_CACHE[index];
-      if (!art) return;
-
-      EDITING_ARTICLE_INDEX = index;
-
-      document.getElementById('articleLang').value = art.isEn ? 'en' : 'ar';
-      onLanguageChange();
-
-      document.getElementById('title').value = art.title;
-      document.getElementById('summary').value = art.summary;
-      document.getElementById('content').value = art.content;
-
-      const catSelect = document.getElementById('categorySelect');
-      let found = false;
-      for (let i = 0; i < catSelect.options.length; i++) {
-        if (catSelect.options[i].value === art.category) {
-          catSelect.selectedIndex = i;
-          found = true;
-          break;
-        }
-      }
-      if (!found) {
-        catSelect.value = 'CUSTOM';
-        onCategoryChange();
-        document.getElementById('customCategoryInput').value = art.category;
-      } else {
-        onCategoryChange();
-      }
-
-      if (art.publishAt && new Date(art.publishAt) > new Date()) {
-        document.getElementById('scheduleMode').value = 'schedule';
-        onScheduleModeChange();
-        const d = new Date(art.publishAt);
-        d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
-        document.getElementById('publishTimestamp').value = d.toISOString().slice(0, 16);
-      } else {
-        document.getElementById('scheduleMode').value = 'now';
-        onScheduleModeChange();
-      }
-
-      document.getElementById('editBanner').style.display = 'flex';
-      document.getElementById('editBannerText').innerText = `✏️ أنت الآن تقوم بتعديل: "${art.title}"`;
-      document.getElementById('submitBtn').innerText = 'حفظ التعديلات 💾 | Save Changes';
-
-      window.scrollTo({ top: 120, behavior: 'smooth' });
-    }
-
-    function cancelEdit() {
-      EDITING_ARTICLE_INDEX = null;
-      document.getElementById('editBanner').style.display = 'none';
-      document.getElementById('title').value = '';
-      document.getElementById('summary').value = '';
-      document.getElementById('content').value = '';
-      document.getElementById('customCategoryInput').value = '';
-      document.getElementById('scheduleMode').value = 'now';
-      onScheduleModeChange();
-      document.getElementById('submitBtn').innerText = 'نـشـر الآن | Publish Now';
-    }
-
-    async function deleteArticle(index, encodedTitle) {
-      resetIdleTimer();
-      const title = decodeURIComponent(encodedTitle);
-      if (!confirm(`هل أنت متأكد من رغبتك في حذف مقال:\n"${title}"\nنهائياً؟`)) return;
-
-      showAlert('جارٍ حذف المقال...', true);
-
-      try {
-        const getUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
-        const res = await fetch(getUrl, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
-        if (!res.ok) throw new Error('فشل جلب الملف.');
-        const fileData = await res.json();
-        let html = b64_to_utf8(fileData.content);
-
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-        const articles = doc.querySelectorAll('article');
-
-        if (articles[index]) {
-          articles[index].remove();
-        } else {
-          throw new Error('لم يتم العثور على المقال.');
-        }
-
-        const updatedHtml = '<!DOCTYPE html>\n' + doc.documentElement.outerHTML;
-
-        const putRes = await fetch(getUrl, {
-          method: 'PUT',
-          headers: {
-            'Authorization': `Bearer ${ACTIVE_TOKEN}`,
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            message: `Delete article: ${title}`,
-            content: utf8_to_b64(updatedHtml),
-            sha: fileData.sha
-          })
-        });
-
-        if (!putRes.ok) throw new Error('تعذر إتمام الحذف.');
-
-        showAlert(`تم حذف مقال "${title}" بنجاح!`, true);
-        if (EDITING_ARTICLE_INDEX === index) cancelEdit();
-        loadArticles();
-      } catch (err) {
-        showAlert(err.message, false);
-      }
+      body.style.display = isOpen ? 'none' : 'block';
+      arrow.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+      arrow.style.color = isOpen ? '#a0aec0' : '#d32f2f';
     }
   </script>
 </body>
