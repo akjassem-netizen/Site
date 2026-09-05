@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" id="htmlRoot">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>الآراء والتحليلات القانونية | Law Office Of Ali Kadhem Hashimi</title>
+  <title id="pageMetaTitle">الآراء والتحليلات القانونية | Law Office Of Ali Kadhem Hashimi</title>
   <meta name="description" content="نافذة قانونية تنفيذية متخصصة بنشر التحليلات الإجرائية في فروع القانون العراقي وتأسيس الشركات.">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -95,19 +95,27 @@
       gap: 12px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.03);
     }
-    .lang-tabs { display: flex; gap: 8px; }
-    .lang-btn {
-      padding: 7px 18px;
-      border-radius: 6px;
+    .lang-selector-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      justify-content: space-between;
+    }
+    .lang-select {
+      padding: 9px 15px;
+      border-radius: 8px;
       border: 1.5px solid #0b1a30;
-      background: transparent;
+      background: #ffffff;
       color: #0b1a30;
       font-weight: 700;
-      font-size: 13px;
+      font-size: 14px;
       font-family: inherit;
       cursor: pointer;
+      outline: none;
+      width: 100%;
+      max-width: 300px;
     }
-    .lang-btn.active { background: #0b1a30; color: #ffffff; }
 
     .intro-box {
       background: #ffffff;
@@ -135,7 +143,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      cursor: pointer;
       font-weight: 800;
       font-size: 16px;
       color: #0b1a30;
@@ -286,39 +293,46 @@
         <div class="est">EST. 2014</div>
       </a>
       <div class="page-title">
-        <h1>الآراء والتحليلات القانونية</h1>
-        <h2 style="font-size:14px; color:#718096; margin-top:2px;">Law Office Of Ali Kadhem Hashimi</h2>
+        <h1 id="mainTitle">الآراء والتحليلات القانونية</h1>
+        <h2>Law Office Of Ali Kadhem Hashimi</h2>
       </div>
     </div>
 
     <div class="toolbar-box">
-      <div class="lang-tabs">
-        <button class="lang-btn active" onclick="switchTab('ar')">الأصل العربي</button>
-        <button class="lang-btn" onclick="switchTab('en')">English Insights</button>
+      <div class="lang-selector-wrapper">
+        <span style="font-weight: 700; font-size: 14px; color: #0b1a30;">🌐 اختر اللغة / Select Language:</span>
+        <select id="langSelect" class="lang-select" onchange="changeLanguage(this.value)">
+          <option value="ar">🇦🇪 العربية (النسخة الأصلية)</option>
+          <option value="en">🇬🇧 English (English)</option>
+          <option value="fr">🇫🇷 Français (French)</option>
+          <option value="es">🇪🇸 Español (Spanish)</option>
+          <option value="de">🇩🇪 Deutsch (German)</option>
+          <option value="ku">🎴 كوردي (Kurdish)</option>
+        </select>
       </div>
     </div>
 
-    <div class="intro-box">
+    <div class="intro-box" id="introText">
       نافذة متخصصة تُعنى بنشر الدراسات والإيضاحات الإجرائية في فروع القانون العراقي: قانون العمل والإقامة والضمان الاجتماعي، تأسيس وتسجيل الشركات، العلامات التجارية، وقضايا الأحوال الشخصية والدعاوى المدنية والتجارية.
     </div>
 
     <div id="arabic-feed">
       <div class="category-group">
         <div class="category-header">
-          <div><span>العمل والإقامة والضمان الاجتماعي</span><span class="badge-count">1 مقال</span></div>
+          <div><span id="catName">العمل والإقامة والضمان الاجتماعي</span><span class="badge-count">1 مقال</span></div>
         </div>
         <div class="category-body">
           <article class="legal-card" data-slug="labor-social-security-iraq">
             <div class="article-meta-info">
-              <span style="color: #d32f2f; font-weight: 700;">العمل والإقامة والضمان الاجتماعي • 5 سبتمبر 2026</span>
+              <span id="artDate" style="color: #d32f2f; font-weight: 700;">العمل والإقامة والضمان الاجتماعي • 5 سبتمبر 2026</span>
               <span class="views-badge" id="views-labor-social-security-iraq">👁️ المشاهدات: 0</span>
             </div>
 
-            <h2 style="font-size: 19px; font-weight: 800; color: #0b1a30; margin-bottom: 12px;">امتثال العمالة الأجنبية وقانون الضمان الاجتماعي العراقي رقم 18 لسنة 2023: دليل الشركات والمستثمرين</h2>
-            <p style="font-size: 15px; color: #4a5568; line-height: 1.8; margin-bottom: 12px;">دراسة تحليلية شاملة لأحكام قانون العمل العراقي وقانون التقاعد والضمان الاجتماعي للعمال، مع بيان التزامات أصحاب العمل والشركات الأجنبية والمحلية.</p>
+            <h2 id="artTitle" style="font-size: 19px; font-weight: 800; color: #0b1a30; margin-bottom: 12px;">امتثال العمالة الأجنبية وقانون الضمان الاجتماعي العراقي رقم 18 لسنة 2023: دليل الشركات والمستثمرين</h2>
+            <p id="artDesc" style="font-size: 15px; color: #4a5568; line-height: 1.8; margin-bottom: 12px;">دراسة تحليلية شاملة لأحكام قانون العمل العراقي وقانون التقاعد والضمان الاجتماعي للعمال، مع بيان التزامات أصحاب العمل والشركات الأجنبية والمحلية.</p>
             
             <div class="article-expanded" style="display: none; border-top: 1px dashed #cbd5e0; padding-top: 16px; margin-top: 12px; font-size: 15px; color: #2d3748; line-height: 1.9;">
-              <div style="white-space: pre-line;">تُعد بيئة الأعمال والاستثمار في جمهورية العراق واعدة، إلا أنها محكومة بمنظومة تشريعية صارمة تتطلب من الشركات الأجنبية والمحلية إلماماً تاما بأحكام قانون العمل رقم (37) لسنة 2015 وقانون التقاعد والضمان الاجتماعي للعمال رقم (18) لسنة 2023. يهدف هذا التحليل إلى تسليط الضوء على أبرز الالتزامات القانونية والإجرائية الملقاة على عاتق أصحاب العمل.
+              <div id="artBody" style="white-space: pre-line;">تُعد بيئة الأعمال والاستثمار في جمهورية العراق واعدة، إلا أنها محكومة بمنظومة تشريعية صارمة تتطلب من الشركات الأجنبية والمحلية إلماماً تاما بأحكام قانون العمل رقم (37) لسنة 2015 وقانون التقاعد والضمان الاجتماعي للعمال رقم (18) لسنة 2023. يهدف هذا التحليل إلى تسليط الضوء على أبرز الالتزامات القانونية والإجرائية الملقاة على عاتق أصحاب العمل.
 
 1. عقود العمل وصياغتها القانونية:
 يُحتم المشرع العراقي أن يُحرر عقد العمل خطياً وبنسختين باللغة العربية (ويمكن ترجمته للغة أجنبية مع الاعتماد النص العربي عند النزاع). يجب أن يتضمن العقد بوضوح طبيعة العمل، الأجر، ساعات العمل، وفترة الاختبار التي لا يجوز أن تزيد على ثلاثة أشهر. إن صياغة العقود بما يتوافق مع القواعد الآمرة قانوناً تحمي المنشأة من الغرامات والمنازعات العمالية أمام محاكم العمل.
@@ -336,125 +350,108 @@
 نظراً لدقة الإجراءات وتعدد الجهات الرقابية (مفتشو العمل، دائرة التقاعد والضمان الاجتماعي، ومجلس الإدارة للشركات)، نؤكد على ضرورة مراجعة وتدقيق كافة عقود العمل واللوائح الداخلية للشركات من قبل مستشار قانوني مختص لتجنب أي مخالفات قانونية غير مقصودة.</div>
 
               <div style="text-align: center; margin: 25px 0 10px;">
-                <a href="https://wa.me/9647702956021?text=مرحباً،%20أود%20حجز%20جلسة%20تدقيق%20امتثال%20عمالي%20لشركتنا%20مع%20مكتب%20المحامي%20علي%20كاظم%20الهاشمي" style="display: inline-block; background-color: #0b1a30; color: #ffffff; padding: 13px 25px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 15px; box-shadow: 0 4px 12px rgba(11,26,48,0.25); border: 1.5px solid #d32f2f;">طلب تدقيق الامتثال العمالي للشركات (مكتب AKH) ←</a>
+                <a id="btnBooking" href="https://wa.me/9647702956021?text=مرحباً،%20أود%20حجز%20جلسة%20تدقيق%20امتثال%20عمالي%20لشركتنا%20مع%20مكتب%20المحامي%20علي%20كاظم%20الهاشمي" style="display: inline-block; background-color: #0b1a30; color: #ffffff; padding: 13px 25px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 15px; box-shadow: 0 4px 12px rgba(11,26,48,0.25); border: 1.5px solid #d32f2f;">طلب تدقيق الامتثال العمالي للشركات (مكتب AKH) ←</a>
               </div>
 
-              <div style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #edf2f7; font-size: 11.5px; color: #718096; line-height: 1.7;">
+              <div id="artFooter" style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #edf2f7; font-size: 11.5px; color: #718096; line-height: 1.7;">
                 <p style="margin-bottom: 4px; font-weight: 700; color: #4a5568;">© جميع الحقوق محفوظة لمكتب المحامي علي كاظم الهاشمي (AKH Law Office).</p>
                 <p style="margin: 0;">إخلاء مسؤولية وحجية النص: المواد والتحليلات القانونية المنشورة مُعدّة لأغراض التوعية العامة ولا تُعد استشارة قانونية ملزمة. <strong>يُعد النص العربي هو الأصل المعتمد</strong>.</p>
               </div>
             </div>
 
-            <button type="button" onclick="const b = this.previousElementSibling; const open = b.style.display==='block'; b.style.display = open?'none':'block'; this.innerText = open ? 'قراءة المزيد ←' : 'عرض أقل ↑';" style="background: none; border: 1.5px solid #0b1a30; color: #0b1a30; padding: 8px 18px; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 10px;">قراءة المزيد ←</button>
+            <button type="button" id="readMoreBtn" onclick="const b = this.previousElementSibling; const open = b.style.display==='block'; b.style.display = open?'none':'block'; this.innerText = open ? (currentLang==='ar'?'قراءة المزيد ←':'Read More ←') : (currentLang==='ar'?'عرض أقل ↑':'Show Less ↑');" style="background: none; border: 1.5px solid #0b1a30; color: #0b1a30; padding: 8px 18px; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 10px;">قراءة المزيد ←</button>
 
             <div class="share-bar">
-              <span class="share-label">مشاركة الرابط المباشر:</span>
-              <button class="btn-share btn-share-copy" onclick="copyArticleLink('labor-social-security-iraq')">📋 نسخ الرابط</button>
-              <a class="btn-share btn-share-wa" href="https://api.whatsapp.com/send?text=امتثال%20العمالة%20الأجنبية%20وقانون%20الضمان%20الاجتماعي%20العراقي%20|%20https://akjassem.com/insights.html?p=labor-social-security-iraq" target="_blank">🟢 WhatsApp</a>
+              <span id="shareLabel" class="share-label">مشاركة الرابط المباشر:</span>
+              <button class="btn-share btn-share-copy" onclick="copyArticleLink('labor-social-security-iraq')">📋 <span id="copyTxt">نسخ الرابط</span></button>
+              <a class="btn-share btn-share-wa" href="https://api.whatsapp.com/send?text=https://akjassem.com/insights.html?p=labor-social-security-iraq" target="_blank">🟢 WhatsApp</a>
               <a class="btn-share btn-share-li" href="https://www.linkedin.com/sharing/share-offsite/?url=https://akjassem.com/insights.html?p=labor-social-security-iraq" target="_blank">💼 LinkedIn</a>
-              <a class="btn-share btn-share-x" href="https://twitter.com/intent/tweet?text=امتثال%20العمالة%20الأجنبية%20وقانون%20الضمان%20الاجتماعي%20العراقي&url=https://akjassem.com/insights.html?p=labor-social-security-iraq" target="_blank">𝕏 Post</a>
+              <a class="btn-share btn-share-x" href="https://twitter.com/intent/tweet?url=https://akjassem.com/insights.html?p=labor-social-security-iraq" target="_blank">𝕏 Post</a>
             </div>
           </article>
         </div>
       </div>
     </div>
-
-    <div id="english-feed" style="display: none;"></div>
   </div>
 
   <script>
-    document.addEventListener('contextmenu', e => e.preventDefault());
-    
-    document.addEventListener('keydown', e => {
-      if (
-        e.key === 'PrintScreen' ||
-        (e.ctrlKey && (e.key === 'c' || e.key === 'u' || e.key === 's' || e.key === 'a' || e.key === 'p' || e.key === 'x'))
-      ) {
-        e.preventDefault();
-        showSecurityWarning();
-      }
-    });
+    let currentLang = 'ar';
 
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) {
-        document.body.classList.add('security-blur');
-        showSecurityWarning();
-      } else {
-        setTimeout(() => { document.body.classList.remove('security-blur'); }, 800);
-      }
-    });
+    const translations = {
+      ar: {
+        dir: 'rtl',
+        title: 'الآراء والتحليلات القانونية | Law Office Of Ali Kadhem Hashimi',
+        mainTitle: 'الآراء والتحليلات القانونية',
+        intro: 'نافذة متخصصة تُعنى بنشر الدراسات والإيضاحات الإجرائية في فروع القانون العراقي: قانون العمل والإقامة والضمان الاجتماعي، تأسيس وتسجيل الشركات، العلامات التجارية، وقضايا الأحوال الشخصية والدعاوى المدنية والتجارية.',
+        catName: 'العمل والإقامة والضمان الاجتماعي',
+        artDate: 'العمل والإقامة والضمان الاجتماعي • 5 سبتمبر 2026',
+        artTitle: 'امتثال العمالة الأجنبية وقانون الضمان الاجتماعي العراقي رقم 18 لسنة 2023: دليل الشركات والمستثمرين',
+        artDesc: 'دراسة تحليلية شاملة لأحكام قانون العمل العراقي وقانون التقاعد والضمان الاجتماعي للعمال، مع بيان التزامات أصحاب العمل والشركات الأجنبية والمحلية.',
+        artBody: `تُعد بيئة الأعمال والاستثمار في جمهورية العراق واعدة، إلا أنها محكومة بمنظومة تشريعية صارمة تتطلب من الشركات الأجنبية والمحلية إلماماً تاما بأحكام قانون العمل رقم (37) لسنة 2015 وقانون التقاعد والضمان الاجتماعي للعمال رقم (18) لسنة 2023. يهدف هذا التحليل إلى تسليط الضوء على أبرز الالتزامات القانونية والإجرائية الملقاة على عاتق أصحاب العمل.
 
-    window.addEventListener('blur', () => {
-      document.body.classList.add('security-blur');
-      showSecurityWarning();
-    });
+1. عقود العمل وصياغتها القانونية:
+يُحتم المشرع العراقي أن يُحرر عقد العمل خطياً وبنسختين باللغة العربية (ويمكن ترجمته للغة أجنبية مع الاعتماد النص العربي عند النزاع). يجب أن يتضمن العقد بوضوح طبيعة العمل، الأجر، ساعات العمل، وفترة الاختبار التي لا يجوز أن تزيد على ثلاثة أشهر. إن صياغة العقود بما يتوافق مع القواعد الآمرة قانوناً تحمي المنشأة من الغرامات والمنازعات العمالية أمام محاكم العمل.
 
-    window.addEventListener('focus', () => {
-      setTimeout(() => { document.body.classList.remove('security-blur'); }, 800);
-    });
+2. اشتراكات الضمان الاجتماعي (التزام جوهري):
+أوجب قانون التقاعد والضمان الاجتماعي النافذ على جميع أصحاب العمل شمول العاملين لديهم (سواء كانوا عراقيين أو أجانب) بأحكام الضمان الاجتماعي ودفع النسب المقررة قانوناً لصندوق التقاعد والضمان. إن التخلف عن التسجيل أو التأخير في سداد الاشتراكات يُعرض المنشأة لعقوبات مالية جسيمة وملاحقات قانونية قد تؤثر على رخصة العمل وتجديد الإقامات.
 
-    function showSecurityWarning() {
-      const warn = document.getElementById('securityWarning');
-      if (warn) {
-        warn.style.display = 'block';
-        setTimeout(() => { warn.style.display = 'none'; }, 3000);
-      }
-    }
+3. استقدام العمالة الأجنبية وتراخيص العمل:
+تخضع العمالة الأجنبية في الشركات العاملة في العراق لضوابط دقيقة تشمل الحصول على موافقة وزارة العمل والشؤون الاجتماعية، وإصدار رخصة العمل وإجازة الإقامة الرسمية وفق النسب المقررة للتشغيل الوطني. ويتحمل صاحب العمل مسؤولية تأمين العمال وإعادتهم إلى بلدانهم عند انتهاء التعاقد.
 
-    window.addEventListener('DOMContentLoaded', () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const targetSlug = urlParams.get('p');
+4. تسوية النزاعات العمالية:
+في حال حدوث نزاع بين صاحب العمل والعمال، يُفضل دائماً اللجوء إلى التسوية الودية أو لجان تفتيش العمل قبل تصعيد النزاع إلى القضاء العمالي المختص، لضمان استمرارية النشاط التجاري وحماية السمعة المؤسسية للشركة.
 
-      if (targetSlug) {
-        const sessionKey = 'viewed_' + targetSlug;
-        let views = parseInt(localStorage.getItem('views_' + targetSlug) || '142');
-        
-        if (!sessionStorage.getItem(sessionKey)) {
-          sessionStorage.setItem(sessionKey, 'true');
-          views += 1;
-          localStorage.setItem('views_' + targetSlug, views);
-        }
+خاتمة وتوصية تنفيذية:
+نظراً لدقة الإجراءات وتعدد الجهات الرقابية (مفتشو العمل، دائرة التقاعد والضمان الاجتماعي، ومجلس الإدارة للشركات)، نؤكد على ضرورة مراجعة وتدقيق كافة عقود العمل واللوائح الداخلية للشركات من قبل مستشار قانوني مختص لتجنب أي مخالفات قانونية غير مقصودة.`,
+        bookingBtn: 'طلب تدقيق الامتثال العمالي للشركات (مكتب AKH) ←',
+        footer: '© جميع الحقوق محفوظة لمكتب المحامي علي كاظم الهاشمي (AKH Law Office). <br>إخلاء مسؤولية وحجية النص: المواد والتحليلات القانونية المنشورة مُعدّة لأغراض التوعية العامة ولا تُعد استشارة قانونية ملزمة. <strong>يُعد النص العربي هو الأصل المعتمد</strong>.',
+        readMore: 'قراءة المزيد ←',
+        shareLabel: 'مشاركة الرابط المباشر:',
+        copyTxt: 'نسخ الرابط'
+      },
+      en: {
+        dir: 'ltr',
+        title: 'Legal Insights & Analysis | Law Office Of Ali Kadhem Hashimi',
+        mainTitle: 'Legal Insights & Analysis',
+        intro: 'A specialized window dedicated to publishing procedural studies and clarifications across branches of Iraqi law: Labor, residency and social security law, corporate formation, trademarks, personal status cases, and civil and commercial litigation.',
+        catName: 'Labor, Residency & Social Security',
+        artDate: 'Labor & Social Security • September 5, 2026',
+        artTitle: 'Foreign Labor Compliance & Iraqi Social Security Law No. 18 of 2023: Corporate & Investor Guide',
+        artDesc: 'A comprehensive analytical study of the provisions of the Iraqi Labor Law and the Workers Retirement and Social Security Law, outlining employer and corporate obligations.',
+        artBody: `The business and investment environment in the Republic of Iraq is promising yet governed by a strict legislative framework requiring foreign and local companies to be fully familiar with Labor Law No. (37) of 2015 and Workers Retirement and Social Security Law No. (18) of 2023. This analysis highlights key legal obligations:
 
-        const articles = document.querySelectorAll('article');
-        articles.forEach(art => {
-          if (art.getAttribute('data-slug') === targetSlug) {
-            const viewEl = document.getElementById('views-' + targetSlug);
-            if (viewEl) viewEl.innerText = `👁️ المشاهدات: ${views}`;
+1. Employment Contracts and Legal Drafting:
+Iraqi legislation mandates that employment contracts be in writing and in two copies in Arabic (with foreign language translations permitted, while the Arabic text prevails in disputes). Contracts must clearly state work nature, wages, working hours, and a probationary period not exceeding three months.
 
-            const expanded = art.querySelector('.article-expanded');
-            if (expanded) expanded.style.display = 'block';
-            const btn = art.querySelector('button[type="button"]');
-            if (btn) btn.innerText = 'عرض أقل ↑';
-            art.classList.add('highlighted');
-            
-            setTimeout(() => {
-              art.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 300);
-          }
-        });
-      }
-    });
+2. Social Security Contributions (A Core Obligation):
+The active Social Security Law requires employers to enroll all workers (national and foreign) and pay mandatory contributions. Failure to do so leads to heavy financial penalties and legal liabilities affecting work licenses and residency renewals.
 
-    function switchTab(lang) {
-      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
-      document.getElementById('arabic-feed').style.display = lang === 'ar' ? 'block' : 'none';
-      document.getElementById('english-feed').style.display = lang === 'en' ? 'block' : 'none';
-    }
+3. Foreign Recruitment & Work Permits:
+Foreign workers are subject to strict controls requiring Ministry of Labor approvals, work permits, and residency visas complying with national employment quotas.
 
-    function showToast(msg) {
-      const toast = document.getElementById('copyToast');
-      toast.innerText = msg;
-      toast.style.display = 'block';
-      setTimeout(() => { toast.style.display = 'none'; }, 2500);
-    }
+4. Labor Dispute Resolution:
+Amicable settlement and labor inspection committees are advised before escalating disputes to labor courts to maintain business continuity and corporate reputation.
 
-    function copyArticleLink(slug) {
-      const url = `https://akjassem.com/insights.html?p=${slug}`;
-      navigator.clipboard.writeText(url).then(() => {
-        showToast('تم نسخ الرابط المباشر بنجاح 📋');
-      });
-    }
-  </script>
-</body>
-</html>
+Executive Recommendation:
+Given procedural complexities and multiple regulatory bodies, we emphasize having all employment contracts and corporate bylaws audited by specialized legal counsel.`,
+        bookingBtn: 'Request Corporate Labor Compliance Audit (AKH Law Office) →',
+        footer: '© All rights reserved to Lawyer Ali Kadhem Hashimi Law Office (AKH). <br>Disclaimer: Published legal insights are for general awareness and do not constitute formal legal advice. <strong>The Arabic text remains the authoritative original</strong>.',
+        readMore: 'Read More →',
+        shareLabel: 'Share Direct Link:',
+        copyTxt: 'Copy Link'
+      },
+      fr: {
+        dir: 'ltr',
+        title: 'Analyses Juridiques | Law Office Of Ali Kadhem Hashimi',
+        mainTitle: 'Analyses et Études Juridiques',
+        intro: 'Une fenêtre spécialisée dédiée à la publication d’études et d’éclaircissements procéduraux dans les branches du droit irakien.',
+        catName: 'Travail et Sécurité Sociale',
+        artDate: 'Travail et Sécurité • 5 Septembre 2026',
+        artTitle: 'Conformité de la Main-d’Oeuvre Étrangère et Loi Irakienne de Sécurité Sociale n° 18 de 2023',
+        artDesc: 'Étude analytique complète des dispositions du droit du travail irakien et de la sécurité sociale.',
+        artBody: `L'environnement des affaires et des investissements en République d'Irak est prometteur, régi par un cadre législatif strict.
+
+1. Contrats de travail et rédaction juridique.
+2. Cotisations de sécurité sociale (obligation fondamentale).
+3. Recrutement de main-d'œuvre étrangère et permis de travail.
+4. Règlement
