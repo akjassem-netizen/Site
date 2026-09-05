@@ -28,14 +28,10 @@
       padding: 30px 16px;
       display: flex;
       justify-content: center;
-      user-select: none;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
       transition: filter 0.3s ease;
     }
 
-    body.security-blur { filter: blur(20px); }
+    body.security-blur { filter: blur(15px); }
 
     .container { max-width: 800px; width: 100%; }
     .brand-section {
@@ -146,7 +142,6 @@
       font-weight: 800;
       font-size: 16px;
       color: #0b1a30;
-      user-select: none;
       border-left: 4px solid #d32f2f;
       transition: background-color 0.2s;
     }
@@ -161,12 +156,12 @@
       margin-right: 8px;
     }
     .category-body {
-      display: block;
       padding: 18px 20px;
       background: #fcfdfe;
       border-top: 1px solid #edf2f7;
     }
 
+    /* كارت المقال والمعيار العالمي: العلامة المائية الثابتة لشعار المكتب الخلفية */
     .legal-card {
       background: #ffffff;
       border: 1px solid #e2e8f0;
@@ -178,17 +173,17 @@
       overflow: hidden;
     }
     .legal-card::after {
-      content: "AKH LAW OFFICE";
+      content: "AKH LAW OFFICE - ALI KADHEM HASHIMI";
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%) rotate(-25deg);
-      font-size: 65px;
+      font-size: 40px;
       font-weight: 900;
       color: rgba(11, 26, 48, 0.035);
       pointer-events: none;
       z-index: 0;
-      letter-spacing: 5px;
+      letter-spacing: 3px;
       white-space: nowrap;
     }
     .legal-card > * { position: relative; z-index: 1; }
@@ -233,22 +228,6 @@
     .btn-share-li { background-color: #0a66c2; color: #ffffff; }
     .btn-share-x { background-color: #000000; color: #ffffff; }
 
-    #securityWarning {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #d32f2f;
-      color: #ffffff;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 700;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-      display: none;
-      z-index: 99999;
-    }
-
     #copyToast {
       position: fixed;
       bottom: 25px;
@@ -280,7 +259,6 @@
 </head>
 <body>
 
-  <div id="securityWarning">⚠️ تنبيه أمني: المحتوى القانوني محمي بحقوق الملكية الفكرية لمكتب AKH.</div>
   <div id="copyToast">تم نسخ الرابط المباشر بنجاح 📋</div>
 
   <div class="container">
@@ -312,13 +290,18 @@
     </div>
 
     <div id="arabic-feed">
-      <article class="legal-card" data-category="العمل والإقامة والضمان الاجتماعي" data-slug="labor-social-security-iraq" data-keywords="محامي في بغداد, قانون العمل">
-        <div style="font-size: 13px; color: #d32f2f; font-weight: 700; margin-bottom: 8px;">العمل والإقامة والضمان الاجتماعي • 5 سبتمبر 2026</div>
-        <h2 style="font-size: 19px; font-weight: 800; color: #0b1a30; margin-bottom: 12px;">امتثال العمالة الأجنبية وقانون الضمان الاجتماعي العراقي رقم 18 لسنة 2023: دليل الشركات والمستثمرين</h2>
-        <p style="font-size: 15px; color: #4a5568; line-height: 1.8; margin-bottom: 12px;">دراسة تحليلية شاملة لأحكام قانون العمل العراقي وقانون التقاعد والضمان الاجتماعي للعمال، مع بيان التزامات أصحاب العمل والشركات الأجنبية والمحلية.</p>
-        
-        <div class="article-expanded" style="display: none; border-top: 1px dashed #cbd5e0; padding-top: 16px; margin-top: 12px; font-size: 15px; color: #2d3748; line-height: 1.9;">
-          <div style="white-space: pre-line;">تُعد بيئة الأعمال والاستثمار في جمهورية العراق واعدة، إلا أنها محكومة بمنظومة تشريعية صارمة تتطلب من الشركات الأجنبية والمحلية إلماماً تاما بأحكام قانون العمل رقم (37) لسنة 2015 وقانون التقاعد والضمان الاجتماعي للعمال رقم (18) لسنة 2023. يهدف هذا التحليل إلى تسليط الضوء على أبرز الالتزامات القانونية والإجرائية الملقاة على عاتق أصحاب العمل.
+      <div class="category-group">
+        <div class="category-header">
+          <div><span>العمل والإقامة والضمان الاجتماعي</span><span class="badge-count">1 مقال</span></div>
+        </div>
+        <div class="category-body">
+          <article class="legal-card" data-slug="labor-social-security-iraq">
+            <div style="font-size: 13px; color: #d32f2f; font-weight: 700; margin-bottom: 8px;">العمل والإقامة والضمان الاجتماعي • 5 سبتمبر 2026</div>
+            <h2 style="font-size: 19px; font-weight: 800; color: #0b1a30; margin-bottom: 12px;">امتثال العمالة الأجنبية وقانون الضمان الاجتماعي العراقي رقم 18 لسنة 2023: دليل الشركات والمستثمرين</h2>
+            <p style="font-size: 15px; color: #4a5568; line-height: 1.8; margin-bottom: 12px;">دراسة تحليلية شاملة لأحكام قانون العمل العراقي وقانون التقاعد والضمان الاجتماعي للعمال، مع بيان التزامات أصحاب العمل والشركات الأجنبية والمحلية.</p>
+            
+            <div class="article-expanded" style="display: none; border-top: 1px dashed #cbd5e0; padding-top: 16px; margin-top: 12px; font-size: 15px; color: #2d3748; line-height: 1.9;">
+              <div style="white-space: pre-line;">تُعد بيئة الأعمال والاستثمار في جمهورية العراق واعدة، إلا أنها محكومة بمنظومة تشريعية صارمة تتطلب من الشركات الأجنبية والمحلية إلماماً تاما بأحكام قانون العمل رقم (37) لسنة 2015 وقانون التقاعد والضمان الاجتماعي للعمال رقم (18) لسنة 2023. يهدف هذا التحليل إلى تسليط الضوء على أبرز الالتزامات القانونية والإجرائية الملقاة على عاتق أصحاب العمل.
 
 1. عقود العمل وصياغتها القانونية:
 يُحتم المشرع العراقي أن يُحرر عقد العمل خطياً وبنسختين باللغة العربية (ويمكن ترجمته للغة أجنبية مع الاعتماد النص العربي عند النزاع). يجب أن يتضمن العقد بوضوح طبيعة العمل، الأجر، ساعات العمل، وفترة الاختبار التي لا يجوز أن تزيد على ثلاثة أشهر. إن صياغة العقود بما يتوافق مع القواعد الآمرة قانوناً تحمي المنشأة من الغرامات والمنازعات العمالية أمام محاكم العمل.
@@ -335,8 +318,88 @@
 خاتمة وتوصية تنفيذية:
 نظراً لدقة الإجراءات وتعدد الجهات الرقابية (مفتشو العمل، دائرة التقاعد والضمان الاجتماعي، ومجلس الإدارة للشركات)، نؤكد على ضرورة مراجعة وتدقيق كافة عقود العمل واللوائح الداخلية للشركات من قبل مستشار قانوني مختص لتجنب أي مخالفات قانونية غير مقصودة.</div>
 
-          <div style="text-align: center; margin: 25px 0 10px;">
-            <a href="https://wa.me/9647702956021?text=مرحباً،%20أود%20حجز%20جلسة%20تدقيق%20امتثال%20عمالي%20لشركتنا%20مع%20مكتب%20المحامي%20علي%20كاظم%20الهاشمي" style="display: inline-block; background-color: #0b1a30; color: #ffffff; padding: 13px 25px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 15px; box-shadow: 0 4px 12px rgba(11,26,48,0.25); border: 1.5px solid #d32f2f;">طلب تدقيق الامتثال العمالي للشركات (مكتب AKH) ←</a>
-          </div>
+              <div style="text-align: center; margin: 25px 0 10px;">
+                <a href="https://wa.me/9647702956021?text=مرحباً،%20أود%20حجز%20جلسة%20تدقيق%20امتثال%20عمالي%20لشركتنا%20مع%20مكتب%20المحامي%20علي%20كاظم%20الهاشمي" style="display: inline-block; background-color: #0b1a30; color: #ffffff; padding: 13px 25px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 15px; box-shadow: 0 4px 12px rgba(11,26,48,0.25); border: 1.5px solid #d32f2f;">طلب تدقيق الامتثال العمالي للشركات (مكتب AKH) ←</a>
+              </div>
 
-          <div style="margin-top:
+              <div style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #edf2f7; font-size: 11.5px; color: #718096; line-height: 1.7;">
+                <p class="notranslate" translate="no" style="margin-bottom: 4px; font-weight: 700; color: #4a5568;">© جميع الحقوق محفوظة لمكتب المحامي علي كاظم الهاشمي (AKH Law Office).</p>
+                <p style="margin: 0;">إخلاء مسؤولية وحجية النص: المواد والتحليلات القانونية المنشورة مُعدّة لأغراض التوعية العامة ولا تُعد استشارة قانونية ملزمة. <strong>يُعد النص العربي هو الأصل المعتمد</strong>.</p>
+              </div>
+            </div>
+
+            <button type="button" onclick="const b = this.previousElementSibling; const open = b.style.display==='block'; b.style.display = open?'none':'block'; this.innerText = open ? 'قراءة المزيد ←' : 'عرض أقل ↑';" style="background: none; border: 1.5px solid #0b1a30; color: #0b1a30; padding: 8px 18px; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 10px;">قراءة المزيد ←</button>
+
+            <div class="share-bar">
+              <span class="share-label">مشاركة الرابط المباشر:</span>
+              <button class="btn-share btn-share-copy" onclick="copyArticleLink('labor-social-security-iraq')">📋 نسخ الرابط</button>
+              <a class="btn-share btn-share-wa" href="https://api.whatsapp.com/send?text=امتثال%20العمالة%20الأجنبية%20وقانون%20الضمان%20الاجتماعي%20العراقي%20|%20https://akjassem.com/insights.html?p=labor-social-security-iraq" target="_blank">🟢 WhatsApp</a>
+              <a class="btn-share btn-share-li" href="https://www.linkedin.com/sharing/share-offsite/?url=https://akjassem.com/insights.html?p=labor-social-security-iraq" target="_blank">💼 LinkedIn</a>
+              <a class="btn-share btn-share-x" href="https://twitter.com/intent/tweet?text=امتثال%20العمالة%20الأجنبية%20وقانون%20الضمان%20الاجتماعي%20العراقي&url=https://akjassem.com/insights.html?p=labor-social-security-iraq" target="_blank">𝕏 Post</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div id="english-feed" style="display: none;"></div>
+  </div>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const targetSlug = urlParams.get('p');
+
+      if (targetSlug) {
+        const articles = document.querySelectorAll('article');
+        articles.forEach(art => {
+          if (art.getAttribute('data-slug') === targetSlug) {
+            const h2 = art.querySelector('h2');
+            const p = art.querySelector('p');
+            if (h2) {
+              document.title = h2.innerText + ' | Law Office Of Ali Kadhem Hashimi';
+              document.getElementById('ogTitle').content = h2.innerText;
+            }
+            if (p) {
+              document.getElementById('metaDesc').content = p.innerText;
+              document.getElementById('ogDesc').content = p.innerText;
+            }
+            document.getElementById('ogUrl').content = window.location.href;
+
+            const expanded = art.querySelector('.article-expanded');
+            if (expanded) expanded.style.display = 'block';
+            const btn = art.querySelector('button[type="button"]');
+            if (btn) btn.innerText = 'عرض أقل ↑';
+            art.classList.add('highlighted');
+            
+            setTimeout(() => {
+              art.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 300);
+          }
+        });
+      }
+    });
+
+    function switchTab(lang) {
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById('arabic-feed').style.display = lang === 'ar' ? 'block' : 'none';
+      document.getElementById('english-feed').style.display = lang === 'en' ? 'block' : 'none';
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('copyToast');
+      toast.innerText = msg;
+      toast.style.display = 'block';
+      setTimeout(() => { toast.style.display = 'none'; }, 2500);
+    }
+
+    function copyArticleLink(slug) {
+      const url = `https://akjassem.com/insights.html?p=${slug}`;
+      navigator.clipboard.writeText(url).then(() => {
+        showToast('تم نسخ الرابط المباشر بنجاح 📋');
+      });
+    }
+  </script>
+</body>
+</html>
