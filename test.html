@@ -117,19 +117,41 @@
       text-align: right;
     }
 
-    /* حاوية الشعار الحقيقي (مدمجة بسلاسة مع البياض وبدون مربعات حادة) */
-    .hero-logo-wrapper {
-      margin-bottom: 22px;
+    /* تصميم الشعار البرمجي الممتد أفقياً وبشكل نظيف ومدمج مع البياض */
+    .hero-logo-banner {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 24px;
       padding-bottom: 18px;
-      border-bottom: 1px solid #e2e8f0;
+      border-bottom: 1.5px solid #e2e8f0;
     }
 
-    .hero-logo-img {
-      width: 100%;
-      max-width: 210px;
-      height: auto;
-      object-fit: contain;
-      display: block;
+    .logo-akh-text {
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #070f1e;
+      font-family: Arial, sans-serif;
+      line-height: 1.1;
+    }
+    .logo-akh-text span { color: #d32f2f; }
+
+    .logo-sub-text {
+      font-size: 10px;
+      font-weight: 800;
+      color: #070f1e;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+    .logo-sub-text span { color: #d32f2f; }
+
+    .logo-est-text {
+      font-size: 8px;
+      color: #64748b;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-top: 2px;
     }
 
     .hero-title {
@@ -170,7 +192,7 @@
 </head>
 <body>
 
-  <!-- الهيدر التنفيذي (اختيار اللغة، زر الحجز، القائمة) -->
+  <!-- الهيدر التنفيذي -->
   <header class="icover-header">
     <div class="header-right">
       <select id="languageSelect" class="lang-select-top" onchange="changeLanguage(this.value)">
@@ -197,11 +219,13 @@
     </div>
   </header>
 
-  <!-- الكفر الفخم (Hero Section) ويحتوي على صورة الشعار الحقيقية المندمجة مع البياض -->
+  <!-- الكفر الفخم (Hero Section) مع الشعار البرمجي الممتد أفقياً -->
   <section class="hero-cover-section">
     <div class="hero-box">
-      <div class="hero-logo-wrapper">
-        <img src="1000019530.jpg" alt="AKH Law Office Logo" class="hero-logo-img">
+      <div class="hero-logo-banner">
+        <div class="logo-akh-text">A<span>K</span>H</div>
+        <div class="logo-sub-text"><span>/</span> LAW OFFICE</div>
+        <div class="logo-est-text">EST. 2014</div>
       </div>
 
       <h1 class="hero-title" id="heroTitleText">مكتب المحامي علي كاظم الهاشمي</h1>
