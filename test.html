@@ -7,9 +7,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Cairo', sans-serif; background: #f8fafc; }
+    body { font-family: 'Cairo', sans-serif; background: #f8fafc; color: #1e293b; }
 
-    /* الهيدر التنفيذي المطابق لنسق المنصات العالمية */
+    /* الهيدر التنفيذي */
     .icover-header {
       background: #070f1e;
       border-bottom: 2px solid #c5a059;
@@ -22,7 +22,6 @@
       z-index: 1000;
     }
 
-    /* جهة اليمين: الشعار والاسم */
     .brand-box {
       display: flex;
       align-items: center;
@@ -53,7 +52,6 @@
       font-weight: 600;
     }
 
-    /* جهة اليسار: أزرار الحجز وقائمة الثلاث شخطات */
     .header-left {
       display: flex;
       align-items: center;
@@ -73,7 +71,6 @@
     }
     .btn-booking:hover { background: #f1f5f9; }
 
-    /* زر الثلاث شخطات (القائمة المنسدلة) */
     .menu-toggle {
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.2);
@@ -88,7 +85,7 @@
       justify-content: center;
     }
 
-    /* القائمة المنسدلة المخفية وتظهر عند الضغط */
+    /* القائمة المنسدلة */
     .dropdown-menu {
       position: absolute;
       top: 100%;
@@ -100,11 +97,7 @@
       flex-direction: column;
       box-shadow: 0 10px 25px rgba(0,0,0,0.4);
     }
-
-    .dropdown-menu.active {
-      display: flex;
-    }
-
+    .dropdown-menu.active { display: flex; }
     .dropdown-menu a {
       color: #ffffff;
       padding: 14px 20px;
@@ -113,58 +106,63 @@
       font-weight: 600;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
+    .dropdown-menu a:hover { background: rgba(197, 160, 89, 0.15); color: #c5a059; }
 
-    .dropdown-menu a:hover {
-      background: rgba(197, 160, 89, 0.15);
-      color: #c5a059;
+    /* مستطيل اختيار اللغة المطابق لصفحة الآراء القانونية */
+    .lang-container {
+      max-width: 650px;
+      margin: 30px auto 20px;
+      padding: 0 16px;
     }
 
-    /* منطقة الكفر (Hero Section) المماثلة للتدرج الأزرق */
-    .hero-cover {
-      background: linear-gradient(135deg, #070f1e 0%, #0f172a 100%);
-      color: #ffffff;
-      padding: 50px 20px;
-      text-align: center;
-      border-bottom: 4px solid #d32f2f;
+    .lang-card-box {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
     }
 
-    .hero-cover h1 {
-      font-size: 24px;
-      font-weight: 800;
-      margin-bottom: 10px;
-    }
-    .hero-cover p {
-      font-size: 14px;
-      color: #cbd5e1;
+    .lang-label {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #1e293b;
     }
 
-    /* مساحة التمرير التجريبية */
-    .scroll-test {
-      padding: 40px 20px;
-      text-align: center;
-      color: #64748b;
+    .lang-select-box {
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1.5px solid #070f1e;
+      background: #ffffff;
+      color: #070f1e;
+      font-size: 13px;
+      font-weight: 700;
+      outline: none;
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
     }
   </style>
 </head>
 <body>
 
-  <!-- الهيدر الرئيسي -->
+  <!-- الهيدر -->
   <header class="icover-header">
     <a href="test.html" class="brand-box">
       <img src="1000019530.jpg" alt="AKH Logo" class="brand-logo" onerror="this.style.display='none'">
       <div class="brand-name">
-        مكتب المحامي علي كاظم
+        مكتب المحامي علي كاظم الهاشمي
         <span>AKH LAW OFFICE</span>
       </div>
     </a>
 
     <div class="header-left">
       <a href="https://docs.google.com/forms/d/e/1FAIpQLSdVxyld_U5Mdp-4RLcuA8HdQvAvlYWdd1fiQ8QAavwJj_Ev7w/viewform" target="_blank" class="btn-booking">حجز موعد</a>
-      <!-- زر الثلاث شخطات -->
       <button class="menu-toggle" onclick="toggleMenu()" aria-label="القائمة">☰</button>
     </div>
 
-    <!-- القائمة المنسدلة -->
     <div id="dropdownMenu" class="dropdown-menu">
       <a href="test.html">الرئيسية</a>
       <a href="https://docs.google.com/forms/d/e/1FAIpQLSdVxyld_U5Mdp-4RLcuA8HdQvAvlYWdd1fiQ8QAavwJj_Ev7w/viewform" target="_blank">حجز موعد استشارة</a>
@@ -172,14 +170,21 @@
     </div>
   </header>
 
-  <!-- الكفر (Hero Section) -->
-  <section class="hero-cover">
-    <h1>مكتب المحامي علي كاظم الهاشمي</h1>
-    <p>تمثيل قانوني رصين واستشارات تخصصية للشركات والأفراد</p>
-  </section>
-
-  <div class="scroll-test">
-    <p>جرب تضغط على الثلاث شخطات فوق على اليسار، وجرب تنزل بالصفحة (سكرول) لتتأكد من سلاسة الحركة.</p>
+  <!-- مستطيل اختيار اللغة (بننسق الآراء القانونية) -->
+  <div class="lang-container">
+    <div class="lang-card-box">
+      <span class="lang-label">اختر اللغة / Select Language</span>
+      <select class="lang-select-box" onchange="alert('تم اختيار اللغة: ' + this.value)">
+        <option value="ar">العربية (Arabic)</option>
+        <option value="en">English</option>
+        <option value="tr">Türkçe</option>
+        <option value="zh">中文</option>
+        <option value="fr">Français</option>
+        <option value="es">Español</option>
+        <option value="de">Deutsch</option>
+        <option value="ku">کوردی</option>
+      </select>
+    </div>
   </div>
 
   <script>
