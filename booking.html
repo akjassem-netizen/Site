@@ -191,6 +191,7 @@
 
     <form id="consultationForm">
 
+      <!-- 1. الجنسية -->
       <div class="form-group">
         <label id="lblCitizenship">الجنسية / الصفة الشخصية *</label>
         <div class="radio-group">
@@ -199,6 +200,7 @@
         </div>
       </div>
 
+      <!-- 2. مكان الإقامة -->
       <div class="form-group">
         <label id="lblResidence">مكان الإقامة الحالي *</label>
         <div class="radio-group">
@@ -207,6 +209,7 @@
         </div>
       </div>
 
+      <!-- 3. الصفة القانونية (فرد أو شركة) -->
       <div class="form-group">
         <label id="lblEntityType">صفة طالب الاستشارة *</label>
         <div class="radio-group">
@@ -215,11 +218,13 @@
         </div>
       </div>
 
+      <!-- الاسم -->
       <div class="form-group">
         <label id="nameLabel">الاسم الكامل *</label>
         <input type="text" id="fullName" required placeholder="أدخل الاسم الثلاثي">
       </div>
 
+      <!-- ممثل الشركة -->
       <div id="companyRepField" class="form-group conditional-section">
         <label id="lblCompanyRep">اسم المفوض بالتوقيع أو الممثل القانوني للشركة *</label>
         <input type="text" id="companyRepName" placeholder="اسم الشخص المسؤول عن المتابعة">
@@ -236,6 +241,7 @@
         </div>
       </div>
 
+      <!-- تفاصيل الأفراد -->
       <div id="individualOnlyFields" class="conditional-section active">
         <div class="form-grid">
           <div class="form-group">
@@ -266,11 +272,13 @@
         </div>
       </div>
 
+      <!-- العنوان (سكن للفرد | مقر للشركة) -->
       <div class="form-group">
-        <label id="lblAddress">عنوان السكن أو مقر الشركة (المحافظة / المنطقة أو البلد) *</label>
-        <input type="text" id="address" placeholder="بغداد - الجادرية أو لندن - المملكة المتحدة">
+        <label id="lblAddress">عنوان السكن *</label>
+        <input type="text" id="address" placeholder="بغداد - الجادرية">
       </div>
 
+      <!-- حقول الفرد الأجنبي (جنسية + جواز) -->
       <div id="foreignerIndividualFields" class="conditional-section">
         <div class="form-grid">
           <div class="form-group">
@@ -284,19 +292,21 @@
         </div>
       </div>
 
+      <!-- حقول الشركة (بلد التأسيس + رقم التسجيل) -->
       <div id="companyIdentityFields" class="conditional-section">
         <div class="form-grid">
           <div class="form-group">
             <label id="lblCountryInc">بلد التأسيس *</label>
-            <input type="text" id="countryInc" placeholder="مثال: الإمارات العربية المتحدة">
+            <input type="text" id="countryInc" placeholder="مثال: العراق / الإمارات">
           </div>
           <div class="form-group">
             <label id="lblRegNo">رقم تسجيل الشركة *</label>
-            <input type="text" id="regNo" placeholder="Corporate Registration No.">
+            <input type="text" id="regNo" placeholder="رقم شهادة التأسيس أو التسجيل">
           </div>
         </div>
       </div>
 
+      <!-- خدمة الترجمة للأجانب -->
       <div id="translationField" class="form-group conditional-section">
         <label id="lblTranslation">خدمة الترجمة والتنسيق أثناء الجلسة *</label>
         <select id="translationNeeded">
@@ -305,6 +315,7 @@
         </select>
       </div>
 
+      <!-- التفاصيل المشتركة -->
       <div class="form-group">
         <label id="lblMethod">طريقة تلقي الاستشارة المفضلة *</label>
         <select id="consultationMethod">
@@ -345,26 +356,31 @@
       const compIdentityFields = document.getElementById('companyIdentityFields');
       const translationField = document.getElementById('translationField');
       const nameLabel = document.getElementById('nameLabel');
+      const addressLabel = document.getElementById('lblAddress');
       
       const lang = document.getElementById('languageSelect').value;
       const t = bookingDict[lang] || bookingDict['en'];
 
-      // تبديل اسم الحقل الرئيسي (فرد أو شركة)
       if (isCompany) {
         indFields.classList.remove('active');
         compRepField.classList.add('active');
         nameLabel.innerText = t.companyName;
+        addressLabel.innerText = t.addressCompany;
       } else {
         indFields.classList.add('active');
         compRepField.classList.remove('active');
         nameLabel.innerText = t.fullName;
+        addressLabel.innerText = t.addressIndividual;
       }
 
-      // إظهار حقول الهوية المناسبة بدقة (فرد أجنبي مقابل شركة)
       if (isCompany) {
         compIdentityFields.classList.add('active');
+        if (isForeign) {
+          translationField.classList.add('active');
+        } else {
+          translationField.classList.remove('active');
+        }
         foreignIndivFields.classList.remove('active');
-        translationField.classList.add('active'); // الشركات غالباً قد تحتاج تنسيقاً أو لغة أجنبية
       } else {
         compIdentityFields.classList.remove('active');
         if (isForeign) {
@@ -395,13 +411,14 @@
         fullName: "الاسم الكامل *",
         companyName: "اسم الشركة أو المؤسسة التجارية *",
         companyRep: "اسم المفوض بالتوقيع أو الممثل القانوني للشركة *",
+        addressIndividual: "عنوان السكن (المحافظة / المنطقة) *",
+        addressCompany: "مقر الشركة أو المركز الرئيسي *",
         email: "البريد الإلكتروني *",
         phone: "رقم الهاتف / الواتساب *",
         gender: "الجنس *",
         male: "ذكر",
         female: "أنثى",
         age: "العمر *",
-        address: "عنوان السكن أو مقر الشركة (المحافظة / المنطقة أو البلد) *",
         education: "التحصيل الدراسي *",
         eduUni: "شهادة جامعية أو عليا",
         eduHigh: "شهادة ثانوية",
@@ -445,13 +462,14 @@
         fullName: "Full Name *",
         companyName: "Company / Business Name *",
         companyRep: "Authorized Representative / Signatory Name *",
+        addressIndividual: "Residential Address (City / Area) *",
+        addressCompany: "Company Headquarters / Main Office *",
         email: "Email Address *",
         phone: "Phone / WhatsApp *",
         gender: "Gender *",
         male: "Male",
         female: "Female",
         age: "Age *",
-        address: "Address or Company Headquarters *",
         education: "Level of Education *",
         eduUni: "University or Postgraduate Degree",
         eduHigh: "High School",
@@ -495,13 +513,14 @@
         fullName: "Ad Soyad *",
         companyName: "Şirket Adı *",
         companyRep: "Şirket Yetkilisi / Temsilci Adı *",
+        addressIndividual: "İkamet Adresi *",
+        addressCompany: "Şirket Merkezi / Ana Ofis *",
         email: "E-posta *",
         phone: "Telefon / WhatsApp *",
         gender: "Cinsiyet *",
         male: "Erkek",
         female: "Kadın",
         age: "Yaş *",
-        address: "Adres / Şirket Merkezi *",
         education: "Eğitim Seviyesi *",
         eduUni: "Üniversite veya Lisansüstü",
         eduHigh: "Lise",
@@ -545,13 +564,14 @@
         fullName: "全名 *",
         companyName: "公司名称 *",
         companyRep: "公司授权代表 / 签字人姓名 *",
+        addressIndividual: "居住地址 *",
+        addressCompany: "公司总部 / 主办事处 *",
         email: "电子邮箱 *",
         phone: "电话 / WhatsApp *",
         gender: "性别 *",
         male: "男",
         female: "女",
         age: "年龄 *",
-        address: "地址或公司总部 *",
         education: "教育程度 *",
         eduUni: "大学或研究生学位",
         eduHigh: "高中",
@@ -595,13 +615,14 @@
         fullName: "Nom Complet *",
         companyName: "Nom de l'Entreprise *",
         companyRep: "Nom du Représentant Légal / Signataire *",
+        addressIndividual: "Adresse de Résidence *",
+        addressCompany: "Siège Social de l'Entreprise *",
         email: "Adresse Email *",
         phone: "Téléphone / WhatsApp *",
         gender: "Genre *",
         male: "Homme",
         female: "Femme",
         age: "Âge *",
-        address: "Adresse ou Siège de l'Entreprise *",
         education: "Niveau d'Éducation *",
         eduUni: "Diplôme Universitaire ou Supérieur",
         eduHigh: "Lycée",
@@ -645,13 +666,14 @@
         fullName: "Nombre Completo *",
         companyName: "Nombre de la Empresa *",
         companyRep: "Nombre del Representante Legal / Firmante *",
+        addressIndividual: "Dirección de Residencia *",
+        addressCompany: "Sede de la Empresa / Oficina Principal *",
         email: "Correo Electrónico *",
         phone: "Teléfono / WhatsApp *",
         gender: "Género *",
         male: "Masculino",
         female: "Femenino",
         age: "Edad *",
-        address: "Dirección o Sede de la Empresa *",
         education: "Nivel Educativo *",
         eduUni: "Título Universitario o de Posgrado",
         eduHigh: "Secundaria",
@@ -695,13 +717,14 @@
         fullName: "Vollständiger Name *",
         companyName: "Firmenname *",
         companyRep: "Name des bevollmächtigten Vertreters *",
+        addressIndividual: "Wohnanschrift *",
+        addressCompany: "Firmensitz / Hauptbüro *",
         email: "E-Mail-Adresse *",
         phone: "Telefon / WhatsApp *",
         gender: "Geschlecht *",
         male: "Männlich",
         female: "Weiblich",
         age: "Alter *",
-        address: "Adresse oder Firmensitz *",
         education: "Bildungsstand *",
         eduUni: "Universitäts- oder Postgraduiertenabschluss",
         eduHigh: "Schulabschluss",
@@ -726,7 +749,7 @@
         typeOther: "Sonstige / Allgemeine Beratung",
         details: "Details Ihres Falles *",
         submit: "Anfrage zur rechtlichen Prüfung absenden →",
-        successMsg: "Ihre Anfrage wurde erfolgreich empfangen und wird innerhalb der Geschäftszeiten (innerhalb von 24 Stunden) geprüft."
+        successMsg: "Ihre Anfrage wurde erfolgreich empfangen و wird innerhalb der Geschäftszeiten (innerhalb von 24 Stunden) geprüft."
       },
       ku: {
         title: "چاوپێکەوتنی راوێژکاری - نووسینگەی پارێزەر عەلی کازمی",
@@ -745,13 +768,14 @@
         fullName: "ناوی تەواو *",
         companyName: "ناوی کۆمپانیا یان دەزگای بازرگانی *",
         companyRep: "ناوی کەسی متمانەپێکراو یان نوێنەری یاسایی *",
+        addressIndividual: "ناونیشانی نیشتەجێبوون *",
+        addressCompany: "بنکەی سەرەکی کۆمپانیا *",
         email: "ئیمەیڵ *",
         phone: "ژمارەی مۆبایل / واتساب *",
         gender: "ڕەگەز *",
         male: "نێر",
         female: "مێ",
         age: "تەمەن *",
-        address: "ناونیشانی نیشتەجێبوون یان بنکەی کۆمپانیا *",
         education: "ئاستی خوێندن *",
         eduUni: "بڕوانامەی زانکۆ یان باڵا",
         eduHigh: "ئامادەیی",
@@ -811,7 +835,6 @@
       document.getElementById('optMale').innerText = t.male;
       document.getElementById('optFemale').innerText = t.female;
       document.getElementById('lblAge').innerText = t.age;
-      document.getElementById('lblAddress').innerText = t.address;
       document.getElementById('lblEducation').innerText = t.education;
       document.getElementById('eduUni').innerText = t.eduUni;
       document.getElementById('eduHigh').innerText = t.eduHigh;
