@@ -272,7 +272,7 @@
         </div>
       </div>
 
-      <!-- العنوان (سكن للفرد | مقر للشركة) -->
+      <!-- العنوان (يتبدل ديناميكياً حسب نوع طالب الاستشارة: سكن عراقي، عنوان دولي أجنبي، أو مقر شركة) -->
       <div class="form-group">
         <label id="lblAddress">عنوان السكن *</label>
         <input type="text" id="address" placeholder="بغداد - الجادرية">
@@ -306,7 +306,7 @@
         </div>
       </div>
 
-      <!-- خدمة الترجمة للأجانب -->
+      <!-- خدمة الترجمة للأجانب والشركات الأجنبية -->
       <div id="translationField" class="form-group conditional-section">
         <label id="lblTranslation">خدمة الترجمة والتنسيق أثناء الجلسة *</label>
         <select id="translationNeeded">
@@ -357,6 +357,7 @@
       const translationField = document.getElementById('translationField');
       const nameLabel = document.getElementById('nameLabel');
       const addressLabel = document.getElementById('lblAddress');
+      const addressInput = document.getElementById('address');
       
       const lang = document.getElementById('languageSelect').value;
       const t = bookingDict[lang] || bookingDict['en'];
@@ -366,11 +367,18 @@
         compRepField.classList.add('active');
         nameLabel.innerText = t.companyName;
         addressLabel.innerText = t.addressCompany;
+        addressInput.placeholder = t.placeholderCompany;
       } else {
         indFields.classList.add('active');
         compRepField.classList.remove('active');
         nameLabel.innerText = t.fullName;
-        addressLabel.innerText = t.addressIndividual;
+        if (isForeign) {
+          addressLabel.innerText = t.addressForeignIndiv;
+          addressInput.placeholder = t.placeholderForeignIndiv;
+        } else {
+          addressLabel.innerText = t.addressIraqiIndiv;
+          addressInput.placeholder = t.placeholderIraqiIndiv;
+        }
       }
 
       if (isCompany) {
@@ -411,8 +419,12 @@
         fullName: "الاسم الكامل *",
         companyName: "اسم الشركة أو المؤسسة التجارية *",
         companyRep: "اسم المفوض بالتوقيع أو الممثل القانوني للشركة *",
-        addressIndividual: "عنوان السكن (المحافظة / المنطقة) *",
+        addressIraqiIndiv: "عنوان السكن (المحافظة / المنطقة) *",
+        placeholderIraqiIndiv: "بغداد - الجادرية",
+        addressForeignIndiv: "عنوان الإقامة الخارجي (المدينة / الدولة) *",
+        placeholderForeignIndiv: "لندن - المملكة المتحدة أو دبي - الإمارات",
         addressCompany: "مقر الشركة أو المركز الرئيسي *",
+        placeholderCompany: "بغداد - الكرادة أو دبي - الإمارات",
         email: "البريد الإلكتروني *",
         phone: "رقم الهاتف / الواتساب *",
         gender: "الجنس *",
@@ -462,8 +474,12 @@
         fullName: "Full Name *",
         companyName: "Company / Business Name *",
         companyRep: "Authorized Representative / Signatory Name *",
-        addressIndividual: "Residential Address (City / Area) *",
+        addressIraqiIndiv: "Residential Address (City / Area) *",
+        placeholderIraqiIndiv: "Baghdad - Al-Jadriya",
+        addressForeignIndiv: "Foreign Residential Address (City / Country) *",
+        placeholderForeignIndiv: "London - UK or Dubai - UAE",
         addressCompany: "Company Headquarters / Main Office *",
+        placeholderCompany: "Baghdad - Karrada or Dubai - UAE",
         email: "Email Address *",
         phone: "Phone / WhatsApp *",
         gender: "Gender *",
@@ -513,8 +529,12 @@
         fullName: "Ad Soyad *",
         companyName: "Şirket Adı *",
         companyRep: "Şirket Yetkilisi / Temsilci Adı *",
-        addressIndividual: "İkamet Adresi *",
+        addressIraqiIndiv: "İkamet Adresi (Şehir / Bölge) *",
+        placeholderIraqiIndiv: "Bağdat",
+        addressForeignIndiv: "Yabancı İkamet Adresi (Şehir / Ülke) *",
+        placeholderForeignIndiv: "Londra - İngiltere",
         addressCompany: "Şirket Merkezi / Ana Ofis *",
+        placeholderCompany: "Bağdat veya Dubai",
         email: "E-posta *",
         phone: "Telefon / WhatsApp *",
         gender: "Cinsiyet *",
@@ -564,8 +584,12 @@
         fullName: "全名 *",
         companyName: "公司名称 *",
         companyRep: "公司授权代表 / 签字人姓名 *",
-        addressIndividual: "居住地址 *",
+        addressIraqiIndiv: "居住地址 (城市/地区) *",
+        placeholderIraqiIndiv: "巴格达",
+        addressForeignIndiv: "境外居住地址 (城市/国家) *",
+        placeholderForeignIndiv: "伦敦 - 英国",
         addressCompany: "公司总部 / 主办事处 *",
+        placeholderCompany: "巴格达或迪拜",
         email: "电子邮箱 *",
         phone: "电话 / WhatsApp *",
         gender: "性别 *",
@@ -615,8 +639,12 @@
         fullName: "Nom Complet *",
         companyName: "Nom de l'Entreprise *",
         companyRep: "Nom du Représentant Légal / Signataire *",
-        addressIndividual: "Adresse de Résidence *",
+        addressIraqiIndiv: "Adresse de Résidence (Ville / Région) *",
+        placeholderIraqiIndiv: "Bagdad",
+        addressForeignIndiv: "Adresse de Résidence Étrangère (Ville / Pays) *",
+        placeholderForeignIndiv: "Londres - Royaume-Uni",
         addressCompany: "Siège Social de l'Entreprise *",
+        placeholderCompany: "Bagdad ou Dubaï",
         email: "Adresse Email *",
         phone: "Téléphone / WhatsApp *",
         gender: "Genre *",
@@ -666,8 +694,12 @@
         fullName: "Nombre Completo *",
         companyName: "Nombre de la Empresa *",
         companyRep: "Nombre del Representante Legal / Firmante *",
-        addressIndividual: "Dirección de Residencia *",
+        addressIraqiIndiv: "Dirección de Residencia (Ciudad / Área) *",
+        placeholderIraqiIndiv: "Bagdad",
+        addressForeignIndiv: "Dirección de Residencia en el Extranjero (Ciudad / País) *",
+        placeholderForeignIndiv: "Londres - Reino Unido",
         addressCompany: "Sede de la Empresa / Oficina Principal *",
+        placeholderCompany: "Bagdad o Dubái",
         email: "Correo Electrónico *",
         phone: "Teléfono / WhatsApp *",
         gender: "Género *",
@@ -717,8 +749,12 @@
         fullName: "Vollständiger Name *",
         companyName: "Firmenname *",
         companyRep: "Name des bevollmächtigten Vertreters *",
-        addressIndividual: "Wohnanschrift *",
+        addressIraqiIndiv: "Wohnanschrift (Stadt / Region) *",
+        placeholderIraqiIndiv: "Bagdad",
+        addressForeignIndiv: "Ausländische Wohnanschrift (Stadt / Land) *",
+        placeholderForeignIndiv: "London - Großbritannien",
         addressCompany: "Firmensitz / Hauptbüro *",
+        placeholderCompany: "Bagdad oder Dubai",
         email: "E-Mail-Adresse *",
         phone: "Telefon / WhatsApp *",
         gender: "Geschlecht *",
@@ -749,7 +785,7 @@
         typeOther: "Sonstige / Allgemeine Beratung",
         details: "Details Ihres Falles *",
         submit: "Anfrage zur rechtlichen Prüfung absenden →",
-        successMsg: "Ihre Anfrage wurde erfolgreich empfangen و wird innerhalb der Geschäftszeiten (innerhalb von 24 Stunden) geprüft."
+        successMsg: "Ihre Anfrage wurde erfolgreich empfangen und wird innerhalb der Geschäftszeiten (innerhalb von 24 Stunden) geprüft."
       },
       ku: {
         title: "چاوپێکەوتنی راوێژکاری - نووسینگەی پارێزەر عەلی کازمی",
@@ -768,8 +804,12 @@
         fullName: "ناوی تەواو *",
         companyName: "ناوی کۆمپانیا یان دەزگای بازرگانی *",
         companyRep: "ناوی کەسی متمانەپێکراو یان نوێنەری یاسایی *",
-        addressIndividual: "ناونیشانی نیشتەجێبوون *",
+        addressIraqiIndiv: "ناونیشانی نیشتەجێبوون (پارێزگا / ناوچە) *",
+        placeholderIraqiIndiv: "بەغدا",
+        addressForeignIndiv: "ناونیشانی نیشتەجێبوونی دەرەوە (شار / وڵات) *",
+        placeholderForeignIndiv: "لەندەن - بەریتانیا",
         addressCompany: "بنکەی سەرەکی کۆمپانیا *",
+        placeholderCompany: "بەغدا یان دუბەی",
         email: "ئیمەیڵ *",
         phone: "ژمارەی مۆبایل / واتساب *",
         gender: "ڕەگەز *",
