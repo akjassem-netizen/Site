@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>مكتب المحامي علي كاظم الهاشمي</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Cairo', sans-serif; background: #f8fafc; color: #1e293b; }
+    body { font-family: 'Cairo', sans-serif; background: #ffffff; color: #070f1e; }
 
     /* الهيدر التنفيذي */
     .icover-header {
@@ -28,7 +28,7 @@
       text-decoration: none;
     }
 
-    /* الشعار المصمم برمجياً بدقة مطابقة للصورة الأصلية */
+    /* الشعار المصمم برمجياً */
     .logo-code-box {
       background: #ffffff;
       padding: 3px 8px;
@@ -46,27 +46,10 @@
       font-family: Arial, sans-serif;
     }
 
-    .logo-akh span {
-      color: #d32f2f;
-    }
-
-    .logo-sub {
-      font-size: 7px;
-      font-weight: 800;
-      color: #070f1e;
-      letter-spacing: 0.5px;
-    }
-
-    .logo-sub span {
-      color: #d32f2f;
-    }
-
-    .logo-est {
-      font-size: 5.5px;
-      color: #64748b;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
+    .logo-akh span { color: #d32f2f; }
+    .logo-sub { font-size: 7px; font-weight: 800; color: #070f1e; letter-spacing: 0.5px; }
+    .logo-sub span { color: #d32f2f; }
+    .logo-est { font-size: 5.5px; color: #64748b; font-weight: 600; letter-spacing: 0.5px; }
 
     .header-left {
       display: flex;
@@ -74,7 +57,6 @@
       gap: 8px;
     }
 
-    /* زر الحجز المتفاعل مع اللغة */
     .btn-booking {
       background: #ffffff;
       color: #070f1e;
@@ -126,15 +108,15 @@
     }
     .dropdown-menu a:hover { background: rgba(197, 160, 89, 0.15); color: #c5a059; }
 
-    /* مستطيل اختيار اللغة (تم تصميمه بشكل شريط أنيق ورفيع ومضبوط) */
+    /* شريط اختيار اللغة الرفيع */
     .lang-container {
       max-width: 650px;
-      margin: 20px auto 15px;
+      margin: 20px auto 10px;
       padding: 0 16px;
     }
 
     .lang-card-box {
-      background: #ffffff;
+      background: #f8fafc;
       border: 1px solid #cbd5e1;
       border-radius: 8px;
       padding: 10px 16px;
@@ -144,12 +126,7 @@
       box-shadow: 0 2px 10px rgba(0,0,0,0.02);
     }
 
-    .lang-label {
-      font-size: 13px;
-      font-weight: 700;
-      color: #1e293b;
-    }
-
+    .lang-label { font-size: 13px; font-weight: 700; color: #1e293b; }
     .lang-select-box {
       padding: 6px 12px;
       border-radius: 6px;
@@ -161,6 +138,58 @@
       outline: none;
       cursor: pointer;
       font-family: 'Cairo', sans-serif;
+    }
+
+    /* الكفر الفخم (Hero Section) مطابق لنسق المنصات العالمية */
+    .hero-cover-section {
+      max-width: 650px;
+      margin: 20px auto 40px;
+      padding: 0 16px;
+    }
+
+    .hero-box {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 35px 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+      border-top: 4px solid #070f1e;
+    }
+
+    .hero-title {
+      font-size: 24px;
+      font-weight: 900;
+      color: #070f1e;
+      line-height: 1.35;
+      margin-bottom: 14px;
+    }
+
+    .hero-subtitle {
+      font-size: 14.5px;
+      color: #64748b;
+      line-height: 1.7;
+      margin-bottom: 25px;
+    }
+
+    /* زر تفاعلي فخم بنفس أسلوب iCover مع سهم */
+    .hero-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #ffffff;
+      color: #070f1e;
+      border: 1.5px solid #070f1e;
+      padding: 12px 22px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+      transition: all 0.2s ease;
+    }
+    .hero-cta-btn:hover {
+      background: #070f1e;
+      color: #ffffff;
     }
   </style>
 </head>
@@ -188,7 +217,7 @@
     </div>
   </header>
 
-  <!-- شريط اختيار اللغة الرفيع والأنيق -->
+  <!-- شريط اختيار اللغة الرفيع -->
   <div class="lang-container">
     <div class="lang-card-box">
       <span class="lang-label" id="langLabelText">اختر اللغة / Select Language</span>
@@ -205,6 +234,17 @@
     </div>
   </div>
 
+  <!-- الكفر الفخم (Hero Section) -->
+  <section class="hero-cover-section">
+    <div class="hero-box">
+      <h1 class="hero-title" id="heroTitleText">مكتب المحامي علي كاظم الهاشمي</h1>
+      <p class="hero-subtitle" id="heroSubtitleText">تمثيل قانوني رصين واستشارات تخصصية للشركات والأفراد برؤية مهنية ودقيقة من قلب العاصمة بغداد.</p>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdVxyld_U5Mdp-4RLcuA8HdQvAvlYWdd1fiQ8QAavwJj_Ev7w/viewform" target="_blank" class="hero-cta-btn" id="heroCtaText">
+        حجز موعد استشارة &larr;
+      </a>
+    </div>
+  </section>
+
   <script>
     function toggleMenu() {
       const menu = document.getElementById('dropdownMenu');
@@ -220,17 +260,29 @@
       const menuHome = document.getElementById('menuHome');
       const menuBook = document.getElementById('menuBook');
       const menuWhatsapp = document.getElementById('menuWhatsapp');
+      
+      const heroTitle = document.getElementById('heroTitleText');
+      const heroSubtitle = document.getElementById('heroSubtitleText');
+      const heroCta = document.getElementById('heroCtaText');
 
       if (lang === 'en') {
         bookingBtn.innerText = "Book Appointment";
         menuHome.innerText = "Home";
         menuBook.innerText = "Book Consultation";
         menuWhatsapp.innerText = "WhatsApp Chat";
+        
+        heroTitle.innerText = "Law Office of Ali Kadhem Hashimi";
+        heroSubtitle.innerText = "Reliable legal representation and specialized advisory for corporations and individuals with a professional vision from Baghdad.";
+        heroCta.innerText = "Book Consultation →";
       } else {
         bookingBtn.innerText = "حجز موعد";
         menuHome.innerText = "الرئيسية";
         menuBook.innerText = "حجز موعد استشارة";
         menuWhatsapp.innerText = "محادثة واتساب";
+        
+        heroTitle.innerText = "مكتب المحامي علي كاظم الهاشمي";
+        heroSubtitle.innerText = "تمثيل قانوني رصين واستشارات تخصصية للشركات والأفراد برؤية مهنية ودقيقة من قلب العاصمة بغداد.";
+        heroCta.innerText = "حجز موعد استشارة ←";
       }
     }
   </script>
