@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: #fdfbf7; color: #070f1e; font-family: 'Cairo', sans-serif; min-height: 100vh; }
+    body { background: #f4f6f9; color: #070f1e; font-family: 'Cairo', sans-serif; min-height: 100vh; }
 
     /* شاشة الحماية والمصادقة */
     #loginOverlay {
@@ -65,52 +65,57 @@
     /* لوحة التحكم الرئيسية */
     #dashboardContent { display: none; }
 
-    /* الهيدر مع خلفية بيضاء صافية ومتجانسة للشعار */
-    .top-brand-section {
-      background: #fdfbf7;
-      padding: 30px 20px 20px 20px;
-      text-align: center;
-      border-bottom: 1px solid #e2e8f0;
-    }
-    .brand-card-header {
-      display: inline-block;
+    .container { max-width: 1200px; margin: 25px auto; padding: 0 15px; }
+
+    /* البطاقة العلوية الموحدة للشعار والعنوان */
+    .brand-banner-card {
       background: #ffffff;
       border: 1.5px solid #cbd5e1;
       border-radius: 14px;
-      padding: 14px 35px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-      margin-bottom: 15px;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      margin-bottom: 20px;
+      border-top: 5px solid #c5a059;
     }
     .akh-logo {
-      font-size: 30px;
+      font-size: 34px;
       font-weight: 900;
       letter-spacing: 3px;
       color: #070f1e;
       font-family: Arial, sans-serif;
       line-height: 1;
+      margin-bottom: 8px;
     }
     .akh-logo .red-k { color: #d32f2f; }
     .law-office-sub {
-      font-size: 11px;
+      font-size: 11.5px;
       font-weight: 800;
       color: #070f1e;
-      letter-spacing: 2px;
-      margin-top: 4px;
+      letter-spacing: 2.5px;
+      margin-bottom: 4px;
     }
     .law-office-sub .red-slash { color: #d32f2f; }
     .est-text {
-      font-size: 9px;
+      font-size: 9.5px;
       color: #64748b;
       letter-spacing: 1.5px;
-      margin-top: 2px;
       font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .divider-line {
+      height: 1px;
+      background: #e2e8f0;
+      width: 60%;
+      margin: 15px auto;
     }
 
     .page-main-title {
-      font-size: 21px;
+      font-size: 20px;
       font-weight: 900;
       color: #070f1e;
-      margin-bottom: 4px;
+      margin-bottom: 5px;
     }
     .page-main-subtitle {
       font-size: 12.5px;
@@ -120,19 +125,17 @@
 
     /* شريط التحكم (اللغة، التحديث، القفل) */
     .control-bar {
-      max-width: 900px;
-      margin: 20px auto;
-      padding: 0 15px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
       background: #ffffff;
       border: 1.5px solid #cbd5e1;
       border-radius: 12px;
       padding: 12px 20px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       flex-wrap: wrap;
       gap: 12px;
+      margin-bottom: 25px;
     }
     .control-group { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
     
@@ -176,8 +179,6 @@
       font-family: 'Cairo', sans-serif;
     }
     .btn-logout:hover { background: #fecaca; }
-
-    .container { max-width: 1200px; margin: 30px auto; padding: 0 15px; }
 
     .stats-grid {
       display: grid;
@@ -238,7 +239,7 @@
     .mobile-cards-container { display: none; padding: 15px; }
     .mobile-client-card {
       background: #f8fafc;
-      border: 1px solid #cbd5e1;
+      border: 1.5px solid #cbd5e1;
       border-radius: 10px;
       padding: 15px;
       margin-bottom: 12px;
@@ -336,31 +337,32 @@
 
   <!-- لوحة التحكم الفعلية -->
   <div id="dashboardContent">
-    <div class="top-brand-section">
-      <div class="brand-card-header">
+    <div class="container">
+      
+      <!-- بطاقة الشعار والعنوان الموحدة والمتجانسة -->
+      <div class="brand-banner-card">
         <div class="akh-logo">A<span class="red-k">K</span>H</div>
         <div class="law-office-sub"><span class="red-slash">/</span> LAW OFFICE</div>
         <div class="est-text">EST. 2014</div>
+        <div class="divider-line"></div>
+        <h1 class="page-main-title" id="mainHeaderTitle">نظام إدارة الاستشارات القانونية</h1>
+        <div class="page-main-subtitle">AKH Intake & Consultations Desk</div>
       </div>
-      <h1 class="page-main-title" id="mainHeaderTitle">نظام إدارة الاستشارات القانونية</h1>
-      <div class="page-main-subtitle">AKH Intake & Consultations Desk</div>
-    </div>
 
-    <!-- شريط التحكم واللغة -->
-    <div class="control-bar">
-      <div class="control-group">
-        <select id="langSelect" class="lang-select" onchange="changeLanguage(this.value)">
-          <option value="ar">العربية (Arabic)</option>
-          <option value="en">English</option>
-        </select>
-        <button class="btn-refresh" onclick="loadData()" id="btnRefreshText">تحديث البيانات ⟳</button>
+      <!-- شريط التحكم واللغة -->
+      <div class="control-bar">
+        <div class="control-group">
+          <select id="langSelect" class="lang-select" onchange="changeLanguage(this.value)">
+            <option value="ar">العربية (Arabic)</option>
+            <option value="en">English</option>
+          </select>
+          <button class="btn-refresh" onclick="loadData()" id="btnRefreshText">تحديث البيانات ⟳</button>
+        </div>
+        <div class="control-group">
+          <button class="btn-logout" onclick="logout()" id="btnLogoutText">قفل الجلسة 🔒</button>
+        </div>
       </div>
-      <div class="control-group">
-        <button class="btn-logout" onclick="logout()" id="btnLogoutText">قفل الجلسة 🔒</button>
-      </div>
-    </div>
 
-    <div class="container">
       <div class="stats-grid">
         <div class="stat-card">
           <div class="stat-title" id="statTitle1">إجمالي الطلبات المستلمة</div>
