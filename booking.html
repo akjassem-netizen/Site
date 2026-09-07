@@ -22,7 +22,6 @@
       box-shadow: 0 4px 20px rgba(0,0,0,0.15);
     }
 
-    /* تحسين قائمة اللغات لتكون مستقرة دائماً ولا تظهر بيضاء أو تفقد شكلها */
     .lang-select-bar {
       padding: 8px 16px;
       border-radius: 6px;
@@ -34,14 +33,9 @@
       outline: none;
       cursor: pointer;
       font-family: 'Cairo', sans-serif;
-      -webkit-appearance: menulist;
-      appearance: menulist;
     }
-    .lang-select-bar option { 
-      background-color: #070f1e !important; 
-      color: #ffffff !important; 
-      padding: 8px;
-    }
+    .lang-select-bar:focus { border-color: #d32f2f; }
+    .lang-select-bar option { background-color: #070f1e !important; color: #ffffff !important; padding: 10px; }
 
     .back-home-btn {
       color: #ffffff;
@@ -397,7 +391,7 @@
         typeOther: "أخرى / استشارة عامة",
         details: "شرح قضيتك أو موضوع الاستشارة بالتفصيل *",
         submit: "إرسال الطلب للمراجعة القانونية ←",
-        successMsg: "تم استلام طلبكم بنجاح وهو الآن قيد الفحص والمراجعة القانونية.",
+        successMsg: "تم استلام طلبكم بنجاح، وهو الآن قيد الفحص والمراجعة القانونية (سيتم مراجعة الطلب والرد خلال 24 ساعة من الآن).",
         phName: "أدخل الاسم الثلاثي",
         phCompRep: "اسم الشخص المسؤول عن المتابعة والصفة",
         phEmail: "name@example.com",
@@ -464,7 +458,7 @@
         typeOther: "Other / General Consultation",
         details: "Details of Your Case or Consultation Topic *",
         submit: "Submit Request for Legal Review →",
-        successMsg: "Your request has been successfully received.",
+        successMsg: "Your request has been successfully received and is currently under legal review (your request will be reviewed and responded to within 24 hours).",
         phName: "Enter full name",
         phCompRep: "Name of the responsible representative",
         phEmail: "name@example.com",
@@ -531,7 +525,7 @@
         typeOther: "Diğer / Genel Danışmanlık",
         details: "Davanızın veya Konunuzun Detayları *",
         submit: "İnceleme İçin Talebi Gönder →",
-        successMsg: "Talebiniz başarıyla alınmıştır.",
+        successMsg: "Talebiniz başarıyla alınmıştır (24 saat içinde incelenip yanıt verilecektir).",
         phName: "Ad soyad giriniz",
         phCompRep: "Yetkili temsilcinin adı",
         phEmail: "name@example.com",
@@ -543,7 +537,7 @@
         phAddrComp: "Bağdat veya Erbil",
         phNat: "örn. İngiliz / Amerikan",
         phCountry: "örn. Irak / BAE / İngiltere",
-        phRegNo: "Kayıt veya Sertifika Numarası",
+        phRegNo: "Kayıt أو Sertifika Numarası",
         phDetails: "Davanızın detaylarını kısaca açıklayın..."
       },
       zh: {
@@ -598,7 +592,7 @@
         typeOther: "其他 / 一般咨询",
         details: "您的案件或咨询主题详情 *",
         submit: "提交法律审核申请 →",
-        successMsg: "您的申请已成功收到。",
+        successMsg: "您的申请已成功收到（我们将在24小时内审核并回复）。",
         phName: "输入全名",
         phCompRep: "负责代表姓名",
         phEmail: "name@example.com",
@@ -665,7 +659,7 @@
         typeOther: "Autre / Général",
         details: "Détails de votre cas ou sujet de consultation *",
         submit: "Soumettre pour Examen Juridique →",
-        successMsg: "Votre demande a été reçue avec succès.",
+        successMsg: "Votre demande a été reçue avec succès (elle sera examinée et traitée sous 24 heures).",
         phName: "Entrez le nom complet",
         phCompRep: "Nom du représentant responsable",
         phEmail: "name@example.com",
@@ -732,7 +726,7 @@
         typeOther: "Otro / General",
         details: "Detalles de su caso o tema de consulta *",
         submit: "Enviar Solicitud para Revisión Legal →",
-        successMsg: "Su solicitud ha sido recibida con éxito.",
+        successMsg: "Su solicitud ha sido recibida con éxito (será revisada y respondida dentro de las 24 horas).",
         phName: "Ingrese el nombre completo",
         phCompRep: "Nombre del representante",
         phEmail: "name@example.com",
@@ -799,7 +793,7 @@
         typeOther: "Sonstige / Allgemeine Beratung",
         details: "Details Ihres Falles *",
         submit: "Anfrage zur rechtlichen Prüfung absenden →",
-        successMsg: "Ihre Anfrage wurde erfolgreich empfangen.",
+        successMsg: "Ihre Anfrage wurde erfolgreich empfangen (wird innerhalb von 24 Stunden geprüft und beantwortet).",
         phName: "Vollständigen Namen eingeben",
         phCompRep: "Name des Vertreters",
         phEmail: "name@example.com",
@@ -866,7 +860,7 @@
         typeOther: "هی تر / ڕاوێژی گشتی",
         details: "وردەکاری دۆسیە یاخود بابەتی راوێژەکەت *",
         submit: "ناردنی داواکاری بۆ پێداچوونەوەی یاسایی ←",
-        successMsg: "داواکارییەکەت بە سەرکەوتوویی وەرگیرا.",
+        successMsg: "داواکارییەکەت بە سەرکەوتوویی وەرگیرا (لە ماوەی ٢٤ کاتژمێردا پێداچوونەوە و وەڵام دەدرێتەوە).",
         phName: "ناوی تەواو بنووسە",
         phCompRep: "ناوی کەسی بەرپرس",
         phEmail: "name@example.com",
@@ -1040,7 +1034,7 @@
         phone: document.getElementById('phone').value,
         personalDetails: (document.querySelector('input[name="entityType"]:checked').value === 'company') ? '' : `الجنس: ${document.getElementById('gender').value}, العمر: ${document.getElementById('age').value}, التحصيل: ${document.getElementById('education').value}, العمل: ${document.getElementById('occupation').value}`,
         address: document.getElementById('address').value,
-        idOrReg: (document.querySelector('input[name="citizenship"]:checked').value === 'foreign' && document.querySelector('input[name="entityType"]:checked').value !== 'company') ? document.getElementById('nationalityIndiv').value : (document.querySelector('input[name="entityType"].checked') ? '' : (document.querySelector('input[name="entityType"]:checked').value === 'company' ? `التأسيس: ${document.getElementById('countryInc').value} - رقم التسجيل: ${document.getElementById('regNo').value}` : '')),
+        idOrReg: (document.querySelector('input[name="citizenship"]:checked').value === 'foreign' && document.querySelector('input[name="entityType"]:checked').value !== 'company') ? document.getElementById('nationalityIndiv').value : (document.querySelector('input[name="entityType"]:checked').value === 'company' ? `التأسيس: ${document.getElementById('countryInc').value} - رقم التسجيل: ${document.getElementById('regNo').value}` : ''),
         translation: document.getElementById('translationNeeded').value,
         method: document.getElementById('consultationMethod').value,
         consultType: document.getElementById('consultationType').value,
@@ -1060,7 +1054,6 @@
       .then(() => {
         alert(t.successMsg);
         document.getElementById('consultationForm').reset();
-        submitBtn.disabled,
         submitBtn.disabled = false;
         submitBtn.style.opacity = '1';
         updateFormDisplay();
