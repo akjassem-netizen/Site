@@ -191,16 +191,14 @@
 
     <form id="consultationForm">
 
-      <!-- 1. الجنسية -->
       <div class="form-group">
         <label id="lblCitizenship">الجنسية / الصفة الشخصية *</label>
         <div class="radio-group">
-          <label class="radio-label"><input type="radio" name="citizenship" value="iraqi" checked onclick="toggleForeignerFields()"> <span id="optIraqi">عراقي (مواطن)</span></label>
-          <label class="radio-label"><input type="radio" name="citizenship" value="foreign" onclick="toggleForeignerFields()"> <span id="optForeign">أجنبي (غير عراقي)</span></label>
+          <label class="radio-label"><input type="radio" name="citizenship" value="iraqi" checked onclick="updateFormDisplay()"> <span id="optIraqi">عراقي (مواطن)</span></label>
+          <label class="radio-label"><input type="radio" name="citizenship" value="foreign" onclick="updateFormDisplay()"> <span id="optForeign">أجنبي (غير عراقي)</span></label>
         </div>
       </div>
 
-      <!-- 2. مكان الإقامة -->
       <div class="form-group">
         <label id="lblResidence">مكان الإقامة الحالي *</label>
         <div class="radio-group">
@@ -209,22 +207,19 @@
         </div>
       </div>
 
-      <!-- 3. الصفة القانونية (فرد أو شركة) -->
       <div class="form-group">
         <label id="lblEntityType">صفة طالب الاستشارة *</label>
         <div class="radio-group">
-          <label class="radio-label"><input type="radio" name="entityType" value="individual" checked onclick="toggleEntityType()"> <span id="optIndiv">فرد (شخص طبيعي)</span></label>
-          <label class="radio-label"><input type="radio" name="entityType" value="company" onclick="toggleEntityType()"> <span id="optComp">شركة أو مؤسسة تجارية</span></label>
+          <label class="radio-label"><input type="radio" name="entityType" value="individual" checked onclick="updateFormDisplay()"> <span id="optIndiv">فرد (شخص طبيعي)</span></label>
+          <label class="radio-label"><input type="radio" name="entityType" value="company" onclick="updateFormDisplay()"> <span id="optComp">شركة أو مؤسسة تجارية</span></label>
         </div>
       </div>
 
-      <!-- الاسم -->
       <div class="form-group">
         <label id="nameLabel">الاسم الكامل *</label>
         <input type="text" id="fullName" required placeholder="أدخل الاسم الثلاثي">
       </div>
 
-      <!-- ممثل الشركة -->
       <div id="companyRepField" class="form-group conditional-section">
         <label id="lblCompanyRep">اسم المفوض بالتوقيع أو الممثل القانوني للشركة *</label>
         <input type="text" id="companyRepName" placeholder="اسم الشخص المسؤول عن المتابعة">
@@ -241,7 +236,6 @@
         </div>
       </div>
 
-      <!-- الأفراد فقط -->
       <div id="individualOnlyFields" class="conditional-section active">
         <div class="form-grid">
           <div class="form-group">
@@ -272,35 +266,45 @@
         </div>
       </div>
 
-      <!-- عنوان السكن / المقر -->
       <div class="form-group">
         <label id="lblAddress">عنوان السكن أو مقر الشركة (المحافظة / المنطقة أو البلد) *</label>
         <input type="text" id="address" placeholder="بغداد - الجادرية أو لندن - المملكة المتحدة">
       </div>
 
-      <!-- الأجنبي -->
-      <div id="foreignerFields" class="conditional-section">
+      <div id="foreignerIndividualFields" class="conditional-section">
         <div class="form-grid">
           <div class="form-group">
-            <label id="lblNationality">الجنسية / بلد التأسيس *</label>
-            <input type="text" id="nationality" placeholder="مثال: بريطاني / شركة إماراتية">
+            <label id="lblNationalityIndiv">الجنسية *</label>
+            <input type="text" id="nationalityIndiv" placeholder="مثال: بريطاني">
           </div>
           <div class="form-group">
-            <label id="lblPassport">رقم جواز السفر أو تسجيل الشركة *</label>
-            <input type="text" id="passportOrReg" placeholder="Passport No. / Reg. No.">
+            <label id="lblPassportIndiv">رقم جواز السفر *</label>
+            <input type="text" id="passportIndiv" placeholder="Passport No.">
           </div>
-        </div>
-
-        <div class="form-group">
-          <label id="lblTranslation">خدمة الترجمة والتنسيق أثناء الجلسة *</label>
-          <select id="translationNeeded">
-            <option value="no" id="transNo">لا، أستطيع المتابعة بشكل مباشر</option>
-            <option value="yes" id="transYes">نعم، أرغب بأن يوفر المكتب مترجماً مختصاً للجلسة</option>
-          </select>
         </div>
       </div>
 
-      <!-- التفاصيل المشتركة -->
+      <div id="companyIdentityFields" class="conditional-section">
+        <div class="form-grid">
+          <div class="form-group">
+            <label id="lblCountryInc">بلد التأسيس *</label>
+            <input type="text" id="countryInc" placeholder="مثال: الإمارات العربية المتحدة">
+          </div>
+          <div class="form-group">
+            <label id="lblRegNo">رقم تسجيل الشركة *</label>
+            <input type="text" id="regNo" placeholder="Corporate Registration No.">
+          </div>
+        </div>
+      </div>
+
+      <div id="translationField" class="form-group conditional-section">
+        <label id="lblTranslation">خدمة الترجمة والتنسيق أثناء الجلسة *</label>
+        <select id="translationNeeded">
+          <option value="no" id="transNo">لا، أستطيع المتابعة بشكل مباشر</option>
+          <option value="yes" id="transYes">نعم، أرغب بأن يوفر المكتب مترجماً مختصاً للجلسة</option>
+        </select>
+      </div>
+
       <div class="form-group">
         <label id="lblMethod">طريقة تلقي الاستشارة المفضلة *</label>
         <select id="consultationMethod">
@@ -331,24 +335,21 @@
   </main>
 
   <script>
-    function toggleForeignerFields() {
+    function updateFormDisplay() {
       const isForeign = document.querySelector('input[name="citizenship"]:checked').value === 'foreign';
-      const foreignerSec = document.getElementById('foreignerFields');
-      if (isForeign) {
-        foreignerSec.classList.add('active');
-      } else {
-        foreignerSec.classList.remove('active');
-      }
-    }
-
-    function toggleEntityType() {
       const isCompany = document.querySelector('input[name="entityType"]:checked').value === 'company';
+      
       const indFields = document.getElementById('individualOnlyFields');
       const compRepField = document.getElementById('companyRepField');
+      const foreignIndivFields = document.getElementById('foreignerIndividualFields');
+      const compIdentityFields = document.getElementById('companyIdentityFields');
+      const translationField = document.getElementById('translationField');
       const nameLabel = document.getElementById('nameLabel');
+      
       const lang = document.getElementById('languageSelect').value;
       const t = bookingDict[lang] || bookingDict['en'];
 
+      // تبديل اسم الحقل الرئيسي (فرد أو شركة)
       if (isCompany) {
         indFields.classList.remove('active');
         compRepField.classList.add('active');
@@ -357,6 +358,22 @@
         indFields.classList.add('active');
         compRepField.classList.remove('active');
         nameLabel.innerText = t.fullName;
+      }
+
+      // إظهار حقول الهوية المناسبة بدقة (فرد أجنبي مقابل شركة)
+      if (isCompany) {
+        compIdentityFields.classList.add('active');
+        foreignIndivFields.classList.remove('active');
+        translationField.classList.add('active'); // الشركات غالباً قد تحتاج تنسيقاً أو لغة أجنبية
+      } else {
+        compIdentityFields.classList.remove('active');
+        if (isForeign) {
+          foreignIndivFields.classList.add('active');
+          translationField.classList.add('active');
+        } else {
+          foreignIndivFields.classList.remove('active');
+          translationField.classList.remove('active');
+        }
       }
     }
 
@@ -390,8 +407,10 @@
         eduHigh: "شهادة ثانوية",
         eduOther: "غير ذلك",
         occupation: "العمل أو الوظيفة *",
-        nationality: "الجنسية / بلد التأسيس *",
-        passport: "رقم جواز السفر أو تسجيل الشركة *",
+        nationalityIndiv: "الجنسية *",
+        passportIndiv: "رقم جواز السفر *",
+        countryInc: "بلد التأسيس *",
+        regNo: "رقم تسجيل الشركة *",
         translation: "خدمة الترجمة والتنسيق أثناء الجلسة *",
         transNo: "لا، أستطيع المتابعة بشكل مباشر",
         transYes: "نعم، أرغب بأن يوفر المكتب مترجماً مختصاً للجلسة",
@@ -438,8 +457,10 @@
         eduHigh: "High School",
         eduOther: "Other",
         occupation: "Occupation / Job *",
-        nationality: "Nationality / Country of Incorporation *",
-        passport: "Passport No. or Corporate Registration *",
+        nationalityIndiv: "Nationality *",
+        passportIndiv: "Passport No. *",
+        countryInc: "Country of Incorporation *",
+        regNo: "Corporate Registration No. *",
         translation: "Translation & Linguistic Coordination Service *",
         transNo: "No, I can proceed directly",
         transYes: "Yes, I request a specialized translator provided by the office",
@@ -486,8 +507,10 @@
         eduHigh: "Lise",
         eduOther: "Diğer",
         occupation: "Meslek *",
-        nationality: "Uyruk / Kuruluş Ülkesi *",
-        passport: "Pasaport No veya Şirket Kayıt No *",
+        nationalityIndiv: "Uyruk *",
+        passportIndiv: "Pasaport No *",
+        countryInc: "Kuruluş Ülkesi *",
+        regNo: "Şirket Kayıt No *",
         translation: "Çeviri Hizmeti *",
         transNo: "Hayır, doğrudan devam edebilirim",
         transYes: "Evet, ofis tarafından çevirmen sağlanmasını talep ediyorum",
@@ -534,8 +557,10 @@
         eduHigh: "高中",
         eduOther: "其他",
         occupation: "职业 *",
-        nationality: "国籍 / 注册国家 *",
-        passport: "护照号或公司注册号 *",
+        nationalityIndiv: "国籍 *",
+        passportIndiv: "护照号 *",
+        countryInc: "注册国家 *",
+        regNo: "公司注册号 *",
         translation: "翻译与语言协调服务 *",
         transNo: "否，可直接进行",
         transYes: "是，请求律所提供专业翻译人员",
@@ -582,8 +607,10 @@
         eduHigh: "Lycée",
         eduOther: "Autre",
         occupation: "Profession *",
-        nationality: "Nationalité / Pays d'Immatriculation *",
-        passport: "N° de Passeport ou d'Enregistrement *",
+        nationalityIndiv: "Nationalité *",
+        passportIndiv: "N° de Passeport *",
+        countryInc: "Pays d'Immatriculation *",
+        regNo: "N° d'Enregistrement de la Société *",
         translation: "Service de Traduction *",
         transNo: "Non, je peux continuer directement",
         transYes: "Oui, je souhaite qu'un traducteur soit fourni",
@@ -630,8 +657,10 @@
         eduHigh: "Secundaria",
         eduOther: "Otro",
         occupation: "Ocupación *",
-        nationality: "Nacionalidad / País de Constitución *",
-        passport: "N° de Pasaporte o Registro *",
+        nationalityIndiv: "Nacionalidad *",
+        passportIndiv: "N° de Pasaporte *",
+        countryInc: "País de Constitución *",
+        regNo: "N° de Registro Mercantil *",
         translation: "Servicio de Traducción *",
         transNo: "No, puedo continuar directamente",
         transYes: "Sí, solicito un traductor proporcionado por la oficina",
@@ -678,8 +707,10 @@
         eduHigh: "Schulabschluss",
         eduOther: "Sonstige",
         occupation: "Beruf *",
-        nationality: "Staatsangehörigkeit / Gründungsland *",
-        passport: "Reisepass- oder Registernummer *",
+        nationalityIndiv: "Staatsangehörigkeit *",
+        passportIndiv: "Reisepassnummer *",
+        countryInc: "Gründungsland *",
+        regNo: "Registernummer *",
         translation: "Übersetzungsdienst *",
         transNo: "Nein, ich kann direkt fortfahren",
         transYes: "Ja, ich beantrage einen Übersetzer",
@@ -726,8 +757,10 @@
         eduHigh: "ئامادەیی",
         eduOther: "هی تر",
         occupation: "کار یان پیشە *",
-        nationality: "رەگەزنامە / وڵاتی دامەزراندن *",
-        passport: "ژمارەی پاسپۆرت یان تۆمارکردنی کۆمپانیا *",
+        nationalityIndiv: "رەگەزنامە *",
+        passportIndiv: "ژمارەی پاسپۆرت *",
+        countryInc: "وڵاتی دامەزراندن *",
+        regNo: "ژمارەی تۆمارکردنی کۆمپانیا *",
         translation: "خزمەتگوزاری وەرگێڕان *",
         transNo: "نەخێر، دەتوانم ڕاستەوخۆ بەردەوام بم",
         transYes: "بەڵێ، داوا دەکەم نووسینگە وەرگێڕ دابین بکات",
@@ -771,10 +804,7 @@
       document.getElementById('optIndiv').innerText = t.optIndiv;
       document.getElementById('optComp').innerText = t.optComp;
       
-      const isCompany = document.querySelector('input[name="entityType"]:checked').value === 'company';
-      document.getElementById('nameLabel').innerText = isCompany ? t.companyName : t.fullName;
       document.getElementById('lblCompanyRep').innerText = t.companyRep;
-
       document.getElementById('lblEmail').innerText = t.email;
       document.getElementById('lblPhone').innerText = t.phone;
       document.getElementById('lblGender').innerText = t.gender;
@@ -788,8 +818,10 @@
       document.getElementById('eduOther').innerText = t.eduOther;
       document.getElementById('lblOccupation').innerText = t.occupation;
 
-      document.getElementById('lblNationality').innerText = t.nationality;
-      document.getElementById('lblPassport').innerText = t.passport;
+      document.getElementById('lblNationalityIndiv').innerText = t.nationalityIndiv;
+      document.getElementById('lblPassportIndiv').innerText = t.passportIndiv;
+      document.getElementById('lblCountryInc').innerText = t.countryInc;
+      document.getElementById('lblRegNo').innerText = t.regNo;
       document.getElementById('lblTranslation').innerText = t.translation;
       document.getElementById('transNo').innerText = t.transNo;
       document.getElementById('transYes').innerText = t.transYes;
@@ -808,6 +840,8 @@
 
       document.getElementById('lblDetails').innerText = t.details;
       document.getElementById('submitBtnText').innerHTML = t.submit;
+
+      updateFormDisplay();
     }
 
     document.getElementById('consultationForm').addEventListener('submit', function(e) {
