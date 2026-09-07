@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مكتب كاظم - استشارات وخدمات قانونية</title>
+    <title>مكتب كاظم للخدمات القانونية</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -20,174 +20,151 @@
             text-align: right;
         }
 
-        /* شريط التنقل العلوي */
+        /* شريط التنقل العلوي مطابق لنموذجك الأصلي تماماً */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 15px 20px;
-            background-color: #111827;
+            background-color: #0b0f19;
             border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .menu-toggle {
-            background: none;
-            border: 1px solid #d4af37;
-            color: #d4af37;
-            padding: 8px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 18px;
+            position: relative;
         }
 
         .lang-btn {
-            background: none;
-            border: 1px solid #374151;
-            color: #fff;
+            background: transparent;
+            border: 1px solid #d4af37;
+            color: #d4af37;
+            padding: 6px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .brand-title {
+            color: #d4af37;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .menu-toggle {
+            background: transparent;
+            border: 1px solid #d4af37;
+            color: #d4af37;
             padding: 6px 12px;
             border-radius: 6px;
             cursor: pointer;
-        }
-
-        /* القائمة الجانبية (Side Menu) */
-        .side-menu-overlay {
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
-            visibility: hidden;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 1100;
-        }
-
-        .side-menu-overlay.active {
-            visibility: visible;
-            opacity: 1;
-        }
-
-        .side-menu {
-            position: fixed;
-            top: 0;
-            right: -300px;
-            width: 280px;
-            height: 100%;
-            background-color: #111827;
-            box-shadow: -5px 0 15px rgba(0,0,0,0.5);
-            transition: right 0.3s ease;
-            z-index: 1200;
-            overflow-y: auto;
-            border-left: 1px solid rgba(212, 175, 55, 0.2);
-        }
-
-        .side-menu.active {
-            right: 0;
-        }
-
-        .side-menu-header {
-            padding: 20px;
-            border-bottom: 1px solid #1f2937;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .side-menu-header h3 {
-            color: #d4af37;
             font-size: 18px;
         }
 
-        .close-menu {
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 22px;
-            cursor: pointer;
-        }
-
-        .side-menu ul {
-            list-style: none;
-        }
-
-        .side-menu li {
-            border-bottom: 1px solid #1f2937;
-        }
-
-        .side-menu a {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-            color: #e5e7eb;
-            text-decoration: none;
-            font-size: 15px;
-            transition: background 0.2s;
-        }
-
-        .side-menu a:hover {
-            background-color: #1f2937;
-            color: #d4af37;
-        }
-
-        /* القوائم الفرعية (Dropdowns) */
-        .submenu {
+        /* القائمة المنسدلة بنفس تصميم الصندوق الأصلي */
+        .dropdown-menu-container {
+            position: absolute;
+            top: 70px;
+            right: 20px;
+            width: 270px;
+            background-color: #0e1422;
+            border: 1px solid #d4af37;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
             display: none;
-            background-color: #0d131f;
+            z-index: 1000;
+            overflow: hidden;
         }
 
-        .submenu li {
-            border-bottom: none;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .submenu a {
-            padding-right: 35px;
-            font-size: 14px;
-            color: #9ca3af;
-        }
-
-        .arrow {
-            transition: transform 0.3s ease;
-        }
-
-        .dropdown.open .arrow {
-            transform: rotate(180deg);
-        }
-
-        .dropdown.open .submenu {
+        .dropdown-menu-container.show {
             display: block;
         }
 
-        /* محتوى الصفحة الرئيسي للتجربة */
-        .main-content {
-            padding: 40px 20px;
-            text-align: center;
+        .menu-list {
+            list-style: none;
         }
 
-        .hero-card {
-            background-color: #111827;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 12px;
-            padding: 30px 20px;
-            max-width: 500px;
-            margin: 0 auto;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        .menu-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .hero-card h1 {
-            font-size: 24px;
-            margin-bottom: 15px;
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .menu-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 13px 18px;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+
+        .menu-link:hover {
+            background-color: rgba(212, 175, 55, 0.1);
             color: #d4af37;
         }
 
+        /* القوائم الفرعية المنسدلة داخل القائمة */
+        .sub-menu {
+            list-style: none;
+            background-color: #070a13;
+            display: none;
+            padding-right: 15px;
+        }
+
+        .sub-menu li a {
+            padding: 10px 18px;
+            font-size: 13px;
+            color: #94a3b8;
+            display: block;
+            text-decoration: none;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .sub-menu li a:hover {
+            color: #d4af37;
+        }
+
+        .has-sub.active .sub-menu {
+            display: block;
+        }
+
+        .arrow {
+            font-size: 10px;
+            transition: transform 0.3s;
+        }
+
+        .has-sub.active .arrow {
+            transform: rotate(180deg);
+        }
+
+        /* محتوى الصفحة الرئيسي */
+        .main-content {
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-card {
+            background-color: #0f1423;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 12px;
+            padding: 30px 20px;
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .hero-card h1 {
+            font-size: 22px;
+            color: #d4af37;
+            margin-bottom: 15px;
+        }
+
         .hero-card p {
-            color: #9ca3af;
-            font-size: 14px;
+            color: #94a3b8;
+            font-size: 13px;
             line-height: 1.6;
             margin-bottom: 25px;
         }
@@ -197,17 +174,12 @@
             color: #0b0f19;
             border: none;
             padding: 12px 25px;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: bold;
             border-radius: 8px;
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
-            transition: background 0.2s;
-        }
-
-        .cta-btn:hover {
-            background-color: #c5a059;
         }
     </style>
 </head>
@@ -215,90 +187,87 @@
 
     <!-- شريط التنقل العلوي -->
     <header>
-        <button class="menu-toggle" id="menuToggle">☰</button>
-        <div style="font-weight: bold; color: #d4af37;">مكتب كاظم</div>
         <button class="lang-btn">العربية</button>
+        <div class="brand-title">مكتب كاظم</div>
+        <button class="menu-toggle" id="menuToggle">☰</button>
+
+        <!-- القائمة المنسدلة المعدلة -->
+        <div class="dropdown-menu-container" id="dropdownMenu">
+            <ul class="menu-list">
+                <!-- 1. الرئيسية -->
+                <li class="menu-item">
+                    <a href="#" class="menu-link">الرئيسية</a>
+                </li>
+
+                <!-- 2. الاستشارات (قسم بوحده) -->
+                <li class="menu-item">
+                    <a href="#" class="menu-link">الاستشارات القانونية</a>
+                </li>
+
+                <!-- 3. خدماتنا وأعمالنا (تحتوي على قائمة فرعية) -->
+                <li class="menu-item has-sub" id="servicesSub">
+                    <a href="javascript:void(0);" class="menu-link" onclick="toggleSub('servicesSub')">
+                        <span>خدماتنا وأعمالنا</span>
+                        <span class="arrow">▼</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="#">التمثيل القضائي والخدمات</a></li>
+                        <li><a href="#">التنفيذ القانوني والتحصيل</a></li>
+                    </ul>
+                </li>
+
+                <!-- 4. حجز موعد استشارة -->
+                <li class="menu-item">
+                    <a href="#" class="menu-link">حجز موعد استشارة</a>
+                </li>
+
+                <!-- 5. من نحن -->
+                <li class="menu-item">
+                    <a href="#" class="menu-link">من نحن</a>
+                </li>
+
+                <!-- 6. اتصل بنا (تضم كل وسائل التواصل والخدمات) -->
+                <li class="menu-item has-sub" id="contactSub">
+                    <a href="javascript:void(0);" class="menu-link" onclick="toggleSub('contactSub')">
+                        <span>اتصل بنا</span>
+                        <span class="arrow">▼</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="https://wa.me/" target="_blank">محادثة واتساب</a></li>
+                        <li><a href="tel:+964">اتصال هاتفي</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
     </header>
 
-    <!-- القائمة الجانبية والخلفية المعتمة -->
-    <div class="side-menu-overlay" id="menuOverlay"></div>
-    <nav class="side-menu" id="sideMenu">
-        <div class="side-menu-header">
-            <h3>قائمة التنقل</h3>
-            <button class="close-menu" id="closeMenu">&times;</button>
-        </div>
-        <ul>
-            <!-- 1. الرئيسية -->
-            <li><a href="#home">الرئيسية</a></li>
-
-            <!-- 2. الاستشارات (مستقلة وسريعة) -->
-            <li><a href="#consultation">حجز موعد استشارة</a></li>
-
-            <!-- 3. خدماتنا (تضم قائمة فرعية منسدلة) -->
-            <li class="dropdown" id="servicesDropdown">
-                <a href="javascript:void(0);" onclick="toggleDropdown('servicesDropdown')">
-                    خدماتنا وأعمالنا 
-                    <span class="arrow">▼</span>
-                </a>
-                <ul class="submenu">
-                    <li><a href="#judicial">التمثيل القضائي والخدمات</a></li>
-                    <li><a href="#execution">التنفيذ القانوني والتحصيل</a></li>
-                    <li><a href="#corporate">تأسيس الشركات والوكالات</a></li>
-                </ul>
-            </li>
-
-            <!-- 4. من نحن -->
-            <li><a href="#about">من نحن</a></li>
-
-            <!-- 5. اتصل بنا (تضم وسائل الاتصال) -->
-            <li class="dropdown" id="contactDropdown">
-                <a href="javascript:void(0);" onclick="toggleDropdown('contactDropdown')">
-                    اتصل بنا 
-                    <span class="arrow">▼</span>
-                </a>
-                <ul class="submenu">
-                    <li><a href="https://wa.me/964..." target="_blank">محادثة واتساب مباشرة</a></li>
-                    <li><a href="tel:+964...">اتصال هاتفي</a></li>
-                    <li><a href="#location">العنوان في بغداد ونموذج التواصل</a></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
-
-    <!-- محتوى تجريبي للصفحة -->
+    <!-- محتوى الصفحة -->
     <main class="main-content">
         <div class="hero-card">
             <h1>مكتب كاظم للخدمات القانونية</h1>
             <p>تمثيل قانوني واستشارات دقيقة للشركات والأفراد برؤية مهنية من قلب العاصمة بغداد.</p>
-            <a href="#consultation" class="cta-btn">حجز موعد استشارة ←</a>
+            <a href="#" class="cta-btn">حجز موعد استشارة ←</a>
         </div>
     </main>
 
-    <!-- جافاسكريبت للتحكم بالقائمة -->
     <script>
         const menuToggle = document.getElementById('menuToggle');
-        const closeMenu = document.getElementById('closeMenu');
-        const sideMenu = document.getElementById('sideMenu');
-        const menuOverlay = document.getElementById('menuOverlay');
+        const dropdownMenu = document.getElementById('dropdownMenu');
 
-        function openMenu() {
-            sideMenu.classList.add('active');
-            menuOverlay.classList.add('active');
-        }
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('show');
+        });
 
-        function closeSideMenu() {
-            sideMenu.classList.remove('active');
-            menuOverlay.classList.remove('active');
-        }
+        document.addEventListener('click', (e) => {
+            if (!dropdownMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                dropdownMenu.classList.remove('show');
+            }
+        });
 
-        menuToggle.addEventListener('click', openMenu);
-        closeMenu.addEventListener('click', closeSideMenu);
-        menuOverlay.addEventListener('click', closeSideMenu);
-
-        // دالة لفتح وإغلاق القوائم الفرعية بسلاسة
-        function toggleDropdown(dropdownId) {
-            const dropdown = document.getElementById(dropdownId);
-            dropdown.classList.toggle('open');
+        function toggleSub(subId) {
+            const subElement = document.getElementById(subId);
+            subElement.classList.toggle('active');
         }
     </script>
 </body>
