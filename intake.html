@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: #f4f6f9; color: #070f1e; font-family: 'Cairo', sans-serif; min-height: 100vh; }
+    body { background: #fdfbf7; color: #070f1e; font-family: 'Cairo', sans-serif; min-height: 100vh; }
 
     /* شاشة الحماية والمصادقة */
     #loginOverlay {
@@ -22,7 +22,7 @@
     }
     .login-box {
       background: #ffffff;
-      padding: 35px 25px;
+      padding: 40px 30px;
       border-radius: 16px;
       width: 100%;
       max-width: 420px;
@@ -65,90 +65,123 @@
     /* لوحة التحكم الرئيسية */
     #dashboardContent { display: none; }
 
-    header {
-      background: #070f1e;
-      border-bottom: 3px solid #c5a059;
-      padding: 15px 20px;
+    /* الهيدر مطابق تماماً لتصميم Insights */
+    .top-brand-section {
+      background: #fdfbf7;
+      padding: 30px 20px 20px 20px;
+      text-align: center;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .brand-card-header {
+      display: inline-block;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 15px 35px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+      margin-bottom: 15px;
+    }
+    .akh-logo {
+      font-size: 32px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      color: #070f1e;
+      font-family: Arial, sans-serif;
+      line-height: 1;
+    }
+    .akh-logo .red-k { color: #d32f2f; }
+    .law-office-sub {
+      font-size: 11px;
+      font-weight: 800;
+      color: #070f1e;
+      letter-spacing: 2px;
+      margin-top: 5px;
+    }
+    .law-office-sub .red-slash { color: #d32f2f; }
+    .est-text {
+      font-size: 9px;
+      color: #64748b;
+      letter-spacing: 1.5px;
+      margin-top: 2px;
+      font-weight: 700;
+    }
+
+    .page-main-title {
+      font-size: 22px;
+      font-weight: 900;
+      color: #070f1e;
+      margin-bottom: 5px;
+    }
+    .page-main-subtitle {
+      font-size: 13px;
+      color: #64748b;
+      font-weight: 700;
+    }
+
+    /* شريط التحكم (اللغة، التحديث، القفل) */
+    .control-bar {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 0 15px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-      width: 100%;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
-
-    .brand-logo-box {
       background: #ffffff;
-      border: 1.5px solid #e2e8f0;
-      border-radius: 10px;
-      padding: 6px 14px;
-      text-align: center;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+      border: 1.5px solid #cbd5e1;
+      border-radius: 12px;
+      padding: 12px 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+      flex-wrap: wrap;
+      gap: 12px;
     }
-    .b-akh {
-      font-size: 22px;
-      font-weight: 900;
-      letter-spacing: 2px;
-      color: #070f1e;
-      font-family: Arial, sans-serif;
-      line-height: 1.1;
-    }
-    .b-akh .red-k { color: #d32f2f; }
-    .b-sub {
-      font-size: 7.5px;
-      font-weight: 800;
-      color: #070f1e;
-      letter-spacing: 1px;
-      margin-top: 2px;
-    }
-    .b-sub .red-slash { color: #d32f2f; }
-
-    .header-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .control-group { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    
     .lang-select {
-      background: #070f1e;
-      color: #fff;
-      border: 1.5px solid #c5a059;
-      padding: 6px 10px;
-      border-radius: 6px;
-      font-weight: 700;
-      font-size: 12.5px;
+      background: #ffffff;
+      color: #070f1e;
+      border: 1.5px solid #cbd5e1;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 13px;
       cursor: pointer;
       font-family: 'Cairo', sans-serif;
       outline: none;
     }
-    .lang-select option { background: #070f1e; color: #fff; }
+    .lang-select:focus { border-color: #c5a059; }
 
     .btn-refresh {
       background: #c5a059;
       color: #070f1e;
       border: none;
-      padding: 7px 14px;
-      border-radius: 6px;
+      padding: 8px 16px;
+      border-radius: 8px;
       font-weight: 800;
-      font-size: 12.5px;
+      font-size: 13px;
       cursor: pointer;
       font-family: 'Cairo', sans-serif;
       transition: background 0.2s;
     }
     .btn-refresh:hover { background: #b8934f; }
+
     .btn-logout {
-      background: #d32f2f;
-      color: #fff;
+      background: #fee2e2;
+      color: #991b1b;
       border: none;
-      padding: 7px 12px;
-      border-radius: 6px;
+      padding: 8px 14px;
+      border-radius: 8px;
       font-weight: 800;
-      font-size: 12.5px;
+      font-size: 13px;
       cursor: pointer;
       font-family: 'Cairo', sans-serif;
     }
+    .btn-logout:hover { background: #fecaca; }
 
-    .container { max-width: 1300px; margin: 20px auto; padding: 0 15px; }
+    .container { max-width: 1200px; margin: 30px auto; padding: 0 15px; }
 
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 15px;
       margin-bottom: 25px;
     }
@@ -183,25 +216,25 @@
     }
     .table-header-bar h2 { font-size: 16px; font-weight: 900; color: #070f1e; }
     .search-box {
-      padding: 8px 12px;
+      padding: 8px 14px;
       border: 1.5px solid #cbd5e1;
       border-radius: 8px;
       width: 100%;
-      max-width: 260px;
+      max-width: 280px;
       font-family: 'Cairo', sans-serif;
       font-size: 13px;
       outline: none;
     }
     .search-box:focus { border-color: #c5a059; }
 
-    /* جدول ديسكفري متجاوب للموبايل */
+    /* جدول ديسكفري متجاوب */
     .desktop-table { width: 100%; border-collapse: collapse; text-align: right; }
     html[dir="ltr"] .desktop-table { text-align: left; }
     .desktop-table th, .desktop-table td { padding: 14px 18px; border-bottom: 1px solid #e2e8f0; font-size: 13px; }
     .desktop-table th { background: #070f1e; color: #ffffff; font-weight: 800; }
     .desktop-table tr:hover { background: #fdfbf7; }
 
-    /* بطاقات الموبايل المتجاوبة (تظهر حصرياً على الشاشات الصغيرة لتجنب انضغاط الجدول) */
+    /* بطاقات الموبايل المرنة */
     .mobile-cards-container { display: none; padding: 15px; }
     .mobile-client-card {
       background: #f8fafc;
@@ -219,8 +252,6 @@
     @media (max-width: 768px) {
       .desktop-table-wrapper { display: none; }
       .mobile-cards-container { display: block; }
-      header { padding: 12px 15px; justify-content: center; }
-      .header-actions { width: 100%; justify-content: center; }
     }
 
     .badge {
@@ -293,7 +324,7 @@
     }
     .btn-accept { background: #065f46; color: #fff; border: none; padding: 9px 16px; border-radius: 8px; font-weight: 800; font-size: 13px; cursor: pointer; flex: 1; }
     .btn-reject { background: #991b1b; color: #fff; border: none; padding: 9px 16px; border-radius: 8px; font-weight: 800; font-size: 13px; cursor: pointer; flex: 1; }
-    .btn-close-modal { background: #cbd5e1; color: #070f1e; border: none; padding: 9px 16px; border-radius: 8px; font-weight: 800; font-size: 13px; cursor: pointer; }
+    .btn-close-modal { background: #cbd5e1; color: #070f1e; border: none; padding: 9px 16px; border-radius: 8px; font-weight: 800; cursor: pointer; }
   </style>
 </head>
 <body>
@@ -305,20 +336,29 @@
 
   <!-- لوحة التحكم الفعلية -->
   <div id="dashboardContent">
-    <header>
-      <div class="brand-logo-box" dir="ltr">
-        <div class="b-akh">A<span class="red-k">K</span>H</div>
-        <div class="b-sub"><span class="red-slash">/</span> INTAKE DESK</div>
+    <div class="top-brand-section">
+      <div class="brand-card-header">
+        <div class="akh-logo">A<span class="red-k">K</span>H</div>
+        <div class="law-office-sub"><span class="red-slash">/</span> LAW OFFICE</div>
+        <div class="est-text">EST. 2014</div>
       </div>
-      <div class="header-actions">
+      <h1 class="page-main-title" id="mainHeaderTitle">نظام إدارة الاستشارات القانونية</h1>
+      <div class="page-main-subtitle">AKH Intake & Consultations Desk</div>
+    </div>
+
+    <!-- شريط التحكم واللغة -->
+    <div class="control-bar">
+      <div class="control-group">
         <select id="langSelect" class="lang-select" onchange="changeLanguage(this.value)">
-          <option value="ar">العربية</option>
+          <option value="ar">العربية (Arabic)</option>
           <option value="en">English</option>
         </select>
         <button class="btn-refresh" onclick="loadData()" id="btnRefreshText">تحديث البيانات ⟳</button>
+      </div>
+      <div class="control-group">
         <button class="btn-logout" onclick="logout()" id="btnLogoutText">قفل الجلسة 🔒</button>
       </div>
-    </header>
+    </div>
 
     <div class="container">
       <div class="stats-grid">
@@ -342,7 +382,7 @@
           <input type="text" id="searchInput" class="search-box" placeholder="ابحث بالاسم أو رقم الهاتف..." onkeyup="filterTable()">
         </div>
         
-        <!-- عرض الجدول للشاشات الكبيرة -->
+        <!-- جدول الشاشات الكبيرة -->
         <div class="desktop-table-wrapper" style="overflow-x: auto;">
           <table class="desktop-table">
             <thead>
@@ -362,7 +402,7 @@
           </table>
         </div>
 
-        <!-- عرض البطاقات للشاشات الصغيرة (الموبايل) لمنع أي تخريب أو انضغاط -->
+        <!-- بطاقات الموبايل المرنة -->
         <div id="mobileCardsBody" class="mobile-cards-container">
           <div style="text-align: center; padding: 20px; color: #64748b;">جاري التحميل...</div>
         </div>
@@ -382,7 +422,7 @@
       <div class="detail-grid" id="modalContent"></div>
 
       <div class="modal-actions">
-        <button class="btn-accept" onclick="updateRequestStatus('مقبول - بانتظار تحديد الأتعاب والدفع')" id="btnAcceptModal">قبول وإشعار</button>
+        <button class="btn-accept" onclick="updateRequestStatus('مقبول - بانتظار تحديد الأتعاب والدفع')" id="btnAcceptModal">قبول الطلب وإشعار</button>
         <button class="btn-reject" onclick="updateRequestStatus('مرفوض / نعتذر عن الاستلام')" id="btnRejectModal">رفض واعتذار</button>
         <button class="btn-close-modal" onclick="closeModal()" id="btnCloseModal">إغلاق</button>
       </div>
@@ -393,8 +433,9 @@
     const translations = {
       ar: {
         pageTitle: "AKH Intake - لوحة إدارة الاستشارات القانونية",
-        refresh: "تحديث ⟳",
-        logout: "قفل 🔒",
+        mainTitle: "نظام إدارة الاستشارات القانونية",
+        refresh: "تحديث البيانات ⟳",
+        logout: "قفل الجلسة 🔒",
         stat1: "إجمالي الطلبات المستلمة",
         stat2: "طلبات قيد المراجعة",
         stat3: "الطلبات المقبولة والمنجزة",
@@ -419,8 +460,9 @@
       },
       en: {
         pageTitle: "AKH Intake - Legal Consultations Dashboard",
-        refresh: "Refresh ⟳",
-        logout: "Lock 🔒",
+        mainTitle: "Legal Consultations Management System",
+        refresh: "Refresh Data ⟳",
+        logout: "Lock Session 🔒",
         stat1: "Total Requests",
         stat2: "Pending",
         stat3: "Accepted & Done",
@@ -462,6 +504,7 @@
     function updateUIStrings() {
       const t = translations[currentLang];
       document.getElementById('pageTitle').innerText = t.pageTitle;
+      document.getElementById('mainHeaderTitle').innerText = t.mainTitle;
       document.getElementById('btnRefreshText').innerText = t.refresh;
       document.getElementById('btnLogoutText').innerText = t.logout;
       document.getElementById('statTitle1').innerText = t.stat1;
@@ -639,7 +682,6 @@
         return;
       }
 
-      // بناء الجدول العادي للشاشات الكبيرة
       tbody.innerHTML = data.map(item => {
         let badgeClass = "badge-pending";
         if (item.status.includes("مقبول") || item.status.includes("أتعاب") || item.status.toLowerCase().includes("accept")) badgeClass = "badge-accepted";
@@ -661,7 +703,6 @@
         `;
       }).join('');
 
-      // بناء بطاقات الموبايل المرتبة لمنع أي انضغاط أو تخريب بالشكل
       mobileContainer.innerHTML = data.map(item => {
         let badgeClass = "badge-pending";
         if (item.status.includes("مقبول") || item.status.includes("أتعاب") || item.status.toLowerCase().includes("accept")) badgeClass = "badge-accepted";
@@ -671,15 +712,15 @@
         return `
           <div class="mobile-client-card">
             <div class="m-card-row">
-              <span style="font-weight: 900; color: #070f1e; font-size: 14px;">${item.fullName}</span>
+              <span style="font-weight: 900; color: #070f1e; font-size: 13.5px;">${item.fullName}</span>
               <span class="badge ${badgeClass}">${item.status}</span>
             </div>
             <div class="m-card-row">
-              <span style="color: #64748b; font-size: 12px;">${item.consultType} (${entityText})</span>
-              <span style="font-weight: 700; direction: ltr;">${item.phone}</span>
+              <span style="color: #64748b; font-size: 11.5px;">${item.consultType} (${entityText})</span>
+              <span style="font-weight: 700; direction: ltr; font-size: 12.5px;">${item.phone}</span>
             </div>
             <div class="m-card-row">
-              <span style="font-size: 11px; color: #64748b;">${new Date(item.timestamp).toLocaleString(currentLang === 'ar' ? 'ar-IQ' : 'en-US')}</span>
+              <span style="font-size: 10.5px; color: #64748b;">${new Date(item.timestamp).toLocaleString(currentLang === 'ar' ? 'ar-IQ' : 'en-US')}</span>
               <button class="action-btn" onclick='openDetail(${JSON.stringify(item)})'>${t.reviewBtn}</button>
             </div>
           </div>
