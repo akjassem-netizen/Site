@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title id="pageMetaTitle">مكتب المحامي علي كاظم الهاشمي | استشارات وتمثيل قانوني رصين</title>
-  <meta name="description" content="تمثيل قانوني رصين واستشارات تخصصية للشركات والأفراد برؤية مهنية ودقيقة من قلب العاصمة بغداد.">
+  <title id="pageMetaTitle">مكتب المحامي علي كاظم الهاشمي | مكتب محاماة مرخص ومعتمد</title>
+  <meta name="description" content="مكتب محاماة مرخص ومعتمد في بغداد. نقدم خدمات الاستشارات القانونية، تأسيس الشركات، قانون العمل والعمالة الأجنبية، والتمثيل القضائي للشركات والأفراد.">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,7 +46,7 @@
     }
 
     .brand-title {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 800;
       color: #ffffff;
       text-decoration: none;
@@ -85,9 +85,9 @@
     }
     .lang-select-top option { background: var(--primary-navy); color: #fff; }
 
-    /* القسم الرئيسي السينمائي (Hero Section) */
+    /* القسم الرئيسي (Hero Section) */
     .hero-section {
-      background: linear-gradient(135deg, rgba(7, 15, 30, 0.92) 0%, rgba(15, 23, 42, 0.95) 100%), url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+      background: linear-gradient(135deg, rgba(7, 15, 30, 0.95) 0%, rgba(15, 23, 42, 0.98) 100%);
       color: #ffffff;
       padding: 60px 20px;
       text-align: center;
@@ -95,7 +95,7 @@
     }
 
     .hero-container {
-      max-width: 750px;
+      max-width: 800px;
       margin: 0 auto;
     }
 
@@ -109,11 +109,11 @@
       font-size: 12px;
       font-weight: 700;
       margin-bottom: 20px;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
     }
 
     .hero-title {
-      font-size: 32px;
+      font-size: 30px;
       font-weight: 800;
       line-height: 1.4;
       margin-bottom: 16px;
@@ -162,13 +162,64 @@
     }
     .btn-secondary-action:hover { background: rgba(255, 255, 255, 0.15); }
 
-    /* محتوى الخدمات والمجالات */
+    /* محتوى الموقع والتبويبات */
     .content-wrapper {
-      max-width: 900px;
+      max-width: 950px;
       margin: 40px auto;
       padding: 0 16px;
     }
 
+    /* قسم صورة المكتب الواقعية */
+    .office-showcase {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 40px;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 24px;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    }
+    @media (max-width: 768px) {
+      .office-showcase { grid-template-columns: 1fr; }
+    }
+
+    .office-img-box img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+    }
+
+    .office-info h2 {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--primary-navy);
+      margin-bottom: 10px;
+    }
+    .office-info p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      line-height: 1.7;
+    }
+    .catalog-btn-link {
+      display: inline-block;
+      background: var(--primary-navy);
+      color: #ffffff;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .catalog-btn-link:hover { background: #1e293b; }
+
+    /* تبويبات الخدمات */
     .section-title-box {
       text-align: center;
       margin-bottom: 30px;
@@ -186,7 +237,7 @@
 
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
       margin-bottom: 40px;
     }
@@ -198,7 +249,7 @@
       padding: 24px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.02);
       transition: transform 0.2s, box-shadow 0.2s;
-      border-right: 4px solid var(--primary-navy);
+      border-right: 4px solid var(--accent-gold);
     }
     .service-card:hover {
       transform: translateY(-3px);
@@ -206,7 +257,7 @@
     }
 
     .service-card h3 {
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 800;
       color: var(--primary-navy);
       margin-bottom: 10px;
@@ -216,12 +267,12 @@
     }
 
     .service-card p {
-      font-size: 14px;
+      font-size: 13.5px;
       color: var(--text-muted);
       line-height: 1.7;
     }
 
-    /* صندوق ضوابط المواعيد الفاخر */
+    /* ضوابط الحواعيد */
     .info-box-executive {
       background: #ffffff;
       border: 1px solid var(--border-color);
@@ -232,7 +283,7 @@
     }
 
     .info-box-executive h3 {
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 800;
       color: var(--primary-navy);
       margin-bottom: 15px;
@@ -285,64 +336,86 @@
         <option value="de">Deutsch</option>
         <option value="ku">کوردی</option>
       </select>
-      <a href="https://wa.me/9647702956021?text=مرحباً،%20أود%20حجز%20موعد%20استشارة%20قانونية%20مع%20مكتب%20المحامي%20علي%20كاظم%20الهاشمي" class="btn-gold">حجز موعد</a>
+      <a href="https://wa.me/c/9647702956021" target="_blank" class="btn-gold">كتالوج الخدمات</a>
     </div>
   </header>
 
   <section class="hero-section">
     <div class="hero-container">
-      <div class="hero-badge">⚖️ مرجع قانوني معتمد في بغداد</div>
-      <h1 class="hero-title" id="heroTitle">تمثيل قانوني رصين واستشارات تخصصية لحماية حقوقك ومصالحك</h1>
-      <p class="hero-subtitle" id="heroSub">خدمات قانونية متكاملة للشركات والأفراد برؤية مهنية ودقيقة من قلب العاصمة بغداد.</p>
+      <div class="hero-badge">⚖️ مكتب محاماة مرخص ومعتمد في بغداد</div>
+      <h1 class="hero-title">تمثيل قانوني رصين واستشارات تخصصية للشركات والأفراد</h1>
+      <p class="hero-subtitle">نقدم حلولاً قانونية متكاملة وفق أحدث التشريعات العراقية ومعايير الامتثال الدولية.</p>
       
       <div class="hero-buttons">
-        <a href="https://wa.me/9647702956021?text=مرحباً،%20أود%20تقديم%20طلب%20استشارة%20قانونية" class="btn-main btn-primary-action" id="btnConsult">تقديم طلب استشارة قانونية</a>
-        <a href="https://wa.me/9647702956021?text=مرحباً،%20أود%20التواصل%20مع%20إدارة%20المكتب" class="btn-main btn-secondary-action" id="btnAdmin">محادثة إدارة المكتب واتساب</a>
+        <a href="https://wa.me/9647702956021?text=مرحباً،%20أود%20طلب%20استشارة%20قانونية" class="btn-main btn-primary-action">طلب استشارة أو خدمة قانونية</a>
+        <a href="https://wa.me/9647702956021" target="_blank" class="btn-main btn-secondary-action">استعراض كتالوج الخدمات على واتساب</a>
       </div>
     </div>
   </section>
 
   <main class="content-wrapper">
+
+    <div class="office-showcase">
+      <div class="office-img-box">
+        <img src="1000019530.jpg" alt="مقر مكتب المحامي علي كاظم الهاشمي">
+      </div>
+      <div class="office-info">
+        <h2>مكتب المحامي علي كاظم الهاشمي وشركاؤه للاستشارات</h2>
+        <p>نعمل باحترافية عالية لتقديم خدمات التمثيل القضائي، تأسيس وتأطير الشركات، وقانون العمل والضمان الاجتماعي للعمالة الأجنبية والمحلية، مع الالتزام التام بالسرية والمهنية المطلقة.</p>
+        <a href="https://wa.me/c/9647702956021" target="_blank" class="catalog-btn-link">تصفح كتالوج الخدمات الكامل 📋</a>
+      </div>
+    </div>
+
     <div class="section-title-box">
-      <h2 id="servicesHeading">المجالات والخدمات القانونية</h2>
-      <p id="servicesSub">تقديم الدعم القانوني الدقيق وفق أحدث التشريعات والقوانين العراقية النافذة</p>
+      <h2>أقسام الخدمات القانونية (تبويبات المكتب)</h2>
+      <p>خدمات مؤسسية وقضائية مصممة خصيصاً لتلبية احتياجات الشركات والمستثمرين والأفراد</p>
     </div>
 
     <div class="services-grid">
       <div class="service-card">
-        <h3 id="serv1Title">🏢 قضايا الشركات والتجارة</h3>
-        <p id="serv1Desc">تأسيس وتسجيل الشركات المحلية والأجنبية، صياغة العقود التجارية، وتسوية النزاعات الاستثمارية وفق قانون الشركات العراقي.</p>
+        <h3>🏢 تأسيس الشركات والامتثال</h3>
+        <p>تأسيس وتسجيل الشركات المحلية والأجنبية، صياغة ومراجعة العقود التجارية، ومعاملات تسجيل العلامات التجارية والوكالات.</p>
       </div>
 
       <div class="service-card">
-        <h3 id="serv2Title">🏛️ الدعاوى المدنية والعقارية</h3>
-        <p id="serv2Desc">قضايا الملكية، إخلاء العقارات، نزاعات الإيجار، وتوثيق البيوع أصولياً لضمان الحقوق وحماية الأصول.</p>
+        <h3>📜 قانون العمل والضمان الاجتماعي</h3>
+        <p>متابعة التزامات العمالة الأجنبية والمحلية وفق قانون الضمان الاجتماعي وقانون العمل العراقي، ودليل الامتثال للشركات.</p>
       </div>
 
       <div class="service-card">
-        <h3 id="serv3Title">👥 الأحوال الشخصية والتركات</h3>
-        <p id="serv3TitleText">قضايا الميراث، القسامات الشرعية، النفقة، الحضانة، وتنظيم شؤون الأسرة بحكمة ومهنية.</p>
+        <h3>⚖️ النزاعات المدنية والعقارية</h3>
+        <p>التمثيل القانوني في قضايا الملكية، العقارات، نزاعات الإيجار، وتوثيق العقود والتعاملات المالية أصولياً.</p>
       </div>
 
       <div class="service-card">
-        <h3 id="serv4Title">🛡️ الترافع والدفاع الجزائي</h3>
-        <p id="serv4Desc">التمثيل القانوني وحضور التحقيقات والترافع أمام محاكم التحقيق والجنايات والجنح بمختلف درجاتها.</p>
+        <h3>🏛️ الترافع والدفاع الجزائي</h3>
+        <p>الحضور والترافع أمام محاكم التحقيق، الجنايات، والجنح بمختلف درجاتها لحماية الحقوق والمصالح.</p>
+      </div>
+
+      <div class="service-card">
+        <h3>👥 قضايا الأحوال الشخصية</h3>
+        <p>معالجة قضايا الميراث، القسامات الشرعية، التنظيم الأسري، وإجراءات المحاكم الشرعية بحكمة ودقة.</p>
+      </div>
+
+      <div class="service-card">
+        <h3>🔍 التحقق والبحث المؤسسي</h3>
+        <p>خدمات التحقق المهني والأكاديمي والتدقيق للشركات والمؤسسات لضمان بيئة عمل آمنة وممتثلة قانونياً.</p>
       </div>
     </div>
 
     <div class="info-box-executive">
-      <h3 id="rulesHeading">📌 ضوابط حجز المواعيد والاستشارات</h3>
+      <h3>📌 ضوابط الحجز والمواعيد الرسمية</h3>
       <ul class="info-list">
-        <li id="rule1"><strong>ساعات الدوام المكتبي:</strong> من الأحد إلى الخميس، من 8:00 صباحاً وحتى 4:00 عصراً.</li>
-        <li id="rule2"><strong>مواعيد الاستشارات المباشرة:</strong> تبدأ بعد الظهور حصراً من 2:00 إلى 4:00 عصراً (لفرغ المحامي صباحاً للمحاكم، ومساءً بالتنسيق المسبق).</li>
-        <li id="rule3"><strong>الأجور وتأكيد الحجز:</strong> خدماتنا الاستشارية مدفوعة الأجر وتبدأ أولياً من 75,000 دينار عراقي، وتحدد بعد الاطلاع على الاستشارة، ويتم التواصل عبر الواتساب لتأكيد الموعد وبيانات الدفع.</li>
+        <li><strong>ساعات العمل:</strong> من الأحد إلى الخميس، من 8:00 صباحاً وحتى 4:00 عصراً.</li>
+        <li><strong>أوقات الاستشارات المباشرة:</strong> تبدأ بعد الظهر حصراً (من 2:00 إلى 4:00 عصراً) لتفرغ المحامي للمحاكم صباحاً.</li>
+        <li><strong>الأجور الاستشارية:</strong> الخدمات استشارية مدفوعة الأجر وتبدأ من 75,000 دينار عراقي حسب طبيعة الموضوع، ويتم التأكيد عبر الواتساب.</li>
       </ul>
     </div>
   </main>
 
   <footer class="executive-footer">
     <p>© 2026 <strong>Law Office Of Ali Kadhem Hashimi</strong>. جميع الحقوق محفوظة.</p>
-    <p style="font-size: 11.5px; margin-top: 6px; color: #64748b;">بغداد - الزيونة | استشارات قانونية وتمثيل قضائي معتمد</p>
+    <p style="font-size: 11.5px; margin-top: 6px; color: #64748b;">بغداد - الزيونة | مكتب محاماة مرخص ومعتمد</p>
   </footer>
 
   <script>
@@ -350,7 +423,6 @@
       const root = document.getElementById('htmlRoot');
       root.setAttribute('lang', lang);
       root.setAttribute('dir', (lang === 'ar' || lang === 'ku') ? 'rtl' : 'ltr');
-      // يمكن إضافة قاموس الترجمة هنا للتوسع المستقبلي للموقع الرئيسي
     }
   </script>
 </body>
