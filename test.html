@@ -60,12 +60,12 @@
     }
     .menu-toggle:hover { background: rgba(197,160,89,0.2); }
 
-    /* القائمة المنسدلة المنضبطة تماماً */
+    /* القائمة المنسدلة المتكيفة تلقائياً مع اتجاه اللغة (RTL و LTR) */
     .dropdown-menu {
       position: absolute;
       top: calc(100% + 10px);
-      left: 0;
-      right: auto;
+      right: 0;
+      left: auto;
       min-width: 230px;
       background: #070f1e;
       border: 1.5px solid #c5a059;
@@ -76,6 +76,12 @@
       padding: 8px 0;
       z-index: 1100;
     }
+    /* في حالة اللغات التي تبدأ من اليمين (العربية والكردية) تتكيف تلقائياً */
+    [dir="rtl"] .dropdown-menu {
+      left: 0;
+      right: auto;
+    }
+
     .dropdown-menu.active { display: flex; }
     .dropdown-menu a {
       color: #ffffff;
