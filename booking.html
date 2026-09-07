@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Cairo', sans-serif; background: #f4f6f9; color: #070f1e; }
+    html, body { background: #f4f6f9; color: #070f1e; font-family: 'Cairo', sans-serif; min-height: 100vh; }
 
     .icover-header {
       background: #070f1e;
@@ -191,7 +191,6 @@
 
     <form id="consultationForm">
 
-      <!-- 1. الجنسية -->
       <div class="form-group">
         <label id="lblCitizenship">الجنسية / الصفة الشخصية *</label>
         <div class="radio-group">
@@ -200,7 +199,6 @@
         </div>
       </div>
 
-      <!-- 2. مكان الإقامة -->
       <div class="form-group">
         <label id="lblResidence">مكان الإقامة الحالي *</label>
         <div class="radio-group">
@@ -209,7 +207,6 @@
         </div>
       </div>
 
-      <!-- 3. الصفة القانونية (فرد أو شركة) -->
       <div class="form-group">
         <label id="lblEntityType">صفة طالب الاستشارة *</label>
         <div class="radio-group">
@@ -218,13 +215,11 @@
         </div>
       </div>
 
-      <!-- الاسم -->
       <div class="form-group">
         <label id="nameLabel">الاسم الكامل *</label>
         <input type="text" id="fullName" required placeholder="أدخل الاسم الثلاثي">
       </div>
 
-      <!-- ممثل الشركة -->
       <div id="companyRepField" class="form-group conditional-section">
         <label id="lblCompanyRep">اسم المفوض بالتوقيع أو الممثل القانوني للشركة *</label>
         <input type="text" id="companyRepName" placeholder="اسم الشخص المسؤول عن المتابعة والصفة">
@@ -241,7 +236,6 @@
         </div>
       </div>
 
-      <!-- تفاصيل الأفراد المحليين فقط -->
       <div id="individualOnlyFields" class="conditional-section active">
         <div class="form-grid">
           <div class="form-group">
@@ -272,13 +266,11 @@
         </div>
       </div>
 
-      <!-- العنوان -->
       <div class="form-group">
         <label id="lblAddress">عنوان السكن *</label>
         <input type="text" id="address" placeholder="المحافظة / المنطقة (مثلاً: بغداد - زيونة)">
       </div>
 
-      <!-- حقول الفرد الأجنبي -->
       <div id="foreignerIndividualFields" class="conditional-section">
         <div class="form-group">
           <label id="lblNationalityIndiv">الجنسية *</label>
@@ -286,7 +278,6 @@
         </div>
       </div>
 
-      <!-- حقول الشركة -->
       <div id="companyIdentityFields" class="conditional-section">
         <div class="form-group">
           <label id="lblCompanyRegAuth">جهة تسجيل أو تأسيس الشركة *</label>
@@ -308,7 +299,6 @@
         </div>
       </div>
 
-      <!-- خدمة الترجمة للأجانب -->
       <div id="translationField" class="form-group conditional-section">
         <label id="lblTranslation">خدمة الترجمة والتنسيق أثناء الجلسة *</label>
         <select id="translationNeeded">
@@ -317,7 +307,6 @@
         </select>
       </div>
 
-      <!-- التفاصيل المشتركة -->
       <div class="form-group">
         <label id="lblMethod">طريقة تلقي الاستشارة المفضلة *</label>
         <select id="consultationMethod">
@@ -922,7 +911,8 @@
       document.getElementById('lblDetails').innerText = t.details;
       document.getElementById('submitBtnText').innerHTML = t.submit;
 
-      // تحديث النصوص الثابتة المؤقتة (Placeholders) ديناميكياً
+      // تحديث الشروحات المؤقتة (Placeholders) لكل الحقول بما فيها الاسم الكامل
+      document.getElementById('fullName').placeholder = t.phName;
       document.getElementById('email').placeholder = t.phEmail;
       document.getElementById('phone').placeholder = t.phPhone;
       document.getElementById('companyRepName').placeholder = t.phCompRep;
