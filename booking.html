@@ -26,41 +26,87 @@
       background: #ffffff;
       border: 1.5px solid #cbd5e1;
       border-radius: 20px;
-      padding: 40px;
+      padding: 40px 35px;
       box-shadow: 0 15px 40px rgba(0,0,0,0.06);
       border-top: 6px solid #c5a059;
     }
 
-    h1 { font-size: 24px; font-weight: 900; color: #070f1e; margin-bottom: 10px; text-align: start; }
-    p.instructions { font-size: 14.5px; color: #475569; line-height: 1.7; margin-bottom: 30px; text-align: start; }
+    /* مربع الشعار الأصلي المطابق للرئيسية */
+    .brand-logo-box {
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 18px;
+      text-align: center;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    }
+    .b-akh {
+      font-size: 34px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      color: #070f1e;
+      font-family: Arial, sans-serif;
+      line-height: 1.1;
+    }
+    .b-akh .red-k { color: #d32f2f; }
+    .b-sub {
+      font-size: 10.5px;
+      font-weight: 800;
+      color: #070f1e;
+      letter-spacing: 1.5px;
+      margin-top: 4px;
+    }
+    .b-sub .red-slash { color: #d32f2f; }
+    .b-est {
+      font-size: 8.5px;
+      color: #64748b;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-top: 2px;
+    }
 
-    .form-group { margin-bottom: 22px; text-align: start; }
-    label { display: block; font-weight: 800; font-size: 14px; color: #070f1e; margin-bottom: 8px; }
+    h1 { font-size: 22px; font-weight: 900; color: #070f1e; margin-bottom: 10px; text-align: start; }
+    p.instructions { font-size: 14px; color: #475569; line-height: 1.7; margin-bottom: 25px; text-align: start; }
+
+    .form-group { margin-bottom: 20px; text-align: start; }
+    label { display: block; font-weight: 800; font-size: 13.5px; color: #070f1e; margin-bottom: 6px; }
     input[type="text"], input[type="email"], input[type="tel"], input[type="number"], select, textarea {
       width: 100%;
-      padding: 12px 16px;
+      padding: 12px 14px;
       border: 1.5px solid #cbd5e1;
       border-radius: 8px;
       font-size: 14px;
       font-family: 'Cairo', sans-serif;
       outline: none;
       background: #f8fafc;
+      color: #070f1e;
       transition: border-color 0.2s;
     }
     input:focus, select:focus, textarea:focus { border-color: #c5a059; background: #fff; }
-    textarea { resize: vertical; height: 120px; }
+    textarea { resize: vertical; height: 110px; }
 
-    .radio-group { display: flex; gap: 20px; margin-top: 5px; }
-    .radio-label { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; cursor: pointer; }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+    @media (max-width: 650px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .form-container { margin: 15px; padding: 25px 20px; }
+    }
+
+    .radio-group { display: flex; gap: 20px; margin-top: 5px; flex-wrap: wrap; }
+    .radio-label { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 13.5px; cursor: pointer; }
 
     .submit-btn {
       width: 100%;
       background: #070f1e;
       color: #ffffff;
       border: 1.5px solid #070f1e;
-      padding: 15px;
+      padding: 14px;
       border-radius: 8px;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 900;
       cursor: pointer;
       transition: all 0.2s;
@@ -71,17 +117,30 @@
     .conditional-section { display: none; }
     .conditional-section.active { display: block; }
   </style>
+
+  <script>
+    if (window.location.pathname.endsWith('.html')) {
+      const cleanPath = window.location.pathname.replace('.html', '');
+      window.history.replaceState({}, '', cleanPath + window.location.search + window.location.hash);
+    }
+  </script>
 </head>
 <body>
 
   <header class="icover-header">
     <a href="test.html" class="back-btn">&larr; العودة للرئيسية</a>
-    <div style="color: #c5a059; font-weight: 900; font-size: 15px;">AKH LAW OFFICE</div>
+    <div style="color: #c5a059; font-weight: 900; font-size: 14px;">AKH LAW OFFICE</div>
   </header>
 
   <main class="form-container">
+    <div class="brand-logo-box" dir="ltr">
+      <div class="b-akh">A<span class="red-k">K</span>H</div>
+      <div class="b-sub"><span class="red-slash">/</span> LAW OFFICE</div>
+      <div class="b-est">EST. 2014</div>
+    </div>
+
     <h1>استمارة طلب الاستشارة القانونية</h1>
-    <p class="instructions">يرجى تعبئة النموذج أدناه بدقة ليتسنى لفريقنا القانوني مراجعة الطلب وتحديد الأتعاب وضبط موعد الاستشارة وفق الأطر المهنية.</p>
+    <p class="instructions">يرجى تعبئة النموذج أدناه بدقة ليتسنى لنا دراسة الطلب وتحديد الأتعاب وضبط موعد الاستشارة وفق الأطر المهنية.</p>
 
     <form id="consultationForm">
 
@@ -106,7 +165,7 @@
         <input type="text" id="fullName" required placeholder="أدخل الاسم الثلاثي أو اسم الشركة">
       </div>
 
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      <div class="form-grid">
         <div class="form-group">
           <label>البريد الإلكتروني *</label>
           <input type="email" id="email" required placeholder="name@example.com">
@@ -118,7 +177,7 @@
       </div>
 
       <div id="localFields" class="conditional-section active">
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        <div class="form-grid">
           <div class="form-group">
             <label>الجنس *</label>
             <select id="gender">
@@ -140,20 +199,20 @@
         <div class="form-group">
           <label>التحصيل الدراسي *</label>
           <select id="education">
-            <option value="university">شهادة جامعية أو عليا (University / Postgraduate)</option>
-            <option value="highschool">شهادة ثانوية (High School)</option>
-            <option value="other">غير ذلك (Other)</option>
+            <option value="university">شهادة جامعية أو عليا</option>
+            <option value="highschool">شهادة ثانوية</option>
+            <option value="other">غير ذلك</option>
           </select>
         </div>
 
         <div class="form-group">
           <label>العمل أو الوظيفة *</label>
-          <input type="text" id="occupation" placeholder="اكتب وظيفتك الحالية أو نشاطك التجاري">
+          <input type="text" id="occupation" placeholder="اكتب وظيفتك أو نشاطك التجاري">
         </div>
       </div>
 
       <div id="intlFields" class="conditional-section">
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        <div class="form-grid">
           <div class="form-group">
             <label>الجنسية / بلد التأسيس *</label>
             <input type="text" id="nationality" placeholder="مثال: بريطاني / شركة إماراتية">
@@ -165,7 +224,7 @@
         </div>
 
         <div class="form-group">
-          <label>هل تحتاج إلى خدمة ترجمة وتنسيق لغوي أثناء جلسة الاستشارة؟ *</label>
+          <label>خدمة الترجمة والتنسيق أثناء الجلسة *</label>
           <select id="translationNeeded">
             <option value="no">لا، أستطيع المتابعة بشكل مباشر</option>
             <option value="yes">نعم، أرغب بأن يوفر المكتب مترجماً مختصاً للجلسة</option>
@@ -195,7 +254,7 @@
 
       <div class="form-group">
         <label>شرح قضيتك أو موضوع الاستشارة بالتفصيل *</label>
-        <textarea id="consultationDetails" placeholder="اشرح الوقائع باختصار ليتسنى للمحامي دراستها بدقة..."></textarea>
+        <textarea id="consultationDetails" placeholder="اشرح الوقائع باختصار ليتسنى لنا دراستها بدقة..."></textarea>
       </div>
 
       <button type="submit" class="submit-btn">إرسال الطلب للمراجعة القانونية &larr;</button>
@@ -221,8 +280,7 @@
 
     document.getElementById('consultationForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      alert("تم استلام طلبكم بنجاح وهو الآن قيد الفحص والمراجعة القانونية. سيتم إرسال رقم التتبع وتفاصيل المتابعة عبر البريد الإلكتروني.");
-      // هنا سنقوم بربطه بالخطوة الثانية (Google Sheets) في الدقائق القادمة.
+      alert("تم استلام طلبكم بنجاح وهو الآن قيد الفحص والمراجعة القانونية.");
     });
   </script>
 
