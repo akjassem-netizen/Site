@@ -38,6 +38,11 @@
     }
     .lang-select-bar option { background: #070f1e; color: #ffffff; }
 
+    /* حاوية زر القائمة والقائمة المنسدلة */
+    .menu-container {
+      position: relative;
+    }
+
     /* زر القائمة (3 شخطات) */
     .menu-toggle {
       background: rgba(255,255,255,0.1);
@@ -55,11 +60,12 @@
     }
     .menu-toggle:hover { background: rgba(197,160,89,0.2); }
 
-    /* القائمة المنسدلة (تم حل مشكلة العرض والنصوص) */
+    /* القائمة المنسدلة (منضبطة تماماً تحت الزر ومنع overflow) */
     .dropdown-menu {
       position: absolute;
       top: calc(100% + 10px);
-      right: 0;
+      left: 0;
+      right: auto;
       min-width: 230px;
       background: #070f1e;
       border: 1.5px solid #c5a059;
@@ -116,33 +122,40 @@
       text-align: start;
     }
 
-    /* مربع الشعار البارز بالألوان المخصصة للشعار الأصلي */
+    /* مربع الشعار الأصلي بألوانه الدقيقة (خلفية بيضاء نقية مع الحروف الأصلية) */
     .brand-logo-box {
-      background: #070f1e;
-      border: 2px solid #c5a059;
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
       border-radius: 14px;
-      padding: 24px;
+      padding: 22px;
       text-align: center;
       margin-bottom: 28px;
-      box-shadow: 0 8px 20px rgba(7,15,30,0.15);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
     }
     .b-akh {
-      font-size: 38px;
+      font-size: 40px;
       font-weight: 900;
-      letter-spacing: 2.5px;
-      color: #ffffff;
+      letter-spacing: 3px;
+      color: #070f1e;
       font-family: Arial, sans-serif;
-      line-height: 1;
+      line-height: 1.1;
     }
     .b-akh .red-k { color: #d32f2f; }
     .b-sub {
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 800;
-      color: #c5a059;
+      color: #070f1e;
       letter-spacing: 1.5px;
-      margin-top: 6px;
+      margin-top: 5px;
     }
     .b-sub .red-slash { color: #d32f2f; }
+    .b-est {
+      font-size: 9px;
+      color: #64748b;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-top: 2px;
+    }
 
     .hero-title {
       font-size: 26px;
@@ -221,6 +234,7 @@
 </head>
 <body>
 
+  <!-- الهيدر الكلاسيكي الأزرق الفاخر -->
   <header class="icover-header">
     <div>
       <select id="languageSelect" class="lang-select-bar" onchange="changeLanguage(this.value)">
@@ -235,8 +249,9 @@
       </select>
     </div>
 
-    <div style="position: relative;">
+    <div class="menu-container">
       <button class="menu-toggle" onclick="toggleMenu()" aria-label="القائمة">☰</button>
+      <!-- القائمة المنسدلة المصححة -->
       <div id="dropdownMenu" class="dropdown-menu">
         <a href="test.html" id="menuHome">الرئيسية</a>
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSdVxyld_U5Mdp-4RLcuA8HdQvAvlYWdd1fiQ8QAavwJj_Ev7w/viewform" target="_blank" id="menuBook">حجز موعد استشارة</a>
@@ -245,13 +260,16 @@
     </div>
   </header>
 
+  <!-- التخطيط الشبكي -->
   <main class="main-container">
 
+    <!-- العمود الأيمن: المربع العائم متضمن الشعار بألوانه الأصلية الفخمة -->
     <aside class="sticky-sidebar">
       <section class="hero-box">
         <div class="brand-logo-box" dir="ltr">
           <div class="b-akh">A<span class="red-k">K</span>H</div>
           <div class="b-sub"><span class="red-slash">/</span> LAW OFFICE</div>
+          <div class="b-est">EST. 2014</div>
         </div>
 
         <h1 class="hero-title" id="heroTitleText">مكتب المحامي علي كاظم الهاشمي</h1>
@@ -263,6 +281,7 @@
       </section>
     </aside>
 
+    <!-- العمود الأيسر: الأقسام -->
     <section class="content-sections-area">
       <div class="content-card">
         <h3 id="sec1Title">مجالات الاختصاص والخدمات القانونية</h3>
@@ -284,7 +303,7 @@
     }
 
     window.onclick = function(event) {
-      if (!event.target.matches('.menu-toggle') && !event.target.closest('.dropdown-menu')) {
+      if (!event.target.matches('.menu-toggle') && !event.target.closest('.menu-container')) {
         document.getElementById('dropdownMenu').classList.remove('active');
       }
     }
@@ -370,7 +389,7 @@
         subtitle: "Zuverlässige rechtliche Vertretung und spezialisierte Beratung für Unternehmen und Privatpersonen aus Bagdad.",
         cta: "Beratung buchen →",
         sec1Title: "Fachgebiete & Rechtsdienstleistungen",
-        sec1Desc: "We bieten umfassende rechtliche Dienstleistungen an, darunter die Ausarbeitung kommerzieller Verträge, gerichtliche Vertretung und Unternehmensberatung.",
+        sec1Desc: "Wir bieten umfassende rechtliche Dienstleistungen an, darunter die Ausarbeitung kommerzieller Verträge, gerichtliche Vertretung und Unternehmensberatung.",
         sec2Title: "Vision & Professioneller Ansatz",
         sec2Desc: "Wir verpflichten uns zu höchsten Standards beruflicher Verschwiegenheit und Integrität."
       },
