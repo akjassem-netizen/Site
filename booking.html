@@ -153,6 +153,7 @@
     .conditional-section.active { display: block; }
   </style>
 
+  <!-- إخفاء .html من الرابط تلقائياً -->
   <script>
     if (window.location.pathname.endsWith('.html')) {
       const cleanPath = window.location.pathname.replace('.html', '');
@@ -177,11 +178,12 @@
     </div>
 
     <div>
-      <a href="test.html" class="back-home-btn" id="backBtnText">&larr; الرئيسية</a>
+      <a href="test" class="back-home-btn" id="backBtnText">&larr; الرئيسية</a>
     </div>
   </header>
 
   <main class="form-container">
+    <!-- الشعار الفاخر -->
     <div class="brand-logo-box" dir="ltr">
       <div class="b-akh">A<span class="red-k">K</span>H</div>
       <div class="b-sub"><span class="red-slash">/</span> LAW OFFICE</div>
@@ -193,14 +195,25 @@
 
     <form id="consultationForm">
 
+      <!-- 1. الجنسية الكريمة -->
       <div class="form-group">
-        <label id="lblClientType">صفة وموقع الموكل *</label>
+        <label id="lblCitizenship">الجنسية / الصفة الشخصية *</label>
         <div class="radio-group">
-          <label class="radio-label"><input type="radio" name="clientType" value="local" checked onclick="switchClientType('local')"> <span id="optLocal">مقيم داخل العراق (محلي)</span></label>
-          <label class="radio-label"><input type="radio" name="clientType" value="international" onclick="switchClientType('international')"> <span id="optIntl">موكل أو شركة من خارج العراق (دولي)</span></label>
+          <label class="radio-label"><input type="radio" name="citizenship" value="iraqi" checked onclick="toggleForeignerFields()"> <span id="optIraqi">عراقي (مواطن)</span></label>
+          <label class="radio-label"><input type="radio" name="citizenship" value="foreign" onclick="toggleForeignerFields()"> <span id="optForeign">أجنبي (غير عراقي)</span></label>
         </div>
       </div>
 
+      <!-- 2. مكان الإقامة الحالي -->
+      <div class="form-group">
+        <label id="lblResidence">مكان الإقامة الحالي *</label>
+        <div class="radio-group">
+          <label class="radio-label"><input type="radio" name="residence" value="inside" checked> <span id="optInside">مقيم داخل العراق</span></label>
+          <label class="radio-label"><input type="radio" name="residence" value="outside"> <span id="optOutside">مقيم خارج العراق</span></label>
+        </div>
+      </div>
+
+      <!-- 3. الصفة القانونية -->
       <div class="form-group">
         <label id="lblEntityType">الصفة القانونية *</label>
         <div class="radio-group">
@@ -209,6 +222,7 @@
         </div>
       </div>
 
+      <!-- الحقول المشتركة -->
       <div class="form-group">
         <label id="nameLabel">الاسم الكامل *</label>
         <input type="text" id="fullName" required placeholder="أدخل الاسم الثلاثي أو اسم الشركة">
@@ -225,7 +239,8 @@
         </div>
       </div>
 
-      <div id="localFields" class="conditional-section active">
+      <!-- حقول خاصة بالعراقي أو المقيم -->
+      <div id="standardFields" class="conditional-section active">
         <div class="form-grid">
           <div class="form-group">
             <label id="lblGender">الجنس *</label>
@@ -241,8 +256,8 @@
         </div>
 
         <div class="form-group">
-          <label id="lblAddress">عنوان السكن (المحافظة / المنطقة) *</label>
-          <input type="text" id="address" placeholder="بغداد - الجادرية">
+          <label id="lblAddress">عنوان السكن (المحافظة / المنطقة أو بلد الإقامة) *</label>
+          <input type="text" id="address" placeholder="بغداد - الجادرية أو لندن - المملكة المتحدة">
         </div>
 
         <div class="form-group">
@@ -260,7 +275,8 @@
         </div>
       </div>
 
-      <div id="intlFields" class="conditional-section">
+      <!-- حقول إضافية خاصة بالأجنبي -->
+      <div id="foreignerFields" class="conditional-section">
         <div class="form-grid">
           <div class="form-group">
             <label id="lblNationality">الجنسية / بلد التأسيس *</label>
@@ -281,6 +297,7 @@
         </div>
       </div>
 
+      <!-- التفاصيل المشتركة -->
       <div class="form-group">
         <label id="lblMethod">طريقة تلقي الاستشارة المفضلة *</label>
         <select id="consultationMethod">
@@ -311,20 +328,13 @@
   </main>
 
   <script>
-    function switchClientType(type) {
-      const localSec = document.getElementById('localFields');
-      const intlSec = document.getElementById('intlFields');
-      const nameLabel = document.getElementById('nameLabel');
-      const lang = document.getElementById('languageSelect').value;
-
-      if (type === 'local') {
-        localSec.classList.add('active');
-        intlSec.classList.remove('active');
-        nameLabel.innerText = (lang === 'ar' || lang === 'ku') ? "الاسم الكامل *" : "Full Name *";
+    function toggleForeignerFields() {
+      const isForeign = document.querySelector('input[name="citizenship"]:checked').value === 'foreign';
+      const foreignerSec = document.getElementById('foreignerFields');
+      if (isForeign) {
+        foreignerSec.classList.add('active');
       } else {
-        localSec.classList.remove('active');
-        intlSec.classList.add('active');
-        nameLabel.innerText = (lang === 'ar' || lang === 'ku') ? "الاسم الكامل / اسم الشركة الأجنبية *" : "Full Name / Company Name *";
+        foreignerSec.classList.remove('active');
       }
     }
 
@@ -334,21 +344,23 @@
         back: "الرئيسية",
         formTitle: "استمارة طلب الاستشارة القانونية",
         formInst: "يرجى تعبئة النموذج أدناه بدقة ليتسنى لنا دراسة الطلب وتحديد الأتعاب وضبط موعد الاستشارة وفق الأطر المهنية.",
-        clientType: "صفة وموقع الموكل *",
-        optLocal: "مقيم داخل العراق (محلي)",
-        optIntl: "موكل أو شركة من خارج العراق (دولي)",
+        citizenship: "الجنسية / الصفة الشخصية *",
+        optIraqi: "عراقي (مواطن)",
+        optForeign: "أجنبي (غير عراقي)",
+        residence: "مكان الإقامة الحالي *",
+        optInside: "مقيم داخل العراق",
+        optOutside: "مقيم خارج العراق",
         entityType: "الصفة القانونية *",
         optIndiv: "فرد (شخص طبيعي)",
         optComp: "شركة أو مؤسسة تجارية",
         fullName: "الاسم الكامل *",
-        fullNameIntl: "الاسم الكامل / اسم الشركة الأجنبية *",
         email: "البريد الإلكتروني *",
         phone: "رقم الهاتف / الواتساب *",
         gender: "الجنس *",
         male: "ذكر",
         female: "أنثى",
         age: "العمر *",
-        address: "عنوان السكن (المحافظة / المنطقة) *",
+        address: "عنوان السكن (المحافظة / المنطقة أو بلد الإقامة) *",
         education: "التحصيل الدراسي *",
         eduUni: "شهادة جامعية أو عليا",
         eduHigh: "شهادة ثانوية",
@@ -371,28 +383,30 @@
         typeOther: "أخرى / استشارة عامة",
         details: "شرح قضيتك أو موضوع الاستشارة بالتفصيل *",
         submit: "إرسال الطلب للمراجعة القانونية ←",
-        successMsg: "تم استلام طلبكم بنجاح وهو الآن قيد الفحص والمراجعة القانونية."
+        successMsg: "تم استلام طلبكم بنجاح وهو الآن قيد الفحص والمراجعة القانونية. سنقوم بمراجعة الطلب ودراسته خلال أوقات العمل الرسمية (خلال 24 ساعة من تاريخ الاستلام)، وسيتم التواصل معكم."
       },
       en: {
         title: "Book Consultation - Law Office of Ali Kadhem Hashimi",
         back: "Home",
         formTitle: "Legal Consultation Request Form",
         formInst: "Please fill out this form accurately to enable us to review your request, determine fees, and schedule the consultation.",
-        clientType: "Client Location & Status *",
-        optLocal: "Resident in Iraq (Local)",
-        optIntl: "Client or Company outside Iraq (International)",
+        citizenship: "Citizenship / Status *",
+        optIraqi: "Iraqi (Citizen)",
+        optForeign: "Foreigner (Non-Iraqi)",
+        residence: "Current Residence *",
+        optInside: "Resident inside Iraq",
+        optOutside: "Resident outside Iraq",
         entityType: "Legal Entity *",
         optIndiv: "Individual",
         optComp: "Corporation / Business Entity",
         fullName: "Full Name *",
-        fullNameIntl: "Full Name / Company Name *",
         email: "Email Address *",
         phone: "Phone / WhatsApp *",
         gender: "Gender *",
         male: "Male",
         female: "Female",
         age: "Age *",
-        address: "Residential Address (City / Area) *",
+        address: "Residential Address / Country of Residence *",
         education: "Level of Education *",
         eduUni: "University or Postgraduate Degree",
         eduHigh: "High School",
@@ -415,28 +429,30 @@
         typeOther: "Other / General Consultation",
         details: "Details of Your Case or Consultation Topic *",
         submit: "Submit Request for Legal Review →",
-        successMsg: "Your request has been successfully received and is currently under legal review."
+        successMsg: "Your request has been successfully received and is currently under legal review during official working hours (within 24 hours), and we will contact you shortly."
       },
       tr: {
         title: "Danışmanlık Randevusu - Av. Ali Kazım Haşimi",
         back: "Ana Sayfa",
         formTitle: "Hukuki Danışmanlık Talep Formu",
         formInst: "Talebinizi incelememiz ve randevu ayarlayabilmemiz için lütfen formu doldurun.",
-        clientType: "Müvekkil Konumu *",
-        optLocal: "Irak'ta İkamet Eden (Yerel)",
-        optIntl: "Irak Dışından Müvekkil veya Şirket (Uluslararası)",
+        citizenship: "Vatandaşlık / Statü *",
+        optIraqi: "Iraklı (Vatandaş)",
+        optForeign: "Yabancı (Iraklı Olmayan)",
+        residence: "Mevcut İkametgah *",
+        optInside: "Irak'ta İkamet Eden",
+        optOutside: "Irak Dışında İkamet Eden",
         entityType: "Hukuki Statü *",
         optIndiv: "Birey",
         optComp: "Şirket / Ticari Kuruluş",
         fullName: "Ad Soyad *",
-        fullNameIntl: "Ad Soyad / Şirket Adı *",
         email: "E-posta *",
         phone: "Telefon / WhatsApp *",
         gender: "Cinsiyet *",
         male: "Erkek",
         female: "Kadın",
         age: "Yaş *",
-        address: "İkamet Adresi *",
+        address: "İkamet Adresi / Ülkesi *",
         education: "Eğitim Seviyesi *",
         eduUni: "Üniversite veya Lisansüstü",
         eduHigh: "Lise",
@@ -459,28 +475,30 @@
         typeOther: "Diğer / Genel Danışmanlık",
         details: "Davanızın veya Konunuzun Detayları *",
         submit: "İnceleme İçin Talebi Gönder →",
-        successMsg: "Talebiniz başarıyla alınmıştır ve hukuki inceleme aşamasındadır."
+        successMsg: "Talebiniz başarıyla alınmış olup mesai saatleri içerisinde (24 saat içinde) hukuki incelemeye alınacaktır."
       },
       zh: {
         title: "预约法律咨询 - 阿里·卡德姆·哈希米律所",
         back: "首页",
         formTitle: "法律咨询申请表",
         formInst: "请准确填写下表，以便我们评估申请并安排咨询时间。",
-        clientType: "客户所在地 *",
-        optLocal: "伊拉克境内居民 (本地)",
-        optIntl: "伊拉克境外客户或公司 (国际)",
+        citizenship: "国籍 / 身份 *",
+        optIraqi: "伊拉克公民",
+        optForeign: "外籍人士",
+        residence: "当前居住地 *",
+        optInside: "居住在伊拉克境内",
+        optOutside: "居住在伊拉克境外",
         entityType: "法律实体 *",
         optIndiv: "个人",
         optComp: "公司 / 商业机构",
         fullName: "全名 *",
-        fullNameIntl: "全名 / 公司名称 *",
         email: "电子邮箱 *",
         phone: "电话 / WhatsApp *",
         gender: "性别 *",
         male: "男",
         female: "女",
         age: "年龄 *",
-        address: "居住地址 *",
+        address: "居住地址 / 国家 *",
         education: "教育程度 *",
         eduUni: "大学或研究生学位",
         eduHigh: "高中",
@@ -503,28 +521,30 @@
         typeOther: "其他 / 一般咨询",
         details: "您的案件或咨询主题详情 *",
         submit: "提交法律审核申请 →",
-        successMsg: "您的申请已成功收到，目前正在进行法律审核。"
+        successMsg: "您的申请已成功收到，目前正在官方工作时间内进行法律审核（24小时内），我们将与您联系。"
       },
       fr: {
         title: "Réserver une Consultation - Cabinet Ali Kadhem Hashimi",
         back: "Accueil",
         formTitle: "Formulaire de Demande de Consultation Juridique",
         formInst: "Veuillez remplir ce formulaire avec précision pour nous permettre d'examiner votre demande.",
-        clientType: "Statut et Localisation du Client *",
-        optLocal: "Résident en Irak (Local)",
-        optIntl: "Client ou Entreprise hors d'Irak (International)",
+        citizenship: "Nationalité / Statut *",
+        optIraqi: "Iraquien (Citoyen)",
+        optForeign: "Étranger (Non-iraquien)",
+        residence: "Résidence Actuelle *",
+        optInside: "Résidant en Irak",
+        optOutside: "Résidant hors d'Irak",
         entityType: "Entité Légale *",
         optIndiv: "Particulier",
         optComp: "Entreprise / Société",
         fullName: "Nom Complet *",
-        fullNameIntl: "Nom Complet / Nom de l'Entreprise *",
         email: "Adresse Email *",
         phone: "Téléphone / WhatsApp *",
         gender: "Genre *",
         male: "Homme",
         female: "Femme",
         age: "Âge *",
-        address: "Adresse de Résidence *",
+        address: "Adresse de Résidence / Pays *",
         education: "Niveau d'Éducation *",
         eduUni: "Diplôme Universitaire ou Supérieur",
         eduHigh: "Lycée",
@@ -547,28 +567,30 @@
         typeOther: "Autre / Général",
         details: "Détails de votre cas ou sujet de consultation *",
         submit: "Soumettre pour Examen Juridique →",
-        successMsg: "Votre demande a été reçue avec succès et est en cours d'examen."
+        successMsg: "Votre demande a été reçue avec succès et est en cours d'examen juridique pendant les heures de travail (sous 24 heures)."
       },
       es: {
         title: "Reservar Consulta - Bufete Ali Kadhem Hashimi",
         back: "Inicio",
         formTitle: "Formulario de Solicitud de Consulta Legal",
         formInst: "Por favor complete este formulario con precisión para permitirnos revisar su solicitud.",
-        clientType: "Ubicación del Cliente *",
-        optLocal: "Residente en Irak (Local)",
-        optIntl: "Cliente o Empresa fuera de Irak (Internacional)",
+        citizenship: "Nacionalidad / Estatus *",
+        optIraqi: "Iraquí (Ciudadano)",
+        optForeign: "Extranjero (No iraquí)",
+        residence: "Residencia Actual *",
+        optInside: "Residente en Irak",
+        optOutside: "Residente fuera de Irak",
         entityType: "Entidad Legal *",
         optIndiv: "Individual",
         optComp: "Empresa / Corporación",
         fullName: "Nombre Completo *",
-        fullNameIntl: "Nombre Completo / Nombre de la Empresa *",
         email: "Correo Electrónico *",
         phone: "Teléfono / WhatsApp *",
         gender: "Género *",
         male: "Masculino",
         female: "Femenino",
         age: "Edad *",
-        address: "Dirección de Residencia *",
+        address: "Dirección de Residencia / País *",
         education: "Nivel Educativo *",
         eduUni: "Título Universitario o de Posgrado",
         eduHigh: "Secundaria",
@@ -591,28 +613,30 @@
         typeOther: "Otro / General",
         details: "Detalles de su caso o tema de consulta *",
         submit: "Enviar Solicitud para Revisión Legal →",
-        successMsg: "Su solicitud ha sido recibida con éxito y está bajo revisión legal."
+        successMsg: "Su solicitud ha sido recibida y está bajo revisión legal en horario laboral (dentro de las 24 horas)."
       },
       de: {
         title: "Beratung buchen - Kanzlei Ali Kadhem Hashimi",
         back: "Startseite",
         formTitle: "Anfrageformular für Rechtsberatung",
         formInst: "Bitte füllen Sie dieses Formular genau aus.",
-        clientType: "Mandantenstatus *",
-        optLocal: "Mit Wohnsitz im Irak (Lokal)",
-        optIntl: "Mandant oder Unternehmen außerhalb des Iraks (International)",
+        citizenship: "Staatsangehörigkeit / Status *",
+        optIraqi: "Irakisch (Bürger)",
+        optForeign: "Ausländer (Nicht-Iraker)",
+        residence: "Aktueller Wohnsitz *",
+        optInside: "Mit Wohnsitz im Irak",
+        optOutside: "Mit Wohnsitz außerhalb des Iraks",
         entityType: "Rechtsträger *",
         optIndiv: "Einzelperson",
         optComp: "Unternehmen / Körperschaft",
         fullName: "Vollständiger Name *",
-        fullNameIntl: "Vollständiger Name / Firmenname *",
         email: "E-Mail-Adresse *",
         phone: "Telefon / WhatsApp *",
         gender: "Geschlecht *",
         male: "Männlich",
         female: "Weiblich",
         age: "Alter *",
-        address: "Wohnanschrift *",
+        address: "Wohnanschrift / Land *",
         education: "Bildungsstand *",
         eduUni: "Universitäts- oder Postgraduiertenabschluss",
         eduHigh: "Schulabschluss",
@@ -635,28 +659,30 @@
         typeOther: "Sonstige / Allgemeine Beratung",
         details: "Details Ihres Falles *",
         submit: "Anfrage zur rechtlichen Prüfung absenden →",
-        successMsg: "Ihre Anfrage wurde erfolgreich empfangen und wird geprüft."
+        successMsg: "Ihre Anfrage wurde erfolgreich empfangen und wird innerhalb der Geschäftszeiten (innerhalb von 24 Stunden) geprüft."
       },
       ku: {
         title: "چاوپێکەوتنی راوێژکاری - نووسینگەی پارێزەر عەلی کازمی",
         back: "سەرەکی",
         formTitle: "فۆرمی داواکردنی راوێژی یاسایی",
         formInst: "تکایە ئەم فۆرمە پڕبکەرەوە بۆ پێداچوونەوەی داواکارییەکەت.",
-        clientType: "شوێنی کڕیار *",
-        optLocal: "نیشتەجێی ناو عێراق (خۆماڵی)",
-        optIntl: "کۆمپانیا یان کڕیار لە دەرەوەی عێراق (نێودەوڵەتی)",
+        citizenship: "رەگەزنامە / بارودۆخ *",
+        optIraqi: "عێراقی (هاووڵاتی)",
+        optForeign: "بیانی (نا عێراقی)",
+        residence: "شوێنی نیشتەجێبوونی ئێستا *",
+        optInside: "نیشتەجێی ناو عێراق",
+        optOutside: "نیشتەجێی دەرەوەی عێراق",
         entityType: "جۆری کەسایەتی *",
         optIndiv: "تاک (کەسی سروشتی)",
         optComp: "کۆمپانیا یان دەزگای بازرگانی",
         fullName: "ناوی تەواو *",
-        fullNameIntl: "ناوی تەواو / ناوی کۆمپانیا *",
         email: "ئیمەیڵ *",
         phone: "ژمارەی مۆبایل / واتساب *",
         gender: "ڕەگەز *",
         male: "نێر",
         female: "مێ",
         age: "تەمەن *",
-        address: "ناونیشانی نیشتەجێبوون *",
+        address: "ناونیشانی نیشتەجێبوون / وڵات *",
         education: "ئاستی خوێندن *",
         eduUni: "بڕوانامەی زانکۆ یان باڵا",
         eduHigh: "ئامادەیی",
@@ -677,9 +703,9 @@
         typeCrim: "داواکاییە سزادانەکان",
         typePers: "بارودۆخی کەسێتی (خێزان، جیابوونەوە)",
         typeOther: "هی تر / ڕاوێژی گشتی",
-        details: "وردەکاری دۆسیە یاخود بابه تی راوێژەکەت *",
+        details: "وردەکاری دۆسیە یاخود بابەتی راوێژەکەت *",
         submit: "ناردنی داواکاری بۆ پێداچوونەوەی یاسایی ←",
-        successMsg: "داواکارییەکەت بە سەرکەوتوویی وەرگیرا و لە ئێستادا لەژێر پێداچوونەوەدایە."
+        successMsg: "داواکارییەکەت بە سەرکەوتوویی وەرگیرا و لە ئێستادا لە کاتی کارکردندا (لە ماوەی ٢٤ کاتژمێردا) لەژێر پێداچوونەوەی یاساییدایە."
       }
     };
 
@@ -694,16 +720,20 @@
       document.getElementById('backBtnText').innerText = "← " + t.back;
       document.getElementById('formMainTitle').innerText = t.formTitle;
       document.getElementById('formInstructions').innerText = t.formInst;
-      document.getElementById('lblClientType').innerText = t.clientType;
-      document.getElementById('optLocal').innerText = t.optLocal;
-      document.getElementById('optIntl').innerText = t.optIntl;
+      
+      document.getElementById('lblCitizenship').innerText = t.citizenship;
+      document.getElementById('optIraqi').innerText = t.optIraqi;
+      document.getElementById('optForeign').innerText = t.optForeign;
+      
+      document.getElementById('lblResidence').innerText = t.residence;
+      document.getElementById('optInside').innerText = t.optInside;
+      document.getElementById('optOutside').innerText = t.optOutside;
+
       document.getElementById('lblEntityType').innerText = t.entityType;
       document.getElementById('optIndiv').innerText = t.optIndiv;
       document.getElementById('optComp').innerText = t.optComp;
       
-      const isIntl = document.querySelector('input[name="clientType"]:checked').value === 'international';
-      document.getElementById('nameLabel').innerText = isIntl ? t.fullNameIntl : t.fullName;
-      
+      document.getElementById('nameLabel').innerText = t.fullName;
       document.getElementById('lblEmail').innerText = t.email;
       document.getElementById('lblPhone').innerText = t.phone;
       document.getElementById('lblGender').innerText = t.gender;
@@ -737,24 +767,6 @@
 
       document.getElementById('lblDetails').innerText = t.details;
       document.getElementById('submitBtnText').innerHTML = t.submit;
-    }
-
-    function switchClientType(type) {
-      const localSec = document.getElementById('localFields');
-      const intlSec = document.getElementById('intlFields');
-      const nameLabel = document.getElementById('nameLabel');
-      const lang = document.getElementById('languageSelect').value;
-      const t = bookingDict[lang] || bookingDict['en'];
-
-      if (type === 'local') {
-        localSec.classList.add('active');
-        intlSec.classList.remove('active');
-        nameLabel.innerText = t.fullName;
-      } else {
-        localSec.classList.remove('active');
-        intlSec.classList.add('active');
-        nameLabel.innerText = t.fullNameIntl;
-      }
     }
 
     document.getElementById('consultationForm').addEventListener('submit', function(e) {
