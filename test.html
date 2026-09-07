@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>اختبار الهيدر</title>
+  <title>مكتب المحامي علي كاظم</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Cairo', sans-serif; background: #f8fafc; }
 
-    /* هيدر مطابق تماماً لنسق المنصات العالمية */
+    /* الهيدر الأزرق الليلي المطابق لأسلوب iCover */
     .icover-header {
       background: #070f1e;
       border-bottom: 2px solid #c5a059;
-      padding: 10px 20px;
+      padding: 12px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -40,7 +40,7 @@
 
     .brand-name {
       color: #ffffff;
-      font-size: 13px;
+      font-size: 13.5px;
       font-weight: 800;
       line-height: 1.2;
     }
@@ -51,20 +51,62 @@
       font-weight: 600;
     }
 
-    .header-right {
+    /* زر القائمة (الثلاث شخطات) */
+    .menu-toggle {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      width: 40px;
+      height: 40px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 20px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .menu-toggle:hover {
+      background: rgba(255, 255, 255, 0.15);
     }
 
-    .btn-action-top {
-      background: #d32f2f;
+    /* القائمة المنسدلة التي تفتح بالضغط على الـ 3 شخطات */
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      left: 0;
+      background: #070f1e;
+      border-bottom: 2px solid #c5a059;
+      display: none;
+      flex-direction: column;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    }
+
+    .dropdown-menu.active {
+      display: flex;
+    }
+
+    .dropdown-menu a {
       color: #ffffff;
-      padding: 7px 14px;
-      border-radius: 4px;
-      font-size: 12.5px;
-      font-weight: 700;
+      padding: 15px 20px;
       text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      transition: background 0.2s;
+    }
+
+    .dropdown-menu a:hover {
+      background: rgba(197, 160, 89, 0.15);
+      color: #c5a059;
+    }
+
+    /* مساحة تجريبية تحت الهيدر لنتاكد من السكرول (التمرير) */
+    .test-content {
+      padding: 40px 20px;
+      text-align: center;
+      color: #64748b;
     }
   </style>
 </head>
@@ -74,14 +116,36 @@
     <a href="test.html" class="brand-box">
       <img src="1000019530.jpg" alt="AKH Logo" class="brand-logo" onerror="this.style.display='none'">
       <div class="brand-name">
-        مكتب المحامي علي كاظم الهاشمي
+        مكتب المحامي علي كاظم
         <span>AKH LAW OFFICE</span>
       </div>
     </a>
-    <div class="header-right">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdVxyld_U5Mdp-4RLcuA8HdQvAvlYWdd1fiQ8QAavwJj_Ev7w/viewform" target="_blank" class="btn-action-top">حجز موعد</a>
+
+    <!-- زر الثلاث شخطات -->
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="القائمة الرئيسية">
+      ☰
+    </button>
+
+    <!-- القائمة المنسدلة -->
+    <div id="dropdownMenu" class="dropdown-menu">
+      <a href="test.html">الرئيسية</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdVxyld_U5Mdp-4RLcuA8HdQvAvlYWdd1fiQ8QAavwJj_Ev7w/viewform" target="_blank">حجز موعد استشارة</a>
+      <a href="#services">الخدمات القانونية والتبويبات</a>
+      <a href="https://wa.me/9647702956021" target="_blank">محادثة واتساب</a>
     </div>
   </header>
+
+  <div class="test-content">
+    <h2>اختبر التمرير (السكرول) والقائمة من هنا 👇</h2>
+    <p>هذه مساحة تجريبية لتتأكد أن الصفحة تنزل وتصعد بسلاسة، وأن الهيدر ثابت في الأعلى.</p>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('dropdownMenu');
+      menu.classList.toggle('active');
+    }
+  </script>
 
 </body>
 </html>
