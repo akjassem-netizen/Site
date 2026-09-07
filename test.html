@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>مكتب المحامي علي كاظم الهاشمي</title>
+  <title id="pageTitle">مكتب المحامي علي كاظم الهاشمي</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -323,6 +323,7 @@
 
     const dictionary = {
       ar: {
+        pageTitle: "مكتب المحامي علي كاظم الهاشمي",
         home: "الرئيسية",
         menuRep: "التمثيل القضائي والخدمات",
         bookConsult: "حجز موعد استشارة",
@@ -338,6 +339,7 @@
         sec2Btn: "قراءة المزيد ←"
       },
       en: {
+        pageTitle: "Law Office of Ali Kadhem Hashimi",
         home: "Home",
         menuRep: "Judicial Representation & Services",
         bookConsult: "Book Consultation",
@@ -353,6 +355,7 @@
         sec2Btn: "Read More →"
       },
       tr: {
+        pageTitle: "Av. Ali Kazım Haşimi Hukuk Bürosu",
         home: "Ana Sayfa",
         menuRep: "Yargı Temsilciliği ve Hizmetler",
         bookConsult: "Danışmanlık Randevusu",
@@ -368,6 +371,7 @@
         sec2Btn: "Devamını Oku →"
       },
       zh: {
+        pageTitle: "阿里·卡德姆·哈希米律所",
         home: "首页",
         menuRep: "司法代理与服务",
         bookConsult: "预约咨询",
@@ -383,6 +387,7 @@
         sec2Btn: "阅读更多 →"
       },
       fr: {
+        pageTitle: "Cabinet d'Avocats Ali Kadhem Hashimi",
         home: "Accueil",
         menuRep: "Représentation Judiciaire & Services",
         bookConsult: "Réserver une Consultation",
@@ -398,6 +403,7 @@
         sec2Btn: "Lire Plus →"
       },
       es: {
+        pageTitle: "Bufete de Abogados Ali Kadhem Hashimi",
         home: "Inicio",
         menuRep: "Representación Judicial y Servicios",
         bookConsult: "Reservar Consulta",
@@ -413,6 +419,7 @@
         sec2Btn: "Leer Más →"
       },
       de: {
+        pageTitle: "Anwaltskanzlei Ali Kadhem Hashimi",
         home: "Startseite",
         menuRep: "Gerichtliche Vertretung & Dienste",
         bookConsult: "Beratung buchen",
@@ -428,6 +435,7 @@
         sec2Btn: "Mehr lesen →"
       },
       ku: {
+        pageTitle: "نووسینگەی پارێزەر عەلی کازمی هاشمی",
         home: "سەرەکی",
         menuRep: "نوێنەرایەتی دادوەری و خزمەتگوزاری",
         bookConsult: "چاوپێکەوتنی راوێژکاری",
@@ -451,6 +459,7 @@
 
       const t = dictionary[lang] || dictionary['en'];
 
+      document.getElementById('pageTitle').innerText = t.pageTitle;
       document.getElementById('menuHome').innerText = t.home;
       document.getElementById('menuRep').innerText = t.menuRep;
       document.getElementById('menuBook').innerText = t.bookConsult;
