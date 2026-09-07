@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" id="htmlRoot">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +9,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Cairo', sans-serif; background: #f8fafc; color: #1e293b; }
 
-    /* الهيدر التنفيذي تماماً مثل نسق iCover */
+    /* الهيدر التنفيذي */
     .icover-header {
       background: #070f1e;
       border-bottom: 2px solid #c5a059;
@@ -28,10 +28,10 @@
       text-decoration: none;
     }
 
-    /* إطار أبيض فاخر للشعار يضمن ظهوره بوضوح تام على الخلفية الداكنة */
+    /* إطار الشعار الحقيقي */
     .logo-frame {
       background: #ffffff;
-      padding: 4px 8px;
+      padding: 3px 6px;
       border-radius: 6px;
       display: flex;
       align-items: center;
@@ -40,7 +40,7 @@
     }
 
     .brand-logo-img {
-      height: 35px;
+      height: 34px;
       width: auto;
       object-fit: contain;
       display: block;
@@ -52,16 +52,18 @@
       gap: 8px;
     }
 
+    /* زر حجز الموعد الذي يتغير مع اللغة */
     .btn-booking {
       background: #ffffff;
       color: #070f1e;
       border: 1px solid #c5a059;
-      padding: 6px 12px;
+      padding: 6px 14px;
       border-radius: 6px;
       font-size: 12px;
       font-weight: 700;
       text-decoration: none;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: background 0.2s;
     }
     .btn-booking:hover { background: #f1f5f9; }
 
@@ -79,7 +81,7 @@
       justify-content: center;
     }
 
-    /* القائمة المنسدلة (الثلاث شخطات) */
+    /* القائمة المنسدلة */
     .dropdown-menu {
       position: absolute;
       top: 100%;
@@ -102,7 +104,7 @@
     }
     .dropdown-menu a:hover { background: rgba(197, 160, 89, 0.15); color: #c5a059; }
 
-    /* مستطيل اختيار اللغة المطابق لطلبك */
+    /* مستطيل اختيار اللغة */
     .lang-container {
       max-width: 650px;
       margin: 30px auto 20px;
@@ -146,27 +148,28 @@
   <header class="icover-header">
     <a href="test.html" class="brand-box">
       <div class="logo-frame">
-        <img src="1000019530.jpg" alt="AKH Logo" class="brand-logo-img">
+        <img src="1000019530.jpg" alt="Logo" class="brand-logo-img">
       </div>
     </a>
 
     <div class="header-left">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdVxyld_U5Mdp-4RLcuA8HdQvAvlYWdd1fiQ8QAavwJj_Ev7w/viewform" target="_blank" class="btn-booking">حجز موعد</a>
+      <!-- زر الحجز مع إيدي (ID) ليتم ترجمته برمجياً -->
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdVxyld_U5Mdp-4RLcuA8HdQvAvlYWdd1fiQ8QAavwJj_Ev7w/viewform" target="_blank" class="btn-booking" id="bookingBtnText">حجز موعد</a>
       <button class="menu-toggle" onclick="toggleMenu()" aria-label="القائمة">☰</button>
     </div>
 
     <div id="dropdownMenu" class="dropdown-menu">
-      <a href="test.html">الرئيسية</a>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdVxyld_U5Mdp-4RLcuA8HdQvAvlYWdd1fiQ8QAavwJj_Ev7w/viewform" target="_blank">حجز موعد استشارة</a>
-      <a href="https://wa.me/9647702956021" target="_blank">محادثة واتساب</a>
+      <a href="test.html" id="menuHome">الرئيسية</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdVxyld_U5Mdp-4RLcuA8HdQvAvlYWdd1fiQ8QAavwJj_Ev7w/viewform" target="_blank" id="menuBook">حجز موعد استشارة</a>
+      <a href="https://wa.me/9647702956021" target="_blank" id="menuWhatsapp">محادثة واتساب</a>
     </div>
   </header>
 
   <!-- مستطيل اختيار اللغة -->
   <div class="lang-container">
     <div class="lang-card-box">
-      <span class="lang-label">اختر اللغة / Select Language</span>
-      <select class="lang-select-box" onchange="alert('تم اختيار اللغة: ' + this.value)">
+      <span class="lang-label" id="langLabelText">اختر اللغة / Select Language</span>
+      <select class="lang-select-box" id="languageSelect" onchange="changeLanguage(this.value)">
         <option value="ar">العربية (Arabic)</option>
         <option value="en">English</option>
         <option value="tr">Türkçe</option>
@@ -183,6 +186,29 @@
     function toggleMenu() {
       const menu = document.getElementById('dropdownMenu');
       menu.classList.toggle('active');
+    }
+
+    function changeLanguage(lang) {
+      const root = document.getElementById('htmlRoot');
+      root.setAttribute('lang', lang);
+      root.setAttribute('dir', (lang === 'ar' || lang === 'ku') ? 'rtl' : 'ltr');
+
+      const bookingBtn = document.getElementById('bookingBtnText');
+      const menuHome = document.getElementById('menuHome');
+      const menuBook = document.getElementById('menuBook');
+      const menuWhatsapp = document.getElementById('menuWhatsapp');
+
+      if (lang === 'en') {
+        bookingBtn.innerText = "Book Appointment";
+        menuHome.innerText = "Home";
+        menuBook.innerText = "Book Consultation";
+        menuWhatsapp.innerText = "WhatsApp Chat";
+      } else {
+        bookingBtn.innerText = "حجز موعد";
+        menuHome.innerText = "الرئيسية";
+        menuBook.innerText = "حجز موعد استشارة";
+        menuWhatsapp.innerText = "محادثة واتساب";
+      }
     }
   </script>
 
