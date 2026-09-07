@@ -9,7 +9,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Cairo', sans-serif; background: #f8fafc; color: #070f1e; }
 
-    /* الهيدر التنفيذي الفخم (يضم اختيار اللغة وزر الحجز والقائمة في الأعلى) */
+    /* الهيدر التنفيذي الفخم */
     .icover-header {
       background: #070f1e;
       border-bottom: 2px solid #c5a059;
@@ -100,7 +100,7 @@
     }
     .dropdown-menu a:hover { background: rgba(197, 160, 89, 0.15); color: #c5a059; }
 
-    /* الكفر الفخم (Hero Section) - يضم الشعار والهوية بشكل مستطيل بارز وفخم */
+    /* الكفر الفخم (Hero Section) */
     .hero-cover-section {
       max-width: 650px;
       margin: 25px auto 40px;
@@ -111,34 +111,26 @@
       background: #ffffff;
       border: 1.5px solid #cbd5e1;
       border-radius: 14px;
-      padding: 30px 24px;
+      padding: 35px 24px;
       box-shadow: 0 6px 25px rgba(0,0,0,0.05);
       border-top: 5px solid #070f1e;
       text-align: right;
     }
 
-    /* الشعار البارز داخل الكفر */
-    .hero-logo-container {
-      margin-bottom: 20px;
-      display: inline-block;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      padding: 6px 14px;
-      border-radius: 8px;
+    /* حاوية الشعار الحقيقي (مدمجة بسلاسة مع البياض وبدون مربعات حادة) */
+    .hero-logo-wrapper {
+      margin-bottom: 22px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid #e2e8f0;
     }
 
-    .logo-akh {
-      font-size: 20px;
-      font-weight: 900;
-      letter-spacing: 1.5px;
-      color: #070f1e;
-      font-family: Arial, sans-serif;
-      line-height: 1.1;
+    .hero-logo-img {
+      width: 100%;
+      max-width: 210px;
+      height: auto;
+      object-fit: contain;
+      display: block;
     }
-    .logo-akh span { color: #d32f2f; }
-    .logo-sub { font-size: 8px; font-weight: 800; color: #070f1e; letter-spacing: 0.5px; }
-    .logo-sub span { color: #d32f2f; }
-    .logo-est { font-size: 6px; color: #64748b; font-weight: 600; letter-spacing: 0.5px; }
 
     .hero-title {
       font-size: 24px;
@@ -178,7 +170,7 @@
 </head>
 <body>
 
-  <!-- الهيدر التنفيذي (يحتوي على اختيار اللغة في الأعلى) -->
+  <!-- الهيدر التنفيذي (اختيار اللغة، زر الحجز، القائمة) -->
   <header class="icover-header">
     <div class="header-right">
       <select id="languageSelect" class="lang-select-top" onchange="changeLanguage(this.value)">
@@ -205,13 +197,11 @@
     </div>
   </header>
 
-  <!-- الكفر الفخم (Hero Section يضم الشعار والهوية بداخل المستطيل) -->
+  <!-- الكفر الفخم (Hero Section) ويحتوي على صورة الشعار الحقيقية المندمجة مع البياض -->
   <section class="hero-cover-section">
     <div class="hero-box">
-      <div class="hero-logo-container">
-        <div class="logo-akh">A<span>K</span>H</div>
-        <div class="logo-sub"><span>/</span> LAW OFFICE</div>
-        <div class="logo-est">EST. 2014</div>
+      <div class="hero-logo-wrapper">
+        <img src="1000019530.jpg" alt="AKH Law Office Logo" class="hero-logo-img">
       </div>
 
       <h1 class="hero-title" id="heroTitleText">مكتب المحامي علي كاظم الهاشمي</h1>
@@ -229,7 +219,6 @@
       menu.classList.toggle('active');
     }
 
-    // قاموس الترجمة الشامل لكافة اللغات الثمانية
     const dictionary = {
       ar: {
         booking: "حجز موعد",
