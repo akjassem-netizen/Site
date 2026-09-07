@@ -9,11 +9,11 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Cairo', sans-serif; background: #f8fafc; color: #1e293b; }
 
-    /* الهيدر التنفيذي */
+    /* الهيدر التنفيذي (بالشعار فقط تماماً مثل iCover) */
     .icover-header {
       background: #070f1e;
       border-bottom: 2px solid #c5a059;
-      padding: 12px 16px;
+      padding: 10px 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -25,31 +25,16 @@
     .brand-box {
       display: flex;
       align-items: center;
-      gap: 10px;
       text-decoration: none;
     }
 
-    .brand-logo {
-      width: 38px;
+    /* الشعار فقط بدون نص إضافي */
+    .brand-logo-img {
       height: 38px;
-      object-fit: cover;
+      object-fit: contain;
       background: #ffffff;
       border-radius: 4px;
-      border: 1px solid #c5a059;
       padding: 2px;
-    }
-
-    .brand-name {
-      color: #ffffff;
-      font-size: 13px;
-      font-weight: 800;
-      line-height: 1.2;
-    }
-    .brand-name span {
-      display: block;
-      font-size: 10px;
-      color: #c5a059;
-      font-weight: 600;
     }
 
     .header-left {
@@ -108,7 +93,7 @@
     }
     .dropdown-menu a:hover { background: rgba(197, 160, 89, 0.15); color: #c5a059; }
 
-    /* مستطيل اختيار اللغة المطابق لصفحة الآراء القانونية */
+    /* مستطيل اختيار اللغة المطابق لطلبك */
     .lang-container {
       max-width: 650px;
       margin: 30px auto 20px;
@@ -148,14 +133,10 @@
 </head>
 <body>
 
-  <!-- الهيدر -->
+  <!-- الهيدر (الشعار فقط بدون نص باليمين) -->
   <header class="icover-header">
     <a href="test.html" class="brand-box">
-      <img src="1000019530.jpg" alt="AKH Logo" class="brand-logo" onerror="this.style.display='none'">
-      <div class="brand-name">
-        مكتب المحامي علي كاظم الهاشمي
-        <span>AKH LAW OFFICE</span>
-      </div>
+      <img src="1000019530.jpg" alt="AKH Logo" class="brand-logo-img" onerror="this.style.display='none'">
     </a>
 
     <div class="header-left">
@@ -170,7 +151,7 @@
     </div>
   </header>
 
-  <!-- مستطيل اختيار اللغة (بننسق الآراء القانونية) -->
+  <!-- مستطيل اختيار اللغة -->
   <div class="lang-container">
     <div class="lang-card-box">
       <span class="lang-label">اختر اللغة / Select Language</span>
