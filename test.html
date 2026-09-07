@@ -9,7 +9,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Cairo', sans-serif; background: #f8fafc; color: #1e293b; }
 
-    /* الهيدر التنفيذي (بالشعار فقط تماماً مثل iCover) */
+    /* الهيدر التنفيذي المطابق تماماً لنسق iCover */
     .icover-header {
       background: #070f1e;
       border-bottom: 2px solid #c5a059;
@@ -28,13 +28,20 @@
       text-decoration: none;
     }
 
-    /* الشعار فقط بدون نص إضافي */
-    .brand-logo-img {
-      height: 38px;
-      object-fit: contain;
+    /* إطار أبيض فاخر للشعار لضمان ظهوره بشكل بارز ونظيف على الخلفية الداكنة */
+    .logo-frame {
       background: #ffffff;
-      border-radius: 4px;
-      padding: 2px;
+      padding: 4px 8px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .brand-logo-img {
+      height: 35px;
+      object-fit: contain;
+      display: block;
     }
 
     .header-left {
@@ -70,7 +77,7 @@
       justify-content: center;
     }
 
-    /* القائمة المنسدلة */
+    /* القائمة المنسدلة (الثلاث شخطات) */
     .dropdown-menu {
       position: absolute;
       top: 100%;
@@ -133,10 +140,12 @@
 </head>
 <body>
 
-  <!-- الهيدر (الشعار فقط بدون نص باليمين) -->
+  <!-- الهيدر التنفيذي (بالشعار داخل إطار أبيض نظيف) -->
   <header class="icover-header">
     <a href="test.html" class="brand-box">
-      <img src="1000019530.jpg" alt="AKH Logo" class="brand-logo-img" onerror="this.style.display='none'">
+      <div class="logo-frame">
+        <img src="1000019530_3.jpg" alt="AKH Law Office Logo" class="brand-logo-img" onerror="this.src='1000019530.jpg'">
+      </div>
     </a>
 
     <div class="header-left">
