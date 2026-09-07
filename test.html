@@ -9,11 +9,11 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Cairo', sans-serif; background: #ffffff; color: #070f1e; }
 
-    /* الهيدر التنفيذي */
+    /* الهيدر التنفيذي الفخم */
     .icover-header {
       background: #070f1e;
       border-bottom: 2px solid #c5a059;
-      padding: 10px 16px;
+      padding: 8px 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -28,28 +28,18 @@
       text-decoration: none;
     }
 
-    /* الشعار المصمم برمجياً */
-    .logo-code-box {
+    /* الشعار الممتد أفقياً ليملأ ارتفاع الهيدر بشكل فخم وبارز */
+    .brand-logo-img {
+      height: 42px;
+      width: auto;
+      max-width: 160px;
+      object-fit: contain;
       background: #ffffff;
       padding: 3px 8px;
       border-radius: 4px;
-      text-align: center;
-      line-height: 1.15;
       box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      display: block;
     }
-
-    .logo-akh {
-      font-size: 17px;
-      font-weight: 900;
-      letter-spacing: 1px;
-      color: #070f1e;
-      font-family: Arial, sans-serif;
-    }
-
-    .logo-akh span { color: #d32f2f; }
-    .logo-sub { font-size: 7px; font-weight: 800; color: #070f1e; letter-spacing: 0.5px; }
-    .logo-sub span { color: #d32f2f; }
-    .logo-est { font-size: 5.5px; color: #64748b; font-weight: 600; letter-spacing: 0.5px; }
 
     .header-left {
       display: flex;
@@ -140,7 +130,7 @@
       font-family: 'Cairo', sans-serif;
     }
 
-    /* الكفر الفخم (Hero Section) مطابق لنسق المنصات العالمية */
+    /* الكفر الفخم (Hero Section) */
     .hero-cover-section {
       max-width: 650px;
       margin: 20px auto 40px;
@@ -171,7 +161,6 @@
       margin-bottom: 25px;
     }
 
-    /* زر تفاعلي فخم بنفس أسلوب iCover مع سهم */
     .hero-cta-btn {
       display: inline-flex;
       align-items: center;
@@ -198,11 +187,8 @@
   <!-- الهيدر التنفيذي -->
   <header class="icover-header">
     <a href="test.html" class="brand-box">
-      <div class="logo-code-box">
-        <div class="logo-akh">A<span>K</span>H</div>
-        <div class="logo-sub"><span>/</span> LAW OFFICE</div>
-        <div class="logo-est">EST. 2014</div>
-      </div>
+      <!-- الشعار الحقيقي بصيغة أفقية ممتدة تملأ الهيدر -->
+      <img src="1000019530.jpg" alt="AKH Logo" class="brand-logo-img" onerror="this.style.display='none'">
     </a>
 
     <div class="header-left">
@@ -217,7 +203,7 @@
     </div>
   </header>
 
-  <!-- شريط اختيار اللغة الرفيع -->
+  <!-- شريط اختيار اللغة -->
   <div class="lang-container">
     <div class="lang-card-box">
       <span class="lang-label" id="langLabelText">اختر اللغة / Select Language</span>
@@ -234,7 +220,7 @@
     </div>
   </div>
 
-  <!-- الكفر الفخم (Hero Section) -->
+  <!-- الكفر الفخم -->
   <section class="hero-cover-section">
     <div class="hero-box">
       <h1 class="hero-title" id="heroTitleText">مكتب المحامي علي كاظم الهاشمي</h1>
@@ -251,39 +237,105 @@
       menu.classList.toggle('active');
     }
 
+    // قاموس ترجمة شامل لكافة اللغات الثمانية لضمان عملها بشكل كامل
+    const dictionary = {
+      ar: {
+        booking: "حجز موعد",
+        home: "الرئيسية",
+        bookConsult: "حجز موعد استشارة",
+        whatsapp: "محادثة واتساب",
+        langPrompt: "اختر اللغة / Select Language",
+        title: "مكتب المحامي علي كاظم الهاشمي",
+        subtitle: "تمثيل قانوني رصين واستشارات تخصصية للشركات والأفراد برؤية مهنية ودقيقة من قلب العاصمة بغداد.",
+        cta: "حجز موعد استشارة ←"
+      },
+      en: {
+        booking: "Book Appointment",
+        home: "Home",
+        bookConsult: "Book Consultation",
+        whatsapp: "WhatsApp Chat",
+        langPrompt: "Select Language / اختر اللغة",
+        title: "Law Office of Ali Kadhem Hashimi",
+        subtitle: "Reliable legal representation and specialized advisory for corporations and individuals with a professional vision from Baghdad.",
+        cta: "Book Consultation →"
+      },
+      tr: {
+        booking: "Randevu Al",
+        home: "Ana Sayfa",
+        bookConsult: "Danışmanlık Randevusu",
+        whatsapp: "WhatsApp Sohbet",
+        langPrompt: "Dil Seçin / Select Language",
+        title: "Av. Ali Kazım Haşimi Hukuk Bürosu",
+        subtitle: "Bağdat'ın kalbinden profesyonel bir vizyonla şirketler ve bireyler için güvenilir hukuki temsil ve uzman danışmanlık.",
+        cta: "Randevu Al →"
+      },
+      zh: {
+        booking: "预约",
+        home: "首页",
+        bookConsult: "预约咨询",
+        whatsapp: "WhatsApp 聊天",
+        langPrompt: "选择语言 / Select Language",
+        title: "阿里·卡德姆·哈希米律所",
+        subtitle: "立足巴格达，以专业严谨的视角为企业和个人提供可靠的法律代理与 specialized 咨询服务。",
+        cta: "预约咨询 →"
+      },
+      fr: {
+        booking: "Prendre Rendez-vous",
+        home: "Accueil",
+        bookConsult: "Réserver une Consultation",
+        whatsapp: "Discussion WhatsApp",
+        langPrompt: "Sélectionner la Langue",
+        title: "Cabinet d'Avocats Ali Kadhem Hashimi",
+        subtitle: "Représentation juridique fiable et conseil spécialisé pour les entreprises et les particuliers depuis Bagdad.",
+        cta: "Réserver →"
+      },
+      es: {
+        booking: "Reservar Cita",
+        home: "Inicio",
+        bookConsult: "Reservar Consulta",
+        whatsapp: "Chat de WhatsApp",
+        langPrompt: "Seleccionar Idioma",
+        title: "Bufete de Abogados Ali Kadhem Hashimi",
+        subtitle: "Representación legal confiable y asesoría especializada para corporaciones e individuos desde Bagdad.",
+        cta: "Reservar Consulta →"
+      },
+      de: {
+        booking: "Termin buchen",
+        home: "Startseite",
+        bookConsult: "Beratung buchen",
+        whatsapp: "WhatsApp Chat",
+        langPrompt: "Sprache auswählen",
+        title: "Anwaltskanzlei Ali Kadhem Hashimi",
+        subtitle: "Zuverlässige rechtliche Vertretung und spezialisierte Beratung für Unternehmen und Privatpersonen aus Bagdad.",
+        cta: "Beratung buchen →"
+      },
+      ku: {
+        booking: "تۆمارکردنی چاوپێکەوتن",
+        home: "سەرەکی",
+        bookConsult: "چاوپێکەوتنی راوێژکاری",
+        whatsapp: "وه‌تسئاپ چات",
+        langPrompt: "زمان هەڵبژێرە / Select Language",
+        title: "نووسینگەی پارێزەر عەلی کازمی هاشمی",
+        subtitle: "نوێنەرایەتی یاسایی متمانەپێکراو و راوێژی تایبەتمەند بۆ کۆمپانیاکان و تاکەکان لە دڵی بەغدادەوە.",
+        cta: "چاوپێکەوتن تۆماربکە ←"
+      }
+    };
+
     function changeLanguage(lang) {
       const root = document.getElementById('htmlRoot');
       root.setAttribute('lang', lang);
       root.setAttribute('dir', (lang === 'ar' || lang === 'ku') ? 'rtl' : 'ltr');
 
-      const bookingBtn = document.getElementById('bookingBtnText');
-      const menuHome = document.getElementById('menuHome');
-      const menuBook = document.getElementById('menuBook');
-      const menuWhatsapp = document.getElementById('menuWhatsapp');
-      
-      const heroTitle = document.getElementById('heroTitleText');
-      const heroSubtitle = document.getElementById('heroSubtitleText');
-      const heroCta = document.getElementById('heroCtaText');
+      const t = dictionary[lang] || dictionary['en'];
 
-      if (lang === 'en') {
-        bookingBtn.innerText = "Book Appointment";
-        menuHome.innerText = "Home";
-        menuBook.innerText = "Book Consultation";
-        menuWhatsapp.innerText = "WhatsApp Chat";
-        
-        heroTitle.innerText = "Law Office of Ali Kadhem Hashimi";
-        heroSubtitle.innerText = "Reliable legal representation and specialized advisory for corporations and individuals with a professional vision from Baghdad.";
-        heroCta.innerText = "Book Consultation →";
-      } else {
-        bookingBtn.innerText = "حجز موعد";
-        menuHome.innerText = "الرئيسية";
-        menuBook.innerText = "حجز موعد استشارة";
-        menuWhatsapp.innerText = "محادثة واتساب";
-        
-        heroTitle.innerText = "مكتب المحامي علي كاظم الهاشمي";
-        heroSubtitle.innerText = "تمثيل قانوني رصين واستشارات تخصصية للشركات والأفراد برؤية مهنية ودقيقة من قلب العاصمة بغداد.";
-        heroCta.innerText = "حجز موعد استشارة ←";
-      }
+      document.getElementById('bookingBtnText').innerText = t.booking;
+      document.getElementById('menuHome').innerText = t.home;
+      document.getElementById('menuBook').innerText = t.bookConsult;
+      document.getElementById('menuWhatsapp').innerText = t.whatsapp;
+      document.getElementById('langLabelText').innerText = t.langPrompt;
+      document.getElementById('heroTitleText').innerText = t.title;
+      document.getElementById('heroSubtitleText').innerText = t.subtitle;
+      document.getElementById('heroCtaText').innerText = t.cta;
     }
   </script>
 
