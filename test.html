@@ -7,75 +7,107 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Cairo', sans-serif; background: #f8fafc; color: #070f1e; }
+    body { font-family: 'Cairo', sans-serif; background: #0b132b; color: #ffffff; }
 
-    /* الهيدر التنفيذي الفخم */
+    /* الهيدر التنفيذي العالمي الفخم */
     .icover-header {
       background: #070f1e;
-      border-bottom: 2px solid #c5a059;
-      padding: 10px 16px;
+      border-bottom: 2.5px solid #c5a059;
+      padding: 14px 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: sticky;
       top: 0;
       z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
     }
 
     .header-right {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 14px;
     }
 
-    /* شريط اختيار اللغة في الأعلى */
-    .lang-select-top {
-      padding: 6px 10px;
+    /* الشعار المصغر الأنيق داخل الشريط الأزرق العلوي */
+    .header-brand-box {
+      background: #ffffff;
+      padding: 5px 12px;
       border-radius: 6px;
-      border: 1px solid rgba(255,255,255,0.25);
-      background: rgba(255,255,255,0.08);
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    .hb-text {
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      color: #070f1e;
+      font-family: Arial, sans-serif;
+      line-height: 1.1;
+    }
+    .hb-text span { color: #d32f2f; }
+    .hb-sub {
+      font-size: 6.5px;
+      font-weight: 800;
+      color: #070f1e;
+      letter-spacing: 0.5px;
+    }
+    .hb-sub span { color: #d32f2f; }
+
+    /* شريط اختيار اللغة بتصميم عالمي فاخر */
+    .lang-select-top {
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1px solid rgba(197, 160, 89, 0.4);
+      background: rgba(255, 255, 255, 0.06);
       color: #ffffff;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 700;
       outline: none;
       cursor: pointer;
       font-family: 'Cairo', sans-serif;
+      transition: all 0.2s;
     }
+    .lang-select-top:hover { border-color: #c5a059; background: rgba(255, 255, 255, 0.1); }
     .lang-select-top option { background: #070f1e; color: #fff; }
 
     .header-left {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 12px;
     }
 
     .btn-booking {
-      background: #ffffff;
+      background: #c5a059;
       color: #070f1e;
-      border: 1px solid #c5a059;
-      padding: 6px 14px;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 700;
+      border: none;
+      padding: 9px 20px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 800;
       text-decoration: none;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      transition: background 0.2s;
+      box-shadow: 0 3px 10px rgba(197, 160, 89, 0.3);
+      transition: all 0.2s;
     }
-    .btn-booking:hover { background: #f1f5f9; }
+    .btn-booking:hover { background: #d4af37; transform: translateY(-1px); }
 
     .menu-toggle {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.2);
       color: #ffffff;
-      width: 38px;
-      height: 38px;
-      border-radius: 6px;
+      width: 42px;
+      height: 42px;
+      border-radius: 8px;
       cursor: pointer;
-      font-size: 20px;
+      font-size: 22px;
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: background 0.2s;
     }
+    .menu-toggle:hover { background: rgba(255, 255, 255, 0.15); }
 
     /* القائمة المنسدلة */
     .dropdown-menu {
@@ -84,53 +116,58 @@
       right: 0;
       left: 0;
       background: #070f1e;
-      border-bottom: 2px solid #c5a059;
+      border-bottom: 2.5px solid #c5a059;
       display: none;
       flex-direction: column;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
     }
     .dropdown-menu.active { display: flex; }
     .dropdown-menu a {
       color: #ffffff;
-      padding: 14px 20px;
+      padding: 16px 24px;
       text-decoration: none;
-      font-size: 14px;
-      font-weight: 600;
+      font-size: 15px;
+      font-weight: 700;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      transition: background 0.2s;
     }
     .dropdown-menu a:hover { background: rgba(197, 160, 89, 0.15); color: #c5a059; }
 
-    /* الكفر الفخم (Hero Section) */
+    /* القسم الرئيسي الفخم والبارز جداً (Hero & Legal Advisory Section) */
     .hero-cover-section {
-      max-width: 650px;
-      margin: 25px auto 40px;
-      padding: 0 16px;
+      max-width: 800px;
+      margin: 40px auto 50px;
+      padding: 0 20px;
     }
 
     .hero-box {
       background: #ffffff;
-      border: 1.5px solid #cbd5e1;
-      border-radius: 14px;
-      padding: 35px 24px;
-      box-shadow: 0 6px 25px rgba(0,0,0,0.05);
-      border-top: 5px solid #070f1e;
+      color: #070f1e;
+      border: 2px solid #c5a059;
+      border-radius: 18px;
+      padding: 45px 35px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+      border-top: 8px solid #070f1e;
       text-align: right;
     }
 
-    /* تصميم الشعار البرمجي الممتد أفقياً وبشكل نظيف ومدمج مع البياض */
+    /* حاوية الشعار المثبتة دائماً بوضع LTR كي لا تنقلب الـ Slash بالعربية */
     .hero-logo-banner {
-      display: flex;
+      direction: ltr;
+      unicode-bidi: embed;
+      display: inline-flex;
       flex-direction: column;
       align-items: flex-start;
-      margin-bottom: 24px;
-      padding-bottom: 18px;
-      border-bottom: 1.5px solid #e2e8f0;
+      margin-bottom: 25px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #e2e8f0;
+      width: 100%;
     }
 
     .logo-akh-text {
-      font-size: 26px;
+      font-size: 32px;
       font-weight: 900;
-      letter-spacing: 2px;
+      letter-spacing: 2.5px;
       color: #070f1e;
       font-family: Arial, sans-serif;
       line-height: 1.1;
@@ -138,63 +175,83 @@
     .logo-akh-text span { color: #d32f2f; }
 
     .logo-sub-text {
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 800;
       color: #070f1e;
-      letter-spacing: 1px;
-      margin-top: 4px;
+      letter-spacing: 1.5px;
+      margin-top: 5px;
     }
     .logo-sub-text span { color: #d32f2f; }
 
     .logo-est-text {
-      font-size: 8px;
+      font-size: 9px;
       color: #64748b;
       font-weight: 700;
-      letter-spacing: 1px;
-      margin-top: 2px;
+      letter-spacing: 1.5px;
+      margin-top: 3px;
+    }
+
+    /* عنوان الآراء والهوية القانونية الأكبر بروزاً */
+    .hero-badge {
+      display: inline-block;
+      background: rgba(197, 160, 89, 0.15);
+      color: #8b6b23;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 12.5px;
+      font-weight: 800;
+      margin-bottom: 15px;
+      border: 1px solid rgba(197, 160, 89, 0.3);
     }
 
     .hero-title {
-      font-size: 24px;
+      font-size: 28px;
       font-weight: 900;
       color: #070f1e;
       line-height: 1.35;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
 
     .hero-subtitle {
-      font-size: 14.5px;
-      color: #475569;
-      line-height: 1.8;
-      margin-bottom: 25px;
+      font-size: 16px;
+      color: #334155;
+      line-height: 1.85;
+      margin-bottom: 30px;
+      font-weight: 600;
     }
 
     .hero-cta-btn {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      background: #ffffff;
-      color: #070f1e;
-      border: 1.5px solid #070f1e;
-      padding: 12px 24px;
-      border-radius: 8px;
-      font-size: 14px;
+      gap: 12px;
+      background: #070f1e;
+      color: #ffffff;
+      border: 2px solid #070f1e;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-size: 15px;
       font-weight: 800;
       text-decoration: none;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+      box-shadow: 0 4px 15px rgba(7, 15, 30, 0.3);
       transition: all 0.2s ease;
     }
     .hero-cta-btn:hover {
-      background: #070f1e;
-      color: #ffffff;
+      background: #c5a059;
+      color: #070f1e;
+      border-color: #c5a059;
+      transform: translateY(-2px);
     }
   </style>
 </head>
 <body>
 
-  <!-- الهيدر التنفيذي -->
   <header class="icover-header">
     <div class="header-right">
+      <div class="header-brand-box" dir="ltr">
+        <div class="hb-text">A<span>K</span>H</div>
+        <div class="hb-sub"><span>/</span> LAW OFFICE</div>
+      </div>
+      
       <select id="languageSelect" class="lang-select-top" onchange="changeLanguage(this.value)">
         <option value="ar">العربية</option>
         <option value="en">English</option>
@@ -219,20 +276,20 @@
     </div>
   </header>
 
-  <!-- الكفر الفخم (Hero Section) مع الشعار البرمجي الممتد أفقياً -->
   <section class="hero-cover-section">
     <div class="hero-box">
-      <div class="hero-logo-banner">
+      <div class="hero-logo-banner" dir="ltr">
         <div class="logo-akh-text">A<span>K</span>H</div>
         <div class="logo-sub-text"><span>/</span> LAW OFFICE</div>
         <div class="logo-est-text">EST. 2014</div>
       </div>
 
+      <div class="hero-badge" id="heroBadgeText">استشارات وآراء قانونية متخصصة</div>
       <h1 class="hero-title" id="heroTitleText">مكتب المحامي علي كاظم الهاشمي</h1>
-      <p class="hero-subtitle" id="heroSubtitleText">تمثيل قانوني رصين واستشارات تخصصية للشركات والأفراد برؤية مهنية ودقيقة من قلب العاصمة بغداد.</p>
+      <p class="hero-subtitle" id="heroSubtitleText">نقدم صياغات قانونية دقيقة، تمثيل قضائي رفيع المستوى، وآراء استشارية استراتيجية للشركات والأفراد بمعايير مهنية عالمية من قلب العاصمة بغداد.</p>
       
       <a href="https://docs.google.com/forms/d/e/1FAIpQLSdVxyld_U5Mdp-4RLcuA8HdQvAvlYWdd1fiQ8QAavwJj_Ev7w/viewform" target="_blank" class="hero-cta-btn" id="heroCtaText">
-        حجز موعد استشارة &larr;
+        حجز موعد استشارة قانونية &larr;
       </a>
     </div>
   </section>
@@ -249,72 +306,79 @@
         home: "الرئيسية",
         bookConsult: "حجز موعد استشارة",
         whatsapp: "محادثة واتساب",
+        badge: "استشارات وآراء قانونية متخصصة",
         title: "مكتب المحامي علي كاظم الهاشمي",
-        subtitle: "تمثيل قانوني رصين واستشارات تخصصية للشركات والأفراد برؤية مهنية ودقيقة من قلب العاصمة بغداد.",
-        cta: "حجز موعد استشارة ←"
+        subtitle: "نقدم صياغات قانونية دقيقة، تمثيل قضائي رفيع المستوى، وآراء استشارية استراتيجية للشركات والأفراد بمعايير مهنية عالمية من قلب العاصمة بغداد.",
+        cta: "حجز موعد استشارة قانونية ←"
       },
       en: {
         booking: "Book Appointment",
         home: "Home",
         bookConsult: "Book Consultation",
         whatsapp: "WhatsApp Chat",
+        badge: "Specialized Legal Opinions & Advisory",
         title: "Law Office of Ali Kadhem Hashimi",
-        subtitle: "Reliable legal representation and specialized advisory for corporations and individuals with a professional vision from Baghdad.",
-        cta: "Book Consultation →"
+        subtitle: "Providing precise legal drafting, high-level judicial representation, and strategic advisory for corporations and individuals with global professional standards from Baghdad.",
+        cta: "Book Legal Consultation →"
       },
       tr: {
         booking: "Randevu Al",
         home: "Ana Sayfa",
         bookConsult: "Danışmanlık Randevusu",
         whatsapp: "WhatsApp Sohbet",
+        badge: "Uzman Hukuki Görüşler ve Danışmanlık",
         title: "Av. Ali Kazım Haşimi Hukuk Bürosu",
-        subtitle: "Bağdat'ın kalbinden profesyonel bir vizyonla şirketler ve bireyler için güvenilir hukuki temsil ve uzman danışmanlık.",
-        cta: "Randevu Al →"
+        subtitle: "Bağdat'ın kalbinden uluslararası profesyonel standartlarda şirketler ve bireyler için hassas hukuki taslaklar, üst düzey yargı temsilciliği ve stratejik danışmanlık.",
+        cta: "Hukuki Danışmanlık Randevusu Al →"
       },
       zh: {
         booking: "预约",
         home: "首页",
         bookConsult: "预约咨询",
         whatsapp: "WhatsApp 聊天",
+        badge: "专业法律意见与咨询",
         title: "阿里·卡德姆·哈希米律所",
-        subtitle: "立足巴格达，以专业严谨的视角为企业和个人提供可靠的法律代理与专项咨询服务。",
-        cta: "预约咨询 →"
+        subtitle: "立足巴格达，以全球专业标准为企业和个人提供精准的法律起草、高级司法代理及战略咨询服务。",
+        cta: "预约法律咨询 →"
       },
       fr: {
         booking: "Prendre Rendez-vous",
         home: "Accueil",
         bookConsult: "Réserver une Consultation",
         whatsapp: "Discussion WhatsApp",
+        badge: "Avis Juridiques & Conseils Spécialisés",
         title: "Cabinet d'Avocats Ali Kadhem Hashimi",
-        subtitle: "Représentation juridique fiable et conseil spécialisé pour les entreprises et les particuliers depuis Bagdad.",
-        cta: "Réserver →"
+        subtitle: "Fourniture de rédactions juridiques précises, représentation judiciaire de haut niveau et conseil stratégique pour les entreprises et les particuliers.",
+        cta: "Réserver une Consultation Juridique →"
       },
       es: {
         booking: "Reservar Cita",
         home: "Inicio",
         bookConsult: "Reservar Consulta",
         whatsapp: "Chat de WhatsApp",
+        badge: "Opiniones Jurídicas y Asesoría Especializada",
         title: "Bufete de Abogados Ali Kadhem Hashimi",
-        subtitle: "Representación legal confiable y asesoría especializada para corporaciones e individuos desde Bagdad.",
-        cta: "Reservar Consulta →"
+        subtitle: "Proporcionando redacción legal precisa, representación judicial de alto nivel y asesoría estratégica para corporaciones e individuos.",
+        cta: "Reservar Consulta Legal →"
       },
       de: {
         booking: "Termin buchen",
         home: "Startseite",
         bookConsult: "Beratung buchen",
         whatsapp: "WhatsApp Chat",
+        badge: "Spezialisierte Rechtsgutachten & Beratung",
         title: "Anwaltskanzlei Ali Kadhem Hashimi",
-        subtitle: "Zuverlässige rechtliche Vertretung und spezialisierte Beratung für Unternehmen und Privatpersonen aus Bagdad.",
-        cta: "Beratung buchen →"
+        subtitle: "Bereitstellung präziser Rechtstexte, hochrangiger gerichtlicher Vertretung und strategischer Beratung für Unternehmen und Privatpersonen.",
+        cta: "Rechtsberatung buchen →"
       },
       ku: {
         booking: "تۆمارکردنی چاوپێکەوتن",
         home: "سەرەکی",
         bookConsult: "چاوپێکەوتنی راوێژکاری",
         whatsapp: "وه‌تسئاپ چات",
-        title: "نووسینگەی پارێزەر عەلی کازمی هاشمی",
-        subtitle: "نوێنەرایەتی یاسایی متمانەپێکراو و راوێژی تایبەتمەند بۆ کۆمپانیاکان و تاکەکان لە دڵی بەغدادەوە.",
-        cta: "چاوپێکەوتن تۆماربکە ←"
+        title: "ڕاوێژ و بۆچوونی یاسایی تایبەتمەند",
+        subtitle: "نووسینگەی پارێزەر عەلی کازمی هاشمی",
+        cta: "پێشکەشکردنی داڕشتنی یاسایی ورد، نوێنەرایەتی دادوەری ئاست بەرز، و ڕاوێژی ستراتیژی بۆ کۆمپانیاکان و تاکەکان بە پێوانە پیشەیی جیهانییەکان لە دڵی بەغدادەوە."
       }
     };
 
@@ -329,6 +393,7 @@
       document.getElementById('menuHome').innerText = t.home;
       document.getElementById('menuBook').innerText = t.bookConsult;
       document.getElementById('menuWhatsapp').innerText = t.whatsapp;
+      document.getElementById('heroBadgeText').innerText = t.badge;
       document.getElementById('heroTitleText').innerText = t.title;
       document.getElementById('heroSubtitleText').innerText = t.subtitle;
       document.getElementById('heroCtaText').innerText = t.cta;
