@@ -9,7 +9,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Cairo', sans-serif; background: #f4f6f9; color: #070f1e; scroll-behavior: smooth; }
 
-    /* الهيدر الكلاسيكي الأزرق الفاخر */
+    /* الهيدر التنفيذي الفاخر */
     .icover-header {
       background: #070f1e;
       border-bottom: 3px solid #c5a059;
@@ -60,7 +60,7 @@
     }
     .menu-toggle:hover { background: rgba(197,160,89,0.2); }
 
-    /* القائمة المنسدلة (منضبطة تماماً تحت الزر ومنع overflow) */
+    /* القائمة المنسدلة */
     .dropdown-menu {
       position: absolute;
       top: calc(100% + 10px);
@@ -122,18 +122,18 @@
       text-align: start;
     }
 
-    /* مربع الشعار الأصلي بألوانه الدقيقة (خلفية بيضاء نقية مع الحروف الأصلية) */
+    /* مربع الشعار الأصلي بألوانه الدقيقة والبارزة */
     .brand-logo-box {
       background: #ffffff;
       border: 1.5px solid #e2e8f0;
       border-radius: 14px;
-      padding: 22px;
+      padding: 24px;
       text-align: center;
       margin-bottom: 28px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.03);
     }
     .b-akh {
-      font-size: 40px;
+      font-size: 42px;
       font-weight: 900;
       letter-spacing: 3px;
       color: #070f1e;
@@ -142,19 +142,19 @@
     }
     .b-akh .red-k { color: #d32f2f; }
     .b-sub {
-      font-size: 11.5px;
+      font-size: 12px;
       font-weight: 800;
       color: #070f1e;
       letter-spacing: 1.5px;
-      margin-top: 5px;
+      margin-top: 6px;
     }
     .b-sub .red-slash { color: #d32f2f; }
     .b-est {
-      font-size: 9px;
+      font-size: 9.5px;
       color: #64748b;
       font-weight: 700;
       letter-spacing: 1px;
-      margin-top: 2px;
+      margin-top: 3px;
     }
 
     .hero-title {
@@ -198,7 +198,7 @@
       border-color: #c5a059;
     }
 
-    /* مساحة الأقسام */
+    /* مساحة الأقسام والخدمات الرئيسية */
     .content-sections-area {
       display: flex;
       flex-direction: column;
@@ -228,8 +228,24 @@
       font-size: 15px;
       color: #334155;
       line-height: 1.85;
+      margin-bottom: 20px;
       text-align: start;
     }
+
+    /* زر تفاعلي داخل بطاقات الخدمات للانتقال للصفحات المستقلة */
+    .card-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #070f1e;
+      font-weight: 800;
+      font-size: 14px;
+      text-decoration: none;
+      border-bottom: 2px solid #c5a059;
+      padding-bottom: 3px;
+      transition: color 0.2s;
+    }
+    .card-link-btn:hover { color: #c5a059; }
   </style>
 </head>
 <body>
@@ -251,9 +267,9 @@
 
     <div class="menu-container">
       <button class="menu-toggle" onclick="toggleMenu()" aria-label="القائمة">☰</button>
-      <!-- القائمة المنسدلة المصححة -->
       <div id="dropdownMenu" class="dropdown-menu">
         <a href="test.html" id="menuHome">الرئيسية</a>
+        <a href="representation.html" id="menuRep">التمثيل القضائي والخدمات</a>
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSdVxyld_U5Mdp-4RLcuA8HdQvAvlYWdd1fiQ8QAavwJj_Ev7w/viewform" target="_blank" id="menuBook">حجز موعد استشارة</a>
         <a href="https://wa.me/9647702956021" target="_blank" id="menuWhatsapp">محادثة واتساب</a>
       </div>
@@ -263,7 +279,7 @@
   <!-- التخطيط الشبكي -->
   <main class="main-container">
 
-    <!-- العمود الأيمن: المربع العائم متضمن الشعار بألوانه الأصلية الفخمة -->
+    <!-- العمود الأيمن: المربع العائم متضمن الشعار البارز بالألوان الأصلية -->
     <aside class="sticky-sidebar">
       <section class="hero-box">
         <div class="brand-logo-box" dir="ltr">
@@ -281,17 +297,23 @@
       </section>
     </aside>
 
-    <!-- العمود الأيسر: الأقسام -->
+    <!-- العمود الأيسر: بطاقات الأقسام والخدمات الرئيسية -->
     <section class="content-sections-area">
+      
+      <!-- القسم الأول -->
       <div class="content-card">
         <h3 id="sec1Title">مجالات الاختصاص والخدمات القانونية</h3>
         <p id="sec1Desc">نقدم حزمة متكاملة من الخدمات القانونية تشمل صياغة وتدقيق العقود التجارية المحلية والدولية، التمثيل أمام كافة المحاكم بمختلف درجاتها، تقديم الاستشارات للشركات الاستثمارية، وتسوية النزاعات بالطرق القانونية الرصينة.</p>
+        <a href="representation.html" class="card-link-btn" id="sec1Btn">عرض تفاصيل الخدمة ←</a>
       </div>
 
+      <!-- القسم الثاني -->
       <div class="content-card">
         <h3 id="sec2Title">الرؤية والمنهج المهني</h3>
         <p id="sec2Desc">نلتزم بأعلى معايير السرية المهنية والنزاهة القانونية، مع متابعة المستجدات التشريعية والقضائية لنضمن لعملائنا أفضل النتائج الاستراتيجية ضمن إطار القانون العراقي والدولي.</p>
+        <a href="representation.html" class="card-link-btn" id="sec2Btn">قراءة المزيد ←</a>
       </div>
+
     </section>
 
   </main>
@@ -311,6 +333,7 @@
     const dictionary = {
       ar: {
         home: "الرئيسية",
+        menuRep: "التمثيل القضائي والخدمات",
         bookConsult: "حجز موعد استشارة",
         whatsapp: "محادثة واتساب",
         title: "مكتب المحامي علي كاظم الهاشمي",
@@ -318,11 +341,14 @@
         cta: "حجز موعد استشارة ←",
         sec1Title: "مجالات الاختصاص والخدمات القانونية",
         sec1Desc: "نقدم حزمة متكاملة من الخدمات القانونية تشمل صياغة وتدقيق العقود التجارية المحلية والدولية، التمثيل أمام كافة المحاكم بمختلف درجاتها، تقديم الاستشارات للشركات الاستثمارية، وتسوية النزاعات بالطرق القانونية الرصينة.",
+        sec1Btn: "عرض تفاصيل الخدمة ←",
         sec2Title: "الرؤية والمنهج المهني",
-        sec2Desc: "نلتزم بأعلى معايير السرية المهنية والنزاهة القانونية، مع متابعة المستجدات التشريعية والقضائية لنضمن لعملائنا أفضل النتائج الاستراتيجية ضمن إطار القانون العراقي والدولي."
+        sec2Desc: "نلتزم بأعلى معايير السرية المهنية والنزاهة القانونية، مع متابعة المستجدات التشريعية والقضائية لنضمن لعملائنا أفضل النتائج الاستراتيجية ضمن إطار القانون العراقي والدولي.",
+        sec2Btn: "قراءة المزيد ←"
       },
       en: {
         home: "Home",
+        menuRep: "Judicial Representation & Services",
         bookConsult: "Book Consultation",
         whatsapp: "WhatsApp Chat",
         title: "Law Office of Ali Kadhem Hashimi",
@@ -330,11 +356,14 @@
         cta: "Book Consultation →",
         sec1Title: "Fields of Expertise & Legal Services",
         sec1Desc: "We provide an integrated package of legal services including drafting and reviewing local and international commercial contracts, representation before all courts, corporate advisory, and dispute resolution.",
+        sec1Btn: "View Service Details →",
         sec2Title: "Vision & Professional Approach",
-        sec2Desc: "We are committed to the highest standards of professional confidentiality and legal integrity, keeping pace with legislative and judicial developments to ensure optimal strategic outcomes."
+        sec2Desc: "We are committed to the highest standards of professional confidentiality and legal integrity, keeping pace with legislative and judicial developments to ensure optimal strategic outcomes.",
+        sec2Btn: "Read More →"
       },
       tr: {
         home: "Ana Sayfa",
+        menuRep: "Yargı Temsilciliği ve Hizmetler",
         bookConsult: "Danışmanlık Randevusu",
         whatsapp: "WhatsApp Sohbet",
         title: "Av. Ali Kazım Haşimi Hukuk Bürosu",
@@ -342,11 +371,14 @@
         cta: "Randevu Al →",
         sec1Title: "Uzmanlık Alanları ve Hukuki Hizmetler",
         sec1Desc: "Yerel ve uluslararası ticari sözleşmelerin hazırlanması, mahkemelerde temsil, kurumsal danışmanlık ve uyuşmazlık çözümü dahil olmak üzere kapsamlı hukuki hizmetler sunuyoruz.",
+        sec1Btn: "Hizmet Detaylarını Gör →",
         sec2Title: "Vizyon ve Profesyonel Yaklaşım",
-        sec2Desc: "Müvekkillerimiz için en iyi stratejik sonuçları garanti etmek amacıyla en yüksek mesleki gizlilik ve dürüstlük standartlarına bağlıyız."
+        sec2Desc: "Müvekkillerimiz için en iyi stratejik sonuçları garanti etmek amacıyla en yüksek mesleki gizlilik ve dürüstlük standartlarına bağlıyız.",
+        sec2Btn: "Devamını Oku →"
       },
       zh: {
         home: "首页",
+        menuRep: "司法代理与服务",
         bookConsult: "预约咨询",
         whatsapp: "WhatsApp 聊天",
         title: "阿里·卡德姆·哈希米律所",
@@ -354,11 +386,14 @@
         cta: "预约咨询 →",
         sec1Title: "专业领域与法律服务",
         sec1Desc: "我们提供全方位的法律服务，包括起草和审查国内外商业合同、出庭代理、企业投资咨询以及纠纷解决。",
+        sec1Btn: "查看服务详情 →",
         sec2Title: "愿景与专业方法",
-        sec2Desc: "我们秉持最高的职业保密和法律诚信标准，紧跟立法与司法动态，确保客户获得最优的战略成果。"
+        sec2Desc: "我们秉持最高的职业保密和法律诚信标准，紧跟立法与司法动态，确保客户获得最优的战略成果。",
+        sec2Btn: "阅读更多 →"
       },
       fr: {
         home: "Accueil",
+        menuRep: "Représentation Judiciaire & Services",
         bookConsult: "Réserver une Consultation",
         whatsapp: "Discussion WhatsApp",
         title: "Cabinet d'Avocats Ali Kadhem Hashimi",
@@ -366,11 +401,14 @@
         cta: "Réserver →",
         sec1Title: "Domaines d'Expertise & Services Juridiques",
         sec1Desc: "Nous offrons des services complets comprenant la rédaction de contrats commerciaux, la représentation en justice, le conseil aux entreprises et la résolution des litiges.",
+        sec1Btn: "Voir les Détails →",
         sec2Title: "Vision & Approche Professionnelle",
-        sec2Desc: "Nous nous engageons envers les plus hautes normes de confidentialité et d'intégrité professionnelle pour garantir des résultats optimaux à nos clients."
+        sec2Desc: "Nous nous engageons envers les plus hautes normes de confidentialité et d'intégrité professionnelle pour garantir des résultats optimaux à nos clients.",
+        sec2Btn: "Lire Plus →"
       },
       es: {
         home: "Inicio",
+        menuRep: "Representación Judicial y Servicios",
         bookConsult: "Reservar Consulta",
         whatsapp: "Chat de WhatsApp",
         title: "Bufete de Abogados Ali Kadhem Hashimi",
@@ -378,11 +416,14 @@
         cta: "Reservar Consulta →",
         sec1Title: "Áreas de Experiencia y Servicios Legales",
         sec1Desc: "Ofrecemos servicios legales integrales que incluyen la redacción de contratos comerciales, representación judicial, asesoría corporativa y resolución de disputas.",
+        sec1Btn: "Ver Detalles del Servicio →",
         sec2Title: "Visión y Enfoque Profesional",
-        sec2Desc: "Estamos comprometidos con los más altos estándares de confidencialidad y ética profesional para asegurar resultados óptimos."
+        sec2Desc: "Estamos comprometidos con los más altos estándares de confidencialidad y ética profesional para asegurar resultados óptimos.",
+        sec2Btn: "Leer Más →"
       },
       de: {
         home: "Startseite",
+        menuRep: "Gerichtliche Vertretung & Dienste",
         bookConsult: "Beratung buchen",
         whatsapp: "WhatsApp Chat",
         title: "Anwaltskanzlei Ali Kadhem Hashimi",
@@ -390,11 +431,14 @@
         cta: "Beratung buchen →",
         sec1Title: "Fachgebiete & Rechtsdienstleistungen",
         sec1Desc: "Wir bieten umfassende rechtliche Dienstleistungen an, darunter die Ausarbeitung kommerzieller Verträge, gerichtliche Vertretung und Unternehmensberatung.",
+        sec1Btn: "Details ansehen →",
         sec2Title: "Vision & Professioneller Ansatz",
-        sec2Desc: "Wir verpflichten uns zu höchsten Standards beruflicher Verschwiegenheit und Integrität."
+        sec2Desc: "Wir verpflichten uns zu höchsten Standards beruflicher Verschwiegenheit und Integrität.",
+        sec2Btn: "Mehr lesen →"
       },
       ku: {
         home: "سەرەکی",
+        menuRep: "نوێنەرایەتی دادوەری و خزمەتگوزاری",
         bookConsult: "چاوپێکەوتنی راوێژکاری",
         whatsapp: "وه‌تسئاپ چات",
         title: "نووسینگەی پارێزەر عەلی کازمی هاشمی",
@@ -402,8 +446,10 @@
         cta: "چاوپێکەوتن تۆماربکە ←",
         sec1Title: "بوارەکانی تایبەتمەندی و خزمەتگوزاری یاسایی",
         sec1Desc: "ئێمە خزمەتگوزاری یاسایی تێر و تەسەل پێشکەش دەکەین لەوانە داڕشتنی گرێبەستی بازرگانی، نوێنەرایەتی لە دادگاکان و ڕاوێژی کۆمپانیاکان.",
+        sec1Btn: "وردەکاری خزمەتگوزاری ببینە ←",
         sec2Title: "دیدگا و شێوازی پیشەیی",
-        sec2Desc: "پەیوەستین بە بەرزترین ستانداردەکانی نهێنی و شەرەفی پیشەیی بۆ دابینکردنی باشترین سەرکەوتن بۆ کڕیارەکانمان."
+        sec2Desc: "پەیوەستین بە بەرزترین ستانداردەکانی نهێنی و شەرەفی پیشەیی بۆ دابینکردنی باشترین سەرکەوتن بۆ کڕیارەکانمان.",
+        sec2Btn: "زیاتر بخوێنەوە ←"
       }
     };
 
@@ -415,6 +461,7 @@
       const t = dictionary[lang] || dictionary['en'];
 
       document.getElementById('menuHome').innerText = t.home;
+      document.getElementById('menuRep').innerText = t.menuRep;
       document.getElementById('menuBook').innerText = t.bookConsult;
       document.getElementById('menuWhatsapp').innerText = t.whatsapp;
       document.getElementById('heroTitleText').innerText = t.title;
@@ -423,8 +470,10 @@
       
       document.getElementById('sec1Title').innerText = t.sec1Title;
       document.getElementById('sec1Desc').innerText = t.sec1Desc;
+      document.getElementById('sec1Btn').innerText = t.sec1Btn;
       document.getElementById('sec2Title').innerText = t.sec2Title;
       document.getElementById('sec2Desc').innerText = t.sec2Desc;
+      document.getElementById('sec2Btn').innerText = t.sec2Btn;
     }
   </script>
 
