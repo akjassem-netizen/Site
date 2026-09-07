@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="htmlRoot">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="pageTitle">الاستشارات القانونية - المحامي علي كاظم الهاشمي</title>
+  <meta name="description" content="مكتب المحامي علي كاظم الهاشمي في بغداد - تقديم استشارات قانونية متخصصة وشاملة للشركات والأفراد في مختلف القوانين التجارية والعقارية والعمالية.">
+  <meta name="keywords" content="محامي في بغداد, استشارات قانونية, استشارة قانونية تجارية, المحامي علي كاظم الهاشمي, تأسيس شركات, تمثيل قانوني العراق">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Cairo', sans-serif; background: #f4f6f9; color: #070f1e; scroll-behavior: smooth; }
+
+    /* الهيدر الكلاسيكي الأزرق الفاخر */
+    .icover-header {
+      background: #070f1e;
+      border-bottom: 3px solid #c5a059;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+
+    /* قائمة تغيير اللغة */
+    .lang-select-bar {
+      padding: 7px 14px;
+      border-radius: 6px;
+      border: 1.5px solid #c5a059;
+      background: #070f1e;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 700;
+      outline: none;
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
+    }
+    .lang-select-bar option { background: #070f1e; color: #ffffff; }
+
+    /* حاوية زر القائمة والقائمة المنسدلة */
+    .menu-container {
+      position: relative;
+    }
+
+    /* زر القائمة (3 شخطات) */
+    .menu-toggle {
+      background: rgba(255,255,255,0.1);
+      border: 1.5px solid #c5a059;
+      color: #ffffff;
+      width: 42px;
+      height: 42px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .menu-toggle:hover { background: rgba(197,160,89,0.2); }
+
+    /* القائمة المنسدلة */
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      left: auto;
+      min-width: 230px;
+      background: #070f1e;
+      border: 1.5px solid #c5a059;
+      border-radius: 10px;
+      display: none;
+      flex-direction: column;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+      padding: 8px 0;
+      z-index: 1100;
+    }
+    [dir="rtl"] .dropdown-menu { left: 0; right: auto; }
+    .dropdown-menu.active { display: flex; }
+    .dropdown-menu a {
+      color: #ffffff;
+      padding: 14px 20px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      white-space: nowrap;
+      transition: background 0.2s, color 0.2s;
+    }
+    .dropdown-menu a:last-child { border-bottom: none; }
+    .dropdown-menu a:hover { background: rgba(197,160,89,0.15); color: #c5a059; }
+
+    /* التخطيط الشبكي الرئيسي */
+    .main-container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 450px 1fr;
+      gap: 35px;
+      align-items: start;
+    }
+
+    @media (max-width: 950px) {
+      .main-container { grid-template-columns: 1fr; }
+    }
+
+    /* العمود الأيمن: المربع العائم الثابت */
+    .sticky-sidebar {
+      position: sticky;
+      top: 95px;
+    }
+
+    .hero-box {
+      background: #ffffff;
+      color: #070f1e;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 20px;
+      padding: 40px 35px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+      border-top: 6px solid #c5a059;
+      text-align: start;
+    }
+
+    /* مربع الشعار */
+    .brand-logo-box {
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 22px;
+      text-align: center;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    }
+    .b-akh {
+      font-size: 40px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      color: #070f1e;
+      font-family: Arial, sans-serif;
+      line-height: 1.1;
+    }
+    .b-akh .red-k { color: #d32f2f; }
+    .b-sub {
+      font-size: 11.5px;
+      font-weight: 800;
+      color: #070f1e;
+      letter-spacing: 1.5px;
+      margin-top: 5px;
+    }
+    .b-sub .red-slash { color: #d32f2f; }
+    .b-est {
+      font-size: 9px;
+      color: #64748b;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-top: 2px;
+    }
+
+    .hero-title {
+      font-size: 26px;
+      font-weight: 900;
+      color: #070f1e;
+      line-height: 1.35;
+      margin-bottom: 16px;
+      text-align: start;
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+      color: #334155;
+      line-height: 1.85;
+      margin-bottom: 28px;
+      font-weight: 600;
+      text-align: start;
+    }
+
+    .hero-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      background: #070f1e;
+      color: #ffffff;
+      border: 1.5px solid #070f1e;
+      padding: 14px 24px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(7, 15, 30, 0.2);
+      transition: all 0.2s ease;
+    }
+    .hero-cta-btn:hover {
+      background: #c5a059;
+      color: #070f1e;
+      border-color: #c5a059;
+    }
+
+    /* محتوى صفحة الاستشارات القانونية */
+    .content-sections-area {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .content-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 18px;
+      padding: 38px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.03);
+      text-align: start;
+    }
+
+    .content-card h2 {
+      font-size: 24px;
+      color: #070f1e;
+      margin-bottom: 16px;
+      font-weight: 900;
+      border-bottom: 2px solid #c5a059;
+      padding-bottom: 12px;
+      text-align: start;
+    }
+
+    .content-card h3 {
+      font-size: 18px;
+      color: #070f1e;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      font-weight: 800;
+      text-align: start;
+    }
+
+    .content-card p, .content-card li {
+      font-size: 15px;
+      color: #334155;
+      line-height: 1.85;
+      margin-bottom: 15px;
+      text-align: start;
+    }
+
+    .content-card ul {
+      margin-right: 20px;
+      margin-bottom: 15px;
+    }
+
+    .back-home-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #070f1e;
+      font-weight: 800;
+      font-size: 14px;
+      text-decoration: none;
+      border-bottom: 2px solid #c5a059;
+      padding-bottom: 3px;
+      margin-top: 10px;
+      transition: color 0.2s;
+    }
+    .back-home-link:hover { color: #c5a059; }
+  </style>
+</head>
+<body>
+
+  <header class="icover-header">
+    <div>
+      <select id="languageSelect" class="lang-select-bar" onchange="changeLanguage(this.value)">
+        <option value="ar">العربية</option>
+        <option value="en">English</option>
+        <option value="tr">Türkçe</option>
+        <option value="zh">中文</option>
+        <option value="fr">Français</option>
+        <option value="es">Español</option>
+        <option value="de">Deutsch</option>
+        <option value="ku">کوردی</option>
+      </select>
+    </div>
+
+    <div class="menu-container">
+      <button class="menu-toggle" onclick="toggleMenu()" aria-label="القائمة">☰</button>
+      <div id="dropdownMenu" class="dropdown-menu">
+        <a href="test.html" id="menuHome">الرئيسية</a>
+        <a href="consultations.html" id="menuConsult">الاستشارات القانونية</a>
+        <a href="representation.html" id="menuRep">التمثيل القضائي والخدمات</a>
+        <a href="execution.html" id="menuExec">التنفيذ القانوني والتحصيل</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdVxyld_U5Mdp-4RLcuA8HdQvAvlYWdd1fiQ8QAavwJj_Ev7w/viewform" target="_blank" id="menuBook">حجز موعد استشارة</a>
+        <a href="https://wa.me/9647838759047" target="_blank" id="menuWhatsapp">محادثة واتساب</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-container">
+
+    <aside class="sticky-sidebar">
+      <section class="hero-box">
+        <div class="brand-logo-box" dir="ltr">
+          <div class="b-akh">A<span class="red-k">K</span>H</div>
+          <div class="b-sub"><span class="red-slash">/</span> LAW OFFICE</div>
+          <div class="b-est">EST. 2014</div>
+        </div>
+
+        <h1 class="hero-title" id="heroTitleText">مكتب المحامي علي كاظم الهاشمي</h1>
+        <p class="hero-subtitle" id="heroSubtitleText">تمثيل قانوني رصين واستشارات تخصصية للشركات والأفراد برؤية مهنية ودقيقة من قلب العاصمة بغداد.</p>
+        
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdVxyld_U5Mdp-4RLcuA8HdQvAvlYWdd1fiQ8QAavwJj_Ev7w/viewform" target="_blank" class="hero-cta-btn" id="heroCtaText">
+          حجز موعد استشارة &larr;
+        </a>
+      </section>
+    </aside>
+
+    <section class="content-sections-area">
+      <div class="content-card">
+        <h2 id="mainHeading">الاستشارات القانونية الشاملة والمتخصصة</h2>
+        <p id="mainDesc">بصفتي محامياً، أقدم خدمات استشارات قانونية متخصصة وشاملة للأفراد والشركات. يتضمن دوري تقديم المشورة القانونية الدقيقة والتوجيه المهني في مختلف المسائل والنزاعات القانونية برؤية دقيقة واحترافية.</p>
+        
+        <h3 id="subHeading1">مجالات الاستشارات القانونية:</h3>
+        <ul id="serviceList">
+          <li>تقييم القضايا والمسائل القانونية المطروحة وتحليل الحقائق بعناية.</li>
+          <li>توضيح القوانين واللوائح المعمول بها بأسلوب مبسط وواضح للعميل.</li>
+          <li>إعداد وصياغة الوثائق القانونية مثل العقود والاتفاقيات والوكالات.</li>
+          <li>توفير النصح والمشورة في القوانين التجارية، العقارية، العمالية، والإدارية.</li>
+        </ul>
+
+        <h3 id="subHeading2">آلية حجز الاستشارة:</h3>
+        <p id="subHeading2Desc">يتم تنظيم حجوزات المواعيد عبر ملء استمارة الحجز الإلكترونية لضمان تنظيم الوقت وتقديم الخدمة بكفاءة عالية. لمزيد من التفاصيل، يرجى التواصل عبر أزرار الحجز المباشر.</p>
+
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdVxyld_U5Mdp-4RLcuA8HdQvAvlYWdd1fiQ8QAavwJj_Ev7w/viewform" target="_blank" class="hero-cta-btn" style="max-width: 250px; margin-top: 15px; font-size: 14px; padding: 10px 20px;" id="inlineCta">حجز موعد استشارة ←</a>
+        <br>
+        <a href="test.html" class="back-home-link" id="backLink">&larr; العودة إلى الصفحة الرئيسية</a>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('dropdownMenu');
+      menu.classList.toggle('active');
+    }
+
+    window.onclick = function(event) {
+      if (!event.target.matches('.menu-toggle') && !event.target.closest('.menu-container')) {
+        document.getElementById('dropdownMenu').classList.remove('active');
+      }
+    }
+
+    const dictionary = {
+      ar: {
+        pageTitle: "الاستشارات القانونية - المحامي علي كاظم الهاشمي",
+        home: "الرئيسية",
+        menuConsult: "الاستشارات القانونية",
+        menuRep: "التمثيل القضائي والخدمات",
+        menuExec: "التنفيذ القانوني والتحصيل",
+        bookConsult: "حجز موعد استشارة",
+        whatsapp: "محادثة واتساب",
+        title: "مكتب المحامي علي كاظم الهاشمي",
+        subtitle: "تمثيل قانوني رصين واستشارات تخصصية للشركات والأفراد برؤية مهنية ودقيقة من قلب العاصمة بغداد.",
+        cta: "حجز موعد استشارة ←",
+        mainHeading: "الاستشارات القانونية الشاملة والمتخصصة",
+        mainDesc: "بصفتي محامياً، أقدم خدمات استشارات قانونية متخصصة وشاملة للأفراد والشركات. يتضمن دوري تقديم المشورة القانونية الدقيقة والتوجيه المهني في مختلف المسائل والنزاعات القانونية برؤية دقيقة واحترافية.",
+        subHeading1: "مجالات الاستشارات القانونية:",
+        li1: "تقييم القضايا والمسائل القانونية المطروحة وتحليل الحقائق بعناية.",
+        li2: "توضيح القوانين واللوائح المعمول بها بأسلوب مبسط وواضح للعميل.",
+        li3: "إعداد وصياغة الوثائق القانونية مثل العقود والاتفاقيات والوكالات.",
+        li4: "توفير النصح والمشورة في القوانين التجارية، العقارية، العمالية، والإدارية.",
+        subHeading2: "آلية حجز الاستشارة:",
+        subHeading2Desc: "يتم تنظيم حجوزات المواعيد عبر ملء استمارة الحجز الإلكترونية لضمان تنظيم الوقت وتقديم الخدمة بكفاءة عالية. لمزيد من التفاصيل، يرجى التواصل عبر أزرار الحجز المباشر.",
+        inlineCta: "حجز موعد استشارة ←",
+        backLink: "← العودة إلى الصفحة الرئيسية"
+      },
+      en: {
+        pageTitle: "Legal Consultations - Law Office of Ali Kadhem Hashimi",
+        home: "Home",
+        menuConsult: "Legal Consultations",
+        menuRep: "Judicial Representation & Services",
+        menuExec: "Legal Execution & Collection",
+        bookConsult: "Book Consultation",
+        whatsapp: "WhatsApp Chat",
+        title: "Law Office of Ali Kadhem Hashimi",
+        subtitle: "Reliable legal representation and specialized advisory for corporations and individuals with a professional vision from Baghdad.",
+        cta: "Book Consultation →",
+        mainHeading: "Comprehensive & Specialized Legal Consultations",
+        mainDesc: "As an attorney, I provide specialized and comprehensive legal consultation services for individuals and corporations, offering precise legal advice and professional guidance.",
+        subHeading1: "Fields of Legal Consultations:",
+        li1: "Evaluating legal cases and issues, carefully analyzing facts.",
+        li2: "Explaining applicable laws and regulations in a simple, clear manner.",
+        li3: "Drafting and preparing legal documents such as contracts and agreements.",
+        li4: "Providing advice in commercial, real estate, labor, and administrative laws.",
+        subHeading2: "Consultation Booking Procedure:",
+        subHeading2Desc: "Appointments are organized by filling out the electronic booking form to ensure efficient time management. For more details, please contact via the direct booking buttons.",
+        inlineCta: "Book Consultation →",
+        backLink: "← Back to Home"
+      },
+      tr: {
+        pageTitle: "Hukuki Danışmanlık - Av. Ali Kazım Haşimi",
+        home: "Ana Sayfa",
+        menuConsult: "Hukuki Danışmanlık",
+        menuRep: "Yargı Temsilciliği ve Hizmetler",
+        menuExec: "Yasal İcra ve Tahsilat",
+        bookConsult: "Danışmanlık Randevusu",
+        whatsapp: "WhatsApp Sohbet",
+        title: "Av. Ali Kazım Haşimi Hukuk Bürosu",
+        subtitle: "Bağdat'ın kalbinden profesyonel bir vizyonla şirketler ve bireyler için güvenilir hukuki temsil ve uzman danışmanlık.",
+        cta: "Randevu Al →",
+        mainHeading: "Kapsamlı ve Uzman Hukuki Danışmanlık",
+        mainDesc: "Bir avukat olarak bireylere ve şirketlere uzman hukuki danışmanlık hizmetleri sunuyor, çeşitli hukuki meselelerde profesyonel rehberlik sağlıyorum.",
+        subHeading1: "Hukuki Danışmanlık Alanları:",
+        li1: "Hukuki davaların ve meselelerin değerlendirilmesi, gerçeklerin analiz edilmesi.",
+        li2: "Geçerli kanun ve yönetmeliklerin açık bir dille açıklانması.",
+        li3: "Sözleşmeler ve anlaşmalar gibi hukuki belgelerin hazırlanması.",
+        li4: "Ticari, gayrimenkul, iş ve idare hukukunda danışmanlık sağlanması.",
+        subHeading2: "Danışmanlık Randevu Prosedürü:",
+        subHeading2Desc: "Randevular elektronik başvuru formu doldurularak düzenlenmektedir. Detaylar için doğrudan bizimle iletişime geçebilirsiniz.",
+        inlineCta: "Randevu Al →",
+        backLink: "← Ana Sayfaya Dön"
+      },
+      zh: {
+        pageTitle: "法律咨询 - 阿里·卡德姆·哈希米律所",
+        home: "首页",
+        menuConsult: "法律咨询",
+        menuRep: "司法代理与服务",
+        menuExec: "法律执行与催收",
+        bookConsult: "预约咨询",
+        whatsapp: "WhatsApp 聊天",
+        title: "阿里·卡德姆·哈希米律所",
+        subtitle: "立足巴格达，以专业严谨的视角为企业和个人提供可靠的法律代理与专项咨询服务。",
+        cta: "预约咨询 →",
+        mainHeading: "全面与专业的法律咨询",
+        mainDesc: "作为一名律师，我为个人和企业提供专业且全面的法律咨询服务，在各类法律问题上提供精准的法律建议与专业指导。",
+        subHeading1: "法律咨询领域：",
+        li1: "评估法律案件与问题，仔细分析事实。",
+        li2: "以简明清晰的方式向客户解释适用的法律法规。",
+        li3: "起草和编写合同、协议等法律文件。",
+        li4: "在商法、房产法、劳动法和行政法领域提供专业建议。",
+        subHeading2: "咨询预约流程：",
+        subHeading2Desc: "预约通过填写电子表格进行，以确保高效的时间管理。更多详情请通过直接预订按钮联系我们。",
+        inlineCta: "预约咨询 →",
+        backLink: "← 返回首页"
+      },
+      fr: {
+        pageTitle: "Consultations Juridiques - Cabinet Ali Kadhem Hashimi",
+        home: "Accueil",
+        menuConsult: "Consultations Juridiques",
+        menuRep: "Représentation Judiciaire & Services",
+        menuExec: "Exécution Légale & Recouvrement",
+        bookConsult: "Réserver une Consultation",
+        whatsapp: "Discussion WhatsApp",
+        title: "Cabinet d'Avocats Ali Kadhem Hashimi",
+        subtitle: "Représentation juridique fiable et conseil spécialisé pour les entreprises et les particuliers depuis Bagdad.",
+        cta: "Réserver →",
+        mainHeading: "Consultations Juridiques Complètes & Spécialisées",
+        mainDesc: "En tant qu'avocat, je propose des services de consultation juridique spécialisée aux particuliers et aux entreprises, offrant des conseils précis et un accompagnement professionnel.",
+        subHeading1: "Domaines de Consultation Juridique :",
+        li1: "Évaluation des affaires juridiques et analyse minutieuse des faits.",
+        li2: "Explication claire et simple des lois et règlements applicables.",
+        li3: "Rédaction et préparation de documents juridiques tels que contrats et accords.",
+        li4: "Conseil en droit commercial, immobilier, du travail et administratif.",
+        subHeading2: "Procédure de Réservation :",
+        subHeading2Desc: "Les rendez-vous sont organisés en remplissant le formulaire de réservation électronique pour garantir une gestion efficace du temps.",
+        inlineCta: "Réserver →",
+        backLink: "← Retour à l'Accueil"
+      },
+      es: {
+        pageTitle: "Consultas Legales - Bufete Ali Kadhem Hashimi",
+        home: "Inicio",
+        menuConsult: "Consultas Legales",
+        menuRep: "Representación Judicial y Servicios",
+        menuExec: "Ejecución Legal y Cobranza",
+        bookConsult: "Reservar Consulta",
+        whatsapp: "Chat de WhatsApp",
+        title: "Bufete de Abogados Ali Kadhem Hashimi",
+        subtitle: "Representación legal confiable y asesoría especializada para corporaciones e individuos desde Bagdad.",
+        cta: "Reservar Consulta →",
+        mainHeading: "Consultas Legales Integrales y Especializadas",
+        mainDesc: "Como abogado, ofrezco servicios de consultoría legal especializada y completa para individuos y corporaciones, brindando asesoramiento preciso.",
+        subHeading1: "Áreas de Consultoría Legal:",
+        li1: "Evaluación de casos legales y análisis cuidadoso de los hechos.",
+        li2: "Explicación clara de las leyes y regulaciones aplicables.",
+        li3: "Redacción y preparación de documentos legales como contratos y acuerdos.",
+        li4: "Asesoramiento en leyes comerciales, inmobiliarias, laborales y administrativas.",
+        subHeading2: "Procedimiento de Reserva:",
+        subHeading2Desc: "Las citas se organizan llenando el formulario de reserva electrónico para asegurar una gestión eficiente del tiempo.",
+        inlineCta: "Reservar Consulta →",
+        backLink: "← Volver al Inicio"
+      },
+      de: {
+        pageTitle: "Rechtsberatung - Anwaltskanzlei Ali Kadhem Hashimi",
+        home: "Startseite",
+        menuConsult: "Rechtsberatung",
+        menuRep: "Gerichtliche Vertretung & Dienste",
+        menuExec: "Rechtliche Vollstreckung & Inkasso",
+        bookConsult: "Beratung buchen",
+        whatsapp: "WhatsApp Chat",
+        title: "Anwaltskanzlei Ali Kadhem Hashimi",
+        subtitle: "Zuverlässige rechtliche Vertretung und spezialisierte Beratung für Unternehmen und Privatpersonen aus Bagdad.",
+        cta: "Beratung buchen →",
+        mainHeading: "Umfassende & Spezialisierte Rechtsberatung",
+        mainDesc: "Als Rechtsanwalt biete ich spezialisierte und umfassende Rechtsberatungsdienste für Einzelpersonen und Unternehmen an.",
+        subHeading1: "Bereiche der Rechtsberatung:",
+        li1: "Bewertung von Rechtsfällen und sorgfältige Analyse der Fakten.",
+        li2: "Erläuterung geltender Gesetze und Vorschriften in klarer Weise.",
+        li3: "Ausarbeitung und Erstellung rechtlicher Dokumente wie Verträge.",
+        li4: "Beratung im Handels-, Immobilien-, Arbeits- und Verwaltungsrecht.",
+        subHeading2: "Buchungsverfahren:",
+        subHeading2Desc: "Termine werden durch Ausfüllen des elektronischen Buchungsformulars organisiert, um ein effizientes Zeitmanagement zu gewährleisten.",
+        inlineCta: "Buchung →",
+        backLink: "← Zurück zur Startseite"
+      },
+      ku: {
+        pageTitle: "راوێژی یاسایی - نووسینگەی پارێزەر عەلی کازمی",
+        home: "سەرەکی",
+        menuConsult: "راوێژی یاسایی",
+        menuRep: "نوێنەرایەتی دادوەری و خزمەتگوزاری",
+        menuExec: "جێبەجێکردنی یاسایی و وەرگرتنەوە",
+        bookConsult: "چاوپێکەوتنی راوێژکاری",
+        whatsapp: "وه‌تسئاپ چات",
+        title: "نووسینگەی پارێزەر عەلی کازمی هاشمی",
+        subtitle: "نوێنەرایەتی یاسایی متمانەپێکراو و راوێژی تایبەتمەند بۆ کۆمپانیاکان و تاکەکان لە دڵی بەغدادەوە.",
+        cta: "چاوپێکەوتن تۆماربکە ←",
+        mainHeading: "راوێژی یاسایی گشتگیر و تایبەتمەند",
+        mainDesc: "وەک پارێزەرێک، خزمەتگوزاری راوێژی یاسایی تایبەتمەند بۆ تاکەکان و کۆمپانیاکان پێشکەش دەکەم بە چەندین بواری جیاوازدا.",
+        subHeading1: "بوارەکانی راوێژی یاسایی:",
+        li1: "سەنگاندنی کەیس و دۆسیە یاساییەکان و شیکردنەوەی وردی بابەتەکان.",
+        li2: "ڕوونکردنەوەی یاسا و ڕێنماییەکان بە شێوازێکی ئاسان بۆ کڕیار.",
+        li3: "ئامادەکردن و داڕشتنی دۆکومێنت و گرێبەستە یاساییەکان.",
+        li4: "پێشکەشکردنی ڕاوێژ لە یاسای بازرگانی، موڵکداری، کار و کارگێڕیدا.",
+        subHeading2: "رێکاری تۆمارکردنی چاوپێکەوتن:",
+        subHeading2Desc: "کاتی چاوپێکەوتنەکان ڕێکدەخرێن لە رێگەی پڕکردنەوەی فۆڕمی الکترۆنییەوە بۆ دڵنیابوون لە ڕێکخستنی کات.",
+        inlineCta: "چاوپێکەوتن تۆماربکە ←",
+        backLink: "← گەڕانەوە بۆ سەرەکی"
+      }
+    };
+
+    function changeLanguage(lang) {
+      const root = document.getElementById('htmlRoot');
+      root.setAttribute('lang', lang);
+      root.setAttribute('dir', (lang === 'ar' || lang === 'ku') ? 'rtl' : 'ltr');
+
+      const t = dictionary[lang] || dictionary['en'];
+
+      document.getElementById('pageTitle').innerText = t.pageTitle;
+      document.getElementById('menuHome').innerText = t.home;
+      document.getElementById('menuConsult').innerText = t.menuConsult;
+      document.getElementById('menuRep').innerText = t.menuRep;
+      document.getElementById('menuExec').innerText = t.menuExec;
+      document.getElementById('menuBook').innerText = t.bookConsult;
+      document.getElementById('menuWhatsapp').innerText = t.whatsapp;
+      document.getElementById('heroTitleText').innerText = t.title;
+      document.getElementById('heroSubtitleText').innerText = t.subtitle;
+      document.getElementById('heroCtaText').innerText = t.cta;
+      
+      document.getElementById('mainHeading').innerText = t.mainHeading;
+      document.getElementById('mainDesc').innerText = t.mainDesc;
+      document.getElementById('subHeading1').innerText = t.subHeading1;
+      
+      const list = document.getElementById('serviceList');
+      list.innerHTML = `
+        <li>${t.li1}</li>
+        <li>${t.li2}</li>
+        <li>${t.li3}</li>
+        <li>${t.li4}</li>
+      `;
+      
+      document.getElementById('subHeading2').innerText = t.subHeading2;
+      document.getElementById('subHeading2Desc').innerText = t.subHeading2Desc;
+      document.getElementById('inlineCta').innerText = t.inlineCta;
+      document.getElementById('backLink').innerHTML = t.backLink;
+    }
+  </script>
+
+</body>
+</html>
