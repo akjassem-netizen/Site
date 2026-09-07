@@ -7,13 +7,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Cairo', sans-serif; background: #ffffff; color: #070f1e; }
+    body { font-family: 'Cairo', sans-serif; background: #f8fafc; color: #070f1e; }
 
     /* الهيدر التنفيذي الفخم */
     .icover-header {
       background: #070f1e;
       border-bottom: 2px solid #c5a059;
-      padding: 8px 16px;
+      padding: 12px 18px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -28,32 +28,40 @@
       text-decoration: none;
     }
 
-    /* الشعار الممتد أفقياً ليملأ ارتفاع الهيدر بشكل فخم وبارز */
-    .brand-logo-img {
-      height: 42px;
-      width: auto;
-      max-width: 160px;
-      object-fit: contain;
+    /* الشعار البرمجي الأفقّي البارز */
+    .logo-code-box {
       background: #ffffff;
-      padding: 3px 8px;
-      border-radius: 4px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-align: center;
+      line-height: 1.15;
       box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-      display: block;
     }
+    .logo-akh {
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      color: #070f1e;
+      font-family: Arial, sans-serif;
+    }
+    .logo-akh span { color: #d32f2f; }
+    .logo-sub { font-size: 6.5px; font-weight: 800; color: #070f1e; letter-spacing: 0.5px; }
+    .logo-sub span { color: #d32f2f; }
+    .logo-est { font-size: 5px; color: #64748b; font-weight: 600; letter-spacing: 0.5px; }
 
     .header-left {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
 
     .btn-booking {
       background: #ffffff;
       color: #070f1e;
       border: 1px solid #c5a059;
-      padding: 6px 14px;
+      padding: 7px 16px;
       border-radius: 6px;
-      font-size: 12px;
+      font-size: 12.5px;
       font-weight: 700;
       text-decoration: none;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -106,7 +114,7 @@
     }
 
     .lang-card-box {
-      background: #f8fafc;
+      background: #ffffff;
       border: 1px solid #cbd5e1;
       border-radius: 8px;
       padding: 10px 16px;
@@ -130,24 +138,25 @@
       font-family: 'Cairo', sans-serif;
     }
 
-    /* الكفر الفخم (Hero Section) */
+    /* الكفر الفخم (Hero Section المماثل لـ iCover تماماً) */
     .hero-cover-section {
       max-width: 650px;
-      margin: 20px auto 40px;
+      margin: 15px auto 30px;
       padding: 0 16px;
     }
 
     .hero-box {
       background: #ffffff;
-      border: 1px solid #e2e8f0;
+      border: 1.5px solid #cbd5e1;
       border-radius: 14px;
       padding: 35px 24px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
-      border-top: 4px solid #070f1e;
+      box-shadow: 0 6px 25px rgba(0,0,0,0.05);
+      border-top: 5px solid #070f1e;
+      text-align: right;
     }
 
     .hero-title {
-      font-size: 24px;
+      font-size: 25px;
       font-weight: 900;
       color: #070f1e;
       line-height: 1.35;
@@ -156,8 +165,8 @@
 
     .hero-subtitle {
       font-size: 14.5px;
-      color: #64748b;
-      line-height: 1.7;
+      color: #475569;
+      line-height: 1.8;
       margin-bottom: 25px;
     }
 
@@ -168,7 +177,7 @@
       background: #ffffff;
       color: #070f1e;
       border: 1.5px solid #070f1e;
-      padding: 12px 22px;
+      padding: 12px 24px;
       border-radius: 8px;
       font-size: 14px;
       font-weight: 800;
@@ -187,8 +196,11 @@
   <!-- الهيدر التنفيذي -->
   <header class="icover-header">
     <a href="test.html" class="brand-box">
-      <!-- الشعار الحقيقي بصيغة أفقية ممتدة تملأ الهيدر -->
-      <img src="1000019530.jpg" alt="AKH Logo" class="brand-logo-img" onerror="this.style.display='none'">
+      <div class="logo-code-box">
+        <div class="logo-akh">A<span>K</span>H</div>
+        <div class="logo-sub"><span>/</span> LAW OFFICE</div>
+        <div class="logo-est">EST. 2014</div>
+      </div>
     </a>
 
     <div class="header-left">
@@ -220,7 +232,7 @@
     </div>
   </div>
 
-  <!-- الكفر الفخم -->
+  <!-- الكفر الفخم (Hero Section) -->
   <section class="hero-cover-section">
     <div class="hero-box">
       <h1 class="hero-title" id="heroTitleText">مكتب المحامي علي كاظم الهاشمي</h1>
@@ -237,7 +249,7 @@
       menu.classList.toggle('active');
     }
 
-    // قاموس ترجمة شامل لكافة اللغات الثمانية لضمان عملها بشكل كامل
+    // قاموس ترجمة شامل لكافة اللغات لضمان تحول الأزرار والنصوص بكل اللغات
     const dictionary = {
       ar: {
         booking: "حجز موعد",
@@ -266,7 +278,7 @@
         whatsapp: "WhatsApp Sohbet",
         langPrompt: "Dil Seçin / Select Language",
         title: "Av. Ali Kazım Haşimi Hukuk Bürosu",
-        subtitle: "Bağdat'ın kalbinden profesyonel bir vizyonla şirketler ve bireyler için güvenilir hukuki temsil ve uzman danışmanlık.",
+        subtitle: "Bağdat'ın kalbinden profesyonel bir vizyonla şirketler ve bireyler için güvenilir hukuki temsil ve uzman danışمانlık.",
         cta: "Randevu Al →"
       },
       zh: {
@@ -276,7 +288,7 @@
         whatsapp: "WhatsApp 聊天",
         langPrompt: "选择语言 / Select Language",
         title: "阿里·卡德姆·哈希米律所",
-        subtitle: "立足巴格达，以专业严谨的视角为企业和个人提供可靠的法律代理与 specialized 咨询服务。",
+        subtitle: "立足巴格达，以专业严谨的视角为企业和个人提供可靠的法律代理与专项咨询服务。",
         cta: "预约咨询 →"
       },
       fr: {
