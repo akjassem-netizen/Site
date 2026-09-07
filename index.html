@@ -31,7 +31,7 @@
       line-height: 1.7;
     }
 
-    /* الهيدر التنفيذي المستوحى من المنصات العالمية (iCover Style) */
+    /* الهيدر التنفيذي (Executive Header) */
     .executive-header {
       background: var(--primary-navy);
       border-bottom: 2px solid var(--accent-gold);
@@ -53,22 +53,22 @@
     }
 
     .brand-logo-img {
-      width: 42px;
-      height: 42px;
-      object-fit: contain;
+      width: 44px;
+      height: 44px;
+      object-fit: cover;
       border-radius: 6px;
       background: #ffffff;
-      padding: 3px;
+      border: 1px solid var(--accent-gold);
     }
 
     .brand-title {
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 800;
       color: #ffffff;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.3px;
       line-height: 1.3;
     }
-    .brand-title span { display: block; font-size: 10.5px; color: var(--accent-gold); font-weight: 600; }
+    .brand-title span { display: block; font-size: 10px; color: var(--accent-gold); font-weight: 600; }
 
     .header-actions {
       display: flex;
@@ -76,6 +76,7 @@
       gap: 10px;
     }
 
+    /* زر حجز الموعد في أقصى اليسار حصراً */
     .btn-booking-top {
       background: var(--accent-red);
       color: #ffffff;
@@ -185,7 +186,7 @@
       padding: 0 16px;
     }
 
-    /* قسم نبذة المكتب والشعار */
+    /* قسم نبذة المكتب والشعار الحقيقي */
     .office-showcase {
       background: #ffffff;
       border: 1px solid var(--border-color);
@@ -205,10 +206,10 @@
     .office-logo-box img {
       width: 120px;
       height: 120px;
-      object-fit: contain;
+      object-fit: cover;
       border-radius: 10px;
       border: 1.5px solid var(--border-color);
-      padding: 8px;
+      padding: 4px;
       background: #fff;
     }
 
@@ -225,7 +226,7 @@
       line-height: 1.7;
     }
 
-    /* تبويبات الخدمات */
+    /* أقسام الخدمات */
     .section-title-box {
       text-align: center;
       margin-bottom: 30px;
@@ -347,9 +348,10 @@
 </head>
 <body>
 
+  <!-- هيدر المكتب الفاخر -->
   <header class="executive-header">
     <a href="index.html" class="brand-container">
-      <img src="1000019530.jpg" alt="AKH Logo" class="brand-logo-img">
+      <img src="1000019530.jpg" alt="AKH Logo" class="brand-logo-img" onerror="this.style.display='none'">
       <div class="brand-title">
         مكتب المحامي علي كاظم الهاشمي
         <span>AKH LAW OFFICE</span>
@@ -366,10 +368,12 @@
         <option value="de">Deutsch</option>
         <option value="ku">کوردی</option>
       </select>
+      <!-- زر حجز الموعد في أقصى اليسار -->
       <a href="https://docs.google.com/forms/d/e/1FAIpQLSdVxydl_U5Mdp-4RLcuA8HdQvAvlYwdD1fiQ8QaawwJj_Ev7w/viewform" target="_blank" class="btn-booking-top">حجز موعد</a>
     </div>
   </header>
 
+  <!-- القسم الرئيسي (Hero Section) -->
   <section class="hero-section">
     <div class="hero-container">
       <div class="hero-badge">⚖️ مكتب محاماة مرخص ومعتمد في بغداد</div>
@@ -383,11 +387,13 @@
     </div>
   </section>
 
+  <!-- محتوى الموقع -->
   <main class="content-wrapper">
 
+    <!-- قسم الشعار والنبذة الحقيقية -->
     <div class="office-showcase">
       <div class="office-logo-box">
-        <img src="1000019530.jpg" alt="شعار مكتب المحامي علي كاظم الهاشمي">
+        <img src="1000019530.jpg" alt="شعار مكتب المحامي علي كاظم الهاشمي" onerror="this.style.display='none'">
       </div>
       <div class="office-info">
         <h2>مكتب المحامي علي كاظم الهاشمي وشركاؤه للاستشارات</h2>
@@ -401,6 +407,7 @@
       <p>خدمات مؤسسية وقضائية ودستورية مصممة بعناية لحماية حقوقك ومصالحك</p>
     </div>
 
+    <!-- تبويبات الخدمات التخصصية -->
     <div class="services-grid">
       <div class="service-card">
         <div>
@@ -451,6 +458,7 @@
       </div>
     </div>
 
+    <!-- ضوابط الحجز -->
     <div class="info-box-executive">
       <h3>📌 ضوابط الحجز والمواعيد الرسمية</h3>
       <ul class="info-list">
@@ -461,6 +469,7 @@
     </div>
   </main>
 
+  <!-- الفوتر -->
   <footer class="executive-footer">
     <p>© 2026 <strong>Law Office Of Ali Kadhem Hashimi</strong>. جميع الحقوق محفوظة.</p>
     <p style="font-size: 11.5px; margin-top: 6px; color: #64748b;">بغداد - الزيونة | مكتب محاماة مرخص ومعتمد</p>
