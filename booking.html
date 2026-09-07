@@ -227,7 +227,7 @@
       <!-- ممثل الشركة -->
       <div id="companyRepField" class="form-group conditional-section">
         <label id="lblCompanyRep">اسم المفوض بالتوقيع أو الممثل القانوني للشركة *</label>
-        <input type="text" id="companyRepName" placeholder="اسم الشخص المسؤول عن المتابعة">
+        <input type="text" id="companyRepName" placeholder="اسم الشخص المسؤول عن المتابعة والصفة">
       </div>
 
       <div class="form-grid">
@@ -237,11 +237,11 @@
         </div>
         <div class="form-group">
           <label id="lblPhone">رقم الهاتف / الواتساب *</label>
-          <input type="tel" id="phone" required placeholder="07700000000">
+          <input type="tel" id="phone" required placeholder="07700000000 أو برمز الدولة">
         </div>
       </div>
 
-      <!-- تفاصيل الأفراد المحليين (تظهر للأفراد العراقيين فقط) -->
+      <!-- تفاصيل الأفراد المحليين فقط -->
       <div id="individualOnlyFields" class="conditional-section active">
         <div class="form-grid">
           <div class="form-group">
@@ -272,43 +272,37 @@
         </div>
       </div>
 
-      <!-- العنوان (محايد وخالٍ من التوجيه المناطقي) -->
+      <!-- العنوان (محايد وخالٍ من الإيحاءات) -->
       <div class="form-group">
         <label id="lblAddress">عنوان السكن *</label>
         <input type="text" id="address" placeholder="المحافظة / المنطقة (مثلاً: بغداد - زيونة)">
       </div>
 
-      <!-- حقول الفرد الأجنبي (جنسية + جواز) -->
+      <!-- حقول الفرد الأجنبي (جنسية فقط - معايير عالمية خفيفة) -->
       <div id="foreignerIndividualFields" class="conditional-section">
-        <div class="form-grid">
-          <div class="form-group">
-            <label id="lblNationalityIndiv">الجنسية *</label>
-            <input type="text" id="nationalityIndiv" placeholder="مثال: بريطاني">
-          </div>
-          <div class="form-group">
-            <label id="lblPassportIndiv">رقم جواز السفر *</label>
-            <input type="text" id="passportIndiv" placeholder="Passport No.">
-          </div>
+        <div class="form-group">
+          <label id="lblNationalityIndiv">الجنسية *</label>
+          <input type="text" id="nationalityIndiv" placeholder="مثال: بريطاني / أمريكي">
         </div>
       </div>
 
-      <!-- حقول الشركة مع خيار جهة التسجيل (اتحادية / كردستان / أجنبية) -->
+      <!-- حقول الشركة (سواء محلية أو أجنبية) -->
       <div id="companyIdentityFields" class="conditional-section">
         <div class="form-group">
           <label id="lblCompanyRegAuth">جهة تسجيل أو تأسيس الشركة *</label>
           <select id="companyRegAuth">
             <option value="federal" id="authFed">مسجل الشركات - الحكومة الاتحادية (بغداد)</option>
             <option value="kurdistan" id="authKrg">وزارة التجارة والصناعة - إقليم كردستان</option>
-            <option value="foreign_corp" id="authForeign">شركة أجنبية مؤسسة خارج العراق</option>
+            <option value="foreign_corp" id="authForeign">شركة أجنبية / دولية مؤسسة خارج العراق</option>
           </select>
         </div>
         <div class="form-grid">
           <div class="form-group">
             <label id="lblCountryInc">بلد التأسيس *</label>
-            <input type="text" id="countryInc" placeholder="مثال: العراق / الإمارات">
+            <input type="text" id="countryInc" placeholder="مثال: العراق / الإمارات / المملكة المتحدة">
           </div>
           <div class="form-group">
-            <label id="lblRegNo">رقم تسجيل الشركة *</label>
+            <label id="lblRegNo">رقم تسجيل الشركة (CRN) *</label>
             <input type="text" id="regNo" placeholder="رقم شهادة التأسيس أو التسجيل">
           </div>
         </div>
@@ -377,13 +371,19 @@
         addressLabel.innerText = t.addressCompany;
         addressInput.placeholder = t.placeholderCompany;
       } else {
-        indFields.classList.add('active');
-        compRepField.classList.remove('active');
-        nameLabel.innerText = t.fullName;
+        compIdentityFields.classList.remove('active'); // الشركات وحدها تظهر لها جهة التسجيل ورقم التسجيل
         if (isForeign) {
+          indFields.classList.remove('active'); // الأجنبي الفرد لا نطلب عمر أو تحصيل
+          foreignIndivFields.classList.add('active');
+          translationField.classList.add('active');
+          nameLabel.innerText = t.fullName;
           addressLabel.innerText = t.addressForeignIndiv;
           addressInput.placeholder = t.placeholderForeignIndiv;
         } else {
+          indFields.classList.add('active');
+          foreignIndivFields.classList.remove('active');
+          translationField.classList.remove('active');
+          nameLabel.innerText = t.fullName;
           addressLabel.innerText = t.addressIraqiIndiv;
           addressInput.placeholder = t.placeholderIraqiIndiv;
         }
@@ -391,19 +391,10 @@
 
       if (isCompany) {
         compIdentityFields.classList.add('active');
-        if (isForeign) {
-          translationField.classList.add('active');
-        } else {
-          translationField.classList.remove('active');
-        }
         foreignIndivFields.classList.remove('active');
-      } else {
-        compIdentityFields.classList.remove('active');
         if (isForeign) {
-          foreignIndivFields.classList.add('active');
           translationField.classList.add('active');
         } else {
-          foreignIndivFields.classList.remove('active');
           translationField.classList.remove('active');
         }
       }
@@ -425,14 +416,14 @@
         optIndiv: "فرد (شخص طبيعي)",
         optComp: "شركة أو مؤسسة تجارية",
         fullName: "الاسم الكامل *",
-        companyName: "اسم الشركة أو المؤسسة التجارية *",
-        companyRep: "اسم المفوض بالتوقيع أو الممثل القانوني للشركة *",
+        companyName: "اسم الشركة القانوني *",
+        companyRep: "اسم المفوض بالتوقيع أو الممثل القانوني *",
         addressIraqiIndiv: "عنوان السكن (المحافظة / المنطقة) *",
         placeholderIraqiIndiv: "المحافظة / المنطقة (مثلاً: بغداد - زيونة)",
         addressForeignIndiv: "عنوان الإقامة الخارجي (المدينة / الدولة) *",
         placeholderForeignIndiv: "لندن - المملكة المتحدة أو دبي - الإمارات",
-        addressCompany: "مقر الشركة أو المركز الرئيسي *",
-        placeholderCompany: "بغداد - الكرادة أو أربيل - ناصري",
+        addressCompany: "مقر الشركة الرئيسي *",
+        placeholderCompany: "بغداد أو أربيل أو عاصمة التأسيس",
         email: "البريد الإلكتروني *",
         phone: "رقم الهاتف / الواتساب *",
         gender: "الجنس *",
@@ -445,9 +436,8 @@
         eduOther: "غير ذلك",
         occupation: "العمل أو الوظيفة *",
         nationalityIndiv: "الجنسية *",
-        passportIndiv: "رقم جواز السفر *",
         countryInc: "بلد التأسيس *",
-        regNo: "رقم تسجيل الشركة *",
+        regNo: "رقم تسجيل الشركة (CRN) *",
         translation: "خدمة الترجمة والتنسيق أثناء الجلسة *",
         transNo: "لا، أستطيع المتابعة بشكل مباشر",
         transYes: "نعم، أرغب بأن يوفر المكتب مترجماً مختصاً للجلسة",
@@ -480,14 +470,14 @@
         optIndiv: "Individual",
         optComp: "Corporation / Business Entity",
         fullName: "Full Name *",
-        companyName: "Company / Business Name *",
-        companyRep: "Authorized Representative / Signatory Name *",
+        companyName: "Company Legal Name *",
+        companyRep: "Authorized Representative / Signatory *",
         addressIraqiIndiv: "Residential Address (City / Area) *",
-        placeholderIraqiIndiv: "Province / Area (e.g., Baghdad - Zayouna)",
+        placeholderIraqiIndiv: "City / Area",
         addressForeignIndiv: "Foreign Residential Address (City / Country) *",
         placeholderForeignIndiv: "London - UK or Dubai - UAE",
-        addressCompany: "Company Headquarters / Main Office *",
-        placeholderCompany: "Baghdad or Erbil",
+        addressCompany: "Company Headquarters *",
+        placeholderCompany: "Baghdad, Erbil, or Headquarters City",
         email: "Email Address *",
         phone: "Phone / WhatsApp *",
         gender: "Gender *",
@@ -500,9 +490,8 @@
         eduOther: "Other",
         occupation: "Occupation / Job *",
         nationalityIndiv: "Nationality *",
-        passportIndiv: "Passport No. *",
         countryInc: "Country of Incorporation *",
-        regNo: "Corporate Registration No. *",
+        regNo: "Corporate Registration No. (CRN) *",
         translation: "Translation & Linguistic Coordination Service *",
         transNo: "No, I can proceed directly",
         transYes: "Yes, I request a specialized translator provided by the office",
@@ -535,13 +524,13 @@
         optIndiv: "Birey",
         optComp: "Şirket / Ticari Kuruluş",
         fullName: "Ad Soyad *",
-        companyName: "Şirket Adı *",
-        companyRep: "Şirket Yetkilisi / Temsilci Adı *",
-        addressIraqiIndiv: "İkamet Adresi (İl / Bölge) *",
-        placeholderIraqiIndiv: "Bağdat",
+        companyName: "Şirket Yasal Adı *",
+        companyRep: "Şirket Yetkilisi / Temsilci *",
+        addressIraqiIndiv: "İkamet Adresi *",
+        placeholderIraqiIndiv: "Şehir / Bölge",
         addressForeignIndiv: "Yabancı İkamet Adresi (Şehir / Ülke) *",
         placeholderForeignIndiv: "Londra - İngiltere",
-        addressCompany: "Şirket Merkezi / Ana Ofis *",
+        addressCompany: "Şirket Merkezi *",
         placeholderCompany: "Bağdat veya Erbil",
         email: "E-posta *",
         phone: "Telefon / WhatsApp *",
@@ -555,9 +544,8 @@
         eduOther: "Diğer",
         occupation: "Meslek *",
         nationalityIndiv: "Uyruk *",
-        passportIndiv: "Pasaport No *",
         countryInc: "Kuruluş Ülkesi *",
-        regNo: "Şirket Kayıt No *",
+        regNo: "Şirket Kayıt No (CRN) *",
         translation: "Çeviri Hizmeti *",
         transNo: "Hayır, doğrudan devam edebilirim",
         transYes: "Evet, ofis tarafından çevirmen sağlanmasını talep ediyorum",
@@ -590,13 +578,13 @@
         optIndiv: "个人",
         optComp: "公司 / 商业机构",
         fullName: "全名 *",
-        companyName: "公司名称 *",
-        companyRep: "公司授权代表 / 签字人姓名 *",
+        companyName: "公司法定名称 *",
+        companyRep: "授权代表 / 签字人 *",
         addressIraqiIndiv: "居住地址 (城市/地区) *",
-        placeholderIraqiIndiv: "巴格达",
+        placeholderIraqiIndiv: "城市 / 地区",
         addressForeignIndiv: "境外居住地址 (城市/国家) *",
         placeholderForeignIndiv: "伦敦 - 英国",
-        addressCompany: "公司总部 / 主办事处 *",
+        addressCompany: "公司总部 *",
         placeholderCompany: "巴格达或埃尔比勒",
         email: "电子邮箱 *",
         phone: "电话 / WhatsApp *",
@@ -610,9 +598,8 @@
         eduOther: "其他",
         occupation: "职业 *",
         nationalityIndiv: "国籍 *",
-        passportIndiv: "护照号 *",
         countryInc: "注册国家 *",
-        regNo: "公司注册号 *",
+        regNo: "公司注册号 (CRN) *",
         translation: "翻译与语言协调服务 *",
         transNo: "否，可直接进行",
         transYes: "是，请求律所提供专业翻译人员",
@@ -645,10 +632,10 @@
         optIndiv: "Particulier",
         optComp: "Entreprise / Société",
         fullName: "Nom Complet *",
-        companyName: "Nom de l'Entreprise *",
-        companyRep: "Nom du Représentant Légal / Signataire *",
+        companyName: "Nom Légal de l'Entreprise *",
+        companyRep: "Représentant Légal / Signataire *",
         addressIraqiIndiv: "Adresse de Résidence (Ville / Région) *",
-        placeholderIraqiIndiv: "Bagdad",
+        placeholderIraqiIndiv: "Ville / Région",
         addressForeignIndiv: "Adresse de Résidence Étrangère (Ville / Pays) *",
         placeholderForeignIndiv: "Londres - Royaume-Uni",
         addressCompany: "Siège Social de l'Entreprise *",
@@ -665,9 +652,8 @@
         eduOther: "Autre",
         occupation: "Profession *",
         nationalityIndiv: "Nationalité *",
-        passportIndiv: "N° de Passeport *",
         countryInc: "Pays d'Immatriculation *",
-        regNo: "N° d'Enregistrement de la Société *",
+        regNo: "N° d'Enregistrement de la Société (CRN) *",
         translation: "Service de Traduction *",
         transNo: "Non, je peux continuer directement",
         transYes: "Oui, je souhaite qu'un traducteur soit fourni",
@@ -700,13 +686,13 @@
         optIndiv: "Individual",
         optComp: "Empresa / Corporación",
         fullName: "Nombre Completo *",
-        companyName: "Nombre de la Empresa *",
-        companyRep: "Nombre del Representante Legal / Firmante *",
+        companyName: "Nombre Legal de la Empresa *",
+        companyRep: "Representante Legal / Firmante *",
         addressIraqiIndiv: "Dirección de Residencia (Ciudad / Área) *",
-        placeholderIraqiIndiv: "Bagdad",
+        placeholderIraqiIndiv: "Ciudad / Área",
         addressForeignIndiv: "Dirección de Residencia en el Extranjero (Ciudad / País) *",
         placeholderForeignIndiv: "Londres - Reino Unido",
-        addressCompany: "Sede de la Empresa / Oficina Principal *",
+        addressCompany: "Sede de la Empresa *",
         placeholderCompany: "Bagdad o Erbil",
         email: "Correo Electrónico *",
         phone: "Teléfono / WhatsApp *",
@@ -720,9 +706,8 @@
         eduOther: "Otro",
         occupation: "Ocupación *",
         nationalityIndiv: "Nacionalidad *",
-        passportIndiv: "N° de Pasaporte *",
         countryInc: "País de Constitución *",
-        regNo: "N° de Registro Mercantil *",
+        regNo: "N° de Registro Mercantil (CRN) *",
         translation: "Servicio de Traducción *",
         transNo: "No, puedo continuar directamente",
         transYes: "Sí, solicito un traductor proporcionado por la oficina",
@@ -755,13 +740,13 @@
         optIndiv: "Einzelperson",
         optComp: "Unternehmen / Körperschaft",
         fullName: "Vollständiger Name *",
-        companyName: "Firmenname *",
-        companyRep: "Name des bevollmächtigten Vertreters *",
+        companyName: "Offizieller Firmenname *",
+        companyRep: "Bevollmächtigter Vertreter *",
         addressIraqiIndiv: "Wohnanschrift (Stadt / Region) *",
-        placeholderIraqiIndiv: "Bagdad",
+        placeholderIraqiIndiv: "Stadt / Region",
         addressForeignIndiv: "Ausländische Wohnanschrift (Stadt / Land) *",
         placeholderForeignIndiv: "London - Großbritannien",
-        addressCompany: "Firmensitz / Hauptbüro *",
+        addressCompany: "Firmensitz *",
         placeholderCompany: "Bagdad oder Erbil",
         email: "E-Mail-Adresse *",
         phone: "Telefon / WhatsApp *",
@@ -775,9 +760,8 @@
         eduOther: "Sonstige",
         occupation: "Beruf *",
         nationalityIndiv: "Staatsangehörigkeit *",
-        passportIndiv: "Reisepassnummer *",
         countryInc: "Gründungsland *",
-        regNo: "Registernummer *",
+        regNo: "Registernummer (CRN) *",
         translation: "Übersetzungsdienst *",
         transNo: "Nein, ich kann direkt fortfahren",
         transYes: "Ja, ich beantrage einen Übersetzer",
@@ -810,10 +794,10 @@
         optIndiv: "تاک (کەسی سروشتی)",
         optComp: "کۆمپانیا یان دەزگای بازرگانی",
         fullName: "ناوی تەواو *",
-        companyName: "ناوی کۆمپانیا یان دەزگای بازرگانی *",
-        companyRep: "ناوی کەسی متمانەپێکراو یان نوێنەری یاسایی *",
-        addressIraqiIndiv: "ناونیشانی نیشتەجێبوون (پارێزگا / ناوچە) *",
-        placeholderIraqiIndiv: "بەغدا",
+        companyName: "ناوی فەرمی کۆمپانیا *",
+        companyRep: "نوێنەری یاسایی یان کەسی متمانەپێکراو *",
+        addressIraqiIndiv: "ناونیشانی نیشتەجێبوون (شار / ناوچە) *",
+        placeholderIraqiIndiv: "شار / ناوچە",
         addressForeignIndiv: "ناونیشانی نیشتەجێبوونی دەرەوە (شار / وڵات) *",
         placeholderForeignIndiv: "لەندەن - بەریتانیا",
         addressCompany: "بنکەی سەرەکی کۆمپانیا *",
@@ -830,9 +814,8 @@
         eduOther: "هی تر",
         occupation: "کار یان پیشە *",
         nationalityIndiv: "رەگەزنامە *",
-        passportIndiv: "ژمارەی پاسپۆرت *",
         countryInc: "وڵاتی دامەزراندن *",
-        regNo: "ژمارەی تۆمارکردنی کۆمپانیا *",
+        regNo: "ژمارەی تۆمارکردنی کۆمپانیا (CRN) *",
         translation: "خزمەتگوزاری وەرگێڕان *",
         transNo: "نەخێر، دەتوانم ڕاستەوخۆ بەردەوام بم",
         transYes: "بەڵێ، داوا دەکەم نووسینگە وەرگێڕ دابین بکات",
@@ -844,7 +827,7 @@
         typeCorp: "کێشە بازرگانییەکان و کۆمپانیاکان",
         typeCivil: "داواکاییە مەدەنی و خانووبەرەکان",
         typeCrim: "داواکاییە سزادانەکان",
-        typePers: "بارودۆخی کەسێتی (خێزان، جیابوونەوە)",
+        typePers: "بارودۆخی کەسێتی (خێزان, جیابوونەوە)",
         typeOther: "هی تر / ڕاوێژی گشتی",
         details: "وردەکاری دۆسیە یاخود بابەتی راوێژەکەت *",
         submit: "ناردنی داواکاری بۆ پێداچوونەوەی یاسایی ←",
@@ -890,7 +873,6 @@
       document.getElementById('lblOccupation').innerText = t.occupation;
 
       document.getElementById('lblNationalityIndiv').innerText = t.nationalityIndiv;
-      document.getElementById('lblPassportIndiv').innerText = t.passportIndiv;
       document.getElementById('lblCountryInc').innerText = t.countryInc;
       document.getElementById('lblRegNo').innerText = t.regNo;
       document.getElementById('lblTranslation').innerText = t.translation;
