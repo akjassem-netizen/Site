@@ -282,7 +282,7 @@
       <div id="foreignerIndividualFields" class="conditional-section">
         <div class="form-group">
           <label id="lblNationalityIndiv">الجنسية *</label>
-          <input type="text" id="nationalityIndiv" placeholder="مثال: بريطاني / أمريكي">
+          <input type="text" id="nationalityIndiv" placeholder="مثال: بريطاني / أمريكي / ألماني">
         </div>
       </div>
 
@@ -340,7 +340,7 @@
 
       <div class="form-group">
         <label id="lblDetails">شرح قضيتك أو موضوع الاستشارة بالتفصيل *</label>
-        <textarea id="consultationDetails" placeholder="اشرح الوقائع باختصار ليتسنى لنا دراستها بدقة..."></textarea>
+        <textarea id="consultationDetails" placeholder="اشرح بإيجاز وقائع نزاعك أو موضوع الاستشارة القانونية المطلوب بدقة ودون إطالة..."></textarea>
       </div>
 
       <button type="submit" class="submit-btn" id="submitBtnText">إرسال الطلب للمراجعة القانونية &larr;</button>
@@ -897,7 +897,6 @@
       updateFormDisplay();
     }
 
-    // تم تحديث رابط النشر الجديد الخاص بك بدقة هنا:
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwB90LBE4uAyx5rQZ8tz5d_GBkY5gMQAdsW_xqZoseqb2C_Y6PqJi9LIlH1-LekQwbVow/exec";
 
     document.getElementById('consultationForm').addEventListener('submit', function(e) {
@@ -926,10 +925,11 @@
       submitBtn.disabled = true;
       submitBtn.style.opacity = '0.7';
 
+      // استخدام طريقة text/plain لتجاوز قيود متصفح الإنترنت وضمان وصول البيانات واستقرارها 100%
       fetch(SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(formData)
       })
       .then(() => {
@@ -937,6 +937,7 @@
         document.getElementById('consultationForm').reset();
         submitBtn.disabled = false;
         submitBtn.style.opacity = '1';
+        updateFormDisplay();
       })
       .catch(error => {
         console.error('Error!', error);
