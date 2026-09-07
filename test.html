@@ -28,22 +28,44 @@
       text-decoration: none;
     }
 
-    /* إطار الشعار الحقيقي */
-    .logo-frame {
+    /* الشعار المصمم برمجياً بدقة مطابقة للصورة الأصلية */
+    .logo-code-box {
       background: #ffffff;
-      padding: 3px 6px;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-align: center;
+      line-height: 1.15;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
 
-    .brand-logo-img {
-      height: 34px;
-      width: auto;
-      object-fit: contain;
-      display: block;
+    .logo-akh {
+      font-size: 17px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      color: #070f1e;
+      font-family: Arial, sans-serif;
+    }
+
+    .logo-akh span {
+      color: #d32f2f; /* اللون الأحمر لحرف K تماماً مثل شعارك */
+    }
+
+    .logo-sub {
+      font-size: 7px;
+      font-weight: 800;
+      color: #070f1e;
+      letter-spacing: 0.5px;
+    }
+
+    .logo-sub span {
+      color: #d32f2f;
+    }
+
+    .logo-est {
+      font-size: 5.5px;
+      color: #64748b;
+      font-weight: 600;
+      letter-spacing: 0.5px;
     }
 
     .header-left {
@@ -52,7 +74,7 @@
       gap: 8px;
     }
 
-    /* زر حجز الموعد الذي يتغير مع اللغة */
+    /* زر الحجز الذي يتغير مع اللغة */
     .btn-booking {
       background: #ffffff;
       color: #070f1e;
@@ -147,13 +169,15 @@
   <!-- الهيدر التنفيذي -->
   <header class="icover-header">
     <a href="test.html" class="brand-box">
-      <div class="logo-frame">
-        <img src="1000019530.jpg" alt="Logo" class="brand-logo-img">
+      <!-- الشعار المصمم بالكود حصراً لضمان ظهوره الفوري وبدون أخطاء -->
+      <div class="logo-code-box">
+        <div class="logo-akh">A<span>K</span>H</div>
+        <div class="logo-sub"><span>/</span> LAW OFFICE</div>
+        <div class="logo-est">EST. 2014</div>
       </div>
     </a>
 
     <div class="header-left">
-      <!-- زر الحجز مع إيدي (ID) ليتم ترجمته برمجياً -->
       <a href="https://docs.google.com/forms/d/e/1FAIpQLSdVxyld_U5Mdp-4RLcuA8HdQvAvlYWdd1fiQ8QAavwJj_Ev7w/viewform" target="_blank" class="btn-booking" id="bookingBtnText">حجز موعد</a>
       <button class="menu-toggle" onclick="toggleMenu()" aria-label="القائمة">☰</button>
     </div>
