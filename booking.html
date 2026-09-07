@@ -272,13 +272,13 @@
         </div>
       </div>
 
-      <!-- العنوان (محايد وخالٍ من الإيحاءات) -->
+      <!-- العنوان -->
       <div class="form-group">
         <label id="lblAddress">عنوان السكن *</label>
         <input type="text" id="address" placeholder="المحافظة / المنطقة (مثلاً: بغداد - زيونة)">
       </div>
 
-      <!-- حقول الفرد الأجنبي (جنسية فقط - معايير عالمية خفيفة) -->
+      <!-- حقول الفرد الأجنبي -->
       <div id="foreignerIndividualFields" class="conditional-section">
         <div class="form-group">
           <label id="lblNationalityIndiv">الجنسية *</label>
@@ -286,7 +286,7 @@
         </div>
       </div>
 
-      <!-- حقول الشركة (سواء محلية أو أجنبية) -->
+      <!-- حقول الشركة -->
       <div id="companyIdentityFields" class="conditional-section">
         <div class="form-group">
           <label id="lblCompanyRegAuth">جهة تسجيل أو تأسيس الشركة *</label>
@@ -371,9 +371,9 @@
         addressLabel.innerText = t.addressCompany;
         addressInput.placeholder = t.placeholderCompany;
       } else {
-        compIdentityFields.classList.remove('active'); // الشركات وحدها تظهر لها جهة التسجيل ورقم التسجيل
+        compIdentityFields.classList.remove('active');
         if (isForeign) {
-          indFields.classList.remove('active'); // الأجنبي الفرد لا نطلب عمر أو تحصيل
+          indFields.classList.remove('active');
           foreignIndivFields.classList.add('active');
           translationField.classList.add('active');
           nameLabel.innerText = t.fullName;
@@ -897,11 +897,53 @@
       updateFormDisplay();
     }
 
+    // هنا تم ربط السكريبت برابط الـ Web App الخاص بك بنجاح تام
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxCBMqP00WpgkwUuXM2ih0FHQqnmAC7SmQKYalFSyDkU4ezMLPx56qZVH5bKKfp5G23pw/exec";
+
     document.getElementById('consultationForm').addEventListener('submit', function(e) {
       e.preventDefault();
       const lang = document.getElementById('languageSelect').value;
       const t = bookingDict[lang] || bookingDict['en'];
-      alert(t.successMsg);
+
+      const formData = {
+        citizenship: document.querySelector('input[name="citizenship"]:checked').value,
+        residence: document.querySelector('input[name="residence"]:checked').value,
+        entityType: document.querySelector('input[name="entityType"]:checked').value,
+        fullName: document.getElementById('fullName').value,
+        companyRep: document.getElementById('companyRepName').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        personalDetails: (document.querySelector('input[name="entityType"]:checked').value === 'company') ? '' : `الجنس: ${document.getElementById('gender').value}, العمر: ${document.getElementById('age').value}, التحصيل: ${document.getElementById('education').value}, العمل: ${document.getElementById('occupation').value}`,
+        address: document.getElementById('address').value,
+        idOrReg: (document.querySelector('input[name="citizenship"]:checked').value === 'foreign' && document.querySelector('input[name="entityType"]:checked').value !== 'company') ? document.getElementById('nationalityIndiv').value : (document.querySelector('input[name="entityType"]:checked').value === 'company' ? `التأسيس: ${document.getElementById('countryInc').value} - رقم التسجيل: ${document.getElementById('regNo').value}` : ''),
+        translation: document.getElementById('translationNeeded').value,
+        method: document.getElementById('consultationMethod').value,
+        consultType: document.getElementById('consultationType').value,
+        details: document.getElementById('consultationDetails').value
+      };
+
+      const submitBtn = document.getElementById('submitBtnText');
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = '0.7';
+
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      })
+      .then(() => {
+        alert(t.successMsg);
+        document.getElementById('consultationForm').reset();
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '1';
+      })
+      .catch(error => {
+        console.error('Error!', error);
+        alert("حدث خطأ أثناء إرسال الطلب، يرجى المحاولة مرة أخرى.");
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '1';
+      });
     });
   </script>
 
