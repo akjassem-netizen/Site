@@ -1,536 +1,305 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" id="htmlRoot">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title id="pageTitle">مكتب المحامي علي كاظم الهاشمي</title>
-  <meta name="description" content="مكتب المحامي علي كاظم الهاشمي في بغداد - تقديم استشارات قانونية متخصصة وشاملة للشركات والأفراد في مختلف القوانين التجارية والعقارية والعمالية.">
-  <meta name="keywords" content="محامي في بغداد, استشارات قانونية, استشارة قانونية تجارية, المحامي علي كاظم الهاشمي, تأسيس شركات, تمثيل قانوني العراق">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&display=swap" rel="stylesheet">
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Cairo', sans-serif; background: #f4f6f9; color: #070f1e; scroll-behavior: smooth; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مكتب كاظم - استشارات وخدمات قانونية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
 
-    /* الهيدر الكلاسيكي الأزرق الفاخر */
-    .icover-header {
-      background: #070f1e;
-      border-bottom: 3px solid #c5a059;
-      padding: 14px 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-    }
+        body {
+            background-color: #0b0f19;
+            color: #ffffff;
+            direction: rtl;
+            text-align: right;
+        }
 
-    /* قائمة تغيير اللغة */
-    .lang-select-bar {
-      padding: 7px 14px;
-      border-radius: 6px;
-      border: 1.5px solid #c5a059;
-      background: #070f1e;
-      color: #ffffff;
-      font-size: 13px;
-      font-weight: 700;
-      outline: none;
-      cursor: pointer;
-      font-family: 'Cairo', sans-serif;
-    }
-    .lang-select-bar option { background: #070f1e; color: #ffffff; }
+        /* شريط التنقل العلوي */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: #111827;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-    /* حاوية زر القائمة والقائمة المنسدلة */
-    .menu-container {
-      position: relative;
-    }
+        .menu-toggle {
+            background: none;
+            border: 1px solid #d4af37;
+            color: #d4af37;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 18px;
+        }
 
-    /* زر القائمة (3 شخطات) */
-    .menu-toggle {
-      background: rgba(255,255,255,0.1);
-      border: 1.5px solid #c5a059;
-      color: #ffffff;
-      width: 42px;
-      height: 42px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s;
-    }
-    .menu-toggle:hover { background: rgba(197,160,89,0.2); }
+        .lang-btn {
+            background: none;
+            border: 1px solid #374151;
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
 
-    /* القائمة المنسدلة الرئيسية والفرعية */
-    .dropdown-menu {
-      position: absolute;
-      top: calc(100% + 10px);
-      right: 0;
-      left: auto;
-      min-width: 250px;
-      background: #070f1e;
-      border: 1.5px solid #c5a059;
-      border-radius: 10px;
-      display: none;
-      flex-direction: column;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-      padding: 8px 0;
-      z-index: 1100;
-    }
-    [dir="rtl"] .dropdown-menu { left: 0; right: auto; }
-    .dropdown-menu.active { display: flex; }
-    
-    .dropdown-menu a {
-      color: #ffffff;
-      padding: 12px 20px;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 700;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      white-space: nowrap;
-      transition: background 0.2s, color 0.2s;
-    }
-    .dropdown-menu a:last-child { border-bottom: none; }
-    .dropdown-menu a:hover { background: rgba(197,160,89,0.15); color: #c5a059; }
+        /* القائمة الجانبية (Side Menu) */
+        .side-menu-overlay {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1100;
+        }
 
-    /* تنسيق الخدمات الفرعية داخل القائمة لتبدو مرتبة تماماً */
-    .submenu-title {
-      color: #c5a059 !important;
-      font-size: 12.5px !important;
-      background: rgba(197,160,89,0.08);
-      padding: 8px 20px !important;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      pointer-events: none;
-    }
-    .sub-item {
-      padding-right: 30px !important;
-      font-size: 13px !important;
-      color: #cbd5e1 !important;
-    }
-    .sub-item:hover { color: #c5a059 !important; }
+        .side-menu-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
 
-    /* التخطيط الشبكي الرئيسي */
-    .main-container {
-      max-width: 1200px;
-      margin: 40px auto;
-      padding: 0 20px;
-      display: grid;
-      grid-template-columns: 450px 1fr;
-      gap: 35px;
-      align-items: start;
-    }
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 280px;
+            height: 100%;
+            background-color: #111827;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+            transition: right 0.3s ease;
+            z-index: 1200;
+            overflow-y: auto;
+            border-left: 1px solid rgba(212, 175, 55, 0.2);
+        }
 
-    @media (max-width: 950px) {
-      .main-container { grid-template-columns: 1fr; }
-    }
+        .side-menu.active {
+            right: 0;
+        }
 
-    /* العمود الأيمن: المربع العائم (Sticky Sidebar) */
-    .sticky-sidebar {
-      position: sticky;
-      top: 95px;
-    }
+        .side-menu-header {
+            padding: 20px;
+            border-bottom: 1px solid #1f2937;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    .hero-box {
-      background: #ffffff;
-      color: #070f1e;
-      border: 1.5px solid #cbd5e1;
-      border-radius: 20px;
-      padding: 40px 35px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.06);
-      border-top: 6px solid #c5a059;
-      text-align: start;
-    }
+        .side-menu-header h3 {
+            color: #d4af37;
+            font-size: 18px;
+        }
 
-    /* مربع الشعار الأصلي بألوانه الدقيقة */
-    .brand-logo-box {
-      background: #ffffff;
-      border: 1.5px solid #e2e8f0;
-      border-radius: 14px;
-      padding: 22px;
-      text-align: center;
-      margin-bottom: 28px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-    }
-    .b-akh {
-      font-size: 40px;
-      font-weight: 900;
-      letter-spacing: 3px;
-      color: #070f1e;
-      font-family: Arial, sans-serif;
-      line-height: 1.1;
-    }
-    .b-akh .red-k { color: #d32f2f; }
-    .b-sub {
-      font-size: 11.5px;
-      font-weight: 800;
-      color: #070f1e;
-      letter-spacing: 1.5px;
-      margin-top: 5px;
-    }
-    .b-sub .red-slash { color: #d32f2f; }
-    .b-est {
-      font-size: 9px;
-      color: #64748b;
-      font-weight: 700;
-      letter-spacing: 1px;
-      margin-top: 2px;
-    }
+        .close-menu {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 22px;
+            cursor: pointer;
+        }
 
-    .hero-title {
-      font-size: 26px;
-      font-weight: 900;
-      color: #070f1e;
-      line-height: 1.35;
-      margin-bottom: 16px;
-      text-align: start;
-    }
+        .side-menu ul {
+            list-style: none;
+        }
 
-    .hero-subtitle {
-      font-size: 15px;
-      color: #334155;
-      line-height: 1.85;
-      margin-bottom: 28px;
-      font-weight: 600;
-      text-align: start;
-    }
+        .side-menu li {
+            border-bottom: 1px solid #1f2937;
+        }
 
-    .hero-cta-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      width: 100%;
-      background: #070f1e;
-      color: #ffffff;
-      border: 1.5px solid #070f1e;
-      padding: 14px 24px;
-      border-radius: 8px;
-      font-size: 15px;
-      font-weight: 800;
-      text-decoration: none;
-      box-shadow: 0 4px 12px rgba(7, 15, 30, 0.2);
-      transition: all 0.2s ease;
-    }
-    .hero-cta-btn:hover {
-      background: #c5a059;
-      color: #070f1e;
-      border-color: #c5a059;
-    }
+        .side-menu a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            color: #e5e7eb;
+            text-decoration: none;
+            font-size: 15px;
+            transition: background 0.2s;
+        }
 
-    /* مساحة الأقسام والخدمات */
-    .content-sections-area {
-      display: flex;
-      flex-direction: column;
-      gap: 25px;
-    }
+        .side-menu a:hover {
+            background-color: #1f2937;
+            color: #d4af37;
+        }
 
-    .content-card {
-      background: #ffffff;
-      border: 1.5px solid #cbd5e1;
-      border-radius: 18px;
-      padding: 38px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.03);
-      text-align: start;
-    }
+        /* القوائم الفرعية (Dropdowns) */
+        .submenu {
+            display: none;
+            background-color: #0d131f;
+        }
 
-    .content-card h3 {
-      font-size: 21px;
-      color: #070f1e;
-      margin-bottom: 14px;
-      font-weight: 800;
-      border-bottom: 2px solid #c5a059;
-      padding-bottom: 10px;
-      text-align: start;
-    }
+        .submenu li {
+            border-bottom: none;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
 
-    .content-card p {
-      font-size: 15px;
-      color: #334155;
-      line-height: 1.85;
-      margin-bottom: 20px;
-      text-align: start;
-    }
+        .submenu a {
+            padding-right: 35px;
+            font-size: 14px;
+            color: #9ca3af;
+        }
 
-    .card-link-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: #070f1e;
-      font-weight: 800;
-      font-size: 14px;
-      text-decoration: none;
-      border-bottom: 2px solid #c5a059;
-      padding-bottom: 3px;
-      transition: color 0.2s;
-    }
-    .card-link-btn:hover { color: #c5a059; }
-  </style>
+        .arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown.open .arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown.open .submenu {
+            display: block;
+        }
+
+        /* محتوى الصفحة الرئيسي للتجربة */
+        .main-content {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .hero-card {
+            background-color: #111827;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 12px;
+            padding: 30px 20px;
+            max-width: 500px;
+            margin: 0 auto;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .hero-card h1 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #d4af37;
+        }
+
+        .hero-card p {
+            color: #9ca3af;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .cta-btn {
+            background-color: #d4af37;
+            color: #0b0f19;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.2s;
+        }
+
+        .cta-btn:hover {
+            background-color: #c5a059;
+        }
+    </style>
 </head>
 <body>
 
-  <header class="icover-header">
-    <div>
-      <select id="languageSelect" class="lang-select-bar" onchange="changeLanguage(this.value)">
-        <option value="ar">العربية</option>
-        <option value="en">English</option>
-        <option value="tr">Türkçe</option>
-        <option value="zh">中文</option>
-        <option value="fr">Français</option>
-        <option value="es">Español</option>
-        <option value="de">Deutsch</option>
-        <option value="ku">کوردی</option>
-      </select>
-    </div>
+    <!-- شريط التنقل العلوي -->
+    <header>
+        <button class="menu-toggle" id="menuToggle">☰</button>
+        <div style="font-weight: bold; color: #d4af37;">مكتب كاظم</div>
+        <button class="lang-btn">العربية</button>
+    </header>
 
-    <div class="menu-container">
-      <button class="menu-toggle" onclick="toggleMenu()" aria-label="القائمة">☰</button>
-      
-      <div id="dropdownMenu" class="dropdown-menu">
-        <a href="test.html" id="menuHome">الرئيسية</a>
-        <a href="consultations.html" id="menuConsult">الاستشارات القانونية</a>
-        
-        <div class="submenu-title" id="menuPracticeArea">مجالات العمل والخدمات:</div>
-        <a href="representation.html" class="sub-item" id="menuRep">التمثيل القضائي والخدمات</a>
-        <a href="execution.html" class="sub-item" id="menuExec">التنفيذ القانوني والتحصيل</a>
-        
-        <div style="border-top: 1px solid rgba(255,255,255,0.08); margin: 5px 0;"></div>
-        
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdVxyld_U5Mdp-4RLcuA8HdQvAvlYWdd1fiQ8QAavwJj_Ev7w/viewform" target="_blank" id="menuBook">حجز موعد استشارة</a>
-        <a href="https://wa.me/9647838759047" target="_blank" id="menuWhatsapp">محادثة واتساب</a>
-      </div>
-    </div>
-  </header>
-
-  <main class="main-container">
-
-    <aside class="sticky-sidebar">
-      <section class="hero-box">
-        <div class="brand-logo-box" dir="ltr">
-          <div class="b-akh">A<span class="red-k">K</span>H</div>
-          <div class="b-sub"><span class="red-slash">/</span> LAW OFFICE</div>
-          <div class="b-est">EST. 2014</div>
+    <!-- القائمة الجانبية والخلفية المعتمة -->
+    <div class="side-menu-overlay" id="menuOverlay"></div>
+    <nav class="side-menu" id="sideMenu">
+        <div class="side-menu-header">
+            <h3>قائمة التنقل</h3>
+            <button class="close-menu" id="closeMenu">&times;</button>
         </div>
+        <ul>
+            <!-- 1. الرئيسية -->
+            <li><a href="#home">الرئيسية</a></li>
 
-        <h1 class="hero-title" id="heroTitleText">مكتب المحامي علي كاظم الهاشمي</h1>
-        <p class="hero-subtitle" id="heroSubtitleText">تمثيل قانوني رصين واستشارات تخصصية للشركات والأفراد برؤية مهنية ودقيقة من قلب العاصمة بغداد.</p>
-        
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdVxyld_U5Mdp-4RLcuA8HdQvAvlYWdd1fiQ8QAavwJj_Ev7w/viewform" target="_blank" class="hero-cta-btn" id="heroCtaText">
-          حجز موعد استشارة &larr;
-        </a>
-      </section>
-    </aside>
+            <!-- 2. الاستشارات (مستقلة وسريعة) -->
+            <li><a href="#consultation">حجز موعد استشارة</a></li>
 
-    <section class="content-sections-area">
-      <div class="content-card">
-        <h3 id="sec1Title">مجالات الاختصاص والخدمات القانونية</h3>
-        <p id="sec1Desc">نقدم حزمة متكاملة من الخدمات القانونية تشمل صياغة وتدقيق العقود التجارية المحلية والدولية، التمثيل أمام كافة المحاكم بمختلف درجاتها، تقديم الاستشارات للشركات الاستثمارية، وتسوية النزاعات بالطرق القانونية الرصينة.</p>
-        <a href="consultations.html" class="card-link-btn" id="sec1Btn">عرض تفاصيل الخدمة ←</a>
-      </div>
+            <!-- 3. خدماتنا (تضم قائمة فرعية منسدلة) -->
+            <li class="dropdown" id="servicesDropdown">
+                <a href="javascript:void(0);" onclick="toggleDropdown('servicesDropdown')">
+                    خدماتنا وأعمالنا 
+                    <span class="arrow">▼</span>
+                </a>
+                <ul class="submenu">
+                    <li><a href="#judicial">التمثيل القضائي والخدمات</a></li>
+                    <li><a href="#execution">التنفيذ القانوني والتحصيل</a></li>
+                    <li><a href="#corporate">تأسيس الشركات والوكالات</a></li>
+                </ul>
+            </li>
 
-      <div class="content-card">
-        <h3 id="sec2Title">الرؤية والمنهج المهني</h3>
-        <p id="sec2Desc">نلتزم بأعلى معايير السرية المهنية والنزاهة القانونية، مع متابعة المستجدات التشريعية والقضائية لنضمن لعملائنا أفضل النتائج الاستراتيجية ضمن إطار القانون العراقي والدولي.</p>
-        <a href="representation.html" class="card-link-btn" id="sec2Btn">قراءة المزيد ←</a>
-      </div>
-    </section>
+            <!-- 4. من نحن -->
+            <li><a href="#about">من نحن</a></li>
 
-  </main>
+            <!-- 5. اتصل بنا (تضم وسائل الاتصال) -->
+            <li class="dropdown" id="contactDropdown">
+                <a href="javascript:void(0);" onclick="toggleDropdown('contactDropdown')">
+                    اتصل بنا 
+                    <span class="arrow">▼</span>
+                </a>
+                <ul class="submenu">
+                    <li><a href="https://wa.me/964..." target="_blank">محادثة واتساب مباشرة</a></li>
+                    <li><a href="tel:+964...">اتصال هاتفي</a></li>
+                    <li><a href="#location">العنوان في بغداد ونموذج التواصل</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
 
-  <script>
-    function toggleMenu() {
-      const menu = document.getElementById('dropdownMenu');
-      menu.classList.toggle('active');
-    }
+    <!-- محتوى تجريبي للصفحة -->
+    <main class="main-content">
+        <div class="hero-card">
+            <h1>مكتب كاظم للخدمات القانونية</h1>
+            <p>تمثيل قانوني واستشارات دقيقة للشركات والأفراد برؤية مهنية من قلب العاصمة بغداد.</p>
+            <a href="#consultation" class="cta-btn">حجز موعد استشارة ←</a>
+        </div>
+    </main>
 
-    window.onclick = function(event) {
-      if (!event.target.matches('.menu-toggle') && !event.target.closest('.menu-container')) {
-        document.getElementById('dropdownMenu').classList.remove('active');
-      }
-    }
+    <!-- جافاسكريبت للتحكم بالقائمة -->
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const closeMenu = document.getElementById('closeMenu');
+        const sideMenu = document.getElementById('sideMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
 
-    const dictionary = {
-      ar: {
-        pageTitle: "مكتب المحامي علي كاظم الهاشمي",
-        home: "الرئيسية",
-        menuConsult: "الاستشارات القانونية",
-        menuPracticeArea: "مجالات العمل والخدمات:",
-        menuRep: "التمثيل القضائي والخدمات",
-        menuExec: "التنفيذ القانوني والتحصيل",
-        bookConsult: "حجز موعد استشارة",
-        whatsapp: "محادثة واتساب",
-        title: "مكتب المحامي علي كاظم الهاشمي",
-        subtitle: "تمثيل قانوني رصين واستشارات تخصصية للشركات والأفراد برؤية مهنية ودقيقة من قلب العاصمة بغداد.",
-        cta: "حجز موعد استشارة ←",
-        sec1Title: "مجالات الاختصاص والخدمات القانونية",
-        sec1Desc: "نقدم حزمة متكاملة من الخدمات القانونية تشمل صياغة وتدقيق العقود التجارية المحلية والدولية، التمثيل أمام كافة المحاكم بمختلف درجاتها، تقديم الاستشارات للشركات الاستثمارية، وتسوية النزاعات بالطرق القانونية الرصينة.",
-        sec1Btn: "عرض تفاصيل الخدمة ←",
-        sec2Title: "الرؤية والمنهج المهني",
-        sec2Desc: "نلتزم بأعلى معايير السرية المهنية والنزاهة القانونية، مع متابعة المستجدات التشريعية والقضائية لنضمن لعملائنا أفضل النتائج الاستراتيجية ضمن إطار القانون العراقي والدولي.",
-        sec2Btn: "قراءة المزيد ←"
-      },
-      en: {
-        pageTitle: "Law Office of Ali Kadhem Hashimi",
-        home: "Home",
-        menuConsult: "Legal Consultations",
-        menuPracticeArea: "Practice Areas & Services:",
-        menuRep: "Judicial Representation & Services",
-        menuExec: "Legal Execution & Collection",
-        bookConsult: "Book Consultation",
-        whatsapp: "WhatsApp Chat",
-        title: "Law Office of Ali Kadhem Hashimi",
-        subtitle: "Reliable legal representation and specialized advisory for corporations and individuals with a professional vision from Baghdad.",
-        cta: "Book Consultation →",
-        sec1Title: "Fields of Expertise & Legal Services",
-        sec1Desc: "We provide an integrated package of legal services including drafting and reviewing local and international commercial contracts, representation before all courts, corporate advisory, and dispute resolution.",
-        sec1Btn: "View Service Details →",
-        sec2Title: "Vision & Professional Approach",
-        sec2Desc: "We are committed to the highest standards of professional confidentiality and legal integrity, keeping pace with legislative and judicial developments to ensure optimal strategic outcomes.",
-        sec2Btn: "Read More →"
-      },
-      tr: {
-        pageTitle: "Av. Ali Kazım Haşimi Hukuk Bürosu",
-        home: "Ana Sayfa",
-        menuConsult: "Hukuki Danışmanlık",
-        menuPracticeArea: "Çalışma Alanları ve Hizmetler:",
-        menuRep: "Yargı Temsilciliği ve Hizmetler",
-        menuExec: "Yasal İcra ve Tahsilat",
-        bookConsult: "Danışmanlık Randevusu",
-        whatsapp: "WhatsApp Sohbet",
-        title: "Av. Ali Kazım Haşimi Hukuk Bürosu",
-        subtitle: "Bağdat'ın kalbinden profesyonel bir vizyonla şirketler ve bireyler için güvenilir hukuki temsil ve uzman danışmanlık.",
-        cta: "Randevu Al →",
-        sec1Title: "Uzmanlık Alanları ve Hukuki Hizmetler",
-        sec1Desc: "Yerel ve uluslararası ticari sözleşmelerin hazırlanması, mahkemelerde temsil, kurumsal danışmanlık ve uyuşmazlık çözümü dahil olmak üzere kapsamlı hukuki hizmetler sunuyoruz.",
-        sec1Btn: "Hizmet Detaylarını Gör →",
-        sec2Title: "Vizyon ve Profesyonel Yaklaşım",
-        sec2Desc: "Müvekkillerimiz için en iyi stratejik sonuçları garanti etmek amacıyla en yüksek mesleki gizlilik ve dürüstlük standartlarına bağlıyız.",
-        sec2Btn: "Devamını Oku →"
-      },
-      zh: {
-        pageTitle: "阿里·卡德姆·哈希米律所",
-        home: "首页",
-        menuConsult: "法律咨询",
-        menuPracticeArea: "业务领域与服务：",
-        menuRep: "司法代理与服务",
-        menuExec: "法律执行与催收",
-        bookConsult: "预约咨询",
-        whatsapp: "WhatsApp 聊天",
-        title: "阿里·卡德姆·哈希米律所",
-        subtitle: "立足巴格达，以专业严谨的视角为企业和个人提供可靠的法律代理与专项咨询服务。",
-        cta: "预约咨询 →",
-        sec1Title: "专业领域与法律服务",
-        sec1Desc: "我们提供全方位的法律服务，包括起草和审查国内外商业合同、出庭代理、企业投资咨询以及纠纷解决。",
-        sec1Btn: "查看服务详情 →",
-        sec2Title: "愿景与专业方法",
-        sec2Desc: "我们秉持最高的职业保密和法律诚信标准，紧跟立法与司法动态，确保客户获得最优的战略成果。",
-        sec2Btn: "阅读更多 →"
-      },
-      fr: {
-        pageTitle: "Cabinet d'Avocats Ali Kadhem Hashimi",
-        home: "Accueil",
-        menuConsult: "Consultations Juridiques",
-        menuPracticeArea: "Domaines d'Activité & Services :",
-        menuRep: "Représentation Judiciaire & Services",
-        menuExec: "Exécution Légale & Recouvrement",
-        bookConsult: "Réserver une Consultation",
-        whatsapp: "Discussion WhatsApp",
-        title: "Cabinet d'Avocats Ali Kadhem Hashimi",
-        subtitle: "Représentation juridique fiable et conseil spécialisé pour les entreprises et les particuliers depuis Bagdad.",
-        cta: "Réserver →",
-        sec1Title: "Domaines d'Expertise & Services Juridiques",
-        sec1Desc: "Nous offrons des services complets comprenant la rédaction de contrats commerciaux, la représentation en justice, le conseil aux entreprises et la résolution des litiges.",
-        sec1Btn: "Voir les Détails →",
-        sec2Title: "Vision & Approche Professionnelle",
-        sec2Desc: "Nous nous engageons envers les plus hautes normes de confidentialité et d'intégrité professionnelle pour garantir des résultats optimaux à nos clients.",
-        sec2Btn: "Lire Plus →"
-      },
-      es: {
-        pageTitle: "Bufete de Abogados Ali Kadhem Hashimi",
-        home: "Inicio",
-        menuConsult: "Consultas Legales",
-        menuPracticeArea: "Áreas de Práctica y Servicios:",
-        menuRep: "Representación Judicial y Servicios",
-        menuExec: "Ejecución Legal y Cobranza",
-        bookConsult: "Reservar Consulta",
-        whatsapp: "Chat de WhatsApp",
-        title: "Bufete de Abogados Ali Kadhem Hashimi",
-        subtitle: "Representación legal confiable y asesoría especializada para corporaciones e individuos desde Bagdad.",
-        cta: "Reservar Consulta →",
-        sec1Title: "Áreas de Experiencia y Servicios Legales",
-        sec1Desc: "Ofrecemos servicios legales integrales que incluyen la redacción de contratos comerciales, representación judicial, asesoría corporativa y resolución de disputas.",
-        sec1Btn: "Ver Detalles del Servicio →",
-        sec2Title: "Visión y Enfoque Profesional",
-        sec2Desc: "Estamos comprometidos con los más altos estándares de confidencialidad y ética profesional para asegurar resultados óptimos.",
-        sec2Btn: "Leer Más →"
-      },
-      de: {
-        pageTitle: "Anwaltskanzlei Ali Kadhem Hashimi",
-        home: "Startseite",
-        menuConsult: "Rechtsberatung",
-        menuPracticeArea: "Tätigkeitsbereiche & Dienste:",
-        menuRep: "Gerichtliche Vertretung & Dienste",
-        menuExec: "Rechtliche Vollstreckung & Inkasso",
-        bookConsult: "Beratung buchen",
-        whatsapp: "WhatsApp Chat",
-        title: "Anwaltskanzlei Ali Kadhem Hashimi",
-        subtitle: "Zuverlässige rechtliche Vertretung und spezialisierte Beratung für Unternehmen und Privatpersonen aus Bagdad.",
-        cta: "Beratung buchen →",
-        sec1Title: "Fachgebiete & Rechtsdienstleistungen",
-        sec1Desc: "Wir bieten umfassende rechtliche Dienstleistungen an, darunter die Ausarbeitung kommerzieller Verträge, gerichtliche Vertretung und Unternehmensberatung.",
-        sec1Btn: "Details ansehen →",
-        sec2Title: "Vision & Professioneller Ansatz",
-        sec2Desc: "Wir verpflichten uns zu höchsten Standards beruflicher Verschwiegenheit und Integrität.",
-        sec2Btn: "Mehr lesen →"
-      },
-      ku: {
-        pageTitle: "نووسینگەی پارێزەر عەلی کازمی هاشمی",
-        home: "سەرەکی",
-        menuConsult: "راوێژی یاسایی",
-        menuPracticeArea: "بوارەکانی کارکردن و خزمەتگوزاری:",
-        menuRep: "نوێنەرایەتی دادوەری و خزمەتگوزاری",
-        menuExec: "جێبەجێکردنی یاسایی و وەرگرتنەوە",
-        bookConsult: "چاوپێکەوتنی راوێژکاری",
-        whatsapp: "وه‌تسئاپ چات",
-        title: "نووسینگەی پارێزەر عەلی کازمی هاشمی",
-        subtitle: "نوێنەرایەتی یاسایی متمانەپێکراو و راوێژی تایبەتمەند بۆ کۆمپانیاکان و تاکەکان لە دڵی بەغدادەوە.",
-        cta: "چاوپێکەوتن تۆماربکە ←",
-        sec1Title: "بوارەکانی تایبەتمەندی و خزمەتگوزاری یاسایی",
-        sec1Desc: "ئێمە خزمەتگوزاری یاسایی تێر و تەسەل پێشکەش دەکەین لەوانە داڕشتنی گرێبەستی بازرگانی، نوێنەرایەتی لە دادگاکان و ڕاوێژی کۆمپانیاکان.",
-        sec1Btn: "وردەکاری خزمەتگوزاری ببینە ←",
-        sec2Title: "دیدگا و شێوازی پیشەیی",
-        sec2Desc: "پەیوەستین بە بەرزترین ستانداردەکانی نهێنی و شەرەفی پیشەیی بۆ دابینکردنی باشترین سەرکەوتن بۆ کڕیارەکانمان.",
-        sec2Btn: "زیاتر بخوێنەوە ←"
-      }
-    };
+        function openMenu() {
+            sideMenu.classList.add('active');
+            menuOverlay.classList.add('active');
+        }
 
-    function changeLanguage(lang) {
-      const root = document.getElementById('htmlRoot');
-      root.setAttribute('lang', lang);
-      root.setAttribute('dir', (lang === 'ar' || lang === 'ku') ? 'rtl' : 'ltr');
+        function closeSideMenu() {
+            sideMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+        }
 
-      const t = dictionary[lang] || dictionary['en'];
+        menuToggle.addEventListener('click', openMenu);
+        closeMenu.addEventListener('click', closeSideMenu);
+        menuOverlay.addEventListener('click', closeSideMenu);
 
-      document.getElementById('pageTitle').innerText = t.pageTitle;
-      document.getElementById('menuHome').innerText = t.home;
-      document.getElementById('menuConsult').innerText = t.menuConsult;
-      document.getElementById('menuPracticeArea').innerText = t.menuPracticeArea;
-      document.getElementById('menuRep').innerText = t.menuRep;
-      document.getElementById('menuExec').innerText = t.menuExec;
-      document.getElementById('menuBook').innerText = t.bookConsult;
-      document.getElementById('menuWhatsapp').innerText = t.whatsapp;
-      document.getElementById('heroTitleText').innerText = t.title;
-      document.getElementById('heroSubtitleText').innerText = t.subtitle;
-      document.getElementById('heroCtaText').innerText = t.cta;
-      
-      document.getElementById('sec1Title').innerText = t.sec1Title;
-      document.getElementById('sec1Desc').innerText = t.sec1Desc;
-      document.getElementById('sec1Btn').innerText = t.sec1Btn;
-      document.getElementById('sec2Title').innerText = t.sec2Title;
-      document.getElementById('sec2Desc').innerText = t.sec2Desc;
-      document.getElementById('sec2Btn').innerText = t.sec2Btn;
-    }
-  </script>
-
+        // دالة لفتح وإغلاق القوائم الفرعية بسلاسة
+        function toggleDropdown(dropdownId) {
+            const dropdown = document.getElementById(dropdownId);
+            dropdown.classList.toggle('open');
+        }
+    </script>
 </body>
 </html>
