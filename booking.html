@@ -22,19 +22,26 @@
       box-shadow: 0 4px 20px rgba(0,0,0,0.15);
     }
 
+    /* تحسين قائمة اللغات لتكون مستقرة دائماً ولا تظهر بيضاء أو تفقد شكلها */
     .lang-select-bar {
-      padding: 7px 14px;
+      padding: 8px 16px;
       border-radius: 6px;
       border: 1.5px solid #c5a059;
-      background: #070f1e;
-      color: #ffffff;
+      background-color: #070f1e !important;
+      color: #ffffff !important;
       font-size: 13px;
       font-weight: 700;
       outline: none;
       cursor: pointer;
       font-family: 'Cairo', sans-serif;
+      -webkit-appearance: menulist;
+      appearance: menulist;
     }
-    .lang-select-bar option { background: #070f1e; color: #ffffff; }
+    .lang-select-bar option { 
+      background-color: #070f1e !important; 
+      color: #ffffff !important; 
+      padding: 8px;
+    }
 
     .back-home-btn {
       color: #ffffff;
@@ -194,8 +201,8 @@
       <div class="form-group">
         <label id="lblCitizenship">الجنسية / الصفة الشخصية *</label>
         <div class="radio-group">
-          <label class="radio-label"><input type="radio" name="citizenship" value="iraqi" checked onclick="updateFormDisplay()"> <span id="optIraqi">عراقي (مواطن)</span></label>
-          <label class="radio-label"><input type="radio" name="citizenship" value="foreign" onclick="updateFormDisplay()"> <span id="optForeign">أجنبي (غير عراقي)</span></label>
+          <label class="radio-label"><input type="radio" name="citizenship" value="iraqi" checked onchange="updateFormDisplay()"> <span id="optIraqi">عراقي (مواطن)</span></label>
+          <label class="radio-label"><input type="radio" name="citizenship" value="foreign" onchange="updateFormDisplay()"> <span id="optForeign">أجنبي (غير عراقي)</span></label>
         </div>
       </div>
 
@@ -210,8 +217,8 @@
       <div class="form-group">
         <label id="lblEntityType">صفة طالب الاستشارة *</label>
         <div class="radio-group">
-          <label class="radio-label"><input type="radio" name="entityType" value="individual" checked onclick="updateFormDisplay()"> <span id="optIndiv">فرد (شخص طبيعي)</span></label>
-          <label class="radio-label"><input type="radio" name="entityType" value="company" onclick="updateFormDisplay()"> <span id="optComp">شركة أو مؤسسة تجارية</span></label>
+          <label class="radio-label"><input type="radio" name="entityType" value="individual" checked onchange="updateFormDisplay()"> <span id="optIndiv">فرد (شخص طبيعي)</span></label>
+          <label class="radio-label"><input type="radio" name="entityType" value="company" onchange="updateFormDisplay()"> <span id="optComp">شركة أو مؤسسة تجارية</span></label>
         </div>
       </div>
 
@@ -373,6 +380,9 @@
         countryInc: "بلد التأسيس *",
         regNo: "رقم تسجيل الشركة (CRN) *",
         translation: "خدمة الترجمة والتنسيق أثناء الجلسة *",
+        authFed: "مسجل الشركات - الحكومة الاتحادية (بغداد)",
+        authKrg: "وزارة التجارة والصناعة - إقليم كردستان",
+        authForeign: "شركة أجنبية / دولية مؤسسة خارج العراق",
         transNo: "لا، أستطيع المتابعة بشكل مباشر",
         transYes: "نعم، أرغب بأن يوفر المكتب مترجماً مختصاً للجلسة",
         method: "طريقة تلقي الاستشارة المفضلة *",
@@ -387,7 +397,7 @@
         typeOther: "أخرى / استشارة عامة",
         details: "شرح قضيتك أو موضوع الاستشارة بالتفصيل *",
         submit: "إرسال الطلب للمراجعة القانونية ←",
-        successMsg: "تم استلام طلبكم بنجاح وهو الآن قيد الفحص والمراجعة القانونية. سنقوم بمراجعة الطلب ودراسته خلال أوقات العمل الرسمية (خلال 24 ساعة من تاريخ الاستلام)، وسيتم التواصل معكم.",
+        successMsg: "تم استلام طلبكم بنجاح وهو الآن قيد الفحص والمراجعة القانونية.",
         phName: "أدخل الاسم الثلاثي",
         phCompRep: "اسم الشخص المسؤول عن المتابعة والصفة",
         phEmail: "name@example.com",
@@ -406,7 +416,7 @@
         title: "Book Consultation - Law Office of Ali Kadhem Hashimi",
         back: "Home",
         formTitle: "Legal Consultation Request Form",
-        formInst: "Please fill out this form accurately to enable us to review your request, determine fees, and schedule the consultation.",
+        formInst: "Please fill out this form accurately to enable us to review your request.",
         citizenship: "Citizenship / Status *",
         optIraqi: "Iraqi (Citizen)",
         optForeign: "Foreigner (Non-Iraqi)",
@@ -437,6 +447,9 @@
         countryInc: "Country of Incorporation *",
         regNo: "Corporate Registration No. (CRN) *",
         translation: "Translation & Linguistic Coordination Service *",
+        authFed: "Registrar of Companies - Federal Government (Baghdad)",
+        authKrg: "Ministry of Trade and Industry - Kurdistan Region",
+        authForeign: "Foreign / International Company Incorporated Outside Iraq",
         transNo: "No, I can proceed directly",
         transYes: "Yes, I request a specialized translator provided by the office",
         method: "Preferred Consultation Method *",
@@ -451,7 +464,7 @@
         typeOther: "Other / General Consultation",
         details: "Details of Your Case or Consultation Topic *",
         submit: "Submit Request for Legal Review →",
-        successMsg: "Your request has been successfully received and is currently under legal review during official working hours (within 24 hours), and we will contact you shortly.",
+        successMsg: "Your request has been successfully received.",
         phName: "Enter full name",
         phCompRep: "Name of the responsible representative",
         phEmail: "name@example.com",
@@ -470,7 +483,7 @@
         title: "Danışmanlık Randevusu - Av. Ali Kazım Haşimi",
         back: "Ana Sayfa",
         formTitle: "Hukuki Danışmanlık Talep Formu",
-        formInst: "Talebinizi incelememiz ve randevu ayarlayabilmemiz için lütfen formu doldurun.",
+        formInst: "Lütfen formu doldurun.",
         citizenship: "Vatandaşlık / Statü *",
         optIraqi: "Iraklı (Vatandaş)",
         optForeign: "Yabancı (Iraklı Olmayan)",
@@ -501,6 +514,9 @@
         countryInc: "Kuruluş Ülkesi *",
         regNo: "Şirket Kayıt No (CRN) *",
         translation: "Çeviri Hizmeti *",
+        authFed: "Şirketler Sicili - Federal Hükümet (Bağdat)",
+        authKrg: "Ticaret ve Sanayi Bakanlığı - Kürdistan Bölgesi",
+        authForeign: "Irak Dışında Kurulmuş Yabancı Şirket",
         transNo: "Hayır, doğrudan devam edebilirim",
         transYes: "Evet, ofis tarafından çevirmen sağlanmasını talep ediyorum",
         method: "Tercih Edilen Danışmanlık Yöntemi *",
@@ -515,7 +531,7 @@
         typeOther: "Diğer / Genel Danışmanlık",
         details: "Davanızın veya Konunuzun Detayları *",
         submit: "İnceleme İçin Talebi Gönder →",
-        successMsg: "Talebiniz başarıyla alınmış olup mesai saatleri içerisinde hukuki incelemeye alınacaktır.",
+        successMsg: "Talebiniz başarıyla alınmıştır.",
         phName: "Ad soyad giriniz",
         phCompRep: "Yetkili temsilcinin adı",
         phEmail: "name@example.com",
@@ -534,7 +550,7 @@
         title: "预约法律咨询 - 阿里·卡德姆·哈希米律所",
         back: "首页",
         formTitle: "法律咨询申请表",
-        formInst: "请准确填写下表，以便我们评估申请并安排咨询时间。",
+        formInst: "请准确填写下表。",
         citizenship: "国籍 / 身份 *",
         optIraqi: "伊拉克公民",
         optForeign: "外籍人士",
@@ -565,6 +581,9 @@
         countryInc: "注册国家 *",
         regNo: "公司注册号 (CRN) *",
         translation: "翻译与语言协调服务 *",
+        authFed: "公司注册处 - 联邦政府 (巴格达)",
+        authKrg: "工贸部 - 库尔德斯坦地区",
+        authForeign: "在伊拉克境外注册的外资公司",
         transNo: "否，可直接进行",
         transYes: "是，请求律所提供专业翻译人员",
         method: "首选咨询方式 *",
@@ -579,7 +598,7 @@
         typeOther: "其他 / 一般咨询",
         details: "您的案件或咨询主题详情 *",
         submit: "提交法律审核申请 →",
-        successMsg: "您的申请已成功收到，目前正在官方工作时间内进行法律审核（24小时内），我们将与您联系。",
+        successMsg: "您的申请已成功收到。",
         phName: "输入全名",
         phCompRep: "负责代表姓名",
         phEmail: "name@example.com",
@@ -598,7 +617,7 @@
         title: "Réserver une Consultation - Cabinet Ali Kadhem Hashimi",
         back: "Accueil",
         formTitle: "Formulaire de Demande de Consultation Juridique",
-        formInst: "Veuillez remplir ce formulaire avec précision.",
+        formInst: "Veuillez remplir ce formulaire.",
         citizenship: "Nationalité / Statut *",
         optIraqi: "Iraquien (Citoyen)",
         optForeign: "Étranger (Non-iraquien)",
@@ -629,6 +648,9 @@
         countryInc: "Pays d'Immatriculation *",
         regNo: "N° d'Enregistrement de la Société (CRN) *",
         translation: "Service de Traduction *",
+        authFed: "Registre des Sociétés - Gouvernement Fédéral (Bagdad)",
+        authKrg: "Ministère du Commerce et de l'Industrie - Région du Kurdistan",
+        authForeign: "Société étrangère / internationale établie hors d'Irak",
         transNo: "Non, je peux continuer directement",
         transYes: "Oui, je souhaite qu'un traducteur soit fourni",
         method: "Méthode de Consultation Préférée *",
@@ -662,7 +684,7 @@
         title: "Reservar Consulta - Bufete Ali Kadhem Hashimi",
         back: "Inicio",
         formTitle: "Formulario de Solicitud de Consulta Legal",
-        formInst: "Por favor complete este formulario con precisión.",
+        formInst: "Por favor complete este formulario.",
         citizenship: "Nacionalidad / Estatus *",
         optIraqi: "Iraquí (Ciudadano)",
         optForeign: "Extranjero (No iraquí)",
@@ -693,6 +715,9 @@
         countryInc: "País de Constitución *",
         regNo: "N° de Registro Mercantil (CRN) *",
         translation: "Servicio de Traducción *",
+        authFed: "Registro de Empresas - Gobierno Federal (Bagdad)",
+        authKrg: "Ministerio de Comercio e Industria - Región de Kurdistán",
+        authForeign: "Empresa extranjera / internacional constituida fuera de Irak",
         transNo: "No, puedo continuar directamente",
         transYes: "Sí, solicito un traductor proporcionado por la oficina",
         method: "Método de Consulta Preferido *",
@@ -726,7 +751,7 @@
         title: "Beratung buchen - Kanzlei Ali Kadhem Hashimi",
         back: "Startseite",
         formTitle: "Anfrageformular für Rechtsberatung",
-        formInst: "Bitte füllen Sie dieses Formular genau aus.",
+        formInst: "Bitte füllen Sie dieses Formular aus.",
         citizenship: "Staatsangehörigkeit / Status *",
         optIraqi: "Irakisch (Bürger)",
         optForeign: "Ausländer (Nicht-Iraker)",
@@ -757,6 +782,9 @@
         countryInc: "Gründungsland *",
         regNo: "Registernummer (CRN) *",
         translation: "Übersetzungsdienst *",
+        authFed: "Handelsregister - Föderalregierung (Bagdad)",
+        authKrg: "Ministerium für Handel und Industrie - Region Kurdistan",
+        authForeign: "Ausländische / Internationale Gesellschaft mit Sitz außerhalb des Iraks",
         transNo: "Nein, ich kann direkt fortfahren",
         transYes: "Ja, ich beantrage einen Übersetzer",
         method: "Bevorzugte Beratungsmethode *",
@@ -821,6 +849,9 @@
         countryInc: "وڵاتی دامەزراندن *",
         regNo: "ژمارەی تۆمارکردنی کۆمپانیا (CRN) *",
         translation: "خزمەتگوزاری وەرگێڕان *",
+        authFed: "تۆمارگەری کۆمپانیاکان - حکومەتی فیدراڵی (بەغدا)",
+        authKrg: "وەزارەتی پیشەسازی و بازرگانی - هەرێمی کوردستان",
+        authForeign: "کۆمپانیای بیانی / نێودەوڵەتی دامەزراو لە دەرەوەی عێراق",
         transNo: "نەخێر، دەتوانم ڕاستەوخۆ بەردەوام بم",
         transYes: "بەڵێ، داوا دەکەم نووسینگە وەرگێڕ دابین بکات",
         method: "شێوازی پێشوازیکردنی راوێژ *",
@@ -880,6 +911,14 @@
       document.getElementById('lblEmail').innerText = t.email;
       document.getElementById('lblPhone').innerText = t.phone;
       document.getElementById('lblGender').innerText = t.gender;
+
+      const genderVal = document.getElementById('gender').value;
+      const educationVal = document.getElementById('education').value;
+      const authVal = document.getElementById('companyRegAuth').value;
+      const transVal = document.getElementById('translationNeeded').value;
+      const methodVal = document.getElementById('consultationMethod').value;
+      const consultTypeVal = document.getElementById('consultationType').value;
+
       document.getElementById('optMale').innerText = t.male;
       document.getElementById('optFemale').innerText = t.female;
       document.getElementById('lblAge').innerText = t.age;
@@ -893,6 +932,9 @@
       document.getElementById('lblCountryInc').innerText = t.countryInc;
       document.getElementById('lblRegNo').innerText = t.regNo;
       document.getElementById('lblTranslation').innerText = t.translation;
+      document.getElementById('authFed').innerText = t.authFed;
+      document.getElementById('authKrg').innerText = t.authKrg;
+      document.getElementById('authForeign').innerText = t.authForeign;
       document.getElementById('transNo').innerText = t.transNo;
       document.getElementById('transYes').innerText = t.transYes;
 
@@ -911,7 +953,13 @@
       document.getElementById('lblDetails').innerText = t.details;
       document.getElementById('submitBtnText').innerHTML = t.submit;
 
-      // تحديث الشروحات المؤقتة (Placeholders) لكل الحقول بما فيها الاسم الكامل
+      document.getElementById('gender').value = genderVal;
+      document.getElementById('education').value = educationVal;
+      document.getElementById('companyRegAuth').value = authVal;
+      document.getElementById('translationNeeded').value = transVal;
+      document.getElementById('consultationMethod').value = methodVal;
+      document.getElementById('consultationType').value = consultTypeVal;
+
       document.getElementById('fullName').placeholder = t.phName;
       document.getElementById('email').placeholder = t.phEmail;
       document.getElementById('phone').placeholder = t.phPhone;
@@ -945,36 +993,33 @@
       if (isCompany) {
         indFields.classList.remove('active');
         compRepField.classList.add('active');
+        compIdentityFields.classList.add('active');
+        foreignIndivFields.classList.remove('active');
         nameLabel.innerText = t.companyName;
         addressLabel.innerText = t.addressCompany;
         addressInput.placeholder = t.phAddrComp;
       } else {
+        compRepField.classList.remove('active');
         compIdentityFields.classList.remove('active');
         if (isForeign) {
           indFields.classList.remove('active');
           foreignIndivFields.classList.add('active');
-          translationField.classList.add('active');
           nameLabel.innerText = t.fullName;
           addressLabel.innerText = t.addressForeignIndiv;
           addressInput.placeholder = t.phAddrForeign;
         } else {
           indFields.classList.add('active');
           foreignIndivFields.classList.remove('active');
-          translationField.classList.remove('active');
           nameLabel.innerText = t.fullName;
           addressLabel.innerText = t.addressIraqiIndiv;
           addressInput.placeholder = t.phAddrIraqi;
         }
       }
 
-      if (isCompany) {
-        compIdentityFields.classList.add('active');
-        foreignIndivFields.classList.remove('active');
-        if (isForeign) {
-          translationField.classList.add('active');
-        } else {
-          translationField.classList.remove('active');
-        }
+      if (isForeign) {
+        translationField.classList.add('active');
+      } else {
+        translationField.classList.remove('active');
       }
     }
 
@@ -995,7 +1040,7 @@
         phone: document.getElementById('phone').value,
         personalDetails: (document.querySelector('input[name="entityType"]:checked').value === 'company') ? '' : `الجنس: ${document.getElementById('gender').value}, العمر: ${document.getElementById('age').value}, التحصيل: ${document.getElementById('education').value}, العمل: ${document.getElementById('occupation').value}`,
         address: document.getElementById('address').value,
-        idOrReg: (document.querySelector('input[name="citizenship"]:checked').value === 'foreign' && document.querySelector('input[name="entityType"]:checked').value !== 'company') ? document.getElementById('nationalityIndiv').value : (document.querySelector('input[name="entityType"]:checked').value === 'company' ? `التأسيس: ${document.getElementById('countryInc').value} - رقم التسجيل: ${document.getElementById('regNo').value}` : ''),
+        idOrReg: (document.querySelector('input[name="citizenship"]:checked').value === 'foreign' && document.querySelector('input[name="entityType"]:checked').value !== 'company') ? document.getElementById('nationalityIndiv').value : (document.querySelector('input[name="entityType"].checked') ? '' : (document.querySelector('input[name="entityType"]:checked').value === 'company' ? `التأسيس: ${document.getElementById('countryInc').value} - رقم التسجيل: ${document.getElementById('regNo').value}` : '')),
         translation: document.getElementById('translationNeeded').value,
         method: document.getElementById('consultationMethod').value,
         consultType: document.getElementById('consultationType').value,
@@ -1015,6 +1060,7 @@
       .then(() => {
         alert(t.successMsg);
         document.getElementById('consultationForm').reset();
+        submitBtn.disabled,
         submitBtn.disabled = false;
         submitBtn.style.opacity = '1';
         updateFormDisplay();
