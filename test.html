@@ -62,13 +62,13 @@
     }
     .menu-toggle:hover { background: rgba(197,160,89,0.2); }
 
-    /* القائمة المنسدلة المنضبطة تماماً */
+    /* القائمة المنسدلة الرئيسية والفرعية */
     .dropdown-menu {
       position: absolute;
       top: calc(100% + 10px);
       right: 0;
       left: auto;
-      min-width: 230px;
+      min-width: 250px;
       background: #070f1e;
       border: 1.5px solid #c5a059;
       border-radius: 10px;
@@ -80,9 +80,10 @@
     }
     [dir="rtl"] .dropdown-menu { left: 0; right: auto; }
     .dropdown-menu.active { display: flex; }
+    
     .dropdown-menu a {
       color: #ffffff;
-      padding: 14px 20px;
+      padding: 12px 20px;
       text-decoration: none;
       font-size: 14px;
       font-weight: 700;
@@ -92,6 +93,22 @@
     }
     .dropdown-menu a:last-child { border-bottom: none; }
     .dropdown-menu a:hover { background: rgba(197,160,89,0.15); color: #c5a059; }
+
+    /* تنسيق الخدمات الفرعية داخل القائمة لتبدو مرتبة تماماً */
+    .submenu-title {
+      color: #c5a059 !important;
+      font-size: 12.5px !important;
+      background: rgba(197,160,89,0.08);
+      padding: 8px 20px !important;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      pointer-events: none;
+    }
+    .sub-item {
+      padding-right: 30px !important;
+      font-size: 13px !important;
+      color: #cbd5e1 !important;
+    }
+    .sub-item:hover { color: #c5a059 !important; }
 
     /* التخطيط الشبكي الرئيسي */
     .main-container {
@@ -268,11 +285,17 @@
 
     <div class="menu-container">
       <button class="menu-toggle" onclick="toggleMenu()" aria-label="القائمة">☰</button>
+      
       <div id="dropdownMenu" class="dropdown-menu">
         <a href="test.html" id="menuHome">الرئيسية</a>
         <a href="consultations.html" id="menuConsult">الاستشارات القانونية</a>
-        <a href="representation.html" id="menuRep">التمثيل القضائي والخدمات</a>
-        <a href="execution.html" id="menuExec">التنفيذ القانوني والتحصيل</a>
+        
+        <div class="submenu-title" id="menuPracticeArea">مجالات العمل والخدمات:</div>
+        <a href="representation.html" class="sub-item" id="menuRep">التمثيل القضائي والخدمات</a>
+        <a href="execution.html" class="sub-item" id="menuExec">التنفيذ القانوني والتحصيل</a>
+        
+        <div style="border-top: 1px solid rgba(255,255,255,0.08); margin: 5px 0;"></div>
+        
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSdVxyld_U5Mdp-4RLcuA8HdQvAvlYWdd1fiQ8QAavwJj_Ev7w/viewform" target="_blank" id="menuBook">حجز موعد استشارة</a>
         <a href="https://wa.me/9647838759047" target="_blank" id="menuWhatsapp">محادثة واتساب</a>
       </div>
@@ -331,6 +354,7 @@
         pageTitle: "مكتب المحامي علي كاظم الهاشمي",
         home: "الرئيسية",
         menuConsult: "الاستشارات القانونية",
+        menuPracticeArea: "مجالات العمل والخدمات:",
         menuRep: "التمثيل القضائي والخدمات",
         menuExec: "التنفيذ القانوني والتحصيل",
         bookConsult: "حجز موعد استشارة",
@@ -349,6 +373,7 @@
         pageTitle: "Law Office of Ali Kadhem Hashimi",
         home: "Home",
         menuConsult: "Legal Consultations",
+        menuPracticeArea: "Practice Areas & Services:",
         menuRep: "Judicial Representation & Services",
         menuExec: "Legal Execution & Collection",
         bookConsult: "Book Consultation",
@@ -367,6 +392,7 @@
         pageTitle: "Av. Ali Kazım Haşimi Hukuk Bürosu",
         home: "Ana Sayfa",
         menuConsult: "Hukuki Danışmanlık",
+        menuPracticeArea: "Çalışma Alanları ve Hizmetler:",
         menuRep: "Yargı Temsilciliği ve Hizmetler",
         menuExec: "Yasal İcra ve Tahsilat",
         bookConsult: "Danışmanlık Randevusu",
@@ -385,6 +411,7 @@
         pageTitle: "阿里·卡德姆·哈希米律所",
         home: "首页",
         menuConsult: "法律咨询",
+        menuPracticeArea: "业务领域与服务：",
         menuRep: "司法代理与服务",
         menuExec: "法律执行与催收",
         bookConsult: "预约咨询",
@@ -403,6 +430,7 @@
         pageTitle: "Cabinet d'Avocats Ali Kadhem Hashimi",
         home: "Accueil",
         menuConsult: "Consultations Juridiques",
+        menuPracticeArea: "Domaines d'Activité & Services :",
         menuRep: "Représentation Judiciaire & Services",
         menuExec: "Exécution Légale & Recouvrement",
         bookConsult: "Réserver une Consultation",
@@ -421,6 +449,7 @@
         pageTitle: "Bufete de Abogados Ali Kadhem Hashimi",
         home: "Inicio",
         menuConsult: "Consultas Legales",
+        menuPracticeArea: "Áreas de Práctica y Servicios:",
         menuRep: "Representación Judicial y Servicios",
         menuExec: "Ejecución Legal y Cobranza",
         bookConsult: "Reservar Consulta",
@@ -439,6 +468,7 @@
         pageTitle: "Anwaltskanzlei Ali Kadhem Hashimi",
         home: "Startseite",
         menuConsult: "Rechtsberatung",
+        menuPracticeArea: "Tätigkeitsbereiche & Dienste:",
         menuRep: "Gerichtliche Vertretung & Dienste",
         menuExec: "Rechtliche Vollstreckung & Inkasso",
         bookConsult: "Beratung buchen",
@@ -457,6 +487,7 @@
         pageTitle: "نووسینگەی پارێزەر عەلی کازمی هاشمی",
         home: "سەرەکی",
         menuConsult: "راوێژی یاسایی",
+        menuPracticeArea: "بوارەکانی کارکردن و خزمەتگوزاری:",
         menuRep: "نوێنەرایەتی دادوەری و خزمەتگوزاری",
         menuExec: "جێبەجێکردنی یاسایی و وەرگرتنەوە",
         bookConsult: "چاوپێکەوتنی راوێژکاری",
@@ -483,6 +514,7 @@
       document.getElementById('pageTitle').innerText = t.pageTitle;
       document.getElementById('menuHome').innerText = t.home;
       document.getElementById('menuConsult').innerText = t.menuConsult;
+      document.getElementById('menuPracticeArea').innerText = t.menuPracticeArea;
       document.getElementById('menuRep').innerText = t.menuRep;
       document.getElementById('menuExec').innerText = t.menuExec;
       document.getElementById('menuBook').innerText = t.bookConsult;
