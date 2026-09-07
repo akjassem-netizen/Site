@@ -348,58 +348,6 @@
   </main>
 
   <script>
-    function updateFormDisplay() {
-      const isForeign = document.querySelector('input[name="citizenship"]:checked').value === 'foreign';
-      const isCompany = document.querySelector('input[name="entityType"]:checked').value === 'company';
-      
-      const indFields = document.getElementById('individualOnlyFields');
-      const compRepField = document.getElementById('companyRepField');
-      const foreignIndivFields = document.getElementById('foreignerIndividualFields');
-      const compIdentityFields = document.getElementById('companyIdentityFields');
-      const translationField = document.getElementById('translationField');
-      const nameLabel = document.getElementById('nameLabel');
-      const addressLabel = document.getElementById('lblAddress');
-      const addressInput = document.getElementById('address');
-      
-      const lang = document.getElementById('languageSelect').value;
-      const t = bookingDict[lang] || bookingDict['en'];
-
-      if (isCompany) {
-        indFields.classList.remove('active');
-        compRepField.classList.add('active');
-        nameLabel.innerText = t.companyName;
-        addressLabel.innerText = t.addressCompany;
-        addressInput.placeholder = t.placeholderCompany;
-      } else {
-        compIdentityFields.classList.remove('active');
-        if (isForeign) {
-          indFields.classList.remove('active');
-          foreignIndivFields.classList.add('active');
-          translationField.classList.add('active');
-          nameLabel.innerText = t.fullName;
-          addressLabel.innerText = t.addressForeignIndiv;
-          addressInput.placeholder = t.placeholderForeignIndiv;
-        } else {
-          indFields.classList.add('active');
-          foreignIndivFields.classList.remove('active');
-          translationField.classList.remove('active');
-          nameLabel.innerText = t.fullName;
-          addressLabel.innerText = t.addressIraqiIndiv;
-          addressInput.placeholder = t.placeholderIraqiIndiv;
-        }
-      }
-
-      if (isCompany) {
-        compIdentityFields.classList.add('active');
-        foreignIndivFields.classList.remove('active');
-        if (isForeign) {
-          translationField.classList.add('active');
-        } else {
-          translationField.classList.remove('active');
-        }
-      }
-    }
-
     const bookingDict = {
       ar: {
         title: "حجز موعد استشارة قانونية - مكتب المحامي علي كاظم الهاشمي",
@@ -419,11 +367,8 @@
         companyName: "اسم الشركة القانوني *",
         companyRep: "اسم المفوض بالتوقيع أو الممثل القانوني *",
         addressIraqiIndiv: "عنوان السكن (المحافظة / المنطقة) *",
-        placeholderIraqiIndiv: "المحافظة / المنطقة (مثلاً: بغداد - زيونة)",
         addressForeignIndiv: "عنوان الإقامة الخارجي (المدينة / الدولة) *",
-        placeholderForeignIndiv: "لندن - المملكة المتحدة أو دبي - الإمارات",
         addressCompany: "مقر الشركة الرئيسي *",
-        placeholderCompany: "بغداد أو أربيل أو عاصمة التأسيس",
         email: "البريد الإلكتروني *",
         phone: "رقم الهاتف / الواتساب *",
         gender: "الجنس *",
@@ -453,7 +398,20 @@
         typeOther: "أخرى / استشارة عامة",
         details: "شرح قضيتك أو موضوع الاستشارة بالتفصيل *",
         submit: "إرسال الطلب للمراجعة القانونية ←",
-        successMsg: "تم استلام طلبكم بنجاح وهو الآن قيد الفحص والمراجعة القانونية. سنقوم بمراجعة الطلب ودراسته خلال أوقات العمل الرسمية (خلال 24 ساعة من تاريخ الاستلام)، وسيتم التواصل معكم."
+        successMsg: "تم استلام طلبكم بنجاح وهو الآن قيد الفحص والمراجعة القانونية. سنقوم بمراجعة الطلب ودراسته خلال أوقات العمل الرسمية (خلال 24 ساعة من تاريخ الاستلام)، وسيتم التواصل معكم.",
+        phName: "أدخل الاسم الثلاثي",
+        phCompRep: "اسم الشخص المسؤول عن المتابعة والصفة",
+        phEmail: "name@example.com",
+        phPhone: "07700000000 أو برمز الدولة",
+        phAge: "مثال: 35",
+        phOcc: "اكتب وظيفتك الحالية",
+        phAddrIraqi: "المحافظة / المنطقة (مثلاً: بغداد - زيونة)",
+        phAddrForeign: "لندن - المملكة المتحدة أو دبي - الإمارات",
+        phAddrComp: "بغداد أو أربيل أو عاصمة التأسيس",
+        phNat: "مثال: بريطاني / أمريكي / ألماني",
+        phCountry: "مثال: العراق / الإمارات / المملكة المتحدة",
+        phRegNo: "رقم شهادة التأسيس أو التسجيل",
+        phDetails: "اشرح بإيجاز وقائع نزاعك أو موضوع الاستشارة القانونية المطلوب بدقة ودون إطالة..."
       },
       en: {
         title: "Book Consultation - Law Office of Ali Kadhem Hashimi",
@@ -473,11 +431,8 @@
         companyName: "Company Legal Name *",
         companyRep: "Authorized Representative / Signatory *",
         addressIraqiIndiv: "Residential Address (City / Area) *",
-        placeholderIraqiIndiv: "City / Area",
         addressForeignIndiv: "Foreign Residential Address (City / Country) *",
-        placeholderForeignIndiv: "London - UK or Dubai - UAE",
         addressCompany: "Company Headquarters *",
-        placeholderCompany: "Baghdad, Erbil, or Headquarters City",
         email: "Email Address *",
         phone: "Phone / WhatsApp *",
         gender: "Gender *",
@@ -507,7 +462,20 @@
         typeOther: "Other / General Consultation",
         details: "Details of Your Case or Consultation Topic *",
         submit: "Submit Request for Legal Review →",
-        successMsg: "Your request has been successfully received and is currently under legal review during official working hours (within 24 hours), and we will contact you shortly."
+        successMsg: "Your request has been successfully received and is currently under legal review during official working hours (within 24 hours), and we will contact you shortly.",
+        phName: "Enter full name",
+        phCompRep: "Name of the responsible representative",
+        phEmail: "name@example.com",
+        phPhone: "Phone number with country code",
+        phAge: "e.g., 35",
+        phOcc: "Enter your current occupation",
+        phAddrIraqi: "Province / Area (e.g., Baghdad)",
+        phAddrForeign: "London - UK or Dubai - UAE",
+        phAddrComp: "Baghdad, Erbil, or Headquarters city",
+        phNat: "e.g., British / American / German",
+        phCountry: "e.g., Iraq / UAE / UK",
+        phRegNo: "Certificate or Registration Number",
+        phDetails: "Briefly explain the facts of your case or legal consultation topic..."
       },
       tr: {
         title: "Danışmanlık Randevusu - Av. Ali Kazım Haşimi",
@@ -527,11 +495,8 @@
         companyName: "Şirket Yasal Adı *",
         companyRep: "Şirket Yetkilisi / Temsilci *",
         addressIraqiIndiv: "İkamet Adresi *",
-        placeholderIraqiIndiv: "Şehir / Bölge",
         addressForeignIndiv: "Yabancı İkamet Adresi (Şehir / Ülke) *",
-        placeholderForeignIndiv: "Londra - İngiltere",
         addressCompany: "Şirket Merkezi *",
-        placeholderCompany: "Bağdat veya Erbil",
         email: "E-posta *",
         phone: "Telefon / WhatsApp *",
         gender: "Cinsiyet *",
@@ -561,7 +526,20 @@
         typeOther: "Diğer / Genel Danışmanlık",
         details: "Davanızın veya Konunuzun Detayları *",
         submit: "İnceleme İçin Talebi Gönder →",
-        successMsg: "Talebiniz başarıyla alınmış olup mesai saatleri içerisinde (24 saat içinde) hukuki incelemeye alınacaktır."
+        successMsg: "Talebiniz başarıyla alınmış olup mesai saatleri içerisinde hukuki incelemeye alınacaktır.",
+        phName: "Ad soyad giriniz",
+        phCompRep: "Yetkili temsilcinin adı",
+        phEmail: "name@example.com",
+        phPhone: "Ülke kodu ile telefon numarası",
+        phAge: "örn. 35",
+        phOcc: "Mevcut mesleğinizi girin",
+        phAddrIraqi: "Şehir / Bölge",
+        phAddrForeign: "Londra - İngiltere veya Dubai - BAE",
+        phAddrComp: "Bağdat veya Erbil",
+        phNat: "örn. İngiliz / Amerikan",
+        phCountry: "örn. Irak / BAE / İngiltere",
+        phRegNo: "Kayıt veya Sertifika Numarası",
+        phDetails: "Davanızın detaylarını kısaca açıklayın..."
       },
       zh: {
         title: "预约法律咨询 - 阿里·卡德姆·哈希米律所",
@@ -581,11 +559,8 @@
         companyName: "公司法定名称 *",
         companyRep: "授权代表 / 签字人 *",
         addressIraqiIndiv: "居住地址 (城市/地区) *",
-        placeholderIraqiIndiv: "城市 / 地区",
         addressForeignIndiv: "境外居住地址 (城市/国家) *",
-        placeholderForeignIndiv: "伦敦 - 英国",
         addressCompany: "公司总部 *",
-        placeholderCompany: "巴格达或埃尔比勒",
         email: "电子邮箱 *",
         phone: "电话 / WhatsApp *",
         gender: "性别 *",
@@ -615,13 +590,26 @@
         typeOther: "其他 / 一般咨询",
         details: "您的案件或咨询主题详情 *",
         submit: "提交法律审核申请 →",
-        successMsg: "您的申请已成功收到，目前正在官方工作时间内进行法律审核（24小时内），我们将与您联系。"
+        successMsg: "您的申请已成功收到，目前正在官方工作时间内进行法律审核（24小时内），我们将与您联系。",
+        phName: "输入全名",
+        phCompRep: "负责代表姓名",
+        phEmail: "name@example.com",
+        phPhone: "带国家代码的电话号码",
+        phAge: "例如：35",
+        phOcc: "输入您的当前职业",
+        phAddrIraqi: "城市 / 地区",
+        phAddrForeign: "伦敦 - 英国 或 迪拜 - 阿联酋",
+        phAddrComp: "巴格达或埃尔比勒",
+        phNat: "例如：英国 / 美国",
+        phCountry: "例如：伊拉克 / 阿联酋",
+        phRegNo: "注册或证书编号",
+        phDetails: "请简要说明您的案件或咨询主题..."
       },
       fr: {
         title: "Réserver une Consultation - Cabinet Ali Kadhem Hashimi",
         back: "Accueil",
         formTitle: "Formulaire de Demande de Consultation Juridique",
-        formInst: "Veuillez remplir ce formulaire avec précision pour nous permettre d'examiner votre demande.",
+        formInst: "Veuillez remplir ce formulaire avec précision.",
         citizenship: "Nationalité / Statut *",
         optIraqi: "Iraquien (Citoyen)",
         optForeign: "Étranger (Non-iraquien)",
@@ -635,11 +623,8 @@
         companyName: "Nom Légal de l'Entreprise *",
         companyRep: "Représentant Légal / Signataire *",
         addressIraqiIndiv: "Adresse de Résidence (Ville / Région) *",
-        placeholderIraqiIndiv: "Ville / Région",
         addressForeignIndiv: "Adresse de Résidence Étrangère (Ville / Pays) *",
-        placeholderForeignIndiv: "Londres - Royaume-Uni",
         addressCompany: "Siège Social de l'Entreprise *",
-        placeholderCompany: "Bagdad ou Erbil",
         email: "Adresse Email *",
         phone: "Téléphone / WhatsApp *",
         gender: "Genre *",
@@ -669,13 +654,26 @@
         typeOther: "Autre / Général",
         details: "Détails de votre cas ou sujet de consultation *",
         submit: "Soumettre pour Examen Juridique →",
-        successMsg: "Votre demande a été reçue avec succès et est en cours d'examen juridique pendant les heures de travail (sous 24 heures)."
+        successMsg: "Votre demande a été reçue avec succès.",
+        phName: "Entrez le nom complet",
+        phCompRep: "Nom du représentant responsable",
+        phEmail: "name@example.com",
+        phPhone: "Téléphone avec indicatif pays",
+        phAge: "ex: 35",
+        phOcc: "Entrez votre profession",
+        phAddrIraqi: "Ville / Région",
+        phAddrForeign: "Londres - R-U ou Dubaï - EAU",
+        phAddrComp: "Bagdad ou Erbil",
+        phNat: "ex: Britannique / Américain",
+        phCountry: "ex: Irak / EAU / R-U",
+        phRegNo: "Numéro d'enregistrement",
+        phDetails: "Veuillez expliquer brièvement les faits de votre affaire..."
       },
       es: {
         title: "Reservar Consulta - Bufete Ali Kadhem Hashimi",
         back: "Inicio",
         formTitle: "Formulario de Solicitud de Consulta Legal",
-        formInst: "Por favor complete este formulario con precisión para permitirnos revisar su solicitud.",
+        formInst: "Por favor complete este formulario con precisión.",
         citizenship: "Nacionalidad / Estatus *",
         optIraqi: "Iraquí (Ciudadano)",
         optForeign: "Extranjero (No iraquí)",
@@ -689,11 +687,8 @@
         companyName: "Nombre Legal de la Empresa *",
         companyRep: "Representante Legal / Firmante *",
         addressIraqiIndiv: "Dirección de Residencia (Ciudad / Área) *",
-        placeholderIraqiIndiv: "Ciudad / Área",
         addressForeignIndiv: "Dirección de Residencia en el Extranjero (Ciudad / País) *",
-        placeholderForeignIndiv: "Londres - Reino Unido",
         addressCompany: "Sede de la Empresa *",
-        placeholderCompany: "Bagdad o Erbil",
         email: "Correo Electrónico *",
         phone: "Teléfono / WhatsApp *",
         gender: "Género *",
@@ -723,7 +718,20 @@
         typeOther: "Otro / General",
         details: "Detalles de su caso o tema de consulta *",
         submit: "Enviar Solicitud para Revisión Legal →",
-        successMsg: "Su solicitud ha sido recibida y está bajo revisión legal en horario laboral (dentro de las 24 horas)."
+        successMsg: "Su solicitud ha sido recibida con éxito.",
+        phName: "Ingrese el nombre completo",
+        phCompRep: "Nombre del representante",
+        phEmail: "name@example.com",
+        phPhone: "Teléfono con código de país",
+        phAge: "ej: 35",
+        phOcc: "Ingrese su ocupación actual",
+        phAddrIraqi: "Ciudad / Área",
+        phAddrForeign: "Londres - RU o Dubái - EAU",
+        phAddrComp: "Bagdad o Erbil",
+        phNat: "ej: Británico / Americano",
+        phCountry: "ej: Irak / EAU / RU",
+        phRegNo: "Número de registro",
+        phDetails: "Explique brevemente los hechos de su caso..."
       },
       de: {
         title: "Beratung buchen - Kanzlei Ali Kadhem Hashimi",
@@ -743,11 +751,8 @@
         companyName: "Offizieller Firmenname *",
         companyRep: "Bevollmächtigter Vertreter *",
         addressIraqiIndiv: "Wohnanschrift (Stadt / Region) *",
-        placeholderIraqiIndiv: "Stadt / Region",
         addressForeignIndiv: "Ausländische Wohnanschrift (Stadt / Land) *",
-        placeholderForeignIndiv: "London - Großbritannien",
         addressCompany: "Firmensitz *",
-        placeholderCompany: "Bagdad oder Erbil",
         email: "E-Mail-Adresse *",
         phone: "Telefon / WhatsApp *",
         gender: "Geschlecht *",
@@ -777,13 +782,26 @@
         typeOther: "Sonstige / Allgemeine Beratung",
         details: "Details Ihres Falles *",
         submit: "Anfrage zur rechtlichen Prüfung absenden →",
-        successMsg: "Ihre Anfrage wurde erfolgreich empfangen und wird innerhalb der Geschäftszeiten (innerhalb von 24 Stunden) geprüft."
+        successMsg: "Ihre Anfrage wurde erfolgreich empfangen.",
+        phName: "Vollständigen Namen eingeben",
+        phCompRep: "Name des Vertreters",
+        phEmail: "name@example.com",
+        phPhone: "Telefon mit Landesvorwahl",
+        phAge: "z.B. 35",
+        phOcc: "Aktuellen Beruf eingeben",
+        phAddrIraqi: "Stadt / Region",
+        phAddrForeign: "London - GB oder Dubai - VAE",
+        phAddrComp: "Bagdad oder Erbil",
+        phNat: "z.B. Britisch / Amerikanisch",
+        phCountry: "z.B. Irak / VAE / GB",
+        phRegNo: "Registriernummer",
+        phDetails: "Erläutern Sie kurz die Fakten Ihres Falles..."
       },
       ku: {
         title: "چاوپێکەوتنی راوێژکاری - نووسینگەی پارێزەر عەلی کازمی",
         back: "سەرەکی",
         formTitle: "فۆرمی داواکردنی راوێژی یاسایی",
-        formInst: "تکایە ئەم فۆرمە پڕبکەرەوە بۆ پێداچوونەوەی داواکارییەکەت.",
+        formInst: "تکایە ئەم فۆرمە پڕبکەرەوە.",
         citizenship: "رەگەزنامە / بارودۆخ *",
         optIraqi: "عێراقی (هاووڵاتی)",
         optForeign: "بیانی (نا عێراقی)",
@@ -797,11 +815,8 @@
         companyName: "ناوی فەرمی کۆمپانیا *",
         companyRep: "نوێنەری یاسایی یان کەسی متمانەپێکراو *",
         addressIraqiIndiv: "ناونیشانی نیشتەجێبوون (شار / ناوچە) *",
-        placeholderIraqiIndiv: "شار / ناوچە",
         addressForeignIndiv: "ناونیشانی نیشتەجێبوونی دەرەوە (شار / وڵات) *",
-        placeholderForeignIndiv: "لەندەن - بەریتانیا",
         addressCompany: "بنکەی سەرەکی کۆمپانیا *",
-        placeholderCompany: "بەغدا یان هەولێر",
         email: "ئیمەیڵ *",
         phone: "ژمارەی مۆبایل / واتساب *",
         gender: "ڕەگەز *",
@@ -831,7 +846,20 @@
         typeOther: "هی تر / ڕاوێژی گشتی",
         details: "وردەکاری دۆسیە یاخود بابەتی راوێژەکەت *",
         submit: "ناردنی داواکاری بۆ پێداچوونەوەی یاسایی ←",
-        successMsg: "داواکارییەکەت بە سەرکەوتوویی وەرگیرا و لە ئێستادا لە کاتی کارکردندا (لە ماوەی ٢٤ کاتژمێردا) لەژێر پێداچوونەوەی یاساییدایە."
+        successMsg: "داواکارییەکەت بە سەرکەوتوویی وەرگیرا.",
+        phName: "ناوی تەواو بنووسە",
+        phCompRep: "ناوی کەسی بەرپرس",
+        phEmail: "name@example.com",
+        phPhone: "ژمارەی مۆبایل بە کۆدی وڵات",
+        phAge: "نموونە: 35",
+        phOcc: "پیشەی ئێستات بنووسە",
+        phAddrIraqi: "شار / ناوچە",
+        phAddrForeign: "لەندەن - بەریتانیا یان دوبەی - ئێمارات",
+        phAddrComp: "بەغدا یان هەولێر",
+        phNat: "نموونە: بەریتانی / ئەمریکی",
+        phCountry: "نموونە: عێراق / ئێمارات",
+        phRegNo: "ژمارەی تۆمارکردن",
+        phDetails: "بە کورتەیەک وردەکاری دۆسیەکەت بنووسە..."
       }
     };
 
@@ -894,7 +922,70 @@
       document.getElementById('lblDetails').innerText = t.details;
       document.getElementById('submitBtnText').innerHTML = t.submit;
 
+      // تحديث النصوص الثابتة المؤقتة (Placeholders) ديناميكياً
+      document.getElementById('email').placeholder = t.phEmail;
+      document.getElementById('phone').placeholder = t.phPhone;
+      document.getElementById('companyRepName').placeholder = t.phCompRep;
+      document.getElementById('age').placeholder = t.phAge;
+      document.getElementById('occupation').placeholder = t.phOcc;
+      document.getElementById('nationalityIndiv').placeholder = t.phNat;
+      document.getElementById('countryInc').placeholder = t.phCountry;
+      document.getElementById('regNo').placeholder = t.phRegNo;
+      document.getElementById('consultationDetails').placeholder = t.phDetails;
+
       updateFormDisplay();
+    }
+
+    function updateFormDisplay() {
+      const isForeign = document.querySelector('input[name="citizenship"]:checked').value === 'foreign';
+      const isCompany = document.querySelector('input[name="entityType"]:checked').value === 'company';
+      
+      const indFields = document.getElementById('individualOnlyFields');
+      const compRepField = document.getElementById('companyRepField');
+      const foreignIndivFields = document.getElementById('foreignerIndividualFields');
+      const compIdentityFields = document.getElementById('companyIdentityFields');
+      const translationField = document.getElementById('translationField');
+      const nameLabel = document.getElementById('nameLabel');
+      const addressLabel = document.getElementById('lblAddress');
+      const addressInput = document.getElementById('address');
+      
+      const lang = document.getElementById('languageSelect').value;
+      const t = bookingDict[lang] || bookingDict['en'];
+
+      if (isCompany) {
+        indFields.classList.remove('active');
+        compRepField.classList.add('active');
+        nameLabel.innerText = t.companyName;
+        addressLabel.innerText = t.addressCompany;
+        addressInput.placeholder = t.phAddrComp;
+      } else {
+        compIdentityFields.classList.remove('active');
+        if (isForeign) {
+          indFields.classList.remove('active');
+          foreignIndivFields.classList.add('active');
+          translationField.classList.add('active');
+          nameLabel.innerText = t.fullName;
+          addressLabel.innerText = t.addressForeignIndiv;
+          addressInput.placeholder = t.phAddrForeign;
+        } else {
+          indFields.classList.add('active');
+          foreignIndivFields.classList.remove('active');
+          translationField.classList.remove('active');
+          nameLabel.innerText = t.fullName;
+          addressLabel.innerText = t.addressIraqiIndiv;
+          addressInput.placeholder = t.phAddrIraqi;
+        }
+      }
+
+      if (isCompany) {
+        compIdentityFields.classList.add('active');
+        foreignIndivFields.classList.remove('active');
+        if (isForeign) {
+          translationField.classList.add('active');
+        } else {
+          translationField.classList.remove('active');
+        }
+      }
     }
 
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwB90LBE4uAyx5rQZ8tz5d_GBkY5gMQAdsW_xqZoseqb2C_Y6PqJi9LIlH1-LekQwbVow/exec";
@@ -925,7 +1016,6 @@
       submitBtn.disabled = true;
       submitBtn.style.opacity = '0.7';
 
-      // استخدام طريقة text/plain لتجاوز قيود متصفح الإنترنت وضمان وصول البيانات واستقرارها 100%
       fetch(SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
