@@ -214,14 +214,6 @@
       color: #718096;
       margin-bottom: 8px;
     }
-    .views-badge {
-      background: #edf2f7;
-      color: #2d3748;
-      padding: 3px 10px;
-      border-radius: 6px;
-      font-weight: 700;
-      font-size: 12px;
-    }
 
     .share-bar {
       margin-top: 20px;
@@ -337,7 +329,6 @@
           <article class="legal-card" data-slug="labor-social-security-iraq">
             <div class="article-meta-info">
               <span id="artDate" style="color: #d32f2f; font-weight: 700;">العمل والإقامة والضمان الاجتماعي • 5 سبتمبر 2026</span>
-              <span class="views-badge" id="views-labor-social-security-iraq">👁️ المشاهدات: 0</span>
             </div>
 
             <h2 id="artTitle" style="font-size: 19px; font-weight: 800; color: #0b1a30; margin-bottom: 12px;">امتثال العمالة الأجنبية وقانون الضمان الاجتماعي العراقي رقم 18 لسنة 2023: دليل الشركات والمستثمرين</h2>
@@ -362,7 +353,7 @@
 نظراً لدقة الإجراءات وتعدد الجهات الرقابية (مفتشو العمل، دائرة التقاعد والضمان الاجتماعي، ومجلس الإدارة للشركات)، نؤكد على ضرورة مراجعة وتدقيق كافة عقود العمل واللوائح الداخلية للشركات من قبل مستشار قانوني مختص لتجنب أي مخالفات قانونية غير مقصودة.</div>
 
               <div style="text-align: center; margin: 25px 0 10px;">
-                <a id="btnBooking" href="https://wa.me/9647702956021?text=مرحباً،%20أود%20حجز%20جلسة%20تدقيق%20امتثال%20عمالي%20لشركتنا%20مع%20مكتب%20المحامي%20علي%20كاظم%20الهاشمي" style="display: inline-block; background-color: #0b1a30; color: #ffffff; padding: 13px 25px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 15px; box-shadow: 0 4px 12px rgba(11,26,48,0.25); border: 1.5px solid #d32f2f;">طلب تدقيق الامتثال العمالي للشركات (مكتب AKH) ←</a>
+                <a id="btnBooking" href="https://akjassem.com/booking" style="display: inline-block; background-color: #0b1a30; color: #ffffff; padding: 13px 25px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 15px; box-shadow: 0 4px 12px rgba(11,26,48,0.25); border: 1.5px solid #d32f2f;">طلب تدقيق الامتثال العمالي للشركات (مكتب AKH) ←</a>
               </div>
 
               <div id="artFooter" style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #edf2f7; font-size: 11.5px; color: #718096; line-height: 1.7;">
@@ -677,27 +668,17 @@ Yabancı işçiler, Çalışma Bakanlığı onayına tabidir.
       const targetSlug = urlParams.get('p');
 
       if (targetSlug) {
-        const sessionKey = 'viewed_' + targetSlug;
-        let views = parseInt(localStorage.getItem('views_' + targetSlug) || '142');
-        
-        if (!sessionStorage.getItem(sessionKey)) {
-          sessionStorage.setItem(sessionKey, 'true');
-          views += 1;
-          localStorage.setItem('views_' + targetSlug, views);
-        }
-
-        const viewEl = document.getElementById('views-' + targetSlug);
-        if (viewEl) viewEl.innerText = `👁️ المشاهدات: ${views}`;
-
         const expanded = document.querySelector('.article-expanded');
         if (expanded) expanded.style.display = 'block';
         const btn = document.getElementById('readMoreBtn');
         if (btn) btn.innerText = 'عرض أقل ↑';
-        document.querySelector('.legal-card').classList.add('highlighted');
-        
-        setTimeout(() => {
-          document.querySelector('.legal-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 300);
+        const card = document.querySelector('.legal-card');
+        if (card) {
+          card.classList.add('highlighted');
+          setTimeout(() => {
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 300);
+        }
       }
     });
 
