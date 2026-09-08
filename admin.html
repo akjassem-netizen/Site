@@ -214,7 +214,8 @@
     }
     .article-info { text-align: right; }
     .article-info .item-title { font-size: 14.5px; font-weight: 700; color: #0b1a30; line-height: 1.4; }
-    .article-info .item-meta { font-size: 12px; color: #718096; margin-top: 4px; }
+    .article-info .item-meta { font-size: 12px; color: #718096; margin-top: 4px; display: flex; justify-content: space-between; align-items: center; }
+    .views-counter-tag { background: #edf2f7; color: #2b6cb0; padding: 2px 8px; border-radius: 4px; font-weight: 700; }
     
     .item-actions {
       display: flex;
@@ -331,7 +332,7 @@
 
         <div class="form-group">
           <label>زر تفاعل مخصص بنهاية المقال (اختياري - مثل واتساب أو إيميل):</label>
-          <textarea id="ctaCustomCode" style="min-height: 70px; direction: ltr;" placeholder='<a href="https://wa.me/9647..." style="...">طلب الخدمة عبر الواتساب</a>'></textarea>
+          <textarea id="ctaCustomCode" style="min-height: 70px; direction: ltr;" placeholder='<a href="https://wa.me/9647838759047..." style="...">طلب الخدمة عبر الواتساب</a>'></textarea>
         </div>
 
         <div class="form-group">
@@ -347,7 +348,7 @@
 
       <div class="manager-box">
         <div class="manager-header">
-          <h3>📚 المنشورات السابقة</h3>
+          <h3>📚 المنشورات السابقة وإحصاءات المشاهدات</h3>
           <button type="button" class="btn-reload" onclick="loadArticles()">تحديث 🔄</button>
         </div>
         <div id="articlesListContainer">
@@ -607,6 +608,9 @@
           const category = art.getAttribute('data-category') || '';
           const content = art.querySelector('.article-content-body') ? art.querySelector('.article-content-body').innerHTML.trim() : '';
 
+          // جلب عدد المشاهدات الخاص بالمقال من التخزين المحلي (إذا توفر)
+          const viewsCount = localStorage.getItem('views_' + slug) || '0';
+
           LOADED_ARTICLES_CACHE.push({ index, title, summary, slug, keywords, content, category });
 
           const item = document.createElement('div');
@@ -614,7 +618,10 @@
           item.innerHTML = `
             <div class="article-info">
               <div class="item-title">${title}</div>
-              <div class="item-meta">الرابط المباشر: ?p=${slug}</div>
+              <div class="item-meta">
+                <span>الرابط المباشر: ?p=${slug}</span>
+                <span class="views-counter-tag">👁️ المشاهدات: ${viewsCount}</span>
+              </div>
             </div>
             <div class="item-actions">
               <a class="btn-action btn-view" href="https://akjassem.com/insights.html?p=${slug}" target="_blank">معاينة بالموقع 👁️</a>
@@ -638,7 +645,7 @@
       document.getElementById('editBanner').style.display = 'flex';
       document.getElementById('editBannerText').innerText = `✏️ تعديل: "${art.title}"`;
       document.getElementById('submitBtn').innerText = 'حفظ التعديلات 💾';
-      window.scrollTo({ top: 120, behavior: 'smooth' });
+      window.scrollTo({ top: 120, behavior: 'smooth'});
     }
 
     function cancelEdit() {
