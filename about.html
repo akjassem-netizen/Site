@@ -1,21 +1,95 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" id="htmlRoot">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- تحسين محركات البحث العالمي والمحلي (SEO) - 8 لغات لصفحة من نحن -->
-  <title>من نحن | مكتب المحامي علي كاظم الهاشمي للاستشارات والخدمات القانونية في العراق</title>
-  <meta name="description" content="تعرف على مكتب المحامي علي كاظم الهاشمي في بغداد، تأسست في 2014، خبرة عريقة في تقديم الخدمات القانونية، تأسيس الشركات، والتمثيل القضائي للشركات والأفراد. | AKH Law Office Iraq">
-  <meta name="keywords" content="مكتب المحامي علي كاظم الهاشمي, محامي في بغداد, مكتب محاماة عراقي, خدمات قانونية بغداد, محامي شركات العراق, About AKH Law Office, Baghdad lawyer, Iraq law firm, corporate lawyers Baghdad, Avukat Bağdat, Irak hukuk bürosu, Anwaltskanzlei Bagdad, Kanzlei Irak, Bufete de abogados Bagdad, abogados en Irak, 巴格达律师事务所, 伊拉克律所, پارێزەری بغداد, ئۆفیسی یاسایی عێراق, Cabinet d'avocats Bagdad, avocats en Iraq">
+  <title id="pageTitle">من نحن | مكتب المحامي علي كاظم الهاشمي للاستشارات والخدمات القانونية في العراق</title>
+  <meta id="metaDesc" name="description" content="تعرف على مكتب المحامي علي كاظم الهاشمي في بغداد، خبرة عريقة في تقديم الخدمات القانونية، تأسيس الشركات، والتمثيل القضائي للشركات والأفراد. | AKH Law Office Iraq">
+  <meta id="metaKeywords" name="keywords" content="مكتب المحامي علي كاظم الهاشمي, محامي في بغداد, مكتب محاماة عراقي, خدمات قانونية بغداد, محامي شركات العراق, About AKH Law Office, Baghdad lawyer, Iraq law firm, corporate lawyers Baghdad, Avukat Bağdat, Irak hukuk bürosu, Anwaltskanzlei Bagdad, Bufete de abogados Bagdad, 巴格达律师事务所, 伊拉克律所, پارێزەری بغداد, أۆفیسی یاسایی عێراق, Cabinet d'avocats Bagdad">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Cairo', system-ui, sans-serif; background-color: #f8fafc; color: #0f172a; padding: 30px 16px; display: flex; justify-content: center; min-height: 100vh; align-items: flex-start; }
-    .container { width: 100%; max-width: 750px; background: #ffffff; padding: 35px 25px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border-top: 5px solid #c5a059; }
+    body { font-family: 'Cairo', system-ui, sans-serif; background-color: #f8fafc; color: #0f172a; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+
+    /* الهيدر الموحد الفاخر */
+    .icover-header {
+      width: 100%;
+      background: #0f172a;
+      border-bottom: 3px solid #c5a059;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .lang-select-bar {
+      padding: 7px 14px;
+      border-radius: 6px;
+      border: 1.5px solid #c5a059;
+      background: #0f172a;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 700;
+      outline: none;
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
+    }
+    .lang-select-bar option { background: #0f172a; color: #ffffff; }
+
+    .menu-container { position: relative; }
+    .menu-toggle {
+      background: rgba(255,255,255,0.1);
+      border: 1.5px solid #c5a059;
+      color: #ffffff;
+      width: 42px;
+      height: 42px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      left: auto;
+      min-width: 250px;
+      background: #0f172a;
+      border: 1.5px solid #c5a059;
+      border-radius: 10px;
+      display: none;
+      flex-direction: column;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+      padding: 8px 0;
+      z-index: 1100;
+    }
+    [dir="rtl"] .dropdown-menu { left: 0; right: auto; }
+    .dropdown-menu.active { display: flex; }
+    .dropdown-menu a {
+      color: #ffffff;
+      padding: 12px 20px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      width: 100%;
+      text-align: right;
+    }
+    .dropdown-menu a:hover { background: rgba(197,160,89,0.15); color: #c5a059; }
+
+    .container { width: 100%; max-width: 750px; background: #ffffff; padding: 35px 25px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border-top: 5px solid #c5a059; margin: 30px 16px; text-align: start; }
     .brand-logo { text-align: center; margin-bottom: 28px; direction: ltr; }
     .brand-logo .akh { font-size: 40px; font-weight: 900; color: #0f172a; letter-spacing: 4px; line-height: 1; }
     .brand-logo .akh .red-k { color: #dc2626; }
@@ -48,6 +122,35 @@
   </style>
 </head>
 <body>
+
+  <!-- الهيدر التنفيذي الموحد -->
+  <header class="icover-header">
+    <div>
+      <select id="languageSelect" class="lang-select-bar" onchange="changeLanguage(this.value)">
+        <option value="ar">العربية</option>
+        <option value="en">English</option>
+        <option value="tr">Türkçe</option>
+        <option value="zh">中文</option>
+        <option value="fr">Français</option>
+        <option value="es">Español</option>
+        <option value="de">Deutsch</option>
+        <option value="ku">کوردی</option>
+      </select>
+    </div>
+
+    <div class="menu-container">
+      <button class="menu-toggle" onclick="toggleMenu()" aria-label="القائمة">☰</button>
+      <div id="dropdownMenu" class="dropdown-menu">
+        <a href="https://akjassem.com" id="menuHome">الرئيسية</a>
+        <a href="/services/" id="menuServices">دليل الخدمات القانونية</a>
+        <a href="consultations.html" id="menuConsultations">الاستشارات القانونية</a>
+        <a href="insights.html" id="menuInsights">الآراء والرؤى القانونية (Insights)</a>
+        <a href="about.html" id="menuAbout">من نحن</a>
+        <a href="contact/" id="menuContact">اتصل بنا</a>
+      </div>
+    </div>
+  </header>
+
   <div class="container">
     <div class="brand-logo">
       <div class="akh">A<span class="red-k">K</span>H</div>
@@ -55,29 +158,217 @@
       <div class="est">EST. 2014</div>
     </div>
     
-    <div class="page-title">من نحن - مكتب المحامي علي كاظم الهاشمي</div>
+    <div class="page-title" id="pageMainTitle">من نحن - مكتب المحامي علي كاظم الهاشمي</div>
     
     <div class="content-box">
-      يُعد مكتب المحامي علي كاظم الهاشمي صرحاً قانونياً مهنياً متقدماً في العاصمة بغداد، حيث يقدم خدمات قانونية واستشارية شاملة ومتكاملة للأفراد، الشركات المحلية، والمستثمرين والشركات الأجنبية في العراق. ومنذ انطلاقته في عام <strong>2014</strong>، نحمل على عاتقنا مسؤولية تقديم أعلى معايير الدقة والاحترافية لحماية حقوق ومصالح عملائنا بفعالية تامة.
+      <span id="p1Text">يُعد مكتب المحامي علي كاظم الهاشمي صرحاً قانونياً مهنياً متقدماً في العاصمة بغداد، حيث يقدم خدمات قانونية واستشارية شاملة ومتكاملة للأفراد، الشركات المحلية، والمستثمرين والشركات الأجنبية في العراق. ونحمل على عاتقنا مسؤولية تقديم أعلى معايير الدقة والاحترافية لحماية حقوق ومصالح عملائنا بفعالية تامة.</span>
       <br><br>
-      يتميز المكتب برؤية استراتيجية واضحة تقوم على الجمع بين العمق في قراءة التشريعات والقوانين العراقية النافذة وبين السرعة والابتكار في إيجاد الحلول القانونية والبديلة. ونعتمد في مسيرتنا المهنية على ركائز أساسية تشمل:
+      <span id="p2Text">يتميز المكتب برؤية استراتيجية واضحة تقوم على الجمع بين العمق في قراءة التشريعات والقوانين العراقية النافذة وبين السرعة والابتكار في إيجاد الحلول القانونية والبديلة. ونعتمد في مسيرتنا المهنية على ركائز أساسية تشمل:</span>
       
-      <ul class="features-list">
+      <ul class="features-list" id="featuresList">
         <li><strong>الخبرة المؤسسية:</strong> سجل حافل في تأسيس الشركات، صياغة العقود الكبرى، وفض المنازعات المعقدة.</li>
         <li><strong>التمثيل القضائي الموثوق:</strong> تولي النيابة القانونية في كافة المحاكم والجهات القضائية والإدارية في العراق بكفاءة عالية.</li>
         <li><strong>السرية والخصوصية:</strong> التعامل مع كافة القضايا والمعاملات التجارية والأسرية بأقصى درجات الحماية المهنية والأمان.</li>
         <li><strong>الحلول الاستباقية:</strong> تقديم الاستشارات الدقيقة لتجنب المخاطر القانونية والضريبية قبل وقوعها لدعم بيئة الأعمال والاستثمار.</li>
       </ul>
 
-      يسعى المكتب دائماً ليكون الشريك القانوني الموثوق لكل من يبحث عن الأمان القانوني والنجاح المؤسسي في السوق العراقي.
+      <span id="p3Text">يسعى المكتب دائماً ليكون الشريك القانوني الموثوق لكل من يبحث عن الأمان القانوني والنجاح المؤسسي في السوق العراقي.</span>
     </div>
     
     <div class="action-area">
-      <a href="/booking/" class="btn-booking">
+      <a href="/booking/" target="_blank" class="btn-booking" id="btnBookText">
         <span>📅 احجز موعداً استشارياً مع المكتب</span>
       </a>
-      <a href="/" class="back-link">← العودة إلى الصفحة الرئيسية</a>
+      <a href="https://akjassem.com" class="back-link" id="backLinkText">← العودة إلى الصفحة الرئيسية</a>
     </div>
   </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('dropdownMenu').classList.toggle('active');
+    }
+
+    window.onclick = function(event) {
+      if (!event.target.matches('.menu-toggle') && !event.target.closest('.menu-container')) {
+        document.getElementById('dropdownMenu').classList.remove('active');
+      }
+    }
+
+    // استمرار وتخزين اللغة تلقائياً عبر الموقع
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('preferredLang') || 'ar';
+      document.getElementById('languageSelect').value = savedLang;
+      changeLanguage(savedLang, false);
+    });
+
+    function changeLanguage(lang, save = true) {
+      if (save) {
+        localStorage.setItem('preferredLang', lang);
+      }
+      const root = document.getElementById('htmlRoot');
+      root.setAttribute('lang', lang);
+      root.setAttribute('dir', (lang === 'ar' || lang === 'ku') ? 'rtl' : 'ltr');
+
+      const t = dictionary[lang] || dictionary['en'];
+
+      document.getElementById('pageTitle').innerText = t.pageTitle;
+      document.getElementById('metaDesc').setAttribute('content', t.metaDesc);
+      document.getElementById('metaKeywords').setAttribute('content', t.metaKeywords);
+
+      document.getElementById('menuHome').innerText = t.home;
+      document.getElementById('menuServices').innerText = t.menuServices;
+      document.getElementById('menuConsultations').innerText = t.menuConsultations;
+      document.getElementById('menuInsights').innerText = t.menuInsights;
+      document.getElementById('menuAbout').innerText = t.about;
+      document.getElementById('menuContact').innerText = t.contact;
+
+      document.getElementById('pageMainTitle').innerText = t.pageMainTitle;
+      document.getElementById('p1Text').innerText = t.p1;
+      document.getElementById('p2Text').innerText = t.p2;
+      
+      const list = document.getElementById('featuresList');
+      list.innerHTML = `
+        <li><strong>${t.f1Title}:</strong> ${t.f1Desc}</li>
+        <li><strong>${t.f2Title}:</strong> ${t.f2Desc}</li>
+        <li><strong>${t.f3Title}:</strong> ${t.f3Desc}</li>
+        <li><strong>${t.f4Title}:</strong> ${t.f4Desc}</li>
+      `;
+
+      document.getElementById('p3Text').innerText = t.p3;
+      document.getElementById('btnBookText').innerHTML = `<span>${t.btnBook}</span>`;
+      document.getElementById('backLinkText').innerText = t.backLink;
+    }
+
+    const dictionary = {
+      ar: {
+        pageTitle: "من نحن | مكتب المحامي علي كاظم الهاشمي للاستشارات والخدمات القانونية في العراق",
+        metaDesc: "تعرف على مكتب المحامي علي كاظم الهاشمي في بغداد، خبرة عريقة في تقديم الخدمات القانونية، تأسيس الشركات، والتمثيل القضائي للشركات والأفراد.",
+        metaKeywords: "مكتب المحامي علي كاظم الهاشمي, محامي في بغداد, مكتب محاماة عراقي, خدمات قانونية بغداد, محامي شركات العراق",
+        home: "الرئيسية", menuServices: "دليل الخدمات القانونية", menuConsultations: "الاستشارات القانونية", menuInsights: "الآراء والرؤى القانونية (Insights)", about: "من نحن", contact: "اتصل بنا",
+        pageMainTitle: "من نحن - مكتب المحامي علي كاظم الهاشمي",
+        p1: "يُعد مكتب المحامي علي كاظم الهاشمي صرحاً قانونياً مهنياً متقدماً في العاصمة بغداد، حيث يقدم خدمات قانونية واستشارية شاملة ومتكاملة للأفراد، الشركات المحلية، والمستثمرين والشركات الأجنبية في العراق. ونحمل على عاتقنا مسؤولية تقديم أعلى معايير الدقة والاحترافية لحماية حقوق ومصالح عملائنا بفعالية تامة.",
+        p2: "يتميز المكتب برؤية استراتيجية واضحة تقوم على الجمع بين العمق في قراءة التشريعات والقوانين العراقية النافذة وبين السرعة والابتكار في إيجاد الحلول القانونية والبديلة. ونعتمد في مسيرتنا المهنية على ركائز أساسية تشمل:",
+        f1Title: "الخبرة المؤسسية", f1Desc: "سجل حافل في تأسيس الشركات، صياغة العقود الكبرى، وفض المنازعات المعقدة.",
+        f2Title: "التمثيل القضائي الموثوق", f2Desc: "تولي النيابة القانونية في كافة المحاكم والجهات القضائية والإدارية في العراق بكفاءة عالية.",
+        f3Title: "السرية والخصوصية", f3Desc: "التعامل مع كافة القضايا والمعاملات التجارية والأسرية بأقصى درجات الحماية المهنية والأمان.",
+        f4Title: "الحلول الاستباقية", f4Desc: "تقديم الاستشارات الدقيقة لتجنب المخاطر القانونية والضريبية قبل وقوعها لدعم بيئة الأعمال والاستثمار.",
+        p3: "يسعى المكتب دائماً ليكون الشريك القانوني الموثوق لكل من يبحث عن الأمان القانوني والنجاح المؤسسي في السوق العراقي.",
+        btnBook: "📅 احجز موعداً استشارياً مع المكتب",
+        backLink: "← العودة إلى الصفحة الرئيسية"
+      },
+      en: {
+        pageTitle: "About Us | Law Office of Ali Kadhem Hashimi in Iraq",
+        metaDesc: "Learn about the Law Office of Ali Kadhem Hashimi in Baghdad, offering legal services, corporate formation, and judicial representation.",
+        metaKeywords: "About AKH Law Office, Baghdad lawyer, Iraq law firm, corporate lawyers Baghdad",
+        home: "Home", menuServices: "Legal Services Directory", menuConsultations: "Legal Consultations", menuInsights: "Iraq Legal Insights", about: "About Us", contact: "Contact Us",
+        pageMainTitle: "About Us - Law Office of Ali Kadhem Hashimi",
+        p1: "The Law Office of Ali Kadhem Hashimi is an advanced professional legal institution in Baghdad, providing comprehensive legal and advisory services to individuals, local companies, investors, and foreign corporations in Iraq. We bear the responsibility of delivering the highest standards of precision and professionalism to protect our clients' rights and interests effectively.",
+        p2: "The office is characterized by a clear strategic vision based on combining depth in interpreting active Iraqi legislation with speed and innovation in finding legal and alternative solutions. Our professional journey relies on core pillars including:",
+        f1Title: "Institutional Expertise", f1Desc: "A proven track record in company formation, drafting major contracts, and resolving complex disputes.",
+        f2Title: "Reliable Judicial Representation", f2Desc: "Handling legal advocacy across all courts and judicial authorities in Iraq with high efficiency.",
+        f3Title: "Confidentiality & Privacy", f3Desc: "Handling all cases and commercial or family transactions with the utmost professional protection and security.",
+        f4Title: "Proactive Solutions", f4Desc: "Providing accurate advisory to avoid legal and tax risks before they occur to support the business and investment environment.",
+        p3: "The office always strives to be the trusted legal partner for anyone seeking legal security and institutional success in the Iraqi market.",
+        btnBook: "📅 Book a consultation appointment with the office",
+        backLink: "← Back to Home"
+      },
+      tr: {
+        pageTitle: "Hakkımızda | Av. Ali Kazım Haşimi Hukuk Bürosu Irak",
+        metaDesc: "Bağdat'taki Av. Ali Kazım Haşimi Hukuk Bürosu hakkında bilgi edinin; hukuki hizmetler, şirket kuruluşu ve yargı temsilciliği.",
+        metaKeywords: "Avukat Bağdat, Irak hukuk bürosu, Anwaltskanzlei Bagdad, Kanzlei Irak",
+        home: "Ana Sayfa", menuServices: "Hizmetler", menuConsultations: "Hukuki Danışmanlık", menuInsights: "İçgörüler", about: "Hakkımızda", contact: "İletişim",
+        pageMainTitle: "Hakkımızda - Av. Ali Kazım Haşimi Hukuk Bürosu",
+        p1: "Av. Ali Kazım Haşimi Hukuk Bürosu, Bağdat'ta bireylere, yerli şirketlere, yatırımcılara ve yabancı şirketlere kapsamlı hukuki ve danışmanlık hizmetleri sunan gelişmiş bir profesyonel hukuk kurumudur. Müvekkillerimizin haklarını ve çıkarlarını etkili bir şekilde korumak için en yüksek doğruluk ve profesyonellik standartlarını sunma sorumluluğunu taşıyoruz.",
+        p2: "Büro, yürürlükteki Irak mevzuatını okumadaki derinliği, yasal ve alternatif çözümler bulmadaki hız ve yenilikçilikle birleştiren net bir stratejik vizyona sahiptir. Mesleki yolculuğumuz şu temel direklere dayanmaktadır:",
+        f1Title: "Kurumsal Uzmanlık", f1Desc: "Şirket kuruluşu, büyük sözleşmelerin hazırlanması ve karmaşık uyuşmazlıkların çözümünde kanıtlanmış bir sicil.",
+        f2Title: "Güvenilir Yargı Temsiliyeti", f2Desc: "Irak'taki tüm mahkemelerde ve yargı makamlarında yüksek verimlilikle yasal vekillik üstlenme.",
+        f3Title: "Gizlilik ve Mahremiyet", f3Desc: "Tüm davaları, ticari ve aile işlemlerini en üst düzeyde profesyonel koruma ve güvenlikle ele alma.",
+        f4Title: "Önleyici Çözümler", f4Desc: "İş ve yatırım ortamını desteklemek için yasal ve vergi risklerini ortaya çıkmadan önlemeye yönelik doğru danışmanlık sağlama.",
+        p3: "Büro, Irak pazarında hukuki güvenlik ve kurumsal başarı arayan herkes için her zaman güvenilir yasal ortak olmayı amaçlamaktadır.",
+        btnBook: "📅 Ofis ile danışmanlık randevusu al",
+        backLink: "← Ana Sayfaya Dön"
+      },
+      zh: {
+        pageTitle: "关于我们 | 阿里·卡德姆·哈希米律所伊拉克",
+        metaDesc: "了解巴格达的阿里·卡德姆·哈希米律所，为企业和个人提供卓越的法律服务、公司注册与司法代理。",
+        metaKeywords: "巴格达律师事务所, 伊拉克律所, corporate lawyers Baghdad",
+        home: "首页", menuServices: "法律服务", menuConsultations: "法律咨询", menuInsights: "法律洞察", about: "关于我们", contact: "联系我们",
+        pageMainTitle: "关于我们 - 阿里·卡德姆·哈希米律所",
+        p1: "阿里·卡德姆·哈希米律所是巴格达一家先进的专业法律机构，为伊拉克的个人、本土企业、投资者及外资企业提供全面综合的法律与咨询服务。我们肩负着提供最高标准精准度与专业性的责任，以切实保护客户的权益。",
+        p2: "律所拥有清晰的战略愿景，将深入解读伊拉克现行法律法规与寻找法律及替代解决方案的迅捷创新相结合。我们的职业发展建立在以下核心支柱之上：",
+        f1Title: "机构专业知识", f1Desc: "在公司设立、重大合同起草及复杂纠纷解决方面拥有辉煌的记录。",
+        f2Title: "可靠的司法代理", f2Desc: "以高效方式承担伊拉克各级法院及司法行政机关的法律代表工作。",
+        f3Title: "保密与隐私", f3Desc: "以最高标准的职业保护与安全处理所有案件、商业及家庭事务。",
+        f4Title: "前瞻性解决方案", f4Desc: "提供精准咨询，在法律和税务风险发生前予以规避，以支持商业与投资环境。",
+        p3: "律所始终致力于成为所有在伊拉克市场寻求法律安全与企业成功者的信赖法律伙伴。",
+        btnBook: "📅 与律所预约咨询时间",
+        backLink: "← 返回首页"
+      },
+      fr: {
+        pageTitle: "À Propos | Cabinet d'Avocats Ali Kadhem Hashimi en Iraq",
+        metaDesc: "Découvrez le Cabinet d'Avocats Ali Kadhem Hashimi à Bagdad, offrant des services juridiques, création d'entreprise et représentation judiciaire.",
+        metaKeywords: "Cabinet d'avocats Bagdad, avocats en Iraq, legal services Baghdad",
+        home: "Accueil", menuServices: "Services", menuConsultations: "Consultations Juridiques", menuInsights: "Aperçus", about: "À Propos", contact: "Contact",
+        pageMainTitle: "À Propos - Cabinet d'Avocats Ali Kadhem Hashimi",
+        p1: "Le Cabinet d'Avocats Ali Kadhem Hashimi est une institution juridique professionnelle avancée à Bagdad, offrant des services juridiques et consultatifs complets aux particuliers, aux entreprises locales, aux investisseurs et aux sociétés étrangères en Iraq. Nous portons la responsabilité de fournir les plus hauts standards de précision et de professionnalisme pour protéger efficacement les droits et intérêts de nos clients.",
+        p2: "Le cabinet se caractérise par une vision stratégique claire fondée sur la combinaison de la profondeur dans la lecture de la législation irakienne en vigueur et de la rapidité et l'innovation dans la recherche de solutions juridiques et alternatives. Notre parcours professionnel repose sur des piliers fondamentaux :",
+        f1Title: "Expertise Institutionnelle", f1Desc: "Un parcours solide dans la création d'entreprises, la rédaction de contrats majeurs et la résolution de litiges complexes.",
+        f2Title: "Représentation Judiciaire Fiable", f2Desc: "Assurer la défense juridique devant toutes les juridictions et autorités judiciaires et administratives en Iraq avec une haute efficacité.",
+        f3Title: "Confidentialité et Respect de la Vie Privée", f3Desc: "Traiter toutes les affaires et transactions commerciales ou familiales avec le plus haut degré de protection professionnelle.",
+        f4Title: "Solutions Proactives", f4Desc: "Fournir des conseils précis pour éviter les risques juridiques et fiscaux avant qu'ils ne surviennent afin de soutenir l'environnement des affaires.",
+        p3: "Le cabinet s'efforce toujours d'être le partenaire juridique de confiance pour tous ceux qui recherchent la sécurité juridique et le succès institutionnel sur le marché irakien.",
+        btnBook: "📅 Réserver un rendez-vous de consultation avec le cabinet",
+        backLink: "← Retour à l'Accueil"
+      },
+      es: {
+        pageTitle: "Sobre Nosotros | Bufete de Abogados Ali Kadhem Hashimi en Irak",
+        metaDesc: "Conozca el Bufete de Abogados Ali Kadhem Hashimi en Bagdad, experiencia en servicios legales, constitución de empresas y representación judicial.",
+        metaKeywords: "Bufete de abogados Bagdad, abogados en Irak, servicios legales Bagdad",
+        home: "Inicio", menuServices: "Servicios", menuConsultations: "Consultas Legales", menuInsights: "Perspectivas", about: "Sobre Nosotros", contact: "Contacto",
+        pageMainTitle: "Sobre Nosotros - Bufete de Abogados Ali Kadhem Hashimi",
+        p1: "El Bufete de Abogados Ali Kadhem Hashimi es una institución jurídica profesional avanzada en Bagdad, que ofrece servicios legales y de consultoría integrales a particulares, empresas locales, inversores y corporaciones extranjeras en Irak. Asumimos la responsabilidad de ofrecer los más altos estándares de precisión y profesionalismo para proteger eficazmente los derechos e intereses de nuestros clientes.",
+        p2: "El bufete se caracteriza por una visión estratégica clara basada en combinar la profundidad en la interpretación de la legislación iraquí vigente con la rapidez e innovación en la búsqueda de soluciones legales y alternativas. Nuestra trayectoria profesional se apoya en pilares fundamentales:",
+        f1Title: "Experiencia Institucional", f1Desc: "Un historial comprobado en la constitución de empresas, redacción de contratos importantes y resolución de disputas complejas.",
+        f2Title: "Representación Judicial Confiable", f2Desc: "Asumir la defensa legal en todos los tribunales y autoridades judiciales y administrativas en Irak con alta eficiencia.",
+        f3Title: "Confidencialidad y Privacidad", f3Desc: "Manejar todos los casos y transacciones comerciales o familiares con el máximo grado de protección y seguridad profesional.",
+        f4Title: "Soluciones Proactivas", f4Desc: "Proporcionar asesoramiento preciso para evitar riesgos legales y fiscales antes de que ocurran para apoyar el entorno empresarial y de inversión.",
+        p3: "El bufete siempre se esfuerza por ser el socio legal de confianza para cualquiera que busque seguridad jurídica y éxito institucional en el mercado iraquí.",
+        btnBook: "📅 Reserve una cita de consulta con el bufete",
+        backLink: "← Volver al Inicio"
+      },
+      de: {
+        pageTitle: "Über Uns | Anwaltskanzlei Ali Kadhem Hashimi im Irak",
+        metaDesc: "Erfahren Sie mehr über die Anwaltskanzlei Ali Kadhem Hashimi in Bagdad: Rechtsdienste, Firmengründung und gerichtliche Vertretung.",
+        metaKeywords: "Anwaltskanzlei Bagdad, Kanzlei Irak, Rechtsberatung Bagdad",
+        home: "Startseite", menuServices: "Dienste", menuConsultations: "Rechtliche Beratung", menuInsights: "Einblicke", about: "Über uns", contact: "Kontakt",
+        pageMainTitle: "Über uns - Anwaltskanzlei Ali Kadhem Hashimi",
+        p1: "Die Anwaltskanzlei Ali Kadhem Hashimi ist eine fortgeschrittene professionelle juristische Institution in Bagdad, die umfassende Rechts- und Beratungsdienste für Einzelpersonen, lokale Unternehmen, Investoren und ausländische Gesellschaften im Irak anbietet. Wir tragen die Verantwortung, höchste Standards an Präzision und Professionalität zu bieten, um die Rechte und Interessen unserer Mandanten effektiv zu schützen.",
+        p2: "Die Kanzlei zeichnet sich durch eine klare strategische Vision aus, die auf der Kombination von Tiefgang bei der Auslegung der geltenden irakischen Gesetzgebung mit Schnelligkeit und Innovation bei der Findung rechtlicher und alternativer Lösungen basiert. Unser beruflicher Weg stützt sich auf grundlegende Säulen:",
+        f1Title: "Institutionelle Expertise", f1Desc: "Eine nachgewiesene Erfolgsbilanz bei Firmengründungen, der Ausarbeitung wichtiger Verträge und der Beilegung komplexer Streitigkeiten.",
+        f2Title: "Zuverlässige gerichtliche Vertretung", f2Desc: "Übernahme der rechtlichen Vertretung vor allen Gerichten und Justizbehörden im Irak mit hoher Effizienz.",
+        f3Title: "Vertraulichkeit und Privatsphäre", f3Desc: "Umgang mit allen Fällen sowie Geschäfts- und Familientransaktionen mit höchstem professionellen Schutz.",
+        f4Title: "Proaktive Lösungen", f4Desc: "Bereitstellung präziser Beratung zur Vermeidung rechtlicher und steuerlicher Risiken vor deren Eintritt zur Unterstützung des Geschäftsumfelds.",
+        p3: "Die Kanzlei ist stets bestrebt, der vertrauenswürdige Rechtspartner für alle zu sein, die Rechtssicherheit und institutionellen Erfolg auf dem irakischen Markt suchen.",
+        btnBook: "📅 Buchen Sie einen Beratungstermin bei der Kanzlei",
+        backLink: "← Zurück zur Startseite"
+      },
+      ku: {
+        pageTitle: "دەربارەی ئێمە | نووسینگەی پارێزەر عەلی کازمی هاشمی لە عێراق",
+        metaDesc: "ئاگاداربە دەربارەی نووسینگەی پارێزەر عەلی کازمی هاشمی لە بەغداد، خزمەتگوزاری یاسایی، دامەزراندنی کۆمپانیا، و نوێنەرایەتی دادوەری.",
+        metaKeywords: "پارێزەری بغداد, ئۆفیسی یاسایی عێراق, نووسینگەی پارێزەر",
+        home: "سەرەکی", menuServices: "خزمەتگوزارییەکان", menuConsultations: "ڕاوێژی یاسایی", menuInsights: "تێڕوانینەکان", about: "دەرباره‌ی ئێمە", contact: "پەیوەندی",
+        pageMainTitle: "دەرباره‌ی ئێمە - نووسینگەی پارێزەر عەلی کازمی هاشمی",
+        p1: "نووسینگەی پارێزەر عەلی کازمی هاشمی قەڵایەکی یاسایی پیشەیی پێشکەوتووە لە شاری بەغداد، کە خزمەتگوزاری یاسایی و ڕاوێژی گشتگیر پێشکەش بە تاکەکان، کۆمپانیا خۆماڵییەکان، وەبەرهێنەران و کۆمپانیا بیانییەکان دەکات لە عێراقدا. ئێمە بەرپرسیارێتی پێشکەشکردنی بەرزترین ئاستی وردبینی و پیشەگەرایی لە ئەستۆ دەگرین بۆ پاراستنی ماف و بەرژەوەندی کڕیارەکانمان.",
+        p2: "نووسینگە تایبەتمەندە بە دیدگا ستراتیژییەکی ڕوون کە بنچینەکەی بریتییە لە تێکەڵکردنی قووڵایی لە خوێندنەوەی یاسا کارپێکراوەکانی عێراق لەگەڵ خێرایی و داهێنان لە دۆزینەوەی چارەسەری یاسایی و جێگرەوەدا. ڕێڕەوی پیشەیی ئێمە پشت بە کۆمەڵێک بنەمای سەرەکی دەبەستێت کە بریتیین لە:",
+        f1Title: "شارەزایی مؤسساتی", f1Desc: "مێژوویەکی پرشنگدار لە دامەزراندنی کۆمپانیاکان، داڕشتنی گرێبەستە گەورەکان، و یەکلاکردنەوەی کێشە ئاڵۆزەکان.",
+        f2Title: "نوێنەرایەتی دادوەری متمانەپێکراو", f2Desc: "ئەستۆگرتنی بریوکاری یاسایی لە هەموو دادگا و دەسەڵاتە دادوەری و کارگێڕییەکان لە عێراقدا بە کاراییەکی بەرز.",
+        f3Title: "نهێنی و پاراستنی تایبەتمەندی", f3Desc: "مامەڵەکردن لەگەڵ سەرجەم دۆسیە و مامەڵە بازرگانی و خێزانییەکان بە بەرزترین ئاستی پاراستنی پیشەیی.",
+        f4Title: "چارەسەری پێشوەختە", f4Desc: "پێشکەشکردنی ڕاوێژی ورد بۆ دوورکەوتنەوە لە مەترسییە یاسایی و باجەکان پێش ڕوودانیان بۆ پشتگیریکردنی ژینگەی کار و وەبەرهێنان.",
+        p3: "نووسینگە هەمیشە هەوڵ دەدات هاوبەشی یاسایی متمانەپێکراو بێت بۆ هەموو ئەو کەسانەی کە بەدوای سەلامەتی یاسایی و سەرکەوتنی مؤسساتی دەگەڕێن لە بازاڕی عێراقدا.",
+        btnBook: "📅 کاتی چاوپێکەوتنی ڕاوێژکاری لەگەڵ نووسینگە حجز بکە",
+        backLink: "← گەڕانەوە بۆ لاپەڕەی سەرەکی"
+      }
+    };
+  </script>
 </body>
 </html>
