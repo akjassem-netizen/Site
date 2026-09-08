@@ -1,21 +1,94 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" id="htmlRoot">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <!-- تحسين محركات البحث العالمي والمحلي (SEO) - 8 لغات ومصطلحات الضرائب والامتثال المالي -->
-  <title>الاستشارات الضريبية والامتثال المالي للشركات في العراق | مكتب المحامي علي كاظم الهاشمي</title>
-  <meta name="description" content="خدمات قانونية متخصصة في الاستشارات الضريبية، هيكلة الضرائب، التسجيل لدى الهيئات الضريبية، والامتثال المالي للشركات المحلية والأجنبية في العراق. | AKH Law Office Iraq">
-  <meta name="keywords" content="استشارات ضريبية في العراق, الامتثال المالي للشركات, الهيئة العامة للضرائب بغداد, محامي ضرائب بغداد, تسجيل ضرائب الشركات العراق, Tax advisory Iraq, corporate financial compliance Baghdad, Iraq tax consultant, tax registration Iraq, business tax lawyer Baghdad, Irak vergi danışmanlığı, şirketler için mali uyum, Bağdat vergi avukatı, Irak vergi tescili, Steuerberatung Irak, finanzielle Compliance für Unternehmen, Steueranwalt Bagdad, Steuerregistrierung Irak, Asesoría fiscal Irak, cumplimiento financiero corporativo, abogado fiscal Bagdad, registro de impuestos Irak, 伊拉克税务咨询, 公司财务合规, 巴格达税务律师, 伊拉克税务登记, ڕاوێژکاری باج لە عێراق, هاوسەنگی مالی کۆمپانیاکان, پارێزەری باج بغداد, Conseil fiscal en Iraq, conformité financière des entreprises, avocat fiscalist Bagdad, enregistrement fiscal Irak">
+  <title id="pageTitle">الاستشارات الضريبية والامتثال المالي للشركات في العراق | مكتب المحامي علي كاظم الهاشمي</title>
+  <meta id="metaDesc" name="description" content="خدمات قانونية متخصصة في الاستشارات الضريبية، هيكلة الضرائب، التسجيل لدى الهيئات الضريبية، والامتثال المالي للشركات المحلية والأجنبية في العراق. | AKH Law Office Iraq">
+  <meta id="metaKeywords" name="keywords" content="استشارات ضريبية في العراق, الامتثال المالي للشركات, الهيئة العامة للضرائب بغداد, محامي ضرائب بغداد, تسجيل ضرائب الشركات العراق, Tax advisory Iraq, corporate financial compliance Baghdad, Iraq tax consultant, tax registration Iraq, business tax lawyer Baghdad, Irak vergi danışmanlığı, şirketler için mali uyum, Bağdat vergi avukatı, Steuerberatung Irak, finanzielle Compliance für Unternehmen, Steueranwalt Bagdad, Asesoría fiscal Irak, cumplimiento financiero corporativo, abogado fiscal Bagdad, 伊拉克税务咨询, 公司财务合规, 巴格达税务律师, ڕاوێژکاری باج لە عێراق, هاوسەنگی مالی کۆمپانیاکان, پارێزەری باج بغداد, Conseil fiscal en Iraq, conformité financière des entreprises, avocat fiscalist Bagdad">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Cairo', system-ui, sans-serif; background-color: #f8fafc; color: #0f172a; padding: 30px 16px; display: flex; justify-content: center; min-height: 100vh; align-items: flex-start; }
-    .container { width: 100%; max-width: 750px; background: #ffffff; padding: 35px 25px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border-top: 5px solid #c5a059; }
+    body { font-family: 'Cairo', system-ui, sans-serif; background-color: #f8fafc; color: #0f172a; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+
+    /* الهيدر الموحد الفاخر */
+    .icover-header {
+      width: 100%;
+      background: #0f172a;
+      border-bottom: 3px solid #c5a059;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .lang-select-bar {
+      padding: 7px 14px;
+      border-radius: 6px;
+      border: 1.5px solid #c5a059;
+      background: #0f172a;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 700;
+      outline: none;
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
+    }
+    .lang-select-bar option { background: #0f172a; color: #ffffff; }
+
+    .menu-container { position: relative; }
+    .menu-toggle {
+      background: rgba(255,255,255,0.1);
+      border: 1.5px solid #c5a059;
+      color: #ffffff;
+      width: 42px;
+      height: 42px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      left: auto;
+      min-width: 250px;
+      background: #0f172a;
+      border: 1.5px solid #c5a059;
+      border-radius: 10px;
+      display: none;
+      flex-direction: column;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+      padding: 8px 0;
+      z-index: 1100;
+    }
+    [dir="rtl"] .dropdown-menu { left: 0; right: auto; }
+    .dropdown-menu.active { display: flex; }
+    .dropdown-menu a {
+      color: #ffffff;
+      padding: 12px 20px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      width: 100%;
+      text-align: right;
+    }
+    .dropdown-menu a:hover { background: rgba(197,160,89,0.15); color: #c5a059; }
+
+    .container { width: 100%; max-width: 750px; background: #ffffff; padding: 35px 25px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border-top: 5px solid #c5a059; margin: 30px 16px; }
     .brand-logo { text-align: center; margin-bottom: 28px; direction: ltr; }
     .brand-logo .akh { font-size: 40px; font-weight: 900; color: #0f172a; letter-spacing: 4px; line-height: 1; }
     .brand-logo .akh .red-k { color: #dc2626; }
@@ -46,6 +119,34 @@
   </style>
 </head>
 <body>
+
+  <header class="icover-header">
+    <div>
+      <select id="languageSelect" class="lang-select-bar" onchange="changeLanguage(this.value)">
+        <option value="ar">العربية</option>
+        <option value="en">English</option>
+        <option value="tr">Türkçe</option>
+        <option value="zh">中文</option>
+        <option value="fr">Français</option>
+        <option value="es">Español</option>
+        <option value="de">Deutsch</option>
+        <option value="ku">کوردی</option>
+      </select>
+    </div>
+
+    <div class="menu-container">
+      <button class="menu-toggle" onclick="toggleMenu()" aria-label="القائمة">☰</button>
+      <div id="dropdownMenu" class="dropdown-menu">
+        <a href="https://akjassem.com" id="menuHome">الرئيسية</a>
+        <a href="/services/" id="menuServices">دليل الخدمات القانونية</a>
+        <a href="../../consultations.html" id="menuConsultations">الاستشارات القانونية</a>
+        <a href="../../insights.html" id="menuInsights">الآراء والرؤى القانونية (Insights)</a>
+        <a href="../../about.html" id="menuAbout">من نحن</a>
+        <a href="../../contact/" id="menuContact">اتصل بنا</a>
+      </div>
+    </div>
+  </header>
+
   <div class="container">
     <div class="brand-logo">
       <div class="akh">A<span class="red-k">K</span>H</div>
@@ -53,18 +154,147 @@
       <div class="est">EST. 2014</div>
     </div>
     
-    <div class="page-title">الاستشارات الضريبية والامتثال المالي للشركات</div>
+    <div class="page-title" id="pageMainTitle">الاستشارات الضريبية والامتثال المالي للشركات</div>
     
-    <div class="content-box">
+    <div class="content-box" id="contentBodyText">
       يقدم مكتب المحامي علي كاظم الهاشمي استشارات تخصصية دقيقة في هيكلة الضرائب، التسجيل لدى الهيئات الضريبية، ومتابعة المتطلبات المحاسبية والمالية للشركات بما يضمن الامتثال الكامل للقوانين والتشريعات المالية والضريبية النافذة في العراق، وتقليل المخاطر القانونية المرتبطة بالأعمال التجارية للشركات المحلية والأجنبية.
     </div>
     
     <div class="action-area">
-      <a href="/booking/" class="btn-booking">
+      <a href="/booking/" target="_blank" class="btn-booking" id="btnBookText">
         <span>📅 اضغط هنا للانتقال إلى صفحة حجز المواعيد</span>
       </a>
-      <a href="/services/" class="back-link">← العودة إلى قائمة الخدمات</a>
+      <a href="/services/" class="back-link" id="backLinkText">← العودة إلى قائمة الخدمات</a>
     </div>
   </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('dropdownMenu').classList.toggle('active');
+    }
+
+    window.onclick = function(event) {
+      if (!event.target.matches('.menu-toggle') && !event.target.closest('.menu-container')) {
+        document.getElementById('dropdownMenu').classList.remove('active');
+      }
+    }
+
+    // استمرار وتخزين اللغة تلقائياً عبر الموقع
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('preferredLang') || 'ar';
+      document.getElementById('languageSelect').value = savedLang;
+      changeLanguage(savedLang, false);
+    });
+
+    function changeLanguage(lang, save = true) {
+      if (save) {
+        localStorage.setItem('preferredLang', lang);
+      }
+      const root = document.getElementById('htmlRoot');
+      root.setAttribute('lang', lang);
+      root.setAttribute('dir', (lang === 'ar' || lang === 'ku') ? 'rtl' : 'ltr');
+
+      const t = dictionary[lang] || dictionary['en'];
+
+      document.getElementById('pageTitle').innerText = t.pageTitle;
+      document.getElementById('metaDesc').setAttribute('content', t.metaDesc);
+      document.getElementById('metaKeywords').setAttribute('content', t.metaKeywords);
+
+      document.getElementById('menuHome').innerText = t.home;
+      document.getElementById('menuServices').innerText = t.menuServices;
+      document.getElementById('menuConsultations').innerText = t.menuConsultations;
+      document.getElementById('menuInsights').innerText = t.menuInsights;
+      document.getElementById('menuAbout').innerText = t.menuAbout;
+      document.getElementById('menuContact').innerText = t.menuContact;
+
+      document.getElementById('pageMainTitle').innerText = t.pageMainTitle;
+      document.getElementById('contentBodyText').innerHTML = t.contentBody;
+      document.getElementById('btnBookText').innerHTML = `<span>${t.btnBook}</span>`;
+      document.getElementById('backLinkText').innerText = t.backLink;
+    }
+
+    const dictionary = {
+      ar: {
+        pageTitle: "الاستشارات الضريبية والامتثال المالي للشركات في العراق | مكتب المحامي علي كاظم الهاشمي",
+        metaDesc: "خدمات قانونية متخصصة في الاستشارات الضريبية، هيكلة الضرائب، التسجيل لدى الهيئات الضريبية، والامتثال المالي للشركات المحلية والأجنبية في العراق.",
+        metaKeywords: "استشارات ضريبية في العراق, الامتثال المالي للشركات, الهيئة العامة للضرائب بغداد, محامي ضرائب بغداد, تسجيل ضرائب الشركات العراق",
+        home: "الرئيسية", menuServices: "دليل الخدمات القانونية", menuConsultations: "الاستشارات القانونية", menuInsights: "الآراء والرؤى القانونية (Insights)", menuAbout: "من نحن", menuContact: "اتصل بنا",
+        pageMainTitle: "الاستشارات الضريبية والامتثال المالي للشركات",
+        contentBody: "يقدم مكتب المحامي علي كاظم الهاشمي استشارات تخصصية دقيقة في هيكلة الضرائب، التسجيل لدى الهيئات الضريبية، ومتابعة المتطلبات المحاسبية والمالية للشركات بما يضمن الامتثال الكامل للقوانين والتشريعات المالية والضريبية النافذة في العراق، وتقليل المخاطر القانونية المرتبطة بالأعمال التجارية للشركات المحلية والأجنبية.",
+        btnBook: "📅 اضغط هنا للانتقال إلى صفحة حجز المواعيد",
+        backLink: "← العودة إلى قائمة الخدمات"
+      },
+      en: {
+        pageTitle: "Tax Advisory & Financial Compliance for Corporations in Iraq | AKH Law Office",
+        metaDesc: "Specialized legal services in tax advisory, tax structuring, registration with tax authorities, and financial compliance for local and foreign companies in Iraq.",
+        metaKeywords: "Tax advisory Iraq, corporate financial compliance Baghdad, Iraq tax consultant, tax registration Iraq, business tax lawyer Baghdad",
+        home: "Home", menuServices: "Legal Services Directory", menuConsultations: "Legal Consultations", menuInsights: "Iraq Legal Insights", menuAbout: "About Us", menuContact: "Contact Us",
+        pageMainTitle: "Tax Advisory & Financial Compliance for Corporations",
+        contentBody: "The Law Office of Ali Kadhem Hashimi provides precise specialized advisory in tax structuring, registration with tax authorities, and monitoring corporate accounting requirements to ensure full compliance with financial and tax laws active in Iraq, minimizing legal risks associated with commercial businesses for local and foreign companies.",
+        btnBook: "📅 Click here to go to the appointment booking page",
+        backLink: "← Back to Services List"
+      },
+      tr: {
+        pageTitle: "Irak'ta Şirketler İçin Vergi Danışmanlığı ve Mali Uyum | Av. Ali Kazım Haşimi",
+        metaDesc: "Irak'ta yerli ve yabancı şirketler için vergi danışmanlığı, vergi yapılandırması, vergi dairelerine kayıt ve mali uyum konularında uzmanlaşmış hukuki hizmetler.",
+        metaKeywords: "Irak vergi danışmanlığı, şirketler için mali uyum, Bağdat vergi avukatı, Irak vergi tescili",
+        home: "Ana Sayfa", menuServices: "Hizmetler", menuConsultations: "Hukuki Danışmanlık", menuInsights: "İçgörüler", menuAbout: "Hakkımızda", menuContact: "İletişim",
+        pageMainTitle: "Şirketler İçin Vergi Danışmanlığı ve Mali Uyum",
+        contentBody: "Av. Ali Kazım Haşimi Hukuk Bürosu; yerli ve yabancı şirketlerin ticari faaliyetleriyle ilgili hukuki riskleri en aza indirmek, Irak'ta yürürlükte olan finansal ve vergi kanunlarına tam uyumu sağlamak amacıyla vergi yapılandırması, vergi dairelerine kayıt ve şirketlerin muhasebe gereksinimlerinin takibi konularında uzman danışmanlık hizmeti sunmaktadır.",
+        btnBook: "📅 Randevu rezervasyon sayfasına gitmek için tıklayın",
+        backLink: "← Hizmetler Listesine Dön"
+      },
+      zh: {
+        pageTitle: "伊拉克企业税务咨询与财务合规 | 阿里·卡德姆·哈希米律所",
+        metaDesc: "专长于伊拉克本土及外资企业税务咨询、税务架构、税务登记以及财务合规的专业法律服务。",
+        metaKeywords: "伊拉克税务咨询, 公司财务合规, 巴格达税务律师, 伊拉克税务登记",
+        home: "首页", menuServices: "法律服务", menuConsultations: "法律咨询", menuInsights: "法律洞察", menuAbout: "关于我们", menuContact: "联系我们",
+        pageMainTitle: "企业税务咨询与财务合规",
+        contentBody: "阿里·卡德姆·哈希米律所提供精准的专业咨询，涵盖税务架构设计、税务登记以及跟进公司的会计和财务要求，以确完全遵守伊拉克现行财税法律法规，并最大限度地减少本地及外资企业商业活动相关的法律风险。",
+        btnBook: "📅 点击此处跳转至预约页面",
+        backLink: "← 返回服务列表"
+      },
+      fr: {
+        pageTitle: "Conseil Fiscal et Conformité Financière pour les Entreprises en Iraq | AKH",
+        metaDesc: "Services juridiques spécialisés en conseil fiscal, structuration fiscale, enregistrement auprès des autorités fiscales et conformité financière en Iraq.",
+        metaKeywords: "Conseil fiscal en Iraq, conformité financière des entreprises, avocat fiscalist Bagdad, enregistrement fiscal Irak",
+        home: "Accueil", menuServices: "Services", menuConsultations: "Consultations Juridiques", menuInsights: "Aperçus", menuAbout: "À Propos", menuContact: "Contact",
+        pageMainTitle: "Conseil Fiscal et Conformité Financière pour les Entreprises",
+        contentBody: "Le Cabinet d'Avocats Ali Kadhem Hashimi propose des services de conseil spécialisé en structuration fiscale, enregistrement auprès des autorités fiscales et suivi des exigences comptables et financières des entreprises, garantissant la conformité totale avec les lois fiscales en Iraq et réduisant les risques juridiques pour les sociétés locales et étrangères.",
+        btnBook: "📅 Cliquez ici pour accéder à la page de réservation",
+        backLink: "← Retour à la liste des services"
+      },
+      es: {
+        pageTitle: "Asesoría Fiscal y Cumplimiento Financiero para Empresas en Irak | Bufete AKH",
+        metaDesc: "Servicios legales especializados en asesoría fiscal, estructuración de impuestos, registro ante autoridades fiscales y cumplimiento financiero en Irak.",
+        metaKeywords: "Asesoría fiscal Irak, cumplimiento financiero corporativo, abogado fiscal Bagdad, registro de impuestos Irak",
+        home: "Inicio", menuServices: "Servicios", menuConsultations: "Consultas Legales", menuInsights: "Perspectivas", menuAbout: "Sobre Nosotros", menuContact: "Contacto",
+        pageMainTitle: "Asesoría Fiscal y Cumplimiento Financiero para Empresas",
+        contentBody: "El Bufete de Abogados Ali Kadhem Hashimi ofrece asesoría especializada en estructuración fiscal, registro ante las autoridades fiscales y seguimiento de los requisitos contables y financieros de las empresas, garantizando el pleno cumplimiento de las leyes fiscales en Irak y minimizando los riesgos legales para empresas locales y extranjeras.",
+        btnBook: "📅 Haga clic aquí para ir a la página de reservas",
+        backLink: "← Volver a la lista de servicios"
+      },
+      de: {
+        pageTitle: "Steuerberatung & Finanzielle Compliance für Unternehmen im Irak | Kanzlei AKH",
+        metaDesc: "Spezialisierte Rechtsdienste in Steuerberatung, Steuerstrukturierung, Registrierung bei Steuerbehörden und finanzieller Compliance im Irak.",
+        metaKeywords: "Steuerberatung Irak, finanzielle Compliance für Unternehmen, Steueranwalt Bagdad, Steuerregistrierung Irak",
+        home: "Startseite", menuServices: "Dienste", menuConsultations: "Rechtliche Beratung", menuInsights: "Einblicke", menuAbout: "Über uns", menuContact: "Kontakt",
+        pageMainTitle: "Steuerberatung & Finanzielle Compliance für Unternehmen",
+        contentBody: "Die Anwaltskanzlei Ali Kadhem Hashimi bietet spezialisierte Beratung in den Bereichen Steuerstrukturierung, Registrierung bei den Steuerbehörden und Überwachung der buchhalterischen Anforderungen an, um die vollständige Einhaltung der geltenden irakischen Steuergesetze zu gewährleisten und rechtliche Risiken für lokale und ausländische Unternehmen zu minimieren.",
+        btnBook: "📅 Klicken Sie hier, um zur Buchungsseite zu gelangen",
+        backLink: "← Zurück zur Dienstleistungsliste"
+      },
+      ku: {
+        pageTitle: "ڕاوێژی باج و پابەندبوونی دارایی بۆ کۆمپانیاکان لە عێراق | نووسینگەی پارێزەر",
+        metaDesc: "خزمەتگوزاری یاسایی تایبەتمەند لە ڕاوێژی باج، ڕێکخستنی باج، تۆمارکردن لە دەستەکانی باج، و پابەندبوونی دارایی بۆ کۆمپانیاکان لە عێراق.",
+        metaKeywords: "ڕاوێژکاری باج لە عێراق, هاوسەنگی مالی کۆمپانیاکان, پارێزەری باج بغداد",
+        home: "سەرەکی", menuServices: "خزمەتگوزارییەکان", menuConsultations: "ڕاوێژی یاسایی", menuInsights: "تێڕوانینەکان", menuAbout: "دەرباره‌ی ئێمە", menuContact: "پەیوەندی",
+        pageMainTitle: "ڕاوێژی باج و پابەندبوونی دارایی بۆ کۆمپانیاکان",
+        contentBody: "نووسینگەی پارێزەر عەلی کازمی هاشمی ڕاوێژی تخصصد و ورد پێشکەش دەکات لە ڕێکخستنی باج، تۆمارکردن لە دەستەکانی باج، و بەدواداچوونی پێداویستییە ژمێریاری و داراییەکانی کۆمپانیاکان بۆ دڵنیابوون لە پابەندبوونی تەواو بە یاسا باج و داراییە کارپێکراوەکان لە عێراقدا، و کەمکردنەوەی مەترسییە یاساییەکان کە پەیوەندیدارن بە کارە بازرگانییەکانی کۆمپانیا خۆماڵی و بیانییەکانەوە.",
+        btnBook: "📅 کلیک لێرە بکە بۆ گواستنەوە بۆ لاپەڕەی حجز",
+        backLink: "← گەڕانەوە بۆ خشتەی خزمەتگوزارییەکان"
+      }
+    };
+  </script>
 </body>
 </html>
