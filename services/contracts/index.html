@@ -1,21 +1,95 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" id="htmlRoot">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- تحسين محركات البحث العالمي والمحلي (SEO) - 8 لغات -->
-  <title>إعداد وصياغة ومراجعة العقود التجارية والمدنية في العراق | مكتب المحامي علي كاظم الهاشمي</title>
-  <meta name="description" content="خدمات قانونية متخصصة في إعداد، صياغة، ومراجعة كافة أنواع العقود التجارية والمدنية وتوثيقها وفق التشريعات العراقية لحماية حقوق الشركات والأفراد. | AKH Law Office Iraq">
-  <meta name="keywords" content="صياغة عقود تجارية, مراجعة العقود في العراق, محامي عقود بغداد, توثيق العقود القانونية, عقود الشركات العراق, Commercial contract drafting, contract review Iraq, business lawyer Baghdad, legal contract drafting Iraq, corporate contracts Baghdad, Ticari sözleşme hazırlama, sözleşme inceleme Irak, Bağdat avukat, hukuki sözleşmeler, şirket sözleşmeleri Irak, Handelsvertragsgestaltung, Vertragsprüfung Irak, Anwalt für Verträge Bagdad, juristische Verträge Irak, Redacción de contratos comerciales, revisión de contratos Irak, abogado de contratos Bagdad, contratos corporativos Irak, 商业合同起草, 合同审查伊拉克, 巴格达合同律师, 法律合同起草伊拉克, ئامادەکردن و ڕێکخستنی گرێبەستەکان, پێداچوونەوەی گرێبەست لە عێراق, پارێزەری گرێبەستەکان بغداد, Rédaction de contrats commerciaux, révision de contrats Irak, avocat en contrats Bagdad, contrats d'entreprise Irak">
+  <title id="pageTitle">إعداد وصياغة ومراجعة العقود التجارية والمدنية في العراق | مكتب المحامي علي كاظم الهاشمي</title>
+  <meta id="metaDesc" name="description" content="خدمات قانونية متخصصة في إعداد، صياغة، ومراجعة كافة أنواع العقود التجارية والمدنية وتوثيقها وفق التشريعات العراقية لحماية حقوق الشركات والأفراد. | AKH Law Office Iraq">
+  <meta id="metaKeywords" name="keywords" content="صياغة عقود تجارية, مراجعة العقود في العراق, محامي عقود بغداد, توثيق العقود القانونية, عقود الشركات العراق, Commercial contract drafting, contract review Iraq, business lawyer Baghdad, legal contract drafting Iraq, corporate contracts Baghdad, Ticari sözleşme hazırlama, sözleşme inceleme Irak, Bağdat avukat, hukuki sözleşmeler, Handelsvertragsgestaltung, Vertragsprüfung Irak, Redacción de contratos comerciales, revisión de contratos Irak, 商业合同起草, 合同审查伊拉克, 巴格达合同律师, ئامادەکردن و ڕێکخستنی گرێبەستەکان, پێداچوونەوەی گرێبەست لە عێراق, Rédaction de contrats commerciaux, révision de contrats Irak">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Cairo', system-ui, sans-serif; background-color: #f8fafc; color: #0f172a; padding: 30px 16px; display: flex; justify-content: center; min-height: 100vh; align-items: flex-start; }
-    .container { width: 100%; max-width: 750px; background: #ffffff; padding: 35px 25px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border-top: 5px solid #c5a059; }
+    body { font-family: 'Cairo', system-ui, sans-serif; background-color: #f8fafc; color: #0f172a; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+
+    /* الهيدر الموحد الفاخر */
+    .icover-header {
+      width: 100%;
+      background: #0f172a;
+      border-bottom: 3px solid #c5a059;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .lang-select-bar {
+      padding: 7px 14px;
+      border-radius: 6px;
+      border: 1.5px solid #c5a059;
+      background: #0f172a;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 700;
+      outline: none;
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
+    }
+    .lang-select-bar option { background: #0f172a; color: #ffffff; }
+
+    .menu-container { position: relative; }
+    .menu-toggle {
+      background: rgba(255,255,255,0.1);
+      border: 1.5px solid #c5a059;
+      color: #ffffff;
+      width: 42px;
+      height: 42px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      left: auto;
+      min-width: 250px;
+      background: #0f172a;
+      border: 1.5px solid #c5a059;
+      border-radius: 10px;
+      display: none;
+      flex-direction: column;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+      padding: 8px 0;
+      z-index: 1100;
+    }
+    [dir="rtl"] .dropdown-menu { left: 0; right: auto; }
+    .dropdown-menu.active { display: flex; }
+    .dropdown-menu a {
+      color: #ffffff;
+      padding: 12px 20px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      width: 100%;
+      text-align: right;
+    }
+    .dropdown-menu a:hover { background: rgba(197,160,89,0.15); color: #c5a059; }
+
+    .container { width: 100%; max-width: 750px; background: #ffffff; padding: 35px 25px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border-top: 5px solid #c5a059; margin: 30px 16px; }
     .brand-logo { text-align: center; margin-bottom: 28px; direction: ltr; }
     .brand-logo .akh { font-size: 40px; font-weight: 900; color: #0f172a; letter-spacing: 4px; line-height: 1; }
     .brand-logo .akh .red-k { color: #dc2626; }
@@ -46,6 +120,35 @@
   </style>
 </head>
 <body>
+
+  <!-- الهيدر التنفيذي الموحد -->
+  <header class="icover-header">
+    <div>
+      <select id="languageSelect" class="lang-select-bar" onchange="changeLanguage(this.value)">
+        <option value="ar">العربية</option>
+        <option value="en">English</option>
+        <option value="tr">Türkçe</option>
+        <option value="zh">中文</option>
+        <option value="fr">Français</option>
+        <option value="es">Español</option>
+        <option value="de">Deutsch</option>
+        <option value="ku">کوردی</option>
+      </select>
+    </div>
+
+    <div class="menu-container">
+      <button class="menu-toggle" onclick="toggleMenu()" aria-label="القائمة">☰</button>
+      <div id="dropdownMenu" class="dropdown-menu">
+        <a href="https://akjassem.com" id="menuHome">الرئيسية</a>
+        <a href="/services/" id="menuServices">دليل الخدمات القانونية</a>
+        <a href="../../consultations.html" id="menuConsultations">الاستشارات القانونية</a>
+        <a href="../../insights.html" id="menuInsights">الآراء والرؤى القانونية (Insights)</a>
+        <a href="../../about.html" id="menuAbout">من نحن</a>
+        <a href="../../contact/" id="menuContact">اتصل بنا</a>
+      </div>
+    </div>
+  </header>
+
   <div class="container">
     <div class="brand-logo">
       <div class="akh">A<span class="red-k">K</span>H</div>
@@ -53,20 +156,149 @@
       <div class="est">EST. 2014</div>
     </div>
     
-    <div class="page-title">إعداد وصياغة ومراجعة العقود التجارية والمدنية</div>
+    <div class="page-title" id="pageMainTitle">إعداد وصياغة ومراجعة العقود التجارية والمدنية</div>
     
-    <div class="content-box">
+    <div class="content-box" id="contentBodyText">
       يقدم مكتب المحامي علي كاظم الهاشمي خدمة شاملة واحترافية للأفراد والشركات في إعداد وصياغة ومراجعة وتوثيق جميع أنواع العقود. تهدف هذه الخدمة إلى توفير الدعم القانوني والاستشاري اللازم في كافة جوانب التعاقد لضمان حماية حقوق عملائنا وتحقيق مصالحهم بأعلى معايير الدقة والأمان القانوني.
       <br><br>
       تبدأ عملية إعداد العقود بتحليل دقيق لاحتياجات الصفقة وتفاصيلها، وصولاً إلى صياغة البنود بدقة متناهية توضح حقوق والتزامات الأطراف المعنية. تلي ذلك عملية مراجعة تدقيقية للتأكد من التوافق التام مع التشريعات والقوانين المعمول بها محلياً ودولياً، فضلاً عن مساعدة العملاء في إجراءات التسجيل الرسمية لدى الجهات المختصة لتثبيت المراكز القانونية بفعالية تامة.
     </div>
     
     <div class="action-area">
-      <a href="/booking/" class="btn-booking">
+      <a href="/booking/" target="_blank" class="btn-booking" id="btnBookText">
         <span>📅 اضغط هنا للانتقال إلى صفحة حجز المواعيد</span>
       </a>
-      <a href="/services/" class="back-link">← العودة إلى قائمة الخدمات</a>
+      <a href="/services/" class="back-link" id="backLinkText">← العودة إلى قائمة الخدمات</a>
     </div>
   </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('dropdownMenu').classList.toggle('active');
+    }
+
+    window.onclick = function(event) {
+      if (!event.target.matches('.menu-toggle') && !event.target.closest('.menu-container')) {
+        document.getElementById('dropdownMenu').classList.remove('active');
+      }
+    }
+
+    // استمرار وتخزين اللغة تلقائياً عبر الموقع
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('preferredLang') || 'ar';
+      document.getElementById('languageSelect').value = savedLang;
+      changeLanguage(savedLang, false);
+    });
+
+    function changeLanguage(lang, save = true) {
+      if (save) {
+        localStorage.setItem('preferredLang', lang);
+      }
+      const root = document.getElementById('htmlRoot');
+      root.setAttribute('lang', lang);
+      root.setAttribute('dir', (lang === 'ar' || lang === 'ku') ? 'rtl' : 'ltr');
+
+      const t = dictionary[lang] || dictionary['en'];
+
+      document.getElementById('pageTitle').innerText = t.pageTitle;
+      document.getElementById('metaDesc').setAttribute('content', t.metaDesc);
+      document.getElementById('metaKeywords').setAttribute('content', t.metaKeywords);
+
+      document.getElementById('menuHome').innerText = t.home;
+      document.getElementById('menuServices').innerText = t.menuServices;
+      document.getElementById('menuConsultations').innerText = t.menuConsultations;
+      document.getElementById('menuInsights').innerText = t.menuInsights;
+      document.getElementById('menuAbout').innerText = t.about;
+      document.getElementById('menuContact').innerText = t.contact;
+
+      document.getElementById('pageMainTitle').innerText = t.pageMainTitle;
+      document.getElementById('contentBodyText').innerHTML = t.contentBody;
+      document.getElementById('btnBookText').innerHTML = `<span>${t.btnBook}</span>`;
+      document.getElementById('backLinkText').innerText = t.backLink;
+    }
+
+    const dictionary = {
+      ar: {
+        pageTitle: "إعداد وصياغة ومراجعة العقود التجارية والمدنية في العراق | مكتب المحامي علي كاظم الهاشمي",
+        metaDesc: "خدمات قانونية متخصصة في إعداد، صياغة، ومراجعة كافة أنواع العقود التجارية والمدنية وتوثيقها وفق التشريعات العراقية لحماية حقوق الشركات والأفراد.",
+        metaKeywords: "صياغة عقود تجارية, مراجعة العقود في العراق, محامي عقود بغداد, توثيق العقود القانونية, عقود الشركات العراق",
+        home: "الرئيسية", menuServices: "دليل الخدمات القانونية", menuConsultations: "الاستشارات القانونية", menuInsights: "الآراء والرؤى القانونية (Insights)", about: "من نحن", contact: "اتصل بنا",
+        pageMainTitle: "إعداد وصياغة ومراجعة العقود التجارية والمدنية",
+        contentBody: "يقدم مكتب المحامي علي كاظم الهاشمي خدمة شاملة واحترافية للأفراد والشركات في إعداد وصياغة ومراجعة وتوثيق جميع أنواع العقود. تهدف هذه الخدمة إلى توفير الدعم القانوني والاستشاري اللازم في كافة جوانب التعاقد لضمان حماية حقوق عملائنا وتحقيق مصالحهم بأعلى معايير الدقة والأمان القانوني.<br><br>تبدأ عملية إعداد العقود بتحليل دقيق لاحتياجات الصفقة وتفاصيلها، وصولاً إلى صياغة البنود بدقة متناهية توضح حقوق والتزامات الأطراف المعنية. تلي ذلك عملية مراجعة تدقيقية للتأكد من التوافق التام مع التشريعات والقوانين المعمول بها محلياً ودولياً، فضلاً عن مساعدة العملاء في إجراءات التسجيل الرسمية لدى الجهات المختصة لتثبيت المراكز القانونية بفعالية تامة.",
+        btnBook: "📅 اضغط هنا للانتقال إلى صفحة حجز المواعيد",
+        backLink: "← العودة إلى قائمة الخدمات"
+      },
+      en: {
+        pageTitle: "Commercial & Civil Contract Preparation, Drafting and Review in Iraq | AKH",
+        metaDesc: "Specialized legal services in preparing, drafting, and reviewing all types of commercial and civil contracts under Iraqi legislation.",
+        metaKeywords: "Commercial contract drafting, contract review Iraq, business lawyer Baghdad, legal contract drafting Iraq, corporate contracts Baghdad",
+        home: "Home", menuServices: "Legal Services Directory", menuConsultations: "Legal Consultations", menuInsights: "Iraq Legal Insights", about: "About Us", contact: "Contact Us",
+        pageMainTitle: "Commercial & Civil Contract Preparation, Drafting and Review",
+        contentBody: "The Law Office of Ali Kadhem Hashimi provides a comprehensive and professional service for individuals and corporations in preparing, drafting, reviewing, and documenting all types of contracts. This service aims to provide the necessary legal and advisory support in all aspects of contracting to ensure the protection of our clients' rights and the achievement of their interests with the highest standards of accuracy and legal security.<br><br>The contract preparation process begins with a precise analysis of the transaction's needs and details, leading to the meticulous drafting of clauses that clearly outline the rights and obligations of the concerned parties. This is followed by an auditing review process to ensure full compliance with local and international legislation, as well as assisting clients with official registration procedures.",
+        btnBook: "📅 Click here to go to the appointment booking page",
+        backLink: "← Back to Services List"
+      },
+      tr: {
+        pageTitle: "Irak'ta Ticari ve Medeni Sözleşmelerin Hazırlanması ve İncelenmesi | Av. Ali Kazım",
+        metaDesc: "Irak mevzuatına uygun olarak her türlü ticari ve medeni sözleşmenin hazırlanması, taslağı, incelenmesi ve belgelendirilmesinde uzman hukuki hizmetler.",
+        metaKeywords: "Ticari sözleşme hazırlama, sözleşme inceleme Irak, Bağdat avukat, hukuki sözleşmeler, şirket sözleşmeleri Irak",
+        home: "Ana Sayfa", menuServices: "Hizmetler", menuConsultations: "Hukuki Danışmanlık", menuInsights: "İçgörüler", about: "Hakkımızda", contact: "İletişim",
+        pageMainTitle: "Ticari ve Medeni Sözleşmelerin Hazırlanması, Taslağı ve İncelenmesi",
+        contentBody: "Av. Ali Kazım Haşimi Hukuk Bürosu, bireylere ve şirketlere her türlü sözleşmenin hazırlanması, taslağı, incelenmesi ve belgelendirilmesi konusunda kapsamlı ve profesyonel hizmet sunmaktadır. Bu hizmet, müvekkillerimizin haklarını korumak ve çıkarlarını en yüksek doğruluk ve hukuki güvenlik standartlarıyla güvence altına almak için gerekli hukuki ve danışmanlık desteğini sağlamayı amaçlamaktadır.<br><br>Sözleşme hazırlama süreci, işlemin ihtiyaçlarının ve detaylarının hassas bir şekilde analiziyle başlar ve ilgili tarafların hak ve yükümlülüklerini net bir şekilde ortaya koyan maddelerin titizlikle taslak haline getirilmesiyle devam eder. Bunu, yerel ve uluslararası mevzuata tam uyumu sağlamak için bir denetim süreci takip eder.",
+        btnBook: "📅 Randevu rezervasyon sayfasına gitmek için tıklayın",
+        backLink: "← Hizmetler Listesine Dön"
+      },
+      zh: {
+        pageTitle: "伊拉克商事与民事合同的准备、起草与审查 | 阿里·卡德姆·哈希米律所",
+        metaDesc: "根据伊拉克法律法规，专业提供各类商事及民事合同的准备、起草、审查与公证服务，以保护企业和个人权益。",
+        metaKeywords: "商业合同起草, 合同审查伊拉克, 巴格达合同律师, 法律合同起草伊拉克, 企业合同巴格达",
+        home: "首页", menuServices: "法律服务", menuConsultations: "法律咨询", menuInsights: "法律洞察", about: "关于我们", contact: "联系我们",
+        pageMainTitle: "商事与民事合同的准备、起草与审查",
+        contentBody: "阿里·卡德姆·哈希米律所为个人和企业提供全面且专业的服务，涵盖各类合同的准备、起草、审查与公证。本服务旨在为签约各环节提供必要的法律与咨询支持，以最高标准的准确性和法律安全性确保客户权益并实现其利益。<br><br>合同准备流程从对交易需求和细节的精准分析开始，进而 meticulous 地起草条款以明确各方的权利与义务。随后进行审计审查流程，以确保完全符合当地及国际法律法规，并协助客户在有关部门办理正式注册手续。",
+        btnBook: "📅 点击此处跳转至预约页面",
+        backLink: "← 返回服务列表"
+      },
+      fr: {
+        pageTitle: "Préparation, Rédaction et Révision de Contrats Commerciaux et Civils en Iraq | AKH",
+        metaDesc: "Services juridiques spécialisés dans la préparation, la rédaction, la révision et la documentation de tous types de contrats commerciaux et civils en Iraq.",
+        metaKeywords: "Rédaction de contrats commerciaux, révision de contrats Irak, avocat en contrats Bagdad, contrats d'entreprise Irak",
+        home: "Accueil", menuServices: "Services", menuConsultations: "Consultations Juridiques", menuInsights: "Aperçus", about: "À Propos", contact: "Contact",
+        pageMainTitle: "Préparation, Rédaction et Révision de Contrats Commerciaux et Civils",
+        contentBody: "Le Cabinet d'Avocats Ali Kadhem Hashimi offre un service complet et professionnel aux particuliers et aux entreprises dans la préparation, la rédaction, la révision et la documentation de tous types de contrats. Ce service vise à fournir un soutien juridique et consultatif pour assurer la protection des droits de nos clients avec les plus hauts standards de sécurité juridique.<br><br>Le processus de préparation des contrats commence par une analyse précise des besoins de la transaction, menant à la rédaction minutieuse des clauses décrivant les droits et obligations des parties. Ceci est suivi d'un processus de révision d'audit pour assurer la conformité totale avec la législation locale et internationale.",
+        btnBook: "📅 Cliquez ici pour accéder à la page de réservation",
+        backLink: "← Retour à la liste des services"
+      },
+      es: {
+        pageTitle: "Preparación, Redacción y Revisión de Contratos Comerciales y Civiles en Irak | AKH",
+        metaDesc: "Servicios legales especializados en la preparación, redacción, revisión y documentación de todo tipo de contratos comerciales y civiles en Irak.",
+        metaKeywords: "Redacción de contratos comerciales, revisión de contratos Irak, abogado de contratos Bagdad, contratos corporativos Irak",
+        home: "Inicio", menuServices: "Servicios", menuConsultations: "Consultas Legales", menuInsights: "Perspectivas", about: "Sobre Nosotros", contact: "Contacto",
+        pageMainTitle: "Preparación, Redacción y Revisión de Contratos Comerciales y Civiles",
+        contentBody: "El Bufete de Abogados Ali Kadhem Hashimi ofrece un servicio integral y profesional para particulares y empresas en la preparación, redacción, revisión y documentación de todo tipo de contratos. Este servicio tiene como objetivo proporcionar el apoyo legal y de asesoramiento necesario para garantizar la protección de los derechos de nuestros clientes con los más altos estándares de seguridad jurídica.<br><br>El proceso de preparación de contratos comienza con un análisis preciso de las necesidades de la transacción, seguido de la redacción meticulosa de cláusulas que describen los derechos y obligaciones de las partes. Esto es seguido por una revisión de auditoría para garantizar el pleno cumplimiento de la legislación aplicable.",
+        btnBook: "📅 Haga clic aquí para ir a la página de reservas",
+        backLink: "← Volver a la lista de servicios"
+      },
+      de: {
+        pageTitle: "Erstellung, Entwurf und Prüfung von Handels- und Zivilverträgen im Irak | Kanzlei AKH",
+        metaDesc: "Spezialisierte Rechtsdienste bei der Erstellung, Ausarbeitung, Prüfung und Dokumentation aller Arten von Handels- und Zivilverträgen im Irak.",
+        metaKeywords: "Handelsvertragsgestaltung, Vertragsprüfung Irak, Anwalt für Verträge Bagdad, juristische Verträge Irak",
+        home: "Startseite", menuServices: "Dienste", menuConsultations: "Rechtliche Beratung", menuInsights: "Einblicke", about: "Über uns", contact: "Kontakt",
+        pageMainTitle: "Erstellung, Entwurf und Prüfung von Handels- und Zivilverträgen",
+        contentBody: "Die Kanzlei Ali Kadhem Hashimi bietet Einzelpersonen und Unternehmen einen umfassenden und professionellen Service bei der Erstellung, Ausarbeitung, Prüfung und Dokumentation aller Arten von Verträgen. Dieser Service zielt darauf ab, die notwendige rechtliche und beratende Unterstützung in allen vertraglichen Aspekten zu bieten, um den Schutz der Rechte unserer Mandanten mit höchster Genauigkeit zu gewährleisten.<br><br>Der Vertragserstellungsprozess beginnt mit einer präzisen Analyse der Transaktionsbedürfnisse, gefolgt von der sorgfältigen Ausarbeitung von Klauseln, die die Rechte und Pflichten der beteiligten Parteien darlegen. Darauf folgt ein Prüfungsprozess, um die vollständige Übereinstimmung mit lokalen und internationalen Gesetzen sicherzustellen.",
+        btnBook: "📅 Klicken Sie hier, um zur Buchungsseite zu gelangen",
+        backLink: "← Zurück zur Dienstleistungsliste"
+      },
+      ku: {
+        pageTitle: "ئامادەکردن، داڕشتن و پێداچوونەوەی گرێبەستە بازرگانی و مەدەنییەکان لە عێراق | نووسینگە",
+        metaDesc: "خزمەتگوزاری یاسایی تایبەتمەند لە ئامادەکردن، داڕشتن، پێداچوونەوە و بەلگەنامەکردنی هەموو جۆرە گرێبەستێکی بازرگانی و مەدەنی لە عێراق.",
+        metaKeywords: "ئامادەکردن و ڕێکخستنی گرێبەستەکان, پێداچوونەوەی گرێبەست لە عێراق, پارێزەری گرێبەستەکان بغداد",
+        home: "سەرەکی", menuServices: "خزمەتگوزارییەکان", menuConsultations: "ڕاوێژی یاسایی", menuInsights: "تێڕوانینەکان", about: "دەرباره‌ی ئێمە", contact: "پەیوەندی",
+        pageMainTitle: "ئامادەکردن، داڕشتن و پێداچوونەوەی گرێبەستە بازرگانی و مەدەنییەکان",
+        contentBody: "نووسینگەی پارێزەر عەلی کازمی هاشمی خزمەتگوزارییەکی گشتگیر و پیشەیی بۆ تاک و کۆمپانیاکان پێشکەش دەکات لە ئامادەکردن، داڕشتن، پێداچوونەوە و بەلگەنامەکردنی هەموو جۆرە گرێبەستێکدا. ئەم خزمەتگوزارییە ئامانجی دابینکردنی پشتگیری یاسایی و ڕاوێژکارییە بۆ مسۆگەرکردنی پاراستنی مافی کڕیارەکانمان بە بەرزترین ئاستی وردبینی و سەلامەتی یاسایی.<br><br>پرۆسەی ئامادەکردنی گرێبەستەکان بە شیکردنەوەیەکی وردی پێداویستییەکانی گرێبەستەکە دەست پێ دەکات، کە دەبێتە هۆی داڕشتنی وردی ماددەکان کە ماف و ئەرکەکانی لایەنەکان ڕوون دەکاتەوە. پاشان پرۆسەی پێداچوونەوە ئەنجام دەدرێت بۆ دڵنیابوون لە سازگاری تەواو لەگەڵ یاسا کارپێکراوەکاندا.",
+        btnBook: "📅 کلیک لێرە بکە بۆ گواستنەوە بۆ لاپەڕەی حجز",
+        backLink: "← گەڕانەوە بۆ خشتەی خزمەتگوزارییەکان"
+      }
+    };
+  </script>
 </body>
 </html>
