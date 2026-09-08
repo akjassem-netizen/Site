@@ -60,7 +60,7 @@
       top: calc(100% + 10px);
       right: 0;
       left: auto;
-      min-width: 250px;
+      min-width: 260px;
       background: #0f172a;
       border: 1.5px solid #c5a059;
       border-radius: 10px;
@@ -201,6 +201,7 @@
       <div id="dropdownMenu" class="dropdown-menu">
         <a href="index.html" id="menuHome">الرئيسية</a>
         <a href="/services/" id="menuServices">دليل الخدمات القانونية</a>
+        <a href="consultations.html" id="menuConsultations">الاستشارات القانونية</a>
         <a href="insights.html" id="menuInsights">الآراء والرؤى القانونية (Insights)</a>
         <a href="about.html" id="menuAbout">من نحن</a>
         <a href="contact/" id="menuContact">اتصل بنا</a>
@@ -301,6 +302,7 @@
       document.getElementById('pageTitle').innerText = t.pageTitle;
       document.getElementById('menuHome').innerText = t.home;
       document.getElementById('menuServices').innerText = t.menuServices;
+      document.getElementById('menuConsultations').innerText = t.menuConsultations;
       document.getElementById('menuInsights').innerText = t.menuInsights;
       document.getElementById('menuAbout').innerText = t.menuAbout;
       document.getElementById('menuContact').innerText = t.menuContact;
@@ -321,7 +323,7 @@
     const dictionary = {
       ar: {
         pageTitle: "مكتب المحامي علي كاظم الهاشمي | الاستشارات والخدمات القانونية في العراق",
-        home: "الرئيسية", menuServices: "دليل الخدمات القانونية", menuInsights: "الآراء والرؤى القانونية (Insights)", menuAbout: "من نحن", menuContact: "اتصل بنا",
+        home: "الرئيسية", menuServices: "دليل الخدمات القانونية", menuConsultations: "الاستشارات القانونية", menuInsights: "الآراء والرؤى القانونية (Insights)", menuAbout: "من نحن", menuContact: "اتصل بنا",
         heroTitle: "مكتب المحامي علي كاظم الهاشمي", heroSubtitle: "شريككم القانوني الموثوق في بغداد. نقدم خدمات استشارية متكاملة، تأسيس الشركات، والتمثيل القضائي وفق أعلى معايير الاحترافية والأمان القانوني.",
         heroCta: "📅 حجز موعد استشارة رسمية", secMainTitle: "خدماتنا القانونية التخصصية", cardLink: "التفاصيل والحجز ←",
         s1Title: "تأسيس الشركات بأنواعها", s1Desc: "تأسيس الشركات المحلية والأجنبية، صياغة عقود التأسيس، وفتح الحسابات المصرفية.",
@@ -336,7 +338,7 @@
       },
       en: {
         pageTitle: "Law Office of Ali Kadhem Hashimi | Legal Services in Iraq",
-        home: "Home", menuServices: "Legal Services Directory", menuInsights: "Iraq Legal Insights", menuAbout: "About Us", menuContact: "Contact Us",
+        home: "Home", menuServices: "Legal Services Directory", menuConsultations: "Legal Consultations", menuInsights: "Iraq Legal Insights", menuAbout: "About Us", menuContact: "Contact Us",
         heroTitle: "Law Office of Ali Kadhem Hashimi", heroSubtitle: "Your trusted legal partner in Baghdad. Comprehensive advisory, corporate formation, and judicial representation at the highest standards.",
         heroCta: "📅 Book Official Consultation", secMainTitle: "Specialized Legal Services", cardLink: "Details & Booking →",
         s1Title: "Corporate Formation", s1Desc: "Local and foreign company setup, drafting articles of association, and bank accounts.",
@@ -351,12 +353,12 @@
       },
       tr: {
         pageTitle: "Av. Ali Kazım Haşimi Hukuk Bürosu | Irak Hukuki Hizmetler",
-        home: "Ana Sayfa", menuInsights: "Irak Hukuk İçgörüleri", menuAbout: "Hakkımızda", menuContact: "İletişim", menuServices: "Hizmetler",
+        home: "Ana Sayfa", menuInsights: "Irak Hukuk İçgörüleri", menuAbout: "Hakkımızda", menuContact: "İletişim", menuServices: "Hizmetler", menuConsultations: "Hukuki Danışmanlık",
         heroTitle: "Av. Ali Kazım Haşimi Hukuk Bürosu", heroSubtitle: "Bağdat'taki güvenilir yasal ortağınız. Kapsamlı danışmanlık, şirket kuruluşu ve yargı temsilciliği.",
         heroCta: "📅 Resmi Randevu Al", secMainTitle: "Uzmanlık Alanlarımız", cardLink: "Detaylar ve Randevu →",
         s1Title: "Şirket Kuruluşu", s1Desc: "Yerel ve yabancı şirketlerin kuruluşu, ana sözleşme hazırlama ve banka hesapları.",
         s2Title: "Yargı Temsilciliği", s2Desc: "Irak'taki tüm mahkemelerde yasal temsil ve dava takibi.",
-        s3Title: "Finansal Haklar ve Tahsilات", s3Desc: "Borç tahsilatı, resmi ihtarlar ve finansal uzlaşmalar.",
+        s3Title: "Finansal Haklar ve Tahsilat", s3Desc: "Borç tahsilatı, resmi ihtarlar ve finansal uzlaşmalar.",
         s4Title: "Yabancı Yatırım Lisansları", s4Desc: "Yatırım izinlerinin ve resmi izinlerin alınması.",
         s5Title: "Markalar ve Fikri Mülkiyet", s5Desc: "Fikri mülkiyet haklarının, endüstriyel tasarımların korunması.",
         s6Title: "Sözleşme Hazırlama ve İnceleme", s6Desc: "Ticari ve medeni sözleşmelerin hazırlanması ve denetlenmesi.",
@@ -366,7 +368,7 @@
       },
       zh: {
         pageTitle: "阿里·卡德姆·哈希米律所 | 伊拉克法律服务",
-        home: "首页", menuServices: "法律服务", menuInsights: "法律洞察", menuAbout: "关于我们", menuContact: "联系我们",
+        home: "首页", menuServices: "法律服务", menuConsultations: "法律咨询", menuInsights: "法律洞察", menuAbout: "关于我们", menuContact: "联系我们",
         heroTitle: "阿里·卡德姆·哈希米律所", heroSubtitle: "您在巴格达值得信赖的法律伙伴。以最高标准提供综合咨询、公司注册和司法代理服务。",
         heroCta: "📅 预约正式咨询", secMainTitle: "专业法律服务", cardLink: "详情与预约 →",
         s1Title: "公司注册与组建", s1Desc: "内外资公司设立、章程起草及银行开户协助。",
@@ -381,7 +383,7 @@
       },
       fr: {
         pageTitle: "Cabinet d'Avocats Ali Kadhem Hashimi | Services en Iraq",
-        home: "Accueil", menuServices: "Services", menuInsights: "Aperçus", menuAbout: "À Propos", menuContact: "Contact",
+        home: "Accueil", menuServices: "Services", menuConsultations: "Consultations Juridiques", menuInsights: "Aperçus", menuAbout: "À Propos", menuContact: "Contact",
         heroTitle: "Cabinet d'Avocats Ali Kadhem Hashimi", heroSubtitle: "Votre partenaire juridique de confiance à Bagdad. Conseil global, création d'entreprise et représentation judiciaire.",
         heroCta: "📅 Réserver une Consultation", secMainTitle: "Services Juridiques Spécialisés", cardLink: "Détails & Réservation →",
         s1Title: "Création d'Entreprise", s1Desc: "Création de sociétés locales et étrangères, statuts et comptes bancaires.",
@@ -396,7 +398,7 @@
       },
       es: {
         pageTitle: "Bufete de Abogados Ali Kadhem Hashimi | Servicios en Irak",
-        home: "Inicio", menuServices: "Servicios", menuInsights: "Perspectivas", menuAbout: "Sobre Nosotros", menuContact: "Contacto",
+        home: "Inicio", menuServices: "Servicios", menuConsultations: "Consultas Legales", menuInsights: "Perspectivas", menuAbout: "Sobre Nosotros", menuContact: "Contacto",
         heroTitle: "Bufete de Abogados Ali Kadhem Hashimi", heroSubtitle: "Su socio legal de confianza en Bagdad. Asesoría integral, constitución de empresas y representación judicial.",
         heroCta: "📅 Reservar Consulta Oficial", secMainTitle: "Servicios Legales Especializados", cardLink: "Detalles y Reserva →",
         s1Title: "Constitución de Empresas", s1Desc: "Creación de empresas locales y extranjeras, estatutos y cuentas bancarias.",
@@ -411,7 +413,7 @@
       },
       de: {
         pageTitle: "Anwaltskanzlei Ali Kadhem Hashimi | Rechtsdienste im Irak",
-        home: "Startseite", menuServices: "Dienste", menuInsights: "Einblicke", menuAbout: "Über uns", menuContact: "Kontakt",
+        home: "Startseite", menuServices: "Dienste", menuConsultations: "Rechtliche Beratung", menuInsights: "Einblicke", menuAbout: "Über uns", menuContact: "Kontakt",
         heroTitle: "Anwaltskanzlei Ali Kadhem Hashimi", heroSubtitle: "Ihr vertrauenswürdiger Rechtspartner in Bagdad. Umfassende Beratung, Unternehmensgründung und Vertretung.",
         heroCta: "📅 Offizielle Beratung buchen", secMainTitle: "Spezialisierte Rechtsdienstleistungen", cardLink: "Details & Buchung →",
         s1Title: "Unternehmensgründung", s1Desc: "Einrichtung in- und ausländischer Unternehmen, Satzungen, Bankkonten.",
@@ -426,7 +428,7 @@
       },
       ku: {
         pageTitle: "نووسینگەی پارێزەر عەلی کازمی هاشمی | خزمەتگوزاری یاسایی لە عێراق",
-        home: "سەرەکی", menuServices: "خزمەتگوزارییەکان", menuInsights: "تێڕوانینەکان", menuAbout: "دەرباره‌ی ئێمە", menuContact: "پەیوەندی",
+        home: "سەرەکی", menuServices: "خزمەتگوزارییەکان", menuConsultations: "ڕاوێژی یاسایی", menuInsights: "تێڕوانینەکان", menuAbout: "دەرباره‌ی ئێمە", menuContact: "پەیوەندی",
         heroTitle: "نووسینگەی پارێزەر عەلی کازمی هاشمی", heroSubtitle: "هاوبەشی یاسایی متمانەپێکراوی ئێوە لە بەغداد. ڕاوێژی گشتگیر، دامەزراندنی کۆمپانیا و نوێنەرایەتی دادوەری.",
         heroCta: "📅 چاوپێکەوتنی فەرمی تۆماربکە", secMainTitle: "خزمەتگوزارییە یاساییە تایبەتمەندەکان", cardLink: "وردەکاری و چاوپێکەوتن ←",
         s1Title: "دامەزراندنی کۆمپانیاکان", s1Desc: "دامەزراندنی کۆمپانیای خۆماڵی و بیانی، داڕشتنی گرێبەستی دامەزراندن و هەژماری بانکی.",
