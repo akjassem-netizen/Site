@@ -39,7 +39,7 @@
     .lang-select-bar:focus { border-color: #d32f2f; }
     .lang-select-bar option { background-color: #070f1e !important; color: #ffffff !important; padding: 10px; }
 
-    .back-home-btn {
+    .admin-link-btn {
       color: #ffffff;
       text-decoration: none;
       font-weight: 700;
@@ -49,7 +49,7 @@
       border-radius: 6px;
       transition: background 0.2s, color 0.2s;
     }
-    .back-home-btn:hover { background: rgba(197,160,89,0.2); color: #c5a059; }
+    .admin-link-btn:hover { background: rgba(197,160,89,0.2); color: #c5a059; }
 
     .form-container {
       max-width: 800px;
@@ -178,7 +178,7 @@
     </div>
 
     <div>
-      <a href="test" class="back-home-btn" id="backBtnText">&larr; الرئيسية</a>
+      <a href="admin" class="admin-link-btn">🔐 لوحة التحكم الإدارية</a>
     </div>
   </header>
 
@@ -343,7 +343,7 @@
     const bookingDict = {
       ar: {
         title: "حجز موعد استشارة قانونية - مكتب المحامي علي كاظم الهاشمي",
-        back: "الرئيسية",
+        back: "لوحة التحكم",
         formTitle: "استمارة طلب الاستشارة القانونية",
         formInst: "يرجى تعبئة النموذج أدناه بدقة ليتسنى لنا دراسة الطلب وتحديد الأتعاب وضبط موعد الاستشارة وفق الأطر المهنية.",
         citizenship: "الجنسية / الصفة الشخصية *",
@@ -531,15 +531,15 @@
         phName: "Ad soyad giriniz",
         phCompRep: "Yetkili temsilcinin adı",
         phEmail: "name@example.com",
-        phPhone: "Ülke kodu ile telefon numarası",
+        phPhone: "Üلke kodu ile telefon numarası",
         phAge: "örn. 35",
         phOcc: "Mevcut mesleğinizi girin",
         phAddrIraqi: "Şehir / Bölge",
         phAddrForeign: "Londra - İngiltere veya Dubai - BAE",
-        phAddrComp: "Bağdat veya Erbil",
+        phAddrComp: "Bağdat او Erbil",
         phNat: "örn. İngiliz / Amerikan",
         phCountry: "örn. Irak / BAE / İngiltere",
-        phRegNo: "Kayıt أو Sertifika Numarası",
+        phRegNo: "Kayıت أو Sertifika Numarası",
         phDetails: "Davanızın detaylarını kısaca açıklayın..."
       },
       zh: {
@@ -1039,7 +1039,7 @@
         phone: document.getElementById('phone').value,
         personal_details: (document.querySelector('input[name="entityType"]:checked').value === 'company') ? '' : `الجنس: ${document.getElementById('gender').value}, العمر: ${document.getElementById('age').value}, التحصيل: ${document.getElementById('education').value}, العمل: ${document.getElementById('occupation').value}`,
         address: document.getElementById('address').value,
-        id_or_reg: (document.querySelector('input[name="citizenship"]:checked').value === 'foreign' && document.querySelector('input[name="entityType"]:checked').value !== 'company') ? document.getElementById('nationalityIndiv').value : (document.querySelector('input[name="entityType"].checked')?.value === 'company' ? `التأسيس: ${document.getElementById('countryInc').value} - رقم التسجيل: ${document.getElementById('regNo').value}` : ''),
+        id_or_reg: (document.querySelector('input[name="citizenship"]:checked').value === 'foreign' && document.querySelector('input[name="entityType"]:checked').value !== 'company') ? document.getElementById('nationalityIndiv').value : (document.querySelector('input[name="entityType"]:checked').value === 'company' ? `التأسيس: ${document.getElementById('countryInc').value} - رقم التسجيل: ${document.getElementById('regNo').value}` : ''),
         translation: document.getElementById('translationNeeded').value,
         method: document.getElementById('consultationMethod').value,
         consult_type: document.getElementById('consultationType').value,
