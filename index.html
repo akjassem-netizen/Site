@@ -1,158 +1,615 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" id="htmlRoot">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>مكتب المحامي علي كاظم الهاشمي | استشارات وقضايا قانونية - بغداد</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="pageTitle">مكتب المحامي علي كاظم الهاشمي | الاستشارات والخدمات القانونية في العراق</title>
+  <meta name="description" content="مكتب المحامي علي كاظم الهاشمي في بغداد - تقديم استشارات قانونية متكاملة، تأسيس الشركات، التمثيل القضائي، الاستشارات الضريبية، وحماية الملكية الفكرية. | AKH Law Office Iraq">
+  <meta name="keywords" content="مكتب المحامي علي كاظم الهاشمي, محامي في بغداد, استشارات قانونية العراق, تأسيس شركات بغداد, تمثيل قضائي, استشارات ضريبية, علامات تجارية العراق, AKH Law Office Iraq, Baghdad lawyer, corporate registration Iraq, Iraq law firm, Avukat Bağdat, Irak hukuk bürosu, Anwaltskanzlei Bagdad, Kanzlei Irak, Bufete de abogados Bagdad, abogados en Irak, 巴格达律师事务所, 伊拉克律所, پارێزەری بغداد, ئۆفیسی yaسایی عێراق, Cabinet d'avocats Bagdad, avocats en Iraq">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Cairo', sans-serif; background: #f4f6f9; color: #070f1e; scroll-behavior: smooth; }
 
-<meta name="description" content="مكتب المحامي علي كاظم الهاشمي للمحاماة والخدمات القانونية في بغداد زيونة. استشارات قانونية، تأسيس شركات، قضايا مدنية وجزائية، وعقود تجارية.">
-<meta name="keywords" content="محامي في بغداد, محامي زيونة, استشارات قانونية العراق, تأسيس شركات بغداد, قضايا مدنية, محامي عقارات العراق, علي كاظم الهاشمي">
-<meta name="author" content="علي كاظم الهاشمي">
-<meta name="robots" content="index, follow">
+    /* الهيدر الكلاسيكي الأزرق الفاخر */
+    .icover-header {
+      background: #070f1e;
+      border-bottom: 3px solid #c5a059;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    /* قائمة تغيير اللغة */
+    .lang-select-bar {
+      padding: 7px 14px;
+      border-radius: 6px;
+      border: 1.5px solid #c5a059;
+      background: #070f1e;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 700;
+      outline: none;
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
+    }
+    .lang-select-bar option { background: #070f1e; color: #ffffff; }
 
-<style>
-:root {
---primary: #0f1c2e;
---secondary: #1f2e46;
---accent: #c5a880;
---accent-hover: #b09166;
---text: #2b2d42;
---light-bg: #f8fafc;
---white: #ffffff;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
-body { background-color: var(--light-bg); color: var(--text); line-height: 1.7; }
+    /* حاوية زر القائمة والقائمة المنسدلة */
+    .menu-container {
+      position: relative;
+    }
 
-/* شريط الترجمة العلوي */
-.top-bar { background: #080f1a; padding: 0.4rem 1.5rem; text-align: left; display: flex; justify-content: flex-end; align-items: center; }
-#google_translate_element { display: inline-block; font-size: 0.85rem; }
+    /* زر القائمة (3 شخطات) */
+    .menu-toggle {
+      background: rgba(255,255,255,0.1);
+      border: 1.5px solid #c5a059;
+      color: #ffffff;
+      width: 42px;
+      height: 42px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .menu-toggle:hover { background: rgba(197,160,89,0.2); }
 
-/* الهيدر */
-header { background: var(--primary); padding: 1rem 1.5rem; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
-.nav-container { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-.logo { color: var(--white); font-weight: 800; font-size: 1.15rem; }
-.logo span { color: var(--accent); }
-.btn-nav { background: var(--accent); color: var(--primary); padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 0.9rem; transition: 0.3s; }
-.btn-nav:hover { background: var(--accent-hover); }
+    /* القائمة المنسدلة النظيفة والمهنية */
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      left: auto;
+      min-width: 250px;
+      background: #070f1e;
+      border: 1.5px solid #c5a059;
+      border-radius: 10px;
+      display: none;
+      flex-direction: column;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+      padding: 8px 0;
+      z-index: 1100;
+    }
+    [dir="rtl"] .dropdown-menu { left: 0; right: auto; }
+    .dropdown-menu.active { display: flex; }
+    
+    .dropdown-menu a, .submenu-toggle-btn {
+      color: #ffffff;
+      padding: 12px 20px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      white-space: nowrap;
+      transition: background 0.2s, color 0.2s;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      background: transparent;
+      border-left: none;
+      border-right: none;
+      border-top: none;
+      width: 100%;
+      text-align: right;
+      font-family: 'Cairo', sans-serif;
+    }
+    .dropdown-menu a:hover, .submenu-toggle-btn:hover { background: rgba(197,160,89,0.15); color: #c5a059; }
 
-/* القسم الترحيبي */
-.hero { background: linear-gradient(135deg, rgba(15, 28, 46, 0.96), rgba(31, 46, 70, 0.92)), url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1600&q=80') center/cover; color: var(--white); padding: 4.5rem 1.5rem; text-align: center; }
-.hero-content { max-width: 850px; margin: 0 auto; }
-.hero h1 { font-size: 2.1rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.4; }
-.hero p { font-size: 1.1rem; color: #cbd5e1; margin-bottom: 2rem; }
-.hero-btns { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
-.btn-primary { background: var(--accent); color: var(--primary); padding: 0.8rem 1.6rem; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: 0.3s; }
-.btn-primary:hover { background: var(--accent-hover); }
-.btn-outline { background: transparent; border: 2px solid var(--accent); color: var(--white); padding: 0.8rem 1.6rem; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: 0.3s; }
-.btn-outline:hover { background: rgba(197, 168, 128, 0.15); }
+    /* زر الخدمات القابل للطي مع السهم التفاعلي */
+    .submenu-toggle-btn {
+      color: #c5a059 !important;
+      background: rgba(197,160,89,0.05);
+    }
+    .arrow-icon {
+      font-size: 11px;
+      transition: transform 0.3s ease;
+    }
+    .submenu-toggle-btn.active .arrow-icon {
+      transform: rotate(180deg);
+    }
 
-/* قسم الخدمات */
-.services { max-width: 1100px; margin: 3.5rem auto; padding: 0 1.5rem; }
-.section-title { text-align: center; margin-bottom: 2.5rem; }
-.section-title h2 { font-size: 1.9rem; color: var(--primary); font-weight: 800; }
-.section-title p { color: #64748b; font-size: 1rem; margin-top: 0.4rem; }
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
-.card { background: var(--white); padding: 1.8rem 1.4rem; border-radius: 10px; border: 1px solid #e2e8f0; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.04); }
-.card:hover { transform: translateY(-4px); border-color: var(--accent); }
-.card-icon { font-size: 2rem; margin-bottom: 0.8rem; }
-.card h3 { font-size: 1.2rem; color: var(--primary); margin-bottom: 0.5rem; font-weight: 700; }
-.card p { color: #64748b; font-size: 0.9rem; }
+    /* حاوية الفرعيات المخفية افتراضياً */
+    .submenu-container {
+      display: none;
+      flex-direction: column;
+      background: rgba(0,0,0,0.15);
+    }
+    .submenu-container.active {
+      display: flex;
+    }
 
-/* صندوق التنويه */
-.banner { background: var(--white); border-right: 5px solid var(--accent); max-width: 1100px; margin: 2rem auto; padding: 1.5rem; border-radius: 8px; }
-.banner h3 { color: var(--primary); font-size: 1.15rem; margin-bottom: 0.6rem; }
-.banner ul { list-style: none; }
-.banner li { margin-bottom: 0.4rem; font-size: 0.95rem; color: #475569; }
+    .sub-item {
+      padding-right: 30px !important;
+      font-size: 13px !important;
+      color: #cbd5e1 !important;
+      border-bottom: 1px solid rgba(255,255,255,0.04) !important;
+    }
+    .sub-item:hover { color: #c5a059 !important; }
 
-/* الفوتر */
-footer { background: var(--primary); color: #94a3b8; text-align: center; padding: 2.5rem 1.5rem 1.5rem; margin-top: 4rem; }
-footer .address { color: #f1f5f9; font-size: 1rem; margin-bottom: 0.8rem; }
-footer .copyright { font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.2rem; margin-top: 1.2rem; }
-</style>
+    /* التخطيط الشبكي الرئيسي */
+    .main-container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 450px 1fr;
+      gap: 35px;
+      align-items: start;
+    }
+
+    @media (max-width: 950px) {
+      .main-container { grid-template-columns: 1fr; }
+    }
+
+    /* العمود الأيمن: المربع العائم (Sticky Sidebar) */
+    .sticky-sidebar {
+      position: sticky;
+      top: 95px;
+    }
+
+    .hero-box {
+      background: #ffffff;
+      color: #070f1e;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 20px;
+      padding: 40px 35px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+      border-top: 6px solid #c5a059;
+      text-align: start;
+    }
+
+    /* مربع الشعار الأصلي بألوانه الدقيقة */
+    .brand-logo-box {
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 22px;
+      text-align: center;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    }
+    .b-akh {
+      font-size: 40px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      color: #070f1e;
+      font-family: Arial, sans-serif;
+      line-height: 1.1;
+    }
+    .b-akh .red-k { color: #d32f2f; }
+    .b-sub {
+      font-size: 11.5px;
+      font-weight: 800;
+      color: #070f1e;
+      letter-spacing: 1.5px;
+      margin-top: 5px;
+    }
+    .b-sub .red-slash { color: #d32f2f; }
+    .b-est {
+      font-size: 9px;
+      color: #64748b;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-top: 2px;
+    }
+
+    .hero-title {
+      font-size: 26px;
+      font-weight: 900;
+      color: #070f1e;
+      line-height: 1.35;
+      margin-bottom: 16px;
+      text-align: start;
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+      color: #334155;
+      line-height: 1.85;
+      margin-bottom: 28px;
+      font-weight: 600;
+      text-align: start;
+    }
+
+    .hero-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      background: #070f1e;
+      color: #ffffff;
+      border: 1.5px solid #070f1e;
+      padding: 14px 24px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(7, 15, 30, 0.2);
+      transition: all 0.2s ease;
+    }
+    .hero-cta-btn:hover {
+      background: #c5a059;
+      color: #070f1e;
+      border-color: #c5a059;
+    }
+
+    /* مساحة الأقسام والخدمات */
+    .content-sections-area {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .content-card {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 18px;
+      padding: 38px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.03);
+      text-align: start;
+    }
+
+    .content-card h3 {
+      font-size: 21px;
+      color: #070f1e;
+      margin-bottom: 14px;
+      font-weight: 800;
+      border-bottom: 2px solid #c5a059;
+      padding-bottom: 10px;
+      text-align: start;
+    }
+
+    .content-card p {
+      font-size: 15px;
+      color: #334155;
+      line-height: 1.85;
+      margin-bottom: 20px;
+      text-align: start;
+    }
+
+    .card-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #070f1e;
+      font-weight: 800;
+      font-size: 14px;
+      text-decoration: none;
+      border-bottom: 2px solid #c5a059;
+      padding-bottom: 3px;
+      transition: color 0.2s;
+    }
+    .card-link-btn:hover { color: #c5a059; }
+  </style>
 </head>
 <body>
 
-<div class="top-bar">
-<div id="google_translate_element"></div>
-</div>
+  <!-- الهيدر التنفيذي الفاخر -->
+  <header class="icover-header">
+    <div>
+      <select id="languageSelect" class="lang-select-bar" onchange="changeLanguage(this.value)">
+        <option value="ar">العربية</option>
+        <option value="en">English</option>
+        <option value="tr">Türkçe</option>
+        <option value="zh">中文</option>
+        <option value="fr">Français</option>
+        <option value="es">Español</option>
+        <option value="de">Deutsch</option>
+        <option value="ku">کوردی</option>
+      </select>
+    </div>
 
-<header>
-<div class="nav-container">
-<div class="logo">مكتب المحامي <span>علي كاظم الهاشمي</span></div>
-<a href="https://docs.google.com/forms/d/e/1FAIpQLSdVxyld_U5Mdp-4RLcuA8HdQvAvlYWdd1fiQ8QAavwJj_Ev7w/viewform" class="btn-nav" target="_blank">حجز موعد</a>
-</div>
-</header>
+    <div class="menu-container">
+      <button class="menu-toggle" onclick="toggleMenu()" aria-label="القائمة">☰</button>
+      
+      <!-- القائمة المنسدلة التفاعلية النظيفة -->
+      <div id="dropdownMenu" class="dropdown-menu">
+        <a href="index.html" id="menuHome">الرئيسية</a>
+        <a href="/services/" id="menuServicesMain">دليل الخدمات القانونية</a>
+        
+        <!-- زر خدماتنا القابل للطي مع السهم -->
+        <button class="submenu-toggle-btn" onclick="toggleSubmenu(event)">
+          <span id="menuServicesTitle">أبرز الخدمات والأقسام</span>
+          <span class="arrow-icon">▼</span>
+        </button>
+        
+        <!-- الفرعيات المخفية افتراضياً -->
+        <div id="submenuContainer" class="submenu-container">
+          <a href="/services/corporate/" class="sub-item" id="menuCorp">تأسيس الشركات</a>
+          <a href="/services/litigation/" class="sub-item" id="menuLit">التمثيل القضائي</a>
+          <a href="/services/tax-advisory/" class="sub-item" id="menuTax">الاستشارات الضريبية</a>
+          <a href="/services/trademarks/" class="sub-item" id="menuTrade">العلامات التجارية والملكية</a>
+        </div>
+        
+        <div style="border-top: 1px solid rgba(255,255,255,0.08); margin: 5px 0;"></div>
+        
+        <a href="about.html" id="menuAbout">من نحن</a>
+        <a href="insights.html" id="menuInsights">العراق القانونية (Insights)</a>
+        <a href="https://wa.me/9647838759047" target="_blank" id="menuContact">اتصل بنا</a>
+      </div>
+    </div>
+  </header>
 
-<section class="hero">
-<div class="hero-content">
-<h1>تمثيل قانوني رصين واستشارات تخصصية لحماية حقوقك ومصالحك</h1>
-<p>خدمات قانونية متكاملة للشركات والأفراد برؤية مهنية ودقيقة من قلب العاصمة بغداد.</p>
-<div class="hero-btns">
-<a href="https://docs.google.com/forms/d/e/1FAIpQLSdVxyld_U5Mdp-4RLcuA8HdQvAvlYWdd1fiQ8QAavwJj_Ev7w/viewform" class="btn-primary" target="_blank">تقديم طلب استشارة قانونية</a>
-<a href="https://wa.me/9647702956021" class="btn-outline" target="_blank">محادثة إدارة المكتب واتساب</a>
-</div>
-</div>
-</section>
+  <!-- التخطيط الشبكي -->
+  <main class="main-container">
 
-<section class="services">
-<div class="section-title">
-<h2>المجالات والخدمات القانونية</h2>
-<p>تقديم الدعم القانوني الدقيق وفق أحدث التشريعات والقوانين العراقية النافذة</p>
-</div>
-<div class="grid">
-<div class="card">
-<div class="card-icon">🏢</div>
-<h3>قضايا الشركات والتجارة</h3>
-<p>تأسيس وتسجيل الشركات، صياغة العقود التجارية، وتسوية النزاعات الاستثمارية.</p>
-</div>
-<div class="card">
-<div class="card-icon">⚖️</div>
-<h3>الدعاوى المدنية والعقارية</h3>
-<p>قضايا الملكية، إخلاء العقارات، ونزاعات الإيجار وتوثيق البيوع أصولياً.</p>
-</div>
-<div class="card">
-<div class="card-icon">👨‍👩‍👧</div>
-<h3>الأحوال الشخصية والتركات</h3>
-<p>قضايا الميراث، القسامات الشرعية، النفقة، الحضانة، وتنظيم شؤون الأسرة.</p>
-</div>
-<div class="card">
-<div class="card-icon">🛡️</div>
-<h3>الترافع والدفاع الجزائي</h3>
-<p>التمثيل القانوني وحضور التحقيقات والترافع أمام محاكم التحقيق والجنايات والجنح.</p>
-</div>
-</div>
-</section>
+    <!-- العمود الأيمن: المربع العائم متضمن الشعار بالألوان الدقيقة -->
+    <aside class="sticky-sidebar">
+      <section class="hero-box">
+        <div class="brand-logo-box" dir="ltr">
+          <div class="b-akh">A<span class="red-k">K</span>H</div>
+          <div class="b-sub"><span class="red-slash">/</span> LAW OFFICE</div>
+          <div class="b-est">EST. 2014</div>
+        </div>
 
-<section class="banner">
-<h3>📌 ضوابط حجز المواعيد والاستشارات:</h3>
-<ul>
-<li>• <strong>ساعات الدوام المكتبي:</strong> من الأحد إلى الخميس، من 8:00 صباحاً وحتى 4:00 عصراً.</li>
-<li>• <strong>مواعيد الاستشارات المباشرة:</strong> تبدأ بعد الظهر حصراً من 2:00 إلى 4:00 عصراً (لتفرغ المحامي صباحاً للمحاكم)، ومساءً بالتنسيق المسبق.</li>
-<li>• <strong>الأجور وتأكيد الحجز:</strong> خدماتنا الاستشارية مدفوعة الأجر وتبدأ أولياً من 75,000 دينار عراقي، وتُحدد بعد الاطلاع على الاستمارة، ويتم التواصل معكم عبر الواتساب لتأكيد الموعد وبيانات الدفع.</li>
-</ul>
-</section>
+        <h1 class="hero-title" id="heroTitleText">مكتب المحامي علي كاظم الهاشمي</h1>
+        <p class="hero-subtitle" id="heroSubtitleText">تمثيل قانوني رصين واستشارات تخصصية للشركات والأفراد برؤية مهنية ودقيقة من قلب العاصمة بغداد.</p>
+        
+        <a href="/booking/" target="_blank" class="hero-cta-btn" id="heroCtaText">
+          حجز موعد استشارة &larr;
+        </a>
+      </section>
+    </aside>
 
-<footer>
-<div class="address">📍 مقر المكتب: بغداد — زيونة — قرب دار الأزياء العراقية</div>
-<p>مكتب المحامي علي كاظم الهاشمي للمحاماة والخدمات القانونية</p>
-<div class="copyright">جميع الحقوق محفوظة © 2026 | akjassem.com</div>
-</footer>
+    <!-- العمود الأيسر: الأقسام -->
+    <section class="content-sections-area">
+      <div class="content-card">
+        <h3 id="sec1Title">مجالات الاختصاص والخدمات القانونية</h3>
+        <p id="sec1Desc">نقدم حزمة متكاملة تشمل تأسيس الشركات بأنواعها المحلية والأجنبية، صياغة وتدقيق العقود، الاستشارات الضريبية والمالية، حماية العلامات التجارية، والتمثيل أمام كافة المحاكم العراقية بمهنية عالية.</p>
+        <a href="/services/" class="card-link-btn" id="sec1Btn">استعراض كافة الخدمات التسع ←</a>
+      </div>
 
-<script type="text/javascript">
-function googleTranslateElementInit() {
-new google.translate.TranslateElement({
-pageLanguage: 'ar',
-includedLanguages: 'ar,en,hi,tr,ku,fa',
-layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-}, 'google_translate_element');
-}
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+      <div class="content-card">
+        <h3 id="sec2Title">الرؤية والمنهج المهني</h3>
+        <p id="sec2Desc">نلتزم منذ عام 2014 بأعلى معايير السرية المهنية والنزاهة القانونية، مع متابعة المستجدات التشريعية والقضائية لنضمن لعملائنا أفضل النتائج الاستراتيجية ضمن إطار القانون العراقي.</p>
+        <a href="about.html" class="card-link-btn" id="sec2Btn">تعرف علينا أكثر (من نحن) ←</a>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('dropdownMenu');
+      menu.classList.toggle('active');
+    }
+
+    function toggleSubmenu(event) {
+      event.stopPropagation();
+      const btn = event.currentTarget;
+      const container = document.getElementById('submenuContainer');
+      btn.classList.toggle('active');
+      container.classList.toggle('active');
+    }
+
+    window.onclick = function(event) {
+      if (!event.target.matches('.menu-toggle') && !event.target.closest('.menu-container')) {
+        document.getElementById('dropdownMenu').classList.remove('active');
+        document.getElementById('submenuContainer').classList.remove('active');
+        const toggleBtn = document.querySelector('.submenu-toggle-btn');
+        if (toggleBtn) toggleBtn.classList.remove('active');
+      }
+    }
+
+    const dictionary = {
+      ar: {
+        pageTitle: "مكتب المحامي علي كاظم الهاشمي | الاستشارات والخدمات القانونية في العراق",
+        home: "الرئيسية",
+        menuServicesMain: "دليل الخدمات القانونية",
+        menuServicesTitle: "أبرز الخدمات والأقسام",
+        menuCorp: "تأسيس الشركات",
+        menuLit: "التمثيل القضائي",
+        menuTax: "الاستشارات الضريبية",
+        menuTrade: "العلامات التجارية والملكية",
+        menuAbout: "من نحن",
+        menuInsights: "العراق القانونية (Insights)",
+        menuContact: "اتصل بنا",
+        title: "مكتب المحامي علي كاظم الهاشمي",
+        subtitle: "تمثيل قانوني رصين واستشارات تخصصية للشركات والأفراد برؤية مهنية ودقيقة من قلب العاصمة بغداد.",
+        cta: "حجز موعد استشارة ←",
+        sec1Title: "مجالات الاختصاص والخدمات القانونية",
+        sec1Desc: "نقدم حزمة متكاملة تشمل تأسيس الشركات بأنواعها المحلية والأجنبية، صياغة وتدقيق العقود، الاستشارات الضريبية والمالية، حماية العلامات التجارية، والتمثيل أمام كافة المحاكم العراقية بمهنية عالية.",
+        sec1Btn: "استعراض كافة الخدمات التسع ←",
+        sec2Title: "الرؤية والمنهج المهني",
+        sec2Desc: "نلتزم منذ عام 2014 بأعلى معايير السرية المهنية والنزاهة القانونية، مع متابعة المستجدات التشريعية والقضائية لنضمن لعملائنا أفضل النتائج الاستراتيجية ضمن إطار القانون العراقي.",
+        sec2Btn: "تعرف علينا أكثر (من نحن) ←"
+      },
+      en: {
+        pageTitle: "Law Office of Ali Kadhem Hashimi | Legal Services in Iraq",
+        home: "Home",
+        menuServicesMain: "Legal Services Directory",
+        menuServicesTitle: "Key Services & Departments",
+        menuCorp: "Corporate Formation",
+        menuLit: "Judicial Representation",
+        menuTax: "Tax Advisory",
+        menuTrade: "Trademarks & IP",
+        menuAbout: "About Us",
+        menuInsights: "Iraq Legal Insights",
+        menuContact: "Contact Us",
+        title: "Law Office of Ali Kadhem Hashimi",
+        subtitle: "Reliable legal representation and specialized advisory for corporations and individuals with a professional vision from Baghdad.",
+        cta: "Book Consultation →",
+        sec1Title: "Fields of Expertise & Legal Services",
+        sec1Desc: "We provide an integrated package including corporate formation, contract drafting, tax advisory, trademark protection, and representation before Iraqi courts.",
+        sec1Btn: "View All Nine Services →",
+        sec2Title: "Vision & Professional Approach",
+        sec2Desc: "Committed since 2014 to the highest standards of professional confidentiality and legal integrity within the framework of Iraqi law.",
+        sec2Btn: "Learn More About Us →"
+      },
+      tr: {
+        pageTitle: "Av. Ali Kazım Haşimi Hukuk Bürosu | Irak Hukuki Hizmetler",
+        home: "Ana Sayfa",
+        menuServicesMain: "Hukuki Hizmetler Rehberi",
+        menuServicesTitle: "Önemli Hizmetler",
+        menuCorp: "Şirket Kuruluşu",
+        menuLit: "Yargı Temsilciliği",
+        menuTax: "Vergi Danışmanlığı",
+        menuTrade: "Markalar ve Fikri Mülkiyet",
+        menuAbout: "Hakkımızda",
+        menuInsights: "Irak Hukuk İçgörüleri",
+        menuContact: "İletişim",
+        title: "Av. Ali Kazım Haşimi Hukuk Bürosu",
+        subtitle: "Bağdat'tan şirketler ve bireyler için güvenilir hukuki temsil ve uzman danışmanlık.",
+        cta: "Randevu Al →",
+        sec1Title: "Uzmanlık Alanları ve Hukuki Hizmetler",
+        sec1Desc: "Şirket kuruluşu, sözleşme hazırlama, vergi danışmanlığı, marka koruması ve mahkemelerde temsil dahil kapsamlı hizmetler sunuyoruz.",
+        sec1Btn: "Tüm Hizmetleri Gör →",
+        sec2Title: "Vizyon ve Profesyonel Yaklaşım",
+        sec2Desc: "2014'ten beri en yüksek gizlilik ve dürüstlük standartlarına bağlıyız.",
+        sec2Btn: "Hakkımızda Daha Fazla Bilgi →"
+      },
+      zh: {
+        pageTitle: "阿里·卡德姆·哈希米律所 | 伊拉克法律服务",
+        home: "首页",
+        menuServicesMain: "法律服务目录",
+        menuServicesTitle: "核心服务与部门",
+        menuCorp: "公司注册",
+        menuLit: "诉讼代理",
+        menuTax: "税务咨询",
+        menuTrade: "商标与知识产权",
+        menuAbout: "关于我们",
+        menuInsights: "伊拉克法律洞察",
+        menuContact: "联系我们",
+        title: "阿里·卡德姆·哈希米律所",
+        subtitle: "立足巴格达，为企业和个人提供可靠的法律代理与专项咨询服务。",
+        cta: "预约咨询 →",
+        sec1Title: "专业领域与法律服务",
+        sec1Desc: "我们提供包括公司注册、合同起草、税务咨询、商标保护以及出庭代理在内的全方位法律服务。",
+        sec1Btn: "查看全部九项服务 →",
+        sec2Title: "愿景与专业方法",
+        sec2Desc: "自2014年以来，我们一直秉持最高的职业保密和法律诚信标准。",
+        sec2Btn: "了解更多关于我们 →"
+      },
+      fr: {
+        pageTitle: "Cabinet d'Avocats Ali Kadhem Hashimi | Services en Iraq",
+        home: "Accueil",
+        menuServicesMain: "Répertoire des Services Juridiques",
+        menuServicesTitle: "Services Clés",
+        menuCorp: "Création d'Entreprise",
+        menuLit: "Représentation Judiciaire",
+        menuTax: "Conseil Fiscal",
+        menuTrade: "Marques & Propriété",
+        menuAbout: "À Propos",
+        menuInsights: "Aperçus Juridiques Iraq",
+        menuContact: "Contactez-nous",
+        title: "Cabinet d'Avocats Ali Kadhem Hashimi",
+        subtitle: "Représentation juridique fiable et conseil spécialisé pour les entreprises et les particuliers depuis Bagdad.",
+        cta: "Réserver →",
+        sec1Title: "Domaines d'Expertise & Services Juridiques",
+        sec1Desc: "Nous offrons des services complets incluant la création d'entreprises, la rédaction de contrats, le conseil fiscal et la représentation devant les tribunaux irakiens.",
+        sec1Btn: "Voir les Neuf Services →",
+        sec2Title: "Vision & Approche Professionnelle",
+        sec2Desc: "Engagés depuis 2014 envers les plus hautes normes de confidentialité et d'intégrité professionnelle.",
+        sec2Btn: "En Savoir Plus →"
+      },
+      es: {
+        pageTitle: "Bufete de Abogados Ali Kadhem Hashimi | Servicios en Irak",
+        home: "Inicio",
+        menuServicesMain: "Directorio de Servicios Legales",
+        menuServicesTitle: "Servicios Clave",
+        menuCorp: "Constitución de Empresas",
+        menuLit: "Representación Judicial",
+        menuTax: "Asesoría Fiscal",
+        menuTrade: "Marcas y Propiedad",
+        menuAbout: "Sobre Nosotros",
+        menuInsights: "Perspectivas Legales Irak",
+        menuContact: "Contáctanos",
+        title: "Bufete de Abogados Ali Kadhem Hashimi",
+        subtitle: "Representación legal confiable y asesoría especializada para corporaciones e individuos desde Bagdad.",
+        cta: "Reservar Consulta →",
+        sec1Title: "Áreas de Experiencia y Servicios Legales",
+        sec1Desc: "Ofrecemos servicios integrales que incluyen constitución de empresas, redacción de contratos, asesoría fiscal, protección de marcas y representación judicial.",
+        sec1Btn: "Ver los Nueve Servicios →",
+        sec2Title: "Visión y Enfoque Profesional",
+        sec2Desc: "Comprometidos desde 2014 con los más altos estándares de confidencialidad y ética profesional.",
+        sec2Btn: "Conozca Más Sobre Nosotros →"
+      },
+      de: {
+        pageTitle: "Anwaltskanzlei Ali Kadhem Hashimi | Rechtsdienste im Irak",
+        home: "Startseite",
+        menuServicesMain: "Verzeichnis der Rechtsdienste",
+        menuServicesTitle: "Hauptdienste",
+        menuCorp: "Unternehmensgründung",
+        menuLit: "Gerichtliche Vertretung",
+        menuTax: "Steuerberatung",
+        menuTrade: "Marken & IP",
+        menuAbout: "Über uns",
+        menuInsights: "Irak Rechtliche Einblicke",
+        menuContact: "Kontakt",
+        title: "Anwaltskanzlei Ali Kadhem Hashimi",
+        subtitle: "Zuverlässige rechtliche Vertretung und spezialisierte Beratung für Unternehmen und Privatpersonen aus Bagdad.",
+        cta: "Beratung buchen →",
+        sec1Title: "Fachgebiete & Rechtsdienstleistungen",
+        sec1Desc: "Wir bieten umfassende Dienstleistungen wie Unternehmensgründung, Vertragsgestaltung, Steuerberatung, Markenschutz und Vertretung vor irakischen Gerichten.",
+        sec1Btn: "Alle neun Dienste anzeigen →",
+        sec2Title: "Vision & Professioneller Ansatz",
+        sec2Desc: "Seit 2014 höchsten Standards beruflicher Verschwiegenheit und Integrität verpflichtet.",
+        sec2Btn: "Mehr über uns erfahren →"
+      },
+      ku: {
+        pageTitle: "نووسینگەی پارێزەر عەلی کازمی هاشمی | خزمەتگوزاری یاسایی لە عێراق",
+        home: "سەرەکی",
+        menuServicesMain: "ڕێبەری خزمەتگوزارییە یاساییەکان",
+        menuServicesTitle: "خزمەتگوزارییە سەرەکییەکان",
+        menuCorp: "دامەزراندنی کۆمپانیا",
+        menuLit: "نوێنەرایەتی دادوەری",
+        menuTax: "ڕاوێژکاری باج",
+        menuTrade: "مارکە و خاوەندارێتی فکری",
+        menuAbout: "دەرباره‌ی ئێمە",
+        menuInsights: "تێڕوانینە یاساییەکانی عێراق",
+        menuContact: "پەیوەندیمان پێوە بکە",
+        title: "نووسینگەی پارێزەر عەلی کازمی هاشمی",
+        subtitle: "نوێنەرایەتی یاسایی متمانەپێکراو و راوێژی تایبەتمەند بۆ کۆمپانیاکان و تاکەکان لە دڵی بەغدادەوە.",
+        cta: "چاوپێکەوتن تۆماربکە ←",
+        sec1Title: "بوارەکانی تایبەتمەندی و خزمەتگوزاری یاسایی",
+        sec1Desc: "ئێمە خزمەتگوزاری گشتگیر پێشکەش دەکەین لەوانە دامەزراندنی کۆمپانیاکان، داڕشتنی گرێبەست، ڕاوێژی باج، پاراستنی مارکە و نوێنەرایەتی لە دادگاکان.",
+        sec1Btn: "پیشاندانی هەموو نۆ خزمەتگوزارییەکە ←",
+        sec2Title: "دیدگا و شێوازی پیشەیی",
+        sec2Desc: "لە ساڵی ٢٠١٤ـەوە پابەندین بە بەرزترین ستانداردەکانی نهێنی و شەرەفی پیشەیی لە چوارچێوەی یاسای عێراقیدا.",
+        sec2Btn: "زیاتر لەبارەی ئێمەوە بزانە ←"
+      }
+    };
+
+    function changeLanguage(lang) {
+      const root = document.getElementById('htmlRoot');
+      root.setAttribute('lang', lang);
+      root.setAttribute('dir', (lang === 'ar' || lang === 'ku') ? 'rtl' : 'ltr');
+
+      const t = dictionary[lang] || dictionary['en'];
+
+      document.getElementById('pageTitle').innerText = t.pageTitle;
+      document.getElementById('menuHome').innerText = t.home;
+      document.getElementById('menuServicesMain').innerText = t.menuServicesMain;
+      document.getElementById('menuServicesTitle').innerText = t.menuServicesTitle;
+      document.getElementById('menuCorp').innerText = t.menuCorp;
+      document.getElementById('menuLit').innerText = t.menuLit;
+      document.getElementById('menuTax').innerText = t.menuTax;
+      document.getElementById('menuTrade').innerText = t.menuTrade;
+      document.getElementById('menuAbout').innerText = t.menuAbout;
+      document.getElementById('menuInsights').innerText = t.menuInsights;
+      document.getElementById('menuContact').innerText = t.menuContact;
+      document.getElementById('heroTitleText').innerText = t.title;
+      document.getElementById('heroSubtitleText').innerText = t.subtitle;
+      document.getElementById('heroCtaText').innerText = t.cta;
+      
+      document.getElementById('sec1Title').innerText = t.sec1Title;
+      document.getElementById('sec1Desc').innerText = t.sec1Desc;
+      document.getElementById('sec1Btn').innerText = t.sec1Btn;
+      document.getElementById('sec2Title').innerText = t.sec2Title;
+      document.getElementById('sec2Desc').innerText = t.sec2Desc;
+      document.getElementById('sec2Btn').innerText = t.sec2Btn;
+    }
+  </script>
 
 </body>
 </html>
-
