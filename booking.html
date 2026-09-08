@@ -176,7 +176,7 @@
     </div>
 
     <div>
-      <a href="test" class="back-home-btn" id="backBtnText">&larr; الرئيسية</a>
+      <a href="https://akjassem.com" class="back-home-btn" id="backBtnText">&larr; الرئيسية</a>
     </div>
   </header>
 
@@ -338,6 +338,13 @@
   </main>
 
   <script>
+    // الحفاظ على استمرار اللغة المختارة من الـ localStorage عند فتح صفحة الحجز
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('preferredLang') || 'ar';
+      document.getElementById('languageSelect').value = savedLang;
+      changeLanguage(savedLang);
+    });
+
     const bookingDict = {
       ar: {
         title: "حجز موعد استشارة قانونية - مكتب المحامي علي كاظم الهاشمي",
@@ -491,7 +498,7 @@
         companyName: "Şirket Yasal Adı *",
         companyRep: "Şirket Yetkilisi / Temsilci *",
         addressIraqiIndiv: "İkamet Adresi *",
-        addressForeignIndiv: "Yabancı İkamet Adresi (Şehir / Üلکه) *",
+        addressForeignIndiv: "Yabancı İkamet Adresi (Şehir / Ülke) *",
         addressCompany: "Şirket Merkezi *",
         email: "E-posta *",
         phone: "Telefon / WhatsApp *",
@@ -529,15 +536,15 @@
         phName: "Ad soyad giriniz",
         phCompRep: "Yetkili temsilcinin adı",
         phEmail: "name@example.com",
-        phPhone: "Üلke kodu ile telefon numarası",
+        phPhone: "Ülke kodu ile telefon numarası",
         phAge: "örn. 35",
         phOcc: "Mevcut mesleğinizi girin",
         phAddrIraqi: "Şehir / Bölge",
         phAddrForeign: "Londra - İngiltere veya Dubai - BAE",
-        phAddrComp: "Bağdat أو Erbil",
+        phAddrComp: "Bağdat veya Erbil",
         phNat: "örn. İngiliz / Amerikan",
         phCountry: "örn. Irak / BAE / İngiltere",
-        phRegNo: "Kayıت أو Sertifika Numarası",
+        phRegNo: "Kayıt veya Sertifika Numarası",
         phDetails: "Davanızın detaylarını kısaca açıklayın..."
       },
       zh: {
@@ -661,7 +668,7 @@
         submit: "Soumettre pour Examen Juridique →",
         successMsg: "Votre demande a été reçue avec succès (elle sera examinée et traitée sous 24 heures).",
         phName: "Entrez le nom complet",
-        phCompRep: "Nom du représentant responsable",
+        phCompRep: "Nom du représentant",
         phEmail: "name@example.com",
         phPhone: "Téléphone avec indicatif pays",
         phAge: "ex: 35",
@@ -1017,7 +1024,6 @@
       }
     }
 
-    // رابط Google Apps Script الخاص بك لإرسال البيانات بسلاسة تامة بدون أخطاء Failed to fetch
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw7yF264dmPNlUy2Nng5jwz-qXRTZvoDIRjKNmLhWoDJ5Fk1RJEISFo3GIb5Xw4b0ycSA/exec";
 
     document.getElementById('consultationForm').addEventListener('submit', function(e) {
@@ -1037,7 +1043,7 @@
         address: document.getElementById('address').value,
         idOrReg: (document.querySelector('input[name="citizenship"]:checked').value === 'foreign' && document.querySelector('input[name="entityType"]:checked').value !== 'company') ? document.getElementById('nationalityIndiv').value : (document.querySelector('input[name="entityType"]:checked').value === 'company' ? `التأسيس: ${document.getElementById('countryInc').value} - رقم التسجيل: ${document.getElementById('regNo').value}` : ''),
         translation: document.getElementById('translationNeeded').value,
-        method: document.getElementById('consultationMethod').value,
+        method: document.getElementById('consultationMethod').Figure,
         consultType: document.getElementById('consultationType').value,
         details: document.getElementById('consultationDetails').value
       };
