@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" id="htmlRoot">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title id="pageTitle">اتصل بنا | مكتب المحامي علي كاظم الهاشمي</title>
+  <title>اتصل بنا | مكتب المحامي علي كاظم الهاشمي</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -29,10 +29,10 @@
       border-top: 5px solid #c5a059;
     }
     
-    /* الشعار الرسمي: حرف K باللون الأحمر حصراً وباقي الحروف بالأسود */
+    /* الشعار الرسمي: حرف K باللون الأحمر وباقي الحروف بالأسود الداكن */
     .brand-logo {
       text-align: center;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
       direction: ltr;
     }
     .brand-logo .akh {
@@ -67,35 +67,6 @@
       letter-spacing: 2px;
       margin-top: 4px;
       font-weight: 600;
-    }
-
-    /* قائمة اختيار اللغات المتزامنة */
-    .lang-selector-card {
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
-      padding: 14px 18px;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .lang-selector-card select {
-      padding: 8px 12px;
-      border-radius: 8px;
-      border: 1px solid #cbd5e1;
-      font-family: 'Cairo', sans-serif;
-      font-size: 13px;
-      background: #f8fafc;
-      color: #0f172a;
-      outline: none;
-      cursor: pointer;
-      width: 180px;
-    }
-    .lang-label {
-      font-size: 13px;
-      font-weight: 700;
-      color: #334155;
     }
 
     .page-title {
@@ -142,7 +113,7 @@
       margin-bottom: 2px;
     }
 
-    /* الأزرار */
+    /* الأزرار بالأسفل */
     .action-buttons {
       display: flex;
       flex-direction: column;
@@ -198,43 +169,29 @@
       <div class="est">EST. 2014</div>
     </div>
 
-    <div class="lang-selector-card">
-      <div class="lang-label" id="t-langLabel">اختر اللغة / Select Language</div>
-      <select id="langSelect" onchange="changeLanguage(this.value)">
-        <option value="ar">العربية (Arabic)</option>
-        <option value="en">English (الإنجليزية)</option>
-        <option value="ku">کوردی (Kurdish)</option>
-        <option value="fr">Français (الفرنسية)</option>
-        <option value="de">Deutsch (الألمانية)</option>
-        <option value="es">Español (الإسبانية)</option>
-        <option value="tr">Türkçe (التركية)</option>
-        <option value="fa">فارسی (الفارسية)</option>
-      </select>
-    </div>
-
-    <div class="page-title" id="t-pageTitle">اتصل بنا ومقر المكتب الرئيسي</div>
+    <div class="page-title">اتصل بنا ومقر المكتب الرئيسي</div>
 
     <div class="info-card">
       <div class="info-row">
         <div class="icon">📍</div>
         <div class="content">
-          <strong id="t-addressTitle">عنوان المقر</strong>
-          <span id="t-addressText">بغداد - زيونة - قرب دار الأزياء العراقية</span>
+          <strong>عنوان المقر</strong>
+          بغداد - زيونة - قرب دار الأزياء العراقية
         </div>
       </div>
 
       <div class="info-row">
         <div class="icon">⏰</div>
         <div class="content">
-          <strong id="t-hoursTitle">أوقات العمل الرسمية</strong>
-          <span id="t-hoursText">الأحد إلى الخميس (08:00 صباحاً - 04:00 عصراً)</span>
+          <strong>أوقات العمل الرسمية</strong>
+          الأحد إلى الخميس (08:00 صباحاً - 04:00 عصراً بتوقيت بغداد)
         </div>
       </div>
 
       <div class="info-row">
         <div class="icon">📞</div>
         <div class="content">
-          <strong id="t-phoneTitle">هاتف وواتساب المكتب</strong>
+          <strong>هاتف وواتساب المكتب</strong>
           <span dir="ltr">+964 783 875 9047</span>
         </div>
       </div>
@@ -242,147 +199,14 @@
 
     <div class="action-buttons">
       <a href="https://maps.google.com/?q=%D9%85%D9%83%D8%AA%D8%A8+%D8%A7%D9%84%D9%85%D8%AD%D8%A7%D9%85%D9%8A+%D8%B9%D9%84%D9%8A+%D9%83%D8%A7%D8%B8%D9%85+%D8%A7%D9%84%D9%87%D8%A7%D8%B4%D9%85%D9%8A" target="_blank" class="btn-map">
-        <span id="t-mapBtn">🗺️ الانتقال إلى مكتب المحامي علي كاظم الهاشمي في خرائط جوجل</span>
+        <span>🗺️ الانتقال إلى مكتب المحامي علي كاظم الهاشمي في خرائط جوجل</span>
       </a>
 
       <a href="https://wa.me/9647838759047" target="_blank" class="btn-whatsapp">
-        <span id="t-waBtn">💬 تواصل عبر الواتساب مباشرة</span>
+        <span>💬 تواصل عبر الواتساب مباشرة</span>
       </a>
     </div>
   </div>
 
-  <script>
-    const translations = {
-      ar: {
-        dir: "rtl",
-        pageTitle: "اتصل بنا | مكتب المحامي علي كاظم الهاشمي",
-        langLabel: "اختر اللغة / Select Language",
-        pageHeading: "اتصل بنا ومقر المكتب الرئيسي",
-        addressTitle: "عنوان المقر",
-        addressText: "بغداد - زيونة - قرب دار الأزياء العراقية",
-        hoursTitle: "أوقات العمل الرسمية",
-        hoursText: "الأحد إلى الخميس (08:00 صباحاً - 04:00 عصراً)",
-        phoneTitle: "هاتف وواتساب المكتب",
-        mapBtn: "🗺️ الانتقال إلى مكتب المحامي علي كاظم الهاشمي في خرائط جوجل",
-        waBtn: "💬 تواصل عبر الواتساب مباشرة"
-      },
-      en: {
-        dir: "ltr",
-        pageTitle: "Contact Us | Ali Kadhem Hashimi Law Office",
-        langLabel: "Select Language",
-        pageHeading: "Contact Us & Main Office Headquarters",
-        addressTitle: "Office Address",
-        addressText: "Baghdad - Zayouna - Near the Iraqi Fashion House",
-        hoursTitle: "Official Working Hours",
-        hoursText: "Sunday to Thursday (08:00 AM - 04:00 PM)",
-        phoneTitle: "Office Phone & WhatsApp",
-        mapBtn: "🗺️ Open Ali Kadhem Hashimi Law Office on Google Maps",
-        waBtn: "💬 Contact via WhatsApp Directly"
-      },
-      ku: {
-        dir: "rtl",
-        pageTitle: "پەیوەندیمان پێوە بکەن | نووسینگەی پارێزەر عەلی کازیم ئەلھاشمی",
-        langLabel: "زمان هەڵبژێرە",
-        pageHeading: "پەیوەندیمان پێوە بکەن و باڵەخانەی سەرەکی",
-        addressTitle: "ناونیشانی نووسینگە",
-        addressText: "بەغدا - زەیۆنە - نزیک خانەی مۆدەی عێراقی",
-        hoursTitle: "کاتژمێرەکانی کارکردنی فەرمی",
-        hoursText: "یەکشەممە تا پێنجشەممە (08:00 بەیانی - 04:00 ئێوارە)",
-        phoneTitle: "تەلەفۆن و واتسابی نووسینگە",
-        mapBtn: "🗺️ کردنەوەی نووسینگەی پارێزەر عەلی کازیم لە نەخشەی گوگڵ",
-        waBtn: "💬 پەیوەندی کردن ڕاستەوخۆ لە ڕێگەی واتسابەوە"
-      },
-      fr: {
-        dir: "ltr",
-        pageTitle: "Contactez-nous | Cabinet d'Avocats Ali Kadhem Hashimi",
-        langLabel: "Choisir la langue",
-        pageHeading: "Contactez-nous et Siège Principal",
-        addressTitle: "Adresse du Bureau",
-        addressText: "Bagdad - Zayouna - Près de la Maison de la Mode Iraquienne",
-        hoursTitle: "Heures de Travail Officielles",
-        hoursText: "Dimanche au Jeudi (08h00 - 16h00)",
-        phoneTitle: "Téléphone et WhatsApp du Bureau",
-        mapBtn: "🗺️ Ouvrir le cabinet sur Google Maps",
-        waBtn: "💬 Contacter via WhatsApp Directement"
-      },
-      de: {
-        dir: "ltr",
-        pageTitle: "Kontaktiere uns | Rechtsanwaltskanzlei Ali Kadhem Hashimi",
-        langLabel: "Sprache wählen",
-        pageHeading: "Kontakt & Hauptsitz der Kanzlei",
-        addressTitle: "Kanzleiadresse",
-        addressText: "Bagdad - Zayouna - In der Nähe des irakischen Modehauses",
-        hoursTitle: "Offizielle Arbeitszeiten",
-        hoursText: "Sonntag bis Donnerstag (08:00 Uhr - 16:00 Uhr)",
-        phoneTitle: "Kanzlei Telefon & WhatsApp",
-        mapBtn: "🗺️ Kanzlei auf Google Maps öffnen",
-        waBtn: "💬 Direkt über WhatsApp kontaktieren"
-      },
-      es: {
-        dir: "ltr",
-        pageTitle: "Contáctenos | Bufete de Abogados Ali Kadhem Hashimi",
-        langLabel: "Seleccionar idioma",
-        pageHeading: "Contáctenos y Sede Principal",
-        addressTitle: "Dirección de la Oficina",
-        addressText: "Bagdad - Zayouna - Cerca de la Casa de la Moda Iraquí",
-        hoursTitle: "Horas de Trabajo Oficiales",
-        hoursText: "Domingo a Jueves (08:00 AM - 04:00 PM)",
-        phoneTitle: "Teléfono y WhatsApp de la Oficina",
-        mapBtn: "🗺️ Abrir el bufete en Google Maps",
-        waBtn: "💬 Contactar por WhatsApp Directamente"
-      },
-      tr: {
-        dir: "ltr",
-        pageTitle: "Bize Ulaşın | Avukat Ali Kazım Haşimi Hukuk Bürosu",
-        langLabel: "Dil Seçin",
-        pageHeading: "Bize Ulaşın ve Ana Ofis",
-        addressTitle: "Ofis Adresi",
-        addressText: "Bağdat - Zeyuna - Irak Moda Evi Yakını",
-        hoursTitle: "Resmi Çalışma Saatleri",
-        hoursText: "Pazar - Perşembe (08:00 - 16:00)",
-        phoneTitle: "Ofis Telefon ve WhatsApp",
-        mapBtn: "🗺️ Google Haritalar'da Ofisi Aç",
-        waBtn: "💬 Doğrudan WhatsApp ile İletişime Geçin"
-      },
-      fa: {
-        dir: "rtl",
-        pageTitle: "تماس با ما | دفتر وکالت علی کاظم الهاشمی",
-        langLabel: "انتخاب زبان",
-        pageHeading: "تماس با ما و دفتر مرکزی",
-        addressTitle: "آدرس دفتر",
-        addressText: "بغداد - زیونه - نزدیک خانه مد عراق",
-        hoursTitle: "ساعات کاری رسمی",
-        hoursText: "یکشنبه تا پنجشنبه (۰۸:۰۰ صبح - ۰۴:۰۰ عصر)",
-        phoneTitle: "تلفن و واتس‌اپ دفتر",
-        mapBtn: "🗺️ باز کردن دفتر در گوگل مپ",
-        waBtn: "💬 ارتباط مستقیم از طریق واتس‌اپ"
-      }
-    };
-
-    function changeLanguage(lang) {
-      localStorage.setItem('site_lang', lang);
-      const t = translations[lang];
-      if (!t) return;
-
-      document.getElementById('htmlRoot').setAttribute('dir', t.dir);
-      document.getElementById('pageTitle').innerText = t.pageTitle;
-      document.getElementById('t-langLabel').innerText = t.langLabel;
-      document.getElementById('t-pageTitle').innerText = t.pageHeading;
-      document.getElementById('t-addressTitle').innerText = t.addressTitle;
-      document.getElementById('t-addressText').innerText = t.addressText;
-      document.getElementById('t-hoursTitle').innerText = t.hoursTitle;
-      document.getElementById('t-hoursText').innerText = t.hoursText;
-      document.getElementById('t-phoneTitle').innerText = t.phoneTitle;
-      document.getElementById('t-mapBtn').innerText = t.mapBtn;
-      document.getElementById('t-waBtn').innerText = t.waBtn;
-    }
-
-    // تطبيق اللغة المحفوظة تلقائياً أول ما تفتح الصفحة
-    window.onload = function() {
-      const savedLang = localStorage.getItem('site_lang') || 'ar';
-      document.getElementById('langSelect').value = savedLang;
-      changeLanguage(savedLang);
-    };
-  </script>
 </body>
 </html>
