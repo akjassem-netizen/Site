@@ -5,7 +5,7 @@
   <title>نظام إدارة الاستشارات القانونية - AKH</title>
   <style>
     body { font-family: Arial, sans-serif; background: #f8fafc; margin: 0; padding: 20px; color: #2d3748; }
-    .wrapper { max-width: 1000px; margin: auto; }
+    .wrapper { max-width: 1100px; margin: auto; }
     .card { background: #ffffff; padding: 20px; border-radius: 12px; border-top: 5px solid #b79042; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 20px; text-align: center; }
     .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 20px; }
     .stat-box { background: #ffffff; padding: 15px; border-radius: 12px; border: 1px solid #e2e8f0; text-align: center; }
@@ -13,7 +13,7 @@
     .btn { background: #b79042; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: bold; cursor: pointer; }
     .btn:hover { background: #967333; }
     table { width: 100%; border-collapse: collapse; margin-top: 10px; background: white; border-radius: 8px; overflow: hidden; }
-    th, td { padding: 12px; text-align: right; border-bottom: 1px solid #e2e8f0; font-size: 14px; }
+    th, td { padding: 12px; text-align: right; border-bottom: 1px solid #e2e8f0; font-size: 13px; }
     th { background: #f7fafc; color: #1a365d; }
   </style>
 </head>
@@ -21,7 +21,7 @@
   <div class="wrapper">
     <div class="card">
       <h2>نظام إدارة الاستشارات القانونية</h2>
-      <p style="color: #718096; font-size: 13px;">AKH Intake & Consultations Desk</p>
+      <p style="color: #718096; font-size: 13px;">مكتب المحامي علي كاظم الهاشمي - لوحة التحكم</p>
       <button class="btn" onclick="loadData()">🔄 تحديث البيانات</button>
     </div>
 
@@ -39,11 +39,11 @@
             <tr>
               <th>التاريخ والوقت</th>
               <th>الاسم الكامل</th>
-              <th>التصنيف القانوني</th>
-              <th>طريقة الاستشارة</th>
               <th>الهاتف</th>
+              <th>التفاصيل الشخصية</th>
+              <th>طريقة الاستشارة</th>
+              <th>التصنيف القانوني</th>
               <th>الحالة</th>
-              <th>الإجراءات</th>
             </tr>
           </thead>
           <tbody id="requestsTable">
@@ -78,15 +78,14 @@
           
           let html = '';
           data.requests.forEach(function(req) {
-            let receiptLink = req.receiptUrl ? '<a href="' + req.receiptUrl + '" target="_blank" style="color:#3182ce; text-decoration:underline; margin-left:5px;">الإيصال</a>' : '';
             html += '<tr>' +
               '<td>' + req.date + '</td>' +
               '<td><strong>' + req.name + '</strong></td>' +
-              '<td>' + req.entity + '</td>' +
-              '<td>' + req.type + '</td>' +
               '<td>' + req.phone + '</td>' +
-              '<td><span style="padding: 4px 8px; border-radius: 4px; background: #edf2f7; font-size: 13px;">' + req.status + '</span></td>' +
-              '<td>' + receiptLink + '</td>' +
+              '<td style="color: #4a5568; font-size: 12px;">' + req.details + '</td>' +
+              '<td>' + req.type + '</td>' +
+              '<td>' + req.entity + '</td>' +
+              '<td><span style="padding: 4px 8px; border-radius: 4px; background: #edf2f7; font-size: 12px;">' + req.status + '</span></td>' +
             '</tr>';
           });
           tbody.innerHTML = html;
