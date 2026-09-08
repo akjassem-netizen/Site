@@ -1,20 +1,94 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" id="htmlRoot">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- تحسين محركات البحث العالمي والمحلي (SEO) - 8 لغات ومصطلحات الخدمات العقارية والقانونية -->
-  <title>الخدمات القانونية والعقارية وتوثيق العقود في العراق | مكتب المحامي علي كاظم الهاشمي</title>
-  <meta name="description" content="خدمات قانونية وعقارية متكاملة في العراق، توثيق العقود العقارية، صياغة عقود الإيجار والاستثمار التجاري، استخراج السندات والخرائط، وتسوية النزاعات العقارية. | AKH Law Office Iraq">
-  <meta name="keywords" content="خدمات عقارية في العراق, توثيق العقود العقارية, صياغة عقود إيجار, استخراج سندات عقارية بغداد, نزاعات عقارية, محامي عقارات بغداد, Real estate legal services Iraq, property contract drafting, real estate dispute resolution Baghdad, land deeds Iraq, property lawyer Baghdad, Irak gayrimenkul hukuku, emlak sözleşmeleri hazırlama, tapu işlemleri Bağdat, gayrimenkul uyuşmazlıkları Irak, Immobilienrecht Irak, Grundstücksverträge, Grundbuchauszug Bagdad, Immobilienstreitigkeiten Irak, Servicios inmobiliarios legales Irak, contratos de propiedad, escrituras de tierras Bagdad, disputas inmobiliarias Irak, 伊拉克房地产法律服务, 房产合同起草, 巴格达土地契约, 房地产纠纷解决, خزمەتگوزاری خانووبەرە لە عێراق, گرێبەستی خانووبەرە, تابلۆی تاپۆ بغداد, کێشەی خانووبەرە, Services juridiques immobiliers Irak, contrats immobiliers, actes fonciers Bagdad, litiges immobiliers Irak">
+  <title id="pageTitle">الخدمات القانونية والعقارية وتوثيق العقود في العراق | مكتب المحامي علي كاظم الهاشمي</title>
+  <meta id="metaDesc" name="description" content="خدمات قانونية وعقارية متكاملة في العراق، توثيق العقود العقارية، صياغة عقود الإيجار والاستثمار التجاري، استخراج السندات والخرائط، وتسوية النزاعات العقارية. | AKH Law Office Iraq">
+  <meta id="metaKeywords" name="keywords" content="خدمات عقارية في العراق, توثيق العقود العقارية, صياغة عقود إيجار, استخراج سندات عقارية بغداد, نزاعات عقارية, محامي عقارات بغداد, Real estate legal services Iraq, property contract drafting, real estate dispute resolution Baghdad, land deeds Iraq, property lawyer Baghdad, Irak gayrimenkul hukuku, emlak sözleşmeleri hazırlama, tapu işlemleri Bağdat, Immobilienrecht Irak, Grundstücksverträge, Servicios inmobiliarios legales Irak, contratos de propiedad, 伊拉克房地产法律服务, 房产合同起草, 巴格达土地契约, خزمەتگوزاری خانووبەرە لە عێراق, گرێبەستی خانووبەرە, Services juridiques immobiliers Iraq, contrats immobiliers">
 
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Cairo', system-ui, sans-serif; background-color: #f8fafc; color: #0f172a; padding: 30px 16px; display: flex; justify-content: center; min-height: 100vh; align-items: flex-start; }
-    .container { width: 100%; max-width: 750px; background: #ffffff; padding: 35px 25px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border-top: 5px solid #c5a059; }
+    body { font-family: 'Cairo', system-ui, sans-serif; background-color: #f8fafc; color: #0f172a; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+
+    /* الهيدر الموحد الفاخر */
+    .icover-header {
+      width: 100%;
+      background: #0f172a;
+      border-bottom: 3px solid #c5a059;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .lang-select-bar {
+      padding: 7px 14px;
+      border-radius: 6px;
+      border: 1.5px solid #c5a059;
+      background: #0f172a;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 700;
+      outline: none;
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
+    }
+    .lang-select-bar option { background: #0f172a; color: #ffffff; }
+
+    .menu-container { position: relative; }
+    .menu-toggle {
+      background: rgba(255,255,255,0.1);
+      border: 1.5px solid #c5a059;
+      color: #ffffff;
+      width: 42px;
+      height: 42px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      left: auto;
+      min-width: 250px;
+      background: #0f172a;
+      border: 1.5px solid #c5a059;
+      border-radius: 10px;
+      display: none;
+      flex-direction: column;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+      padding: 8px 0;
+      z-index: 1100;
+    }
+    [dir="rtl"] .dropdown-menu { left: 0; right: auto; }
+    .dropdown-menu.active { display: flex; }
+    .dropdown-menu a {
+      color: #ffffff;
+      padding: 12px 20px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      width: 100%;
+      text-align: right;
+    }
+    .dropdown-menu a:hover { background: rgba(197,160,89,0.15); color: #c5a059; }
+
+    .container { width: 100%; max-width: 750px; background: #ffffff; padding: 35px 25px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border-top: 5px solid #c5a059; margin: 30px 16px; }
     .brand-logo { text-align: center; margin-bottom: 28px; direction: ltr; }
     .brand-logo .akh { font-size: 40px; font-weight: 900; color: #0f172a; letter-spacing: 4px; line-height: 1; }
     .brand-logo .akh .red-k { color: #dc2626; }
@@ -45,6 +119,35 @@
   </style>
 </head>
 <body>
+
+  <!-- الهيدر التنفيذي الموحد -->
+  <header class="icover-header">
+    <div>
+      <select id="languageSelect" class="lang-select-bar" onchange="changeLanguage(this.value)">
+        <option value="ar">العربية</option>
+        <option value="en">English</option>
+        <option value="tr">Türkçe</option>
+        <option value="zh">中文</option>
+        <option value="fr">Français</option>
+        <option value="es">Español</option>
+        <option value="de">Deutsch</option>
+        <option value="ku">کوردی</option>
+      </select>
+    </div>
+
+    <div class="menu-container">
+      <button class="menu-toggle" onclick="toggleMenu()" aria-label="القائمة">☰</button>
+      <div id="dropdownMenu" class="dropdown-menu">
+        <a href="https://akjassem.com" id="menuHome">الرئيسية</a>
+        <a href="/services/" id="menuServices">دليل الخدمات القانونية</a>
+        <a href="../../consultations.html" id="menuConsultations">الاستشارات القانونية</a>
+        <a href="../../insights.html" id="menuInsights">الآراء والرؤى القانونية (Insights)</a>
+        <a href="../../about.html" id="menuAbout">من نحن</a>
+        <a href="../../contact/" id="menuContact">اتصل بنا</a>
+      </div>
+    </div>
+  </header>
+
   <div class="container">
     <div class="brand-logo">
       <div class="akh">A<span class="red-k">K</span>H</div>
@@ -52,18 +155,147 @@
       <div class="est">EST. 2014</div>
     </div>
     
-    <div class="page-title">الخدمات القانونية والعقارية</div>
+    <div class="page-title" id="pageMainTitle">الخدمات القانونية والعقارية</div>
     
-    <div class="content-box">
+    <div class="content-box" id="contentBodyText">
       يقدم مكتب المحامي علي كاظم الهاشمي خدمات قانونية وعقارية متكاملة تتضمن متابعة وتوثيق العقود العقارية، صياغة عقود الإيجار والاستثمار التجاري، استخراج السندات والخرائط العقارية، وتسوية النزاعات العقارية أمام الجهات الرسمية والقضائية، بما يضمن حماية الاستثمار والأملاك العقارية لعملائنا بأعلى درجات الأمان القانوني.
     </div>
     
     <div class="action-area">
-      <a href="/booking/" class="btn-booking">
+      <a href="/booking/" target="_blank" class="btn-booking" id="btnBookText">
         <span>📅 اضغط هنا للانتقال إلى صفحة حجز المواعيد</span>
       </a>
-      <a href="/services/" class="back-link">← العودة إلى قائمة الخدمات</a>
+      <a href="/services/" class="back-link" id="backLinkText">← العودة إلى قائمة الخدمات</a>
     </div>
   </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('dropdownMenu').classList.toggle('active');
+    }
+
+    window.onclick = function(event) {
+      if (!event.target.matches('.menu-toggle') && !event.target.closest('.menu-container')) {
+        document.getElementById('dropdownMenu').classList.remove('active');
+      }
+    }
+
+    // استمرار وتخزين اللغة تلقائياً عبر الموقع
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('preferredLang') || 'ar';
+      document.getElementById('languageSelect').value = savedLang;
+      changeLanguage(savedLang, false);
+    });
+
+    function changeLanguage(lang, save = true) {
+      if (save) {
+        localStorage.setItem('preferredLang', lang);
+      }
+      const root = document.getElementById('htmlRoot');
+      root.setAttribute('lang', lang);
+      root.setAttribute('dir', (lang === 'ar' || lang === 'ku') ? 'rtl' : 'ltr');
+
+      const t = dictionary[lang] || dictionary['en'];
+
+      document.getElementById('pageTitle').innerText = t.pageTitle;
+      document.getElementById('metaDesc').setAttribute('content', t.metaDesc);
+      document.getElementById('metaKeywords').setAttribute('content', t.metaKeywords);
+
+      document.getElementById('menuHome').innerText = t.home;
+      document.getElementById('menuServices').innerText = t.menuServices;
+      document.getElementById('menuConsultations').innerText = t.menuConsultations;
+      document.getElementById('menuInsights').innerText = t.menuInsights;
+      document.getElementById('menuAbout').innerText = t.menuAbout;
+      document.getElementById('menuContact').innerText = t.menuContact;
+
+      document.getElementById('pageMainTitle').innerText = t.pageMainTitle;
+      document.getElementById('contentBodyText').innerHTML = t.contentBody;
+      document.getElementById('btnBookText').innerHTML = `<span>${t.btnBook}</span>`;
+      document.getElementById('backLinkText').innerText = t.backLink;
+    }
+
+    const dictionary = {
+      ar: {
+        pageTitle: "الخدمات القانونية والعقارية وتوثيق العقود في العراق | مكتب المحامي علي كاظم الهاشمي",
+        metaDesc: "خدمات قانونية وعقارية متكاملة في العراق، توثيق العقود العقارية، صياغة عقود الإيجار والاستثمار التجاري، استخراج السندات والخرائط، وتسوية النزاعات العقارية.",
+        metaKeywords: "خدمات عقارية في العراق, توثيق العقود العقارية, صياغة عقود إيجار, استخراج سندات عقارية بغداد, نزاعات عقارية, محامي عقارات بغداد",
+        home: "الرئيسية", menuServices: "دليل الخدمات القانونية", menuConsultations: "الاستشارات القانونية", menuInsights: "الآراء والرؤى القانونية (Insights)", menuAbout: "من نحن", menuContact: "اتصل بنا",
+        pageMainTitle: "الخدمات القانونية والعقارية",
+        contentBody: "يقدم مكتب المحامي علي كاظم الهاشمي خدمات قانونية وعقارية متكاملة تتضمن متابعة وتوثيق العقود العقارية، صياغة عقود الإيجار والاستثمار التجاري، استخراج السندات والخرائط العقارية، وتسوية النزاعات العقارية أمام الجهات الرسمية والقضائية، بما يضمن حماية الاستثمار والأملاك العقارية لعملائنا بأعلى درجات الأمان القانوني.",
+        btnBook: "📅 اضغط هنا للانتقال إلى صفحة حجز المواعيد",
+        backLink: "← العودة إلى قائمة الخدمات"
+      },
+      en: {
+        pageTitle: "Legal & Real Estate Services and Contract Documentation in Iraq | AKH Law Office",
+        metaDesc: "Integrated legal and real estate services in Iraq, property contract documentation, lease and commercial investment contracts drafting, deeds and maps extraction, and real estate dispute resolution.",
+        metaKeywords: "Real estate legal services Iraq, property contract drafting, real estate dispute resolution Baghdad, land deeds Iraq, property lawyer Baghdad",
+        home: "Home", menuServices: "Legal Services Directory", menuConsultations: "Legal Consultations", menuInsights: "Iraq Legal Insights", menuAbout: "About Us", menuContact: "Contact Us",
+        pageMainTitle: "Legal & Real Estate Services",
+        contentBody: "The Law Office of Ali Kadhem Hashimi provides integrated legal and real estate services including follow-up and documentation of real estate contracts, drafting lease and commercial investment contracts, extracting real estate deeds and maps, and resolving real estate disputes before official and judicial authorities, ensuring the protection of our clients' investments and properties with the highest levels of legal security.",
+        btnBook: "📅 Click here to go to the appointment booking page",
+        backLink: "← Back to Services List"
+      },
+      tr: {
+        pageTitle: "Irak'ta Hukuki ve Gayrimenkul Hizmetleri ve Sözleşme Belgelendirme | Av. Ali Kazım",
+        metaDesc: "Irak'ta entegre hukuki ve gayrimenkul hizmetleri, gayrimenkul sözleşmelerinin belgelendirilmesi, kira ve yatırım sözleşmelerinin hazırlanması, tapu ve harita çıkarılması.",
+        metaKeywords: "Irak gayrimenkul hukuku, emlak sözleşmeleri hazırlama, tapu işlemleri Bağdat, gayrimenkul uyuşmazlıkları Irak",
+        home: "Ana Sayfa", menuServices: "Hizmetler", menuConsultations: "Hukuki Danışmanlık", menuInsights: "İçgörüler", menuAbout: "Hakkımızda", menuContact: "İletişim",
+        pageMainTitle: "Hukuki ve Gayrimenkul Hizmetleri",
+        contentBody: "Av. Ali Kadhem Hashimi Hukuk Bürosu; gayrimenkul sözleşmelerinin takibi ve belgelendirilmesi, kira ve ticari yatırım sözleşmelerinin hazırlanması, tapu ve gayrimenkul haritalarının çıkarılması ve resmi makamlar önünde gayrimenkul uyuşmazlıklarının çözümü dahil olmak üzere entegre hukuki ve gayrimenkul hizmetleri sunmaktadır.",
+        btnBook: "📅 Randevu rezervasyon sayfasına gitmek için tıklayın",
+        backLink: "← Hizmetler Listesine Dön"
+      },
+      zh: {
+        pageTitle: "伊拉克法律与房地产服务及合同公证 | 阿里·卡德姆·哈希米律所",
+        metaDesc: "伊拉克综合法律与房地产服务，房地产合同公证，商业租赁与投资合同起草，地契和图纸提取，房地产纠纷解决。",
+        metaKeywords: "伊拉克房地产法律服务, 房产合同起草, 巴格达土地契约, 房地产纠纷解决",
+        home: "首页", menuServices: "法律服务", menuConsultations: "法律咨询", menuInsights: "法律洞察", menuAbout: "关于我们", menuContact: "联系我们",
+        pageMainTitle: "法律与房地产服务",
+        contentBody: "阿里·卡德姆·哈希米律所提供全面的法律与房地产服务，包括房地产合同的跟进与公证、租赁和商业投资合同的起草、房地产地契与图纸的提取，以及在官方和司法机构面前解决房地产纠纷，以最高水平的法律安全保障客户的投资和房地产产权。",
+        btnBook: "📅 点击此处跳转至预约页面",
+        backLink: "← 返回服务列表"
+      },
+      fr: {
+        pageTitle: "Services Juridiques & Immobiliers et Documentation de Contrats en Iraq | AKH",
+        metaDesc: "Services juridiques et immobiliers intégrés en Iraq, documentation de contrats immobiliers, rédaction de baux, extraction d'actes et de plans, et règlement des litiges.",
+        metaKeywords: "Services juridiques immobiliers Irak, contrats immobiliers, actes fonciers Bagdad, litiges immobiliers Irak",
+        home: "Accueil", menuServices: "Services", menuConsultations: "Consultations Juridiques", menuInsights: "Aperçus", menuAbout: "À Propos", menuContact: "Contact",
+        pageMainTitle: "Services Juridiques et Immobiliers",
+        contentBody: "Le Cabinet d'Avocats Ali Kadhem Hashimi propose des services juridiques et immobiliers intégrés comprenant le suivi et la documentation des contrats immobiliers, la rédaction de baux et de contrats d'investissement commercial, l'extraction de titres de propriété et de plans, ainsi que le règlement des litiges immobiliers devant les autorités officielles, garantissant la protection des investissements et des biens de nos clients.",
+        btnBook: "📅 Cliquez ici pour accéder à la page de réservation",
+        backLink: "← Retour à la liste des services"
+      },
+      es: {
+        pageTitle: "Servicios Legales e Inmobiliarios y Documentación de Contratos en Irak | AKH",
+        metaDesc: "Servicios legales e inmobiliarios integrales en Irak, documentación de contratos de propiedad, redacción de contratos de arrendamiento, escrituras y resolución de disputas.",
+        metaKeywords: "Servicios inmobiliarios legales Irak, contratos de propiedad, escrituras de tierras Bagdad, disputas inmobiliarias Irak",
+        home: "Inicio", menuServices: "Servicios", menuConsultations: "Consultas Legales", menuInsights: "Perspectivas", menuAbout: "Sobre Nosotros", menuContact: "Contacto",
+        pageMainTitle: "Servicios Legales e Inmobiliarios",
+        contentBody: "El Bufete de Abogados Ali Kadhem Hashimi ofrece servicios legales e inmobiliarios integrales que incluyen el seguimiento y la documentación de contratos inmobiliarios, la redacción de contratos de arrendamiento e inversión comercial, la extracción de escrituras y mapas catastrales, y la resolución de disputas inmobiliarias ante las autoridades oficiales y judiciales, garantizando la protección de las inversiones y propiedades de nuestros clientes con el más alto nivel de seguridad jurídica.",
+        btnBook: "📅 Haga clic aquí para ir a la página de reservas",
+        backLink: "← Volver a la lista de servicios"
+      },
+      de: {
+        pageTitle: "Rechts- und Immobiliendienste sowie Vertragsdokumentation im Irak | Kanzlei AKH",
+        metaDesc: "Integrierte Rechts- und Immobiliendienste im Irak, Dokumentation von Immobilienverträgen, Entwurf von Mietverträgen, Grundbuchauszüge und Streitbeilegung.",
+        metaKeywords: "Immobilienrecht Irak, Grundstücksverträge, Grundbuchauszug Bagdad, Immobilienstreitigkeiten Irak",
+        home: "Startseite", menuServices: "Dienste", menuConsultations: "Rechtliche Beratung", menuInsights: "Einblicke", menuAbout: "Über uns", menuContact: "Kontakt",
+        pageMainTitle: "Rechts- und Immobiliendienste",
+        contentBody: "Die Kanzlei Ali Kadhem Hashimi bietet integrierte Rechts- und Immobiliendienste an, darunter die Verfolgung und Dokumentation von Immobilienverträgen, den Entwurf von Miet- und gewerblichen Investitionsverträgen, die Beschaffung von Grundbuchauszügen und Plänen sowie die Beilegung von Immobilienstreitigkeiten vor offiziellen und gerichtlichen Behörden, um den Schutz von Investitionen und Eigentum unserer Mandanten mit höchster Rechtssicherheit zu gewährleisten.",
+        btnBook: "📅 Klicken Sie hier, um zur Buchungsseite zu gelangen",
+        backLink: "← Zurück zur Dienstleistungsliste"
+      },
+      ku: {
+        pageTitle: "خزمەتگوزارییە یاسایی و خانووبەرەکان و بەلگەنامەکردنی گرێبەست لە عێراق | نووسینگەی پارێزەر",
+        metaDesc: "خزمەتگوزاری یاسایی و خانووبەرەی گشتگیر لە عێراق، بەلگەنامەکردنی گرێبەستی خانووبەرە، داڕشتنی گرێبەستی کرێ و وەبەرهێنان، دەرهێنانی سەنەد و نەخشە، و یەکلاکردنەوەی کێشەکان.",
+        metaKeywords: "خزمەتگوزاری خانووبەرە لە عێراق, گرێبەستی خانووبەرە, تابلۆی تاپۆ بغداد, کێشەی خانووبەرە",
+        home: "سەرەکی", menuServices: "خزمەتگوزارییەکان", menuConsultations: "ڕاوێژی یاسایی", menuInsights: "تێڕوانینەکان", menuAbout: "دەرباره‌ی ئێمە", menuContact: "پەیوەندی",
+        pageMainTitle: "خزمەتگوزارییە یاسایی و خانووبەرەکان",
+        contentBody: "نووسینگەی پارێزەر عەلی کازمی هاشمی خزمەتگوزاری یاسایی و خانووبەرەی گشتگیر پێشکەش دەکات کە بریتییە لە بەدواداچوون و بەلگەنامەکردنی گرێبەستەکانی خانووبەرە، داڕشتنی گرێبەستی کرێ و وەبەرهێنانی بازرگانی، دەرهێنانی سەنەد و نەخشەی خانووبەرە، و یەکلاکردنەوەی کێشەکانی خانووبەرە لەبەردەم دەسەڵاتە فەرمی و دادوەرییەکاندا، بۆ دڵنیابوون لە پاراستنی وەبەرهێنان و موڵک و ماڵی کڕیارەکانمان بە بەرزترین ئاستی سەلامەتی یاسایی.",
+        btnBook: "📅 کلیک لێرە بکە بۆ گواستنەوە بۆ لاپەڕەی حجز",
+        backLink: "← گەڕانەوە بۆ خشتەی خزمەتگوزارییەکان"
+      }
+    };
+  </script>
 </body>
 </html>
