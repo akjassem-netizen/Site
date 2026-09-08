@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title id="pageTitle">حجز موعد استشارة قانونية - مكتب المحامي علي كاظم الهاشمي</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&display=swap" rel="stylesheet">
-  <!-- مكتبة Supabase للربط السحابي المباشر -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { background: #f4f6f9; color: #070f1e; font-family: 'Cairo', sans-serif; min-height: 100vh; }
@@ -460,7 +458,7 @@
         typeOther: "Other / General Consultation",
         details: "Details of Your Case or Consultation Topic *",
         submit: "Submit Request for Legal Review →",
-        successMsg: "Your request has been successfully received and is currently under legal review.",
+        successMsg: "Your request has been successfully received and is currently under legal review (your request will be reviewed and responded to within 24 hours).",
         phName: "Enter full name",
         phCompRep: "Name of the responsible representative",
         phEmail: "name@example.com",
@@ -527,7 +525,7 @@
         typeOther: "Diğer / Genel Danışmanlık",
         details: "Davanızın veya Konunuzun Detayları *",
         submit: "İnceleme İçin Talebi Gönder →",
-        successMsg: "Talebiniz başarıyla alınmıştır.",
+        successMsg: "Talebiniz başarıyla alınmıştır (24 saat içinde incelenip yanıt verilecektir).",
         phName: "Ad soyad giriniz",
         phCompRep: "Yetkili temsilcinin adı",
         phEmail: "name@example.com",
@@ -539,7 +537,7 @@
         phAddrComp: "Bağdat أو Erbil",
         phNat: "örn. İngiliz / Amerikan",
         phCountry: "örn. Irak / BAE / İngiltere",
-        phRegNo: "Kayıt Numarası",
+        phRegNo: "Kayıت أو Sertifika Numarası",
         phDetails: "Davanızın detaylarını kısaca açıklayın..."
       },
       zh: {
@@ -594,7 +592,7 @@
         typeOther: "其他 / 一般咨询",
         details: "您的案件或咨询主题详情 *",
         submit: "提交法律审核申请 →",
-        successMsg: "您的申请已成功收到。",
+        successMsg: "您的申请已成功收到（我们将在24小时内审核并回复）。",
         phName: "输入全名",
         phCompRep: "负责代表姓名",
         phEmail: "name@example.com",
@@ -661,7 +659,7 @@
         typeOther: "Autre / Général",
         details: "Détails de votre cas ou sujet de consultation *",
         submit: "Soumettre pour Examen Juridique →",
-        successMsg: "Votre demande a été reçue avec succès.",
+        successMsg: "Votre demande a été reçue avec succès (elle sera examinée et traitée sous 24 heures).",
         phName: "Entrez le nom complet",
         phCompRep: "Nom du représentant responsable",
         phEmail: "name@example.com",
@@ -728,7 +726,7 @@
         typeOther: "Otro / General",
         details: "Detalles de su caso o tema de consulta *",
         submit: "Enviar Solicitud para Revisión Legal →",
-        successMsg: "Su solicitud ha sido recibida con éxito.",
+        successMsg: "Su solicitud ha sido recibida con éxito (será revisada y respondida dentro de las 24 horas).",
         phName: "Ingrese el nombre completo",
         phCompRep: "Nombre del representante",
         phEmail: "name@example.com",
@@ -795,7 +793,7 @@
         typeOther: "Sonstige / Allgemeine Beratung",
         details: "Details Ihres Falles *",
         submit: "Anfrage zur rechtlichen Prüfung absenden →",
-        successMsg: "Ihre Anfrage wurde erfolgreich empfangen.",
+        successMsg: "Ihre Anfrage wurde erfolgreich empfangen (wird innerhalb von 24 Stunden geprüft und beantwortet).",
         phName: "Vollständigen Namen eingeben",
         phCompRep: "Name des Vertreters",
         phEmail: "name@example.com",
@@ -943,7 +941,7 @@
       document.getElementById('typeCorp').innerText = t.typeCorp;
       document.getElementById('typeCivil').innerText = t.typeCivil;
       document.getElementById('typeCrim').innerText = t.typeCrim;
-      document.getElementById('typePers').innerText = t.typePers;
+      document.getElementById('typePers').innerText.innerText = t.typePers;
       document.getElementById('typeOther').innerText = t.typeOther;
 
       document.getElementById('lblDetails').innerText = t.details;
@@ -1019,11 +1017,10 @@
       }
     }
 
-    // الربط المباشر بقاعدة البيانات Supabase بدون مكتبات خارجية
-    const SUPABASE_URL = 'https://jpcamurbnzmwfwftpsub.supabase.co';
-    const SUPABASE_KEY = 'sb_publishable_6r2dierEgyLRnneQkUrnbw_hE27Rp36';
+    // رابط Google Apps Script الخاص بك لإرسال البيانات بسلاسة تامة بدون أخطاء Failed to fetch
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw7yF264dmPNlUy2Nng5jwz-qXRTZvoDIRjKNmLhWoDJ5Fk1RJEISFo3GIb5Xw4b0ycSA/exec";
 
-    document.getElementById('consultationForm').addEventListener('submit', async function(e) {
+    document.getElementById('consultationForm').addEventListener('submit', function(e) {
       e.preventDefault();
       const lang = document.getElementById('languageSelect').value;
       const t = bookingDict[lang] || bookingDict['en'];
@@ -1031,52 +1028,43 @@
       const formData = {
         citizenship: document.querySelector('input[name="citizenship"]:checked').value,
         residence: document.querySelector('input[name="residence"]:checked').value,
-        entity_type: document.querySelector('input[name="entityType"]:checked').value,
-        full_name: document.getElementById('fullName').value,
-        company_rep: document.getElementById('companyRepName').value,
+        entityType: document.querySelector('input[name="entityType"]:checked').value,
+        fullName: document.getElementById('fullName').value,
+        companyRep: document.getElementById('companyRepName').value,
         email: document.getElementById('email').value,
         phone: document.getElementById('phone').value,
-        personal_details: (document.querySelector('input[name="entityType"]:checked').value === 'company') ? '' : `الجنس: ${document.getElementById('gender').value}, العمر: ${document.ейgetElementById ? document.getElementById('age').value : ''}, التحصيل: ${document.getElementById('education').value}, العمل: ${document.getElementById('occupation').value}`,
+        personalDetails: (document.querySelector('input[name="entityType"]:checked').value === 'company') ? '' : `الجنس: ${document.getElementById('gender').value}, العمر: ${document.getElementById('age').value}, التحصيل: ${document.getElementById('education').value}, العمل: ${document.getElementById('occupation').value}`,
         address: document.getElementById('address').value,
-        id_or_reg: (document.querySelector('input[name="citizenship"]:checked').value === 'foreign' && document.querySelector('input[name="entityType"]:checked').value !== 'company') ? document.getElementById('nationalityIndiv').value : (document.querySelector('input[name="entityType"]:checked').value === 'company' ? `التأسيس: ${document.getElementById('countryInc').value} - رقم التسجيل: ${document.getElementById('regNo').value}` : ''),
+        idOrReg: (document.querySelector('input[name="citizenship"]:checked').value === 'foreign' && document.querySelector('input[name="entityType"]:checked').value !== 'company') ? document.getElementById('nationalityIndiv').value : (document.querySelector('input[name="entityType"]:checked').value === 'company' ? `التأسيس: ${document.getElementById('countryInc').value} - رقم التسجيل: ${document.getElementById('regNo').value}` : ''),
         translation: document.getElementById('translationNeeded').value,
         method: document.getElementById('consultationMethod').value,
-        consult_type: document.getElementById('consultationType').value,
-        details: document.getElementById('consultationDetails').value,
-        status: 'قيد المراجعة'
+        consultType: document.getElementById('consultationType').value,
+        details: document.getElementById('consultationDetails').value
       };
 
       const submitBtn = document.getElementById('submitBtnText');
       submitBtn.disabled = true;
       submitBtn.style.opacity = '0.7';
 
-      try {
-        const response = await fetch(`${SUPABASE_URL}/rest/v1/bookings`, {
-          method: 'POST',
-          headers: {
-            'apikey': SUPABASE_KEY,
-            'Authorization': `Bearer ${SUPABASE_KEY}`,
-            'Content-Type': 'application/json',
-            'Prefer': 'return=minimal'
-          },
-          body: JSON.stringify(formData)
-        });
-
-        if (!response.ok) {
-          const errText = await response.text();
-          throw new Error(errText || 'فشل الاتصال بالخادم');
-        }
-
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(formData)
+      })
+      .then(() => {
         alert(t.successMsg);
         document.getElementById('consultationForm').reset();
-        updateFormDisplay();
-      } catch (err) {
-        console.error('Submission Error:', err);
-        alert("حدث خطأ في الاتصال بقاعدة البيانات: " + err.message);
-      } finally {
         submitBtn.disabled = false;
         submitBtn.style.opacity = '1';
-      }
+        updateFormDisplay();
+      })
+      .catch(error => {
+        console.error('Error!', error);
+        alert("حدث خطأ أثناء إرسال الطلب، يرجى المحاولة مرة أخرى.");
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '1';
+      });
     });
   </script>
 </body>
