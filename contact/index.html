@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>اتصل بنا | مكتب المحامي علي كاظم الهاشمي</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Cairo', system-ui, sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+      padding: 30px 16px;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      align-items: flex-start;
+    }
+    .container {
+      width: 100%;
+      max-width: 600px;
+      background: #ffffff;
+      padding: 40px 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      border-top: 5px solid #c5a059;
+    }
+    /* تصميم الشعار المطابق لهويتك */
+    .brand-logo {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .brand-logo .akh {
+      font-size: 32px;
+      font-weight: 900;
+      color: #070f1e;
+      letter-spacing: 2px;
+      line-height: 1;
+    }
+    .brand-logo .sub-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #333;
+      letter-spacing: 3px;
+      margin-top: 5px;
+      text-transform: uppercase;
+    }
+    .brand-logo .sub-title span {
+      color: #e11d48; /* لون الشارة الحمراء مثل الصورة */
+      margin: 0 3px;
+    }
+    .brand-logo .est {
+      font-size: 11px;
+      color: #64748b;
+      letter-spacing: 2px;
+      margin-top: 4px;
+    }
+
+    .page-title {
+      text-align: center;
+      font-size: 18px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 25px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .info-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 22px;
+      margin-bottom: 20px;
+    }
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 16px;
+      font-size: 14px;
+      color: #334155;
+      border-bottom: 1px solid #f8fafc;
+      padding-bottom: 12px;
+    }
+    .info-row:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .info-row .icon {
+      font-size: 18px;
+      margin-left: 12px;
+      min-width: 24px;
+      text-align: center;
+    }
+    .info-row .content strong {
+      display: block;
+      color: #0f172a;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    .map-box {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #e2e8f0;
+      height: 240px;
+      margin-top: 15px;
+    }
+    .map-box iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .btn-whatsapp {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      background: #25d366;
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      margin-top: 20px;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);
+      transition: background 0.3s;
+    }
+    .btn-whatsapp:hover {
+      background: #1ebe5d;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- الشعار الرسمي للمكتب -->
+    <div class="brand-logo">
+      <div class="akh">AKH</div>
+      <div class="sub-title"><span>/</span> LAW OFFICE</div>
+      <div class="est">EST. 2014</div>
+    </div>
+
+    <div class="page-title">اتصل بنا ومقر المكتب الرئيسي</div>
+
+    <div class="info-card">
+      <div class="info-row">
+        <div class="icon">📍</div>
+        <div class="content">
+          <strong>عنوان المقر</strong>
+          بغداد - زيونة
+        </div>
+      </div>
+
+      <div class="info-row">
+        <div class="icon">⏰</div>
+        <div class="content">
+          <strong>أوقات العمل الرسمية</strong>
+          الأحد إلى الخميس (08:00 صباحاً - 04:00 عصراً)
+        </div>
+      </div>
+
+      <div class="info-row">
+        <div class="icon">📞</div>
+        <div class="content">
+          <strong>هاتف وواتساب المكتب</strong>
+          +964 783 875 9047
+        </div>
+      </div>
+
+      <!-- خريطة بغداد - زيونة -->
+      <div class="map-box">
+        <iframe src="https://maps.google.com/maps?q=Zayouna,+Baghdad,+Iraq&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <a href="https://wa.me/9647838759047" target="_blank" class="btn-whatsapp">
+      <span>تواصل عبر الواتساب مباشرة</span>
+    </a>
+  </div>
+
+</body>
+</html>
