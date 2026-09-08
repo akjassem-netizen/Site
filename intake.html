@@ -2,178 +2,289 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>نظام إدارة الاستشارات القانونية - مكتب المحامي علي الهاشمي</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مكتب المحامي علي كاظم الهاشمي وشركاؤه - الاستشارات القانونية وتأسيس الشركات</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    body { font-family: Arial, sans-serif; background: #f8fafc; margin: 0; padding: 20px; color: #2d3748; }
-    .wrapper { max-width: 1200px; margin: auto; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Cairo', sans-serif; background-color: #f4f6f9; color: #070f1e; line-height: 1.8; }
+
+    /* الهيدر العلوي */
+    header {
+      background: #070f1e;
+      border-bottom: 3px solid #c5a059;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .brand-mini {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: white;
+      text-decoration: none;
+    }
+    .brand-mini .logo-text {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      font-family: Arial, sans-serif;
+    }
+    .brand-mini .logo-text span { color: #d32f2f; }
+    .brand-mini .sub-text {
+      font-size: 11px;
+      color: #c5a059;
+      font-weight: 700;
+      border-right: 2px solid #c5a059;
+      padding-right: 10px;
+    }
+
+    .nav-actions { display: flex; gap: 15px; align-items: center; }
+    .nav-btn {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13.5px;
+      border: 1.5px solid #c5a059;
+      padding: 8px 18px;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+    .nav-btn:hover { background: rgba(197,160,89,0.2); color: #c5a059; }
+    .nav-btn.primary { background: #c5a059; color: #070f1e; }
+    .nav-btn.primary:hover { background: #b08d4b; }
+
+    /* قسم الهيرو (الواجهة الرئيسية) */
+    .hero {
+      background: linear-gradient(135deg, #070f1e 0%, #111e38 100%);
+      color: white;
+      padding: 80px 20px;
+      text-align: center;
+      border-bottom: 6px solid #c5a059;
+    }
+    .hero-container { max-width: 900px; margin: auto; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(197, 160, 89, 0.15);
+      color: #c5a059;
+      border: 1px solid #c5a059;
+      padding: 6px 16px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+    .hero h1 {
+      font-size: 38px;
+      font-weight: 900;
+      margin-bottom: 20px;
+      line-height: 1.3;
+    }
+    .hero h1 span { color: #c5a059; }
+    .hero p {
+      font-size: 16px;
+      color: #cbd5e1;
+      max-width: 750px;
+      margin: 0 auto 35px auto;
+      line-height: 1.8;
+    }
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    .cta-btn {
+      background: #c5a059;
+      color: #070f1e;
+      text-decoration: none;
+      padding: 14px 32px;
+      border-radius: 10px;
+      font-weight: 900;
+      font-size: 16px;
+      box-shadow: 0 10px 25px rgba(197,160,89,0.3);
+      transition: all 0.2s;
+    }
+    .cta-btn:hover { background: #b08d4b; transform: translateY(-2px); }
     
-    /* شاشة القفل الأمني */
-    #loginOverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0f172a; display: flex; justify-content: center; align-items: center; z-index: 9999; }
-    .login-box { background: white; padding: 35px; border-radius: 12px; text-align: center; width: 340px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); border-top: 5px solid #b79042; }
-    .login-box input { width: 100%; padding: 12px; margin: 15px 0; border: 1px solid #cbd5e1; border-radius: 6px; text-align: center; font-size: 16px; box-sizing: border-box; }
-    
-    .card { background: #ffffff; padding: 20px; border-radius: 12px; border-top: 5px solid #b79042; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 20px; text-align: center; }
-    .logo-title { font-size: 20px; font-weight: bold; color: #1a365d; margin-top: 5px; }
-    .logo-subtitle { font-size: 13px; color: #718096; margin-top: 3px; }
-    
-    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 20px; }
-    .stat-box { background: #ffffff; padding: 15px; border-radius: 12px; border: 1px solid #e2e8f0; text-align: center; }
-    .stat-number { font-size: 28px; font-weight: bold; color: #1a365d; margin-top: 5px; }
-    
-    .btn { background: #b79042; color: white; border: none; padding: 8px 14px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 12px; transition: 0.2s; }
-    .btn:hover { background: #967333; }
-    .btn-action { background: #2b6cb0; margin: 2px; }
-    .btn-success { background: #22543d; margin: 2px; }
-    
-    table { width: 100%; border-collapse: collapse; margin-top: 10px; background: white; border-radius: 8px; overflow: hidden; }
-    th, td { padding: 12px; text-align: right; border-bottom: 1px solid #e2e8f0; font-size: 13px; }
-    th { background: #f7fafc; color: #1a365d; font-weight: bold; }
-    .receipt-link { color: #3182ce; text-decoration: underline; font-weight: bold; }
+    .cta-btn-outline {
+      background: transparent;
+      color: white;
+      border: 2px solid #cbd5e1;
+      text-decoration: none;
+      padding: 14px 32px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 16px;
+      transition: all 0.2s;
+    }
+    .cta-btn-outline:hover { border-color: #c5a059; color: #c5a059; }
+
+    /* أقسام الخدمات */
+    .container { max-width: 1100px; margin: 60px auto; padding: 0 20px; }
+    .section-title { text-align: center; margin-bottom: 50px; }
+    .section-title h2 { font-size: 28px; font-weight: 900; color: #070f1e; margin-bottom: 10px; }
+    .section-title p { color: #64748b; font-size: 14.5px; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 25px;
+    }
+    .service-card {
+      background: white;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+      border-top: 4px solid #070f1e;
+      transition: all 0.3s;
+    }
+    .service-card:hover { border-color: #c5a059; transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.08); }
+    .service-icon { font-size: 32px; margin-bottom: 15px; }
+    .service-card h3 { font-size: 18px; font-weight: 900; color: #070f1e; margin-bottom: 10px; }
+    .service-card p { font-size: 13.5px; color: #475569; line-height: 1.7; }
+
+    /* معلومات المكتب والاعتمادية */
+    .about-box {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 20px;
+      padding: 40px;
+      margin-top: 60px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    @media (max-width: 768px) {
+      .about-box { grid-template-columns: 1fr; padding: 25px; }
+      .hero h1 { font-size: 28px; }
+    }
+    .about-text h3 { font-size: 22px; font-weight: 900; color: #070f1e; margin-bottom: 15px; }
+    .about-text p { font-size: 14px; color: #475569; margin-bottom: 15px; line-height: 1.8; }
+    .features-list { list-style: none; margin-top: 20px; }
+    .features-list li { font-size: 13.5px; font-weight: 700; color: #070f1e; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+    .features-list li::before { content: "✓"; color: #c5a059; font-weight: 900; }
+
+    /* الفوتر */
+    footer {
+      background: #070f1e;
+      color: #94a3b8;
+      padding: 40px 20px;
+      text-align: center;
+      border-top: 4px solid #c5a059;
+      margin-top: 80px;
+    }
+    footer p { font-size: 13.5px; margin-bottom: 10px; }
+    footer .footer-brand { color: white; font-weight: 900; font-size: 16px; margin-bottom: 15px; }
   </style>
 </head>
 <body>
 
-  <!-- قفل الحماية الآمن للمكتب -->
-  <div id="loginOverlay">
-    <div class="login-box">
-      <div style="font-size: 24px; margin-bottom: 5px;">⚖️</div>
-      <div style="font-weight: bold; color: #1a365d; font-size: 16px;">مكتب المحامي علي كاظم الهاشمي</div>
-      <p style="font-size: 12px; color: #64748b; margin-top: 5px;">لوحة تحكم الاستشارات الخاصة</p>
-      <input type="password" id="passInput" placeholder="أدخل رمز المرور الآمن">
-      <button class="btn" style="width: 100%; padding: 12px; font-size: 14px;" onclick="checkPassword()">دخول آمن</button>
+  <!-- الهيدر -->
+  <header>
+    <a href="#" class="brand-mini">
+      <div class="logo-text">A<span>K</span>H</div>
+      <div class="sub-text">LAW OFFICE<br><small style="font-size:8px;">EST. 2014</small></div>
+    </a>
+    <div class="nav-actions">
+      <a href="admin" class="nav-btn">لوحة التحكم</a>
+      <a href="booking" class="nav-btn primary">حجز استشارة</a>
     </div>
-  </div>
+  </header>
 
-  <div class="wrapper" id="mainContent" style="display: none;">
-    <div class="card">
-      <div style="font-size: 28px;">⚖️</div>
-      <div class="logo-title">مكتب المحامي علي كاظم الهاشمي</div>
-      <div class="logo-subtitle">نظام إدارة الاستشارات، تحديد الأتعاب، ومتابعة المدفوعات (زين كاش، كي كارد، ويسترن يونيون)</div>
-      <br>
-      <button class="btn" onclick="loadData()">🔄 تحديث البيانات الآن</button>
+  <!-- الواجهة الرئيسية -->
+  <section class="hero">
+    <div class="hero-container">
+      <div class="hero-badge">مكتب محاماة واستشارات قانونية معتمد</div>
+      <h1>مكتب المحامي <span>علي كاظم الهاشمي</span> وشركاؤه</h1>
+      <p>نقدم خدمات قانونية مؤسسية متكاملة، تأسيس الشركات الأجنبية والمحلية، صياغة العقود التجارية المعقدة، والتمثيل القانوني أمام كافة المحاكم والهيئات القضائية في بغداد وعموم العراق.</p>
+      <div class="hero-buttons">
+        <a href="booking" class="cta-btn">حجز موعد استشارة قانونية فوري</a>
+        <a href="admin" class="cta-btn-outline">دخول لوحة التحكم</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- الخدمات الرئيسية -->
+  <div class="container">
+    <div class="section-title">
+      <h2>قطاعات الاختصاص والخدمات القانونية</h2>
+      <p>نخبة من المحامين والمستشارين القانونيين لتلبية احتياجات الأفراد والشركات الكبرى</p>
     </div>
 
-    <div class="stats-grid">
-      <div class="stat-box"><div>إجمالي الطلبات المستلمة</div><div id="totalCount" class="stat-number">0</div></div>
-      <div class="stat-box"><div>طلبات قيد المراجعة والأتعاب</div><div id="pendingCount" class="stat-number" style="color: #b79042;">0</div></div>
-      <div class="stat-box"><div>الطلبات المقبولة والمنجزة</div><div id="completedCount" class="stat-number" style="color: #22543d;">0</div></div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🏢</div>
+        <h3>قانون الشركات والاستثمار الأجنبي</h3>
+        <p>تأسيس الشركات المحلية والأجنبية، تسجيل فروع الشركات الدولية لدى مسجل الشركات، تعديل العقود، وتقديم الاستشارات الضريبية والاستثمارية وفق القوانين العراقية.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">⚖️</div>
+        <h3>الدعاوى التجارية والمدنية</h3>
+        <p>المرافعة والمتابعة في المنازعات التجارية، عقود المقاولات، دعاوى الشركات، والتعويضات المالية أمام كافة درجات التقاضي.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🏛️</div>
+        <h3>الأحوال الشخصية والأسرة</h3>
+        <p>استشارات وقضايا الأسرة، الطلاق، الحضانة، التركات، وتسوية النزاعات الأسرية بحرفية وسرية تامة.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">📑</div>
+        <h3>العقود وصياغة الاتفاقيات</h3>
+        <p>صياغة ومراجعة العقود التجارية، عقود العمل، اتفاقيات الشراكة، وحماية المصالح القانونية للعملاء ضد المخاطر المستقبلية.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🔒</div>
+        <h3>الملكية الفكرية والعلامات التجارية</h3>
+        <p>تسجيل وحماية العلامات التجارية، براءات الاختراع، وحماية الحقوق التجارية ضد التقليد والتعدي القانوني.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🤝</div>
+        <h3>التحكيم وفض المنازعات</h3>
+        <p>تمثيل العملاء في جلسات التحكيم التجاري والدولي، والوصول إلى تسويات ودية وقانونية حاسمة.</p>
+      </div>
     </div>
 
-    <div class="card" style="text-align: right;">
-      <h3 style="margin-top:0; color:#1a365d;">سجل طلبات الاستشارة والمدفوعات</h3>
-      <div style="overflow-x: auto;">
-        <table>
-          <thead>
-            <tr>
-              <th>التاريخ والوقت</th>
-              <th>الاسم الكامل</th>
-              <th>الهاتف</th>
-              <th>التفاصيل الشخصية</th>
-              <th>التصنيف</th>
-              <th>الحالة الحالية</th>
-              <th>إيصال الدفع</th>
-              <th>إجراءات الإدارة والأتعاب</th>
-            </tr>
-          </thead>
-          <tbody id="requestsTable">
-            <tr><td colspan="8" style="text-align: center; color: #718096;">جاري تحميل البيانات...</td></tr>
-          </tbody>
-        </table>
+    <!-- نبذة عن المكتب -->
+    <div class="about-box">
+      <div class="about-text">
+        <h3>مهنية عالية، سرية تامة، وحلول جذرية</h3>
+        <p>تأسس المكتب برؤية واضحة لتقديم خدمات قانونية تضاهي المعايير العالمية. نحن نؤمن بأن الوقت والاستشارة الدقيقة هما أساس نجاح أي خطوة تجارية أو شخصية.</p>
+        <ul class="features-list">
+          <li>خبرة متراكمة منذ عام 2014 في المحاكم العراقية والهيئات الرسمية.</li>
+          <li>سرية مطلقة لجميع ملفات العملاء ومعلوماتهم الشخصية والتجارية.</li>
+          <li>نظام حجز إلكتروني مركزي ومتابعة فورية ومباشرة للطلبات عبر intake@akjassem.com.</li>
+        </ul>
+      </div>
+      <div style="background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 14px; padding: 30px; text-align: center;">
+        <div style="font-size: 40px; margin-bottom: 10px;">⚖️</div>
+        <div style="font-weight: 900; font-size: 18px; color: #070f1e; margin-bottom: 5px;">مكتب المحامي علي كاظم الهاشمي</div>
+        <p style="font-size: 13px; color: #64748b; margin-bottom: 20px;">بغداد - العراق</p>
+        <a href="booking" class="nav-btn primary" style="display: inline-block; padding: 12px 25px;">ابدأ استشارتك الآن</a>
       </div>
     </div>
   </div>
 
-  <script>
-    // رابط الـ Web App الخاص بك
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxz-zvK4hFptavnIUjUcpTkybd1oiTtWYEsRfs5kAVMA3IztmonkDBIGXHKH0BFcMPN/exec';
+  <!-- الفوتر -->
+  <footer>
+    <div class="footer-brand">مكتب المحامي علي كاظم الهاشمي وشركاؤه</div>
+    <p>جميع الحقوق محفوظة © 2014 - 2026 | النظام المركزي السحابي</p>
+    <p style="font-size: 12px; color: #cbd5e1;">البريد الرسمي لإدارة الحجوزات: intake@akjassem.com</p>
+  </footer>
 
-    function checkPassword() {
-      const pass = document.getElementById('passInput').value;
-      // يمكنك تغيير كلمة المرور هنا متى شئت
-      if (pass === '2026' || pass === 'ali2026') {
-        document.getElementById('loginOverlay').style.display = 'none';
-        document.getElementById('mainContent').style.display = 'block';
-        loadData();
-      } else {
-        alert('رمز المرور غير صحيح! يرجى المحاولة مرة أخرى.');
-      }
-    }
-
-    function loadData() {
-      document.getElementById('requestsTable').innerHTML = '<tr><td colspan="8" style="text-align: center; color: #718096;">جاري جلب البيانات والتحديث...</td></tr>';
-      
-      fetch(SCRIPT_URL + '?action=getData')
-        .then(res => res.json())
-        .then(data => {
-          if (data.status === 'error') {
-            throw new Error(data.message);
-          }
-          document.getElementById('totalCount').innerText = data.total || 0;
-          document.getElementById('pendingCount').innerText = data.pending || 0;
-          document.getElementById('completedCount').innerText = data.completed || 0;
-          
-          const tbody = document.getElementById('requestsTable');
-          if (!data.requests || data.requests.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: #718096;">لا توجد طلبات مسجلة في الشيت حالياً.</td></tr>';
-            return;
-          }
-          
-          let html = '';
-          data.requests.forEach(req => {
-            let receiptDisplay = req.receiptUrl ? `<a href="${req.receiptUrl}" target="_blank" class="receipt-link">عرض الإيصال</a>` : '<span style="color:#a0aec0;">لا يوجد إيصال</span>';
-            
-            // الأزرار التفاعلية لتحديد الأتعاب وطرق الدفع وتأكيد الاستلام والإنجاز
-            let actions = `
-              <button class="btn btn-action" onclick="setFeeAndPayment(${req.row})">💰 تحديد الأتعاب والدفع</button>
-              <button class="btn btn-success" onclick="changeStatus(${req.row}, 'تم استلام الدفع وتأكيد الموعد')">✅ تأكيد الدفع</button>
-              <button class="btn" style="background:#1a365d;" onclick="changeStatus(${req.row}, 'منجز ومكتمل - تم إرسال الرد')">🏁 إنجاز</button>
-            `;
-            
-            html += `<tr>` +
-              `<td>${req.date}</td>` +
-              `<td><strong>${req.name}</strong></td>` +
-              `<td>${req.phone}</td>` +
-              `<td style="font-size:12px; color:#4a5568;">${req.details}</td>` +
-              `<td>${req.entity}</td>` +
-              `<td><span style="padding: 5px 10px; border-radius: 6px; background: #edf2f7; font-size: 12px; font-weight: bold; color: #2d3748;">${req.status}</span></td>` +
-              `<td>${receiptDisplay}</td>` +
-              `<td>${actions}</td>` +
-            `</tr>`;
-          });
-          tbody.innerHTML = html;
-        })
-        .catch(err => {
-          alert('خطأ في الاتصال: ' + err.message);
-          document.getElementById('requestsTable').innerHTML = `<tr><td colspan="8" style="text-align: center; color: #c53030;">حدث خطأ أثناء تحميل البيانات: ${err.message}</td></tr>`;
-        });
-    }
-
-    function setFeeAndPayment(rowNum) {
-      let amount = prompt("أدخل مبلغ الأتعاب المطلوب (مثال: 50,000 د.ع أو 100$):");
-      if (!amount) return;
-      
-      let method = prompt("اختر طريقة الدفع (اكتب الرقم أو الاسم):\n1. زين كاش (Zain Cash)\n2. كي كارد (Qi Card)\n3. ويسترن يونيون (Western Union)\n4. تحويل بنكي مباشر", "زين كاش");
-      if (!method) return;
-
-      let newStatus = `مقبول - بانتظار تسديد الأتعاب بقيمة ${amount} عبر ${method}`;
-      changeStatus(rowNum, newStatus);
-    }
-
-    function changeStatus(rowNum, newStatus) {
-      if (!confirm(`هل تريد اعتماد الحالة الجديدة:\n"${newStatus}" ؟`)) return;
-      
-      fetch(`${SCRIPT_URL}?action=updateStatus&row=${rowNum}&status=${encodeURIComponent(newStatus)}`)
-        .then(res => res.json())
-        .then(resp => {
-          if (resp.status === 'success') {
-            alert('تم تحديث الحالة وإرسال تفاصيل الأتعاب بنجاح!');
-            loadData();
-          } else {
-            alert('فشل التحديث: ' + resp.message);
-          }
-        })
-        .catch(err => alert('خطأ في الشبكة: ' + err.message));
-    }
-  </script>
 </body>
 </html>
