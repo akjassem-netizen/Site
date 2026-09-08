@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title id="pageTitle">حجز موعد استشارة قانونية - مكتب المحامي علي كاظم الهاشمي</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <!-- مكتبة Supabase للربط السحابي المباشر -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { background: #f4f6f9; color: #070f1e; font-family: 'Cairo', sans-serif; min-height: 100vh; }
@@ -537,7 +539,7 @@
         phAddrComp: "Bağdat veya Erbil",
         phNat: "örn. İngiliz / Amerikan",
         phCountry: "örn. Irak / BAE / İngiltere",
-        phRegNo: "Kayıت أو Sertifika Numarası",
+        phRegNo: "Kayıt أو Sertifika Numarası",
         phDetails: "Davanızın detaylarını kısaca açıklayın..."
       },
       zh: {
@@ -1017,10 +1019,12 @@
       }
     }
 
-    // تم دمج رابط النشر الجديد بدقة هنا
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw7yF264dmPNlUy2Nng5jwz-qXRTZvoDIRjKNmLhWoDJ5Fk1RJEISFo3GIb5Xw4b0ycSA/exec";
+    // ربط مباشر مع قاعدة بيانات Supabase الحقيقية والمستقلة
+    const SUPABASE_URL = 'https://jpcamurbnzmwfwftpsub.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_6r2dierEgyLRnneQkUrnbw_hE27Rp36';
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-    document.getElementById('consultationForm').addEventListener('submit', function(e) {
+    document.getElementById('consultationForm').addEventListener('submit', async function(e) {
       e.preventDefault();
       const lang = document.getElementById('languageSelect').value;
       const t = bookingDict[lang] || bookingDict['en'];
@@ -1028,43 +1032,41 @@
       const formData = {
         citizenship: document.querySelector('input[name="citizenship"]:checked').value,
         residence: document.querySelector('input[name="residence"]:checked').value,
-        entityType: document.querySelector('input[name="entityType"]:checked').value,
-        fullName: document.getElementById('fullName').value,
-        companyRep: document.getElementById('companyRepName').value,
+        entity_type: document.querySelector('input[name="entityType"]:checked').value,
+        full_name: document.getElementById('fullName').value,
+        company_rep: document.getElementById('companyRepName').value,
         email: document.getElementById('email').value,
         phone: document.getElementById('phone').value,
-        personalDetails: (document.querySelector('input[name="entityType"]:checked').value === 'company') ? '' : `الجنس: ${document.getElementById('gender').value}, العمر: ${document.getElementById('age').value}, التحصيل: ${document.getElementById('education').value}, العمل: ${document.getElementById('occupation').value}`,
+        personal_details: (document.querySelector('input[name="entityType"]:checked').value === 'company') ? '' : `الجنس: ${document.getElementById('gender').value}, العمر: ${document.getElementById('age').value}, التحصيل: ${document.getElementById('education').value}, العمل: ${document.getElementById('occupation').value}`,
         address: document.getElementById('address').value,
-        idOrReg: (document.querySelector('input[name="citizenship"]:checked').value === 'foreign' && document.querySelector('input[name="entityType"]:checked').value !== 'company') ? document.getElementById('nationalityIndiv').value : (document.querySelector('input[name="entityType"]:checked').value === 'company' ? `التأسيس: ${document.getElementById('countryInc').value} - رقم التسجيل: ${document.getElementById('regNo').value}` : ''),
+        id_or_reg: (document.querySelector('input[name="citizenship"]:checked').value === 'foreign' && document.querySelector('input[name="entityType"]:checked').value !== 'company') ? document.getElementById('nationalityIndiv').value : (document.querySelector('input[name="entityType"].checked')?.value === 'company' ? `التأسيس: ${document.getElementById('countryInc').value} - رقم التسجيل: ${document.getElementById('regNo').value}` : ''),
         translation: document.getElementById('translationNeeded').value,
         method: document.getElementById('consultationMethod').value,
-        consultType: document.getElementById('consultationType').value,
-        details: document.getElementById('consultationDetails').value
+        consult_type: document.getElementById('consultationType').value,
+        details: document.getElementById('consultationDetails').value,
+        status: 'قيد المراجعة'
       };
 
       const submitBtn = document.getElementById('submitBtnText');
       submitBtn.disabled = true;
       submitBtn.style.opacity = '0.7';
 
-      fetch(SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(formData)
-      })
-      .then(() => {
+      const { data, error } = await supabaseClient
+        .from('bookings')
+        .insert([formData]);
+
+      if (error) {
+        console.error('Error!', error);
+        alert("حدث خطأ أثناء إرسال الطلب، يرجى المحاولة مرة أخرى.");
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '1';
+      } else {
         alert(t.successMsg);
         document.getElementById('consultationForm').reset();
         submitBtn.disabled = false;
         submitBtn.style.opacity = '1';
         updateFormDisplay();
-      })
-      .catch(error => {
-        console.error('Error!', error);
-        alert("حدث خطأ أثناء إرسال الطلب، يرجى المحاولة مرة أخرى.");
-        submitBtn.disabled = false;
-        submitBtn.style.opacity = '1';
-      });
+      }
     });
   </script>
 
