@@ -1,20 +1,94 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" id="htmlRoot">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- تحسين محركات البحث العالمي والمحلي (SEO) - 8 لغات ومصطلحات التمثيل القضائي والمرافعات -->
-  <title>التمثيل القانوني أمام الجهات القضائية والمحاكم في العراق | مكتب المحامي علي كاظم الهاشمي</title>
-  <meta name="description" content="تمثيل قانوني احترافي وتولي النيابة عن الموكلين في كافة أنواع الدعاوى والمحاكم بجميع درجاتها في العراق بإشراف مكتب المحامي علي كاظم الهاشمي. | AKH Law Office Iraq">
-  <meta name="keywords" content="التمثيل القانوني في العراق, محامي دعاوى قضائية بغداد, محاكم العراق بمختلف درجاتها, تسوية النزاعات القضائية, محامي مرافعات, Legal representation Iraq, litigation lawyer Baghdad, court representation Iraq, dispute resolution Baghdad, trial lawyer Iraq, Irak hukuki temsil, Bağdat dava avukati, mahkeme temsili Irak, hukuki uyuşmazlıkların çözümü, Gerichtliche Vertretung Irak, Prozessanwalt Bagdad, Streitbeilegung Irak, Anwalt für Gerichtsverfahren, Representación legal Irak, abogado litigante Bagdad, representación en tribunales Irak, resolución de disputas, 伊拉克法律代理, 巴格达诉讼律师, 法庭代表伊拉克, 诉讼 and 纠纷解决, نوێنەرایەتی دادوەری لە عێراق, پارێزەری دادگا بغداد, دادبینیکردن لە عێراق, Représentation juridique en Iraq, avocat contentieux Bagdad, représentation devant les tribunaux Irak, règlement des litiges">
+  <title id="pageTitle">التمثيل القانوني أمام الجهات القضائية والمحاكم في العراق | مكتب المحامي علي كاظم الهاشمي</title>
+  <meta id="metaDesc" name="description" content="تمثيل قانوني احترافي وتولي النيابة عن الموكلين في كافة أنواع الدعاوى والمحاكم بجميع درجاتها في العراق بإشراف مكتب المحامي علي كاظم الهاشمي. | AKH Law Office Iraq">
+  <meta id="metaKeywords" name="keywords" content="التمثيل القانوني في العراق, محامي دعاوى قضائية بغداد, محاكم العراق بمختلف درجاتها, تسوية النزاعات القضائية, محامي مرافعات, Legal representation Iraq, litigation lawyer Baghdad, court representation Iraq, Irak hukuki temsil, Bağdat dava avukati, Gerichtliche Vertretung Irak, Prozessanwalt Bagdad, Representación legal Irak, abogado litigante Bagdad, 伊拉克法律代理, 巴格达诉讼律师, نوێنەرایەتی دادوەری لە عێراق, پارێزەری دادگا بغداد, Représentation juridique en Iraq, avocat contentieux Bagdad">
 
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Cairo', system-ui, sans-serif; background-color: #f8fafc; color: #0f172a; padding: 30px 16px; display: flex; justify-content: center; min-height: 100vh; align-items: flex-start; }
-    .container { width: 100%; max-width: 750px; background: #ffffff; padding: 35px 25px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border-top: 5px solid #c5a059; }
+    body { font-family: 'Cairo', system-ui, sans-serif; background-color: #f8fafc; color: #0f172a; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+
+    /* الهيدر الموحد الفاخر */
+    .icover-header {
+      width: 100%;
+      background: #0f172a;
+      border-bottom: 3px solid #c5a059;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .lang-select-bar {
+      padding: 7px 14px;
+      border-radius: 6px;
+      border: 1.5px solid #c5a059;
+      background: #0f172a;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 700;
+      outline: none;
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
+    }
+    .lang-select-bar option { background: #0f172a; color: #ffffff; }
+
+    .menu-container { position: relative; }
+    .menu-toggle {
+      background: rgba(255,255,255,0.1);
+      border: 1.5px solid #c5a059;
+      color: #ffffff;
+      width: 42px;
+      height: 42px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      left: auto;
+      min-width: 250px;
+      background: #0f172a;
+      border: 1.5px solid #c5a059;
+      border-radius: 10px;
+      display: none;
+      flex-direction: column;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+      padding: 8px 0;
+      z-index: 1100;
+    }
+    [dir="rtl"] .dropdown-menu { left: 0; right: auto; }
+    .dropdown-menu.active { display: flex; }
+    .dropdown-menu a {
+      color: #ffffff;
+      padding: 12px 20px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      width: 100%;
+      text-align: right;
+    }
+    .dropdown-menu a:hover { background: rgba(197,160,89,0.15); color: #c5a059; }
+
+    .container { width: 100%; max-width: 750px; background: #ffffff; padding: 35px 25px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border-top: 5px solid #c5a059; margin: 30px 16px; }
     .brand-logo { text-align: center; margin-bottom: 28px; direction: ltr; }
     .brand-logo .akh { font-size: 40px; font-weight: 900; color: #0f172a; letter-spacing: 4px; line-height: 1; }
     .brand-logo .akh .red-k { color: #dc2626; }
@@ -45,6 +119,35 @@
   </style>
 </head>
 <body>
+
+  <!-- الهيدر التنفيذي الموحد -->
+  <header class="icover-header">
+    <div>
+      <select id="languageSelect" class="lang-select-bar" onchange="changeLanguage(this.value)">
+        <option value="ar">العربية</option>
+        <option value="en">English</option>
+        <option value="tr">Türkçe</option>
+        <option value="zh">中文</option>
+        <option value="fr">Français</option>
+        <option value="es">Español</option>
+        <option value="de">Deutsch</option>
+        <option value="ku">کوردی</option>
+      </select>
+    </div>
+
+    <div class="menu-container">
+      <button class="menu-toggle" onclick="toggleMenu()" aria-label="القائمة">☰</button>
+      <div id="dropdownMenu" class="dropdown-menu">
+        <a href="https://akjassem.com" id="menuHome">الرئيسية</a>
+        <a href="/services/" id="menuServices">دليل الخدمات القانونية</a>
+        <a href="../../consultations.html" id="menuConsultations">الاستشارات القانونية</a>
+        <a href="../../insights.html" id="menuInsights">الآراء والرؤى القانونية (Insights)</a>
+        <a href="../../about.html" id="menuAbout">من نحن</a>
+        <a href="../../contact/" id="menuContact">اتصل بنا</a>
+      </div>
+    </div>
+  </header>
+
   <div class="container">
     <div class="brand-logo">
       <div class="akh">A<span class="red-k">K</span>H</div>
@@ -52,20 +155,149 @@
       <div class="est">EST. 2014</div>
     </div>
     
-    <div class="page-title">التمثيل القانوني أمام الجهات القضائية</div>
+    <div class="page-title" id="pageMainTitle">التمثيل القانوني أمام الجهات القضائية</div>
     
-    <div class="content-box">
+    <div class="content-box" id="contentBodyText">
       يتولى المكتب النيابة القانونية والتمثيل عن موكلينا في جميع أنواع الدعاوى القضائية. لقد بنى المكتب سمعة مهنية راسخة في تقديم أفضل تمثيل قانوني على مستوى كافة المحاكم بمختلف أنواعها ودرجاتها في جميع أنحاء العراق، ويعمل بكل تفانٍ لمتابعة القضايا بما يتجاوز التطلعات لتحقيق أفضل النتائج القانونية الممكنة.
       <br><br>
       يتم تخصيص الوقت الكافي لدراسة تفاصيل كل قضية وتقديم الاستشارات الدقيقة بشأن مزاياها، وصياغة استراتيجية قانونية محكمة تهدف إلى تقليل التكاليف وتجنب أي مخاطر محتملة. وفي حالات معينة، يحرص المكتب على اعتماد الحلول البديلة وتسوية النزاعات خارج أروقة المحاكم بأسلوب حازم ومهني يحفظ حقوق الموكل ويجنبه هدر الوقت والأموال بلا مبرر، مع تقديم التوجيه والإرشاد السليم في حال إحالة القضية للقضاء رسمياً.
     </div>
     
     <div class="action-area">
-      <a href="/booking/" class="btn-booking">
+      <a href="/booking/" target="_blank" class="btn-booking" id="btnBookText">
         <span>📅 اضغط هنا للانتقال إلى صفحة حجز المواعيد</span>
       </a>
-      <a href="/services/" class="back-link">← العودة إلى قائمة الخدمات</a>
+      <a href="/services/" class="back-link" id="backLinkText">← العودة إلى قائمة الخدمات</a>
     </div>
   </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('dropdownMenu').classList.toggle('active');
+    }
+
+    window.onclick = function(event) {
+      if (!event.target.matches('.menu-toggle') && !event.target.closest('.menu-container')) {
+        document.getElementById('dropdownMenu').classList.remove('active');
+      }
+    }
+
+    // استمرار وتخزين اللغة تلقائياً عبر الموقع
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('preferredLang') || 'ar';
+      document.getElementById('languageSelect').value = savedLang;
+      changeLanguage(savedLang, false);
+    });
+
+    function changeLanguage(lang, save = true) {
+      if (save) {
+        localStorage.setItem('preferredLang', lang);
+      }
+      const root = document.getElementById('htmlRoot');
+      root.setAttribute('lang', lang);
+      root.setAttribute('dir', (lang === 'ar' || lang === 'ku') ? 'rtl' : 'ltr');
+
+      const t = dictionary[lang] || dictionary['en'];
+
+      document.getElementById('pageTitle').innerText = t.pageTitle;
+      document.getElementById('metaDesc').setAttribute('content', t.metaDesc);
+      document.getElementById('metaKeywords').setAttribute('content', t.metaKeywords);
+
+      document.getElementById('menuHome').innerText = t.home;
+      document.getElementById('menuServices').innerText = t.menuServices;
+      document.getElementById('menuConsultations').innerText = t.menuConsultations;
+      document.getElementById('menuInsights').innerText = t.menuInsights;
+      document.getElementById('menuAbout').innerText = t.menuAbout;
+      document.getElementById('menuContact').innerText = t.menuContact;
+
+      document.getElementById('pageMainTitle').innerText = t.pageMainTitle;
+      document.getElementById('contentBodyText').innerHTML = t.contentBody;
+      document.getElementById('btnBookText').innerHTML = `<span>${t.btnBook}</span>`;
+      document.getElementById('backLinkText').innerText = t.backLink;
+    }
+
+    const dictionary = {
+      ar: {
+        pageTitle: "التمثيل القانوني أمام الجهات القضائية والمحاكم في العراق | مكتب المحامي علي كاظم الهاشمي",
+        metaDesc: "تمثيل قانوني احترافي وتولي النيابة عن الموكلين في كافة أنواع الدعاوى والمحاكم بجميع درجاتها في العراق بإشراف مكتب المحامي علي كاظم الهاشمي.",
+        metaKeywords: "التمثيل القانوني في العراق, محامي دعاوى قضائية بغداد, محاكم العراق بمختلف درجاتها, تسوية النزاعات القضائية, محامي مرافعات",
+        home: "الرئيسية", menuServices: "دليل الخدمات القانونية", menuConsultations: "الاستشارات القانونية", menuInsights: "الآراء والرؤى القانونية (Insights)", menuAbout: "من نحن", menuContact: "اتصل بنا",
+        pageMainTitle: "التمثيل القانوني أمام الجهات القضائية",
+        contentBody: `يتولى المكتب النيابة القانونية والتمثيل عن موكلينا في جميع أنواع الدعاوى القضائية. لقد بنى المكتب سمعة مهنية راسخة في تقديم أفضل تمثيل قانوني على مستوى كافة المحاكم بمختلف أنواعها ودرجاتها في جميع أنحاء العراق، ويعمل بكل تفانٍ لمتابعة القضايا بما يتجاوز التطلعات لتحقيق أفضل النتائج القانونية الممكنة.<br><br>يتم تخصيص الوقت الكافي لدراسة تفاصيل كل قضية وتقديم الاستشارات الدقيقة بشأن مزاياها، وصياغة استراتيجية قانونية محكمة تهدف إلى تقليل التكاليف وتجنب أي مخاطر محتملة. وفي حالات معينة، يحرص المكتب على اعتماد الحلول البديلة وتسوية النزاعات خارج أروقة المحاكم بأسلوب حازم ومهني يحفظ حقوق الموكل ويجنبه هدر الوقت والأموال بلا مبرر، مع تقديم التوجيه والإرشاد السليم في حال إحالة القضية للقضاء رسمياً.`,
+        btnBook: "📅 اضغط هنا للانتقال إلى صفحة حجز المواعيد",
+        backLink: "← العودة إلى قائمة الخدمات"
+      },
+      en: {
+        pageTitle: "Legal Representation Before Courts & Judicial Authorities in Iraq | AKH Law Office",
+        metaDesc: "Professional legal representation and advocacy for clients across all types of lawsuits and court degrees in Iraq under the supervision of Ali Kadhem Hashimi.",
+        metaKeywords: "Legal representation Iraq, litigation lawyer Baghdad, court representation Iraq, dispute resolution Baghdad, trial lawyer Iraq",
+        home: "Home", menuServices: "Legal Services Directory", menuConsultations: "Legal Consultations", menuInsights: "Iraq Legal Insights", menuAbout: "About Us", menuContact: "Contact Us",
+        pageMainTitle: "Legal Representation Before Judicial Authorities",
+        contentBody: `The office undertakes legal representation and advocacy for our clients in all types of lawsuits. The office has built a solid professional reputation in providing the best legal representation across all courts and degrees throughout Iraq, working with dedication to follow up cases beyond expectations to achieve the best possible legal outcomes.<br><br>Sufficient time is dedicated to studying the details of each case and providing accurate advice regarding its merits, formulating a solid legal strategy aimed at minimizing costs and avoiding potential risks. In certain cases, the office is keen to adopt alternative solutions and resolve disputes outside the courtroom in a resolute and professional manner that preserves the client's rights, while providing sound guidance if the case is officially referred to the judiciary.`,
+        btnBook: "📅 Click here to go to the appointment booking page",
+        backLink: "← Back to Services List"
+      },
+      tr: {
+        pageTitle: "Irak'ta Yargı Mercileri ve Mahkemeler Önünde Yasal Temsil | Av. Ali Kazım Haşimi",
+        metaDesc: "Av. Ali Kazım Haşimi gözetiminde Irak'taki tüm dava türlerinde ve mahkeme derecelerinde profesyonel yasal temsil ve vekillik hizmetleri.",
+        metaKeywords: "Irak hukuki temsil, Bağdat dava avukati, mahkeme temsili Irak, hukuki uyuşmazlıkların çözümü, Prozessanwalt Bagdad",
+        home: "Ana Sayfa", menuServices: "Hizmetler", menuConsultations: "Hukuki Danışmanlık", menuInsights: "İçgörüler", menuAbout: "Hakkımızda", menuContact: "İletişim",
+        pageMainTitle: "Yargı Mercileri Önünde Yasal Temsil",
+        contentBody: `Büro, tüm dava türlerinde müvekkillerimiz adına yasal vekillik ve temsil görevini üstlenmektedir. Büro, Irak genelindeki tüm mahkemelerde en iyi yasal temsili sağlama konusunda sağlam bir mesleki itibar inşa etmiş olup, mümkün olan en iyi hukuki sonuçları elde etmek için özveriyle çalışmaktadır.<br><br>Her davanın detaylarını incelemek, maliyetleri en aza indirmeyi ve potansiyel risklerden kaçınmayı amaçlayan sağlam bir hukuki strateji formüle etmek için yeterli zaman ayrılır. Belirli durumlarda büro, müvekkilin haklarını koruyan kararlı ve profesyonel bir yaklaşımla mahkeme salonları dışında alternatif çözümleri benimsemeye özen gösterir.<br><br>Davanın resmi olarak yargıya intikal etmesi durumunda ise doğru yönlendirme ve rehberlik sağlanır.`,
+        btnBook: "📅 Randevu rezervasyon sayfasına gitmek için tıklayın",
+        backLink: "← Hizmetler Listesine Dön"
+      },
+      zh: {
+        pageTitle: "伊拉克司法机关与法院出庭代理 | 阿里·卡德姆·哈希米律所",
+        metaDesc: "在阿里·卡德姆·哈希米律所的监督下，在伊拉克各级法院代理各类诉讼，提供专业法律代理与出庭服务。",
+        metaKeywords: "伊拉克法律代理, 巴格达诉讼律师, 法庭代表伊拉克, 诉讼 and 纠纷解决",
+        home: "首页", menuServices: "法律服务", menuConsultations: "法律咨询", menuInsights: "法律洞察", menuAbout: "关于我们", menuContact: "联系我们",
+        pageMainTitle: "司法机关出庭代理",
+        contentBody: `律所承接各类诉讼案件，并为客户提供专业的法律代理和出庭服务。律所在伊拉克全国各级法院的法律代理方面树立了坚实的专业声誉，致力于以超越期望的敬业精神跟进案件，以实现最佳的法律结果。<br><br>我们投入充足的时间研究每起案件的细节，就其利弊提供准确咨询，并制定旨在降低成本和规避潜在风险的严密法律战略。在某些情况下，律所热衷于采用替代解决方案，在法庭之外以果断专业的方式解决争议，以维护客户的合法权益。<br><br>如果案件被正式移交司法机关，律所也将提供稳妥的指导与指引。`,
+        btnBook: "📅 点击此处跳转至预约页面",
+        backLink: "← 返回服务列表"
+      },
+      fr: {
+        pageTitle: "Représentation Juridique Devant les Tribunaux en Iraq | Cabinet AKH",
+        metaDesc: "Représentation juridique professionnelle et plaidoyer pour les clients dans tous types de litiges à travers les tribunaux d'Iraq sous la supervision d'Ali Kadhem.",
+        metaKeywords: "Représentation juridique en Iraq, avocat contentieux Bagdad, représentation devant les tribunaux Irak, règlement des litiges",
+        home: "Accueil", menuServices: "Services", menuConsultations: "Consultations Juridiques", menuInsights: "Aperçus", menuAbout: "À Propos", menuContact: "Contact",
+        pageMainTitle: "Représentation Juridique Devant les Autorités Judiciaires",
+        contentBody: `Le cabinet assume la représentation juridique et le plaidoyer pour nos clients dans tous types de litiges. Le cabinet s'est bâti une solide réputation professionnelle en fournissant la meilleure représentation juridique auprès de toutes les juridictions en Iraq, en travaillant avec dévouement pour obtenir les meilleurs résultats possibles.<br><br>Un temps suffisant est consacré à l'étude des détails de chaque affaire et à la formulation d'une stratégie juridique rigoureuse visant à minimiser les coûts et à éviter les risques potentiels. Dans certains cas, le cabinet privilégie l'adoption de solutions alternatives et le règlement des litiges en dehors des tribunaux de manière professionnelle pour préserver les droits du client.<br><br>Le cabinet fournit également des conseils avisés au cas où l'affaire serait officiellement portée devant la justice.`,
+        btnBook: "📅 Cliquez ici pour accéder à la page de réservation",
+        backLink: "← Retour à la liste des services"
+      },
+      es: {
+        pageTitle: "Representación Legal Ante Autoridades Judiciales y Tribunales en Irak | AKH",
+        metaDesc: "Representación legal profesional y defensa para clientes en todo tipo de demandas y tribunales en Irak bajo la supervisión de Ali Kadhem Hashimi.",
+        metaKeywords: "Representación legal Irak, abogado litigante Bagdad, representación en tribunales Irak, resolución de disputas",
+        home: "Inicio", menuServices: "Servicios", menuConsultations: "Consultas Legales", menuInsights: "Perspectivas", menuAbout: "Sobre Nosotros", menuContact: "Contacto",
+        pageMainTitle: "Representación Legal Ante las Autoridades Judiciales",
+        contentBody: `El bufete asume la representación legal y la defensa de nuestros clientes en todo tipo de demandas judiciales. El despacho se ha forjado una sólida reputación profesional al ofrecer la mejor representación legal en todos los tribunales y grados en todo Irak, trabajando con dedicación para lograr los mejores resultados posibles.<br><br>Se dedica el tiempo necesario a estudiar los detalles de cada caso y formular una estrategia jurídica sólida destinada a minimizar costos y evitar riesgos potenciales. En determinados casos, el bufete prioriza la adopción de soluciones alternativas y la resolución de disputas fuera de los tribunales de manera firme y profesional para salvaguardar los derechos del cliente.<br><br>Asimismo, se proporciona la orientación adecuada en caso de que el caso sea remitido oficialmente al poder judicial.`,
+        btnBook: "📅 Haga clic aquí para ir a la página de reservas",
+        backLink: "← Volver a la lista de servicios"
+      },
+      de: {
+        pageTitle: "Gerichtliche Vertretung vor Justizbehörden im Irak | Kanzlei Ali Kadhem Hashimi",
+        metaDesc: "Professionelle rechtliche Vertretung und Prozessführung für Mandanten in allen Arten von Klagen und Gerichten im Irak unter Leitung von Ali Kadhem.",
+        metaKeywords: "Gerichtliche Vertretung Irak, Prozessanwalt Bagdad, Streitbeilegung Irak, Anwalt für Gerichtsverfahren",
+        home: "Startseite", menuServices: "Dienste", menuConsultations: "Rechtliche Beratung", menuInsights: "Einblicke", menuAbout: "Über uns", menuContact: "Kontakt",
+        pageMainTitle: "Gerichtliche Vertretung vor den Justizbehörden",
+        contentBody: `Die Kanzlei übernimmt die rechtliche Vertretung und Prozessführung für unsere Mandanten in allen Arten von Rechtsstreitigkeiten. Die Kanzlei hat sich einen soliden professionellen Ruf aufgebaut, indem sie die beste rechtliche Vertretung vor allen Gerichten im gesamten Irak bietet und engagiert daran arbeitet, bestmögliche Ergebnisse zu erzielen.<br><br>Es wird ausreichend Zeit darauf verwendet, die Details jedes Falles zu studieren, genaue Beratung zu bieten und eine präzise Rechtsstrategie auszuarbeiten, die darauf abzielt, Kosten zu minimieren und Risiken zu vermeiden. In bestimmten Fällen legt die Kanzlei großen Wert auf alternative Lösungen und die Beilegung von Streitigkeiten außerhalb des Gerichtssaals.<br><br>Ebenso wird eine fundierte Beratung gewährleistet, falls der Fall offiziell an die Justiz übergeben wird.`,
+        btnBook: "📅 Klicken Sie hier, um zur Buchungsseite zu gelangen",
+        backLink: "← Zurück zur Dienstleistungsliste"
+      },
+      ku: {
+        pageTitle: "نوێنەرایەتی یاسایی لەبەردەم دادگاکان و دەسەڵاتی دادوەری لە عێراق | نووسینگەی پارێزەر",
+        metaDesc: "نوێنەرایەتی یاسایی پیشەیی و بریوکاری بۆ کڕیارەکان لە هەموو جۆرە داوایەک و دادگایەک لە عێراق لە ژێر چاودێری نووسینگەی پارێزەر عەلی کازمی هاشمی.",
+        metaKeywords: "نوێنەرایەتی یاسایی لە عێراق, پارێزەری دادگا بغداد, دادبینیکردن لە عێراق",
+        home: "سەرەکی", menuServices: "خزمەتگوزارییەکان", menuConsultations: "ڕاوێژی یاسایی", menuInsights: "تێڕوانینەکان", menuAbout: "دەرباره‌ی ئێمە", menuContact: "پەیوەندی",
+        pageMainTitle: "نوێنەرایەتی یاسایی لەبەردەم دەسەڵاتی دادوەریدا",
+        contentBody: `نووسینگە بریوکاری یاسایی و نوێنەرایەتی کڕیارەکانمان لە هەموو جۆرە داوایەکی دادوەریدا لە ئەستۆ دەگرێت. نووسینگە ناوبانگی پیشەیی خۆی بنیاد ناوە لە پێشکەشکردنی باشترین نوێنەرایەتی یاسایی لەسەر ئاستی هەموو دادگاکان لە سەرجەم عێراقدا، و بە دڵسۆزییەوە کار دەکات بۆ بەدەستهێنانی باشترین ئەنجامە یاساییەکان.<br><br>کاتی پێویست تەرخان دەکرێت بۆ لێکۆڵینەوە لە وردەکارییەکان و داڕشتنی ستراتیژییەکی یاسایی پتەو کە ئامانجی کەمکردنەوەی تێچوون و دوورکەوتنەوە لە مەترسییەکان بێت. لە هەندێک بارودۆخدا، نووسینگە جەخت لەسەر چارەسەری جێگرەوە و یەکلاکردنەوەی کێشەکان لە دەرەوەی دادگا دەکاتەوە بە شێوازێکی پیشەیی کە مافی کڕیار بپارێزێت.<br><br>هەروەها ڕێنمایی و ئاراستەکردنی پێویست پێشکەش دەکرێت لە ئەگەر ڕادەستکردنی دۆسیەکە بە دادگا بە شێوەی فەرمی.`,
+        btnBook: "📅 کلیک لێرە بکە بۆ گواستنەوە بۆ لاپەڕەی حجز",
+        backLink: "← گەڕانەوە بۆ خشتەی خزمەتگوزارییەکان"
+      }
+    };
+  </script>
 </body>
 </html>
