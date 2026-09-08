@@ -29,10 +29,11 @@
       border-top: 5px solid #c5a059;
     }
     
-    /* الشعار الرسمي المطابق لهوية موقعك وصور الآراء القانونية تماماً */
+    /* تثبيت اتجاه الشعار ليكون مطابقاً للصورة 100% وبدون قلب */
     .brand-logo {
       text-align: center;
       margin-bottom: 28px;
+      direction: ltr; /* حل مشكلة انعكاس الحروف الإنجليزية */
     }
     .brand-logo .akh {
       font-size: 40px;
@@ -53,7 +54,7 @@
       gap: 6px;
     }
     .brand-logo .sub-title .slash {
-      color: #dc2626; /* الخط الأحمر المائل المطابق للشعار الأصلي */
+      color: #dc2626; /* الخط الأحمر المائل */
       font-weight: 900;
       font-size: 16px;
     }
@@ -73,6 +74,7 @@
       margin-bottom: 25px;
       padding-bottom: 10px;
       border-bottom: 1px solid #f1f5f9;
+      direction: rtl;
     }
 
     .info-card {
@@ -81,6 +83,7 @@
       border-radius: 12px;
       padding: 22px;
       margin-bottom: 20px;
+      direction: rtl;
     }
     .info-row {
       display: flex;
@@ -109,7 +112,7 @@
       margin-bottom: 2px;
     }
     
-    /* الخريطة مع زوم دقيق على الموقع */
+    /* الخريطة بزوم دقيق على الموقع */
     .map-box {
       border-radius: 10px;
       overflow: hidden;
@@ -129,6 +132,7 @@
       flex-direction: column;
       gap: 12px;
       margin-top: 20px;
+      direction: rtl;
     }
     .btn-map {
       display: flex;
@@ -173,8 +177,8 @@
     <div class="brand-logo">
       <div class="akh">AKH</div>
       <div class="sub-title">
-        <span class="slash">/</span>
         <span>LAW OFFICE</span>
+        <span class="slash">/</span>
       </div>
       <div class="est">EST. 2014</div>
     </div>
@@ -207,13 +211,13 @@
       </div>
 
       <div class="map-box">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.8!2d44.435!3d33.325!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zRGFyIGFsLUF6eWFhIGFsLUlyYXFpYQ!5e0!3m2!1sen!2siq!4v1700000000000!5m2!1sen!2siq" allowfullscreen="" loading="lazy"></iframe>
+        <iframe src="https://maps.google.com/maps?q=Baghdad+Zayouna+Iraqi+Fashion+House&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
       </div>
     </div>
 
     <div class="action-buttons">
-      <a href="https://maps.google.com/?q=مكتب+المحامي+علي+كاظم+الهاشمي+بغداد+زيونة" target="_blank" class="btn-map">
-        <span>🗺️ انتقال وفتح الموقع في خرائط جوجل</span>
+      <a href="https://www.google.com/maps/search/?api=1&query=Baghdad+Zayouna+Iraqi+Fashion+House" target="_blank" class="btn-map">
+        <span>🗺️ الانتقال وفتح الموقع في خرائط جوجل</span>
       </a>
 
       <a href="https://wa.me/9647838759047" target="_blank" class="btn-whatsapp">
