@@ -1,20 +1,93 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" id="htmlRoot">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <!-- تحسين محركات البحث العالمي والمحلي (SEO) - 8 لغات ومصطلحات تأسيس الشركات -->
-  <title>تأسيس الشركات المحلية والأجنبية في العراق | مكتب المحامي علي كاظم الهاشمي</title>
-  <meta name="description" content="خدمات قانونية متكاملة لتأسيس الشركات بأنواعها، صياغة عقود التأسيس، فتح الحسابات المصرفية، والتسجيل لدى مسجل الشركات في بغداد والعراق. | AKH Law Office Iraq">
-  <meta name="keywords" content="تأسيس شركات في العراق, تسجيل شركة أجنبية بغداد, محامي شركات, تأسيس شركة محدودة, مساهمة عامة, مسجل الشركات العراق, Company registration in Iraq, corporate lawyer Baghdad, LLC formation Iraq, foreign company registration Iraq, register a business in Baghdad, Irak şirket kuruluşu, Bağdat şirket avukatı, limited şirket kurma Irak, yabancı şirket tescili Irak, Firmengründung im Irak, Firmenanwalt Bagdad, GmbH Gründung Irak, Ausländische Firmenregistrierung Irak, Constitución de empresas en Irak, abogado corporativo Bagdad, registro de sociedades Irak, constitución de LLC, 伊拉克公司注册, 巴格达公司律师, 伊拉克有限责任公司注册, 外资公司注册伊拉克, دامەزراندنی کۆمپانیا لە عێراق, پارێزەری کۆمپانیاکان بغداد, تۆمارکردنی کۆمپانیا, Création d'entreprise en Iraq, avocat d'affaires Bagdad, constitution de société Irak, enregistrement société étrangère Irak">
+  <title id="pageTitle">تأسيس الشركات المحلية والأجنبية في العراق | مكتب المحامي علي كاظم الهاشمي</title>
+  <meta id="metaDesc" name="description" content="خدمات قانونية متكاملة لتأسيس الشركات بأنواعها، صياغة عقود التأسيس، فتح الحسابات المصرفية، والتسجيل لدى مسجل الشركات في بغداد والعراق. | AKH Law Office Iraq">
+  <meta id="metaKeywords" name="keywords" content="تأسيس شركات في العراق, تسجيل شركة أجنبية بغداد, محامي شركات, تأسيس شركة محدودة, مساهمة عامة, مسجل الشركات العراق, Company registration in Iraq, corporate lawyer Baghdad, LLC formation Iraq, foreign company registration Iraq, Irak şirket kuruluşu, Bağdat şirket avukatı, Firmengründung im Irak, Firmenanwalt Bagdad, Constitución de empresas en Irak, abogado corporativo Bagdad, 伊拉克公司注册, 巴格达公司律师, دامەزراندنی کۆمپانیا لە عێراق, پارێزەری کۆمپانیاکان بغداد, Création d'entreprise en Iraq, avocat d'affaires Bagdad">
 
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Cairo', system-ui, sans-serif; background-color: #f8fafc; color: #0f172a; padding: 30px 16px; display: flex; justify-content: center; min-height: 100vh; align-items: flex-start; }
-    .container { width: 100%; max-width: 750px; background: #ffffff; padding: 35px 25px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border-top: 5px solid #c5a059; }
+    body { font-family: 'Cairo', system-ui, sans-serif; background-color: #f8fafc; color: #0f172a; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+
+    /* الهيدر الموحد الفاخر */
+    .icover-header {
+      width: 100%;
+      background: #0f172a;
+      border-bottom: 3px solid #c5a059;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .lang-select-bar {
+      padding: 7px 14px;
+      border-radius: 6px;
+      border: 1.5px solid #c5a059;
+      background: #0f172a;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 700;
+      outline: none;
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
+    }
+    .lang-select-bar option { background: #0f172a; color: #ffffff; }
+
+    .menu-container { position: relative; }
+    .menu-toggle {
+      background: rgba(255,255,255,0.1);
+      border: 1.5px solid #c5a059;
+      color: #ffffff;
+      width: 42px;
+      height: 42px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      left: auto;
+      min-width: 250px;
+      background: #0f172a;
+      border: 1.5px solid #c5a059;
+      border-radius: 10px;
+      display: none;
+      flex-direction: column;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+      padding: 8px 0;
+      z-index: 1100;
+    }
+    [dir="rtl"] .dropdown-menu { left: 0; right: auto; }
+    .dropdown-menu.active { display: flex; }
+    .dropdown-menu a {
+      color: #ffffff;
+      padding: 12px 20px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      width: 100%;
+      text-align: right;
+    }
+    .dropdown-menu a:hover { background: rgba(197,160,89,0.15); color: #c5a059; }
+
+    .container { width: 100%; max-width: 750px; background: #ffffff; padding: 35px 25px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border-top: 5px solid #c5a059; margin: 30px 16px; }
     .brand-logo { text-align: center; margin-bottom: 28px; direction: ltr; }
     .brand-logo .akh { font-size: 40px; font-weight: 900; color: #0f172a; letter-spacing: 4px; line-height: 1; }
     .brand-logo .akh .red-k { color: #dc2626; }
@@ -45,6 +118,34 @@
   </style>
 </head>
 <body>
+
+  <header class="icover-header">
+    <div>
+      <select id="languageSelect" class="lang-select-bar" onchange="changeLanguage(this.value)">
+        <option value="ar">العربية</option>
+        <option value="en">English</option>
+        <option value="tr">Türkçe</option>
+        <option value="zh">中文</option>
+        <option value="fr">Français</option>
+        <option value="es">Español</option>
+        <option value="de">Deutsch</option>
+        <option value="ku">کوردی</option>
+      </select>
+    </div>
+
+    <div class="menu-container">
+      <button class="menu-toggle" onclick="toggleMenu()" aria-label="القائمة">☰</button>
+      <div id="dropdownMenu" class="dropdown-menu">
+        <a href="https://akjassem.com" id="menuHome">الرئيسية</a>
+        <a href="/services/" id="menuServices">دليل الخدمات القانونية</a>
+        <a href="../../consultations.html" id="menuConsultations">الاستشارات القانونية</a>
+        <a href="../../insights.html" id="menuInsights">الآراء والرؤى القانونية (Insights)</a>
+        <a href="../../about.html" id="menuAbout">من نحن</a>
+        <a href="../../contact/" id="menuContact">اتصل بنا</a>
+      </div>
+    </div>
+  </header>
+
   <div class="container">
     <div class="brand-logo">
       <div class="akh">A<span class="red-k">K</span>H</div>
@@ -52,9 +153,9 @@
       <div class="est">EST. 2014</div>
     </div>
     
-    <div class="page-title">تأسيس الشركات بأنواعها</div>
+    <div class="page-title" id="pageMainTitle">تأسيس الشركات بأنواعها</div>
     
-    <div class="content-box">
+    <div class="content-box" id="contentBodyText">
       يرحب مكتب المحامي علي كاظم الهاشمي بكافة الأفراد والمؤسسات الراغبين بخدمات تسجيل وتأسيس الشركات في العراق. يعتبر تأسيس الشركات عملية قانونية دقيقة تتم وفقاً للتشريعات النافذة، مما يتطلب خبرة ومعرفة عميقة بالإجراءات الرسمية، وهو ما يوفره المكتب لمساعدة العملاء على تجاوز التحديات وإتمام الإجراءات بنجاح تام.
       <br><br>
       يقدم المكتب استشارات تخصصية دقيقة لمساعدة العملاء في اختيار الشكل القانوني الملائم لأهدافهم التجارية، سواء كان ذلك لتأسيس شركة مساهمة عامة، شركة ذات مسؤولية محدودة، شركة شخص واحد، أو شركة مشتركة. بالإضافة إلى ذلك، يوفر المكتب الاستشارات المالية والضريبية المتعلقة بالهيكل المالي والتسجيل لدى الهيئات المختصة لضمان الامتثال القانوني الكامل.
@@ -63,11 +164,140 @@
     </div>
     
     <div class="action-area">
-      <a href="/booking/" class="btn-booking">
+      <a href="/booking/" target="_blank" class="btn-booking" id="btnBookText">
         <span>📅 اضغط هنا للانتقال إلى صفحة حجز المواعيد</span>
       </a>
-      <a href="/services/" class="back-link">← العودة إلى قائمة الخدمات</a>
+      <a href="/services/" class="back-link" id="backLinkText">← العودة إلى قائمة الخدمات</a>
     </div>
   </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('dropdownMenu').classList.toggle('active');
+    }
+
+    window.onclick = function(event) {
+      if (!event.target.matches('.menu-toggle') && !event.target.closest('.menu-container')) {
+        document.getElementById('dropdownMenu').classList.remove('active');
+      }
+    }
+
+    // استمرار وتخزين اللغة تلقائياً عبر الموقع
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('preferredLang') || 'ar';
+      document.getElementById('languageSelect').value = savedLang;
+      changeLanguage(savedLang, false);
+    });
+
+    function changeLanguage(lang, save = true) {
+      if (save) {
+        localStorage.setItem('preferredLang', lang);
+      }
+      const root = document.getElementById('htmlRoot');
+      root.setAttribute('lang', lang);
+      root.setAttribute('dir', (lang === 'ar' || lang === 'ku') ? 'rtl' : 'ltr');
+
+      const t = dictionary[lang] || dictionary['en'];
+
+      document.getElementById('pageTitle').innerText = t.pageTitle;
+      document.getElementById('metaDesc').setAttribute('content', t.metaDesc);
+      document.getElementById('metaKeywords').setAttribute('content', t.metaKeywords);
+
+      document.getElementById('menuHome').innerText = t.home;
+      document.getElementById('menuServices').innerText = t.menuServices;
+      document.getElementById('menuConsultations').innerText = t.menuConsultations;
+      document.getElementById('menuInsights').innerText = t.menuInsights;
+      document.getElementById('menuAbout').innerText = t.menuAbout;
+      document.getElementById('menuContact').innerText = t.menuContact;
+
+      document.getElementById('pageMainTitle').innerText = t.pageMainTitle;
+      document.getElementById('contentBodyText').innerHTML = t.contentBody;
+      document.getElementById('btnBookText').innerHTML = `<span>${t.btnBook}</span>`;
+      document.getElementById('backLinkText').innerText = t.backLink;
+    }
+
+    const dictionary = {
+      ar: {
+        pageTitle: "تأسيس الشركات المحلية والأجنبية في العراق | مكتب المحامي علي كاظم الهاشمي",
+        metaDesc: "خدمات قانونية متكاملة لتأسيس الشركات بأنواعها، صياغة عقود التأسيس، فتح الحسابات المصرفية، والتسجيل لدى مسجل الشركات في بغداد والعراق.",
+        metaKeywords: "تأسيس شركات في العراق, تسجيل شركة أجنبية بغداد, محامي شركات, تأسيس شركة محدودة, مساهمة عامة, مسجل الشركات العراق",
+        home: "الرئيسية", menuServices: "دليل الخدمات القانونية", menuConsultations: "الاستشارات القانونية", menuInsights: "الآراء والرؤى القانونية (Insights)", menuAbout: "من نحن", menuContact: "اتصل بنا",
+        pageMainTitle: "تأسيس الشركات بأنواعها",
+        contentBody: `يرحب مكتب المحامي علي كاظم الهاشمي بكافة الأفراد والمؤسسات الراغبين بخدمات تسجيل وتأسيس الشركات في العراق. يعتبر تأسيس الشركات عملية قانونية دقيقة تتم وفقاً للتشريعات النافذة، مما يتطلب خبرة ومعرفة عميقة بالإجراءات الرسمية، وهو ما يوفره المكتب لمساعدة العملاء على تجاوز التحديات وإتمام الإجراءات بنجاح تام.<br><br>يقدم المكتب استشارات تخصصية دقيقة لمساعدة العملاء في اختيار الشكل القانوني الملائم لأهدافهم التجارية، سواء كان ذلك لتأسيس شركة مساهمة عامة، شركة ذات مسؤولية محدودة، شركة شخص واحد، أو شركة مشتركة. بالإضافة إلى ذلك، يوفر المكتب الاستشارات المالية والضريبية المتعلقة بالهيكل المالي والتسجيل لدى الهيئات المختصة لضمان الامتثال القانوني الكامل.<br><br>كما يتولى المكتب كافة المراحل الأساسية لتأسيس الشركة، بدءاً من إعداد الوثائق القانونية والإدارية، مروراً بفتح الحسابات المصرفية والتسجيل لدى الجهات الرسمية والمؤسسات الحكومية، وصولاً إلى استخراج التراخيص اللازمة بمهنية وسرعة عالية تضمن توفير الوقت والجهد للعملاء بشكل مثالي.`,
+        btnBook: "📅 اضغط هنا للانتقال إلى صفحة حجز المواعيد",
+        backLink: "← العودة إلى قائمة الخدمات"
+      },
+      en: {
+        pageTitle: "Local & Foreign Company Formation in Iraq | Law Office of Ali Kadhem Hashimi",
+        metaDesc: "Comprehensive legal services for company formation, drafting articles of association, opening bank accounts, and registration in Baghdad and Iraq.",
+        metaKeywords: "Company registration in Iraq, corporate lawyer Baghdad, LLC formation Iraq, foreign company registration Iraq, register a business in Baghdad",
+        home: "Home", menuServices: "Legal Services Directory", menuConsultations: "Legal Consultations", menuInsights: "Iraq Legal Insights", menuAbout: "About Us", menuContact: "Contact Us",
+        pageMainTitle: "Corporate Formation of All Types",
+        contentBody: `The Law Office of Ali Kadhem Hashimi welcomes all individuals and institutions seeking company registration and formation services in Iraq. Company formation is a precise legal process carried out in accordance with active legislation, requiring deep expertise in official procedures, which the office provides to help clients overcome challenges and succeed.<br><br>The office offers specialized consultations to help clients choose the appropriate legal form for their commercial goals, whether establishing a joint-stock company, limited liability company, single-person company, or joint venture. Additionally, the office provides financial and tax advice to ensure full legal compliance.<br><br>The office handles all stages of company formation, starting from preparing legal and administrative documents, opening bank accounts, registering with official authorities and government institutions, to obtaining necessary licenses with high professionalism and speed.`,
+        btnBook: "📅 Click here to go to the appointment booking page",
+        backLink: "← Back to Services List"
+      },
+      tr: {
+        pageTitle: "Irak'ta Yerli ve Yabancı Şirket Kuruluşu | Av. Ali Kazım Haşimi",
+        metaDesc: "Şirket kuruluşu, ana sözleşme hazırlama, banka hesapları açma ve Bağdat'ta tescil işlemleri için kapsamlı hukuki hizmetler.",
+        metaKeywords: "Irak şirket kuruluşu, Bağdat şirket avukatı, limited şirket kurma Irak, yabancı şirket tescili Irak",
+        home: "Ana Sayfa", menuServices: "Hizmetler", menuConsultations: "Hukuki Danışmanlık", menuInsights: "İçgörüler", menuAbout: "Hakkımızda", menuContact: "İletişim",
+        pageMainTitle: "Her Türlü Şirket Kuruluşu",
+        contentBody: `Av. Ali Kazım Haşimi Hukuk Bürosu, Irak'ta şirket tescil ve kuruluş hizmeti arayan tüm birey ve kurumlara hoş geldiniz der. Şirket kuruluşu, yürürlükteki mevzuata uygun olarak yürütülen, resmi prosedürler konusunda derin uzmanlık gerektiren hassas bir hukuki süreçtir.<br><br>Büro, anonim şirket, limited şirket, tek kişilik şirket veya ortak girişim kurmak olsun, müvekkillerine ticari hedeflerine uygun yasal şekli seçmelerinde yardımcı olmak için uzman danışmanlık hizmeti sunar. Ayrıca tam yasal uyumu sağlamak için mali ve vergi danışmanlığı sağlar.<br><br>Büro; yasal ve idari belgelerin hazırlanmasından banka hesaplarının açılmasına, resmi makamlara kayıttan gerekli lisansların yüksek profesyonellik ve hızla alınmasına kadar şirket kuruluşunun tüm aşamalarını yönetir.`,
+        btnBook: "📅 Randevu rezervasyon sayfasına gitmek için tıklayın",
+        backLink: "← Hizmetler Listesine Dön"
+      },
+      zh: {
+        pageTitle: "伊拉克内外资公司注册与组建 | 阿里·卡德姆·哈希米律所",
+        metaDesc: "提供全面的公司注册、章程起草、银行开户以及在巴格达和伊拉克注册的法律服务。",
+        metaKeywords: "伊拉克公司注册, 巴格达公司律师, 伊拉克有限责任公司注册, 外资公司注册伊拉克",
+        home: "首页", menuServices: "法律服务", menuConsultations: "法律咨询", menuInsights: "法律洞察", menuAbout: "关于我们", menuContact: "联系我们",
+        pageMainTitle: "各类公司注册与组建",
+        contentBody: `阿里·卡德姆·哈希米律所欢迎所有在伊拉克寻求公司注册和设立服务的个人与机构。公司注册是一项根据现行法律进行的精确法律程序，需要对官方程序有 深入的专业知识，律所旨在协助客户克服挑战并圆满完成各项手续。<br><br>律所提供专业的咨询服务，帮助客户为其商业目标选择合适的法律形式，无论是股份公司、有限责任公司、一人公司还是合资企业。此外，律所还提供与财务结构相关的财税咨询，以确完全合规。<br><br>律所负责公司设立的所有基本阶段，从准备法律行政文件、开设银行账户、在官方机构注册，到以高度专业和高效率取得必要许可证。`,
+        btnBook: "📅 点击此处跳转至预约页面",
+        backLink: "← 返回服务列表"
+      },
+      fr: {
+        pageTitle: "Création de Sociétés Locales et Étrangères en Iraq | Cabinet AKH",
+        metaDesc: "Services juridiques complets pour la création de sociétés, la rédaction de statuts, l'ouverture de comptes bancaires et l'enregistrement à Bagdad.",
+        metaKeywords: "Création d'entreprise en Iraq, avocat d'affaires Bagdad, constitution de société Irak, enregistrement société étrangère Irak",
+        home: "Accueil", menuServices: "Services", menuConsultations: "Consultations Juridiques", menuInsights: "Aperçus", menuAbout: "À Propos", menuContact: "Contact",
+        pageMainTitle: "Création de Sociétés de Tous Types",
+        contentBody: `Le Cabinet d'Avocats Ali Kadhem Hashimi accueille tous les individus et institutions cherchant des services de constitution de sociétés en Iraq. La création d'entreprise est un processus juridique précis réalisé conformément à la législation en vigueur, nécessitant une expertise approfondie des procédures officielles.<br><br>Le cabinet propose des consultations spécialisées pour aider les clients à choisir la forme juridique adaptée à leurs objectifs commerciaux, qu'il s'agisse d'une société anonyme, à responsabilité limitée, unipersonnelle ou d'une coentreprise. De plus, il fournit des conseils financiers et fiscaux pour assurer une conformité totale.<br><br>Le cabinet prend en charge toutes les étapes de la création, de la préparation des documents juridiques et administratifs à l'ouverture des comptes bancaires, l'enregistrement auprès des autorités officielles et l'obtention des licences nécessaires avec un grand professionnalisme.`,
+        btnBook: "📅 Cliquez ici pour accéder à la page de réservation",
+        backLink: "← Retour à la liste des services"
+      },
+      es: {
+        pageTitle: "Constitución de Empresas Locales y Extranjeras en Irak | Bufete AKH",
+        metaDesc: "Servicios legales integrales para la constitución de empresas, redacción de estatutos, apertura de cuentas bancarias y registro en Bagdad.",
+        metaKeywords: "Constitución de empresas en Irak, abogado corporativo Bagdad, registro de sociedades Irak, constitución de LLC",
+        home: "Inicio", menuServices: "Servicios", menuConsultations: "Consultas Legales", menuInsights: "Perspectivas", menuAbout: "Sobre Nosotros", menuContact: "Contacto",
+        pageMainTitle: "Constitución de Empresas de Todo Tipo",
+        contentBody: `El Bufete de Abogados Ali Kadhem Hashimi da la bienvenida a todas las personas e instituciones que buscan servicios de registro y constitución de empresas en Irak. La formación de empresas es un proceso legal preciso llevado a cabo conforme a la legislación vigente, que requiere una profunda experiencia en procedimientos oficiales.<br><br>El bufete ofrece asesoría especializada para ayudar a los clientes a elegir la forma jurídica adecuada para sus objetivos comerciales, ya sea estableciendo una sociedad anónima, de responsabilidad limitada, unipersonal o empresa conjunta. Además, proporciona asesoramiento financiero y fiscal para garantizar el pleno cumplimiento.<br><br>El bufete gestiona todas las etapas clave de la constitución de la empresa, desde la preparación de documentos legales y administrativos, apertura de cuentas bancarias, registro ante las autoridades oficiales, hasta la obtención de licencias necesarias con alta profesionalidad y rapidez.`,
+        btnBook: "📅 Haga clic aquí para ir a la página de reservas",
+        backLink: "← Volver a la lista de servicios"
+      },
+      de: {
+        pageTitle: "Firmengründung im Irak | Kanzlei Ali Kadhem Hashimi",
+        metaDesc: "Umfassende Rechtsdienste für Firmengründung, Erstellung von Gesellschaftsverträgen, Eröffnung von Bankkonten und Registrierung in Bagdad.",
+        metaKeywords: "Firmengründung im Irak, Firmenanwalt Bagdad, GmbH Gründung Irak, Ausländische Firmenregistrierung Irak",
+        home: "Startseite", menuServices: "Dienste", menuConsultations: "Rechtliche Beratung", menuInsights: "Einblicke", menuAbout: "Über uns", menuContact: "Kontakt",
+        pageMainTitle: "Unternehmensgründung aller Art",
+        contentBody: `Die Anwaltskanzlei Ali Kadhem Hashimi begrüßt alle Personen und Institutionen, die Dienstleistungen zur Registrierung und Gründung von Unternehmen im Irak suchen. Die Firmengründung ist ein präziser rechtlicher Prozess, der tiefgreifende Expertise in offiziellen Verfahren erfordert.<br><br>Die Kanzlei bietet spezialisierte Beratung, um Kunden bei der Wahl der geeigneten Rechtsform für ihre geschäftlichen Ziele zu unterstützen, sei es eine Aktiengesellschaft, eine Gesellschaft mit beschränkter Haftung oder ein Joint Venture. Darüber hinaus bietet die Kanzlei Finanz- und Steuerberatung zur Gewährleistung der vollständigen rechtlichen Compliance.<br><br>Die Kanzlei übernimmt alle Phasen der Firmengründung, von der Vorbereitung rechtlicher Dokumente, Eröffnung von Bankkonten, Registrierung bei offiziellen Behörden bis hin zur Einholung der erforderlichen Lizenzen mit höchster Professionalität.`,
+        btnBook: "📅 Klicken Sie hier, um zur Buchungsseite zu gelangen",
+        backLink: "← Zurück zur Dienstleistungsliste"
+      },
+      ku: {
+        pageTitle: "دامەزراندنی کۆمپانیا لە عێراق | نووسینگەی پارێزەر عەلی کازمی هاشمی",
+        metaDesc: "خزمەتگوزاری یاسایی گشتگیر بۆ دامەزراندنی کۆمپانیاکان، داڕشتنی گرێبەست، کردنەوەی هەژماری بانکی، و تۆمارکردن لە بەغداد و عێراق.",
+        metaKeywords: "دامەزراندنی کۆمپانیا لە عێراق, پارێزەری کۆمپانیاکان بغداد, تۆمارکردنی کۆمپانیا",
+        home: "سەرەکی", menuServices: "خزمەتگوزارییەکان", menuConsultations: "ڕاوێژی یاسایی", menuInsights: "تێڕوانینەکان", menuAbout: "دەرباره‌ی ئێمە", menuContact: "پەیوەندی",
+        pageMainTitle: "دامەزراندنی کۆمپانیاکان بە هەموو جۆرەکانیان",
+        contentBody: `نووسینگەی پارێزەر عەلی کازمی هاشمی پێشوازی لە هەموو ئەو کەس و دەزگایانە دەکات کە داوای خزمەتگوزاری تۆمارکردن و دامەزراندنی کۆمپانیا دەکەن لە عێراق. دامەزراندنی کۆمپانیا پرۆسەیەکی یاسایی وردە کە بە پێی یاسا کارپێکراوەکان ئەنجام دەدرێت و پێویستی بە شارەزایی قووڵ هەیە لە ڕێکارە فەرمییەکاندا.<br><br>نووسینگە ڕاوێژی تایبەتمەند پێشکەش دەکات بۆ یارمەتیدانی کڕیارەکان لە هەڵبژاردنی شێوازی یاسایی گونجاو بۆ ئامانجە بازرگانییەکانیان، چ دامەزراندنی پشکدار، یان کۆمپانیای سنووردار، یان تاکەکەسی. هەروەها نووسینگە ڕاوێژی دارایی و باج دابین دەکات بۆ دڵنیابوون لە پابەندبوونی تەواوی یاسایی.<br><br>نووسینگە هەموو قۆناغەکانی دامەزراندنی کۆمپانیا لە ئەستۆ دەگرێت، لە ئامادەکردنی دۆکومێنتە یاساییەکانەوە تا کردنەوەی هەژماری بانکی، تۆمارکردن لە دەسەڵاتە فەرمییەکان، و بەدەستهێنانی مۆڵەتە پێویستەکان بە شێوازێکی پیشەیی و خێرا.`,
+        btnBook: "📅 کلیک لێرە بکە بۆ گواستنەوە بۆ لاپەڕەی حجز",
+        backLink: "← گەڕانەوە بۆ خشتەی خزمەتگوزارییەکان"
+      }
+    };
+  </script>
 </body>
 </html>
