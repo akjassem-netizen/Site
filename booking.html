@@ -39,7 +39,7 @@
     .lang-select-bar:focus { border-color: #d32f2f; }
     .lang-select-bar option { background-color: #070f1e !important; color: #ffffff !important; padding: 10px; }
 
-    .admin-link-btn {
+    .back-home-btn {
       color: #ffffff;
       text-decoration: none;
       font-weight: 700;
@@ -49,7 +49,7 @@
       border-radius: 6px;
       transition: background 0.2s, color 0.2s;
     }
-    .admin-link-btn:hover { background: rgba(197,160,89,0.2); color: #c5a059; }
+    .back-home-btn:hover { background: rgba(197,160,89,0.2); color: #c5a059; }
 
     .form-container {
       max-width: 800px;
@@ -178,7 +178,7 @@
     </div>
 
     <div>
-      <a href="admin" class="admin-link-btn">🔐 لوحة التحكم الإدارية</a>
+      <a href="test" class="back-home-btn" id="backBtnText">&larr; الرئيسية</a>
     </div>
   </header>
 
@@ -343,7 +343,7 @@
     const bookingDict = {
       ar: {
         title: "حجز موعد استشارة قانونية - مكتب المحامي علي كاظم الهاشمي",
-        back: "لوحة التحكم",
+        back: "الرئيسية",
         formTitle: "استمارة طلب الاستشارة القانونية",
         formInst: "يرجى تعبئة النموذج أدناه بدقة ليتسنى لنا دراسة الطلب وتحديد الأتعاب وضبط موعد الاستشارة وفق الأطر المهنية.",
         citizenship: "الجنسية / الصفة الشخصية *",
@@ -460,7 +460,7 @@
         typeOther: "Other / General Consultation",
         details: "Details of Your Case or Consultation Topic *",
         submit: "Submit Request for Legal Review →",
-        successMsg: "Your request has been successfully received and is currently under legal review (your request will be reviewed and responded to within 24 hours).",
+        successMsg: "Your request has been successfully received and is currently under legal review.",
         phName: "Enter full name",
         phCompRep: "Name of the responsible representative",
         phEmail: "name@example.com",
@@ -493,7 +493,7 @@
         companyName: "Şirket Yasal Adı *",
         companyRep: "Şirket Yetkilisi / Temsilci *",
         addressIraqiIndiv: "İkamet Adresi *",
-        addressForeignIndiv: "Yabancı İkamet Adresi (Şehir / Ülke) *",
+        addressForeignIndiv: "Yabancı İkamet Adresi (Şehir / Üلکه) *",
         addressCompany: "Şirket Merkezi *",
         email: "E-posta *",
         phone: "Telefon / WhatsApp *",
@@ -527,7 +527,7 @@
         typeOther: "Diğer / Genel Danışmanlık",
         details: "Davanızın veya Konunuzun Detayları *",
         submit: "İnceleme İçin Talebi Gönder →",
-        successMsg: "Talebiniz başarıyla alınmıştır (24 saat içinde incelenip yanıt verilecektir).",
+        successMsg: "Talebiniz başarıyla alınmıştır.",
         phName: "Ad soyad giriniz",
         phCompRep: "Yetkili temsilcinin adı",
         phEmail: "name@example.com",
@@ -536,10 +536,10 @@
         phOcc: "Mevcut mesleğinizi girin",
         phAddrIraqi: "Şehir / Bölge",
         phAddrForeign: "Londra - İngiltere veya Dubai - BAE",
-        phAddrComp: "Bağdat او Erbil",
+        phAddrComp: "Bağdat أو Erbil",
         phNat: "örn. İngiliz / Amerikan",
         phCountry: "örn. Irak / BAE / İngiltere",
-        phRegNo: "Kayıت أو Sertifika Numarası",
+        phRegNo: "Kayıt Numarası",
         phDetails: "Davanızın detaylarını kısaca açıklayın..."
       },
       zh: {
@@ -594,7 +594,7 @@
         typeOther: "其他 / 一般咨询",
         details: "您的案件或咨询主题详情 *",
         submit: "提交法律审核申请 →",
-        successMsg: "您的申请已成功收到（我们将在24小时内审核并回复）。",
+        successMsg: "您的申请已成功收到。",
         phName: "输入全名",
         phCompRep: "负责代表姓名",
         phEmail: "name@example.com",
@@ -661,7 +661,7 @@
         typeOther: "Autre / Général",
         details: "Détails de votre cas ou sujet de consultation *",
         submit: "Soumettre pour Examen Juridique →",
-        successMsg: "Votre demande a été reçue avec succès (elle sera examinée et traitée sous 24 heures).",
+        successMsg: "Votre demande a été reçue avec succès.",
         phName: "Entrez le nom complet",
         phCompRep: "Nom du représentant responsable",
         phEmail: "name@example.com",
@@ -728,7 +728,7 @@
         typeOther: "Otro / General",
         details: "Detalles de su caso o tema de consulta *",
         submit: "Enviar Solicitud para Revisión Legal →",
-        successMsg: "Su solicitud ha sido recibida con éxito (será revisada y respondida dentro de las 24 horas).",
+        successMsg: "Su solicitud ha sido recibida con éxito.",
         phName: "Ingrese el nombre completo",
         phCompRep: "Nombre del representante",
         phEmail: "name@example.com",
@@ -795,7 +795,7 @@
         typeOther: "Sonstige / Allgemeine Beratung",
         details: "Details Ihres Falles *",
         submit: "Anfrage zur rechtlichen Prüfung absenden →",
-        successMsg: "Ihre Anfrage wurde erfolgreich empfangen (wird innerhalb von 24 Stunden geprüft und beantwortet).",
+        successMsg: "Ihre Anfrage wurde erfolgreich empfangen.",
         phName: "Vollständigen Namen eingeben",
         phCompRep: "Name des Vertreters",
         phEmail: "name@example.com",
@@ -1019,10 +1019,9 @@
       }
     }
 
-    // ربط مباشر مع قاعدة بيانات Supabase الحقيقية والمستقلة
+    // الربط المباشر بقاعدة البيانات Supabase بدون مكتبات خارجية
     const SUPABASE_URL = 'https://jpcamurbnzmwfwftpsub.supabase.co';
     const SUPABASE_KEY = 'sb_publishable_6r2dierEgyLRnneQkUrnbw_hE27Rp36';
-    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
     document.getElementById('consultationForm').addEventListener('submit', async function(e) {
       e.preventDefault();
@@ -1037,7 +1036,7 @@
         company_rep: document.getElementById('companyRepName').value,
         email: document.getElementById('email').value,
         phone: document.getElementById('phone').value,
-        personal_details: (document.querySelector('input[name="entityType"]:checked').value === 'company') ? '' : `الجنس: ${document.getElementById('gender').value}, العمر: ${document.getElementById('age').value}, التحصيل: ${document.getElementById('education').value}, العمل: ${document.getElementById('occupation').value}`,
+        personal_details: (document.querySelector('input[name="entityType"]:checked').value === 'company') ? '' : `الجنس: ${document.getElementById('gender').value}, العمر: ${document.ейgetElementById ? document.getElementById('age').value : ''}, التحصيل: ${document.getElementById('education').value}, العمل: ${document.getElementById('occupation').value}`,
         address: document.getElementById('address').value,
         id_or_reg: (document.querySelector('input[name="citizenship"]:checked').value === 'foreign' && document.querySelector('input[name="entityType"]:checked').value !== 'company') ? document.getElementById('nationalityIndiv').value : (document.querySelector('input[name="entityType"]:checked').value === 'company' ? `التأسيس: ${document.getElementById('countryInc').value} - رقم التسجيل: ${document.getElementById('regNo').value}` : ''),
         translation: document.getElementById('translationNeeded').value,
@@ -1051,24 +1050,34 @@
       submitBtn.disabled = true;
       submitBtn.style.opacity = '0.7';
 
-      const { data, error } = await supabaseClient
-        .from('bookings')
-        .insert([formData]);
+      try {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/bookings`, {
+          method: 'POST',
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify(formData)
+        });
 
-      if (error) {
-        console.error('Error!', error);
-        alert("حدث خطأ أثناء إرسال الطلب، يرجى المحاولة مرة أخرى.");
-        submitBtn.disabled = false;
-        submitBtn.style.opacity = '1';
-      } else {
+        if (!response.ok) {
+          const errText = await response.text();
+          throw new Error(errText || 'فشل الاتصال بالخادم');
+        }
+
         alert(t.successMsg);
         document.getElementById('consultationForm').reset();
+        updateFormDisplay();
+      } catch (err) {
+        console.error('Submission Error:', err);
+        alert("حدث خطأ في الاتصال بقاعدة البيانات: " + err.message);
+      } finally {
         submitBtn.disabled = false;
         submitBtn.style.opacity = '1';
-        updateFormDisplay();
       }
     });
   </script>
-
 </body>
 </html>
