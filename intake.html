@@ -2,33 +2,50 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>نظام إدارة الاستشارات القانونية - AKH</title>
+  <title>لوحة تحكم المكتب القانوني - AKH</title>
   <style>
     body { font-family: Arial, sans-serif; background: #f8fafc; margin: 0; padding: 20px; color: #2d3748; }
     .wrapper { max-width: 1100px; margin: auto; }
+    /* شاشة القفل للحماية */
+    #loginOverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0f172a; display: flex; justify-content: center; align-items: center; z-index: 9999; }
+    .login-box { background: white; padding: 30px; border-radius: 12px; text-align: center; width: 320px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+    .login-box input { width: 100%; padding: 10px; margin: 15px 0; border: 1px solid #cbd5e1; border-radius: 6px; text-align: center; font-size: 16px; }
     .card { background: #ffffff; padding: 20px; border-radius: 12px; border-top: 5px solid #b79042; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 20px; text-align: center; }
+    .logo { font-size: 20px; font-weight: bold; color: #b79042; margin-bottom: 5px; }
     .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 20px; }
     .stat-box { background: #ffffff; padding: 15px; border-radius: 12px; border: 1px solid #e2e8f0; text-align: center; }
     .stat-number { font-size: 26px; font-weight: bold; color: #1a365d; margin-top: 5px; }
-    .btn { background: #b79042; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: bold; cursor: pointer; }
+    .btn { background: #b79042; color: white; border: none; padding: 8px 15px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 13px; }
     .btn:hover { background: #967333; }
+    .btn-action { background: #2b6cb0; margin: 2px; }
     table { width: 100%; border-collapse: collapse; margin-top: 10px; background: white; border-radius: 8px; overflow: hidden; }
     th, td { padding: 12px; text-align: right; border-bottom: 1px solid #e2e8f0; font-size: 13px; }
     th { background: #f7fafc; color: #1a365d; }
   </style>
 </head>
 <body>
-  <div class="wrapper">
+
+  <!-- قفل الحماية -->
+  <div id="loginOverlay">
+    <div class="login-box">
+      <div class="logo">مكتب المحامي علي الهاشمي</div>
+      <p style="font-size: 13px; color: #64748b;">يرجى إدخال رمز المرور للدخول</p>
+      <input type="password" id="passInput" placeholder="رمز المرور">
+      <button class="btn" style="width: 100%;" onclick="checkPassword()">دخول آمن</button>
+    </div>
+  </div>
+
+  <div class="wrapper" id="mainContent" style="display: none;">
     <div class="card">
-      <h2>نظام إدارة الاستشارات القانونية</h2>
-      <p style="color: #718096; font-size: 13px;">مكتب المحامي علي كاظم الهاشمي - لوحة التحكم</p>
+      <div class="logo">⚖️ مكتب المحامي علي كاظم الهاشمي</div>
+      <p style="color: #718096; font-size: 13px;">نظام إدارة الاستشارات والطلبات الواردة</p>
       <button class="btn" onclick="loadData()">🔄 تحديث البيانات</button>
     </div>
 
     <div class="stats-grid">
-      <div class="stat-box"><div>إجمالي الطلبات المستلمة</div><div id="totalCount" class="stat-number">0</div></div>
-      <div class="stat-box"><div>طلبات قيد المراجعة</div><div id="pendingCount" class="stat-number" style="color: #b79042;">0</div></div>
-      <div class="stat-box"><div>الطلبات المقبولة والمنجزة</div><div id="completedCount" class="stat-number" style="color: #22543d;">0</div></div>
+      <div class="stat-box"><div>إجمالي الطلبات</div><div id="totalCount" class="stat-number">0</div></div>
+      <div class="stat-box"><div>قيد المراجعة</div><div id="pendingCount" class="stat-number" style="color: #b79042;">0</div></div>
+      <div class="stat-box"><div>المقبولة والمنجزة</div><div id="completedCount" class="stat-number" style="color: #22543d;">0</div></div>
     </div>
 
     <div class="card" style="text-align: right;">
@@ -41,9 +58,9 @@
               <th>الاسم الكامل</th>
               <th>الهاتف</th>
               <th>التفاصيل الشخصية</th>
-              <th>طريقة الاستشارة</th>
-              <th>التصنيف القانوني</th>
+              <th>التصنيف</th>
               <th>الحالة</th>
+              <th>الإجراءات والمدفوعات</th>
             </tr>
           </thead>
           <tbody id="requestsTable">
@@ -55,48 +72,66 @@
   </div>
 
   <script>
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxz-zvK4hFptavnIUjUcpTkybd1oiTtWYEsRfs5kAVMA3IztmonkDBIGXHKH0BFcMPN/exec';
+
+    function checkPassword() {
+      const pass = document.getElementById('passInput').value;
+      if (pass === '2026') { // يمكنك تغيير الرمز هنا بسهولة
+        document.getElementById('loginOverlay').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'block';
+        loadData();
+      } else {
+        alert('رمز المرور غير صحيح!');
+      }
+    }
+
     function loadData() {
       document.getElementById('requestsTable').innerHTML = '<tr><td colspan="7" style="text-align: center; color: #718096;">جاري تحميل البيانات...</td></tr>';
       
-      const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxz-zvK4hFptavnIUjUcpTkybd1oiTtWYEsRfs5kAVMA3IztmonkDBIGXHKH0BFcMPN/exec?action=getData';
-
-      fetch(SCRIPT_URL)
-        .then(response => response.json())
+      fetch(SCRIPT_URL + '?action=getData')
+        .then(res => res.json())
         .then(data => {
-          if (data.status === 'error') {
-            throw new Error(data.message);
-          }
           document.getElementById('totalCount').innerText = data.total || 0;
           document.getElementById('pendingCount').innerText = data.pending || 0;
           document.getElementById('completedCount').innerText = data.completed || 0;
           
           const tbody = document.getElementById('requestsTable');
           if (!data.requests || data.requests.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: #718096;">لا توجد طلبات مسجلة في الشيت.</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: #718096;">لا توجد طلبات مسجلة.</td></tr>';
             return;
           }
           
           let html = '';
-          data.requests.forEach(function(req) {
-            html += '<tr>' +
-              '<td>' + req.date + '</td>' +
-              '<td><strong>' + req.name + '</strong></td>' +
-              '<td>' + req.phone + '</td>' +
-              '<td style="color: #4a5568; font-size: 12px;">' + req.details + '</td>' +
-              '<td>' + req.type + '</td>' +
-              '<td>' + req.entity + '</td>' +
-              '<td><span style="padding: 4px 8px; border-radius: 4px; background: #edf2f7; font-size: 12px;">' + req.status + '</span></td>' +
-            '</tr>';
+          data.requests.forEach(req => {
+            let actions = `<button class="btn btn-action" onclick="changeStatus(${req.row}, 'مقبول - بانتظار تسديد الأتعاب والدفع')">طلب الأتعاب</button>` +
+                          `<button class="btn" style="background:#22543d;" onclick="changeStatus(${req.row}, 'منجز ومكتمل')">إنجاز</button>`;
+            
+            html += `<tr>` +
+              `<td>${req.date}</td>` +
+              `<td><strong>${req.name}</strong></td>` +
+              `<td>${req.phone}</td>` +
+              `<td style="font-size:12px; color:#4a5568;">${req.details}</td>` +
+              `<td>${req.entity}</td>` +
+              `<td><span style="padding: 4px 8px; border-radius: 4px; background: #edf2f7; font-size: 12px;">${req.status}</span></td>` +
+              `<td>${actions}</td>` +
+            `</tr>`;
           });
           tbody.innerHTML = html;
         })
-        .catch(err => {
-          alert('خطأ في جلب البيانات: ' + err.message);
-          document.getElementById('requestsTable').innerHTML = '<tr><td colspan="7" style="text-align: center; color: #c53030;">حدث خطأ: ' + err.message + '</td></tr>';
-        });
+        .catch(err => alert('خطأ في الاتصال: ' + err.message));
     }
 
-    window.onload = loadData;
+    function changeStatus(rowNum, newStatus) {
+      if (!confirm('هل تريد تغيير حالة الطلب وتحديث الإجراء؟')) return;
+      fetch(`${SCRIPT_URL}?action=updateStatus&row=${rowNum}&status=${encodeURIComponent(newStatus)}`)
+        .then(res => res.json())
+        .then(resp => {
+          if (resp.success) {
+            alert('تم تحديث الحالة بنجاح!');
+            loadData();
+          }
+        });
+    }
   </script>
 </body>
 </html>
