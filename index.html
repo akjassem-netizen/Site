@@ -111,12 +111,20 @@
       border-top: 6px solid #c5a059;
       text-align: center;
     }
+    .brand-logo-link {
+      display: block;
+      text-decoration: none;
+      margin-bottom: 22px;
+    }
     .brand-logo-box {
       background: #ffffff;
       border: 1.5px solid #e2e8f0;
       border-radius: 14px;
       padding: 20px;
-      margin-bottom: 22px;
+      transition: border-color 0.2s;
+    }
+    .brand-logo-link:hover .brand-logo-box {
+      border-color: #c5a059;
     }
     .b-akh { font-size: 38px; font-weight: 900; letter-spacing: 3px; color: #0f172a; line-height: 1.1; font-family: Arial, sans-serif; }
     .b-akh .red-k { color: #dc2626; }
@@ -182,6 +190,7 @@
 </head>
 <body>
 
+  <!-- الهيدر التنفيذي -->
   <header class="icover-header">
     <div>
       <select id="languageSelect" class="lang-select-bar" onchange="changeLanguage(this.value)">
@@ -199,7 +208,7 @@
     <div class="menu-container">
       <button class="menu-toggle" onclick="toggleMenu()" aria-label="القائمة">☰</button>
       <div id="dropdownMenu" class="dropdown-menu">
-        <a href="index.html" id="menuHome">الرئيسية</a>
+        <a href="https://akjassem.com" id="menuHome">الرئيسية</a>
         <a href="/services/" id="menuServices">دليل الخدمات القانونية</a>
         <a href="consultations.html" id="menuConsultations">الاستشارات القانونية</a>
         <a href="insights.html" id="menuInsights">الآراء والرؤى القانونية (Insights)</a>
@@ -209,14 +218,17 @@
     </div>
   </header>
 
+  <!-- التخطيط الرئيسي -->
   <main class="main-container">
     <aside class="sticky-sidebar">
       <section class="hero-box">
-        <div class="brand-logo-box" dir="ltr">
-          <div class="b-akh">A<span class="red-k">K</span>H</div>
-          <div class="b-sub"><span class="red-slash">/</span> LAW OFFICE</div>
-          <div class="b-est">EST. 2014</div>
-        </div>
+        <a href="https://akjassem.com" class="brand-logo-link">
+          <div class="brand-logo-box" dir="ltr">
+            <div class="b-akh">A<span class="red-k">K</span>H</div>
+            <div class="b-sub"><span class="red-slash">/</span> LAW OFFICE</div>
+            <div class="b-est">EST. 2014</div>
+          </div>
+        </a>
 
         <h1 class="hero-title" id="heroTitle">مكتب المحامي علي كاظم الهاشمي</h1>
         <p class="hero-subtitle" id="heroSubtitle">شريككم القانوني الموثوق في بغداد. نقدم خدمات استشارية متكاملة، تأسيس الشركات، والتمثيل القضائي وفق أعلى معايير الاحترافية والأمان القانوني.</p>
