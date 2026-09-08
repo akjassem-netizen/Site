@@ -113,7 +113,7 @@
       margin-bottom: 2px;
     }
 
-    /* مربع خرائط جوجل التفاعلي مع الرسم والعبارة الظاهرة */
+    /* مربع خرائط جوجل التفاعلي مع شعار جوجل الرسمي والعبارة الظاهرة */
     .map-card-box {
       display: flex;
       align-items: center;
@@ -138,15 +138,15 @@
       gap: 15px;
     }
     .map-pin-icon {
-      font-size: 28px;
       background: #ffffff;
-      width: 50px;
-      height: 50px;
+      width: 48px;
+      height: 48px;
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 50%;
       box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      flex-shrink: 0;
     }
     .map-text-info strong {
       display: block;
@@ -166,7 +166,7 @@
       font-weight: 900;
     }
 
-    /* أزرار بالأسفل */
+    /* زر الواتساب بالأسفل */
     .action-buttons {
       display: flex;
       flex-direction: column;
@@ -233,7 +233,11 @@
 
       <a href="https://maps.google.com/?q=%D9%85%D9%83%D8%AA%D8%A8+%D8%A7%D9%84%D9%85%D8%AD%D8%A7%D9%85%D9%8A+%D8%B9%D9%84%D9%8A+%D9%83%D8%A7%D8%B8%D9%85+%D8%A7%D9%84%D9%87%D8%A7%D8%B4%D9%85%D9%8A" target="_blank" class="map-card-box">
         <div class="map-card-left">
-          <div class="map-pin-icon">🗺️</div>
+          <div class="map-pin-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z" fill="#EA4335"/>
+            </svg>
+          </div>
           <div class="map-text-info">
             <strong>عرض موقع المكتب على خرائط جوجل</strong>
             <span>انقر هنا للانتقال وتتبع الطريق إلى المكتب</span>
