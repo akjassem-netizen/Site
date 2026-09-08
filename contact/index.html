@@ -71,7 +71,7 @@
 
     .page-title {
       text-align: center;
-      font-size: 17px;
+      font-size: 18px;
       font-weight: 700;
       color: #0f172a;
       margin-bottom: 20px;
@@ -113,31 +113,66 @@
       margin-bottom: 2px;
     }
 
-    /* الأزرار بالأسفل */
+    /* مربع خرائط جوجل التفاعلي مع الرسم والعبارة الظاهرة */
+    .map-card-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+      border: 2px dashed #16a34a;
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-top: 15px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(22, 163, 74, 0.08);
+    }
+    .map-card-box:hover {
+      background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+      border-color: #15803d;
+      transform: translateY(-2px);
+    }
+    .map-card-left {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .map-pin-icon {
+      font-size: 28px;
+      background: #ffffff;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+    .map-text-info strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 700;
+      color: #166534;
+      margin-bottom: 2px;
+    }
+    .map-text-info span {
+      font-size: 12px;
+      color: #15803d;
+      font-weight: 600;
+    }
+    .map-arrow-icon {
+      font-size: 18px;
+      color: #166534;
+      font-weight: 900;
+    }
+
+    /* أزرار بالأسفل */
     .action-buttons {
       display: flex;
       flex-direction: column;
       gap: 12px;
       margin-top: 20px;
     }
-    .btn-map {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      width: 100%;
-      background: #0284c7;
-      color: white;
-      padding: 15px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 15px;
-      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.2);
-      transition: background 0.3s;
-    }
-    .btn-map:hover { background: #0369a1; }
-
     .btn-whatsapp {
       display: flex;
       align-items: center;
@@ -169,13 +204,13 @@
       <div class="est">EST. 2014</div>
     </div>
 
-    <div class="page-title">اتصل بنا ومقر المكتب الرئيسي</div>
+    <div class="page-title">اتصل بنا</div>
 
     <div class="info-card">
       <div class="info-row">
         <div class="icon">📍</div>
         <div class="content">
-          <strong>عنوان المقر</strong>
+          <strong>العنوان</strong>
           بغداد - زيونة - قرب دار الأزياء العراقية
         </div>
       </div>
@@ -183,7 +218,7 @@
       <div class="info-row">
         <div class="icon">⏰</div>
         <div class="content">
-          <strong>أوقات العمل الرسمية</strong>
+          <strong>أوقات العمل</strong>
           الأحد إلى الخميس (08:00 صباحاً - 04:00 عصراً بتوقيت بغداد)
         </div>
       </div>
@@ -195,13 +230,20 @@
           <span dir="ltr">+964 783 875 9047</span>
         </div>
       </div>
+
+      <a href="https://maps.google.com/?q=%D9%85%D9%83%D8%AA%D8%A8+%D8%A7%D9%84%D9%85%D8%AD%D8%A7%D9%85%D9%8A+%D8%B9%D9%84%D9%8A+%D9%83%D8%A7%D8%B8%D9%85+%D8%A7%D9%84%D9%87%D8%A7%D8%B4%D9%85%D9%8A" target="_blank" class="map-card-box">
+        <div class="map-card-left">
+          <div class="map-pin-icon">🗺️</div>
+          <div class="map-text-info">
+            <strong>عرض موقع المكتب على خرائط جوجل</strong>
+            <span>انقر هنا للانتقال وتتبع الطريق إلى المكتب</span>
+          </div>
+        </div>
+        <div class="map-arrow-icon">➔</div>
+      </a>
     </div>
 
     <div class="action-buttons">
-      <a href="https://maps.google.com/?q=%D9%85%D9%83%D8%AA%D8%A8+%D8%A7%D9%84%D9%85%D8%AD%D8%A7%D9%85%D9%8A+%D8%B9%D9%84%D9%8A+%D9%83%D8%A7%D8%B8%D9%85+%D8%A7%D9%84%D9%87%D8%A7%D8%B4%D9%85%D9%8A" target="_blank" class="btn-map">
-        <span>🗺️ الانتقال إلى مكتب المحامي علي كاظم الهاشمي في خرائط جوجل</span>
-      </a>
-
       <a href="https://wa.me/9647838759047" target="_blank" class="btn-whatsapp">
         <span>💬 تواصل عبر الواتساب مباشرة</span>
       </a>
