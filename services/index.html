@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" id="htmlRoot">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <!-- تحسين محركات البحث (SEO) الشامل لجميع الخدمات التسع - 8 لغات -->
-  <title>دليل الخدمات القانونية المتكاملة في العراق | مكتب المحامي علي كاظم الهاشمي</title>
-  <meta name="description" content="استعراض كافة الخدمات القانونية المعتمدة لمكتب المحامي علي كاظم الهاشمي في بغداد: تأسيس الشركات، التمثيل القضائي، العقود، الاستثمار، الضرائب، الأحوال الشخصية، الملكية الفكرية، والعقارات. | AKH Law Office Iraq">
-  <meta name="keywords" content="خدمات قانونية في العراق, تأسيس شركات بغداد, تمثيل قضائي, تحصيل الديون, تراخيص الاستثمار الأجنبي, تسجيل علامات تجارية, صياغة عقود تجارية, أحوال شخصية, نفقة, قسام شرعي, استشارات ضريبية, خدمات عقارية, Legal services Iraq, corporate registration Baghdad, litigation lawyer, debt collection, investment licenses, trademark registration, contract drafting, family law, tax advisory, real estate legal services, Irak hukuki hizmetler, şirket kuruluşu Bağdat, dava ve temsil, alacak tahsili, yabancı yatırım lisansları, marka tescili, sözleşme hazırlama, aile hukuku, vergi danışmanlığı, gayrimenkul hukuku, Juristische Dienstleistungen Irak, Firmengründung Bagdad, Prozessvertretung, Forderungseinzug, Investitionslizenzen, Markenanmeldung, Vertragsgestaltung, Familienrecht, Steuerberatung, Immobilienrecht, Servicios legales en Irak, constitución de empresas Bagdad, litigio, cobro de deudas, licencias de inversión, registro de marcas, redacción de contratos, derecho de familia, asesoría fiscal, servicios inmobiliarios, 伊拉克法律服务, 公司注册巴格达, 诉讼代理, 债务追讨, 外商投资许可证, 商标注册, 合同起草, 家庭法, 税务咨询, 房地产法律服务, خزمەتگوزاری یاسایی لە عێراق, دامەزراندنی کۆمپانیا بغداد, نوێنەرایەتی دادوەری, وەرگرتنەوەی قەرز, مۆڵەتی وەبەرهێنان, تۆمارکردنی مارکە, صياغة گرێبەست, یاسای خێزان, ڕاوێژکاری باج, خزمەتگوزاری خانووبەرە, Services juridiques en Iraq, création d'entreprise Bagdad, contentieux, recouvrement de créances, licences d'investissement, enregistrement de marques, rédaction de contrats, droit de la famille, conseil fiscal, services juridiques immobiliers">
+  <title id="pageTitle">دليل الخدمات القانونية المتكاملة في العراق | مكتب المحامي علي كاظم الهاشمي</title>
+  <meta id="metaDesc" name="description" content="استعراض كافة الخدمات القانونية المعتمدة لمكتب المحامي علي كاظم الهاشمي في بغداد: تأسيس الشركات، التمثيل القضائي، العقود، الاستثمار، الضرائب، والأحوال الشخصية. | AKH Law Office Iraq">
+  <meta id="metaKeywords" name="keywords" content="خدمات قانونية في العراق, تأسيس شركات بغداد, تمثيل قضائي, تحصيل الديون, تراخيص الاستثمار الأجنبي, تسجيل علامات تجارية, صياغة عقود تجارية, استشارات ضريبية, Legal services Iraq, corporate registration Baghdad, litigation lawyer, debt collection, investment licenses, trademark registration, contract drafting, tax advisory, Irak hukuki hizmetler, şirket kuruluşu Bağdat, Juristische Dienstleistungen Irak, Firmengründung Bagdad, Servicios legales en Irak, constitución de empresas Bagdad, 伊拉克法律服务, 公司注册巴格达, خزمەتگوزاری یاسایی لە عێراق, دامەزراندنی کۆمپانیا بغداد">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,15 +17,100 @@
       font-family: 'Cairo', system-ui, sans-serif;
       background-color: #f8fafc;
       color: #0f172a;
-      padding: 30px 16px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* الهيدر الموحد الفاخر */
+    .icover-header {
+      background: #0f172a;
+      border-bottom: 3px solid #c5a059;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .lang-select-bar {
+      padding: 7px 14px;
+      border-radius: 6px;
+      border: 1.5px solid #c5a059;
+      background: #0f172a;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 700;
+      outline: none;
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
+    }
+    .lang-select-bar option { background: #0f172a; color: #ffffff; }
+
+    .menu-container { position: relative; }
+    .menu-toggle {
+      background: rgba(255,255,255,0.1);
+      border: 1.5px solid #c5a059;
+      color: #ffffff;
+      width: 42px;
+      height: 42px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .menu-toggle:hover { background: rgba(197,160,89,0.2); }
+
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      left: auto;
+      min-width: 260px;
+      background: #0f172a;
+      border: 1.5px solid #c5a059;
+      border-radius: 10px;
+      display: none;
+      flex-direction: column;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+      padding: 8px 0;
+      z-index: 1100;
+    }
+    [dir="rtl"] .dropdown-menu { left: 0; right: auto; }
+    .dropdown-menu.active { display: flex; }
+    
+    .dropdown-menu a {
+      color: #ffffff;
+      padding: 12px 20px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      white-space: nowrap;
+      transition: background 0.2s, color 0.2s;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      text-align: right;
+      font-family: 'Cairo', sans-serif;
+    }
+    .dropdown-menu a:hover { background: rgba(197,160,89,0.15); color: #c5a059; }
+
+    .page-wrapper {
+      flex: 1;
       display: flex;
       justify-content: center;
-      min-height: 100vh;
       align-items: flex-start;
+      padding: 30px 16px;
     }
     .container {
       width: 100%;
-      max-width: 850px;
+      max-width: 900px;
       background: #ffffff;
       padding: 35px 25px;
       border-radius: 16px;
@@ -34,7 +118,6 @@
       border-top: 5px solid #c5a059;
     }
     
-    /* الشعار الرسمي: حرف K باللون الأحمر وباقي الحروف بالأسود الداكن */
     .brand-logo {
       text-align: center;
       margin-bottom: 28px;
@@ -47,9 +130,7 @@
       letter-spacing: 4px;
       line-height: 1;
     }
-    .brand-logo .akh .red-k {
-      color: #dc2626;
-    }
+    .brand-logo .akh .red-k { color: #dc2626; }
     .brand-logo .sub-title {
       font-size: 13px;
       font-weight: 700;
@@ -61,18 +142,8 @@
       justify-content: center;
       gap: 6px;
     }
-    .brand-logo .sub-title .slash {
-      color: #dc2626;
-      font-weight: 900;
-      font-size: 16px;
-    }
-    .brand-logo .est {
-      font-size: 11px;
-      color: #64748b;
-      letter-spacing: 2px;
-      margin-top: 4px;
-      font-weight: 600;
-    }
+    .brand-logo .sub-title .slash { color: #dc2626; font-weight: 900; font-size: 16px; }
+    .brand-logo .est { font-size: 11px; color: #64748b; letter-spacing: 2px; margin-top: 4px; font-weight: 600; }
 
     .page-title {
       text-align: center;
@@ -91,19 +162,13 @@
       font-weight: 600;
     }
 
-    /* شبكة الكارتات (المربعات المنسدلة للخدمات) */
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
       gap: 20px;
     }
-    @media (max-width: 600px) {
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
-    }
+    @media (max-width: 600px) { .services-grid { grid-template-columns: 1fr; } }
 
-    /* تصميم الكارت الواحد */
     .service-card {
       background: #ffffff;
       border: 1px solid #e2e8f0;
@@ -113,7 +178,6 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      position: relative;
     }
     .service-card:hover {
       border-color: #c5a059;
@@ -139,16 +203,13 @@
       flex-shrink: 0;
       border: 1px solid #e2e8f0;
     }
-    .service-title-area {
-      flex-grow: 1;
-    }
+    .service-title-area { flex-grow: 1; }
     .service-title {
       font-size: 16px;
       font-weight: 700;
       color: #0f172a;
       margin-bottom: 4px;
     }
-    /* امتداد الرابط الخاص بالخدمة (Slug) */
     .service-path {
       display: inline-block;
       font-family: monospace;
@@ -160,7 +221,6 @@
       direction: ltr;
     }
 
-    /* النبذة التعريفية البسيطة */
     .service-summary {
       font-size: 13px;
       color: #475569;
@@ -169,228 +229,436 @@
       text-align: justify;
     }
 
-    /* زر للمزيد والتفاصيل */
     .service-footer {
       border-top: 1px solid #f1f5f9;
       padding-top: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
     }
     .btn-read-more {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      justify-content: center;
       background: #0f172a;
       color: white;
-      padding: 8px 16px;
+      padding: 9px 16px;
       border-radius: 8px;
       text-decoration: none;
-      font-size: 12.5px;
+      font-size: 13px;
       font-weight: 700;
       transition: background 0.3s;
       width: 100%;
-      justify-content: center;
     }
-    .btn-read-more:hover {
-      background: #c5a059;
-    }
+    .btn-read-more:hover { background: #c5a059; }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    
-    <!-- الشعار الرسمي -->
-    <div class="brand-logo">
-      <div class="akh">A<span class="red-k">K</span>H</div>
-      <div class="sub-title">
-        <span class="slash">/</span>
-        <span>LAW OFFICE</span>
-      </div>
-      <div class="est">EST. 2014</div>
+  <header class="icover-header">
+    <div>
+      <select id="languageSelect" class="lang-select-bar" onchange="changeLanguage(this.value)">
+        <option value="ar">العربية</option>
+        <option value="en">English</option>
+        <option value="tr">Türkçe</option>
+        <option value="zh">中文</option>
+        <option value="fr">Français</option>
+        <option value="es">Español</option>
+        <option value="de">Deutsch</option>
+        <option value="ku">کوردی</option>
+      </select>
     </div>
 
-    <div class="page-title">خدماتنا وأعمالنا القانونية</div>
-    <div class="page-subtitle">اختر الخدمة المطلوبة للاطلاع على التفاصيل الكاملة وحجز الموعد المباشر</div>
+    <div class="menu-container">
+      <button class="menu-toggle" onclick="toggleMenu()" aria-label="القائمة">☰</button>
+      <div id="dropdownMenu" class="dropdown-menu">
+        <a href="https://akjassem.com" id="menuHome">الرئيسية</a>
+        <a href="/services/" id="menuServices">دليل الخدمات القانونية</a>
+        <a href="../consultations.html" id="menuConsultations">الاستشارات القانونية</a>
+        <a href="../insights.html" id="menuInsights">الآراء والرؤى القانونية (Insights)</a>
+        <a href="../about.html" id="menuAbout">من نحن</a>
+        <a href="../contact/" id="menuContact">اتصل بنا</a>
+      </div>
+    </div>
+  </header>
 
-    <!-- شبكة المربعات (الكارتات) -->
-    <div class="services-grid">
-
-      <!-- 1. الاستشارات الضريبية والامتثال المالي -->
-      <div class="service-card">
-        <div>
-          <div class="service-top">
-            <div class="service-icon">📊</div>
-            <div class="service-title-area">
-              <div class="service-title">الاستشارات الضريبية والامتثال المالي</div>
-              <span class="service-path">/services/tax-advisory/</span>
-            </div>
-          </div>
-          <div class="service-summary">
-            هيكلة الضرائب، التسجيل لدى الهيئات الضريبية، ومتابعة المتطلبات المحاسبية والمالية للشركات لضمان الامتثال التام للقوانين النافذة في العراق.
-          </div>
+  <div class="page-wrapper">
+    <div class="container">
+      
+      <div class="brand-logo">
+        <div class="akh">A<span class="red-k">K</span>H</div>
+        <div class="sub-title">
+          <span class="slash">/</span>
+          <span>LAW OFFICE</span>
         </div>
-        <div class="service-footer">
-          <a href="/services/tax-advisory/" class="btn-read-more">للمزيد والتفاصيل ➔</a>
-        </div>
+        <div class="est">EST. 2014</div>
       </div>
 
-      <!-- 2. تأسيس الشركات بأنواعها -->
-      <div class="service-card">
-        <div>
-          <div class="service-top">
-            <div class="service-icon">🏢</div>
-            <div class="service-title-area">
-              <div class="service-title">تأسيس الشركات بأنواعها</div>
-              <span class="service-path">/services/corporate/</span>
-            </div>
-          </div>
-          <div class="service-summary">
-            تسجيل الشركات المحلية والأجنبية، إعداد الوثائق القانونية، فتح الحسابات المصرفية، واستحصال التراخيص الرسمية بمهنية وسرعة عالية.
-          </div>
-        </div>
-        <div class="service-footer">
-          <a href="/services/corporate/" class="btn-read-more">للمزيد والتفاصيل ➔</a>
-        </div>
-      </div>
+      <div class="page-title" id="pageMainTitle">خدماتنا وأعمالنا القانونية</div>
+      <div class="page-subtitle" id="pageSubTitle">اختر الخدمة المطلوبة للاطلاع على التفاصيل الكاملة وحجز الموعد المباشر</div>
 
-      <!-- 3. الخدمات القانونية والعقارية -->
-      <div class="service-card">
-        <div>
-          <div class="service-top">
-            <div class="service-icon">🏠</div>
-            <div class="service-title-area">
-              <div class="service-title">الخدمات القانونية والعقارية</div>
-              <span class="service-path">/services/real-estate/</span>
-            </div>
-          </div>
-          <div class="service-summary">
-            متابعة وتوثيق العقود العقارية، عقود الإيجار والاستثمار، استخراج السندات والخرائط، وتسوية النزاعات العقارية أمام الجهات الرسمية.
-          </div>
-        </div>
-        <div class="service-footer">
-          <a href="/services/real-estate/" class="btn-read-more">للمزيد والتفاصيل ➔</a>
-        </div>
-      </div>
+      <div class="services-grid">
 
-      <!-- 4. التمثيل القانوني أمام الجهات القضائية -->
-      <div class="service-card">
-        <div>
-          <div class="service-top">
-            <div class="service-icon">⚖️</div>
-            <div class="service-title-area">
-              <div class="service-title">التمثيل القانوني أمام القضاء</div>
-              <span class="service-path">/services/litigation/</span>
+        <div class="service-card">
+          <div>
+            <div class="service-top">
+              <div class="service-icon">📊</div>
+              <div class="service-title-area">
+                <div class="service-title" id="s1Title">الاستشارات الضريبية والامتثال المالي</div>
+                <span class="service-path">/services/tax-advisory/</span>
+              </div>
+            </div>
+            <div class="service-summary" id="s1Summary">
+              هيكلة الضرائب، التسجيل لدى الهيئات الضريبية، ومتابعة المتطلبات المحاسبية والمالية للشركات لضمان الامتثال التام للقوانين النافذة في العراق.
             </div>
           </div>
-          <div class="service-summary">
-            تمثيل قانوني احترافي في جميع أنواع الدعاوى وعلى كافة مستويات المحاكم في العراق، مع إستراتيجيات مدروسة لتقليل التكاليف والمخاطر.
+          <div class="service-footer">
+            <a href="/services/tax-advisory/" class="btn-read-more" id="btnS1">للمزيد والتفاصيل ➔</a>
           </div>
         </div>
-        <div class="service-footer">
-          <a href="/services/litigation/" class="btn-read-more">للمزيد والتفاصيل ➔</a>
-        </div>
-      </div>
 
-      <!-- 5. تحصيل وتسوية الحقوق المالية -->
-      <div class="service-card">
-        <div>
-          <div class="service-top">
-            <div class="service-icon">💰</div>
-            <div class="service-title-area">
-              <div class="service-title">تحصيل وتسوية الحقوق المالية</div>
-              <span class="service-path">/services/financial-rights/</span>
+        <div class="service-card">
+          <div>
+            <div class="service-top">
+              <div class="service-icon">🏢</div>
+              <div class="service-title-area">
+                <div class="service-title" id="s2Title">تأسيس الشركات بأنواعها</div>
+                <span class="service-path">/services/corporate/</span>
+              </div>
+            </div>
+            <div class="service-summary" id="s2Summary">
+              تسجيل الشركات المحلية والأجنبية، إعداد الوثائق القانونية، فتح الحسابات المصرفية، واستحصال التراخيص الرسمية بمهنية وسرعة عالية.
             </div>
           </div>
-          <div class="service-summary">
-            استحصال المستحقات والديون المتأخرة، توجيه الإنذارات الرسمية، التفاوض على خطط سداد، وتوثيق الاتفاقات بعقود قانونية ملزمة.
+          <div class="service-footer">
+            <a href="/services/corporate/" class="btn-read-more" id="btnS2">للمزيد والتفاصيل ➔</a>
           </div>
         </div>
-        <div class="service-footer">
-          <a href="/services/financial-rights/" class="btn-read-more">للمزيد والتفاصيل ➔</a>
-        </div>
-      </div>
 
-      <!-- 6. إصدار تراخيص الاستثمار الأجنبي -->
-      <div class="service-card">
-        <div>
-          <div class="service-top">
-            <div class="service-icon">🌐</div>
-            <div class="service-title-area">
-              <div class="service-title">إصدار تراخيص الاستثمار الأجنبي</div>
-              <span class="service-path">/services/investment-licenses/</span>
+        <div class="service-card">
+          <div>
+            <div class="service-top">
+              <div class="service-icon">🏠</div>
+              <div class="service-title-area">
+                <div class="service-title" id="s3Title">الخدمات القانونية والعقارية</div>
+                <span class="service-path">/services/real-estate/</span>
+              </div>
+            </div>
+            <div class="service-summary" id="s3Summary">
+              متابعة وتوثيق العقود العقارية، عقود الإيجار والاستثمار، استخراج السندات والخرائط، وتسوية النزاعات العقارية أمام الجهات الرسمية.
             </div>
           </div>
-          <div class="service-summary">
-            توفير الدعم والإرشاد للمستثمرين في العراق، إعداد التنسيقات والوثائق القانونية المطلوبة، ومتابعة الامتثال التشريعي لنجاح المشاريع.
+          <div class="service-footer">
+            <a href="/services/real-estate/" class="btn-read-more" id="btnS3">للمزيد والتفاصيل ➔</a>
           </div>
         </div>
-        <div class="service-footer">
-          <a href="/services/investment-licenses/" class="btn-read-more">للمزيد والتفاصيل ➔</a>
-        </div>
-      </div>
 
-      <!-- 7. تسجيل العلامات التجارية وبراءات الاختراع -->
-      <div class="service-card">
-        <div>
-          <div class="service-top">
-            <div class="service-icon">🛡️</div>
-            <div class="service-title-area">
-              <div class="service-title">العلامات التجارية والملكية الفكرية</div>
-              <span class="service-path">/services/trademarks/</span>
+        <div class="service-card">
+          <div>
+            <div class="service-top">
+              <div class="service-icon">⚖️</div>
+              <div class="service-title-area">
+                <div class="service-title" id="s4Title">التمثيل القانوني أمام القضاء</div>
+                <span class="service-path">/services/litigation/</span>
+              </div>
+            </div>
+            <div class="service-summary" id="s4Summary">
+              تمثيل قانوني احترافي في جميع أنواع الدعاوى وعلى كافة مستويات المحاكم في العراق، مع إستراتيجيات مدروسة لتقليل التكاليف والمخاطر.
             </div>
           </div>
-          <div class="service-summary">
-            حماية حقوق الملكية الفكرية، تقييم وتسجيل العلامات التجارية والنماذج الصناعية وبراءات الاختراع ضد التعدي والتقليد القانوني.
+          <div class="service-footer">
+            <a href="/services/litigation/" class="btn-read-more" id="btnS4">للمزيد والتفاصيل ➔</a>
           </div>
         </div>
-        <div class="service-footer">
-          <a href="/services/trademarks/" class="btn-read-more">للمزيد والتفاصيل ➔</a>
-        </div>
-      </div>
 
-      <!-- 8. إعداد وصياغة ومراجعة العقود -->
-      <div class="service-card">
-        <div>
-          <div class="service-top">
-            <div class="service-icon">📜</div>
-            <div class="service-title-area">
-              <div class="service-title">إعداد وصياغة ومراجعة العقود</div>
-              <span class="service-path">/services/contracts/</span>
+        <div class="service-card">
+          <div>
+            <div class="service-top">
+              <div class="service-icon">💰</div>
+              <div class="service-title-area">
+                <div class="service-title" id="s5Title">تحصيل وتسوية الحقوق المالية</div>
+                <span class="service-path">/services/financial-rights/</span>
+              </div>
+            </div>
+            <div class="service-summary" id="s5Summary">
+              استحصال المستحقات والديون المتأخرة، توجيه الإنذارات الرسمية، التفاوض على خطط سداد، وتوثيق الاتفاقات بعقود قانونية ملزمة.
             </div>
           </div>
-          <div class="service-summary">
-            صياغة وتدقيق العقود التجارية والمدنية بدقة عالية لضمان حماية الحقوق والتوافق التام مع القوانين والتشريعات المعمول بها.
+          <div class="service-footer">
+            <a href="/services/financial-rights/" class="btn-read-more" id="btnS5">للمزيد والتفاصيل ➔</a>
           </div>
         </div>
-        <div class="service-footer">
-          <a href="/services/contracts/" class="btn-read-more">للمزيد والتفاصيل ➔</a>
-        </div>
-      </div>
 
-      <!-- 9. قضايا الأحوال الشخصية والتنفيذ القضائي -->
-      <div class="service-card">
-        <div>
-          <div class="service-top">
-            <div class="service-icon">👨‍👩‍👧‍👦</div>
-            <div class="service-title-area">
-              <div class="service-title">الأحوال الشخصية والتنفيذ القضائي</div>
-              <span class="service-path">/services/personal-status/</span>
+        <div class="service-card">
+          <div>
+            <div class="service-top">
+              <div class="service-icon">🌐</div>
+              <div class="service-title-area">
+                <div class="service-title" id="s6Title">إصدار تراخيص الاستثمار الأجنبي</div>
+                <span class="service-path">/services/investment-licenses/</span>
+              </div>
+            </div>
+            <div class="service-summary" id="s6Summary">
+              توفير الدعم والإرشاد للمستثمرين في العراق، إعداد التنسيقات والوثائق القانونية المطلوبة، ومتابعة الامتثال التشريعي لنجاح المشاريع.
             </div>
           </div>
-          <div class="service-summary">
-            متابعة دعاوى الأحوال الشخصية، التسويات الأسرية، ومتابعة قضايا التنفيذ القضائي لاستحصال الحقوق القانونية بيسر ومهنية.
+          <div class="service-footer">
+            <a href="/services/investment-licenses/" class="btn-read-more" id="btnS6">للمزيد والتفاصيل ➔</a>
           </div>
         </div>
-        <div class="service-footer">
-          <a href="/services/personal-status/" class="btn-read-more">للمزيد والتفاصيل ➔</a>
+
+        <div class="service-card">
+          <div>
+            <div class="service-top">
+              <div class="service-icon">🛡️</div>
+              <div class="service-title-area">
+                <div class="service-title" id="s7Title">العلامات التجارية والملكية الفكرية</div>
+                <span class="service-path">/services/trademarks/</span>
+              </div>
+            </div>
+            <div class="service-summary" id="s7Summary">
+              حماية حقوق الملكية الفكرية، تقييم وتسجيل العلامات التجارية والنماذج الصناعية وبراءات الاختراع ضد التعدي والتقليد القانوني.
+            </div>
+          </div>
+          <div class="service-footer">
+            <a href="/services/trademarks/" class="btn-read-more" id="btnS7">للمزيد والتفاصيل ➔</a>
+          </div>
         </div>
+
+        <div class="service-card">
+          <div>
+            <div class="service-top">
+              <div class="service-icon">📜</div>
+              <div class="service-title-area">
+                <div class="service-title" id="s8Title">إعداد وصياغة ومراجعة العقود</div>
+                <span class="service-path">/services/contracts/</span>
+              </div>
+            </div>
+            <div class="service-summary" id="s8Summary">
+              صياغة وتدقيق العقود التجارية والمدنية بدقة عالية لضمان حماية الحقوق والتوافق التام مع القوانين والتشريعات المعمول بها.
+            </div>
+          </div>
+          <div class="service-footer">
+            <a href="/services/contracts/" class="btn-read-more" id="btnS8">للمزيد والتفاصيل ➔</a>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div>
+            <div class="service-top">
+              <div class="service-icon">👨‍👩‍👧‍👦</div>
+              <div class="service-title-area">
+                <div class="service-title" id="s9Title">الأحوال الشخصية والتنفيذ القضائي</div>
+                <span class="service-path">/services/personal-status/</span>
+              </div>
+            </div>
+            <div class="service-summary" id="s9Summary">
+              متابعة دعاوى الأحوال الشخصية، التسويات الأسرية، ومتابعة قضايا التنفيذ القضائي لاستحصال الحقوق القانونية بيسر ومهنية.
+            </div>
+          </div>
+          <div class="service-footer">
+            <a href="/services/personal-status/" class="btn-read-more" id="btnS9">للمزيد والتفاصيل ➔</a>
+          </div>
+        </div>
+
       </div>
 
     </div>
-
   </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('dropdownMenu').classList.toggle('active');
+    }
+
+    window.onclick = function(event) {
+      if (!event.target.matches('.menu-toggle') && !event.target.closest('.menu-container')) {
+        document.getElementById('dropdownMenu').classList.remove('active');
+      }
+    }
+
+    // استمرار اللغة عبر جميع صفحات الموقع تلقائياً وتحديث محركات البحث SEO
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('preferredLang') || 'ar';
+      document.getElementById('languageSelect').value = savedLang;
+      changeLanguage(savedLang, false);
+    });
+
+    function changeLanguage(lang, save = true) {
+      if (save) {
+        localStorage.setItem('preferredLang', lang);
+      }
+      const root = document.getElementById('htmlRoot');
+      root.setAttribute('lang', lang);
+      root.setAttribute('dir', (lang === 'ar' || lang === 'ku') ? 'rtl' : 'ltr');
+
+      const t = dictionary[lang] || dictionary['en'];
+
+      document.getElementById('pageTitle').innerText = t.pageTitle;
+      document.getElementById('metaDesc').setAttribute('content', t.metaDesc);
+      document.getElementById('metaKeywords').setAttribute('content', t.metaKeywords);
+
+      document.getElementById('menuHome').innerText = t.home;
+      document.getElementById('menuServices').innerText = t.menuServices;
+      document.getElementById('menuConsultations').innerText = t.menuConsultations;
+      document.getElementById('menuInsights').innerText = t.menuInsights;
+      document.getElementById('menuAbout').innerText = t.menuAbout;
+      document.getElementById('menuContact').innerText = t.menuContact;
+
+      document.getElementById('pageMainTitle').innerText = t.pageMainTitle;
+      document.getElementById('pageSubTitle').innerText = t.pageSubTitle;
+
+      for (let i = 1; i <= 9; i++) {
+        document.getElementById(`s${i}Title`).innerText = t[`s${i}Title`];
+        document.getElementById(`s${i}Summary`).innerText = t[`s${i}Summary`];
+        document.getElementById(`btnS${i}`).innerText = t.btnText;
+      }
+    }
+
+    const dictionary = {
+      ar: {
+        pageTitle: "دليل الخدمات القانونية المتكاملة في العراق | مكتب المحامي علي كاظم الهاشمي",
+        metaDesc: "استعراض كافة الخدمات القانونية المعتمدة لمكتب المحامي علي كاظم الهاشمي في بغداد: تأسيس الشركات، التمثيل القضائي، العقود، الاستثمار، الضرائب، والعقارات.",
+        metaKeywords: "خدمات قانونية في العراق, تأسيس شركات بغداد, تمثيل قضائي, تحصيل الديون, تراخيص الاستثمار الأجنبي, تسجيل علامات تجارية, صياغة عقود تجارية, استشارات ضريبية",
+        home: "الرئيسية", menuServices: "دليل الخدمات القانونية", menuConsultations: "الاستشارات القانونية", menuInsights: "الآراء والرؤى القانونية (Insights)", menuAbout: "من نحن", menuContact: "اتصل بنا",
+        pageMainTitle: "خدماتنا وأعمالنا القانونية",
+        pageSubTitle: "اختر الخدمة المطلوبة للاطلاع على التفاصيل الكاملة وحجز الموعد المباشر",
+        btnText: "للمزيد والتفاصيل ➔",
+        s1Title: "الاستشارات الضريبية والامتثال المالي", s1Summary: "هيكلة الضرائب، التسجيل لدى الهيئات الضريبية، ومتابعة المتطلبات المحاسبية والمالية للشركات لضمان الامتثال التام للقوانين النافذة في العراق.",
+        s2Title: "تأسيس الشركات بأنواعها", s2Summary: "تسجيل الشركات المحلية والأجنبية، إعداد الوثائق القانونية، فتح الحسابات المصرفية، واستحصال التراخيص الرسمية بمهنية وسرعة عالية.",
+        s3Title: "الخدمات القانونية والعقارية", s3Summary: "متابعة وتوثيق العقود العقارية، عقود الإيجار والاستثمار، استخراج السندات والخرائط، وتسوية النزاعات العقارية أمام الجهات الرسمية.",
+        s4Title: "التمثيل القانوني أمام القضاء", s4Summary: "تمثيل قانوني احترافي في جميع أنواع الدعاوى وعلى كافة مستويات المحاكم في العراق، مع إستراتيجيات مدروسة لتقليل التكاليف والمخاطر.",
+        s5Title: "تحصيل وتسوية الحقوق المالية", s5Summary: "استحصال المستحقات والديون المتأخرة، توجيه الإنذارات الرسمية، التفاوض على خطط سداد، وتوثيق الاتفاقات بعقود قانونية ملزمة.",
+        s6Title: "إصدار تراخيص الاستثمار الأجنبي", s6Summary: "توفير الدعم والإرشاد للمستثمرين في العراق، إعداد التنسيقات والوثائق القانونية المطلوبة، ومتابعة الامتثال التشريعي لنجاح المشاريع.",
+        s7Title: "العلامات التجارية والملكية الفكرية", s7Summary: "حماية حقوق الملكية الفكرية، تقييم وتسجيل العلامات التجارية والنماذج الصناعية وبراءات الاختراع ضد التعدي والتقليد القانوني.",
+        s8Title: "إعداد وصياغة ومراجعة العقود", s8Summary: "صياغة وتدقيق العقود التجارية والمدنية بدقة عالية لضمان حماية الحقوق والتوافق التام مع القوانين والتشريعات المعمول بها.",
+        s9Title: "الأحوال الشخصية والتنفيذ القضائي", s9Summary: "متابعة دعاوى الأحوال الشخصية، التسويات الأسرية، ومتابعة قضايا التنفيذ القضائي لاستحصال الحقوق القانونية بيسر ومهنية."
+      },
+      en: {
+        pageTitle: "Comprehensive Legal Services Directory in Iraq | AKH Law Office",
+        metaDesc: "Review all accredited legal services of the Law Office of Ali Kadhem Hashimi in Baghdad: corporate formation, litigation, contracts, investment, and tax advisory.",
+        metaKeywords: "Legal services Iraq, corporate registration Baghdad, litigation lawyer, debt collection, investment licenses, trademark registration, contract drafting, tax advisory",
+        home: "Home", menuServices: "Legal Services Directory", menuConsultations: "Legal Consultations", menuInsights: "Iraq Legal Insights", menuAbout: "About Us", menuContact: "Contact Us",
+        pageMainTitle: "Our Legal Services & Business",
+        pageSubTitle: "Select the required service to view full details and book a direct appointment",
+        btnText: "View Details & More ➔",
+        s1Title: "Tax Advisory & Financial Compliance", s1Summary: "Tax structuring, registration with tax authorities, and monitoring corporate accounting requirements to ensure full compliance with active laws in Iraq.",
+        s2Title: "Corporate Formation of All Types", s2Summary: "Registration of local and foreign companies, legal documents preparation, opening bank accounts, and obtaining official licenses with high professionalism.",
+        s3Title: "Legal & Real Estate Services", s3Summary: "Follow-up and documentation of real estate contracts, lease and investment contracts, deeds extraction, and settlement of disputes before official authorities.",
+        s4Title: "Legal Representation Before Courts", s4Summary: "Professional legal representation in all types of lawsuits and at all levels of courts in Iraq, with well-studied strategies to minimize costs and risks.",
+        s5Title: "Financial Rights Collection & Settlement", s5Summary: "Recovery of overdue dues and debts, issuing official notices, negotiating repayment plans, and documenting agreements with binding legal contracts.",
+        s6Title: "Foreign Investment Licenses Issuance", s6Summary: "Providing support and guidance to investors in Iraq, preparing required legal coordination documents, and monitoring legislative compliance for projects.",
+        s7Title: "Trademarks & Intellectual Property", s7Summary: "Protection of IP rights, valuation and registration of trademarks, industrial designs, and patents against legal infringement and counterfeiting.",
+        s8Title: "Contracts Drafting, Review & Preparation", s8Summary: "Drafting and auditing commercial and civil contracts with high precision to ensure rights protection and full compliance with applicable legislation.",
+        s9Title: "Personal Status & Judicial Execution", s9Summary: "Follow-up on personal status lawsuits, family settlements, and judicial execution cases to recover legal rights smoothly and professionally."
+      },
+      tr: {
+        pageTitle: "Irak Kapsamlı Hukuki Hizmetler Rehberi | Av. Ali Kazım Haşimi",
+        metaDesc: "Bağdat'taki Av. Ali Kazım Haşimi Hukuk Bürosu'nun tüm akredite hukuki hizmetlerini inceleyin: Şirket kuruluşu, dava ve temsil, sözleşmeler ve vergi danışmanlığı.",
+        metaKeywords: "Irak hukuki hizmetler, şirket kuruluşu Bağdat, dava ve temsil, alacak tahsili, yabancı yatırım lisansları, marka tescili, sözleşme hazırlama, vergi danışmanlığı",
+        home: "Ana Sayfa", menuServices: "Hizmetler", menuConsultations: "Hukuki Danışmanlık", menuInsights: "İçgörüler", menuAbout: "Hakkımızda", menuContact: "İletişim",
+        pageMainTitle: "Hukuki Hizmetlerimiz ve İşlerimiz",
+        pageSubTitle: "Tüm detayları görmek ve doğrudan randevu almak için gerekli hizmeti seçin",
+        btnText: "Detaylar ve Daha Fazlası ➔",
+        s1Title: "Vergi Danışmanlığı ve Mali Uyum", s1Summary: "Vergi yapılandırması, vergi dairelerine kayıt ve Irak yasalarına tam uyumu sağlamak için şirket muhasebe gereksinimlerinin takibi.",
+        s2Title: "Şirket Kuruluşu", s2Summary: "Yerli ve yabancı şirketlerin tescili, yasal belgelerin hazırlanması, banka hesaplarının açılması ve resmi lisansların alınması.",
+        s3Title: "Hukuki ve Gayrimenkul Hizmetleri", s3Summary: "Gayrimenkul sözleşmelerinin takibi, tapu senetlerinin çıkarılması ve resmi makamlar nezdinde gayrimenkul uyuşmazlıklarının çözümü.",
+        s4Title: "Yargı Önünde Yasal Temsil", s4Summary: "Irak'taki tüm mahkeme derecelerinde ve her türlü davada maliyetleri ve riskleri en aza indiren profesyonel yasal temsil.",
+        s5Title: "Finansal Hakların Tahsili ve Uzlaşması", s5Summary: "Vadesi geçmiş alacakların tahsili, resmi ihtarların gönderilmesi, ödeme planlarının müzakeresi ve bağlayıcı sözleşmeler.",
+        s6Title: "Yabancı Yatırım Lisanslarının Verilmesi", s6Summary: "Irak'taki yatırımcılara destek sağlanması, gerekli yasal belgelerin hazırlanması ve proje başarısı için uyumluluk takibi.",
+        s7Title: "Markalar ve Fikri Mülkiyet", s7Summary: "Fikri mülkiyet haklarının korunması, ticari markaların ve patentlerin ihlal ve taklitlere karşı tescili.",
+        s8Title: "Sözleşme Hazırlama ve İnceleme", s8Summary: "Hakların korunmasını ve yürürlükteki mevzuata tam uyumu sağlamak için ticari ve medeni sözleşmelerin hazırlanması.",
+        s9Title: "Şahsi Haller ve Yargısal İcra", s9Summary: "Aile hukuku davalarının, uzlaşmaların takibi ve yasal hakların profesyonel şekilde tahsili için icra takipleri."
+      },
+      zh: {
+        pageTitle: "伊拉克综合法律服务目录 | 阿里·卡德姆·哈希米律所",
+        metaDesc: "查看阿里·卡德姆·哈希米律所在巴格达提供的所有认可法律服务：公司注册、诉讼代理、合同、投资、税务和房地产。",
+        metaKeywords: "伊拉克法律服务, 公司注册巴格达, 诉讼代理, 债务追讨, 外商投资许可证, 商标注册, 合同起草, 税务咨询, 房地产法律服务",
+        home: "首页", menuServices: "法律服务", menuConsultations: "法律咨询", menuInsights: "法律洞察", menuAbout: "关于我们", menuContact: "联系我们",
+        pageMainTitle: "我们的法律服务与业务",
+        pageSubTitle: "选择所需服务以查看完整详情并预约直接咨询",
+        btnText: "查看详情与更多 ➔",
+        s1Title: "税务咨询与财务合规", s1Summary: "税务架构设计、税务登记以及跟进公司的会计和财务要求，以确保完全遵守伊拉克现行法律。",
+        s2Title: "各类公司注册", s2Summary: "内外资公司注册、法律文件准备、银行开户以及高专业度、高效率地获取官方许可证。",
+        s3Title: "法律与房地产服务", s3Summary: "房地产合同、租赁和投资合同的跟进与公证，地契和图纸的提取，以及在官方机构面前解决房地产纠纷。",
+        s4Title: "出庭代理与诉讼", s4Summary: "在伊拉克各级法院代理各类诉讼，凭借经过深思熟虑的策略最大限度地降低成本和风险。",
+        s5Title: "财务权益追讨与结算", s5Summary: "收回逾期应收款项和债务，发送官方通知，协商还款计划，并通过具有法律约束力的合同记录协议。",
+        s6Title: "签发外商投资许可证", s6Summary: "为伊拉克投资者提供支持与指导，准备所需的法律协调和文件，并跟进立法合规性以确保项目成功。",
+        s7Title: "商标与知识产权", s7Summary: "保护知识产权，评估和注册商标、工业设计及专利，以防范法律侵权和假冒伪劣。",
+        s8Title: "合同起草、审核与准备", s8Summary: "以高精度起草和审核商事及民事合同，以确保保护权利并完全符合适用法律法规。",
+        s9Title: "个人身份法与司法执行", s9Summary: "跟进个人身份诉讼、家庭和解以及司法执行案件，以顺利、专业地追回合法权益。"
+      },
+      fr: {
+        pageTitle: "Répertoire des Services Juridiques en Iraq | Cabinet AKH",
+        metaDesc: "Découvrez tous les services juridiques du Cabinet d'Avocats Ali Kadhem Hashimi à Bagdad : création d'entreprise, contentieux, contrats, investissement et fiscalité.",
+        metaKeywords: "Services juridiques Iraq, création d'entreprise Bagdad, contentieux, recouvrement de créances, licences d'investissement, marques, contrats, conseil fiscal",
+        home: "Accueil", menuServices: "Services", menuConsultations: "Consultations Juridiques", menuInsights: "Aperçus", menuAbout: "À Propos", menuContact: "Contact",
+        pageMainTitle: "Nos Services & Affaires Juridiques",
+        pageSubTitle: "Sélectionnez le service requis pour voir tous les détails et réserver un rendez-vous",
+        btnText: "Voir les Détails ➔",
+        s1Title: "Conseil Fiscal et Conformité Financière", s1Summary: "Structuration fiscale, enregistrement auprès des autorités fiscales et suivi des exigences comptables et financières des entreprises en Iraq.",
+        s2Title: "Création de Sociétés de Tous Types", s2Summary: "Enregistrement de sociétés locales et étrangères, préparation de documents juridiques, ouverture de comptes et obtention de licences officielles.",
+        s3Title: "Services Juridiques et Immobiliers", s3Summary: "Suivi et documentation des contrats immobiliers, contrats de location et d'investissement, actes, plans et règlement des litiges.",
+        s4Title: "Représentation Juridique Devant les Tribunaux", s4Summary: "Représentation juridique professionnelle dans tous les types de litiges et à tous les niveaux de juridiction en Iraq, avec des stratégies de réduction des risques.",
+        s5Title: "Recouvrement et Règlement des Droits Financiers", s5Summary: "Recouvrement des créances et dettes impayées, mises en demeure officielles, négociation de plans de remboursement et documentation par contrats.",
+        s6Title: "Délivrance de Licences d'Investissement Étranger", s6Summary: "Fournir soutien et orientation aux investisseurs en Iraq, préparer la coordination juridique requise et suivre la conformité législative.",
+        s7Title: "Marques et Propriété Intellectuelle", s7Summary: "Protection des droits de propriété intellectuelle, évaluation et enregistrement des marques, dessins et brevets contre les contrefaçons.",
+        s8Title: "Rédaction, Révision et Préparation de Contrats", s8Summary: "Rédaction et audit de contrats commerciaux et civils avec précision pour garantir la protection des droits et la conformité légale.",
+        s9Title: "Statut Personnel et Exécution Judiciaire", s9Summary: "Suivi des affaires de statut personnel, règlements familiaux et exécution judiciaire pour recouvrer les droits légaux avec professionnalisme."
+      },
+      es: {
+        pageTitle: "Directorio de Servicios Legales Integrales en Irak | Bufete AKH",
+        metaDesc: "Consulte todos los servicios legales acreditados del Bufete de Abogados Ali Kadhem Hashimi en Bagdad: constitución de empresas, litigio, contratos e inversión.",
+        metaKeywords: "Servicios legales Irak, constitución de empresas Bagdad, litigio, cobro de deudas, licencias de inversión, registro de marcas, contratos, asesoría fiscal",
+        home: "Inicio", menuServices: "Servicios", menuConsultations: "Consultas Legales", menuInsights: "Perspectivas", menuAbout: "Sobre Nosotros", menuContact: "Contacto",
+        pageMainTitle: "Nuestros Servicios y Negocios Legales",
+        pageSubTitle: "Seleccione el servicio requerido para ver todos los detalles y reservar una cita directa",
+        btnText: "Ver Detalles y Más ➔",
+        s1Title: "Asesoría Fiscal y Cumplimiento Financiero", s1Summary: "Estructuración fiscal, registro ante las autoridades fiscales y seguimiento de los requisitos contables y financieros de las empresas en Irak.",
+        s2Title: "Constitución de Empresas de Todo Tipo", s2Summary: "Registro de empresas locales y extranjeras, preparación de documentos legales, apertura de cuentas bancarias y obtención de licencias oficiales.",
+        s3Title: "Servicios Legales e Inmobiliarios", s3Summary: "Seguimiento y documentación de contratos inmobiliarios, contratos de arrendamiento e inversión, extracción de escrituras y resolución de disputas.",
+        s4Title: "Representación Legal Ante los Tribunales", s4Summary: "Representación legal profesional en todo tipo de demandas y en todos los niveles de tribunales en Irak, con estrategias para minimizar costos y riesgos.",
+        s5Title: "Cobranza y Liquidación de Derechos Financieros", s5Summary: "Recuperación de deudas y pagos vencidos, emisión de notificaciones oficiales, negociación de planes de pago y documentación con contratos legales.",
+        s6Title: "Emisión de Licencias de Inversión Extranjera", s6Summary: "Proporcionar apoyo a los inversores en Irak, preparar la coordinación y los documentos legales requeridos, y supervisar el cumplimiento legislativo.",
+        s7Title: "Marcas y Propiedad Intelectual", s7Summary: "Protección de los derechos de propiedad intelectual, valoración y registro de marcas, diseños industriales y patentes contra la infracción.",
+        s8Title: "Redacción, Revisión y Preparación de Contratos", s8Summary: "Redacción y auditoría de contratos comerciales y civiles con alta precisión para garantizar la protección de derechos y el pleno cumplimiento legal.",
+        s9Title: "Estado Personal y Ejecución Judicial", s9Summary: "Seguimiento de demandas de estado personal, acuerdos familiares y casos de ejecución judicial para recuperar derechos legales con profesionalismo."
+      },
+      de: {
+        pageTitle: "Verzeichnis der Rechtsdienste im Irak | Kanzlei Ali Kadhem Hashimi",
+        metaDesc: "Überprüfen Sie alle akkreditierten Rechtsdienste der Kanzlei Ali Kadhem Hashimi in Bagdad: Firmengründung, Prozessvertretung, Verträge und Steuerberatung.",
+        metaKeywords: "Rechtsdienste Irak, Firmengründung Bagdad, Prozessvertretung, Forderungseinzug, Investitionslizenzen, Markenanmeldung, Vertragsgestaltung, Steuerberatung",
+        home: "Startseite", menuServices: "Dienste", menuConsultations: "Rechtliche Beratung", menuInsights: "Einblicke", menuAbout: "Über uns", menuContact: "Kontakt",
+        pageMainTitle: "Unsere Rechtsdienste & Geschäfte",
+        pageSubTitle: "Wählen Sie den gewünschten Dienst aus, um vollständige Details anzuzeigen und einen Termin zu buchen",
+        btnText: "Details ansehen ➔",
+        s1Title: "Steuerberatung & Finanzielle Compliance", s1Summary: "Steuerstrukturierung, Registrierung bei den Steuerbehörden und Überwachung der buchhalterischen Anforderungen im Irak.",
+        s2Title: "Unternehmensgründung aller Art", s2Summary: "Registrierung in- und ausländischer Unternehmen, Vorbereitung rechtlicher Dokumente, Eröffnung von Bankkonten und Einholung von Lizenzen.",
+        s3Title: "Rechtliche & Immobiliendienstleistungen", s3Summary: "Verfolgung und Dokumentation von Immobilienverträgen, Mietverträgen, Einholung von Urkunden und Beilegung von Streitigkeiten.",
+        s4Title: "Gerichtliche Vertretung", s4Summary: "Professionelle rechtliche Vertretung in allen Arten von Klagen vor irakischen Gerichten mit Strategien zur Minimierung von Risiken.",
+        s5Title: "Beitreibung & Vergleich finanzieller Rechte", s5Summary: "Beitreibung überfälliger Forderungen, Versendung offizieller Mahnungen, Verhandlung von Rückzahlungsplänen und vertragliche Sicherung.",
+        s6Title: "Ausstellung von Ausländischen Investitionslizenzen", s6Summary: "Unterstützung für Investoren im Irak, Erstellung erforderlicher rechtlicher Dokumente und Überwachung der Einhaltung von Gesetzen.",
+        s7Title: "Marken & Geistiges Eigentum", s7Summary: "Schutz von IP-Rechten, Bewertung und Registrierung von Marken, gewerblichen Mustern und Patenten gegen Rechtsverletzungen.",
+        s8Title: "Vertragsgestaltung, Prüfung & Erstellung", s8Summary: "Ausarbeitung und Prüfung von Handels- und Zivilverträgen mit hoher Präzision zur Gewährleistung des Rechtsschutzes.",
+        s9Title: "Familienrecht & Gerichtliche Vollstreckung", s9Summary: "Verfolgung von Personenstandsverfahren, familiären Vergleichen und Vollstreckungsverfahren zur Durchsetzung von Ansprüchen."
+      },
+      ku: {
+        pageTitle: "رێبەری خزمەتگوزارییە یاساییە گشتگیرەکان لە عێراق | نووسینگەی پارێزەر عەلی کاظم",
+        metaDesc: "پێداچوونەوە بە هەموو خزمەتگوزارییە یاساییە پەسەندکراوەکانی نووسینگەی پارێزەر عەلی کازمی هاشمی لە بەغداد: دامەزراندنی کۆمپانیا، نوێنەرایەتی دادوەری، گرێبەست و باج.",
+        metaKeywords: "خزمەتگوزاری یاسایی لە عێراق, دامەزراندنی کۆمپانیا بغداد, نوێنەرایەتی دادوەری, وەرگرتنەوەی قەرز, مۆڵەتی وەبەرهێنان, تۆمارکردنی مارکە, گرێبەست, ڕاوێژکاری باج",
+        home: "سەرەکی", menuServices: "خزمەتگوزارییەکان", menuConsultations: "ڕاوێژی یاسایی", menuInsights: "تێڕوانینەکان", menuAbout: "دەرباره‌ی ئێمە", menuContact: "پەیوەندی",
+        pageMainTitle: "خزمەتگوزاری و کارە یاساییەکانمان",
+        pageSubTitle: "خزمەتگوزارییخوازراو هەڵبژێرە بۆ بینینی وردەکارییەکان و دیاریکردنی کاتی چاوپێکەوتن",
+        btnText: "ببینە وردەکاری زیاتر ➔",
+        s1Title: "ڕاوێژی باج و پابەندبوونی دارایی", s1Summary: "ڕێکخستنی باج، تۆمارکردن لە دەستەکانی باج، و بەدواداچوونی پێداویستییە ژمێریاری و داراییەکانی کۆمپانیاکان بۆ دڵنیابوون لە پابەندبوونی تەواو بە یاسا.",
+        s2Title: "دامەزراندنی کۆمپانیاکان بە هەموو جۆرەکانیان", s2Summary: "تۆمارکردنی کۆمپانیا خۆماڵی و بیانییەکان، ئامادەکردنی دۆکومێنتە یاساییەکان، کردنەوەی هەژماری بانکی، و بەدەستهێنانی مۆڵەتە فەرمییەکان.",
+        s3Title: "خزمەتگوزارییە یاسایی و خانووبەرەکان", s3Summary: "بەدواداچوون و بەلگەنامەکردنی گرێبەستە خانووبەرەکان، گرێبەستەکانی کرێ و وەبەرهێنان، دەرکردنی سەنەد و نەخشەکان، و یەکلاکردنەوەی کێشەکان.",
+        s4Title: "نوێنەرایەتی یاسایی لەبەردەم دادگاکاندا", s4Summary: "نوێنەرایەتی یاسایی پیشەیی لە هەموو جۆرە داوایەکدا و لە هەموو ئاستەکانی دادگاکان لە عێراقدا، بە ستراتیژی ورد بۆ کەمکردنەوەی مەترسییەکان.",
+        s5Title: "وەرگرتنەوە و ڕێکخستنی مافە داراییەکان", s5Summary: "کۆکردنەوەی قەرز و شایستە دواکەوتووەکان، ناردنی ئاگاداری فەرمی، دانوستان لەسەر پلانی دانەوە، و بەلگەنامەکردنی ڕێککەوتنەکان بە گرێبەست.",
+        s6Title: "دەرکردنی مۆڵەتی وەبەرهێنانی بیانی", s6Summary: "دابینکردنی پشتگیری و ڕێنمایی بۆ وەبەرهێنەران لە عێراقدا، ئامادەکردنی دۆکومێنتە یاساییە پێویستەکان، و بەدواداچوونی پابەندبوونی یاسایی.",
+        s7Title: "مارکە و خاوەندارێتی فکری", s7Summary: "پاراستنی مافی خاوەندارێتی فکری، هەڵسەنگاندن و تۆمارکردنی مارکە بازرگانییەکان، نموونە پیشەسازییەکان، و مۆڵەتی داهێنان دژی دەستدرێژی.",
+        s8Title: "ئامادەکردن، داڕشتن و پێداچوونەوەی گرێبەستەکان", s8Summary: "داڕشتن و وردبینی گرێبەستە بازرگانی و مەدەنییەکان بە وردبینییەکی بەرز بۆ دڵنیابوون لە پاراستنی مافەکان و سازگاری لەگەڵ یاسادا.",
+        s9Title: "بارودۆخی کەسێتی و جێبەجێکردنی دادوەری", s9Summary: "بەدواداچوونی دۆسیەکانی باری کەسێتی، ڕێککەوتنە خێزانییەکان، و بەدواداچوونی دۆسیەکانی جێبەجێکردنی دادوەری بۆ وەگرتنەوەی مافەکان."
+      }
+    };
+  </script>
 
 </body>
 </html>
