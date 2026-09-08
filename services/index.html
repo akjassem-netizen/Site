@@ -21,7 +21,7 @@
     }
     .container {
       width: 100%;
-      max-width: 750px;
+      max-width: 850px;
       background: #ffffff;
       padding: 35px 25px;
       border-radius: 16px;
@@ -80,125 +80,115 @@
       text-align: center;
       font-size: 13px;
       color: #64748b;
-      margin-bottom: 25px;
+      margin-bottom: 30px;
       padding-bottom: 12px;
       border-bottom: 1px solid #f1f5f9;
       font-weight: 600;
     }
 
-    /* شبكة الخدمات القانونية */
+    /* شبكة الكارتات (المربعات المنسدلة للخدمات) */
     .services-grid {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
       gap: 20px;
     }
+    @media (max-width: 600px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* تصميم الكارت الواحد */
     .service-card {
       background: #ffffff;
       border: 1px solid #e2e8f0;
       border-radius: 14px;
-      padding: 24px;
+      padding: 22px;
       transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       position: relative;
     }
     .service-card:hover {
       border-color: #c5a059;
-      box-shadow: 0 6px 20px rgba(197, 160, 89, 0.1);
-      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(197, 160, 89, 0.12);
+      transform: translateY(-3px);
     }
-    .service-header {
+
+    .service-top {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 12px;
-      border-bottom: 1px solid #f8fafc;
-      padding-bottom: 10px;
-    }
-    .service-title {
-      font-size: 17px;
-      font-weight: 700;
-      color: #0f172a;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 14px;
     }
     .service-icon {
-      font-size: 22px;
-    }
-    
-    /* امتداد الرابط (Slug) الخاص بالخدمة باللغة الإنجليزية */
-    .service-path {
-      display: inline-flex;
+      font-size: 28px;
+      background: #f8fafc;
+      width: 50px;
+      height: 50px;
+      display: flex;
       align-items: center;
-      gap: 6px;
-      background: #f1f5f9;
-      padding: 4px 10px;
-      border-radius: 6px;
+      justify-content: center;
+      border-radius: 12px;
+      flex-shrink: 0;
+      border: 1px solid #e2e8f0;
+    }
+    .service-title-area {
+      flex-grow: 1;
+    }
+    .service-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+    /* امتداد الرابط الخاص بالخدمة (Slug) */
+    .service-path {
+      display: inline-block;
       font-family: monospace;
       font-size: 11px;
       color: #0284c7;
+      background: #f0f9ff;
+      padding: 2px 8px;
+      border-radius: 4px;
       direction: ltr;
     }
 
-    .service-desc {
-      font-size: 13.5px;
-      color: #334155;
-      line-height: 1.8;
-      margin-bottom: 16px;
+    /* النبذة التعريفية البسيطة */
+    .service-summary {
+      font-size: 13px;
+      color: #475569;
+      line-height: 1.7;
+      margin-bottom: 18px;
       text-align: justify;
     }
-    
-    /* صندوق الدعوة للتواصل (CTA) الخاص بالخدمة */
-    .service-cta-box {
-      background: #f8fafc;
-      border-right: 4px solid #25d366;
-      padding: 14px;
-      border-radius: 8px;
-      margin-top: 14px;
+
+    /* زر للمزيد والتفاصيل */
+    .service-footer {
+      border-top: 1px solid #f1f5f9;
+      padding-top: 14px;
       display: flex;
-      flex-direction: column;
-      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
     }
-    .service-cta-text {
-      font-size: 13px;
-      font-weight: 600;
-      color: #1e293b;
-      line-height: 1.5;
-    }
-    .btn-service-whatsapp {
+    .btn-read-more {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      gap: 8px;
-      background: #25d366;
+      gap: 6px;
+      background: #0f172a;
       color: white;
-      padding: 10px 16px;
+      padding: 8px 16px;
       border-radius: 8px;
       text-decoration: none;
+      font-size: 12.5px;
       font-weight: 700;
-      font-size: 13px;
       transition: background 0.3s;
-      align-self: flex-start;
+      width: 100%;
+      justify-content: center;
     }
-    .btn-service-whatsapp:hover {
-      background: #1ebe5d;
-    }
-
-    /* ملاحظة حجوزات المواعيد في الأسفل */
-    .booking-notice {
-      background: #fdf8f0;
-      border: 1px solid #e6d5bc;
-      border-radius: 12px;
-      padding: 18px;
-      margin-top: 30px;
-      font-size: 13.5px;
-      color: #78350f;
-      line-height: 1.7;
-      text-align: center;
-    }
-    .booking-notice a {
-      color: #92400e;
-      font-weight: 700;
-      text-decoration: underline;
+    .btn-read-more:hover {
+      background: #c5a059;
     }
   </style>
 </head>
@@ -217,176 +207,182 @@
     </div>
 
     <div class="page-title">خدماتنا وأعمالنا القانونية</div>
-    <div class="page-subtitle">نخبة من خدمات التمثيل القضائي والاستشارات التخصصية للشركات والأفراد برؤية دولية دقيقة</div>
+    <div class="page-subtitle">اختر الخدمة المطلوبة للاطلاع على التفاصيل الكاملة وحجز الموعد المباشر</div>
 
+    <!-- شبكة المربعات (الكارتات) -->
     <div class="services-grid">
 
-      <!-- 1. الاستشارات الضريبية والامتثال المالي (مضافة حديثاً ضمن خدمات الشركات) -->
+      <!-- 1. الاستشارات الضريبية والامتثال المالي -->
       <div class="service-card">
-        <div class="service-header">
-          <div class="service-title">
-            <span class="service-icon">📊</span>
-            الاستشارات الضريبية والامتثال المالي للشركات
+        <div>
+          <div class="service-top">
+            <div class="service-icon">📊</div>
+            <div class="service-title-area">
+              <div class="service-title">الاستشارات الضريبية والامتثال المالي</div>
+              <span class="service-path">/services/tax-advisory</span>
+            </div>
           </div>
-          <span class="service-path">/services/tax-advisory</span>
+          <div class="service-summary">
+            هيكلة الضرائب، التسجيل لدى الهيئات الضريبية، ومتابعة المتطلبات المحاسبية والمالية للشركات لضمان الامتثال التام للقوانين النافذة في العراق.
+          </div>
         </div>
-        <div class="service-desc">
-          نقدم استشارات تخصصية دقيقة في هيكلة الضرائب، التسجيل لدى الهيئات الضريبية، ومتابعة المتطلبات المحاسبية والمالية للشركات بما يضمن الامتثال الكامل للقوانين والتشريعات المالية والضريبية النافذة في العراق وتقليل المخاطر القانونية المرتبطة بالأعمال.
-        </div>
-        <div class="service-cta-box">
-          <span class="service-cta-text">احجز استشارتك الضريبية الآن لمناقشة الهيكل المالي لشركتك وتأمين الامتثال الكامل.</span>
-          <a href="https://wa.me/9647838759047?text=%Dمرحباً،%20أرغب%20بالاستفسار%20وحجز%20موعد%20بخصوص%20خدمة%20الاستشارات%20الضريبية%20والامتثال%20المالي" target="_blank" class="btn-service-whatsapp">
-            <span>💬 تواصل عبر الواتساب لهذه الخدمة</span>
-          </a>
+        <div class="service-footer">
+          <a href="/services/tax-advisory" class="btn-read-more">للمزيد والتفاصيل ➔</a>
         </div>
       </div>
 
       <!-- 2. تأسيس الشركات بأنواعها -->
       <div class="service-card">
-        <div class="service-header">
-          <div class="service-title">
-            <span class="service-icon">🏢</span>
-            تأسيس الشركات بأنواعها
+        <div>
+          <div class="service-top">
+            <div class="service-icon">🏢</div>
+            <div class="service-title-area">
+              <div class="service-title">تأسيس الشركات بأنواعها</div>
+              <span class="service-path">/services/corporate</span>
+            </div>
           </div>
-          <span class="service-path">/services/corporate</span>
+          <div class="service-summary">
+            تسجيل الشركات المحلية والأجنبية، إعداد الوثائق القانونية، فتح الحسابات المصرفية، واستحصال التراخيص الرسمية بمهنية وسرعة عالية.
+          </div>
         </div>
-        <div class="service-desc">
-          يرحب مكتب المحامي علي كاظم الهاشمي بكل الأفراد والمؤسسات الذين يحتاجون إلى خدمة تسجيل الشركات في العراق. يعتبر تسجيل الشركات عملية قانونية دقيقة تتم وفقاً للتشريعات المحلية وتتطلب خبرة عميقة. نقدم الاستشارات والنصائح حول الأنواع المختلفة (مساهمة عامة، مسؤولية محدودة، فردية، مشتركة)، ونتولى إعداد الوثائق، فتح الحسابات المصرفية، والتسجيل في الجهات الرسمية والتراخيص بمهنية وسرعة لتوفير وقتك وجهدك.
-        </div>
-        <div class="service-cta-box">
-          <span class="service-cta-text">تواصل معنا لمناقشة تأسيس شركتك الجديدة واختيار الهيكل التجاري الأمثل.</span>
-          <a href="https://wa.me/9647838759047?text=%Dمرحباً،%20أرغب%20بالاستفسار%20وحجز%20موعد%20بخصوص%20خدمة%20تأسيس%20الشركات" target="_blank" class="btn-service-whatsapp">
-            <span>💬 تواصل عبر الواتساب لهذه الخدمة</span>
-          </a>
+        <div class="service-footer">
+          <a href="/services/corporate" class="btn-read-more">للمزيد والتفاصيل ➔</a>
         </div>
       </div>
 
-      <!-- 3. الخدمات القانونية العقارية (مضافة حديثاً لدعم الشركات والأفراد) -->
+      <!-- 3. الخدمات القانونية والعقارية -->
       <div class="service-card">
-        <div class="service-header">
-          <div class="service-title">
-            <span class="service-icon">🏠</span>
-            الخدمات القانونية والعقارية
+        <div>
+          <div class="service-top">
+            <div class="service-icon">🏠</div>
+            <div class="service-title-area">
+              <div class="service-title">الخدمات القانونية والعقارية</div>
+              <span class="service-path">/services/real-estate</span>
+            </div>
           </div>
-          <span class="service-path">/services/real-estate</span>
+          <div class="service-summary">
+            متابعة وتوثيق العقود العقارية، عقود الإيجار والاستثمار، استخراج السندات والخرائط، وتسوية النزاعات العقارية أمام الجهات الرسمية.
+          </div>
         </div>
-        <div class="service-desc">
-          متابعة وتوثيق العقود العقارية، صياغة عقود الإيجار والاستثمار التجاري، استخراج السندات والخرائط العقارية، وتسوية النزاعات العقارية أمام الجهات الرسمية والقضائية بما يضمن حماية الاستثمار والأملاك العقارية لعملائنا.
-        </div>
-        <div class="service-cta-box">
-          <span class="service-cta-text">احجز موعداً لمناقشة العقود العقارية وضمان سلامتها القانونية التامة.</span>
-          <a href="https://wa.me/9647838759047?text=%Dمرحباً،%20أرغب%20بالاستفسار%20وحجز%20موعد%20بخصوص%20الخدمات%20العقارية" target="_blank" class="btn-service-whatsapp">
-            <span>💬 تواصل عبر الواتساب لهذه الخدمة</span>
-          </a>
+        <div class="service-footer">
+          <a href="/services/real-estate" class="btn-read-more">للمزيد والتفاصيل ➔</a>
         </div>
       </div>
 
       <!-- 4. التمثيل القانوني أمام الجهات القضائية -->
       <div class="service-card">
-        <div class="service-header">
-          <div class="service-title">
-            <span class="service-icon">⚖️</span>
-            التمثيل القانوني أمام الجهات القضائية
+        <div>
+          <div class="service-top">
+            <div class="service-icon">⚖️</div>
+            <div class="service-title-area">
+              <div class="service-title">التمثيل القانوني أمام القضاء</div>
+              <span class="service-path">/services/litigation</span>
+            </div>
           </div>
-          <span class="service-path">/services/litigation</span>
+          <div class="service-summary">
+            تمثيل قانوني احترافي في جميع أنواع الدعاوى وعلى كافة مستويات المحاكم في العراق، مع إستراتيجيات مدروسة لتقليل التكاليف والمخاطر.
+          </div>
         </div>
-        <div class="service-desc">
-          أنا أتصرف نيابة عنك في جميع أنواع الدعاوى. لقد بنيت سمعة طيبة في تقديم أفضل تمثيل على جميع مستويات عمل المحاكم بمختلف أنواعها ودرجاتها. أعمل على قضيتك بما يتجاوز توقعاتك لتحقيق أفضل النتائج في جميع أنحاء العراق. أخصص الوقت الكافي لتقديم المشورة بشأن مزايا قضيتك واستراتيجية تضمن تقليل التكاليف والمخاطر. وفي حالات معينة، نعمل على حل النزاعات خارج المحكمة بنهج حازم ومهني لعدم إنفاق وقت أو أموال غير ضرورية.
-        </div>
-        <div class="service-cta-box">
-          <span class="service-cta-text">احجز استشارتك القضائية لمناقشة استراتيجية دعواك وتفاصيل تمثيلك القانوني.</span>
-          <a href="https://wa.me/9647838759047?text=%Dمرحباً،%20أرغب%20بالاستفسار%20وحجز%20موعد%20بخصوص%20خدمة%20التمثيل%20القانوني" target="_blank" class="btn-service-whatsapp">
-            <span>💬 تواصل عبر الواتساب لهذه الخدمة</span>
-          </a>
+        <div class="service-footer">
+          <a href="/services/litigation" class="btn-read-more">للمزيد والتفاصيل ➔</a>
         </div>
       </div>
 
-      <!-- 5. تحصيل وتسوية الحقوق المالية وتوثيقها -->
+      <!-- 5. تحصيل وتسوية الحقوق المالية -->
       <div class="service-card">
-        <div class="service-header">
-          <div class="service-title">
-            <span class="service-icon">💰</span>
-            تحصيل وتسوية الحقوق المالية وتوثيقها
+        <div>
+          <div class="service-top">
+            <div class="service-icon">💰</div>
+            <div class="service-title-area">
+              <div class="service-title">تحصيل وتسوية الحقوق المالية</div>
+              <span class="service-path">/services/financial-rights</span>
+            </div>
           </div>
-          <span class="service-path">/services/financial-rights</span>
+          <div class="service-summary">
+            استحصال المستحقات والديون المتأخرة، توجيه الإنذارات الرسمية، التفاوض على خطط سداد، وتوثيق الاتفاقات بعقود قانونية ملزمة.
+          </div>
         </div>
-        <div class="service-desc">
-          تقديم خدمة تحصيل المستحقات المالية المتأخرة والديون للشركات والأفراد بطريقة قانونية فعالة. أبدأ بتقييم الحالة وتحليل الوثائق، ثم استخدام المهارات الإجرائية (كالإنذارات الرسمية والتفاوض على خطط سداد مرنة أو اللجوء للقضاء عند اللزم). كما نعمل على التسوية الودية ووساطة الحلول البديلة، وتوثيق كافة الاتفاقات رسمياً بعقود قانونية ملزمة لضمان سلامة التعاملات.
-        </div>
-        <div class="service-cta-box">
-          <span class="service-cta-text">احجز موعداً لتسوية وحماية حقوقك المالية بالطرق القانونية السريعة.</span>
-          <a href="https://wa.me/9647838759047?text=%Dمرحباً،%20أرغب%20بالاستفسار%20وحجز%20موعد%20بخصوص%20تحصيل%20الحقوق%20المالية" target="_blank" class="btn-service-whatsapp">
-            <span>💬 تواصل عبر الواتساب لهذه الخدمة</span>
-          </a>
+        <div class="service-footer">
+          <a href="/services/financial-rights" class="btn-read-more">للمزيد والتفاصيل ➔</a>
         </div>
       </div>
 
       <!-- 6. إصدار تراخيص الاستثمار الأجنبي -->
       <div class="service-card">
-        <div class="service-header">
-          <div class="service-title">
-            <span class="service-icon">🌐</span>
-            إصدار تراخيص الاستثمار الأجنبي
+        <div>
+          <div class="service-top">
+            <div class="service-icon">🌐</div>
+            <div class="service-title-area">
+              <div class="service-title">إصدار تراخيص الاستثمار الأجنبي</div>
+              <span class="service-path">/services/investment-licenses</span>
+            </div>
           </div>
-          <span class="service-path">/services/investment-licenses</span>
+          <div class="service-summary">
+            توفير الدعم والإرشاد للمستثمرين في العراق، إعداد التنسيقات والوثائق القانونية المطلوبة، ومتابعة الامتثال التشريعي لنجاح المشاريع.
+          </div>
         </div>
-        <div class="service-desc">
-          خدمة حيوية تهدف إلى توفير الإرشاد والدعم للراغبين بالاستثمار في العراق. نبدأ بتقييم احتياجات المستثمر وأهدافه وفق التشريعات العراقية، ثم إعداد وتنسيق الوثائق القانونية المطلوبة للحصول على التراخيص، مع تقديم الاستشارات المستمرة وتوضيح الالتزامات القانونية ومتابعة أي تعديلات تشريعية لضمان الامتثال التام ونجاح مشروعك الاستثماري.
-        </div>
-        <div class="service-cta-box">
-          <span class="service-cta-text">احجز موعداً لمناقشة ترخيص مشروعك الاستثماري وتأمين متطلباته القانونية.</span>
-          <a href="https://wa.me/9647838759047?text=%Dمرحباً،%20أرغب%20بالاستفسار%20وحجز%20موعد%20بخصوص%20تراخيص%20الاستثمار" target="_blank" class="btn-service-whatsapp">
-            <span>💬 تواصل عبر الواتساب لهذه الخدمة</span>
-          </a>
+        <div class="service-footer">
+          <a href="/services/investment-licenses" class="btn-read-more">للمزيد والتفاصيل ➔</a>
         </div>
       </div>
 
       <!-- 7. تسجيل العلامات التجارية وبراءات الاختراع -->
       <div class="service-card">
-        <div class="service-header">
-          <div class="service-title">
-            <span class="service-icon">🛡️</span>
-            تسجيل العلامات التجارية وبراءات الاختراع
+        <div>
+          <div class="service-top">
+            <div class="service-icon">🛡️</div>
+            <div class="service-title-area">
+              <div class="service-title">العلامات التجارية والملكية الفكرية</div>
+              <span class="service-path">/services/trademarks</span>
+            </div>
           </div>
-          <span class="service-path">/services/trademarks</span>
+          <div class="service-summary">
+            حماية حقوق الملكية الفكرية، تقييم وتسجيل العلامات التجارية والنماذج الصناعية وبراءات الاختراع ضد التعدي والتقليد القانوني.
+          </div>
         </div>
-        <div class="service-desc">
-          عملية متخصصة وحيوية تهدف إلى حماية حقوق الملكية الفكرية وضمان استفادة المبتكرين وأصحاب الأعمال من فوائد حصرية لابتكاراتهم. نبدأ بتقييم الأفكار وتحليل الملاءمة القانونية والتكنولوجية لتسجيل العلامات والاختراعات، وتقديم الاستشارات اللازمة لتعزيز مكانتك في السوق وتحقيق الابتكار وثقة العملاء والشركاء.
-        </div>
-        <div class="service-cta-box">
-          <span class="service-cta-text">احجز موعداً لتسجيل وحماية علامتك التجارية أو براءة اختراعك قانونياً.</span>
-          <a href="https://wa.me/9647838759047?text=%Dمرحباً،%20أرغب%20بالاستفسار%20وحجز%20موعد%20بخصوص%20العلامات%20التجارية" target="_blank" class="btn-service-whatsapp">
-            <span>💬 تواصل عبر الواتساب لهذه الخدمة</span>
-          </a>
+        <div class="service-footer">
+          <a href="/services/trademarks" class="btn-read-more">للمزيد والتفاصيل ➔</a>
         </div>
       </div>
 
-      <!-- 8. إعداد وصياغة ومراجعة وتسجيل جميع أنواع العقود -->
+      <!-- 8. إعداد وصياغة ومراجعة العقود -->
       <div class="service-card">
-        <div class="service-header">
-          <div class="service-title">
-            <span class="service-icon">📜</span>
-            إعداد وصياغة ومراجعة وتسجيل جميع أنواع العقود
+        <div>
+          <div class="service-top">
+            <div class="service-icon">📜</div>
+            <div class="service-title-area">
+              <div class="service-title">إعداد وصياغة ومراجعة العقود</div>
+              <span class="service-path">/services/contracts</span>
+            </div>
           </div>
-          <span class="service-path">/services/contracts</span>
+          <div class="service-summary">
+            صياغة وتدقيق العقود التجارية والمدنية بدقة عالية لضمان حماية الحقوق والتوافق التام مع القوانين والتشريعات المعمول بها.
+          </div>
         </div>
-        <div class="service-desc">
-          خدمة شاملة تهدف لتوفير الدعم القانوني في جميع جوانب العقود لضمان حماية حقوقك. تبدأ العملية بتحليل احتياجات الصفقة وصياغة العقد بدقة لتوضيح الحقوق والالتزامات، تليها مراجعة دقيقة للتأكد من توافقه مع القوانين النافذة، ومساعدة العملاء في إجراءات التسجيل الرسمية لدى الجهات المختصة محلياً أو دولياً.
-        </div>
-        <div class="service-cta-box">
-          <span class="service-cta-text">احجز موعداً لصياغة أو مراجعة عقودك التجارية والمدنية بأعلى معايير الحماية.</span>
-          <a href="https://wa.me/9647838759047?text=%Dمرحباً،%20أرغب%20بالاستفسار%20وحجز%20موعد%20بخصوص%20صياغة%20ومراجعة%20العقود" target="_blank" class="btn-service-whatsapp">
-            <span>💬 تواصل عبر الواتساب لهذه الخدمة</span>
-          </a>
+        <div class="service-footer">
+          <a href="/services/contracts" class="btn-read-more">للمزيد والتفاصيل ➔</a>
         </div>
       </div>
 
-    </div>
+      <!-- 9. قضايا الأحوال الشخصية والتنفيذ القضائي -->
+      <div class="service-card">
+        <div>
+          <div class="service-top">
+            <div class="service-icon">👨‍👩‍👧‍👦</div>
+            <div class="service-title-area">
+              <div class="service-title">الأحوال الشخصية والتنفيذ القضائي</div>
+              <span class="service-path">/services/personal-status</span>
+            </div>
+          </div>
+          <div class="service-summary">
+            متابعة دعاوى الأحوال الشخصية، التسويات الأسرية، ومتابعة قضايا التنفيذ القضائي لاستحصال الحقوق القانونية بيسر ومهنية.
+          </div>
+        </div>
+        <div class="service-footer">
+          <a href="/services/personal-status" class="btn-read-more">للمزيد والتفاصيل ➔</a>
+        </div>
+      </div>
 
-    <!-- ملاحظة الحجوزات العامة -->
-    <div class="booking-notice">
-      ملاحظة: يتم تنظيم حجوزات المواعيد عبر رابط صفحة الاستشارات المخصص، مما يوفر سهولة ومرونة في ترتيب الاجتماعات والمشاورات القانونية لتقديم الخدمة بكفاءة عالية وفق جدولك الزمني. <br><br>
-      <a href="/consultations/">الانتقال إلى صفحة حجز المواعيد والاستشارات</a>
     </div>
 
   </div>
