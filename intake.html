@@ -1,43 +1,103 @@
-function loadData() {
-  document.getElementById('requestsTable').innerHTML = '<tr><td colspan="7" style="text-align: center; color: #718096;">جاري تحميل البيانات...</td></tr>';
-  
-  fetch('https://script.google.com/macros/s/AKfycbwB90LBE4uAyx5rQZ8tz5d_GBkY5gMQAdsW_xqZoseqb2C_Y6PqJi9LIlH1-LekQwbVow/exec', {
-    method: 'POST',
-    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-    body: JSON.stringify({ action: 'getData' })
-  })
-  .then(response => response.json())
-  .then(data => {
-    if (data.status === 'error') {
-      throw new Error(data.message);
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>نظام إدارة الاستشارات القانونية - AKH</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f8fafc; margin: 0; padding: 20px; color: #2d3748; }
+    .wrapper { max-width: 1000px; margin: auto; }
+    .card { background: #ffffff; padding: 20px; border-radius: 12px; border-top: 5px solid #b79042; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 20px; text-align: center; }
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 20px; }
+    .stat-box { background: #ffffff; padding: 15px; border-radius: 12px; border: 1px solid #e2e8f0; text-align: center; }
+    .stat-number { font-size: 26px; font-weight: bold; color: #1a365d; margin-top: 5px; }
+    .btn { background: #b79042; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: bold; cursor: pointer; }
+    .btn:hover { background: #967333; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; background: white; border-radius: 8px; overflow: hidden; }
+    th, td { padding: 12px; text-align: right; border-bottom: 1px solid #e2e8f0; font-size: 14px; }
+    th { background: #f7fafc; color: #1a365d; }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="card">
+      <h2>نظام إدارة الاستشارات القانونية</h2>
+      <p style="color: #718096; font-size: 13px;">AKH Intake & Consultations Desk</p>
+      <button class="btn" onclick="loadData()">🔄 تحديث البيانات</button>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-box"><div>إجمالي الطلبات المستلمة</div><div id="totalCount" class="stat-number">0</div></div>
+      <div class="stat-box"><div>طلبات قيد المراجعة</div><div id="pendingCount" class="stat-number" style="color: #b79042;">0</div></div>
+      <div class="stat-box"><div>الطلبات المقبولة والمنجزة</div><div id="completedCount" class="stat-number" style="color: #22543d;">0</div></div>
+    </div>
+
+    <div class="card" style="text-align: right;">
+      <h3 style="margin-top:0; color:#1a365d;">سجل طلبات الاستشارة الواردة</h3>
+      <div style="overflow-x: auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>التاريخ والوقت</th>
+              <th>الاسم الكامل</th>
+              <th>التصنيف القانوني</th>
+              <th>طريقة الاستشارة</th>
+              <th>الهاتف</th>
+              <th>الحالة</th>
+              <th>الإجراءات</th>
+            </tr>
+          </thead>
+          <tbody id="requestsTable">
+            <tr><td colspan="7" style="text-align: center; color: #718096;">جاري التحميل...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function loadData() {
+      document.getElementById('requestsTable').innerHTML = '<tr><td colspan="7" style="text-align: center; color: #718096;">جاري تحميل البيانات...</td></tr>';
+      
+      const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxz-zvK4hFptavnIUjUcpTkybd1oiTtWYEsRfs5kAVMA3IztmonkDBIGXHKH0BFcMPN/exec?action=getData';
+
+      fetch(SCRIPT_URL)
+        .then(response => response.json())
+        .then(data => {
+          if (data.status === 'error') {
+            throw new Error(data.message);
+          }
+          document.getElementById('totalCount').innerText = data.total || 0;
+          document.getElementById('pendingCount').innerText = data.pending || 0;
+          document.getElementById('completedCount').innerText = data.completed || 0;
+          
+          const tbody = document.getElementById('requestsTable');
+          if (!data.requests || data.requests.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: #718096;">لا توجد طلبات مسجلة في الشيت.</td></tr>';
+            return;
+          }
+          
+          let html = '';
+          data.requests.forEach(function(req) {
+            let receiptLink = req.receiptUrl ? '<a href="' + req.receiptUrl + '" target="_blank" style="color:#3182ce; text-decoration:underline; margin-left:5px;">الإيصال</a>' : '';
+            html += '<tr>' +
+              '<td>' + req.date + '</td>' +
+              '<td><strong>' + req.name + '</strong></td>' +
+              '<td>' + req.entity + '</td>' +
+              '<td>' + req.type + '</td>' +
+              '<td>' + req.phone + '</td>' +
+              '<td><span style="padding: 4px 8px; border-radius: 4px; background: #edf2f7; font-size: 13px;">' + req.status + '</span></td>' +
+              '<td>' + receiptLink + '</td>' +
+            '</tr>';
+          });
+          tbody.innerHTML = html;
+        })
+        .catch(err => {
+          alert('خطأ في جلب البيانات: ' + err.message);
+          document.getElementById('requestsTable').innerHTML = '<tr><td colspan="7" style="text-align: center; color: #c53030;">حدث خطأ: ' + err.message + '</td></tr>';
+        });
     }
-    document.getElementById('totalCount').innerText = data.total;
-    document.getElementById('pendingCount').innerText = data.pending;
-    document.getElementById('completedCount').innerText = data.completed;
-    
-    const tbody = document.getElementById('requestsTable');
-    if (!data.requests || data.requests.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: #718096;">لا توجد طلبات مسجلة في الشيت.</td></tr>';
-      return;
-    }
-    
-    let html = '';
-    data.requests.forEach(function(req) {
-      let receiptLink = req.receiptUrl ? '<a href="' + req.receiptUrl + '" target="_blank" style="color:#3182ce; text-decoration:underline; margin-left:5px;">الإيصال</a>' : '';
-      html += '<tr>' +
-        '<td>' + req.date + '</td>' +
-        '<td><strong>' + req.name + '</strong></td>' +
-        '<td>' + req.entity + '</td>' +
-        '<td>' + req.type + '</td>' +
-        '<td>' + req.phone + '</td>' +
-        '<td><span style="padding: 4px 8px; border-radius: 4px; background: #edf2f7; font-size: 13px;">' + req.status + '</span></td>' +
-        '<td>' + receiptLink + '</td>' +
-      '</tr>';
-    });
-    tbody.innerHTML = html;
-  })
-  .catch(err => {
-    alert('خطأ في جلب البيانات: ' + err.message);
-    document.getElementById('requestsTable').innerHTML = '<tr><td colspan="7" style="text-align: center; color: #c53030;">حدث خطأ: ' + err.message + '</td></tr>';
-  });
-}
+
+    window.onload = loadData;
+  </script>
+</body>
+</html>
