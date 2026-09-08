@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title id="pageTitle">منظومة الحجوزات والاستشارات القانونية - مكتب المحامي علي كاظم الهاشمي</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&display=swap" rel="stylesheet">
-  <!-- مكتبة Supabase للربط السحابي المباشر -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { background: #f4f6f9; color: #070f1e; font-family: 'Cairo', sans-serif; min-height: 100vh; }
@@ -486,7 +484,7 @@
         companyName: "Şirket Yasal Adı *",
         companyRep: "Şirket Yetkilisi / Temsilci *",
         addressIraqiIndiv: "İkamet Adresi *",
-        addressForeignIndiv: "Yabancı İkamet Adresi (Şehir / Ülke) *",
+        addressForeignIndiv: "Yabancı İkamet Adresi (Şehir / Üلکه) *",
         addressCompany: "Şirket Merkezi *",
         email: "E-posta *",
         phone: "Telefon / WhatsApp *",
@@ -963,6 +961,10 @@
       updateFormDisplay();
     }
 
+    function updateFormDependency() {
+      // helper
+    }
+
     function updateFormDisplay() {
       const isForeign = document.querySelector('input[name="citizenship"]:checked').value === 'foreign';
       const isCompany = document.querySelector('input[name="entityType"]:checked').value === 'company';
@@ -1012,10 +1014,9 @@
       }
     }
 
-    // الربط المباشر بقاعدة بيانات Supabase السحابية حصراً وبدون أي أخطاء
+    // الربط المباشر باستخدام Native Fetch بالخادم السحابي بدون أي مكتبات خارجية قد تسبب NetworkError
     const SUPABASE_URL = 'https://jpcamurbnzmwfwftpsub.supabase.co';
     const SUPABASE_KEY = 'sb_publishable_6r2dierEgyLRnneQkUrnbw_hE27Rp36';
-    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
     document.getElementById('consultationForm').addEventListener('submit', async function(e) {
       e.preventDefault();
@@ -1044,21 +1045,32 @@
       submitBtn.disabled = true;
       submitBtn.style.opacity = '0.7';
 
-      const { data, error } = await supabaseClient
-        .from('bookings')
-        .insert([formData]);
+      try {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/bookings`, {
+          method: 'POST',
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify(formData)
+        });
 
-      if (error) {
-        console.error('Supabase Error:', error);
-        alert("حدث خطأ في الاتصال بقاعدة البيانات: " + error.message);
-        submitBtn.disabled = false;
-        submitBtn.style.opacity = '1';
-      } else {
+        if (!response.ok) {
+          const errData = await response.text();
+          throw new Error(errData || 'فشل الاتصال بالخادم');
+        }
+
         alert(t.successMsg);
         document.getElementById('consultationForm').reset();
+        updateFormDisplay();
+      } catch (err) {
+        console.error('Network/DB Error:', err);
+        alert("حدث خطأ في الاتصال بقاعدة البيانات: " + err.message);
+      } finally {
         submitBtn.disabled = false;
         submitBtn.style.opacity = '1';
-        updateFormDisplay();
       }
     });
   </script>
