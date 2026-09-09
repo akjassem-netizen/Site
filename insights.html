@@ -550,17 +550,17 @@ Given procedural complexities and multiple regulatory bodies, we emphasize havin
       tr: {
         dir: 'ltr',
         title: 'Hukuki Görüşler ve Analizler | Law Office Of Ali Kadhem Hashimi',
-        mainTitle: 'Hukuki Görüşler و Analizler',
+        mainTitle: 'Hukuki Görüşler ve Analizler',
         keywords: 'Bağdat avukat, Irak iş hukuku, Irak şirketler hukuku, Bağdat şirket kuruluşu, hukuki danışmanlık',
-        desc: 'Bağdat\'taki Ali Kadhem Hashimi Hukuk Bürosu tarafından Irak iş hukuku و şirket kuruluşları üzerine yayınlanan hukuki analizler.',
-        intro: 'Irak hukuku dallarında usul çalışmaları و açıklamaları yayınlamaya adanmış özel bir pencere: İş hukuku, ikamet و sosyal güvenlik, şirket kuruluşları و ticari davalar.',
+        desc: 'Bağdat\'taki Ali Kadhem Hashimi Hukuk Bürosu tarafından Irak iş hukuku ve şirket kuruluşları üzerine yayınlanan hukuki analizler.',
+        intro: 'Irak hukuku dallarında usul çalışmaları ve açıklamaları yayınlamaya adanmış özel bir pencere: İş hukuku, ikamet و sosyal güvenlik, şirket kuruluşları و ticari davalar.',
         catName: 'İş, İkamet ve Sosyal Güvenlik',
         artDate: 'İş ve Sosyal Güvenlik • 5 Eylül 2026',
         artTitle: 'Yabancı İşçi Uyumu ve 2023 Tarihli ve 18 Sayılı Irak Sosyal Güvenlik Kanunu: Şirketler و Yatırımcılar Rehberi',
         artDesc: 'Irak İş Kanunu hükümlerinin kapsamlı analitik çalışması و işveren yükümlülükleri.',
         artBody: `Irak Cumhuriyeti'ndeki iş و yatırım ortamı umut vadediyor ancak katı bir yasal çerçeveye tabi bulunuyor.
 
-1. İş Sözleşmeleri ve Hukuki Düzenleme:
+1. İş Sözleşmeleri و Hukuki Düzenleme:
 Irak mevzuatı, iş sözleşmelerinin yazılı و Arapça olarak iki nüsha halinde düzenlenmesini zorunlu kılar.
 
 2. Sosyal Güvenlik Primleri:
@@ -655,7 +655,7 @@ Yabancı işçiler, Çalışma Bakanlığı onayına tabidir.
         intro: 'Ventana especializada dedicada a la publicación de estudios procesales en las ramas del derecho iraquí.',
         catName: 'Trabajo y Seguridad Social',
         artDate: 'Trabajo y Seguridad • 5 de Septiembre de 2026',
-        artTitle: 'Cumplimiento Laboral Extranjero y Ley de Seguridad Social de Irak No. 18 de 2023',
+        artTitle: 'Cumplimiento Laboral Extranjero و Ley de Seguridad Social de Irak No. 18 de 2023',
         artDesc: 'Estudio analítico integral de las disposiciones de la ley laboral iraquí و seguridad social.',
         artBody: `El entorno empresarial e inversión en la República de Irak es prometedor pero riguroso.
 
@@ -686,7 +686,7 @@ Yabancı işçiler, Çalışma Bakanlığı onayına tabidir.
         artDate: 'Arbeit & Soziales • 5. September 2026',
         artTitle: 'Einhaltung der ausländischen Beschäftigung و irakisches Sozialversicherungsgesetz Nr. 18 von 2023',
         artDesc: 'Umfassende analytische Studie zu den Bestimmungen des irakischen Arbeitsrechts.',
-        artBody: `Das Geschäfts- و Investitionsumfeld in der Republik Irak ist vielversprechend und unterliegt strengen Vorschriften.
+        artBody: `Das Geschäfts- و Investitionsumfeld في der Republik Irak ist vielversprechend und unterliegt strengen Vorschriften.
 
 1. Arbeitsverträge و rechtliche Gestaltung.
 2. Sozialversicherungsbeiträge.
@@ -744,14 +744,13 @@ Yabancı işçiler, Çalışma Bakanlığı onayına tabidir.
       }
     }
 
-    // دعم جلب اللغة من الرابط (قيمة ?lang=...) وتحديث المعاينة فوراً
     window.addEventListener('DOMContentLoaded', () => {
       const urlParams = new URLSearchParams(window.location.search);
       const urlLang = urlParams.get('lang');
       const savedLang = urlLang || localStorage.getItem('preferredLang') || 'ar';
       
       if (translations[savedLang]) {
-        document.getElementById('languageSelect') ? document.getElementById('languageSelect').value = savedLang : null;
+        document.getElementById('languageSelect') ? document.getElementById('languageSelect'].value = savedLang : null;
         document.getElementById('langSelect').value = savedLang;
         changeLanguage(savedLang, false);
       }
@@ -797,34 +796,25 @@ Yabancı işçiler, Çalışma Bakanlığı onayına tabidir.
       document.getElementById('shareLabel').innerText = t.shareLabel;
       document.getElementById('copyTxt').innerText = t.copyTxt;
       
-      // تحديث كلمة "مقال" ديناميكياً
       document.getElementById('badgeArticleWord').innerText = t.badgeWord;
-
-      // تحديث أزرار العودة باللغة المختارة
       document.getElementById('topBackBtn').innerText = t.topBack;
       document.getElementById('bottomBackBtn').innerText = t.bottomBack;
       document.getElementById('backToListBtn').innerText = t.backToList;
 
-      // تحديث زر "قراءة المزيد" أو "عرض أقل" حسب حالته الحالية
       const expandedDiv = document.querySelector('.article-expanded');
       const readBtn = document.getElementById('readMoreBtn');
       if (expandedDiv && readBtn) {
         readBtn.innerText = (expandedDiv.style.display === 'block') ? t.showLess : t.readMore;
       }
 
-      // تحديث روابط منصات المشاركة لتتضمن اللغة الحالية تلقائياً (تظهر بلغة المستخدم عند المشاركة)
+      // تحديث روابط المشاركة والزر لتشمل اللغة الحالية
       const slug = 'labor-social-security-iraq';
       const shareUrl = `https://akjassem.com/insights?lang=${lang}&p=${slug}`;
       document.getElementById('shareWa').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareUrl)}`;
       document.getElementById('shareLi').href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
       document.getElementById('shareX').href = `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}`;
 
-      let metaKw = document.querySelector('meta[name="keywords"]');
-      if (metaKw) metaKw.content = t.keywords;
-
-      let metaDesc = document.querySelector('meta[name="description"]');
-      if (metaDesc) metaDesc.content = t.desc;
-
+      // تحديث عنوان ووصف المعاينة (Open Graph) ديناميكياً للـ DOM في المتصفح
       document.getElementById('ogTitle').content = t.title;
       document.getElementById('ogDesc').content = t.desc;
       document.getElementById('twTitle').content = t.title;
