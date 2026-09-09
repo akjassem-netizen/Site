@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="htmlRoot">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="pageTitle">حجز موعد استشارة قانونية - مكتب المحامي علي كاظم الهاشمي</title>
+  
+  <link rel="alternate" hreflang="ar" href="https://akjassem.com/booking/">
+  <link rel="alternate" hreflang="en" href="https://akjassem.com/booking/en/">
+  <link rel="alternate" hreflang="x-default" href="https://akjassem.com/booking/">
+
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { background: #f4f6f9; color: #070f1e; font-family: 'Cairo', sans-serif; min-height: 100vh; }
+
+    .icover-header {
+      background: #070f1e;
+      border-bottom: 3px solid #c5a059;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+
+    .lang-btn {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      border: 1.5px solid #c5a059;
+      padding: 7px 16px;
+      border-radius: 6px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .lang-btn:hover { background: rgba(197,160,89,0.2); color: #c5a059; }
+
+    .back-home-btn {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      border: 1.5px solid #c5a059;
+      padding: 7px 16px;
+      border-radius: 6px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .back-home-btn:hover { background: rgba(197,160,89,0.2); color: #c5a059; }
+
+    .form-container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 20px;
+      padding: 40px 35px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+      border-top: 6px solid #c5a059;
+    }
+
+    .brand-logo-box {
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 18px;
+      text-align: center;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    }
+    .b-akh {
+      font-size: 34px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      color: #070f1e;
+      font-family: Arial, sans-serif;
+      line-height: 1.1;
+    }
+    .b-akh .red-k { color: #d32f2f; }
+    .b-sub {
+      font-size: 10.5px;
+      font-weight: 800;
+      color: #070f1e;
+      letter-spacing: 1.5px;
+      margin-top: 4px;
+    }
+    .b-sub .red-slash { color: #d32f2f; }
+    .b-est {
+      font-size: 8.5px;
+      color: #64748b;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-top: 2px;
+    }
+
+    h1 { font-size: 22px; font-weight: 900; color: #070f1e; margin-bottom: 10px; text-align: start; }
+    p.instructions { font-size: 14px; color: #475569; line-height: 1.7; margin-bottom: 25px; text-align: start; }
+
+    .form-group { margin-bottom: 20px; text-align: start; }
+    label { display: block; font-weight: 800; font-size: 13.5px; color: #070f1e; margin-bottom: 6px; }
+    
+    input[type="text"], input[type="email"], input[type="tel"], input[type="number"], select, textarea {
+      width: 100%;
+      height: 48px;
+      padding: 0 14px;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: 'Cairo', sans-serif;
+      outline: none;
+      background: #f8fafc;
+      color: #070f1e;
+      transition: border-color 0.2s;
+    }
+    textarea {
+      height: 110px;
+      padding-top: 12px;
+      resize: vertical;
+    }
+    input:focus, select:focus, textarea:focus { border-color: #c5a059; background: #fff; }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+    @media (max-width: 650px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .form-container { margin: 15px; padding: 25px 20px; }
+    }
+
+    .radio-group { display: flex; gap: 20px; margin-top: 5px; flex-wrap: wrap; }
+    .radio-label { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 13.5px; cursor: pointer; }
+
+    .submit-btn {
+      width: 100%;
+      background: #070f1e;
+      color: #ffffff;
+      border: 1.5px solid #070f1e;
+      height: 52px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 10px;
+    }
+    .submit-btn:hover { background: #c5a059; color: #070f1e; border-color: #c5a059; }
+
+    .conditional-section { display: none; }
+    .conditional-section.active { display: block; }
+  </style>
+
+  <script>
+    if (window.location.pathname.endsWith('.html')) {
+      const cleanPath = window.location.pathname.replace('.html', '');
+      window.history.replaceState({}, '', cleanPath + window.location.search + window.location.hash);
+    }
+  </script>
+</head>
+<body>
+
+  <header class="icover-header">
+    <div>
+      <a href="en/" class="lang-btn">English 🌐</a>
+    </div>
+
+    <div>
+      <a href="https://akjassem.com" class="back-home-btn" id="backBtnText">&larr; الرئيسية</a>
+    </div>
+  </header>
+
+  <main class="form-container">
+    <div class="brand-logo-box" dir="ltr">
+      <div class="b-akh">A<span class="red-k">K</span>H</div>
+      <div class="b-sub"><span class="red-slash">/</span> LAW OFFICE</div>
+      <div class="b-est">EST. 2014</div>
+    </div>
+
+    <h1 id="formMainTitle">استمارة طلب الاستشارة القانونية</h1>
+    <p class="instructions" id="formInstructions">يرجى تعبئة النموذج أدناه بدقة ليتسنى لنا دراسة الطلب وتحديد الأتعاب وضبط موعد الاستشارة وفق الأطر المهنية.</p>
+
+    <form id="consultationForm">
+
+      <div class="form-group">
+        <label id="lblCitizenship">الجنسية / الصفة الشخصية *</label>
+        <div class="radio-group">
+          <label class="radio-label"><input type="radio" name="citizenship" value="iraqi" checked onchange="updateFormDisplay()"> <span id="optIraqi">عراقي (مواطن)</span></label>
+          <label class="radio-label"><input type="radio" name="citizenship" value="foreign" onchange="updateFormDisplay()"> <span id="optForeign">أجنبي (غير عراقي)</span></label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label id="lblResidence">مكان الإقامة الحالي *</label>
+        <div class="radio-group">
+          <label class="radio-label"><input type="radio" name="residence" value="inside" checked> <span id="optInside">مقيم داخل العراق</span></label>
+          <label class="radio-label"><input type="radio" name="residence" value="outside"> <span id="optOutside">مقيم خارج العراق</span></label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label id="lblEntityType">صفة طالب الاستشارة *</label>
+        <div class="radio-group">
+          <label class="radio-label"><input type="radio" name="entityType" value="individual" checked onchange="updateFormDisplay()"> <span id="optIndiv">فرد (شخص طبيعي)</span></label>
+          <label class="radio-label"><input type="radio" name="entityType" value="company" onchange="updateFormDisplay()"> <span id="optComp">شركة أو مؤسسة تجارية</span></label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label id="nameLabel">الاسم الكامل *</label>
+        <input type="text" id="fullName" required placeholder="أدخل الاسم الثلاثي">
+      </div>
+
+      <div id="companyRepField" class="form-group conditional-section">
+        <label id="lblCompanyRep">اسم المفوض بالتوقيع أو الممثل القانوني للشركة *</label>
+        <input type="text" id="companyRepName" placeholder="اسم الشخص المسؤول عن المتابعة والصفة">
+      </div>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label id="lblEmail">البريد الإلكتروني *</label>
+          <input type="email" id="email" required placeholder="name@example.com">
+        </div>
+        <div class="form-group">
+          <label id="lblPhone">رقم الهاتف / الواتساب *</label>
+          <input type="tel" id="phone" required placeholder="07700000000 أو برمز الدولة">
+        </div>
+      </div>
+
+      <div id="individualOnlyFields" class="conditional-section active">
+        <div class="form-grid">
+          <div class="form-group">
+            <label id="lblGender">الجنس *</label>
+            <select id="gender">
+              <option value="male" id="optMale">ذكر</option>
+              <option value="female" id="optFemale">أنثى</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label id="lblAge">العمر *</label>
+            <input type="number" id="age" placeholder="مثال: 35">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label id="lblEducation">التحصيل الدراسي *</label>
+          <select id="education">
+            <option value="university" id="eduUni">شهادة جامعية أو عليا</option>
+            <option value="highschool" id="eduHigh">شهادة ثانوية</option>
+            <option value="other" id="eduOther">غير ذلك</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label id="lblOccupation">العمل أو الوظيفة *</label>
+          <input type="text" id="occupation" placeholder="اكتب وظيفتك الحالية">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label id="lblAddress">عنوان السكن *</label>
+        <input type="text" id="address" placeholder="المحافظة / المنطقة (مثلاً: بغداد - زيونة)">
+      </div>
+
+      <div id="foreignerIndividualFields" class="conditional-section">
+        <div class="form-group">
+          <label id="lblNationalityIndiv">الجنسية *</label>
+          <input type="text" id="nationalityIndiv" placeholder="مثال: بريطاني / أمريكي / ألماني">
+        </div>
+      </div>
+
+      <div id="companyIdentityFields" class="conditional-section">
+        <div class="form-group">
+          <label id="lblCompanyRegAuth">جهة تسجيل أو تأسيس الشركة *</label>
+          <select id="companyRegAuth">
+            <option value="federal" id="authFed">مسجل الشركات - الحكومة الاتحادية (بغداد)</option>
+            <option value="kurdistan" id="authKrg">وزارة التجارة والصناعة - إقليم كردستان</option>
+            <option value="foreign_corp" id="authForeign">شركة أجنبية / دولية مؤسسة خارج العراق</option>
+          </select>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label id="lblCountryInc">بلد التأسيس *</label>
+            <input type="text" id="countryInc" placeholder="مثال: العراق / الإمارات / المملكة المتحدة">
+          </div>
+          <div class="form-group">
+            <label id="lblRegNo">رقم تسجيل الشركة (CRN) *</label>
+            <input type="text" id="regNo" placeholder="رقم شهادة التأسيس أو التسجيل">
+          </div>
+        </div>
+      </div>
+
+      <div id="translationField" class="form-group conditional-section">
+        <label id="lblTranslation">خدمة الترجمة والتنسيق أثناء الجلسة *</label>
+        <select id="translationNeeded">
+          <option value="no" id="transNo">لا، أستطيع المتابعة بشكل مباشر</option>
+          <option value="yes" id="transYes">نعم، أرغب بأن يوفر المكتب مترجماً مختصاً للجلسة</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label id="lblMethod">طريقة تلقي الاستشارة المفضلة *</label>
+        <select id="consultationMethod">
+          <option value="office" id="methOffice">زيارة المكتب</option>
+          <option value="phone" id="methPhone">مكالمة هاتفية</option>
+          <option value="online" id="methOnline">عبر الإنترنت وتطبيقات التواصل</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label id="lblConsultType">نوع الاستشارة أو التصنيف القانوني *</label>
+        <select id="consultationType">
+          <option value="corporate" id="typeCorp">القضايا التجارية والشركات واستثمار أجنبي</option>
+          <option value="civil_realestate" id="typeCivil">الدعاوى المدنية والعقارية</option>
+          <option value="criminal" id="typeCrim">الدعاوى الجزائية والجنائية</option>
+          <option value="personal" id="typePers">الأحوال الشخصية (أسرة، طلاق، إرث)</option>
+          <option value="other" id="typeOther">أخرى / استشارة عامة</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label id="lblDetails">شرح قضيتك أو موضوع الاستشارة بالتفصيل *</label>
+        <textarea id="consultationDetails" placeholder="اشرح بإيجاز وقائع نزاعك أو موضوع الاستشارة القانونية المطلوب بدقة ودون إطالة..."></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn" id="submitBtnText">إرسال الطلب للمراجعة القانونية &larr;</button>
+    </form>
+  </main>
+
+  <script>
+    function updateFormDisplay() {
+      const isForeign = document.querySelector('input[name="citizenship"]:checked').value === 'foreign';
+      const isCompany = document.querySelector('input[name="entityType"]:checked').value === 'company';
+      
+      const indFields = document.getElementById('individualOnlyFields');
+      const compRepField = document.getElementById('companyRepField');
+      const foreignIndivFields = document.getElementById('foreignerIndividualFields');
+      const compIdentityFields = document.getElementById('companyIdentityFields');
+      const translationField = document.getElementById('translationField');
+      const nameLabel = document.getElementById('nameLabel');
+      const addressLabel = document.getElementById('lblAddress');
+      const addressInput = document.getElementById('address');
+
+      if (isCompany) {
+        indFields.classList.remove('active');
+        compRepField.classList.add('active');
+        compIdentityFields.classList.add('active');
+        foreignIndivFields.classList.remove('active');
+        nameLabel.innerText = "اسم الشركة القانوني *";
+        addressLabel.innerText = "مقر الشركة الرئيسي *";
+        addressInput.placeholder = "بغداد أو أربيل أو عاصمة التأسيس";
+      } else {
+        compRepField.classList.remove('active');
+        compIdentityFields.classList.remove('active');
+        if (isForeign) {
+          indFields.classList.remove('active');
+          foreignIndivFields.classList.add('active');
+          nameLabel.innerText = "الاسم الكامل *";
+          addressLabel.innerText = "عنوان الإقامة الخارجي (المدينة / الدولة) *";
+          addressInput.placeholder = "لندن - المملكة المتحدة أو دبي - الإمارات";
+        } else {
+          indFields.classList.add('active');
+          foreignIndivFields.classList.remove('active');
+          nameLabel.innerText = "الاسم الكامل *";
+          addressLabel.innerText = "عنوان السكن (المحافظة / المنطقة) *";
+          addressInput.placeholder = "المحافظة / المنطقة (مثلاً: بغداد - زيونة)";
+        }
+      }
+
+      if (isForeign) {
+        translationField.classList.add('active');
+      } else {
+        translationField.classList.remove('active');
+      }
+    }
+
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw7yF264dmPNlUy2Nng5jwz-qXRTZvoDIRjKNmLhWoDJ5Fk1RJEISFo3GIb5Xw4b0ycSA/exec";
+
+    document.getElementById('consultationForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const formData = {
+        citizenship: document.querySelector('input[name="citizenship"]:checked').value,
+        residence: document.querySelector('input[name="residence"]:checked').value,
+        entityType: document.querySelector('input[name="entityType"]:checked').value,
+        fullName: document.getElementById('fullName').value,
+        companyRep: document.getElementById('companyRepName').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        personalDetails: (document.querySelector('input[name="entityType"]:checked').value === 'company') ? '' : `الجنس: ${document.getElementById('gender').value}, العمر: ${document.getElementById('age').value}, التحصيل: ${document.getElementById('education').value}, العمل: ${document.getElementById('occupation').value}`,
+        address: document.getElementById('address').value,
+        idOrReg: (document.querySelector('input[name="citizenship"]:checked').value === 'foreign' && document.querySelector('input[name="entityType"]:checked').value !== 'company') ? document.getElementById('nationalityIndiv').value : (document.querySelector('input[name="entityType"]:checked').value === 'company' ? `التأسيس: ${document.getElementById('countryInc').value} - رقم التسجيل: ${document.getElementById('regNo').value}` : ''),
+        translation: document.getElementById('translationNeeded').value,
+        method: document.getElementById('consultationMethod').value,
+        consultType: document.getElementById('consultationType').value,
+        details: document.getElementById('consultationDetails').value
+      };
+
+      const submitBtn = document.getElementById('submitBtnText');
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = '0.7';
+
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(formData)
+      })
+      .then(() => {
+        alert("تم استلام طلبكم بنجاح، وهو الآن قيد الفحص والمراجعة القانونية (سيتم مراجعة الطلب والرد خلال 24 ساعة من الآن).");
+        document.getElementById('consultationForm').reset();
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '1';
+        updateFormDisplay();
+      })
+      .catch(error => {
+        console.error('Error!', error);
+        alert("حدث خطأ أثناء إرسال الطلب، يرجى المحاولة مرة أخرى.");
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '1';
+      });
+    });
+  </script>
+</body>
+</html>
