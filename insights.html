@@ -4,25 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <!-- Hreflang Tags للتهيئة العالمية متعددة اللغات -->
+  <!-- Hreflang Tags للتهيئة الثنائية الأساسية -->
   <link rel="alternate" hreflang="ar" href="https://akjassem.com/insights">
   <link rel="alternate" hreflang="en" href="https://akjassem.com/insights?lang=en">
-  <link rel="alternate" hreflang="tr" href="https://akjassem.com/insights?lang=tr">
-  <link rel="alternate" hreflang="zh" href="https://akjassem.com/insights?lang=zh">
-  <link rel="alternate" hreflang="fr" href="https://akjassem.com/insights?lang=fr">
-  <link rel="alternate" hreflang="es" href="https://akjassem.com/insights?lang=es">
-  <link rel="alternate" hreflang="de" href="https://akjassem.com/insights?lang=de">
-  <link rel="alternate" hreflang="ku" href="https://akjassem.com/insights?lang=ku">
   <link rel="alternate" hreflang="x-default" href="https://akjassem.com/insights">
 
-  <!-- SEO Meta Tags الأساسية لصدارة محركات البحث -->
+  <!-- SEO Meta Tags -->
   <title id="pageMetaTitle">الآراء والتحليلات القانونية | Law Office Of Ali Kadhem Hashimi</title>
   <meta name="description" id="metaDesc" content="نافذة قانونية تنفيذية متخصصة بنشر التحليلات الإجرائية في فروع القانون العراقي وتأسيس الشركات، إعداد مكتب المحامي علي كاظم الهاشمي في بغداد.">
-  <meta name="keywords" id="metaKeywords" content="محامي في بغداد, قانون العمل العراقي, محامي شركات في العراق, تأسيس شركات بغداد, استشارات قانونية, مكتب المحامي علي كاظم, السفارات والشركات الأجنبية">
+  <meta name="keywords" id="metaKeywords" content="محامي في بغداد, قانون العمل العراقي, محامي شركات في العراق, تأسيس شركات بغداد, استشارات قانونية, مكتب المحامي علي كاظم">
   <meta name="author" content="Ali Kadhem Hashimi Law Office">
   <meta name="robots" content="index, follow, max-image-preview:large">
 
-  <!-- Open Graph / Social Media Meta Tags -->
+  <!-- Open Graph / Social Media Meta Tags (معاينة إنجليزية دولية راقية لواتساب) -->
   <meta property="og:title" id="ogTitle" content="Legal Insights & Analysis | Law Office Of Ali Kadhem Hashimi">
   <meta property="og:description" id="ogDesc" content="Specialized legal insights covering Iraqi labor law, company formation, and regulatory compliance by Ali Kadhem Hashimi Law Office in Baghdad.">
   <meta property="og:image" content="https://akjassem.com/og-logo.jpg">
@@ -77,8 +71,6 @@
       justify-content: center;
       user-select: none !important;
       -webkit-user-select: none !important;
-      -moz-user-select: none !important;
-      -ms-user-select: none !important;
       transition: filter 0.3s ease;
     }
 
@@ -264,10 +256,6 @@
       max-height: 380px;
       object-fit: cover;
       display: block;
-      transition: transform 0.3s ease;
-    }
-    .article-image-box img:hover {
-      transform: scale(1.015);
     }
 
     .article-meta-info {
@@ -308,9 +296,7 @@
       align-items: center;
       gap: 5px;
       text-decoration: none;
-      transition: opacity 0.2s;
     }
-    .btn-share:hover { opacity: 0.85; }
     .btn-share-copy { background-color: #edf2f7; color: #2d3748; }
     .btn-share-wa { background-color: #25d366; color: #ffffff; }
     .btn-share-li { background-color: #0a66c2; color: #ffffff; }
@@ -342,7 +328,6 @@
       border-radius: 30px;
       font-size: 13px;
       font-weight: 700;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
       display: none;
       z-index: 99999;
     }
@@ -366,22 +351,15 @@
       </div>
     </div>
 
-    <!-- شريط الأدوات وزر العودة إلى الموقع الرئيسي بالاعلى -->
+    <!-- شريط الأدوات وزر العودة إلى الموقع الرئيسي -->
     <div class="toolbar-box">
       <div class="lang-selector-wrapper">
         <span id="langSelectLabel" style="font-weight: 700; font-size: 14px; color: #0b1a30;">🌐 اختر اللغة / Select Language:</span>
         <select id="langSelect" class="lang-select" onchange="changeLanguage(this.value)">
           <option value="ar">العربية (Arabic)</option>
           <option value="en">English</option>
-          <option value="tr">Türkçe</option>
-          <option value="zh">中文 (Chinese)</option>
-          <option value="fr">Français</option>
-          <option value="es">Español</option>
-          <option value="de">Deutsch</option>
-          <option value="ku">کوردی (Kurdish)</option>
         </select>
       </div>
-      <!-- زر العودة للموقع الرئيسي (بالاعلى) -->
       <div style="width: 100%; text-align: left; margin-top: 6px; border-top: 1px dashed #e2e8f0; padding-top: 8px;">
         <a href="index.html" id="topBackBtn" style="display: inline-block; background-color: #0b1a30; color: #ffffff; padding: 6px 14px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 12.5px;">🏠 العودة إلى الموقع الرئيسي</a>
       </div>
@@ -407,7 +385,6 @@
             <p id="artDesc" style="font-size: 15px; color: #4a5568; line-height: 1.8; margin-bottom: 12px;">دراسة تحليلية شاملة لأحكام قانون العمل العراقي وقانون التقاعد والضمان الاجتماعي للعمال، مع بيان التزامات أصحاب العمل والشركات الأجنبية والمحلية.</p>
             
             <div class="article-expanded" style="display: none; border-top: 1px dashed #cbd5e0; padding-top: 16px; margin-top: 12px; font-size: 15px; color: #2d3748; line-height: 1.9;">
-              <!-- الصورة الداخلية للمقال -->
               <div class="article-image-box">
                 <img src="og-logo.jpg" alt="امتثال العمالة الأجنبية والضمان الاجتماعي في العراق - مكتب المحامي علي كاظم الهاشمي" loading="lazy">
               </div>
@@ -433,7 +410,6 @@
                 <a id="btnBooking" href="https://akjassem.com/booking" style="display: inline-block; background-color: #0b1a30; color: #ffffff; padding: 13px 25px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 15px; box-shadow: 0 4px 12px rgba(11,26,48,0.25); border: 1.5px solid #d32f2f;">طلب تدقيق الامتثال العمالي للشركات (مكتب AKH) ←</a>
               </div>
 
-              <!-- زر العودة إلى قائمة المقالات (من داخل المقال) -->
               <div id="backToListWrapper" style="text-align: right; margin-top: 20px;">
                 <button type="button" id="backToListBtn" onclick="const card = this.closest('.legal-card'); card.querySelector('.article-expanded').style.display='none'; card.querySelector('[id^=readMoreBtn]').innerText = translations[currentLang].readMore; window.scrollTo({top: card.offsetTop - 50, behavior: 'smooth'});" style="background: #edf2f7; border: 1px solid #cbd5e0; color: #2d3748; padding: 8px 16px; border-radius: 6px; font-weight: 700; cursor: pointer; font-family: inherit; font-size: 13px;">← العودة إلى قائمة الآراء</button>
               </div>
@@ -458,7 +434,6 @@
       </div>
     </div>
 
-    <!-- زر العودة إلى الموقع الرئيسي (بالأسفل) -->
     <div style="text-align: center; margin-top: 30px; margin-bottom: 20px;">
       <a href="index.html" id="bottomBackBtn" style="display: inline-block; background-color: #0b1a30; color: #ffffff; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 14px; border: 1.5px solid #d32f2f; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">🏠 العودة إلى الموقع الرئيسي الكامل ←</a>
     </div>
@@ -473,7 +448,7 @@
         dir: 'rtl',
         title: 'الآراء والتحليلات القانونية | Law Office Of Ali Kadhem Hashimi',
         mainTitle: 'الآراء والتحليلات القانونية',
-        keywords: 'محامي في بغداد, قانون العمل العراقي, محامي شركات في العراق, تأسيس شركات بغداد, استشارات قانونية, عمالة أجنبية',
+        keywords: 'محامي في بغداد, قانون العمل العراقي, محامي شركات في العراق, تأسيس شركات بغداد, استشارات قانونية',
         desc: 'نافذة متخصصة تُعنى بنشر الدراسات والإيضاحات الإجرائية في فروع القانون العراقي وتأسيس الشركات والضمان الاجتماعي.',
         intro: 'نافذة متخصصة تُعنى بنشر الدراسات والإيضاحات الإجرائية في فروع القانون العراقي: قانون العمل والإقامة والضمان الاجتماعي، تأسيس وتسجيل الشركات، العلامات التجارية، وقضايا الأحوال الشخصية والدعاوى المدنية والتجارية.',
         catName: 'العمل والإقامة والضمان الاجتماعي',
@@ -546,191 +521,6 @@ Given procedural complexities and multiple regulatory bodies, we emphasize havin
         topBack: '🏠 Back to Main Website',
         bottomBack: '🏠 Back to Full Main Website →',
         backToList: '← Back to Insights List'
-      },
-      tr: {
-        dir: 'ltr',
-        title: 'Hukuki Görüşler ve Analizler | Law Office Of Ali Kadhem Hashimi',
-        mainTitle: 'Hukuki Görüşler ve Analizler',
-        keywords: 'Bağdat avukat, Irak iş hukuku, Irak şirketler hukuku, Bağdat şirket kuruluşu, hukuki danışmanlık',
-        desc: 'Bağdat\'taki Ali Kadhem Hashimi Hukuk Bürosu tarafından Irak iş hukuku ve şirket kuruluşları üzerine yayınlanan hukuki analizler.',
-        intro: 'Irak hukuku dallarında usul çalışmaları ve açıklamaları yayınlamaya adanmış özel bir pencere: İş hukuku, ikamet و sosyal güvenlik, şirket kuruluşları و ticari davalar.',
-        catName: 'İş, İkamet ve Sosyal Güvenlik',
-        artDate: 'İş ve Sosyal Güvenlik • 5 Eylül 2026',
-        artTitle: 'Yabancı İşçi Uyumu ve 2023 Tarihli ve 18 Sayılı Irak Sosyal Güvenlik Kanunu: Şirketler و Yatırımcılar Rehberi',
-        artDesc: 'Irak İş Kanunu hükümlerinin kapsamlı analitik çalışması و işveren yükümlülükleri.',
-        artBody: `Irak Cumhuriyeti'ndeki iş و yatırım ortamı umut vadediyor ancak katı bir yasal çerçeveye tabi bulunuyor.
-
-1. İş Sözleşmeleri و Hukuki Düzenleme:
-Irak mevzuatı, iş sözleşmelerinin yazılı و Arapça olarak iki nüsha halinde düzenlenmesini zorunlu kılar.
-
-2. Sosyal Güvenlik Primleri:
-Yürürlükteki Sosyal Güvenlik Kanunu, işverenlerin tüm çalışanlarını kaydetmesini zorunlu kılar.
-
-3. Yabancı İşçi İstihdamı و Çalışma İzinleri:
-Yabancı işçiler, Çalışma Bakanlığı onayına tabidir.
-
-4. İş Uyuşmazlıklarının Çözümü.`,
-        bookingBtn: 'Kurumsal Uyum Denetimi Talep Et (AKH Bürosu) →',
-        footer: '© Tüm hakları Avukat Ali Kazım Hashimi Hukuk Bürosu\'na saklıdır.',
-        readMore: 'Devamını Oku →',
-        showLess: 'Daha Az Göster ↑',
-        shareLabel: 'Doğrudan Bağlantıyı Paylaş:',
-        copyTxt: 'Bağlantıyı Kopyala',
-        copiedToast: 'Bağlantı başarıyla kopyalandı 📋',
-        badgeWord: 'Makale',
-        topBack: '🏠 Ana Web Sitesine Dön',
-        bottomBack: '🏠 Ana Web Sitesine Geri Dön →',
-        backToList: '← Görüşler Listesine Dön'
-      },
-      zh: {
-        dir: 'ltr',
-        title: '法律见解与分析 | Law Office Of Ali Kadhem Hashimi',
-        mainTitle: '法律见解与分析',
-        keywords: '巴格达律师, 伊拉克劳动法, 伊拉克公司注册, 伊拉克商事律师, 法律咨询',
-        desc: '巴格达阿里·卡德姆·哈希米律师事务所发布的关于伊拉克劳工法和公司注册的专业法律分析。',
-        intro: '一个专注于发布伊拉克法律各领域（劳工、居留与社会保障、公司注册、商标及民商事诉讼）程序性研究与说明的专业窗口。',
-        catName: '劳工、居留与社会保障',
-        artDate: '劳工与社会保障 • 2026年9月5日',
-        artTitle: '外籍劳工合规与2023年第18号伊拉克社会保障法：企业与投资者指南',
-        artDesc: '对伊拉克劳工法及社会保障法各项规定的全面分析研究与雇主义务说明。',
-        artBody: `伊拉克共和国的商业和投资环境充满希望，但受严格的法律框架管辖。
-
-1. 劳动合同及其法律起草：
-伊拉克法律规定劳动合同必须以阿拉伯语书面一式两份签署。
-
-2. 社会保障缴款（核心义务）：
-现行的《社会保障法》要求雇主为所有工人和雇员缴纳社保。
-
-3. 外籍劳务派遣与工作许可：
-外籍员工需获得劳动和社会事务部的批准。
-
-4. 劳动争议解决。`,
-        bookingBtn: '申请企业劳工合规审计 (AKH律所) →',
-        footer: '© 阿里·卡德姆·哈希米律师事务所版权所有。',
-        readMore: '阅读更多 →',
-        showLess: '收起 ↑',
-        shareLabel: '分享直接链接：',
-        copyTxt: '复制链接',
-        copiedToast: '链接复制成功 📋',
-        badgeWord: '文章',
-        topBack: '🏠 返回主网站',
-        bottomBack: '🏠 返回主网站 →',
-        backToList: '← 返回意见列表'
-      },
-      fr: {
-        dir: 'ltr',
-        title: 'Analyses Juridiques | Law Office Of Ali Kadhem Hashimi',
-        mainTitle: 'Analyses et Études Juridiques',
-        keywords: 'Avocat à Bagdad, Droit du travail irakien, Avocat d\'affaires Irak, Constitution de société Bagdad',
-        desc: 'Études et analyses juridiques spécialisées sur le droit du travail et la constitution de sociétés en Irak par le Cabinet AKH.',
-        intro: 'Une fenêtre spécialisée dédiée à la publication d’études et d’éclaircissements procéduraux dans les branches du droit irakien.',
-        catName: 'Travail et Sécurité Sociale',
-        artDate: 'Travail et Sécurité • 5 Septembre 2026',
-        artTitle: 'Conformité de la Main-d’Oeuvre Étrangère et Loi Irakienne de Sécurité Sociale n° 18 de 2023',
-        artDesc: 'Étude analytique complète des dispositions du droit du travail irakien et de la sécurité sociale.',
-        artBody: `L'environnement des affaires et des investissements en République d'Irak est prometteur, régi par un cadre législatif strict.
-
-1. Contrats de travail et rédaction juridique.
-2. Cotisations de sécurité sociale (obligation fondamentale).
-3. Recrutement de main-d'œuvre étrangère et permis de travail.
-4. Règlement des litiges du travail.`,
-        bookingBtn: 'Demander un audit de conformité (Bureau AKH) →',
-        footer: '© Tous droits réservés au Cabinet d’Avocats Ali Kadhem Hashimi.',
-        readMore: 'Lire la suite →',
-        showLess: 'Afficher moins ↑',
-        shareLabel: 'Partager le lien :',
-        copyTxt: 'Copier le lien',
-        copiedToast: 'Lien copié avec succès 📋',
-        badgeWord: 'Article',
-        topBack: '🏠 Retour au site principal',
-        bottomBack: '🏠 Retour au site principal →',
-        backToList: '← Retour à la liste'
-      },
-      es: {
-        dir: 'ltr',
-        title: 'Perspectivas Jurídicas | Law Office Of Ali Kadhem Hashimi',
-        mainTitle: 'Análisis y Estudios Jurídicos',
-        keywords: 'Abogado en Bagdad, Derecho laboral iraquí, Abogado corporativo Irak, Constitución de empresas',
-        desc: 'Análisis y estudios jurídicos especializados sobre derecho laboral iraquí و constitución de empresas por la Oficina AKH.',
-        intro: 'Ventana especializada dedicada a la publicación de estudios procesales en las ramas del derecho iraquí.',
-        catName: 'Trabajo y Seguridad Social',
-        artDate: 'Trabajo y Seguridad • 5 de Septiembre de 2026',
-        artTitle: 'Cumplimiento Laboral Extranjero و Ley de Seguridad Social de Irak No. 18 de 2023',
-        artDesc: 'Estudio analítico integral de las disposiciones de la ley laboral iraquí و seguridad social.',
-        artBody: `El entorno empresarial e inversión en la República de Irak es prometedor pero riguroso.
-
-1. Contratos de trabajo y redacción jurídica.
-2. Contribuciones a la seguridad social.
-3. Contratación de personal extranjero و permisos.
-4. Resolución de conflictos laborales.`,
-        bookingBtn: 'Solicitar auditoría de cumplimiento (Oficina AKH) →',
-        footer: '© Todos los derechos reservados al Abogado Ali Kadhem Hashimi.',
-        readMore: 'Leer más →',
-        showLess: 'Mostrar menos ↑',
-        shareLabel: 'Compartir enlace :',
-        copyTxt: 'Copiar enlace',
-        copiedToast: 'Enlace copiado con éxito 📋',
-        badgeWord: 'Artículo',
-        topBack: '🏠 Volver al sitio web principal',
-        bottomBack: '🏠 Volver al sitio web principal →',
-        backToList: '← Volver a la lista'
-      },
-      de: {
-        dir: 'ltr',
-        title: 'Rechtliche Analysen | Law Office Of Ali Kadhem Hashimi',
-        mainTitle: 'Rechtliche Einblicke und Analysen',
-        keywords: 'Anwalt in Bagdad, Irakisches Arbeitsrecht, Unternehmensanwalt Irak, Firmengründung Bagdad',
-        desc: 'Spezialisierte rechtliche Analysen zum irakischen Arbeitsrecht و zur Unternehmensgründung von der Kanzlei AKH.',
-        intro: 'Ein spezialisiertes Fenster für verfahrensrechtliche Studien و Erläuterungen im irakischen Recht.',
-        catName: 'Arbeit und Soziale Sicherheit',
-        artDate: 'Arbeit & Soziales • 5. September 2026',
-        artTitle: 'Einhaltung der ausländischen Beschäftigung و irakisches Sozialversicherungsgesetz Nr. 18 von 2023',
-        artDesc: 'Umfassende analytische Studie zu den Bestimmungen des irakischen Arbeitsrechts.',
-        artBody: `Das Geschäfts- و Investitionsumfeld في der Republik Irak ist vielversprechend und unterliegt strengen Vorschriften.
-
-1. Arbeitsverträge و rechtliche Gestaltung.
-2. Sozialversicherungsbeiträge.
-3. Beschäftigung ausländischer Arbeitskräfte.
-4. Beilegung von Arbeitskonflikten.`,
-        bookingBtn: 'Compliance-Audit anfordern (Kanzlei AKH) →',
-        footer: '© Alle Rechte vorbehalten für Rechtsanwalt Ali Kadhem Hashimi.',
-        readMore: 'Weiterlesen →',
-        showLess: 'Weniger anzeigen ↑',
-        shareLabel: 'Direktlink teilen:',
-        copyTxt: 'Link kopieren',
-        copiedToast: 'Link erfolgreich kopiert 📋',
-        badgeWord: 'Artikel',
-        topBack: '🏠 Zur Hauptwebsite',
-        bottomBack: '🏠 Zur Hauptwebsite zurückkehren →',
-        backToList: '← Zurück zur Liste'
-      },
-      ku: {
-        dir: 'rtl',
-        title: 'Şîrove û Lêkolînên Hiqûqî | Law Office Of Ali Kadhem Hashimi',
-        mainTitle: 'Şîrove û Lêkolînên Hiqûqî',
-        keywords: 'Parêzer li Bexdayê, Qanûna Kar a Iraqê, Parêzerê pargîdaniyan li Iraqê, damezrandina pargîdaniyan',
-        desc: 'Lêkolînên hiqûqî yên pispor li ser qanûna kar a Iraqê و damezrandina pargîdaniyan ji hêla Buroya AKH ve.',
-        intro: 'Pەncereyek taybetمەند bi weşandina lêkolînên pêvajoyî di شaxên qanûna Iraqê de.',
-        catName: 'Karkerî و Ewlehiya Civakî',
-        artDate: 'Karkerî • 5 Îlon 2026',
-        artTitle: 'Lihevhatina Karkerên Biyanî و Qanûna Ewlehiya Civakî ya Iraqê Hejmara 18 ya sala 2023an',
-        artDesc: 'Lêkolîneke analîtîk a berfireh li ser qanûna kar a Iraqê و erkên kardêر.',
-        artBody: `Jîngeha karsaziyê li Komara Iraqê xwedî çarçoveyek qanûnî ya hişk e.
-
-1. گرێبەستێن کار و nivîsîna wan.
-2. beşdariyên ewlehiya civakî.
-3. anîna karkerên biyanî و destûrên kar.`,
-        bookingBtn: 'Daxwaza Lêkolîna Karkirinê (Ofîsa AKH) ←',
-        footer: '© Hemû maf parastî ne ji bo Buroya Parêzer Ali Kadhem Hashimi.',
-        readMore: 'Zêdetir bixwîne ←',
-        showLess: 'Kێمتر ببينە ↑',
-        shareLabel: 'Parvekirina lînkê:',
-        copyTxt: 'Lînkê kopî bike',
-        copiedToast: 'لînk بە سەرکەوتوویی کۆپی کرا 📋',
-        badgeWord: 'مەقالە',
-        topBack: '🏠 گەڕانەوە بۆ ماڵپەڕی سەرەکی',
-        bottomBack: '🏠 گەڕانەوە بۆ ماڵپەڕی سەرەکی تەواو ←',
-        backToList: '← گەڕانەوە بۆ لیست'
       }
     };
 
@@ -750,7 +540,6 @@ Yabancı işçiler, Çalışma Bakanlığı onayına tabidir.
       const savedLang = urlLang || localStorage.getItem('preferredLang') || 'ar';
       
       if (translations[savedLang]) {
-        document.getElementById('languageSelect') ? document.getElementById('languageSelect'].value = savedLang : null;
         document.getElementById('langSelect').value = savedLang;
         changeLanguage(savedLang, false);
       }
@@ -807,14 +596,18 @@ Yabancı işçiler, Çalışma Bakanlığı onayına tabidir.
         readBtn.innerText = (expandedDiv.style.display === 'block') ? t.showLess : t.readMore;
       }
 
-      // تحديث روابط المشاركة والزر لتشمل اللغة الحالية
       const slug = 'labor-social-security-iraq';
       const shareUrl = `https://akjassem.com/insights?lang=${lang}&p=${slug}`;
       document.getElementById('shareWa').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareUrl)}`;
       document.getElementById('shareLi').href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
       document.getElementById('shareX').href = `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}`;
 
-      // تحديث عنوان ووصف المعاينة (Open Graph) ديناميكياً للـ DOM في المتصفح
+      let metaKw = document.querySelector('meta[name="keywords"]');
+      if (metaKw) metaKw.content = t.keywords;
+
+      let metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) metaDesc.content = t.desc;
+
       document.getElementById('ogTitle').content = t.title;
       document.getElementById('ogDesc').content = t.desc;
       document.getElementById('twTitle').content = t.title;
@@ -828,24 +621,6 @@ Yabancı işçiler, Çalışma Bakanlığı onayına tabidir.
         e.preventDefault();
         showSecurityWarning();
       }
-    });
-
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) {
-        document.body.classList.add('security-blur');
-        showSecurityWarning();
-      } else {
-        setTimeout(() => { document.body.classList.remove('security-blur'); }, 800);
-      }
-    });
-
-    window.addEventListener('blur', () => {
-      document.body.classList.add('security-blur');
-      showSecurityWarning();
-    });
-
-    window.addEventListener('focus', () => {
-      setTimeout(() => { document.body.classList.remove('security-blur'); }, 800);
     });
 
     function showSecurityWarning() {
