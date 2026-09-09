@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" id="htmlRoot">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- تحسين محركات البحث والروابط البديلة -->
+  <link rel="alternate" hreflang="ar" href="https://akjassem.com/contact/">
+  <link rel="alternate" hreflang="en" href="https://akjassem.com/contact/en/">
+  <link rel="alternate" hreflang="x-default" href="https://akjassem.com/contact/en/">
+
+  <title id="pageTitle">Contact Us | Law Office of Ali Kadhem Hashimi - Baghdad, Iraq</title>
+  <meta id="metaDesc" name="description" content="Contact the Law Office of Ali Kadhem Hashimi in Baghdad - Zayouna. Office address, working hours, phone, WhatsApp, and email. | AKH Law Office Iraq">
+  <meta id="metaKeywords" name="keywords" content="Contact Baghdad lawyer, AKH Law Office contact, Iraq law firm address, Avukat Bağdat iletişim, Irak hukuk bürosu telefon, Anwaltskanzlei Bagdad Kontakt, Bufete de abogados Bagdad teléfono, 巴格达律师事务所联系方式">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Cairo', system-ui, sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* الهيدر التنفيذي الموحد */
+    .icover-header {
+      width: 100%;
+      background: #0f172a;
+      border-bottom: 3px solid #c5a059;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .lang-select-bar {
+      padding: 7px 14px;
+      border-radius: 6px;
+      border: 1.5px solid #c5a059;
+      background: #0f172a;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 700;
+      outline: none;
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
+    }
+    .lang-select-bar option { background: #0f172a; color: #ffffff; }
+
+    .menu-container { position: relative; }
+    .menu-toggle {
+      background: rgba(255,255,255,0.1);
+      border: 1.5px solid #c5a059;
+      color: #ffffff;
+      width: 42px;
+      height: 42px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      left: auto;
+      min-width: 250px;
+      background: #0f172a;
+      border: 1.5px solid #c5a059;
+      border-radius: 10px;
+      display: none;
+      flex-direction: column;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+      padding: 8px 0;
+      z-index: 1100;
+    }
+    [dir="rtl"] .dropdown-menu { left: 0; right: auto; }
+    .dropdown-menu.active { display: flex; }
+    .dropdown-menu a {
+      color: #ffffff;
+      padding: 12px 20px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      width: 100%;
+      text-align: left;
+    }
+    .dropdown-menu a:hover { background: rgba(197,160,89,0.15); color: #c5a059; }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+      background: #ffffff;
+      padding: 35px 25px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      border-top: 5px solid #c5a059;
+      margin: 30px 16px;
+    }
+    
+    .brand-logo {
+      text-align: center;
+      margin-bottom: 28px;
+      direction: ltr;
+    }
+    .brand-logo .akh {
+      font-size: 40px;
+      font-weight: 900;
+      color: #0f172a;
+      letter-spacing: 4px;
+      line-height: 1;
+    }
+    .brand-logo .akh .red-k { color: #dc2626; }
+    .brand-logo .sub-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0f172a;
+      letter-spacing: 3px;
+      margin-top: 6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .brand-logo .sub-title .slash { color: #dc2626; font-weight: 900; font-size: 16px; }
+    .brand-logo .est {
+      font-size: 11px;
+      color: #64748b;
+      letter-spacing: 2px;
+      margin-top: 4px;
+      font-weight: 600;
+    }
+
+    .page-title {
+      text-align: center;
+      font-size: 18px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .info-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 22px;
+      margin-bottom: 20px;
+    }
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 16px;
+      font-size: 14px;
+      color: #334155;
+      border-bottom: 1px solid #f8fafc;
+      padding-bottom: 12px;
+    }
+    .info-row:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .info-row .icon {
+      font-size: 18px;
+      margin-right: 12px;
+      min-width: 24px;
+      text-align: center;
+    }
+    .info-row .content strong {
+      display: block;
+      color: #0f172a;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    .info-row .content a {
+      color: #0284c7;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .info-row .content a:hover { text-decoration: underline; }
+
+    .map-card-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+      border: 2px dashed #16a34a;
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-top: 15px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(22, 163, 74, 0.08);
+    }
+    .map-card-box:hover {
+      background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+      border-color: #15803d;
+      transform: translateY(-2px);
+    }
+    .map-card-left {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .map-pin-icon {
+      background: #ffffff;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      flex-shrink: 0;
+    }
+    .map-text-info strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 700;
+      color: #166534;
+      margin-bottom: 2px;
+    }
+    .map-text-info span {
+      font-size: 12px;
+      color: #15803d;
+      font-weight: 600;
+    }
+    .map-arrow-icon {
+      font-size: 18px;
+      color: #166534;
+      font-weight: 900;
+    }
+
+    .action-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .btn-whatsapp {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      background: #25d366;
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);
+      transition: background 0.3s;
+    }
+    .btn-whatsapp:hover { background: #1ebe5d; }
+
+    .btn-back-home {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      background: #0f172a;
+      color: white;
+      padding: 13px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14.5px;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+      transition: background 0.3s;
+    }
+    .btn-back-home:hover { background: #c5a059; color: #0f172a; }
+  </style>
+</head>
+<body>
+
+  <!-- الهيدر التنفيذي الموحد -->
+  <header class="icover-header">
+    <div>
+      <select id="languageSelect" class="lang-select-bar" onchange="changeLanguage(this.value)">
+        <option value="en" selected>English</option>
+        <option value="tr">Türkçe</option>
+        <option value="zh">中文</option>
+        <option value="fr">Français</option>
+        <option value="es">Español</option>
+        <option value="de">Deutsch</option>
+        <option value="ku">کوردی</option>
+      </select>
+    </div>
+
+    <div class="menu-container">
+      <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu">☰</button>
+      <div id="dropdownMenu" class="dropdown-menu">
+        <a href="https://akjassem.com" id="menuHome">Home</a>
+        <a href="https://akjassem.com/services/" id="menuServices">Legal Services Directory</a>
+        <a href="https://akjassem.com/consultations.html" id="menuConsultations">Legal Consultations</a>
+        <a href="https://akjassem.com/insights.html" id="menuInsights">Iraq Legal Insights</a>
+        <a href="../" id="menuAbout">عربي / Arabic (About Us)</a>
+        <a href="https://akjassem.com/contact/" id="menuContact">Contact Us</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="brand-logo">
+      <div class="akh">A<span class="red-k">K</span>H</div>
+      <div class="sub-title">
+        <span class="slash">/</span>
+        <span>LAW OFFICE</span>
+      </div>
+      <div class="est">EST. 2014</div>
+    </div>
+
+    <div class="page-title" id="pageMainTitle">Contact Us</div>
+
+    <div class="info-card">
+      <div class="info-row">
+        <div class="icon">📍</div>
+        <div class="content">
+          <strong id="lblAddress">Address</strong>
+          <span id="valAddress">Baghdad - Zayouna - Near the Iraqi Fashion House</span>
+        </div>
+      </div>
+
+      <div class="info-row">
+        <div class="icon">⏰</div>
+        <div class="content">
+          <strong id="lblHours">Working Hours</strong>
+          <span id="valHours">Sunday to Thursday (08:00 AM - 04:00 PM Baghdad Time)</span>
+        </div>
+      </div>
+
+      <div class="info-row">
+        <div class="icon">📞</div>
+        <div class="content">
+          <strong id="lblPhone">Office Phone & WhatsApp</strong>
+          <span dir="ltr">+964 783 875 9047</span>
+        </div>
+      </div>
+
+      <div class="info-row">
+        <div class="icon">✉️</div>
+        <div class="content">
+          <strong id="lblEmail">Email</strong>
+          <a href="mailto:Info@akjassem.com" dir="ltr">Info@akjassem.com</a>
+        </div>
+      </div>
+
+      <a href="https://maps.google.com/?q=%D9%85%D9%83%D8%AA%D8%A8+%D8%A7%D9%84%D9%85%D8%AD%D8%A7%D9%85%D9%8A+%D8%B9%D9%84%D9%8A+%D9%83%D8%A7%D8%B8%D9%85+%D8%A7%D9%84%D9%87%D8%A7%D8%B4%D9%85%D9%8A" target="_blank" class="map-card-box">
+        <div class="map-card-left">
+          <div class="map-pin-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z" fill="#EA4335"/>
+            </svg>
+          </div>
+          <div class="map-text-info">
+            <strong id="mapBoxTitle">View Office Location on Google Maps</strong>
+            <span id="mapBoxSub">Click here to navigate and track the route to the office</span>
+          </div>
+        </div>
+        <div class="map-arrow-icon">➔</div>
+      </a>
+    </div>
+
+    <div class="action-buttons">
+      <a href="https://wa.me/9647838759047" target="_blank" class="btn-whatsapp" id="btnWhatsappText">
+        <span>💬 Contact via WhatsApp Directly</span>
+      </a>
+      <a href="https://akjassem.com" class="btn-back-home" id="btnBackHomeText">
+        <span>🏠 Back to Home Page</span>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('dropdownMenu').classList.toggle('active');
+    }
+
+    window.onclick = function(event) {
+      if (!event.target.matches('.menu-toggle') && !event.target.closest('.menu-container')) {
+        document.getElementById('dropdownMenu').classList.remove('active');
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlLang = urlParams.get('lang') || localStorage.getItem('preferredLang') || 'en';
+      if (urlLang !== 'ar' && dictionary[urlLang]) {
+        changeLanguage(urlLang, false);
+      } else {
+        changeLanguage('en', false);
+      }
+    });
+
+    function changeLanguage(lang, save = true) {
+      if (save) {
+        localStorage.setItem('preferredLang', lang);
+      }
+      const root = document.getElementById('htmlRoot');
+      root.setAttribute('lang', lang);
+      root.setAttribute('dir', (lang === 'ar' || lang === 'ku') ? 'rtl' : 'ltr');
+
+      const t = dictionary[lang] || dictionary['en'];
+
+      document.getElementById('pageTitle').innerText = t.pageTitle;
+      document.getElementById('metaDesc').setAttribute('content', t.metaDesc);
+      document.getElementById('metaKeywords').setAttribute('content', t.metaKeywords);
+
+      document.getElementById('menuHome').innerText = t.home;
+      document.getElementById('menuServices').innerText = t.menuServices;
+      document.getElementById('menuConsultations').innerText = t.menuConsultations;
+      document.getElementById('menuInsights').innerText = t.menuInsights;
+      document.getElementById('menuAbout').innerText = t.about;
+      document.getElementById('menuContact').innerText = t.contact;
+
+      document.getElementById('pageMainTitle').innerText = t.pageMainTitle;
+      document.getElementById('lblAddress').innerText = t.lblAddress;
+      document.getElementById('valAddress').innerText = t.valAddress;
+      document.getElementById('lblHours').innerText = t.lblHours;
+      document.getElementById('valHours').innerText = t.valHours;
+      document.getElementById('lblPhone').innerText = t.lblPhone;
+      document.getElementById('lblEmail').innerText = t.lblEmail;
+      document.getElementById('mapBoxTitle').innerText = t.mapBoxTitle;
+      document.getElementById('mapBoxSub').innerText = t.mapBoxSub;
+      document.getElementById('btnWhatsappText').innerHTML = `<span>${t.btnWhatsapp}</span>`;
+      document.getElementById('btnBackHomeText').innerHTML = `<span>${t.btnBackHome}</span>`;
+
+      document.getElementById('languageSelect').value = lang;
+    }
+
+    const dictionary = {
+      en: {
+        pageTitle: "Contact Us | Law Office of Ali Kadhem Hashimi in Iraq",
+        metaDesc: "Contact the Law Office of Ali Kadhem Hashimi in Baghdad - Zayouna. Office address, working hours, phone, WhatsApp, and email.",
+        metaKeywords: "Contact AKH Law Office, Baghdad lawyer contact, Iraq law firm address",
+        home: "Home", menuServices: "Legal Services Directory", menuConsultations: "Legal Consultations", menuInsights: "Iraq Legal Insights", about: "About Us (عربي)", contact: "Contact Us",
+        pageMainTitle: "Contact Us",
+        lblAddress: "Address", valAddress: "Baghdad - Zayouna - Near the Iraqi Fashion House",
+        lblHours: "Working Hours", valHours: "Sunday to Thursday (08:00 AM - 04:00 PM Baghdad Time)",
+        lblPhone: "Office Phone & WhatsApp", lblEmail: "Email",
+        mapBoxTitle: "View Office Location on Google Maps", mapBoxSub: "Click here to navigate and track the route to the office",
+        btnWhatsapp: "💬 Contact via WhatsApp Directly", btnBackHome: "🏠 Back to Home Page"
+      },
+      tr: {
+        pageTitle: "İletişim | Av. Ali Kazım Haşimi Hukuk Bürosu Irak",
+        metaDesc: "Bağdat'taki Av. Ali Kazım Haşimi Hukuk Bürosu ile iletişime geçin - Zeytuna. Adres, çalışma saatleri, telefon, WhatsApp ve e-posta.",
+        metaKeywords: "Avukat Bağdat iletişim, Irak hukuk bürosu telefon, Anwaltskanzlei Bagdad Kontakt",
+        home: "Ana Sayfa", menuServices: "Hizmetler", menuConsultations: "Hukuki Danışmanlık", menuInsights: "İçgörüler", about: "Hakkımızda (عربي)", contact: "İletişim",
+        pageMainTitle: "İletişim",
+        lblAddress: "Adres", valAddress: "Bağdat - Zeytuna - Irak Moda Evi Yakını",
+        lblHours: "Çalışma Saatleri", valHours: "Pazar - Perşembe (08:00 - 16:00 Bağdat Saati)",
+        lblPhone: "Ofis Telefon ve WhatsApp", lblEmail: "E-posta",
+        mapBoxTitle: "Ofis Konumunu Google Haritalar'da Görüntüle", mapBoxSub: "Ofise rota oluşturmak ve gitmek için buraya tıklayın",
+        btnWhatsapp: "💬 Doğrudan WhatsApp ile İletişim", btnBackHome: "🏠 Ana Sayfaya Dön"
+      },
+      zh: {
+        pageTitle: "联系我们 | 阿里·卡德姆·哈希米律所伊拉克",
+        metaDesc: "联系巴格达阿里·卡德姆·哈希米律所 - 宰尤纳。办公地址、工作时间、电话、WhatsApp和电子邮箱。",
+        metaKeywords: "巴格达律师事务所联系方式, 伊拉克律所地址, 法律咨询",
+        home: "首页", menuServices: "法律服务", menuConsultations: "法律咨询", menuInsights: "法律洞察", about: "关于我们 (عربي)", contact: "联系我们",
+        pageMainTitle: "联系我们",
+        lblAddress: "地址", valAddress: "巴格达 - 宰尤纳 - 伊拉克时装屋附近",
+        lblHours: "工作时间", valHours: "周日至周四（巴格达时间上午 08:00 - 下午 04:00）",
+        lblPhone: "办公室电话与 WhatsApp", lblEmail: "电子邮箱",
+        mapBoxTitle: "在谷歌地图上查看办公室位置", mapBoxSub: "点击此处导航并追踪前往办公室的路线",
+        btnWhatsapp: "💬 直接通过 WhatsApp 联系", btnBackHome: "🏠 返回首页"
+      },
+      fr: {
+        pageTitle: "Contactez-nous | Cabinet d'Avocats Ali Kadhem Hashimi en Iraq",
+        metaDesc: "Contactez le Cabinet d'Avocats Ali Kadhem Hashimi à Bagdad - Zayouna. Adresse, horaires, téléphone, WhatsApp et email.",
+        metaKeywords: "Contact Cabinet d'avocats Bagdad, adresse cabinet Irak, téléphone avocat",
+        home: "Accueil", menuServices: "Services", menuConsultations: "Consultations Juridiques", menuInsights: "Aperçus", about: "À Propos (عربي)", contact: "Contact",
+        pageMainTitle: "Contactez-nous",
+        lblAddress: "Adresse", valAddress: "Bagdad - Zayouna - Près de la Maison de la Mode Irakienne",
+        lblHours: "Horaires de Travail", valHours: "Dimanche au Jeudi (08h00 - 16h00 heure de Bagdad)",
+        lblPhone: "Téléphone & WhatsApp du Bureau", lblEmail: "Email",
+        mapBoxTitle: "Voir l'emplacement sur Google Maps", mapBoxSub: "Cliquez ici pour naviguer et suivre l'itinéraire vers le bureau",
+        btnWhatsapp: "💬 Contacter via WhatsApp Directement", btnBackHome: "🏠 Retour à la Page d'Accueil"
+      },
+      es: {
+        pageTitle: "Contacto | Bufete de Abogados Ali Kadhem Hashimi en Irak",
+        metaDesc: "Contacte al Bufete de Abogados Ali Kadhem Hashimi en Bagdad - Zayouna. Dirección, horario de trabajo, teléfono, WhatsApp y correo.",
+        metaKeywords: "Contacto bufete Bagdad, dirección abogados Irak, teléfono legal",
+        home: "Inicio", menuServices: "Servicios", menuConsultations: "Consultas Legales", menuInsights: "Perspectivas", about: "Sobre Nosotros (عربي)", contact: "Contacto",
+        pageMainTitle: "Contacto",
+        lblAddress: "Dirección", valAddress: "Bagdad - Zayouna - Cerca de la Casa de la Moda Iraquí",
+        lblHours: "Horario de Trabajo", valHours: "Domingo a Jueves (08:00 a.m. - 04:00 p.m. hora de Bagdad)",
+        lblPhone: "Teléfono y WhatsApp de la Oficina", lblEmail: "Correo Electrónico",
+        mapBoxTitle: "Ver ubicación en Google Maps", mapBoxSub: "Haga clic aquí para navegar y seguir la ruta a la oficina",
+        btnWhatsapp: "💬 Contactar por WhatsApp Directamente", btnBackHome: "🏠 Volver a la Página Principal"
+      },
+      de: {
+        pageTitle: "Kontakt | Anwaltskanzlei Ali Kadhem Hashimi im Irak",
+        metaDesc: "Kontaktieren Sie die Anwaltskanzlei Ali Kadhem Hashimi in Bagdad - Zayouna. Adresse, Arbeitszeiten, Telefon, WhatsApp und E-Mail.",
+        metaKeywords: "Kontakt Anwaltskanzlei Bagdad, Adresse Kanzlei Irak, Telefon rechtliche Beratung",
+        home: "Startseite", menuServices: "Dienste", menuConsultations: "Rechtliche Beratung", menuInsights: "Einblicke", about: "Über uns (عربي)", contact: "Kontakt",
+        pageMainTitle: "Kontakt",
+        lblAddress: "Adresse", valAddress: "Bagdad - Zayouna - In der Nähe des irakischen Modehauses",
+        lblHours: "Arbeitszeiten", valHours: "Sonntag bis Donnerstag (08:00 Uhr - 16:00 Uhr Bagdader Zeit)",
+        lblPhone: "Büro Telefon & WhatsApp", lblEmail: "E-Mail",
+        mapBoxTitle: "Bürostandort auf Google Maps anzeigen", mapBoxSub: "Klicken Sie hier, um den Weg zum Büro zu finden",
+        btnWhatsapp: "💬 Direkt über WhatsApp kontaktieren", btnBackHome: "🏠 Zurück zur Startseite"
+      },
+      ku: {
+        pageTitle: "پەیوەندی بکەن | نووسینگەی پارێزەر عەلی کازمی هاشمی لە عێراق",
+        metaDesc: "پەیوەندی بکە بە نووسینگەی پارێزەر عەلی کازمی هاشمی لە بەغداد - زەیونە. ناونیشان، کاتی کارکردن، مۆبایل، واتساب، و ئیمەیڵ.",
+        metaKeywords: "پەیوەندی بە پارێزەر لە بەغداد, ناونیشانی نووسینگەی یاسایی عێراق",
+        home: "سەرەکی", menuServices: "خزمەتگوزارییەکان", menuConsultations: "ڕاوێژی یاسایی", menuInsights: "تێڕوانینەکان", about: "دەرباره‌ی ئێمە (عربي)", contact: "پەیوەندی",
+        pageMainTitle: "پەیوەندی بە ئێمە",
+        lblAddress: "ناونیشان", valAddress: "بەغداد - زەیونە - نزیک خانەی فاشنی عێراقی",
+        lblHours: "کاتی کارکردن", valHours: "یەکشەممە تا پێنجشەممە (٠٨:٠٠ بەیانی - ٠٤:٠٠ ئێوارە بە کاتی بەغداد)",
+        lblPhone: "مۆبایل و واتسأپی نووسینگە", lblEmail: "ئیمەیڵ",
+        mapBoxTitle: "پیشاندانی شوێنی نووسینگە لە نەخشەی گۆگڵ", mapBoxSub: "کلیک لێرە بکە بۆ چوون و شوێنکەوتنی ڕێگا بۆ نووسینگە",
+        btnWhatsapp: "💬 پەیوەندی لە ڕێگەی واتسأپەوە بە ڕاستەوخۆ", btnBackHome: "🏠 گەڕانەوە بۆ لاپەڕەی سەرەکی"
+      }
+    };
+  </script>
+</body>
+</html>
