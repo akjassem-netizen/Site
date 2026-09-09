@@ -301,8 +301,8 @@
   <!-- الهيدر التنفيذي الموحد -->
   <header class="icover-header">
     <div>
-      <select id="languageSelect" class="lang-select-bar" onchange="changeLanguage(this.value)">
-        <option value="ar">العربية</option>
+      <select id="languageSelect" class="lang-select-bar" onchange="switchLanguage(this.value)">
+        <option value="ar" selected>العربية</option>
         <option value="en">English</option>
         <option value="tr">Türkçe</option>
         <option value="zh">中文</option>
@@ -318,10 +318,10 @@
       <div id="dropdownMenu" class="dropdown-menu">
         <a href="https://akjassem.com" id="menuHome">الرئيسية</a>
         <a href="/services/" id="menuServices">دليل الخدمات القانونية</a>
-        <a href="../consultations/" id="menuConsultations">الاستشارات القانونية</a>
-        <a href="../insights/" id="menuInsights">الآراء والرؤى القانونية (Insights)</a>
-        <a href="../about/" id="menuAbout">من نحن</a>
-        <a href="../contact/" id="menuContact">اتصل بنا</a>
+        <a href="/consultations/" id="menuConsultations">الاستشارات القانونية</a>
+        <a href="/insights/" id="menuInsights">الآراء والرؤى القانونية (Insights)</a>
+        <a href="/about/" id="menuAbout">من نحن</a>
+        <a href="/contact/" id="menuContact">اتصل بنا</a>
       </div>
     </div>
   </header>
@@ -393,259 +393,24 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const urlLang = urlParams.get('lang') || localStorage.getItem('preferredLang') || 'ar';
-      if (consultDict[urlLang]) {
-        changeLanguage(urlLang, false);
-      } else {
-        changeLanguage('ar', false);
+      const savedLang = localStorage.getItem('preferredLang') || 'ar';
+      if (savedLang !== 'ar') {
+        window.location.href = 'en/';
+        return;
       }
+      document.getElementById('languageSelect').value = 'ar';
     });
 
-    function changeLanguage(lang, updateUrl = true) {
-      if (updateUrl) {
-        localStorage.setItem('preferredLang', lang);
+    // دالة التحويل النظيفة بدون ?lang=
+    function switchLanguage(lang) {
+      if (lang === 'ar') {
+        localStorage.setItem('preferredLang', 'ar');
+        return;
       }
-      const root = document.getElementById('htmlRoot');
-      root.setAttribute('lang', lang);
-      root.setAttribute('dir', (lang === 'ar' || lang === 'ku') ? 'rtl' : 'ltr');
-
-      const t = consultDict[lang] || consultDict['en'];
-
-      document.getElementById('pageTitle').innerText = t.pageTitle;
-      document.getElementById('metaDesc').setAttribute('content', t.metaDesc);
-      document.getElementById('metaKeywords').setAttribute('content', t.metaKeywords);
-
-      document.getElementById('menuHome').innerText = t.home;
-      document.getElementById('menuServices').innerText = t.menuServices;
-      document.getElementById('menuConsultations').innerText = t.menuConsultations;
-      document.getElementById('menuInsights').innerText = t.menuInsights;
-      document.getElementById('menuAbout').innerText = t.menuAbout;
-      document.getElementById('menuContact').innerText = t.menuContact;
-
-      document.getElementById('heroTitleText').innerText = t.title;
-      document.getElementById('heroSubtitleText').innerText = t.subtitle;
-      document.getElementById('heroCtaText').innerText = t.cta;
-      
-      document.getElementById('mainHeading').innerText = t.mainHeading;
-      document.getElementById('mainDesc').innerText = t.mainDesc;
-      document.getElementById('subHeading1').innerText = t.subHeading1;
-      document.getElementById('subHeading1Desc').innerText = t.subHeading1Desc;
-      document.getElementById('subHeading2').innerText = t.subHeading2;
-      
-      const list = document.getElementById('serviceList');
-      list.innerHTML = `
-        <li>${t.li1}</li>
-        <li>${t.li2}</li>
-        <li>${t.li3}</li>
-        <li>${t.li4}</li>
-      `;
-      
-      document.getElementById('subHeading3').innerText = t.subHeading3;
-      document.getElementById('subHeading3Desc').innerText = t.subHeading3Desc;
-      document.getElementById('btnBookInline').innerText = t.btnBookInline;
-      document.getElementById('btnWhatsappInline').innerText = t.btnWhatsappInline;
-      document.getElementById('backLink').innerHTML = t.backLink;
-
-      document.getElementById('languageSelect').value = lang;
-
-      if (updateUrl) {
-        const url = new URL(window.location);
-        if (lang === 'ar') {
-          url.searchParams.delete('lang');
-        } else {
-          url.searchParams.set('lang', lang);
-        }
-        window.history.replaceState({}, '', url);
-      }
+      localStorage.setItem('preferredLang', lang);
+      window.location.href = 'en/';
     }
-
-    const consultDict = {
-      ar: {
-        pageTitle: "الاستشارات القانونية المتخصصة في العراق | مكتب المحامي علي كاظم الهاشمي",
-        metaDesc: "احصل على استشارات قانونية دقيقة وموثوقة في بغداد من مكتب المحامي علي كاظم الهاشمي. استشارات تجارية، تأسيس شركات، عقود، ونزاعات قضائية وفق القانون العراقي.",
-        metaKeywords: "استشارات قانونية في بغداد, استشارة قانونية تجارية, محامي شركات في العراق, مكتب المحامي علي كاظم الهاشمي, تأسيس شركات بغداد, صياغة عقود تجارية, تسوية نزاعات",
-        home: "الرئيسية", menuServices: "دليل الخدمات القانونية", menuConsultations: "الاستشارات القانونية", menuInsights: "الآراء والرؤى القانونية (Insights)", menuAbout: "من نحن (عربي)", menuContact: "اتصل بنا",
-        title: "مكتب المحامي علي كاظم الهاشمي",
-        subtitle: "تمثيل قانوني رصين واستشارات تخصصية للشركات والأفراد برؤية مهنية ودقيقة من قلب العاصمة بغداد.",
-        cta: "📅 حجز موعد استشارة رسمية",
-        mainHeading: "الاستشارات القانونية الشاملة والتوجيه المهني",
-        mainDesc: "بصفتنا في مكتب المحامي علي كاظم الهاشمي، نقدم خدمات استشارات قانونية متخصصة وشاملة لعملائنا من الأفراد، الشركات المحلية، والمستثمرين الأجانب في مختلف المسائل والنزاعات القانونية، مع الالتزام التام بأعلى المعايير الأخلاقية وميثاق السرية المهنية.",
-        subHeading1: "منهجية العمل وتقييم القضايا:",
-        subHeading1Desc: "في مستهل التعامل مع أي مسألة قانونية، نقوم بتقييم القضية أو الاستشارة المطروحة وتحليل الحقائق والمعلومات بدقة متناهية، مستندين إلى خبرتنا العميقة بالقوانين والأنظمة المعمول بها لنوجّه العميل بشأن حقوقه والتزاماته القانونية بدقة واحترافية.",
-        subHeading2: "مجالات الاستشارات القانونية المتخصصة:",
-        li1: "توفير النصح والمشورة في القانون التجاري وقانون الشركات.",
-        li2: "الاستشارات القانونية المتعلقة بالقانون العقاري، العمالي، الجنائي، والإداري والضريبي.",
-        li3: "إعداد وصياغة وتدقيق الوثائق والعقود والاتفاقيات والوكالات الرسمية.",
-        li4: "توضيح اللوائح والتشريعات بأسلوب مبسط لحل النزاعات وتفادي المخاطر المستقبلية.",
-        subHeading3: "آلية حجز الاستشارة المباشرة:",
-        subHeading3Desc: "نحرص على تقديم خدمة متميزة واستجابة سريعة لمتطلباتك. يتم تنظيم حجوزات المواعيد عبر استمارة الحجز الرسمية لضمان تنظيم الوقت وتقديم الخدمة بكفاءة عالية، أو التواصل الفوري عبر الواتساب المباشر.",
-        btnBookInline: "📅 حجز موعد استشارة رسمية",
-        btnWhatsappInline: "💬 محادثة واتساب المباشرة",
-        backLink: "← العودة إلى الصفحة الرئيسية"
-      },
-      en: {
-        pageTitle: "Specialized Legal Consultations in Iraq | Law Office of Ali Kadhem Hashimi",
-        metaDesc: "Get accurate and reliable legal consultations in Baghdad from the Law Office of Ali Kadhem Hashimi. Commercial advice, corporate setup, contracts, and dispute resolution.",
-        metaKeywords: "Legal consultations Baghdad, corporate lawyer Iraq, Iraq law firm, Ali Kadhem Hashimi law office, corporate setup Baghdad, commercial contracts",
-        home: "Home", menuServices: "Legal Services Directory", menuConsultations: "Legal Consultations", menuInsights: "Iraq Legal Insights", menuAbout: "About Us (عربي)", menuContact: "Contact Us",
-        title: "Law Office of Ali Kadhem Hashimi",
-        subtitle: "Reliable legal representation and specialized advisory for corporations and individuals with a professional vision from Baghdad.",
-        cta: "Book Consultation →",
-        mainHeading: "Comprehensive Legal Consultations & Professional Guidance",
-        mainDesc: "At the Law Office of Ali Kadhem Hashimi, we provide specialized and comprehensive legal consultation services for corporate, local, and foreign clients, committed to highest ethical standards.",
-        subHeading1: "Methodology & Case Evaluation:",
-        subHeading1Desc: "At the onset of any legal matter, we evaluate the case, meticulously analyze facts, and rely on our deep understanding of applicable laws to guide clients regarding their rights and obligations.",
-        subHeading2: "Specialized Legal Consultation Fields:",
-        li1: "Providing advice and counsel in commercial law and corporate regulations.",
-        li2: "Legal advisory concerning real estate, labor, criminal, administrative, and tax laws.",
-        li3: "Drafting, reviewing, and preparing legal documents, contracts, and power of attorney.",
-        li4: "Simplifying laws and regulations to resolve disputes and avoid future risks.",
-        subHeading3: "Direct Consultation Booking:",
-        subHeading3Desc: "We ensure prompt and effective responses. Appointments are managed through the official booking form or direct WhatsApp chat.",
-        btnBookInline: "📅 Book Official Consultation",
-        btnWhatsappInline: "💬 Direct WhatsApp Chat",
-        backLink: "← Back to Home"
-      },
-      tr: {
-        pageTitle: "Irak Uzman Hukuki Danışmanlık | Av. Ali Kazım Haşimi Hukuk Bürosu",
-        metaDesc: "Bağdat'ta Av. Ali Kazım Haşimi Hukuk Bürosu'ndan doğru ve güvenilir hukuki danışmanlık alın. Ticari danışmanlık, şirket kuruluşu, sözleşmeler ve uyuşmazlık çözümü.",
-        metaKeywords: "Bağdat hukuki danışmanlık, Irak şirket avukatı, Irak hukuk bürosu, Av. Ali Kazım Haşimi, Bağdat şirket kuruluşu, ticari sözleşmeler",
-        home: "Ana Sayfa", menuServices: "Hizmetler", menuConsultations: "Hukuki Danışmanlık", menuInsights: "İçgörüler", menuAbout: "Hakkımızda (عربي)", menuContact: "İletişim",
-        title: "Av. Ali Kazım Haşimi Hukuk Bürosu",
-        subtitle: "Bağdat'tan şirketler ve bireyler için güvenilir hukuki temsil ve uzman danışmanlık.",
-        cta: "Randevu Al →",
-        mainHeading: "Kapsamlı Hukuki Danışmanlık ve Profesyonel Rehberlik",
-        mainDesc: "Av. Ali Kazım Haşimi Hukuk Bürosu olarak, kurumsal ve bireysel müvekkillerimize uzman hukuki danışmanlık hizmetleri sunuyoruz.",
-        subHeading1: "Çalışma Metodolojisi ve Dava Değerlendirmesi:",
-        subHeading1Desc: "Hukuki süreçlerin başında davayı titizlikle analiz ediyor, müvekkillerimizin haklarını korumak için en doğru yönlendirmeyi yapıyoruz.",
-        subHeading2: "Uzmanlık Alanlarımız:",
-        li1: "Ticaret hukuku ve şirketler hukuku danışmanlığı.",
-        li2: "Gayrimenkul, iş, ceza, idare ve vergi hukuku alanında danışmanlık.",
-        li3: "Sözleşmelerin, anlaşmaların ve resmi belgelerin hazırlanması.",
-        li4: "Uyuşmazlıkların çözümü ve gelecekteki risklerin önlenmesi.",
-        subHeading3: "Doğrudan Randevu Prosedürü:",
-        subHeading3Desc: "Randevular resmi başvuru formu veya WhatsApp üzerinden kolayca organize edilmektedir.",
-        btnBookInline: "📅 Resmi Randevu Al",
-        btnWhatsappInline: "💬 Doğrudan WhatsApp Sohbeti",
-        backLink: "← Ana Sayfaya Dön"
-      },
-      zh: {
-        pageTitle: "伊拉克专业法律咨询 | 阿里·卡德姆·哈希米律所",
-        metaDesc: "在巴格达获得阿里·卡德姆·哈希米律所提供准确可靠的法律咨询。商业咨询、公司设立、合同与纠纷解决。",
-        metaKeywords: "巴格达法律咨询, 伊拉克公司律师, 伊拉克律所, 阿里·卡德姆·哈希米律所, 巴格达公司注册, 商业合同",
-        home: "首页", menuServices: "法律服务", menuConsultations: "法律咨询", menuInsights: "法律洞察", menuAbout: "关于我们 (عربي)", menuContact: "联系我们",
-        title: "阿里·卡德姆·哈希米律所",
-        subtitle: "立足巴格达，为企业和个人提供可靠的法律代理与专项咨询服务。",
-        cta: "预约咨询 →",
-        mainHeading: "全面法律咨询与专业指导",
-        mainDesc: "在阿里·卡德姆·哈希米律所，我们为企业和个人客户提供专业、全面的法律咨询服务，严格遵守职业操守与保密原则。",
-        subHeading1: "工作方法与案件评估：",
-        subHeading1Desc: "在处理任何法律事务之初，我们都会仔细评估并分析案情，依靠深厚的法律功底为客户指明正确的维权方向。",
-        subHeading2: "专业咨询领域：",
-        li1: "提供商法与公司法方面的专业意见。",
-        li2: "涵盖房产法、劳动法、刑法、行政法与税法的专项咨询。",
-        li3: "起草、审查并准备法律合同、协议及授权书。",
-        li4: "以简明方式阐述法规，化解纠纷并规避未来风险。",
-        subHeading3: "直接预约流程：",
-        subHeading3Desc: "我们致力于提供高效优质的服务。您可以通过官方预约表单或WhatsApp即时与我们沟通。",
-        btnBookInline: "📅 预约正式咨询",
-        btnWhatsappInline: "💬 WhatsApp 直聊",
-        backLink: "← 返回首页"
-      },
-      fr: {
-        pageTitle: "Consultations Juridiques Spécialisées en Iraq | Cabinet AKH",
-        metaDesc: "Obtenez des consultations juridiques précises à Bagdad auprès du Cabinet d'Avocats Ali Kadhem Hashimi. Conseil commercial, création d'entreprise et contrats.",
-        metaKeywords: "Consultations juridiques Bagdad, avocat d'affaires Irak, cabinet d'avocats Irak, création d'entreprise Bagdad, contrats commerciaux",
-        home: "Accueil", menuServices: "Services", menuConsultations: "Consultations Juridiques", menuInsights: "Aperçus", menuAbout: "À Propos (عربي)", menuContact: "Contact",
-        title: "Cabinet d'Avocats Ali Kadhem Hashimi",
-        subtitle: "Représentation juridique fiable et conseil spécialisé pour les entreprises et les particuliers depuis Bagdad.",
-        cta: "Réserver →",
-        mainHeading: "Consultations Juridiques Complètes & Orientation Professionnelle",
-        mainDesc: "Au Cabinet d'Avocats Ali Kadhem Hashimi, nous offrons des services de consultation juridique spécialisée pour les entreprises et les particuliers, dans le respect strict de la confidentialité.",
-        subHeading1: "Méthodologie et Évaluation des Affaires :",
-        subHeading1Desc: "Dès le début de toute affaire juridique, nous évaluons les faits avec précision et guidons nos clients vers les meilleures solutions juridiques.",
-        subHeading2: "Domaines de Consultation Spécialisés :",
-        li1: "Conseil en droit commercial et des sociétés.",
-        li2: "Conseil juridique en droit immobilier, du travail, pénal, administratif et fiscal.",
-        li3: "Rédaction et révision de documents juridiques, contrats et procurations.",
-        li4: "Simplification des réglementations pour résoudre les litiges et éviter les risques.",
-        subHeading3: "Procédure de Réservation Directe :",
-        subHeading3Desc: "Les rendez-vous sont organisés via le formulaire officiel ou via notre canal WhatsApp instantané.",
-        btnBookInline: "📅 Réserver une Consultation",
-        btnWhatsappInline: "💬 Chat WhatsApp Direct",
-        backLink: "← Retour à l'Accueil"
-      },
-      es: {
-        pageTitle: "Consultas Legales Especializadas en Irak | Bufete AKH",
-        metaDesc: "Obtenga asesoría legal precisa y confiable en Bagdad del Bufete de Abogados Ali Kadhem Hashimi. Asesoría comercial, constitución de empresas y contratos.",
-        metaKeywords: "Consultas legales Bagdad, abogado corporativo Irak, bufete de abogados Irak, constitución de empresas Bagdad, contratos comerciales",
-        home: "Inicio", menuServices: "Servicios", menuConsultations: "Consultas Legales", menuInsights: "Perspectivas", menuAbout: "Sobre Nosotros (عربي)", menuContact: "Contacto",
-        title: "Bufete de Abogados Ali Kadhem Hashimi",
-        subtitle: "Representación legal confiable y asesoría especializada para corporaciones e individuos desde Bagdad.",
-        cta: "Reservar Consulta →",
-        mainHeading: "Consultas Legales Integrales y Orientación Profesional",
-        mainDesc: "En el Bufete de Abogados Ali Kadhem Hashimi, ofrecemos servicios de consultoría legal especializada y completa para corporaciones e individuos.",
-        subHeading1: "Metodología y Evaluación de Casos:",
-        subHeading1Desc: "Al inicio de cualquier asunto legal, evaluamos y analizamos minuciosamente los hechos para guiar a nuestros clientes.",
-        subHeading2: "Áreas de Consulta Especializada:",
-        li1: "Asesoramiento en derecho mercantil y corporativo.",
-        li2: "Consultoría legal en derecho inmobiliario, laboral, penal, administrativo y fiscal.",
-        li3: "Redacción y revisión de documentos legales, contratos y poderes.",
-        li4: "Simplificación de normativas para resolver disputas y evitar riesgos futuros.",
-        subHeading3: "Procedimiento de Reserva Directa:",
-        subHeading3Desc: "Las citas se gestionan a través del formulario de reserva oficial o mediante el chat instantáneo de WhatsApp.",
-        btnBookInline: "📅 Reservar Consulta Oficial",
-        btnWhatsappInline: "💬 Chat de WhatsApp Directo",
-        backLink: "← Volver al Inicio"
-      },
-      de: {
-        pageTitle: "Spezialisierte Rechtsberatung im Irak | Kanzlei Ali Kadhem Hashimi",
-        metaDesc: "Erhalten Sie präzise Rechtsberatung in Bagdad von der Anwaltskanzlei Ali Kadhem Hashimi. Wirtschaftsberatung, Firmengründung, Verträge und Streitbeilegung.",
-        metaKeywords: "Rechtsberatung Bagdad, Firmenanwalt Irak, Anwaltskanzlei Irak, Firmengründung Bagdad, Handelsverträge",
-        home: "Startseite", menuServices: "Dienste", menuConsultations: "Rechtliche Beratung", menuInsights: "Einblicke", menuAbout: "Über uns (عربي)", menuContact: "Kontakt",
-        title: "Anwaltskanzlei Ali Kadhem Hashimi",
-        subtitle: "Ihr vertrauenswürdiger Rechtspartner in Bagdad. Umfassende Beratung, Unternehmensgründung und Vertretung.",
-        cta: "Beratung buchen →",
-        mainHeading: "Umfassende Rechtsberatung & Professionelle Führung",
-        mainDesc: "In der Anwaltskanzlei Ali Kadhem Hashimi bieten wir spezialisierte und umfassende Rechtsberatungsdienste für Unternehmen und Privatpersonen an.",
-        subHeading1: "Arbeitsmethodik & Fallbewertung:",
-        subHeading1Desc: "Zu Beginn jedes rechtlichen Anliegens bewerten und analysieren wir die Fakten sorgfältig.",
-        subHeading2: "Spezialisierte Beratungsbereiche:",
-        li1: "Beratung im Handels- und Gesellschaftsrecht.",
-        li2: "Rechtsberatung im Immobilien-, Arbeits-, Straf-, Verwaltungs- und Steuerrecht.",
-        li3: "Ausarbeitung und Prüfung von Verträgen und offiziellen Dokumenten.",
-        li4: "Vereinfachung von Vorschriften zur Beilegung von Streitigkeiten.",
-        subHeading3: "Direktes Buchungsverfahren:",
-        subHeading3Desc: "Termine werden über das offizielle Buchungsformular oder den WhatsApp-Chat koordiniert.",
-        btnBookInline: "📅 Offizielle Beratung buchen",
-        btnWhatsappInline: "💬 Direkter WhatsApp-Chat",
-        backLink: "← Zurück zur Startseite"
-      },
-      ku: {
-        pageTitle: "راوێژی یاسایی تایبەتمەند لە عێراق | نووسینگەی پارێزەر عەلی کازمی هاشمی",
-        metaDesc: "راوێژی یاسایی ورد و متمانەپێکراو لە بەغداد لە نووسینگەی پارێزەر عەلی کازمی هاشمی وەرگرە. راوێژی بازرگانی، دامەزراندنی کۆمپانیا، گرێبەست و یەکلاکردنەوەی کێشەکان.",
-        metaKeywords: "راوێژی یاسایی بەغداد, پارێزەری کۆمپانیاکان لە عێراق, نووسینگەی پارێزەر عەلی کازمی هاشمی, دامەزراندنی کۆمپانیاکان, گرێبەستی بازرگانی",
-        home: "سەرەکی", menuServices: "خزمەتگوزارییەکان", menuConsultations: "ڕاوێژی یاسایی", menuInsights: "تێڕوانینەکان", menuAbout: "دەرباره‌ی ئێمە (عربي)", menuContact: "پەیوەندی",
-        title: "نووسینگەی پارێزەر عەلی کازمی هاشمی",
-        subtitle: "نوێنەرایەتی یاسایی متمانەپێکراو و راوێژی تایبەتمەند بۆ کۆمپانیاکان و تاکەکان لە دڵی بەغدادەوە.",
-        cta: "چاوپێکەوتن تۆماربکە ←",
-        mainHeading: "راوێژی یاسایی گشتگیر و ڕێنمایی پیشەیی",
-        mainDesc: "لە نووسینگەی پارێزەر عەلی کازمی هاشمی، خزمەتگوزاری راوێژی یاسایی تایبەتمەند و گشتگیر پێشکەش بە کۆمپانیاکان و تاکەکان دەکەین.",
-        subHeading1: "شێوازی کارکردن و سەنگاندنی دۆسیەکان:",
-        subHeading1Desc: "لە سەرەتای هەر کێشەیەکی یاساییدا، دۆسیەکە بە وردی هەڵدەسەنگێنین و شیکردنەوەی بۆ دەکەین بۆ پاراستنی مافی کڕیارەکانمان.",
-        subHeading2: "بوارەکانی راوێژی یاسایی تایبەتمەند:",
-        li1: "پێشکەشکردنی راوێژ لە یاسای بازرگانی و کۆمپانیاکاندا.",
-        li2: "راوێژی یاسایی تایبەت بە یاسای موڵکداری، کار، سزادان و کارگێڕی.",
-        li3: "ئامادەکردن و پێداچوونەوەی گرێبەست و دۆکومێنتە فەرمییەکان.",
-        li4: "ڕوونکردنەوەی یاساکان بۆ چارەسەرکردنی کێشەکان و دوورکەوتنەوە لە مەترسی.",
-        subHeading3: "رێکاری تۆمارکردنی چاوپێکەوتنی ڕاستەوخۆ:",
-        subHeading3Desc: "کاتی چاوپێکەوتنەکان لە ڕێگەی فۆڕمی فەرمی یان پەیوەندی ڕاستەوخۆ لە واتساب ڕێکدەخرێن.",
-        btnBookInline: "📅 چاوپێکەوتنی فەرمی تۆماربکە",
-        btnWhatsappInline: "💬 واتسأپی ڕاستەوخۆ",
-        backLink: "← گەڕانەوە بۆ سەرەکی"
-      }
-    };
   </script>
+
 </body>
 </html>
