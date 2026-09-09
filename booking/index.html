@@ -72,17 +72,19 @@
       box-shadow: 0 4px 20px rgba(0,0,0,0.15);
     }
 
-    .lang-btn {
-      color: #ffffff;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 14px;
-      border: 1.5px solid #c5a059;
-      padding: 7px 16px;
+    .lang-select-bar {
+      padding: 7px 14px;
       border-radius: 6px;
-      transition: background 0.2s, color 0.2s;
+      border: 1.5px solid #c5a059;
+      background: #070f1e;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 700;
+      outline: none;
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
     }
-    .lang-btn:hover { background: rgba(197,160,89,0.2); color: #c5a059; }
+    .lang-select-bar option { background: #070f1e; color: #ffffff; }
 
     .back-home-btn {
       color: #ffffff;
@@ -210,7 +212,16 @@
 
   <header class="icover-header">
     <div>
-      <a href="en/" class="lang-btn">English 🌐</a>
+      <select id="languageSelect" class="lang-select-bar" onchange="switchLanguage(this.value)">
+        <option value="ar" selected>العربية</option>
+        <option value="en">English</option>
+        <option value="tr">Türkçe</option>
+        <option value="zh">中文</option>
+        <option value="fr">Français</option>
+        <option value="es">Español</option>
+        <option value="de">Deutsch</option>
+        <option value="ku">کوردی</option>
+      </select>
     </div>
 
     <div>
@@ -420,6 +431,15 @@
       } else {
         translationField.classList.remove('active');
       }
+    }
+
+    function switchLanguage(lang) {
+      if (lang === 'ar') {
+        localStorage.setItem('preferredLang', 'ar');
+        return;
+      }
+      localStorage.setItem('preferredLang', lang);
+      window.location.href = 'en/';
     }
 
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw7yF264dmPNlUy2Nng5jwz-qXRTZvoDIRjKNmLhWoDJ5Fk1RJEISFo3GIb5Xw4b0ycSA/exec";
