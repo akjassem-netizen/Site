@@ -4,14 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <!-- تحسين محركات البحث والروابط البديلة -->
   <link rel="alternate" hreflang="ar" href="https://akjassem.com/contact/">
   <link rel="alternate" hreflang="en" href="https://akjassem.com/contact/en/">
   <link rel="alternate" hreflang="x-default" href="https://akjassem.com/contact/en/">
 
   <title id="pageTitle">Contact Us | Law Office of Ali Kadhem Hashimi - Baghdad, Iraq</title>
   <meta id="metaDesc" name="description" content="Contact the Law Office of Ali Kadhem Hashimi in Baghdad - Zayouna. Office address, working hours, phone, WhatsApp, and email. | AKH Law Office Iraq">
-  <meta id="metaKeywords" name="keywords" content="Contact Baghdad lawyer, AKH Law Office contact, Iraq law firm address, Avukat Bağdat iletişim, Irak hukuk bürosu telefon, Anwaltskanzlei Bagdad Kontakt, Bufete de abogados Bagdad teléfono, 巴格达律师事务所联系方式">
+  <meta id="metaKeywords" name="keywords" content="Contact Baghdad lawyer, AKH Law Office contact, Iraq law firm address, Avukat Bağdat iletişim, Irak hukuk bürosu telefon">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,7 +27,6 @@
       align-items: center;
     }
 
-    /* الهيدر التنفيذي الموحد */
     .icover-header {
       width: 100%;
       background: #0f172a;
@@ -402,13 +400,8 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const urlLang = urlParams.get('lang') || localStorage.getItem('preferredLang') || 'en';
-      if (urlLang !== 'ar' && dictionary[urlLang]) {
-        changeLanguage(urlLang, false);
-      } else {
-        changeLanguage('en', false);
-      }
+      // فتح النسخة الإنجليزية افتراضياً بغض النظر عن ذاكرة المتصفح السابقة
+      changeLanguage('en', false);
     });
 
     function changeLanguage(lang, save = true) {
