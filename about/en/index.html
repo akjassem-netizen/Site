@@ -14,7 +14,7 @@
   <meta name="author" content="Ali Kadhem Hashimi Law Office">
   <meta name="robots" content="index, follow, max-image-preview:large">
 
-  <!-- Open Graph / Social Media Meta Tags (معاينة إنجليزية دولية راقية موحدة لجميع اللغات الأجنبية) -->
+  <!-- Open Graph / Social Media Meta Tags -->
   <meta property="og:title" id="ogTitle" content="Who is Lawyer Ali Kadhem Hashimi | About Us - Iraq Law Office">
   <meta property="og:description" id="ogDesc" content="Discover the Law Office of Ali Kadhem Hashimi in Baghdad, offering expert corporate legal services, compliance, due diligence, and tax residency.">
   <meta property="og:image" content="https://akjassem.com/og-logo.jpg">
@@ -98,7 +98,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: background 0.2s;
     }
+    .menu-toggle:hover { background: rgba(197,160,89,0.2); }
+
     .dropdown-menu {
       position: absolute;
       top: calc(100% + 10px);
@@ -165,7 +168,8 @@
 
   <header class="icover-header">
     <div>
-      <select id="languageSelect" class="lang-select-bar" onchange="changeLanguage(this.value)">
+      <select id="languageSelect" class="lang-select-bar" onchange="switchLanguage(this.value)">
+        <option value="ar">العربية / Arabic</option>
         <option value="en" selected>English</option>
         <option value="tr">Türkçe</option>
         <option value="zh">中文</option>
@@ -179,12 +183,12 @@
     <div class="menu-container">
       <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu">☰</button>
       <div id="dropdownMenu" class="dropdown-menu">
-        <a href="https://akjassem.com" id="menuHome">Home</a>
-        <a href="/services/" id="menuServices">Legal Services Directory</a>
-        <a href="../../consultations.html" id="menuConsultations">Legal Consultations</a>
-        <a href="../../insights.html" id="menuInsights">Iraq Legal Insights</a>
+        <a href="https://akjassem.com/en/" id="menuHome">Home</a>
+        <a href="https://akjassem.com/services/" id="menuServices">Legal Services Directory</a>
+        <a href="https://akjassem.com/consultations/en/" id="menuConsultations">Legal Consultations</a>
+        <a href="https://akjassem.com/insights/en/" id="menuInsights">Iraq Legal Insights</a>
         <a href="../" id="menuAbout">عربي / Arabic (About Us)</a>
-        <a href="../../contact/" id="menuContact">Contact Us</a>
+        <a href="https://akjassem.com/contact/en/" id="menuContact">Contact Us</a>
       </div>
     </div>
   </header>
@@ -214,10 +218,10 @@
     </div>
     
     <div class="action-area">
-      <a href="/booking/" target="_blank" class="btn-booking" id="btnBookText">
+      <a href="/booking/en/" target="_blank" class="btn-booking" id="btnBookText">
         <span>📅 Book a consultation appointment with the office</span>
       </a>
-      <a href="https://akjassem.com" class="back-link" id="backLinkText">← Back to Home</a>
+      <a href="https://akjassem.com/en/" class="back-link" id="backLinkText">← Back to Home</a>
     </div>
   </div>
 
@@ -347,7 +351,25 @@
       }
     };
 
-    function changeLanguage(lang) {
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('preferredLang') || 'en';
+      if (savedLang === 'ar') {
+        window.location.href = '../';
+        return;
+      }
+      if (dictionary[savedLang]) {
+        applyLang(savedLang);
+      } else {
+        applyLang('en');
+      }
+    });
+
+    function switchLanguage(lang) {
+      if (lang === 'ar') {
+        localStorage.setItem('preferredLang', 'ar');
+        window.location.href = '../';
+        return;
+      }
       localStorage.setItem('preferredLang', lang);
       applyLang(lang);
     }
@@ -388,14 +410,6 @@
       document.getElementById('btnBookText').innerHTML = `<span>${t.btnBook}</span>`;
       document.getElementById('backLinkText').innerText = t.backLink;
     }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const urlLang = urlParams.get('lang') || localStorage.getItem('preferredLang') || 'en';
-      if (urlLang && dictionary[urlLang]) {
-        applyLang(urlLang);
-      }
-    });
   </script>
 </body>
 </html>
