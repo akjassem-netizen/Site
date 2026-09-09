@@ -22,9 +22,9 @@
   <meta name="author" content="Ali Kadhem Hashimi Law Office">
   <meta name="robots" content="index, follow, max-image-preview:large">
 
-  <!-- Open Graph / Social Media Meta Tags (مصممة باللغة الإنجليزية الاحترافية العالمية لمعاينة واتساب والسفارات) -->
-  <meta property="og:title" id="ogTitle" content="Legal Insights & Analysis | Law Office Of Ali Kadhem Hashimi">
-  <meta property="og:description" id="ogDesc" content="Specialized legal insights covering Iraqi labor law, company formation, and regulatory compliance by Ali Kadhem Hashimi Law Office in Baghdad.">
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:title" id="ogTitle" content="الآراء والتحليلات القانونية | مكتب المحامي علي كاظم الهاشمي">
+  <meta property="og:description" id="ogDesc" content="دراسات وإيضاحات إجرائية متخصصة في فروع القانون العراقي وتأسيس الشركات والضمان الاجتماعي في بغداد.">
   <meta property="og:image" content="https://akjassem.com/og-logo.jpg">
   <meta property="og:image:secure_url" content="https://akjassem.com/og-logo.jpg">
   <meta property="og:image:type" content="image/jpeg">
@@ -36,8 +36,8 @@
 
   <!-- Twitter Card Data -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" id="twTitle" content="Legal Insights & Analysis | Law Office Of Ali Kadhem Hashimi">
-  <meta name="twitter:description" id="twDesc" content="Specialized legal insights covering Iraqi labor law and corporate compliance in Baghdad.">
+  <meta name="twitter:title" id="twTitle" content="الآراء والتحليلات القانونية | Law Office Of Ali Kadhem Hashimi">
+  <meta name="twitter:description" id="twDesc" content="نافذة قانونية تنفيذية متخصصة بنشر التحليلات الإجرائية في فروع القانون العراقي.">
   <meta name="twitter:image" content="https://akjassem.com/og-logo.jpg">
 
   <!-- Schema.org Structured Data -->
@@ -210,6 +210,9 @@
       padding: 3px 9px;
       border-radius: 20px;
       margin-right: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
     }
     .category-body {
       padding: 18px 20px;
@@ -366,7 +369,7 @@
     <!-- شريط الأدوات وزر العودة إلى الموقع الرئيسي بالاعلى -->
     <div class="toolbar-box">
       <div class="lang-selector-wrapper">
-        <span style="font-weight: 700; font-size: 14px; color: #0b1a30;">🌐 اختر اللغة / Select Language:</span>
+        <span id="langSelectLabel" style="font-weight: 700; font-size: 14px; color: #0b1a30;">🌐 اختر اللغة / Select Language:</span>
         <select id="langSelect" class="lang-select" onchange="changeLanguage(this.value)">
           <option value="ar">العربية (Arabic)</option>
           <option value="en">English</option>
@@ -380,7 +383,7 @@
       </div>
       <!-- زر العودة للموقع الرئيسي (بالاعلى) -->
       <div style="width: 100%; text-align: left; margin-top: 6px; border-top: 1px dashed #e2e8f0; padding-top: 8px;">
-        <a href="index.html" style="display: inline-block; background-color: #0b1a30; color: #ffffff; padding: 6px 14px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 12.5px;">🏠 العودة إلى الموقع الرئيسي</a>
+        <a href="index.html" id="topBackBtn" style="display: inline-block; background-color: #0b1a30; color: #ffffff; padding: 6px 14px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 12.5px;">🏠 العودة إلى الموقع الرئيسي</a>
       </div>
     </div>
 
@@ -391,7 +394,7 @@
     <div id="arabic-feed">
       <div class="category-group">
         <div class="category-header">
-          <div><span id="catName">العمل والإقامة والضمان الاجتماعي</span><span class="badge-count">1 مقال</span></div>
+          <div><span id="catName">العمل والإقامة والضمان الاجتماعي</span><span class="badge-count"><span id="badgeCountNum">1</span> <span id="badgeArticleWord">مقال</span></span></div>
         </div>
         <div class="category-body">
           <article class="legal-card" data-slug="labor-social-security-iraq">
@@ -431,8 +434,8 @@
               </div>
 
               <!-- زر العودة إلى قائمة المقالات (من داخل المقال) -->
-              <div style="text-align: right; margin-top: 20px;">
-                <button type="button" onclick="const card = this.closest('.legal-card'); card.querySelector('.article-expanded').style.display='none'; card.querySelector('[id^=readMoreBtn]').innerText = currentLang==='ar'?'قراءة المزيد ←':'Read More ←'; window.scrollTo({top: card.offsetTop - 50, behavior: 'smooth'});" style="background: #edf2f7; border: 1px solid #cbd5e0; color: #2d3748; padding: 8px 16px; border-radius: 6px; font-weight: 700; cursor: pointer; font-family: inherit; font-size: 13px;">← العودة إلى قائمة الآراء</button>
+              <div id="backToListWrapper" style="text-align: right; margin-top: 20px;">
+                <button type="button" id="backToListBtn" onclick="const card = this.closest('.legal-card'); card.querySelector('.article-expanded').style.display='none'; card.querySelector('[id^=readMoreBtn]').innerText = translations[currentLang].readMore; window.scrollTo({top: card.offsetTop - 50, behavior: 'smooth'});" style="background: #edf2f7; border: 1px solid #cbd5e0; color: #2d3748; padding: 8px 16px; border-radius: 6px; font-weight: 700; cursor: pointer; font-family: inherit; font-size: 13px;">← العودة إلى قائمة الآراء</button>
               </div>
 
               <div id="artFooter" style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #edf2f7; font-size: 11.5px; color: #718096; line-height: 1.7;">
@@ -441,14 +444,14 @@
               </div>
             </div>
 
-            <button type="button" id="readMoreBtn" onclick="const b = this.previousElementSibling; const open = b.style.display==='block'; b.style.display = open?'none':'block'; this.innerText = open ? (currentLang==='ar'?'قراءة المزيد ←':'Read More ←') : (currentLang==='ar'?'عرض أقل ↑':'Show Less ↑');" style="background: none; border: 1.5px solid #0b1a30; color: #0b1a30; padding: 8px 18px; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 10px;">قراءة المزيد ←</button>
+            <button type="button" id="readMoreBtn" onclick="const b = this.previousElementSibling; const open = b.style.display==='block'; b.style.display = open?'none':'block'; this.innerText = open ? translations[currentLang].readMore : translations[currentLang].showLess;" style="background: none; border: 1.5px solid #0b1a30; color: #0b1a30; padding: 8px 18px; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 10px;">قراءة المزيد ←</button>
 
             <div class="share-bar">
               <span id="shareLabel" class="share-label">مشاركة الرابط المباشر:</span>
               <button class="btn-share btn-share-copy" onclick="copyArticleLink('labor-social-security-iraq')">📋 <span id="copyTxt">نسخ الرابط</span></button>
-              <a class="btn-share btn-share-wa" href="https://api.whatsapp.com/send?text=https://akjassem.com/insights?p=labor-social-security-iraq" target="_blank">🟢 WhatsApp</a>
-              <a class="btn-share btn-share-li" href="https://www.linkedin.com/sharing/share-offsite/?url=https://akjassem.com/insights?p=labor-social-security-iraq" target="_blank">💼 LinkedIn</a>
-              <a class="btn-share btn-share-x" href="https://twitter.com/intent/tweet?url=https://akjassem.com/insights?p=labor-social-security-iraq" target="_blank">𝕏 Post</a>
+              <a id="shareWa" class="btn-share btn-share-wa" href="https://api.whatsapp.com/send?text=https://akjassem.com/insights?lang=ar&p=labor-social-security-iraq" target="_blank">🟢 WhatsApp</a>
+              <a id="shareLi" class="btn-share btn-share-li" href="https://www.linkedin.com/sharing/share-offsite/?url=https://akjassem.com/insights?lang=ar&p=labor-social-security-iraq" target="_blank">💼 LinkedIn</a>
+              <a id="shareX" class="btn-share btn-share-x" href="https://twitter.com/intent/tweet?url=https://akjassem.com/insights?lang=ar&p=labor-social-security-iraq" target="_blank">𝕏 Post</a>
             </div>
           </article>
         </div>
@@ -457,7 +460,7 @@
 
     <!-- زر العودة إلى الموقع الرئيسي (بالأسفل) -->
     <div style="text-align: center; margin-top: 30px; margin-bottom: 20px;">
-      <a href="index.html" style="display: inline-block; background-color: #0b1a30; color: #ffffff; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 14px; border: 1.5px solid #d32f2f; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">🏠 العودة إلى الموقع الرئيسي الكامل ←</a>
+      <a href="index.html" id="bottomBackBtn" style="display: inline-block; background-color: #0b1a30; color: #ffffff; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 14px; border: 1.5px solid #d32f2f; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">🏠 العودة إلى الموقع الرئيسي الكامل ←</a>
     </div>
 
   </div>
@@ -496,8 +499,14 @@
         bookingBtn: 'طلب تدقيق الامتثال العمالي للشركات (مكتب AKH) ←',
         footer: '© جميع الحقوق محفوظة لمكتب المحامي علي كاظم الهاشمي (AKH Law Office). <br>إخلاء مسؤولية وحجية النص: المواد والتحليلات القانونية المنشورة مُعدّة لأغراض التوعية العامة ولا تُعد استشارة قانونية ملزمة. <strong>يُعد النص العربي هو الأصل المعتمد</strong>.',
         readMore: 'قراءة المزيد ←',
+        showLess: 'عرض أقل ↑',
         shareLabel: 'مشاركة الرابط المباشر:',
-        copyTxt: 'نسخ الرابط'
+        copyTxt: 'نسخ الرابط',
+        copiedToast: 'تم نسخ الرابط المباشر بنجاح 📋',
+        badgeWord: 'مقال',
+        topBack: '🏠 العودة إلى الموقع الرئيسي',
+        bottomBack: '🏠 العودة إلى الموقع الرئيسي الكامل ←',
+        backToList: '← العودة إلى قائمة الآراء'
       },
       en: {
         dir: 'ltr',
@@ -529,23 +538,29 @@ Given procedural complexities and multiple regulatory bodies, we emphasize havin
         bookingBtn: 'Request Corporate Labor Compliance Audit (AKH Law Office) →',
         footer: '© All rights reserved to Lawyer Ali Kadhem Hashimi Law Office (AKH). <br>Disclaimer: Published legal insights are for general awareness and do not constitute formal legal advice. <strong>The Arabic text remains the authoritative original</strong>.',
         readMore: 'Read More →',
+        showLess: 'Show Less ↑',
         shareLabel: 'Share Direct Link:',
-        copyTxt: 'Copy Link'
+        copyTxt: 'Copy Link',
+        copiedToast: 'Direct link copied successfully 📋',
+        badgeWord: 'Article',
+        topBack: '🏠 Back to Main Website',
+        bottomBack: '🏠 Back to Full Main Website →',
+        backToList: '← Back to Insights List'
       },
       tr: {
         dir: 'ltr',
-        title: 'Hukuki Görüşler و Analizler | Law Office Of Ali Kadhem Hashimi',
-        mainTitle: 'Hukuki Görüşler و Analizler',
+        title: 'Hukuki Görüşler ve Analizler | Law Office Of Ali Kadhem Hashimi',
+        mainTitle: 'Hukuki Görüşler ve Analizler',
         keywords: 'Bağdat avukat, Irak iş hukuku, Irak şirketler hukuku, Bağdat şirket kuruluşu, hukuki danışmanlık',
-        desc: 'Bağdat\'taki Ali Kadhem Hashimi Hukuk Bürosu tarafından Irak iş hukuku و şirket kuruluşları üzerine yayınlanan hukuki analizler.',
-        intro: 'Irak hukuku dallarında usul çalışmaları و açıklamaları yayınlamaya adanmış özel bir pencere: İş hukuku, ikamet و sosyal güvenlik, şirket kuruluşları و ticari davalar.',
-        catName: 'İş, İkamet و Sosyal Güvenlik',
-        artDate: 'İş و Sosyal Güvenlik • 5 Eylül 2026',
-        artTitle: 'Yabancı İşçi Uyumu و 2023 Tarihli و 18 Sayılı Irak Sosyal Güvenlik Kanunu: Şirketler و Yatırımcılar Rehberi',
-        artDesc: 'Irak İş Kanunu hükümlerinin kapsamlı analitik çalışması و işveren yükümlülükleri.',
+        desc: 'Bağdat\'taki Ali Kadhem Hashimi Hukuk Bürosu tarafından Irak iş hukuku ve şirket kuruluşları üzerine yayınlanan hukuki analizler.',
+        intro: 'Irak hukuku dallarında usul çalışmaları ve açıklamaları yayınlamaya adanmış özel bir pencere: İş hukuku, ikamet ve sosyal güvenlik, şirket kuruluşları ve ticari davalar.',
+        catName: 'İş, İkamet ve Sosyal Güvenlik',
+        artDate: 'İş ve Sosyal Güvenlik • 5 Eylül 2026',
+        artTitle: 'Yabancı İşçi Uyumu ve 2023 Tarihli ve 18 Sayılı Irak Sosyal Güvenlik Kanunu: Şirketler ve Yatırımcılar Rehberi',
+        artDesc: 'Irak İş Kanunu hükümlerinin kapsamlı analitik çalışması ve işveren yükümlülükleri.',
         artBody: `Irak Cumhuriyeti'ndeki iş و yatırım ortamı umut vadediyor ancak katı bir yasal çerçeveye tabi bulunuyor.
 
-1. İş Sözleşmeleri و Hukuki Düzenleme:
+1. İş Sözleşmeleri ve Hukuki Düzenleme:
 Irak mevzuatı, iş sözleşmelerinin yazılı و Arapça olarak iki nüsha halinde düzenlenmesini zorunlu kılar.
 
 2. Sosyal Güvenlik Primleri:
@@ -558,8 +573,14 @@ Yabancı işçiler, Çalışma Bakanlığı onayına tabidir.
         bookingBtn: 'Kurumsal Uyum Denetimi Talep Et (AKH Bürosu) →',
         footer: '© Tüm hakları Avukat Ali Kadhem Hashimi Hukuk Bürosu\'na saklıdır.',
         readMore: 'Devamını Oku →',
+        showLess: 'Daha Az Göster ↑',
         shareLabel: 'Doğrudan Bağlantıyı Paylaş:',
-        copyTxt: 'Bağlantıyı Kopyala'
+        copyTxt: 'Bağlantıyı Kopyala',
+        copiedToast: 'Bağlantı başarıyla kopyalandı 📋',
+        badgeWord: 'Makale',
+        topBack: '🏠 Ana Web Sitesine Dön',
+        bottomBack: '🏠 Ana Web Sitesine Geri Dön →',
+        backToList: '← Görüşler Listesine Dön'
       },
       zh: {
         dir: 'ltr',
@@ -587,8 +608,14 @@ Yabancı işçiler, Çalışma Bakanlığı onayına tabidir.
         bookingBtn: '申请企业劳工合规审计 (AKH律所) →',
         footer: '© 阿里·卡德姆·哈希米律师事务所版权所有。',
         readMore: '阅读更多 →',
+        showLess: '收起 ↑',
         shareLabel: '分享直接链接：',
-        copyTxt: '复制链接'
+        copyTxt: '复制链接',
+        copiedToast: '链接复制成功 📋',
+        badgeWord: '文章',
+        topBack: '🏠 返回主网站',
+        bottomBack: '🏠 返回主网站 →',
+        backToList: '← 返回意见列表'
       },
       fr: {
         dir: 'ltr',
@@ -597,10 +624,10 @@ Yabancı işçiler, Çalışma Bakanlığı onayına tabidir.
         keywords: 'Avocat à Bagdad, Droit du travail irakien, Avocat d\'affaires Irak, Constitution de société Bagdad',
         desc: 'Études et analyses juridiques spécialisées sur le droit du travail et la constitution de sociétés en Irak par le Cabinet AKH.',
         intro: 'Une fenêtre spécialisée dédiée à la publication d’études et d’éclaircissements procéduraux dans les branches du droit irakien.',
-        catName: 'Travail و Sécurité Sociale',
-        artDate: 'Travail و Sécurité • 5 Septembre 2026',
-        artTitle: 'Conformité de la Main-d’Oeuvre Étrangère و Loi Irakienne de Sécurité Sociale n° 18 de 2023',
-        artDesc: 'Étude analytique complète des dispositions du droit du travail irakien و de la sécurité sociale.',
+        catName: 'Travail et Sécurité Sociale',
+        artDate: 'Travail et Sécurité • 5 Septembre 2026',
+        artTitle: 'Conformité de la Main-d’Oeuvre Étrangère et Loi Irakienne de Sécurité Sociale n° 18 de 2023',
+        artDesc: 'Étude analytique complète des dispositions du droit du travail irakien et de la sécurité sociale.',
         artBody: `L'environnement des affaires et des investissements en République d'Irak est prometteur, régi par un cadre législatif strict.
 
 1. Contrats de travail et rédaction juridique.
@@ -610,40 +637,52 @@ Yabancı işçiler, Çalışma Bakanlığı onayına tabidir.
         bookingBtn: 'Demander un audit de conformité (Bureau AKH) →',
         footer: '© Tous droits réservés au Cabinet d’Avocats Ali Kadhem Hashimi.',
         readMore: 'Lire la suite →',
+        showLess: 'Afficher moins ↑',
         shareLabel: 'Partager le lien :',
-        copyTxt: 'Copier le lien'
+        copyTxt: 'Copier le lien',
+        copiedToast: 'Lien copié avec succès 📋',
+        badgeWord: 'Article',
+        topBack: '🏠 Retour au site principal',
+        bottomBack: '🏠 Retour au site principal →',
+        backToList: '← Retour à la liste'
       },
       es: {
         dir: 'ltr',
         title: 'Perspectivas Jurídicas | Law Office Of Ali Kadhem Hashimi',
-        mainTitle: 'Análisis و Estudios Jurídicos',
+        mainTitle: 'Análisis y Estudios Jurídicos',
         keywords: 'Abogado en Bagdad, Derecho laboral iraquí, Abogado corporativo Irak, Constitución de empresas',
-        desc: 'Análisis و estudios juridicos especializados sobre derecho laboral iraquí و constitución de empresas por la Oficina AKH.',
+        desc: 'Análisis y estudios jurídicos especializados sobre derecho laboral iraquí y constitución de empresas por la Oficina AKH.',
         intro: 'Ventana especializada dedicada a la publicación de estudios procesales en las ramas del derecho iraquí.',
-        catName: 'Trabajo و Seguridad Social',
-        artDate: 'Trabajo و Seguridad • 5 de Septiembre de 2026',
-        artTitle: 'Cumplimiento Laboral Extranjero و Ley de Seguridad Social de Irak No. 18 de 2023',
-        artDesc: 'Estudio analítico integral de las disposiciones de la ley laboral iraquí و seguridad social.',
+        catName: 'Trabajo y Seguridad Social',
+        artDate: 'Trabajo y Seguridad • 5 de Septiembre de 2026',
+        artTitle: 'Cumplimiento Laboral Extranjero y Ley de Seguridad Social de Irak No. 18 de 2023',
+        artDesc: 'Estudio analítico integral de las disposiciones de la ley laboral iraquí y seguridad social.',
         artBody: `El entorno empresarial e inversión en la República de Irak es prometedor pero riguroso.
 
 1. Contratos de trabajo y redacción jurídica.
 2. Contribuciones a la seguridad social.
-3. Contratación de personal extranjero و permisos.
+3. Contratación de personal extranjero y permisos.
 4. Resolución de conflictos laborales.`,
         bookingBtn: 'Solicitar auditoría de cumplimiento (Oficina AKH) →',
         footer: '© Todos los derechos reservados al Abogado Ali Kadhem Hashimi.',
         readMore: 'Leer más →',
+        showLess: 'Mostrar menos ↑',
         shareLabel: 'Compartir enlace :',
-        copyTxt: 'Copiar enlace'
+        copyTxt: 'Copiar enlace',
+        copiedToast: 'Enlace copiado con éxito 📋',
+        badgeWord: 'Artículo',
+        topBack: '🏠 Volver al sitio web principal',
+        bottomBack: '🏠 Volver al sitio web principal →',
+        backToList: '← Volver a la lista'
       },
       de: {
         dir: 'ltr',
         title: 'Rechtliche Analysen | Law Office Of Ali Kadhem Hashimi',
-        mainTitle: 'Rechtliche Einblicke و Analysen',
+        mainTitle: 'Rechtliche Einblicke und Analysen',
         keywords: 'Anwalt in Bagdad, Irakisches Arbeitsrecht, Unternehmensanwalt Irak, Firmengründung Bagdad',
         desc: 'Spezialisierte rechtliche Analysen zum irakischen Arbeitsrecht و zur Unternehmensgründung von der Kanzlei AKH.',
         intro: 'Ein spezialisiertes Fenster für verfahrensrechtliche Studien و Erläuterungen im irakischen Recht.',
-        catName: 'Arbeit و Soziale Sicherheit',
+        catName: 'Arbeit und Soziale Sicherheit',
         artDate: 'Arbeit & Soziales • 5. September 2026',
         artTitle: 'Einhaltung der ausländischen Beschäftigung و irakisches Sozialversicherungsgesetz Nr. 18 von 2023',
         artDesc: 'Umfassende analytische Studie zu den Bestimmungen des irakischen Arbeitsrechts.',
@@ -656,8 +695,14 @@ Yabancı işçiler, Çalışma Bakanlığı onayına tabidir.
         bookingBtn: 'Compliance-Audit anfordern (Kanzlei AKH) →',
         footer: '© Alle Rechte vorbehalten für Rechtsanwalt Ali Kadhem Hashimi.',
         readMore: 'Weiterlesen →',
+        showLess: 'Weniger anzeigen ↑',
         shareLabel: 'Direktlink teilen:',
-        copyTxt: 'Link kopieren'
+        copyTxt: 'Link kopieren',
+        copiedToast: 'Link erfolgreich kopiert 📋',
+        badgeWord: 'Artikel',
+        topBack: '🏠 Zur Hauptwebsite',
+        bottomBack: '🏠 Zur Hauptwebsite zurückkehren →',
+        backToList: '← Zurück zur Liste'
       },
       ku: {
         dir: 'rtl',
@@ -665,7 +710,7 @@ Yabancı işçiler, Çalışma Bakanlığı onayına tabidir.
         mainTitle: 'Şîrove û Lêkolînên Hiqûqî',
         keywords: 'Parêzer li Bexdayê, Qanûna Kar a Iraqê, Parêzerê pargîdaniyan li Iraqê, damezrandina pargîdaniyan',
         desc: 'Lêkolînên hiqûqî yên pispor li ser qanûna kar a Iraqê و damezrandina pargîdaniyan ji hêla Buroya AKH ve.',
-        intro: 'Pەncereyek taybetمەند bi weşandina lêkolînên pêvajoyî di şaxên qanûna Iraqê de.',
+        intro: 'Pەncereyek taybetمەند bi weşandina lêkolînên pêvajoyî di شaxên qanûna Iraqê de.',
         catName: 'Karkerî و Ewlehiya Civakî',
         artDate: 'Karkerî • 5 Îlon 2026',
         artTitle: 'Lihevhatina Karkerên Biyanî و Qanûna Ewlehiya Civakî ya Iraqê Hejmara 18 ya sala 2023an',
@@ -678,12 +723,59 @@ Yabancı işçiler, Çalışma Bakanlığı onayına tabidir.
         bookingBtn: 'Daxwaza Lêkolîna Karkirinê (Ofîsa AKH) ←',
         footer: '© Hemû maf parastî ne ji bo Buroya Parêzer Ali Kadhem Hashimi.',
         readMore: 'Zêdetir bixwîne ←',
+        showLess: 'Kێمتر ببينە ↑',
         shareLabel: 'Parvekirina lînkê:',
-        copyTxt: 'Lînkê kopî bike'
+        copyTxt: 'Lînkê kopî bike',
+        copiedToast: 'لînk بە سەرکەوتوویی کۆپی کرا 📋',
+        badgeWord: 'مەقالە',
+        topBack: '🏠 گەڕانەوە بۆ ماڵپەڕی سەرەکی',
+        bottomBack: '🏠 گەڕانەوە بۆ ماڵپەڕی سەرەکی تەواو ←',
+        backToList: '← گەڕانەوە بۆ لیست'
       }
     };
 
-    function changeLanguage(lang) {
+    function toggleMenu() {
+      document.getElementById('dropdownMenu').classList.toggle('active');
+    }
+
+    window.onclick = function(event) {
+      if (!event.target.matches('.menu-toggle') && !event.target.closest('.menu-container')) {
+        document.getElementById('dropdownMenu').classList.remove('active');
+      }
+    }
+
+    // دعم جلب اللغة من الرابط (قيمة ?lang=...) أو الذاكرة
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlLang = urlParams.get('lang');
+      const savedLang = urlLang || localStorage.getItem('preferredLang') || 'ar';
+      
+      if (translations[savedLang]) {
+        document.getElementById('languageSelect') ? document.getElementById('languageSelect').value = savedLang : null;
+        document.getElementById('langSelect').value = savedLang;
+        changeLanguage(savedLang, false);
+      }
+
+      const targetSlug = urlParams.get('p');
+      if (targetSlug) {
+        const expanded = document.querySelector('.article-expanded');
+        if (expanded) expanded.style.display = 'block';
+        const btn = document.getElementById('readMoreBtn');
+        if (btn) btn.innerText = translations[currentLang].showLess;
+        const card = document.querySelector('.legal-card');
+        if (card) {
+          card.classList.add('highlighted');
+          setTimeout(() => {
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 300);
+        }
+      }
+    });
+
+    function changeLanguage(lang, save = true) {
+      if (save) {
+        localStorage.setItem('preferredLang', lang);
+      }
       currentLang = lang;
       const t = translations[lang] || translations['ar'];
       const root = document.getElementById('htmlRoot');
@@ -701,27 +793,42 @@ Yabancı işçiler, Çalışma Bakanlığı onayına tabidir.
       document.getElementById('artBody').innerText = t.artBody;
       document.getElementById('btnBooking').innerText = t.bookingBtn;
       document.getElementById('artFooter').innerHTML = t.footer;
+      
       document.getElementById('shareLabel').innerText = t.shareLabel;
       document.getElementById('copyTxt').innerText = t.copyTxt;
       
+      // تحديث كلمة "مقال" ديناميكياً
+      document.getElementById('badgeArticleWord').innerText = t.badgeWord;
+
+      // تحديث أزرار العودة باللغة المختارة
+      document.getElementById('topBackBtn').innerText = t.topBack;
+      document.getElementById('bottomBackBtn').innerText = t.bottomBack;
+      document.getElementById('backToListBtn').innerText = t.backToList;
+
+      // تحديث زر "قراءة المزيد" أو "عرض أقل" حسب حالته الحالية
+      const expandedDiv = document.querySelector('.article-expanded');
+      const readBtn = document.getElementById('readMoreBtn');
+      if (expandedDiv && readBtn) {
+        readBtn.innerText = (expandedDiv.style.display === 'block') ? t.showLess : t.readMore;
+      }
+
+      // تحديث روابط منصات المشاركة لتتضمن اللغة الحالية تلقائياً
+      const slug = 'labor-social-security-iraq';
+      const shareUrl = `https://akjassem.com/insights?lang=${lang}&p=${slug}`;
+      document.getElementById('shareWa').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareUrl)}`;
+      document.getElementById('shareLi').href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
+      document.getElementById('shareX').href = `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}`;
+
       let metaKw = document.querySelector('meta[name="keywords"]');
       if (metaKw) metaKw.content = t.keywords;
 
       let metaDesc = document.querySelector('meta[name="description"]');
-      if (metaDesc) metaDesc.desc = t.desc;
+      if (metaDesc) metaDesc.content = t.desc;
 
       document.getElementById('ogTitle').content = t.title;
       document.getElementById('ogDesc').content = t.desc;
       document.getElementById('twTitle').content = t.title;
       document.getElementById('twDesc').content = t.desc;
-
-      const readBtn = document.getElementById('readMoreBtn');
-      const expandedDiv = document.querySelector('.article-expanded');
-      if (expandedDiv.style.display === 'block') {
-        readBtn.innerText = (t.dir === 'rtl' ? 'عرض أقل ↑' : 'Show Less ↑');
-      } else {
-        readBtn.innerText = t.readMore;
-      }
     }
 
     document.addEventListener('contextmenu', e => e.preventDefault());
@@ -759,25 +866,6 @@ Yabancı işçiler, Çalışma Bakanlığı onayına tabidir.
       }
     }
 
-    window.addEventListener('DOMContentLoaded', () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const targetSlug = urlParams.get('p');
-
-      if (targetSlug) {
-        const expanded = document.querySelector('.article-expanded');
-        if (expanded) expanded.style.display = 'block';
-        const btn = document.getElementById('readMoreBtn');
-        if (btn) btn.innerText = 'عرض أقل ↑';
-        const card = document.querySelector('.legal-card');
-        if (card) {
-          card.classList.add('highlighted');
-          setTimeout(() => {
-            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }, 300);
-        }
-      }
-    });
-
     function showToast(msg) {
       const toast = document.getElementById('copyToast');
       toast.innerText = msg;
@@ -786,9 +874,9 @@ Yabancı işçiler, Çalışma Bakanlığı onayına tabidir.
     }
 
     function copyArticleLink(slug) {
-      const url = `https://akjassem.com/insights?p=${slug}`;
+      const url = `https://akjassem.com/insights?lang=${currentLang}&p=${slug}`;
       navigator.clipboard.writeText(url).then(() => {
-        showToast(currentLang === 'ar' ? 'تم نسخ الرابط المباشر بنجاح 📋' : 'Direct link copied successfully 📋');
+        showToast(translations[currentLang].copiedToast);
       });
     }
   </script>
