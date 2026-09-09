@@ -301,7 +301,7 @@ Given procedural sensitivities and multiple oversight bodies (labor inspectors, 
       const urlParams = new URLSearchParams(window.location.search);
       const urlLang = urlParams.get('lang') || localStorage.getItem('preferredLang') || 'en';
       if (urlLang === 'ar') {
-        window.location.href = '../'; // العودة للمجلد الرئيسي (العربي)
+        window.location.href = '../';
       } else if (insightsDict[urlLang]) {
         changeLanguage(urlLang, false);
       } else {
@@ -310,15 +310,13 @@ Given procedural sensitivities and multiple oversight bodies (labor inspectors, 
     });
 
     function changeLanguage(lang, updateUrl = true) {
-      window.currentLang = lang;
-      if (updateUrl) {
-        localStorage.setItem('preferredLang', lang);
-      }
-      
-      // إذا اختار الزائر العربية، يتم توجيهه للمجلد الرئيسي العربي مباشرة
       if (lang === 'ar') {
         window.location.href = '../';
         return;
+      }
+      window.currentLang = lang;
+      if (updateUrl) {
+        localStorage.setItem('preferredLang', lang);
       }
 
       const root = document.getElementById('htmlRoot');
