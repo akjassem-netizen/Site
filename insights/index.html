@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link rel="alternate" hreflang="ar" href="https://akjassem.com/insights.html">
-  <link rel="alternate" hreflang="en" href="https://akjassem.com/insights-en.html">
-  <link rel="alternate" hreflang="x-default" href="https://akjassem.com/insights.html">
+  <link rel="alternate" hreflang="ar" href="https://akjassem.com/insights/">
+  <link rel="alternate" hreflang="en" href="https://akjassem.com/insights/en/">
+  <link rel="alternate" hreflang="x-default" href="https://akjassem.com/insights/">
 
   <title>الآراء والتحليلات القانونية | Law Office Of Ali Kadhem Hashimi</title>
   <meta name="description" content="نافذة قانونية تنفيذية متخصصة بنشر التحليلات الإجرائية في فروع القانون العراقي وتأسيس الشركات، إعداد مكتب المحامي علي كاظم الهاشمي في بغداد. | AKH Law Office">
@@ -14,7 +14,6 @@
   <meta name="author" content="Ali Kadhem Hashimi Law Office">
   <meta name="robots" content="index, follow, max-image-preview:large">
 
-  <!-- Open Graph / Social Media Meta Tags (معاينة دقيقة للاتصال وواتساب ولينكد إن) -->
   <meta property="og:title" content="الآراء والتحليلات القانونية | مكتب المحامي علي كاظم الهاشمي">
   <meta property="og:description" content="دراسات وإيضاحات إجرائية متخصصة في فروع القانون العراقي وتأسيس الشركات والضمان الاجتماعي في بغداد.">
   <meta property="og:image" content="https://akjassem.com/og-logo.jpg">
@@ -22,7 +21,7 @@
   <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:url" content="https://akjassem.com/insights.html">
+  <meta property="og:url" content="https://akjassem.com/insights/">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="AKH Law Office Baghdad">
 
@@ -37,7 +36,7 @@
     "@type": "LegalService",
     "name": "Law Office Of Ali Kadhem Hashimi",
     "alternateName": "مكتب المحامي علي كاظم الهاشمي",
-    "url": "https://akjassem.com",
+    "url": "https://akjassem.com/insights/",
     "logo": "https://akjassem.com/og-logo.jpg",
     "address": {
       "@type": "PostalAddress",
@@ -59,7 +58,6 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Cairo', system-ui, sans-serif; background-color: #f7f9fc; color: #1a1a1a; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
 
-    /* الهيدر الموحد الفاخر */
     .icover-header {
       width: 100%;
       background: #0f172a;
@@ -73,7 +71,7 @@
       z-index: 1000;
       box-shadow: 0 4px 20px rgba(0,0,0,0.15);
     }
-    .lang-select-bar {
+    .lang-btn {
       padding: 7px 14px;
       border-radius: 6px;
       border: 1.5px solid #c5a059;
@@ -81,11 +79,11 @@
       color: #ffffff;
       font-size: 13px;
       font-weight: 700;
-      outline: none;
-      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
       font-family: 'Cairo', sans-serif;
     }
-    .lang-select-bar option { background: #0f172a; color: #ffffff; }
+    .lang-btn:hover { background: rgba(197,160,89,0.2); }
 
     .menu-container { position: relative; }
     .menu-toggle {
@@ -173,30 +171,20 @@
 </head>
 <body>
 
-  <!-- الهيدر التنفيذي الموحد للموقع -->
   <header class="icover-header">
     <div>
-      <select id="langSelect" class="lang-select-bar" onchange="handleLangChange(this.value)">
-        <option value="ar" selected>العربية</option>
-        <option value="en">English</option>
-        <option value="tr">Türkçe</option>
-        <option value="zh">中文</option>
-        <option value="fr">Français</option>
-        <option value="es">Español</option>
-        <option value="de">Deutsch</option>
-        <option value="ku">کوردی</option>
-      </select>
+      <a href="en/" class="lang-btn">English 🌐</a>
     </div>
 
     <div class="menu-container">
       <button class="menu-toggle" onclick="toggleMenu()" aria-label="القائمة">☰</button>
       <div id="dropdownMenu" class="dropdown-menu">
         <a href="https://akjassem.com" id="menuHome">الرئيسية</a>
-        <a href="/services/" id="menuServices">دليل الخدمات القانونية</a>
-        <a href="/consultations/" id="menuConsultations">الاستشارات القانونية</a>
-        <a href="/insights.html" id="menuInsights">الآراء والرؤى القانونية (Insights)</a>
-        <a href="/about/" id="menuAbout">من نحن</a>
-        <a href="/contact/" id="menuContact">اتصل بنا</a>
+        <a href="https://akjassem.com/services/">دليل الخدمات القانونية</a>
+        <a href="https://akjassem.com/consultations/">الاستشارات القانونية</a>
+        <a href="https://akjassem.com/insights/">الآراء والرؤى القانونية (Insights)</a>
+        <a href="https://akjassem.com/about/">من نحن</a>
+        <a href="https://akjassem.com/contact/">اتصل بنا</a>
       </div>
     </div>
   </header>
@@ -236,7 +224,7 @@
           
           <div class="article-expanded" style="display: none; border-top: 1px dashed #cbd5e0; padding-top: 16px; margin-top: 12px; font-size: 15px; color: #2d3748; line-height: 1.9;">
             <div class="article-image-box">
-              <img src="og-logo.jpg" alt="امتثال العمالة الأجنبية والضمان الاجتماعي في العراق - مكتب المحامي علي كاظم الهاشمي" loading="lazy">
+              <img src="../og-logo.jpg" alt="امتثال العمالة الأجنبية والضمان الاجتماعي في العراق - مكتب المحامي علي كاظم الهاشمي" loading="lazy">
             </div>
 
             <div style="white-space: pre-line;">تُعد بيئة الأعمال والاستثمار في جمهورية العراق واعدة، إلا أنها محكومة بمنظومة تشريعية صارمة تتطلب من الشركات الأجنبية والمحلية إلماماً تاما بأحكام قانون العمل رقم (37) لسنة 2015 وقانون التقاعد والضمان الاجتماعي للعمال رقم (18) لسنة 2023. يهدف هذا التحليل إلى تسليط الضوء على أبرز الالتزامات القانونية والإجرائية الملقاة على عاتق أصحاب العمل.
@@ -257,7 +245,7 @@
 نظراً لدقة الإجراءات وتعدد الجهات الرقابية (مفتشو العمل، دائرة التقاعد والضمان الاجتماعي، ومجلس الإدارة للشركات), نؤكد على ضرورة مراجعة وتدقيق كافة عقود العمل واللوائح الداخلية للشركات من قبل مستشار قانوني مختص لتجنب أي مخالفات قانونية غير مقصودة.</div>
 
             <div style="text-align: center; margin: 25px 0 10px;">
-              <a href="/booking/" style="display: inline-block; background-color: #0b1a30; color: #ffffff; padding: 13px 25px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 15px; box-shadow: 0 4px 12px rgba(11,26,48,0.25); border: 1.5px solid #d32f2f;">طلب تدقيق الامتثال العمالي للشركات (مكتب AKH) ←</a>
+              <a href="https://akjassem.com/booking" style="display: inline-block; background-color: #0b1a30; color: #ffffff; padding: 13px 25px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 15px; box-shadow: 0 4px 12px rgba(11,26,48,0.25); border: 1.5px solid #d32f2f;">طلب تدقيق الامتثال العمالي للشركات (مكتب AKH) ←</a>
             </div>
 
             <div style="text-align: right; margin-top: 20px;">
@@ -275,9 +263,9 @@
           <div class="share-bar">
             <span class="share-label">مشاركة الرابط المباشر:</span>
             <button class="btn-share btn-share-copy" onclick="copyLink()">📋 نسخ الرابط</button>
-            <a class="btn-share btn-share-wa" href="https://api.whatsapp.com/send?text=https://akjassem.com/insights.html?p=labor-social-security-iraq" target="_blank">🟢 WhatsApp</a>
-            <a class="btn-share btn-share-li" href="https://www.linkedin.com/sharing/share-offsite/?url=https://akjassem.com/insights.html?p=labor-social-security-iraq" target="_blank">💼 LinkedIn</a>
-            <a class="btn-share btn-share-x" href="https://twitter.com/intent/tweet?url=https://akjassem.com/insights.html?p=labor-social-security-iraq" target="_blank">𝕏 Post</a>
+            <a class="btn-share btn-share-wa" href="https://api.whatsapp.com/send?text=https://akjassem.com/insights/" target="_blank">🟢 WhatsApp</a>
+            <a class="btn-share btn-share-li" href="https://www.linkedin.com/sharing/share-offsite/?url=https://akjassem.com/insights/" target="_blank">💼 LinkedIn</a>
+            <a class="btn-share btn-share-x" href="https://twitter.com/intent/tweet?url=https://akjassem.com/insights/" target="_blank">𝕏 Post</a>
           </div>
         </article>
       </div>
@@ -300,16 +288,8 @@
       }
     }
 
-    function handleLangChange(lang) {
-      if (lang === 'ar') {
-        window.location.href = 'insights.html';
-      } else {
-        window.location.href = 'insights-en.html?lang=' + lang;
-      }
-    }
-
     function copyLink() {
-      navigator.clipboard.writeText('https://akjassem.com/insights.html?p=labor-social-security-iraq').then(() => {
+      navigator.clipboard.writeText('https://akjassem.com/insights/').then(() => {
         const toast = document.getElementById('copyToast');
         toast.style.display = 'block';
         setTimeout(() => { toast.style.display = 'none'; }, 2500);
