@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
+  <!-- تحسين محركات البحث (SEO) والروابط البديلة -->
   <title id="pageTitle">Book Consultation | Law Office of Ali Kadhem Hashimi - Baghdad</title>
   <meta id="metaDesc" name="description" content="Book a legal consultation appointment with the Law Office of Ali Kadhem Hashimi in Baghdad. Expert corporate and individual legal services.">
   <meta id="metaKeywords" name="keywords" content="Book legal consultation Baghdad, AKH Law Office booking, Iraq lawyer appointment, corporate lawyer Iraq">
@@ -14,6 +15,7 @@
   <link rel="alternate" hreflang="en" href="https://akjassem.com/booking/en/">
   <link rel="alternate" hreflang="x-default" href="https://akjassem.com/booking/en/">
 
+  <!-- معاينة وسائل التواصل الاجتماعي (WhatsApp, LinkedIn, Facebook) -->
   <meta property="og:title" id="ogTitle" content="Book a Legal Consultation | Law Office of Ali Kadhem Hashimi">
   <meta property="og:description" id="ogDesc" content="Book a legal consultation appointment with the Law Office of Ali Kadhem Hashimi in Baghdad. Expert corporate and individual legal services.">
   <meta property="og:image" content="https://akjassem.com/og-logo.jpg">
@@ -25,11 +27,13 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="AKH Law Office Baghdad">
 
+  <!-- بطاقة تويتر -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" id="twTitle" content="Book a Legal Consultation | Law Office of Ali Kadhem Hashimi">
   <meta name="twitter:description" id="twDesc" content="Book a legal consultation appointment with the Law Office of Ali Kadhem Hashimi in Baghdad.">
   <meta name="twitter:image" content="https://akjassem.com/og-logo.jpg">
 
+  <!-- بيانات المنظمة Schema.org -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -314,4 +318,722 @@
       </div>
 
       <div class="form-group">
-        <label id="
+        <label id="lblAddress">Residential Address *</label>
+        <input type="text" id="address" placeholder="Province / Area">
+      </div>
+
+      <div id="foreignerIndividualFields" class="conditional-section">
+        <div class="form-group">
+          <label id="lblNationalityIndiv">Nationality *</label>
+          <input type="text" id="nationalityIndiv" placeholder="e.g., British / American / German">
+        </div>
+      </div>
+
+      <div id="companyIdentityFields" class="conditional-section">
+        <div class="form-group">
+          <label id="lblCompanyRegAuth">Registration Authority *</label>
+          <select id="companyRegAuth">
+            <option value="federal" id="authFed">Registrar of Companies - Federal Government (Baghdad)</option>
+            <option value="kurdistan" id="authKrg">Ministry of Trade and Industry - Kurdistan Region</option>
+            <option value="foreign_corp" id="authForeign">Foreign / International Company Incorporated Outside Iraq</option>
+          </select>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label id="lblCountryInc">Country of Incorporation *</label>
+            <input type="text" id="countryInc" placeholder="e.g., Iraq / UAE / UK">
+          </div>
+          <div class="form-group">
+            <label id="lblRegNo">Corporate Registration No. (CRN) *</label>
+            <input type="text" id="regNo" placeholder="Certificate or Registration Number">
+          </div>
+        </div>
+      </div>
+
+      <div id="translationField" class="form-group conditional-section">
+        <label id="lblTranslation">Translation & Linguistic Coordination *</label>
+        <select id="translationNeeded">
+          <option value="no" id="transNo">No, I can proceed directly</option>
+          <option value="yes" id="transYes">Yes, I request a specialized translator provided by the office</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label id="lblMethod">Preferred Consultation Method *</label>
+        <select id="consultationMethod">
+          <option value="office" id="methOffice">Office Visit</option>
+          <option value="phone" id="methPhone">Phone Call</option>
+          <option value="online" id="methOnline">Online / Video Call</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label id="lblConsultType">Consultation Type / Legal Classification *</label>
+        <select id="consultationType">
+          <option value="corporate" id="typeCorp">Corporate, Commercial & Foreign Investment</option>
+          <option value="civil_realestate" id="typeCivil">Civil & Real Estate Cases</option>
+          <option value="criminal" id="typeCrim">Criminal & Penal Cases</option>
+          <option value="personal" id="typePers">Personal Status (Family, Divorce, Estate)</option>
+          <option value="other" id="typeOther">Other / General Consultation</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label id="lblDetails">Details of Your Case or Consultation Topic *</label>
+        <textarea id="consultationDetails" placeholder="Briefly explain the facts of your case or legal consultation topic..."></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn" id="submitBtnText">Submit Request for Legal Review &larr;</button>
+    </form>
+  </main>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('preferredLang') || 'en';
+      if (savedLang === 'ar') {
+        window.location.href = '../';
+        return;
+      }
+      if (bookingDict[savedLang]) {
+        changeLanguage(savedLang);
+      } else {
+        changeLanguage('en');
+      }
+    });
+
+    function changeLanguage(lang) {
+      if (lang === 'ar') {
+        localStorage.setItem('preferredLang', 'ar');
+        window.location.href = '../';
+        return;
+      }
+      localStorage.setItem('preferredLang', lang);
+
+      const root = document.getElementById('htmlRoot');
+      root.setAttribute('lang', lang);
+      root.setAttribute('dir', (lang === 'ar' || lang === 'ku') ? 'rtl' : 'ltr');
+
+      const t = bookingDict[lang] || bookingDict['en'];
+
+      document.getElementById('pageTitle').innerText = t.title;
+      document.getElementById('metaDesc').setAttribute('content', t.metaDesc);
+      document.getElementById('ogTitle').setAttribute('content', t.title);
+      document.getElementById('ogDesc').setAttribute('content', t.metaDesc);
+      document.getElementById('twTitle').setAttribute('content', t.title);
+      document.getElementById('twDesc').setAttribute('content', t.metaDesc);
+
+      document.getElementById('backBtnText').innerText = "← " + t.back;
+      document.getElementById('formMainTitle').innerText = t.formTitle;
+      document.getElementById('formInstructions').innerText = t.formInst;
+      
+      document.getElementById('lblCitizenship').innerText = t.citizenship;
+      document.getElementById('optIraqi').innerText = t.optIraqi;
+      document.getElementById('optForeign').innerText = t.optForeign;
+      
+      document.getElementById('lblResidence').innerText = t.residence;
+      document.getElementById('optInside').innerText = t.optInside;
+      document.getElementById('optOutside').innerText = t.optOutside;
+
+      document.getElementById('lblEntityType').innerText = t.entityType;
+      document.getElementById('optIndiv').innerText = t.optIndiv;
+      document.getElementById('optComp').innerText = t.optComp;
+      
+      document.getElementById('lblCompanyRep').innerText = t.companyRep;
+      document.getElementById('lblEmail').innerText = t.email;
+      document.getElementById('lblPhone').innerText = t.phone;
+      document.getElementById('lblGender').innerText = t.gender;
+
+      const genderVal = document.getElementById('gender').value;
+      const educationVal = document.getElementById('education').value;
+      const authVal = document.getElementById('companyRegAuth').value;
+      const transVal = document.getElementById('translationNeeded').value;
+      const methodVal = document.getElementById('consultationMethod').value;
+      const consultTypeVal = document.getElementById('consultationType').value;
+
+      document.getElementById('optMale').innerText = t.male;
+      document.getElementById('optFemale').innerText = t.female;
+      document.getElementById('lblAge').innerText = t.age;
+      document.getElementById('lblEducation').innerText = t.education;
+      document.getElementById('eduUni').innerText = t.eduUni;
+      document.getElementById('eduHigh').innerText = t.eduHigh;
+      document.getElementById('eduOther').innerText = t.eduOther;
+      document.getElementById('lblOccupation').innerText = t.occupation;
+
+      document.getElementById('lblNationalityIndiv').innerText = t.nationalityIndiv;
+      document.getElementById('lblCountryInc').innerText = t.countryInc;
+      document.getElementById('lblRegNo').innerText = t.regNo;
+      document.getElementById('lblTranslation').innerText = t.translation;
+      document.getElementById('authFed').innerText = t.authFed;
+      document.getElementById('authKrg').innerText = t.authKrg;
+      document.getElementById('authForeign').innerText = t.authForeign;
+      document.getElementById('transNo').innerText = t.transNo;
+      document.getElementById('transYes').innerText = t.transYes;
+
+      document.getElementById('lblMethod').innerText = t.method;
+      document.getElementById('methOffice').innerText = t.methOffice;
+      document.getElementById('methPhone').innerText = t.methPhone;
+      document.getElementById('methOnline').innerText = t.methOnline;
+
+      document.getElementById('lblConsultType').innerText = t.consultType;
+      document.getElementById('typeCorp').innerText = t.typeCorp;
+      document.getElementById('typeCivil').innerText = t.typeCivil;
+      document.getElementById('typeCrim').innerText = t.typeCrim;
+      document.getElementById('typePers').innerText = t.typePers;
+      document.getElementById('typeOther').innerText = t.typeOther;
+
+      document.getElementById('lblDetails').innerText = t.details;
+      document.getElementById('submitBtnText').innerHTML = t.submit;
+
+      document.getElementById('gender').value = genderVal;
+      document.getElementById('education').value = educationVal;
+      document.getElementById('companyRegAuth').value = authVal;
+      document.getElementById('translationNeeded').value = transVal;
+      document.getElementById('consultationMethod').value = methodVal;
+      document.getElementById('consultationType').value = consultTypeVal;
+
+      document.getElementById('fullName').placeholder = t.phName;
+      document.getElementById('email').placeholder = t.phEmail;
+      document.getElementById('phone').placeholder = t.phPhone;
+      document.getElementById('companyRepName').placeholder = t.phCompRep;
+      document.getElementById('age').placeholder = t.phAge;
+      document.getElementById('occupation').placeholder = t.phOcc;
+      document.getElementById('nationalityIndiv').placeholder = t.phNat;
+      document.getElementById('countryInc').placeholder = t.phCountry;
+      document.getElementById('regNo').placeholder = t.phRegNo;
+      document.getElementById('consultationDetails').placeholder = t.phDetails;
+
+      document.getElementById('languageSelect').value = lang;
+
+      updateFormDisplay();
+    }
+
+    function updateFormDisplay() {
+      const isForeign = document.querySelector('input[name="citizenship"]:checked').value === 'foreign';
+      const isCompany = document.querySelector('input[name="entityType"]:checked').value === 'company';
+      
+      const indFields = document.getElementById('individualOnlyFields');
+      const compRepField = document.getElementById('companyRepField');
+      const foreignIndivFields = document.getElementById('foreignerIndividualFields');
+      const compIdentityFields = document.getElementById('companyIdentityFields');
+      const translationField = document.getElementById('translationField');
+      const nameLabel = document.getElementById('nameLabel');
+      const addressLabel = document.getElementById('lblAddress');
+      const addressInput = document.getElementById('address');
+      
+      const lang = document.getElementById('languageSelect').value;
+      const t = bookingDict[lang] || bookingDict['en'];
+
+      if (isCompany) {
+        indFields.classList.remove('active');
+        compRepField.classList.add('active');
+        compIdentityFields.classList.add('active');
+        foreignIndivFields.classList.remove('active');
+        nameLabel.innerText = t.companyName;
+        addressLabel.innerText = t.addressCompany;
+        addressInput.placeholder = t.phAddrComp;
+      } else {
+        compRepField.classList.remove('active');
+        compIdentityFields.classList.remove('active');
+        if (isForeign) {
+          indFields.classList.remove('active');
+          foreignIndivFields.classList.add('active');
+          nameLabel.innerText = t.fullName;
+          addressLabel.innerText = t.addressForeignIndiv;
+          addressInput.placeholder = t.phAddrForeign;
+        } else {
+          indFields.classList.add('active');
+          foreignIndivFields.classList.remove('active');
+          nameLabel.innerText = t.fullName;
+          addressLabel.innerText = t.addressIraqiIndiv;
+          addressInput.placeholder = t.phAddrIraqi;
+        }
+      }
+
+      if (isForeign) {
+        translationField.classList.add('active');
+      } else {
+        translationField.classList.remove('active');
+      }
+    }
+
+    const bookingDict = {
+      en: {
+        title: "Book Consultation | Law Office of Ali Kadhem Hashimi - Baghdad",
+        metaDesc: "Book a legal consultation appointment with the Law Office of Ali Kadhem Hashimi in Baghdad. Expert corporate and individual legal services.",
+        back: "Home",
+        formTitle: "Legal Consultation Request Form",
+        formInst: "Please fill out this form accurately to enable us to review your request, determine fees, and schedule the consultation professionally.",
+        citizenship: "Citizenship / Personal Status *",
+        optIraqi: "Iraqi (Citizen)",
+        optForeign: "Foreigner (Non-Iraqi)",
+        residence: "Current Residence *",
+        optInside: "Resident inside Iraq",
+        optOutside: "Resident outside Iraq",
+        entityType: "Requester Status *",
+        optIndiv: "Individual",
+        optComp: "Corporation / Business Entity",
+        fullName: "Full Name *",
+        companyName: "Company Legal Name *",
+        companyRep: "Authorized Representative / Signatory *",
+        addressIraqiIndiv: "Residential Address (City / Area) *",
+        addressForeignIndiv: "Foreign Residential Address (City / Country) *",
+        addressCompany: "Company Headquarters *",
+        email: "Email Address *",
+        phone: "Phone / WhatsApp *",
+        gender: "Gender *",
+        male: "Male",
+        female: "Female",
+        age: "Age *",
+        education: "Level of Education *",
+        eduUni: "University or Postgraduate Degree",
+        eduHigh: "High School",
+        eduOther: "Other",
+        occupation: "Occupation / Job *",
+        nationalityIndiv: "Nationality *",
+        countryInc: "Country of Incorporation *",
+        regNo: "Corporate Registration No. (CRN) *",
+        translation: "Translation & Linguistic Coordination Service *",
+        authFed: "Registrar of Companies - Federal Government (Baghdad)",
+        authKrg: "Ministry of Trade and Industry - Kurdistan Region",
+        authForeign: "Foreign / International Company Incorporated Outside Iraq",
+        transNo: "No, I can proceed directly",
+        transYes: "Yes, I request a specialized translator provided by the office",
+        method: "Preferred Consultation Method *",
+        methOffice: "Office Visit",
+        methPhone: "Phone Call",
+        methOnline: "Online / Video Call",
+        consultType: "Consultation Type / Legal Classification *",
+        typeCorp: "Corporate, Commercial & Foreign Investment",
+        typeCivil: "Civil & Real Estate Cases",
+        typeCrim: "Criminal & Penal Cases",
+        typePers: "Personal Status (Family, Divorce, Estate)",
+        typeOther: "Other / General Consultation",
+        details: "Details of Your Case or Consultation Topic *",
+        submit: "Submit Request for Legal Review &larr;",
+        successMsg: "Your request has been successfully received and is currently under legal review (your request will be reviewed and responded to within 24 hours).",
+        phName: "Enter full name",
+        phCompRep: "Name of the responsible representative",
+        phEmail: "name@example.com",
+        phPhone: "Phone number with country code",
+        phAge: "e.g., 35",
+        phOcc: "Enter your current occupation",
+        phAddrIraqi: "Province / Area (e.g., Baghdad)",
+        phAddrForeign: "London - UK or Dubai - UAE",
+        phAddrComp: "Baghdad, Erbil, or Headquarters city",
+        phNat: "e.g., British / American / German",
+        phCountry: "e.g., Iraq / UAE / UK",
+        phRegNo: "Certificate or Registration Number",
+        phDetails: "Briefly explain the facts of your case or legal consultation topic..."
+      },
+      tr: {
+        title: "Danışmanlık Randevusu | Av. Ali Kazım Haşimi Hukuk Bürosu",
+        metaDesc: "Bağdat'ta Av. Ali Kazım Haşimi Hukuk Bürosu ile hukuki danışmanlık randevusu alın.",
+        back: "Ana Sayfa",
+        formTitle: "Hukuki Danışmanlık Talep Formu",
+        formInst: "Lütfen talebinizi incelememiz ve randevu ayarlayabilmemiz için formu doldurun.",
+        citizenship: "Vatandaşlık / Statü *",
+        optIraqi: "Iraklı (Vatandaş)",
+        optForeign: "Yabancı (Iraklı Olmayan)",
+        residence: "Mevcut İkametgah *",
+        optInside: "Irak'ta İkamet Eden",
+        optOutside: "Irak Dışında İkamet Eden",
+        entityType: "Başvuran Statüsü *",
+        optIndiv: "Birey",
+        optComp: "Şirket / Ticari Kuruluş",
+        fullName: "Ad Soyad *",
+        companyName: "Şirket Yasal Adı *",
+        companyRep: "Şirket Yetkilisi / Temsilci *",
+        addressIraqiIndiv: "İkamet Adresi (Şehir / Bölge) *",
+        addressForeignIndiv: "Yabancı İkamet Adresi (Şehir / Ülke) *",
+        addressCompany: "Şirket Merkezi *",
+        email: "E-posta *",
+        phone: "Telefon / WhatsApp *",
+        gender: "Cinsiyet *",
+        male: "Erkek",
+        female: "Kadın",
+        age: "Yaş *",
+        education: "Eğitim Seviyesi *",
+        eduUni: "Üniversite veya Lisansüstü",
+        eduHigh: "Lise",
+        eduOther: "Diğer",
+        occupation: "Meslek *",
+        nationalityIndiv: "Uyruk *",
+        countryInc: "Kuruluş Ülkesi *",
+        regNo: "Şirket Kayıt No (CRN) *",
+        translation: "Çeviri Hizmeti *",
+        authFed: "Şirketler Sicili - Federal Hükümet (Bağdat)",
+        authKrg: "Ticaret ve Sanayi Bakanlığı - Kürdistan Bölgesi",
+        authForeign: "Irak Dışında Kurulmuş Yabancı Şirket",
+        transNo: "Hayır, doğrudan devam edebilirim",
+        transYes: "Evet, ofis tarafından çevirmen sağlanmasını talep ediyorum",
+        method: "Tercih Edilen Danışmanlık Yöntemi *",
+        methOffice: "Ofis Ziyareti",
+        methPhone: "Telefon Görüşmesi",
+        methOnline: "Çevrimiçi / Görüntülü Arama",
+        consultType: "Danışmanlık Türü *",
+        typeCorp: "Ticari, Şirketler ve Yabancı Yatırım",
+        typeCivil: "Medeni ve Gayrimenkul Davaları",
+        typeCrim: "Ceza Davaları",
+        typePers: "Şahsi Haller (Aile, Boşanma)",
+        typeOther: "Diğer / Genel Danışmanlık",
+        details: "Davanızın veya Konunuzun Detayları *",
+        submit: "İnceleme İçin Talebi Gönder &larr;",
+        successMsg: "Talebiniz başarıyla alınmıştır (24 saat içinde incelenip yanıt verilecektir).",
+        phName: "Ad soyad giriniz",
+        phCompRep: "Yetkili temsilcinin adı",
+        phEmail: "name@example.com",
+        phPhone: "Ülke kodu ile telefon numarası",
+        phAge: "örn. 35",
+        phOcc: "Mevcut mesleğinizi girin",
+        phAddrIraqi: "Şehir / Bölge",
+        phAddrForeign: "Londra - İngiltere veya Dubai - BAE",
+        phAddrComp: "Bağdat veya Erbil",
+        phNat: "örn. İngiliz / Amerikan",
+        phCountry: "örn. Irak / BAE / İngiltere",
+        phRegNo: "Kayıt veya Sertifika Numarası",
+        phDetails: "Davanızın detaylarını kısaca açıklayın..."
+      },
+      zh: {
+        title: "预约法律咨询 | 阿里·卡德姆·哈希米律所 巴格达",
+        metaDesc: "在巴格达预约阿里·卡德姆·哈希米律所的法律咨询。",
+        back: "首页",
+        formTitle: "法律咨询申请表",
+        formInst: "请准确填写下表以便我们审核您的请求并安排咨询。",
+        citizenship: "国籍 / 身份 *",
+        optIraqi: "伊拉克公民",
+        optForeign: "外籍人士",
+        residence: "当前居住地 *",
+        optInside: "居住在伊拉克境内",
+        optOutside: "居住在伊拉克境外",
+        entityType: "申请人身份 *",
+        optIndiv: "个人",
+        optComp: "公司 / 商业机构",
+        fullName: "全名 *",
+        companyName: "公司法定名称 *",
+        companyRep: "授权代表 / 签字人 *",
+        addressIraqiIndiv: "居住地址 (城市/地区) *",
+        addressForeignIndiv: "境外居住地址 (城市/国家) *",
+        addressCompany: "公司总部 *",
+        email: "电子邮箱 *",
+        phone: "电话 / WhatsApp *",
+        gender: "性别 *",
+        male: "男",
+        female: "女",
+        age: "年龄 *",
+        education: "教育程度 *",
+        eduUni: "大学或研究生学位",
+        eduHigh: "高中",
+        eduOther: "其他",
+        occupation: "职业 *",
+        nationalityIndiv: "国籍 *",
+        countryInc: "注册国家 *",
+        regNo: "公司注册号 (CRN) *",
+        translation: "翻译与语言协调服务 *",
+        authFed: "公司注册处 - 联邦政府 (巴格达)",
+        authKrg: "工贸部 - 库尔德斯坦地区",
+        authForeign: "在伊拉克境外注册的外资公司",
+        transNo: "否，可直接进行",
+        transYes: "是，请求律所提供专业翻译人员",
+        method: "首选咨询方式 *",
+        methOffice: "办公室会面",
+        methPhone: "电话咨询",
+        methOnline: "在线 / 视频会议",
+        consultType: "咨询类型 *",
+        typeCorp: "公司、商业与外商投资",
+        typeCivil: "民事与房地产案件",
+        typeCrim: "刑事案件",
+        typePers: "个人身分 (家庭、离婚)",
+        typeOther: "其他 / 一般咨询",
+        details: "您的案件或咨询主题详情 *",
+        submit: "提交法律审核申请 &larr;",
+        successMsg: "您的申请已成功收到（我们将在24小时内审核并回复）。",
+        phName: "输入全名",
+        phCompRep: "负责代表姓名",
+        phEmail: "name@example.com",
+        phPhone: "带国家代码的电话号码",
+        phAge: "例如：35",
+        phOcc: "输入您的当前职业",
+        phAddrIraqi: "城市 / 地区",
+        phAddrForeign: "伦敦 - 英国 或 迪拜 - 阿联酋",
+        phAddrComp: "巴格达或埃尔比勒",
+        phNat: "例如：英国 / 美国",
+        phCountry: "例如：伊拉克 / 阿联酋",
+        phRegNo: "注册或证书编号",
+        phDetails: "请简要说明您的案件或咨询主题..."
+      },
+      fr: {
+        title: "Réserver une Consultation | Cabinet Ali Kadhem Hashimi - Bagdad",
+        metaDesc: "Réservez une consultation juridique auprès du Cabinet d'Avocats Ali Kadhem Hashimi à Bagdad.",
+        back: "Accueil",
+        formTitle: "Formulaire de Demande de Consultation Juridique",
+        formInst: "Veuillez remplir ce formulaire avec précision pour nous permettre d'examiner votre demande.",
+        citizenship: "Nationalité / Statut *",
+        optIraqi: "Iraquien (Citoyen)",
+        optForeign: "Étranger (Non-iraquien)",
+        residence: "Résidence Actuelle *",
+        optInside: "Résidant en Irak",
+        optOutside: "Résidant hors d'Irak",
+        entityType: "Statut du Demandeur *",
+        optIndiv: "Particulier",
+        optComp: "Entreprise / Société",
+        fullName: "Nom Complet *",
+        companyName: "Nom Légal de l'Entreprise *",
+        companyRep: "Représentant Légal / Signataire *",
+        addressIraqiIndiv: "Adresse de Résidence (Ville / Région) *",
+        addressForeignIndiv: "Adresse de Résidence Étrangère (Ville / Pays) *",
+        addressCompany: "Siège Social de l'Entreprise *",
+        email: "Adresse Email *",
+        phone: "Téléphone / WhatsApp *",
+        gender: "Genre *",
+        male: "Homme",
+        female: "Femme",
+        age: "Âge *",
+        education: "Niveau d'Éducation *",
+        eduUni: "Diplôme Universitaire ou Supérieur",
+        eduHigh: "Lycée",
+        eduOther: "Autre",
+        occupation: "Profession *",
+        nationalityIndiv: "Nationalité *",
+        countryInc: "Pays d'Immatriculation *",
+        regNo: "N° d'Enregistrement de la Société (CRN) *",
+        translation: "Service de Traduction *",
+        authFed: "Registre des Sociétés - Gouvernement Fédéral (Bagdad)",
+        authKrg: "Ministère du Commerce et de l'Industrie - Région du Kurdistan",
+        authForeign: "Société étrangère / internationale établie hors d'Irak",
+        transNo: "Non, je peux continuer directement",
+        transYes: "Oui, je souhaite qu'un traducteur soit fourni",
+        method: "Méthode de Consultation Préférée *",
+        methOffice: "Visite au Bureau",
+        methPhone: "Appel Téléphonique",
+        methOnline: "En Ligne / Vidéo",
+        consultType: "Type de Consultation *",
+        typeCorp: "Droit des Sociétés et Investissement",
+        typeCivil: "Affaires Civiles et Immobilières",
+        typeCrim: "Affaires Pénales",
+        typePers: "Statut Personnel",
+        typeOther: "Autre / Général",
+        details: "Détails de votre cas ou sujet de consultation *",
+        submit: "Soumettre pour Examen Juridique &larr;",
+        successMsg: "Votre demande a été reçue avec succès (elle sera examinée et traitée sous 24 heures).",
+        phName: "Entrez le nom complet",
+        phCompRep: "Nom du représentant",
+        phEmail: "name@example.com",
+        phPhone: "Téléphone avec indicatif pays",
+        phAge: "ex: 35",
+        phOcc: "Entrez votre profession",
+        phAddrIraqi: "Ville / Région",
+        phAddrForeign: "Londres - R-U ou Dubaï - EAU",
+        phAddrComp: "Bagdad ou Erbil",
+        phNat: "ex: Britannique / Américain",
+        phCountry: "ex: Irak / EAU / R-U",
+        phRegNo: "Numéro d'enregistrement",
+        phDetails: "Veuillez expliquer brièvement les faits de votre affaire..."
+      },
+      es: {
+        title: "Reservar Consulta | Bufete Ali Kadhem Hashimi - Bagdad",
+        metaDesc: "Reserve una consulta legal con el Bufete de Abogados Ali Kadhem Hashimi en Bagdad.",
+        back: "Inicio",
+        formTitle: "Formulario de Solicitud de Consulta Legal",
+        formInst: "Por favor complete este formulario con precisión.",
+        citizenship: "Nacionalidad / Estatus *",
+        optIraqi: "Iraquí (Ciudadano)",
+        optForeign: "Extranjero (No iraquí)",
+        residence: "Residencia Actual *",
+        optInside: "Residente en Irak",
+        optOutside: "Residente fuera de Irak",
+        entityType: "Estatus del Solicitante *",
+        optIndiv: "Individual",
+        optComp: "Empresa / Corporación",
+        fullName: "Nombre Completo *",
+        companyName: "Nombre Legal de la Empresa *",
+        companyRep: "Representante Legal / Firmante *",
+        addressIraqiIndiv: "Dirección de Residencia (Ciudad / Área) *",
+        addressForeignIndiv: "Dirección de Residencia en el Extranjero (Ciudad / País) *",
+        addressCompany: "Sede de la Empresa *",
+        email: "Correo Electrónico *",
+        phone: "Teléfono / WhatsApp *",
+        gender: "Género *",
+        male: "Masculino",
+        female: "Femenino",
+        age: "Edad *",
+        education: "Nivel Educativo *",
+        eduUni: "Título Universitario o de Posgrado",
+        eduHigh: "Secundaria",
+        eduOther: "Otro",
+        occupation: "Ocupación *",
+        nationalityIndiv: "Nacionalidad *",
+        countryInc: "País de Constitución *",
+        regNo: "N° de Registro Mercantil (CRN) *",
+        translation: "Servicio de Traducción *",
+        authFed: "Registro de Empresas - Gobierno Federal (Bagdad)",
+        authKrg: "Ministerio de Comercio e Industria - Región de Kurdistán",
+        authForeign: "Empresa extranjera / internacional constituida fuera de Irak",
+        transNo: "No, puedo continuar directamente",
+        transYes: "Sí, solicito un traductor proporcionado por la oficina",
+        method: "Método de Consulta Preferido *",
+        methOffice: "Visita a la Oficina",
+        methPhone: "Llamada Telefónica",
+        methOnline: "En Línea / Video",
+        consultType: "Tipo de Consulta *",
+        typeCorp: "Corporativo, Comercial e Inversión",
+        typeCivil: "Casos Civiles e Inmobiliarios",
+        typeCrim: "Casos Penales",
+        typePers: "Estado Personal",
+        typeOther: "Otro / General",
+        details: "Detalles de su caso o tema de consulta *",
+        submit: "Enviar Solicitud para Revisión Legal &larr;",
+        successMsg: "Su solicitud ha sido recibida con éxito (será revisada y respondida dentro de las 24 horas).",
+        phName: "Ingrese el nombre completo",
+        phCompRep: "Nombre del representante",
+        phEmail: "name@example.com",
+        phPhone: "Teléfono con código de país",
+        phAge: "ej: 35",
+        phOcc: "Ingrese su ocupación actual",
+        phAddrIraqi: "Ciudad / Área",
+        phAddrForeign: "Londres - RU o Dubái - EAU",
+        phAddrComp: "Bagdad o Erbil",
+        phNat: "ej: Británico / Americano",
+        phCountry: "ej: Irak / EAU / RU",
+        phRegNo: "Número de registro",
+        phDetails: "Explique brevemente los hechos de su caso..."
+      },
+      de: {
+        title: "Beratung buchen | Kanzlei Ali Kadhem Hashimi - Bagdad",
+        metaDesc: "Buchen Sie eine Rechtsberatung bei der Anwaltskanzlei Ali Kadhem Hashimi in Bagdad.",
+        back: "Startseite",
+        formTitle: "Anfrageformular für Rechtsberatung",
+        formInst: "Bitte füllen Sie dieses Formular genau aus.",
+        citizenship: "Staatsangehörigkeit / Status *",
+        optIraqi: "Irakisch (Bürger)",
+        optForeign: "Ausländer (Nicht-Iraker)",
+        residence: "Aktueller Wohnsitz *",
+        optInside: "Mit Wohnsitz im Irak",
+        optOutside: "Mit Wohnsitz außerhalb des Iraks",
+        entityType: "Status des Antragstellers *",
+        optIndiv: "Einzelperson",
+        optComp: "Unternehmen / Körperschaft",
+        fullName: "Vollständiger Name *",
+        companyName: "Offizieller Firmenname *",
+        companyRep: "Bevollmächtigter Vertreter *",
+        addressIraqiIndiv: "Wohnanschrift (Stadt / Region) *",
+        addressForeignIndiv: "Ausländische Wohnanschrift (Stadt / Land) *",
+        addressCompany: "Firmensitz *",
+        email: "E-Mail-Adresse *",
+        phone: "Telefon / WhatsApp *",
+        gender: "Geschlecht *",
+        male: "Männlich",
+        female: "Weiblich",
+        age: "Alter *",
+        education: "Bildungsstand *",
+        eduUni: "Universitäts- oder Postgraduiertenabschluss",
+        eduHigh: "Schulabschluss",
+        eduOther: "Sonstige",
+        occupation: "Beruf *",
+        nationalityIndiv: "Staatsangehörigkeit *",
+        countryInc: "Gründungsland *",
+        regNo: "Registernummer (CRN) *",
+        translation: "Übersetzungsdienst *",
+        authFed: "Handelsregister - Föderalregierung (Bagdad)",
+        authKrg: "Ministerium für Handel und Industrie - Region Kurdistan",
+        authForeign: "Ausländische / Internationale Gesellschaft mit Sitz außerhalb des Iraks",
+        transNo: "Nein, ich kann direkt fortfahren",
+        transYes: "Ja, ich beantrage einen Übersetzer",
+        method: "Bevorzugte Beratungsmethode *",
+        methOffice: "Bürobesuch",
+        methPhone: "Anruf",
+        methOnline: "Online / Video",
+        consultType: "Beratungsart *",
+        typeCorp: "Gesellschaftsrecht & Investition",
+        typeCivil: "Zivil- & Immobilienrecht",
+        typeCrim: "Strafrecht",
+        typePers: "Familienrecht",
+        typeOther: "Sonstige / Allgemeine Beratung",
+        details: "Details Ihres Falles *",
+        submit: "Anfrage zur rechtlichen Prüfung absenden &larr;",
+        successMsg: "Ihre Anfrage wurde erfolgreich empfangen (wird innerhalb von 24 Stunden geprüft und beantwortet).",
+        phName: "Vollständigen Namen eingeben",
+        phCompRep: "Name des Vertreters",
+        phEmail: "name@example.com",
+        phPhone: "Telefon mit Landesvorwahl",
+        phAge: "z.B. 35",
+        phOcc: "Aktuellen Beruf eingeben",
+        phAddrIraqi: "Stadt / Region",
+        phAddrForeign: "London - GB oder Dubai - VAE",
+        phAddrComp: "Bagdad oder Erbil",
+        phNat: "z.B. Britisch / Amerikanisch",
+        phCountry: "z.B. Irak / VAE / GB",
+        phRegNo: "Registriernummer",
+        phDetails: "Erläutern Sie kurz die Fakten Ihres Falles..."
+      },
+      ku: {
+        title: "چاوپێکەوتنی راوێژکاری | نووسینگەی پارێزەر عەلی کازمی هاشمی - بەغداد",
+        metaDesc: "چاوپێکەوتنی راوێژی یاسایی لەگەڵ نووسینگەی پارێزەر عەلی کازمی هاشمی لە بەغداد حجز بکە.",
+        back: "سەرەکی",
+        formTitle: "فۆرمی داواکردنی راوێژی یاسایی",
+        formInst: "تکایە ئەم فۆرمە بە وردی پڕبکەرەوە.",
+        citizenship: "رەگەزنامە / بارودۆخ *",
+        optIraqi: "عێراقی (هاووڵاتی)",
+        optForeign: "بیانی (نا عێراقی)",
+        residence: "شوێنی نیشتەجێبوونی ئێستا *",
+        optInside: "نیشتەجێی ناو عێراق",
+        optOutside: "نیشتەجێی دەرەوەی عێراق",
+        entityType: "جۆری داواکار *",
+        optIndiv: "تاک (کەسی سروشتی)",
+        optComp: "کۆمپانیا یان دەزگای بازرگانی",
+        fullName: "ناوی تەواو *",
+        companyName: "ناوی فەرمی کۆمپانیا *",
+        companyRep: "نوێنەری یاسایی یان کەسی متمانەپێکراو *",
+        addressIraqiIndiv: "ناونیشانی نیشتەجێبوون (شار / ناوچە) *",
+        addressForeignIndiv: "ناونیشانی نیشتەجێبوونی دەرەوە (شار / وڵات) *",
+        addressCompany: "بنکەی سەرەکی کۆمپانیا *",
+        email: "ئیمەیڵ *",
+        phone: "ژمارەی مۆبایل / واتساب *",
+        gender: "ڕەگەز *",
+        male: "نێر",
+        female: "مێ",
+        age: "تەمەن *",
+        education: "ئاستی خوێندن *",
+        eduUni: "بڕوانامەی زانکۆ یان باڵا",
+        eduHigh: "ئامادەیی",
+        eduOther: "هی تر",
+        occupation: "کار یان پیشە *",
+        nationalityIndiv: "رەگەزنامە *",
+        countryInc: "وڵاتی دامەزراندن *",
+        regNo: "ژمارەی تۆمارکردنی کۆمپانیا (CRN) *",
+        translation: "خزمەتگوزاری وەرگێڕان *",
+        authFed: "تۆمارگەری کۆمپانیاکان - حکومەتی فیدراڵی (بەغدا)",
+        authKrg: "وەزارەتی پیشەسازی و بازرگانی - هەرێمی کوردستان",
+        authForeign: "کۆمپانیای بیانی / نێودەوڵەتی دامەزراو لە دەرەوەی عێراق",
+        transNo: "نەخێر، دەتوانم ڕاستەوخۆ بەردەوام بم",
+        transYes: "بەڵێ، داوا دەکەم نووسینگە وەرگێڕ دابین بکات",
+        method: "شێوازی پێشوازیکردنی راوێژ *",
+        methOffice: "سەردانیکردنی نووسینگە",
+        methPhone: "پەیوەندی تەلەفۆنی",
+        methOnline: "لە ڕێگەی ئینترنت و ئەپلیکەیشنەکان",
+        consultType: "جۆری راوێژ یان پۆلێنکردنی یاسایی *",
+        typeCorp: "کێشە بازرگانییەکان و کۆمپانیاکان",
+        typeCivil: "داواکاییە مەدەنی و خانووبەرەکان",
+        typeCrim: "داواکاییە سزادانەکان",
+        typePers: "بارودۆخی کەسێتی (خێزان, جیابوونەوە)",
+        typeOther: "هی تر / ڕاوێژی گشتی",
+        details: "وردەکاری دۆسیە یاخود بابەتی راوێژەکەت *",
+        submit: "ناردنی داواکاری بۆ پێداچوونەوەی یاسایی ←",
+        successMsg: "داواکارییەکەت بە سەرکەوتوویی وەرگیرا (لە ماوەی ٢٤ کاتژمێردا پێداچوونەوە و وەڵام دەدرێتەوە).",
+        phName: "ناوی تەواو بنووسە",
+        phCompRep: "ناوی کەسی بەرپرس",
+        phEmail: "name@example.com",
+        phPhone: "ژمارەی مۆبایل بە کۆدی وڵات",
+        phAge: "نموونە: 35",
+        phOcc: "پیشەی ئێستات بنووسە",
+        phAddrIraqi: "شار / ناوچە",
+        phAddrForeign: "لەندەن - بەریتانیا یان دوبەی - ئێمارات",
+        phAddrComp: "بەغدا یان هەولێر",
+        phNat: "نموونە: بەریتانی / ئەمریکی",
+        phCountry: "نموونە: عێراق / ئێمارات",
+        phRegNo: "ژمارەی تۆمارکردن",
+        phDetails: "بە کورتەیەک وردەکاری دۆسیەکەت بنووسە..."
+      }
+    };
+  </script>
+</body>
+</html>
