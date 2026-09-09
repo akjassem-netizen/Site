@@ -171,7 +171,7 @@
 
   <header class="icover-header">
     <div>
-      <select id="languageSelect" class="lang-select-bar" onchange="changeLanguage(this.value)">
+      <select id="languageSelect" class="lang-select-bar" onchange="switchLanguage(this.value)">
         <option value="ar">العربية / Arabic</option>
         <option value="en" selected>English</option>
         <option value="tr">Türkçe</option>
@@ -298,27 +298,30 @@ Given procedural sensitivities and multiple oversight bodies (labor inspectors, 
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const urlLang = urlParams.get('lang') || localStorage.getItem('preferredLang') || 'en';
-      if (urlLang === 'ar') {
-        window.location.href = '../';
-      } else if (insightsDict[urlLang]) {
-        changeLanguage(urlLang, false);
-      } else {
-        changeLanguage('en', false);
-      }
-    });
-
-    function changeLanguage(lang, updateUrl = true) {
-      if (lang === 'ar') {
+      const savedLang = localStorage.getItem('preferredLang') || 'en';
+      if (savedLang === 'ar') {
         window.location.href = '../';
         return;
       }
-      window.currentLang = lang;
-      if (updateUrl) {
-        localStorage.setItem('preferredLang', lang);
+      if (insightsDict[savedLang]) {
+        changeLanguage(savedLang);
+      } else {
+        changeLanguage('en');
       }
+    });
 
+    function switchLanguage(lang) {
+      if (lang === 'ar') {
+        localStorage.setItem('preferredLang', 'ar');
+        window.location.href = '../';
+        return;
+      }
+      localStorage.setItem('preferredLang', lang);
+      changeLanguage(lang);
+    }
+
+    function changeLanguage(lang) {
+      window.currentLang = lang;
       const root = document.getElementById('htmlRoot');
       root.setAttribute('lang', lang);
       root.setAttribute('dir', (lang === 'ku') ? 'rtl' : 'ltr');
@@ -354,12 +357,6 @@ Given procedural sensitivities and multiple oversight bodies (labor inspectors, 
       document.getElementById('backHomeBtn').innerText = t.backHomeBtn;
 
       document.getElementById('languageSelect').value = lang;
-
-      if (updateUrl) {
-        const url = new URL(window.location);
-        url.searchParams.set('lang', lang);
-        window.history.replaceState({}, '', url);
-      }
     }
 
     const insightsDict = {
@@ -419,7 +416,7 @@ Given procedural sensitivities and multiple oversight bodies (labor inspectors, 
         backHomeBtn: "🏠 Ana Sayfaya Dön ←"
       },
       zh: {
-        pageTitle: "法律洞察与分析 | 阿里·卡德姆·哈希米律所",
+        pageTitle: "阿里·卡德姆·哈希米律所 | 伊拉克法律服务",
         metaDesc: "专注于伊拉克法律、劳动法规及公司设立的专业法律洞察。",
         home: "首页", menuServices: "法律服务", menuConsultations: "法律咨询", menuInsights: "法律洞察", menuAbout: "عربي / Arabic (Insights)", menuContact: "联系我们",
         mainTitle: "法律洞察与分析",
@@ -461,7 +458,7 @@ Given procedural sensitivities and multiple oversight bodies (labor inspectors, 
       es: {
         pageTitle: "Perspectivas y Análisis Legales | Bufete AKH",
         metaDesc: "Perspectivas legales especializadas y análisis procedimentales en las leyes de Irak.",
-        home: "Inicio", menuServices: "Servicios", menuConsultations: "Consultas Legales", menuInsights: "Perspectivas", menuAbout: "عربي / Arabic (Insights)", menuContact: "Contacto",
+        home: "Inicio", menuServices: "Servicios", menuConsultations: "Consultas Legales", menuInsights: "Perspectivas", menuAbout: "Sobre Nosotros (عربي)", menuContact: "Contacto",
         mainTitle: "Perspectivas y Análisis Legales",
         introText: "Un portal legal especializado dedicado a publicar estudios y aclaraciones procedimentales.",
         catTitle: "Trabajo, Residencia y Seguridad Social",
@@ -481,7 +478,7 @@ Given procedural sensitivities and multiple oversight bodies (labor inspectors, 
       de: {
         pageTitle: "Rechtliche Einblicke & Analysen | Kanzlei AKH",
         metaDesc: "Spezialisierte rechtliche Einblicke und Analysen zum irakischen Recht.",
-        home: "Startseite", menuServices: "Dienste", menuConsultations: "Rechtliche Beratung", menuInsights: "Einblicke", menuAbout: "عربي / Arabic (Insights)", menuContact: "Kontakt",
+        home: "Startseite", menuServices: "Dienste", menuConsultations: "Rechtliche Beratung", menuInsights: "Einblicke", menuAbout: "Über uns (عربي)", menuContact: "Kontakt",
         mainTitle: "Rechtliche Einblicke & Analysen",
         introText: "Ein spezialisiertes Rechtsportal zur Veröffentlichung von Studien und Analysen.",
         catTitle: "Arbeit, Aufenthalt & Soziale Sicherheit",
@@ -501,7 +498,7 @@ Given procedural sensitivities and multiple oversight bodies (labor inspectors, 
       ku: {
         pageTitle: "تێڕوانین و شیکارییەکانی یاسایی | نووسینگەی پارێزەر عەلی کازمی",
         metaDesc: "تێڕوانینی یاسایی تایبەتمەند و شیکاری پرۆسەیی لە یاساکانی عێراقدا.",
-        home: "سەرەکی", menuServices: "خزمەتگوزارییەکان", menuConsultations: "ڕاوێژی یاسایی", menuInsights: "تێڕوانینەکان", menuAbout: "عربي / Arabic (Insights)", menuContact: "پەیوەندی",
+        home: "سەرەکی", menuServices: "خزمەتگوزارییەکان", menuConsultations: "ڕاوێژی یاسایی", menuInsights: "تێڕوانینەکان", menuAbout: "دەرباره‌ی ئێمە (عربي)", menuContact: "پەیوەندی",
         mainTitle: "تێڕوانین و شیکارییەکانی یاسایی",
         introText: "دەروازەیەکی یاسایی تایبەتمەند کە تەرخان کراوە بۆ بڵاوکردنەوەی لێکۆڵینەوەکان.",
         catTitle: "کار، نیشتەجێبوون و دڵنیایی کۆمەڵایەتی",
