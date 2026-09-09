@@ -71,7 +71,7 @@
       z-index: 1000;
       box-shadow: 0 4px 20px rgba(0,0,0,0.15);
     }
-    .lang-btn {
+    .lang-select-bar {
       padding: 7px 14px;
       border-radius: 6px;
       border: 1.5px solid #c5a059;
@@ -79,11 +79,11 @@
       color: #ffffff;
       font-size: 13px;
       font-weight: 700;
-      text-decoration: none;
-      display: inline-block;
+      outline: none;
+      cursor: pointer;
       font-family: 'Cairo', sans-serif;
     }
-    .lang-btn:hover { background: rgba(197,160,89,0.2); }
+    .lang-select-bar option { background: #0f172a; color: #ffffff; }
 
     .menu-container { position: relative; }
     .menu-toggle {
@@ -171,20 +171,30 @@
 </head>
 <body>
 
+  <!-- الهيدر التنفيذي الموحد -->
   <header class="icover-header">
     <div>
-      <a href="en/" class="lang-btn">English 🌐</a>
+      <select id="languageSelect" class="lang-select-bar" onchange="switchLanguage(this.value)">
+        <option value="ar" selected>العربية</option>
+        <option value="en">English</option>
+        <option value="tr">Türkçe</option>
+        <option value="zh">中文</option>
+        <option value="fr">Français</option>
+        <option value="es">Español</option>
+        <option value="de">Deutsch</option>
+        <option value="ku">کوردی</option>
+      </select>
     </div>
 
     <div class="menu-container">
       <button class="menu-toggle" onclick="toggleMenu()" aria-label="القائمة">☰</button>
       <div id="dropdownMenu" class="dropdown-menu">
         <a href="https://akjassem.com" id="menuHome">الرئيسية</a>
-        <a href="https://akjassem.com/services/">دليل الخدمات القانونية</a>
-        <a href="https://akjassem.com/consultations/">الاستشارات القانونية</a>
-        <a href="https://akjassem.com/insights/">الآراء والرؤى القانونية (Insights)</a>
-        <a href="https://akjassem.com/about/">من نحن</a>
-        <a href="https://akjassem.com/contact/">اتصل بنا</a>
+        <a href="/services/" id="menuServices">دليل الخدمات القانونية</a>
+        <a href="/consultations/" id="menuConsultations">الاستشارات القانونية</a>
+        <a href="/insights/" id="menuInsights">الآراء والرؤى القانونية</a>
+        <a href="/about/" id="menuAbout">من نحن</a>
+        <a href="/contact/" id="menuContact">اتصل بنا</a>
       </div>
     </div>
   </header>
@@ -245,7 +255,7 @@
 نظراً لدقة الإجراءات وتعدد الجهات الرقابية (مفتشو العمل، دائرة التقاعد والضمان الاجتماعي، ومجلس الإدارة للشركات), نؤكد على ضرورة مراجعة وتدقيق كافة عقود العمل واللوائح الداخلية للشركات من قبل مستشار قانوني مختص لتجنب أي مخالفات قانونية غير مقصودة.</div>
 
             <div style="text-align: center; margin: 25px 0 10px;">
-              <a href="https://akjassem.com/booking" style="display: inline-block; background-color: #0b1a30; color: #ffffff; padding: 13px 25px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 15px; box-shadow: 0 4px 12px rgba(11,26,48,0.25); border: 1.5px solid #d32f2f;">طلب تدقيق الامتثال العمالي للشركات (مكتب AKH) ←</a>
+              <a href="/booking/" style="display: inline-block; background-color: #0b1a30; color: #ffffff; padding: 13px 25px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 15px; box-shadow: 0 4px 12px rgba(11,26,48,0.25); border: 1.5px solid #d32f2f;">طلب تدقيق الامتثال العمالي للشركات (مكتب AKH) ←</a>
             </div>
 
             <div style="text-align: right; margin-top: 20px;">
@@ -286,6 +296,15 @@
       if (!event.target.matches('.menu-toggle') && !event.target.closest('.menu-container')) {
         document.getElementById('dropdownMenu').classList.remove('active');
       }
+    }
+
+    function switchLanguage(lang) {
+      if (lang === 'ar') {
+        localStorage.setItem('preferredLang', 'ar');
+        return;
+      }
+      localStorage.setItem('preferredLang', lang);
+      window.location.href = 'en/';
     }
 
     function copyLink() {
