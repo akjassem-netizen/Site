@@ -301,7 +301,8 @@
   <!-- الهيدر التنفيذي الموحد -->
   <header class="icover-header">
     <div>
-      <select id="languageSelect" class="lang-select-bar" onchange="changeLanguage(this.value)">
+      <select id="languageSelect" class="lang-select-bar" onchange="switchLanguage(this.value)">
+        <option value="ar">العربية / Arabic</option>
         <option value="en" selected>English</option>
         <option value="tr">Türkçe</option>
         <option value="zh">中文</option>
@@ -315,12 +316,12 @@
     <div class="menu-container">
       <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu">☰</button>
       <div id="dropdownMenu" class="dropdown-menu">
-        <a href="https://akjassem.com" id="menuHome">Home</a>
+        <a href="https://akjassem.com/en/" id="menuHome">Home</a>
         <a href="https://akjassem.com/services/" id="menuServices">Legal Services Directory</a>
-        <a href="../consultations/en/" id="menuConsultations">Legal Consultations</a>
-        <a href="../../insights.html" id="menuInsights">Iraq Legal Insights</a>
+        <a href="/consultations/en/" id="menuConsultations">Legal Consultations</a>
+        <a href="../../insights/en/" id="menuInsights">Iraq Legal Insights</a>
         <a href="../" id="menuAbout">عربي / Arabic (About Us)</a>
-        <a href="https://akjassem.com/contact/" id="menuContact">Contact Us</a>
+        <a href="https://akjassem.com/contact/en/" id="menuContact">Contact Us</a>
       </div>
     </div>
   </header>
@@ -331,7 +332,7 @@
     <!-- الشريط الجانبي الثابت -->
     <aside class="sticky-sidebar">
       <section class="hero-box">
-        <a href="https://akjassem.com" class="brand-logo-link">
+        <a href="https://akjassem.com/en/" class="brand-logo-link">
           <div class="brand-logo-box" dir="ltr">
             <div class="b-akh">A<span class="red-k">K</span>H</div>
             <div class="b-sub"><span class="red-slash">/</span> LAW OFFICE</div>
@@ -374,7 +375,7 @@
           <a href="https://wa.me/9647838759047" target="_blank" class="whatsapp-btn" id="btnWhatsappInline">💬 Direct WhatsApp Chat</a>
         </div>
 
-        <a href="https://akjassem.com" class="back-home-link" id="backLink">&larr; Back to Home</a>
+        <a href="https://akjassem.com/en/" class="back-home-link" id="backLink">&larr; Back to Home</a>
       </div>
     </section>
 
@@ -392,19 +393,29 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const urlLang = urlParams.get('lang') || localStorage.getItem('preferredLang') || 'en';
-      if (consultDict[urlLang]) {
-        changeLanguage(urlLang, false);
+      const savedLang = localStorage.getItem('preferredLang') || 'en';
+      if (savedLang === 'ar') {
+        window.location.href = '../';
+        return;
+      }
+      if (consultDict[savedLang]) {
+        changeLanguage(savedLang);
       } else {
-        changeLanguage('en', false);
+        changeLanguage('en');
       }
     });
 
-    function changeLanguage(lang, updateUrl = true) {
-      if (updateUrl) {
-        localStorage.setItem('preferredLang', lang);
+    function switchLanguage(lang) {
+      if (lang === 'ar') {
+        localStorage.setItem('preferredLang', 'ar');
+        window.location.href = '../';
+        return;
       }
+      localStorage.setItem('preferredLang', lang);
+      changeLanguage(lang);
+    }
+
+    function changeLanguage(lang) {
       const root = document.getElementById('htmlRoot');
       root.setAttribute('lang', lang);
       root.setAttribute('dir', (lang === 'ar' || lang === 'ku') ? 'rtl' : 'ltr');
@@ -451,16 +462,6 @@
       document.getElementById('backLink').innerHTML = t.backLink;
 
       document.getElementById('languageSelect').value = lang;
-
-      if (updateUrl) {
-        const url = new URL(window.location);
-        if (lang === 'en') {
-          url.searchParams.delete('lang');
-        } else {
-          url.searchParams.set('lang', lang);
-        }
-        window.history.replaceState({}, '', url);
-      }
     }
 
     const consultDict = {
