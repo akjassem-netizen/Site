@@ -149,7 +149,6 @@
     
     .intro-box { background: #ffffff; padding: 16px 20px; border-radius: 10px; border: 1px solid #e2e8f0; color: #4a5568; font-size: 14.5px; line-height: 1.8; margin-bottom: 25px; text-align: justify; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
     
-    /* حاوية التجميع الفارغة والجاهزة لاستقبال المقالات عبر لوحة التحكم */
     #arabic-feed { width: 100%; }
 
     .legal-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); position: relative; overflow: hidden; }
@@ -217,7 +216,7 @@
       نافذة متخصصة تُعنى بنشر الدراسات والإيضاحات الإجرائية في فروع القانون العراقي: قانون العمل والإقامة والضمان الاجتماعي، تأسيس وتسجيل الشركات، العلامات التجارية، وقضايا الأحوال الشخصية والدعاوى المدنية والتجارية.
     </div>
 
-    <!-- منطقة عرض المقالات والتحليلات (فارغة ونظيفة وجاهزة) -->
+    <!-- منطقة عرض المقالات والتحليلات -->
     <div id="arabic-feed"><article class="legal-card" data-category="العمل والإقامة والضمان الاجتماعي" data-slug="foreign-labor-compliance-iraq" data-keywords="قانون العمل العراقي, قانون الضمان الاجتماعي, تصاريح العمل في العراق, كوتة العمالة الأجنبية, محامي شركات في بغداد, تأسيس شركات في العراق" data-changelog="التاريخ: ١٠‏/٩‏/٢٠٢٦ | الوقت: ٦:٣٨:١٨ م | الإجراء: نشر جديد" data-status="active" style="border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; margin-bottom: 24px; text-align: right; direction: rtl; background: #ffffff; ">
 <div style="font-size: 13px; color: #d32f2f; font-weight: 700; margin-bottom: 8px;">العمل والإقامة والضمان الاجتماعي • ١٠ أيلول ٢٠٢٦</div>
 <h2 style="font-size: 19px; font-weight: 800; color: #0b1a30; margin-bottom: 12px;">امتثال العمالة الأجنبية وقانون الضمان الاجتماعي العراقي رقم 18 لسنة 2023: دليل الشركات والمستثمرين</h2>
@@ -244,7 +243,7 @@
 
 4. التبعات القانونية عند عدم الامتثال:
 • الغرامات المالية التراكمية: فرض فوائد وغرامات تأخيرية بنسبة (1% إلى 2%) عن كل شهر تأخير في سداد الاشتراكات، مع إلزامية الدفع بأثر رجعي من تاريخ دخول العامل للعراق.
-• تعليق براءة الذمة (Clearance): ربط صرف المستحقات المالية والسلف لدى الجه الحكومية بتقديم براءة ذمة سارية المفعول من دائرة الضمان الاجتماعي والهيئة العامة للضرائب.
+• تعليق براءة الذمة (Clearance): ربط صرف المستحقات المالية والسلف لدى الجهات الحكومية بتقديم براءة ذمة سارية المفعول من دائرة الضمان الاجتماعي والهيئة العامة للضرائب.
 • المسؤولية الجزائية والترحيل: إحالة العمال الأجانب غير المرخصين إلى محاكم التحقيق، وفرض قرارات الترحيل ومنع الدخول لمدد تمتد لسنوات، مع مساءلة المدير المفوض جزائياً.
 
 تنبيه: المادة القانونية أعلاه مقدمة لأغراض الإحاطة والتوعية التنفيذية، وتخضع الإجراءات التطبيقية للوائح والتعليمات المحدثة الصادرة عن وزارتي العمل والداخلية.</div>
@@ -298,6 +297,26 @@
         setTimeout(() => { toast.style.display = 'none'; }, 2500);
       });
     }
+
+    // سكريبت المعالجة الذكية: يفتح المقال تلقائياً عند الدخول عبر الرابط الفرعي (?p=...)
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const slug = urlParams.get('p');
+      if (slug) {
+        const targetArticle = document.querySelector(`article[data-slug="${slug}"]`);
+        if (targetArticle) {
+          const expandedDiv = targetArticle.querySelector('.article-expanded');
+          const btn = targetArticle.querySelector('button[onclick*="style.display"]');
+          if (expandedDiv) {
+            expandedDiv.style.display = 'block';
+            if (btn) btn.innerText = 'عرض أقل ↑';
+            setTimeout(() => {
+              targetArticle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 300);
+          }
+        }
+      }
+    });
   </script>
 
 
