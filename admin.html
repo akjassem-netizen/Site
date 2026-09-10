@@ -238,7 +238,6 @@ font-family: inherit;
 .btn-delete { background-color: #e53e3e; color: #ffffff; }
 .btn-logs { background-color: #d69e2e; color: #ffffff; }
 
-/* تصميم نافذة سجل التعديلات المنبثقة */
 #logModal {
 display: none;
 position: fixed;
@@ -408,9 +407,7 @@ line-height: 1.6;
 <h3>سجل التعديلات والأرشيف الزمني</h3>
 <button class="close-modal" onclick="closeLogModal()">إغلاق ✕</button>
 </div>
-<div id="logModalBody">
-<!-- سيتم عرض الخانات هنا -->
-</div>
+<div id="logModalBody"></div>
 </div>
 </div>
 
@@ -480,7 +477,6 @@ return new TextDecoder().decode(decrypted);
 
 window.onload = async function() {
 populateCategories('ar');
-// التحقق من sessionStorage ليبقى مسجلاً عند عمل Refresh للصفحة
 const savedSessionToken = sessionStorage.getItem('akh_active_token');
 if (savedSessionToken) {
 ACTIVE_TOKEN = savedSessionToken;
@@ -565,38 +561,7 @@ const lang = document.getElementById('articleLang').value;
 const root = document.getElementById('htmlRoot');
 root.setAttribute('lang', lang);
 root.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
-
 populateCategories(lang);
-
-if(lang === 'en') {
-document.getElementById('panelMainTitle').innerText = 'Legal Insights Management & Publishing';
-document.getElementById('lblLang').innerText = 'Article Language:';
-document.getElementById('lblCat').innerText = 'Legal Category / Branch:';
-document.getElementById('lblSlug').innerText = 'URL Slug:';
-document.getElementById('lblSched').innerText = 'Publish Timing:';
-document.getElementById('lblTitle').innerText = 'Article Title:';
-document.getElementById('lblSummary').innerText = 'SEO Snippet Summary:';
-document.getElementById('lblKeywords').innerText = 'SEO Keywords:';
-document.getElementById('lblCta').innerText = 'Custom CTA Button at Footer (Optional):';
-document.getElementById('lblContent').innerText = 'Article / Legal Analysis Text:';
-document.getElementById('btnPreviewText').innerText = 'Preview Text 👁️';
-document.getElementById('submitBtn').innerText = 'Publish Now 🚀';
-document.getElementById('managerTitle').innerText = '📚 Previous Publications & Views';
-} else {
-document.getElementById('panelMainTitle').innerText = 'إدارة ونشر الآراء القانونية';
-document.getElementById('lblLang').innerText = 'لغة المقال / Article Language:';
-document.getElementById('lblCat').innerText = 'الفرع / التخصص القانوني:';
-document.getElementById('lblSlug').innerText = 'رابط المقال المختصر الثابت (URL Slug):';
-document.getElementById('lblSched').innerText = 'توقيت النشر:';
-document.getElementById('lblTitle').innerText = 'عنوان المقال:';
-document.getElementById('lblSummary').innerText = 'الموجز لمحركات البحث (SEO Snippet):';
-document.getElementById('lblKeywords').innerText = 'الكلمات المفتاحية لجوجل (SEO Keywords):';
-document.getElementById('lblCta').innerText = 'زر تفاعل مخصص بنهاية المقال (اختياري):';
-document.getElementById('lblContent').innerText = 'نص الدراسة أو التحليل القانوني:';
-document.getElementById('btnPreviewText').innerText = 'معاينة النص 👁️';
-document.getElementById('submitBtn').innerText = 'نـشـر الآن 🚀';
-document.getElementById('managerTitle').innerText = '📚 المنشورات السابقة ومتابعة المشاهدات';
-}
 }
 
 function onScheduleModeChange() {
@@ -627,7 +592,7 @@ const displayDate = new Date().toLocaleDateString(isEn ? 'en-GB' : 'ar-IQ', { ye
 const nowObj = new Date();
 const dateStr = nowObj.toLocaleDateString('ar-IQ');
 const timeStr = nowObj.toLocaleTimeString('ar-IQ');
-const logEntryString = `التاريخ: ${dateStr} | الساعة: ${timeStr} | الإجراء: ${EDITING_ARTICLE_INDEX !== null ? 'تعديل المقال وتحديث محتواه' : 'إنشاء ونشر المقال لأول مرة'}`;
+const logEntryString = `التاريخ: ${dateStr} | الساعة: ${timeStr} | الإجراء: ${EDITING_ARTICLE_INDEX !== null ? 'تعديل وتحديث محتوى المقال' : 'نشر المقال لأول مرة'}`;
 
 const legalFooterHtml = `<div class="legal-footer-box" style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #edf2f7; font-size: 11.5px; color: #718096; line-height: 1.7;">${ctaCode ? '<div style="margin-bottom: 15px;">' + ctaCode + '</div>' : ''}
 <p class="notranslate" translate="no" style="margin-bottom: 4px; font-weight: 700; color: #4a5568;">© ${isEn ? 'All rights reserved to Law Office of Ali Kadhem Hashimi (AKH Law Office)' : 'جميع الحقوق محفوظة لمكتب المحامي علي كاظم الهاشمي (AKH Law Office)'}.</p>
@@ -688,7 +653,7 @@ body: JSON.stringify({ message: EDITING_ARTICLE_INDEX !== null ? `Update article
 });
 
 if (!putRes.ok) throw new Error('فشل حفظ التحديثات في GitHub.');
-showAlert(isEn ? 'Published successfully!' : (EDITING_ARTICLE_INDEX !== null ? 'تم تحديث المقال بنجاح وتوثيق التعديل في السجل!' : 'تم النشر بنجاح!'), true);
+showAlert(isEn ? 'Published successfully!' : (EDITING_ARTICLE_INDEX !== null ? 'تم تحديث المقال بنجاح وتسجيله في سجل التعديلات!' : 'تم النشر بنجاح!'), true);
 cancelEdit();
 loadArticles();
 } catch (err) {
@@ -735,7 +700,10 @@ seenSlugs.add(slug);
 const summary = art.querySelector('p') ? art.querySelector('p').innerText : '';
 const keywords = art.getAttribute('data-keywords') || '';
 const category = art.getAttribute('data-category') || '';
-const content = art.querySelector('.article-content-body') ? art.querySelector('.article-content-body').innerHTML.trim() : '';
+// استخراج نص المقال الكامل بشكل صحيح من عنصر .article-content-body
+const contentEl = art.querySelector('.article-content-body');
+const content = contentEl ? contentEl.innerText.trim() : '';
+
 const changelog = art.getAttribute('data-changelog') || (lang==='en' ? 'No modifications yet' : 'لا توجد تعديلات سابقة حتى الآن');
 
 let views = 0;
@@ -757,11 +725,9 @@ container.innerHTML = `<p style="font-size: 13px; color: #e53e3e; text-align: ce
 }
 }
 
-// عرض نافذة سجل التعديلات المنبثقة بشكل خانات مرتبة
 function openLogModal(logText) {
 const modalBody = document.getElementById('logModalBody');
 modalBody.innerHTML = '';
-
 const entries = logText.split('///');
 entries.forEach((entry, i) => {
 const div = document.createElement('div');
@@ -769,7 +735,6 @@ div.className = 'log-box-item';
 div.innerHTML = `<div class="log-time">التعديل رقم (${i + 1})</div><div>${entry}</div>`;
 modalBody.appendChild(div);
 });
-
 document.getElementById('logModal').style.display = 'flex';
 }
 
@@ -777,7 +742,6 @@ function closeLogModal() {
 document.getElementById('logModal').style.display = 'none';
 }
 
-// التحقق من رمز الـ PIN قبل السماح بالتعديل
 async function verifyAndEdit(index) {
 const pinInput = prompt('حماية أمنية: أدخل رمز الـ PIN المكون من 6 أرقام لتأكيد فتح وضع التعديل:');
 if (!pinInput) return;
@@ -798,7 +762,8 @@ document.getElementById('title').value = art.title;
 document.getElementById('summary').value = art.summary;
 document.getElementById('articleSlug').value = art.slug;
 document.getElementById('keywords').value = art.keywords;
-document.getElementById('content').value = art.content;
+document.getElementById('content').value = art.content; // تم ضبطها لتسترجع النص بالكامل
+document.getElementById('categorySelect').value = art.category; // ضبط التصنيف القديم تلقائياً
 document.getElementById('editBanner').style.display = 'flex';
 document.getElementById('editBannerText').innerText = `✏️ Edit: "${art.title}" (سيتم توثيق التعديل في السجل)`;
 document.getElementById('submitBtn').innerText = document.documentElement.lang==='en' ? 'Save Changes 💾' : 'حفظ التعديلات 💾';
@@ -813,7 +778,6 @@ const lang = document.documentElement.lang;
 document.getElementById('submitBtn').innerText = lang==='en' ? 'Publish Now 🚀' : 'نـشـر الآن 🚀';
 }
 
-// التحقق من رمز الـ PIN قبل الحذف
 async function verifyAndDelete(index) {
 const pinInput = prompt('حماية أمنية: أدخل رمز الـ PIN المكون من 6 أرقام لتأكيد عملية الحذف:');
 if (!pinInput) return;
