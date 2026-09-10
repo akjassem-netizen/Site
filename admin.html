@@ -18,27 +18,26 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 20px 16px;
+      padding: 30px 16px;
     }
 
     .container {
       width: 100%;
-      max-width: 850px;
+      max-width: 800px;
       background: #ffffff;
       padding: 35px 25px;
       border-radius: 16px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.06);
       border-top: 5px solid #c5a059;
-      margin-top: 20px;
     }
 
     .brand-logo {
       text-align: center;
-      margin-bottom: 25px;
+      margin-bottom: 28px;
       direction: ltr;
     }
     .brand-logo .akh {
-      font-size: 38px;
+      font-size: 40px;
       font-weight: 900;
       color: #0f172a;
       letter-spacing: 4px;
@@ -46,7 +45,7 @@
     }
     .brand-logo .akh .red-k { color: #dc2626; }
     .brand-logo .sub-title {
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 700;
       color: #0f172a;
       letter-spacing: 3px;
@@ -56,7 +55,7 @@
       justify-content: center;
       gap: 6px;
     }
-    .brand-logo .sub-title .slash { color: #dc2626; font-weight: 900; font-size: 15px; }
+    .brand-logo .sub-title .slash { color: #dc2626; font-weight: 900; font-size: 16px; }
 
     .page-title {
       text-align: center;
@@ -64,20 +63,19 @@
       font-weight: 900;
       color: #0f172a;
       margin-bottom: 25px;
-      padding-bottom: 12px;
+      padding-bottom: 15px;
       border-bottom: 1px solid #f1f5f9;
     }
 
-    /* نماذج الإدخال */
     .form-group {
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
     .form-label {
       display: block;
       font-size: 14px;
       font-weight: 700;
       color: #0f172a;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
     .form-input, .form-textarea, .form-select {
       width: 100%;
@@ -97,7 +95,7 @@
     }
     .form-textarea {
       resize: vertical;
-      min-height: 130px;
+      min-height: 120px;
     }
 
     .btn-submit {
@@ -107,7 +105,7 @@
       gap: 8px;
       background: #0f172a;
       color: white;
-      padding: 14px 28px;
+      padding: 15px 30px;
       border-radius: 10px;
       border: none;
       font-weight: 700;
@@ -120,10 +118,10 @@
     }
     .btn-submit:hover { background: #c5a059; color: #0f172a; }
 
-    /* قائمة المقالات المنشورة */
+    /* قائمة المقالات المنشورة في لوحة التحكم */
     .insights-manage-section {
-      margin-top: 40px;
-      border-top: 2px dashed #e2e8f0;
+      margin-top: 35px;
+      border-top: 1px solid #e2e8f0;
       padding-top: 25px;
     }
     .section-title {
@@ -136,7 +134,7 @@
       background: #f8fafc;
       border: 1px solid #e2e8f0;
       border-radius: 10px;
-      padding: 16px;
+      padding: 15px;
       margin-bottom: 12px;
       display: flex;
       justify-content: space-between;
@@ -144,7 +142,7 @@
       gap: 15px;
     }
     .insight-info h4 {
-      font-size: 15px;
+      font-size: 14.5px;
       color: #0f172a;
       margin-bottom: 4px;
     }
@@ -168,13 +166,16 @@
 
     .nav-links {
       text-align: center;
-      margin-top: 20px;
+      margin-top: 25px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
     }
     .nav-links a {
       color: #64748b;
       text-decoration: none;
       font-size: 13px;
-      font-weight: 650;
+      font-weight: 700;
     }
     .nav-links a:hover { color: #0f172a; text-decoration: underline; }
   </style>
@@ -184,7 +185,7 @@
   <div class="container">
     <div class="brand-logo">
       <div class="akh">A<span class="red-k">K</span>H</div>
-      <div class="sub-title"><span class="slash">/</span><span>ADMIN DASHBOARD</span></div>
+      <div class="sub-title"><span class="slash">/</span><span>ADMIN PANEL</span></div>
     </div>
     
     <div class="page-title">إدارة ونشر الآراء والرؤى القانونية (Insights)</div>
@@ -223,13 +224,13 @@
     </form>
 
     <div class="insights-manage-section">
-      <div class="section-title">الأرآء والرؤى المنشورة حالياً</div>
+      <div class="section-title">الآراء والرؤى المنشورة حالياً</div>
       <div id="adminInsightsList">
         </div>
     </div>
 
     <div class="nav-links">
-      <a href="insights.html">← الانتقال إلى صفحة الآراء العامة</a> | 
+      <a href="insights.html">← الانتقال إلى صفحة الآراء العامة</a>
       <a href="https://akjassem.com">العودة إلى الرئيسية</a>
     </div>
   </div>
