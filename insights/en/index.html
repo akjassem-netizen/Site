@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" id="htmlRoot">
-<head>
+<html lang="en" dir="ltr" id="htmlRoot"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
@@ -51,8 +50,8 @@
   </script>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet">
   
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -148,7 +147,7 @@
     
     .intro-box { background: #ffffff; padding: 16px 20px; border-radius: 10px; border: 1px solid #e2e8f0; color: #4a5568; font-size: 14.5px; line-height: 1.8; margin-bottom: 25px; text-align: justify; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
     
-    /* حاوية التجميع الإنجليزية الفارغة والجاهزة لاستقبال المقالات */
+    /* حاوية التجميع الإنجليزية */
     #english-feed { width: 100%; }
 
     .legal-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); position: relative; overflow: hidden; text-align: start; }
@@ -215,8 +214,10 @@
       A specialized legal portal dedicated to publishing studies and procedural clarifications across branches of Iraqi law: labor, residency and social security, company formation and registration, trademarks, personal status, and civil/commercial litigation.
     </div>
 
-    <!-- منطقة عرض المقالات الإنجليزية (فارغة ونظيفة وجاهزة) -->
-    <div id="english-feed"></div>
+    <!-- حاوية المقالات الإنجليزية -->
+    <div id="english-feed">
+      <!-- ستظهر المقالات الإنجليزية هنا عند نشرها -->
+    </div>
 
     <div style="text-align: center; margin-top: 30px; margin-bottom: 20px;">
       <a href="https://akjassem.com/en/" id="backHomeBtn" style="display: inline-block; background-color: #0b1a30; color: #ffffff; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 14px; border: 1.5px solid #d32f2f; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">🏠 Back to Main Home Page ←</a>
@@ -234,19 +235,6 @@
         document.getElementById('dropdownMenu').classList.remove('active');
       }
     }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      const savedLang = localStorage.getItem('preferredLang') || 'en';
-      if (savedLang === 'ar') {
-        window.location.href = '../';
-        return;
-      }
-      if (insightsDict[savedLang]) {
-        changeLanguage(savedLang);
-      } else {
-        changeLanguage('en');
-      }
-    });
 
     function switchLanguage(lang) {
       if (lang === 'ar') {
@@ -337,12 +325,43 @@
       ku: {
         pageTitle: "تێڕوانین و شیکارییەکانی یاسایی | نووسینگەی پارێزەر عەلی کازمی",
         metaDesc: "تێڕوانینی یاسایی تایبەتمەند و شیکاری پرۆسەیی لە یاساکانی عێراقدا.",
-        home: "سەرەکی", menuServices: "خزمەتگوزارییەکان", menuConsultations: "ڕاوێژی یاسایی", menuInsights: "تێڕوانینەکان", menuAbout: "دەرباره‌ی ئێمە (عربي)", menuContact: "پەیوەندی",
+        home: "سرەکی", menuServices: "خزمەتگوزارییەکان", menuConsultations: "ڕاوێژی یاسایی", menuInsights: "تێڕوانینەکان", menuAbout: "دەرباره‌ی ئێمە (عربي)", menuContact: "پەیوەندی",
         mainTitle: "تێڕوانین و شیکارییەکانی یاسایی",
         introText: "دەروازەیەکی یاسایی تایبەتمەند کە تەرخان کراوە بۆ بڵاوکردنەوەی لێکۆڵینەوەکان.",
         backHomeBtn: "🏠 گەڕانەوە بۆ سەرەکی ←"
       }
     };
+
+    // المعالجة الذكية: فتح المقال تلقائياً عند الدخول عبر الرابط الفرعي (?p=...)
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('preferredLang') || 'en';
+      if (savedLang === 'ar') {
+        window.location.href = '../';
+        return;
+      }
+      if (insightsDict[savedLang]) {
+        changeLanguage(savedLang);
+      } else {
+        changeLanguage('en');
+      }
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const slug = urlParams.get('p');
+      if (slug) {
+        const targetArticle = document.querySelector(`article[data-slug="${slug}"]`);
+        if (targetArticle) {
+          const expandedDiv = targetArticle.querySelector('.article-expanded');
+          const btn = targetArticle.querySelector('button[onclick*="style.display"]');
+          if (expandedDiv) {
+            expandedDiv.style.display = 'block';
+            if (btn) btn.innerText = 'Show Less ↑';
+            setTimeout(() => {
+              targetArticle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 300);
+          }
+        }
+      }
+    });
   </script>
 </body>
 </html>
