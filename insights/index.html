@@ -149,10 +149,10 @@
     .page-title h2 { font-size: 15px; font-weight: 700; color: #718096; direction: ltr; margin-top: 2px; }
     
     .intro-box { background: #ffffff; padding: 16px 20px; border-radius: 10px; border: 1px solid #e2e8f0; color: #4a5568; font-size: 14.5px; line-height: 1.8; margin-bottom: 25px; text-align: justify; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
-    .category-group { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; margin-bottom: 16px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
-    .category-header { padding: 18px 20px; background: #ffffff; display: flex; justify-content: space-between; align-items: center; font-weight: 800; font-size: 16px; color: #0b1a30; border-left: 4px solid #d32f2f; }
-    .badge-count { background: #edf2f7; color: #4a5568; font-size: 12px; font-weight: 700; padding: 3px 9px; border-radius: 20px; margin-right: 8px; }
-    .category-body { padding: 18px 20px; background: #fcfdfe; border-top: 1px solid #edf2f7; }
+    
+    /* حاوية التجميع الفارغة والجاهزة لاستقبال المقالات عبر لوحة التحكم */
+    #arabic-feed { width: 100%; }
+
     .legal-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); position: relative; overflow: hidden; }
     .legal-card::after { content: "AKH LAW OFFICE - ALI KADHEM HASHIMI"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-25deg); font-size: 38px; font-weight: 900; color: rgba(11, 26, 48, 0.035); pointer-events: none; z-index: 0; letter-spacing: 3px; white-space: nowrap; }
     .legal-card > * { position: relative; z-index: 1; }
@@ -218,68 +218,8 @@
       نافذة متخصصة تُعنى بنشر الدراسات والإيضاحات الإجرائية في فروع القانون العراقي: قانون العمل والإقامة والضمان الاجتماعي، تأسيس وتسجيل الشركات، العلامات التجارية، وقضايا الأحوال الشخصية والدعاوى المدنية والتجارية.
     </div>
 
-    <div class="category-group">
-      <div class="category-header">
-        <div><span>العمل والإقامة والضمان الاجتماعي</span><span class="badge-count">1 مقال</span></div>
-      </div>
-      <div class="category-body">
-        <article class="legal-card" data-slug="labor-social-security-iraq">
-          <div class="article-meta-info">
-            <span style="color: #d32f2f; font-weight: 700;">العمل والإقامة والضمان الاجتماعي • 5 سبتمبر 2026</span>
-          </div>
-
-          <h2 style="font-size: 19px; font-weight: 800; color: #0b1a30; margin-bottom: 12px;">امتثال العمالة الأجنبية وقانون الضمان الاجتماعي العراقي رقم 18 لسنة 2023: دليل الشركات والمستثمرين</h2>
-          
-          <p style="font-size: 15px; color: #4a5568; line-height: 1.8; margin-bottom: 12px;">دراسة تحليلية شاملة لأحكام قانون العمل العراقي وقانون التقاعد والضمان الاجتماعي للعمال، مع بيان التزامات أصحاب العمل والشركات الأجنبية والمحلية.</p>
-          
-          <div class="article-expanded" style="display: none; border-top: 1px dashed #cbd5e0; padding-top: 16px; margin-top: 12px; font-size: 15px; color: #2d3748; line-height: 1.9;">
-            <div class="article-image-box">
-              <img src="../og-logo.jpg" alt="امتثال العمالة الأجنبية والضمان الاجتماعي في العراق - مكتب المحامي علي كاظم الهاشمي" loading="lazy">
-            </div>
-
-            <div style="white-space: pre-line;">تُعد بيئة الأعمال والاستثمار في جمهورية العراق واعدة، إلا أنها محكومة بمنظومة تشريعية صارمة تتطلب من الشركات الأجنبية والمحلية إلماماً تاما بأحكام قانون العمل رقم (37) لسنة 2015 وقانون التقاعد والضمان الاجتماعي للعمال رقم (18) لسنة 2023. يهدف هذا التحليل إلى تسليط الضوء على أبرز الالتزامات القانونية والإجرائية الملقاة على عاتق أصحاب العمل.
-
-1. عقود العمل وصياغتها القانونية:
-يُحتم المشرع العراقي أن يُحرر عقد العمل خطياً وبنسختين باللغة العربية (ويمكن ترجمته للغة أجنبية مع الاعتماد النص العربي عند النزاع). يجب أن يتضمن العقد بوضوح طبيعة العمل، الأجر، ساعات العمل، وفترة الاختبار التي لا يجوز أن تزيد على ثلاثة أشهر. إن صياغة العقود بما يتوافق مع القواعد الآمرة قانوناً تحمي المنشأة من الغرامات والمنازعات العمالية أمام محاكم العمل.
-
-2. اشتراكات الضمان الاجتماعي (التزام جوهري):
-أوجب قانون التقاعد والضمان الاجتماعي النافذ على جميع أصحاب العمل شمول العاملين لديهم (سواء كانوا عراقيين أو أجانب) بأحكام الضمان الاجتماعي ودفع النسب المقررة قانوناً لصندوق التقاعد والضمان. إن التخلف عن التسجيل أو التأخير في سداد الاشتراكات يُعرض المنشأة لعقوبات مالية جسيمة وملاحقات قانونية قد تؤثر على رخصة العمل وتجديد الإقامات.
-
-3. استقدام العمالة الأجنبية وتراخيص العمل:
-تخضع العمالة الأجنبية في الشركات العاملة في العراق لضوابط دقيقة تشمل الحصول على موافقة وزارة العمل والشؤون الاجتماعية، وإصدار رخصة العمل وإجازة الإقامة الرسمية وفق النسب المقررة للتشغيل الوطني. ويتحمل صاحب العمل مسؤولية تأمين العمال وإعادتهم إلى بلدانهم عند انتهاء التعاقد.
-
-4. تسوية النزاعات العمالية:
-في حال حدوث نزاع بين صاحب العمل والعمال، يُفضل دائماً اللجوء إلى التسوية الودية أو لجان تفتيش العمل قبل تصعيد النزاع إلى القضاء العمالي المختص، لضمان استمرارية النشاط التجاري وحماية السمعة المؤسسية للشركة.
-
-خاتمة وتوصية تنفيذية:
-نظراً لدقة الإجراءات وتعدد الجهات الرقابية (مفتشو العمل، دائرة التقاعد والضمان الاجتماعي، ومجلس الإدارة للشركات), نؤكد على ضرورة مراجعة وتدقيق كافة عقود العمل واللوائح الداخلية للشركات من قبل مستشار قانوني مختص لتجنب أي مخالفات قانونية غير مقصودة.</div>
-
-            <div style="text-align: center; margin: 25px 0 10px;">
-              <a href="/booking/" style="display: inline-block; background-color: #0b1a30; color: #ffffff; padding: 13px 25px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 15px; box-shadow: 0 4px 12px rgba(11,26,48,0.25); border: 1.5px solid #d32f2f;">طلب تدقيق الامتثال العمالي للشركات (مكتب AKH) ←</a>
-            </div>
-
-            <div style="text-align: right; margin-top: 20px;">
-              <button type="button" onclick="const card = this.closest('.legal-card'); card.querySelector('.article-expanded').style.display='none'; card.querySelector('[id^=readMoreBtn]').innerText = 'قراءة المزيد ←'; window.scrollTo({top: card.offsetTop - 50, behavior: 'smooth'});" style="background: #edf2f7; border: 1px solid #cbd5e0; color: #2d3748; padding: 8px 16px; border-radius: 6px; font-weight: 700; cursor: pointer; font-family: inherit; font-size: 13px;">← العودة إلى قائمة الآراء</button>
-            </div>
-
-            <div style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #edf2f7; font-size: 11.5px; color: #718096; line-height: 1.7;">
-              <p style="margin-bottom: 4px; font-weight: 700; color: #4a5568;">© جميع الحقوق محفوظة لمكتب المحامي علي كاظم الهاشمي (AKH Law Office).</p>
-              <p style="margin: 0;">إخلاء مسؤولية وحجية النص: المواد والتحليلات القانونية المنشورة مُعدّة لأغراض التوعية العامة ولا تُعد استشارة قانونية ملزمة. <strong>يُعد النص العربي هو الأصل المعتمد</strong>.</p>
-            </div>
-          </div>
-
-          <button type="button" id="readMoreBtn" onclick="const b = this.previousElementSibling; const open = b.style.display==='block'; b.style.display = open?'none':'block'; this.innerText = open ? 'قراءة المزيد ←' : 'عرض أقل ↑';" style="background: none; border: 1.5px solid #0b1a30; color: #0b1a30; padding: 8px 18px; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 10px;">قراءة المزيد ←</button>
-
-          <div class="share-bar">
-            <span class="share-label">مشاركة الرابط المباشر:</span>
-            <button class="btn-share btn-share-copy" onclick="copyLink()">📋 نسخ الرابط</button>
-            <a class="btn-share btn-share-wa" href="https://api.whatsapp.com/send?text=https://akjassem.com/insights/" target="_blank">🟢 WhatsApp</a>
-            <a class="btn-share btn-share-li" href="https://www.linkedin.com/sharing/share-offsite/?url=https://akjassem.com/insights/" target="_blank">💼 LinkedIn</a>
-            <a class="btn-share btn-share-x" href="https://twitter.com/intent/tweet?url=https://akjassem.com/insights/" target="_blank">𝕏 Post</a>
-          </div>
-        </article>
-      </div>
-    </div>
+    <!-- منطقة عرض المقالات والتحليلات (فارغة ونظيفة وجاهزة) -->
+    <div id="arabic-feed"></div>
 
     <div style="text-align: center; margin-top: 30px; margin-bottom: 20px;">
       <a href="https://akjassem.com" style="display: inline-block; background-color: #0b1a30; color: #ffffff; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 14px; border: 1.5px solid #d32f2f; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">🏠 العودة إلى الموقع الرئيسي الكامل ←</a>
@@ -308,7 +248,7 @@
     }
 
     function copyLink() {
-      navigator.clipboard.writeText('https://akjassem.com/insights/').then(() => {
+      navigator.clipboard.writeText(window.location.href).then(() => {
         const toast = document.getElementById('copyToast');
         toast.style.display = 'block';
         setTimeout(() => { toast.style.display = 'none'; }, 2500);
