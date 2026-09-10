@@ -58,10 +58,8 @@ margin-top: 3px;
 direction: ltr;
 }
 .page-title h1 { font-size: 19px; font-weight: 800; color: #1a202c; }
-.page-title h2 { font-size: 14px; font-weight: 700; color: #718096; margin-top: 2px; direction: ltr; }
 
 #lockScreen, #setupScreen { text-align: center; padding: 20px 10px; }
-.lock-icon { font-size: 44px; margin-bottom: 12px; }
 .lock-desc { font-size: 14.5px; color: #4a5568; margin-bottom: 20px; line-height: 1.6; }
 #dashboardScreen { display: none; }
 
@@ -372,7 +370,7 @@ const AR_CATEGORIES = [
 "القضايا الجزائية والدفاع الجنائي",
 "التحكيم ومنازعات العقود",
 "CUSTOM"
- ];
+];
 
 const EN_CATEGORIES = [
 "Family & Personal Status Law",
@@ -384,7 +382,7 @@ const EN_CATEGORIES = [
 "Criminal Defense & Penal Law",
 "Arbitration & Dispute Resolution",
 "CUSTOM"
- ];
+];
 
 let ACTIVE_TOKEN = '';
 let EDITING_ARTICLE_INDEX = null;
@@ -438,8 +436,7 @@ alert('يرجى كتابة العنوان والنص أولاً لتتمكن م�
 return;
 }
 const win = window.open('', '_blank');
-win.document.write(&lt;html dir="rtl"&gt;&lt;head&gt;&lt;title&gt;معاينة المقال&lt;/title&gt;&lt;style&gt;body{font-family:Tahoma;padding:30px;background:#f9f9f9;color:#333;line-height:1.8;}h1{color:#0b1a30;}.card{background:#fff;padding:25px;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,0.1);}&lt;/style&gt;&lt;/head&gt; &lt;body&gt;&lt;div class="card"&gt;&lt;h1&gt;${title}</h1><p><strong>الملخص:</strong> ${summary}&lt;/p&gt;&lt;hr style="margin:20px 0;border:0;border-top:1px solid #ddd;"&gt;&lt;div style="white-space:pre-line;"&gt;${content}</div></div></body></html>
-`);
+win.document.write(`<html dir="rtl"><head><title>معاينة المقال</title><style>body{font-family:Tahoma;padding:30px;background:#f9f9f9;color:#333;line-height:1.8;}h1{color:#0b1a30;}.card{background:#fff;padding:25px;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,0.1);}</style></head><body><div class="card"><h1>${title}</h1><p><strong>الملخص:</strong> ${summary}</p><hr style="margin:20px 0;border:0;border-top:1px solid #ddd;"><div style="white-space:pre-line;">${content}</div></div></body></html>`);
 }
 
 async function performSetup() {
@@ -519,31 +516,31 @@ const content = document.getElementById('content').value.trim();
 const publishAtIso = document.getElementById('scheduleMode').value === 'schedule' ? new Date(document.getElementById('publishTimestamp').value).toISOString() : new Date().toISOString();
 const displayDate = new Date().toLocaleDateString(isEn ? 'en-GB' : 'ar-IQ', { year: 'numeric', month: 'long', day: 'numeric' });
 
-const legalFooterHtml = &lt;div class="legal-footer-box" style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #edf2f7; font-size: 11.5px; color: #718096; line-height: 1.7;"&gt;${ctaCode ? '<div style="margin-bottom: 15px;">' + ctaCode + '</div>' : ''}
+const legalFooterHtml = `<div class="legal-footer-box" style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #edf2f7; font-size: 11.5px; color: #718096; line-height: 1.7;">${ctaCode ? '<div style="margin-bottom: 15px;">' + ctaCode + '</div>' : ''}
 <p class="notranslate" translate="no" style="margin-bottom: 4px; font-weight: 700; color: #4a5568;">© جميع الحقوق محفوظة لمكتب المحامي علي كاظم الهاشمي (AKH Law Office).</p>
 <p style="margin: 0;">إخلاء مسؤولية وحجية النص: المواد والتحليلات القانونية المنشورة مُعدّة لأغراض التوعية العامة ولا تُعد استشارة قانونية ملزمة. <strong>يُعد النص العربي هو الأصل المعتمد</strong>.</p>
-</div>
-`;
+</div>`;
 
 const btn = document.getElementById('submitBtn');
 btn.innerText = 'جارٍ النشر...';
 btn.disabled = true;
 
 try {
-const getUrl = https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}; const res = await fetch(getUrl, { headers: { 'Authorization':Bearer ${ACTIVE_TOKEN} } });
+const getUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
+const res = await fetch(getUrl, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
 const fileData = await res.json();
 let html = b64_to_utf8(fileData.content);
 
-const articleHtml = &lt;article class="legal-card" data-category="${category}" data-slug="${slug}" data-keywords="${keywords}" data-publish-at="${publishAtIso}" style="border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; margin-bottom: 24px; text-align: ${isEn ? 'left' : 'right'}; direction: ${isEn ? 'ltr' : 'rtl'}; background: #ffffff;"&gt; &lt;div style="font-size: 13px; color: #d32f2f; font-weight: 700; margin-bottom: 8px;"&gt;${category} • ${displayDate}&lt;/div&gt; &lt;h2 style="font-size: 19px; font-weight: 800; color: #0b1a30; margin-bottom: 12px;"&gt;${title}</h2>
-<p style="font-size: 15px; color: #4a5568; line-height: 1.8; margin-bottom: 12px;">`${summary}</p>
-
+const articleHtml = `<article class="legal-card" data-category="${category}" data-slug="${slug}" data-keywords="${keywords}" data-publish-at="${publishAtIso}" style="border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; margin-bottom: 24px; text-align: ${isEn ? 'left' : 'right'}; direction: ${isEn ? 'ltr' : 'rtl'}; background: #ffffff;">
+<div style="font-size: 13px; color: #d32f2f; font-weight: 700; margin-bottom: 8px;">${category} • ${displayDate}</div>
+<h2 style="font-size: 19px; font-weight: 800; color: #0b1a30; margin-bottom: 12px;">${title}</h2>
+<p style="font-size: 15px; color: #4a5568; line-height: 1.8; margin-bottom: 12px;">${summary}</p>
 <div class="article-expanded" style="display: none; border-top: 1px dashed #cbd5e0; padding-top: 16px; margin-top: 12px; font-size: 15px; color: #2d3748; line-height: 1.9;">
-<div class="article-content-body" style="white-space: pre-line;"> {legalFooterHtml}
+<div class="article-content-body" style="white-space: pre-line;">${content}</div>
+${legalFooterHtml}
 </div>
-
 <button type="button" onclick="const b = this.previousElementSibling; const open = b.style.display==='block'; b.style.display = open?'none':'block'; this.innerText = open ? 'قراءة المزيد ←' : 'عرض أقل ↑';" style="background: none; border: 1.5px solid #0b1a30; color: #0b1a30; padding: 8px 18px; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 10px;">قراءة المزيد ←</button>
-</article>
-`;
+</article>`;
 
 let updatedHtml = html;
 if (EDITING_ARTICLE_INDEX !== null) {
@@ -556,12 +553,13 @@ updatedHtml = '<!DOCTYPE html>\n' + doc.documentElement.outerHTML;
 }
 } else {
 const targetFeed = isEn ? 'english-feed' : 'arabic-feed';
-updatedHtml = updatedHtml.replace(id="${targetFeed}">,id="${targetFeed}"&gt;\n + articleHtml);
+updatedHtml = updatedHtml.replace(`id="${targetFeed}">`, `id="${targetFeed}">\n` + articleHtml);
 }
 
 const putRes = await fetch(getUrl, {
 method: 'PUT',
-headers: { 'Authorization': Bearer ${ACTIVE_TOKEN}, 'Content-Type': 'application/json' }, body: JSON.stringify({ message:Publish: ${title}, content: utf8_to_b64(updatedHtml), sha: fileData.sha })
+headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}`, 'Content-Type': 'application/json' },
+body: JSON.stringify({ message: `Publish: ${title}`, content: utf8_to_b64(updatedHtml), sha: fileData.sha })
 });
 
 if (!putRes.ok) throw new Error('فشل الحفظ في GitHub.');
@@ -579,7 +577,7 @@ btn.disabled = false;
 async function loadArticles() {
 const container = document.getElementById('articlesListContainer');
 try {
-const res = await fetch(https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}, { headers: { 'Authorization':Bearer ${ACTIVE_TOKEN} } });
+const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
 const data = await res.json();
 const parser = new DOMParser();
 const doc = parser.parseFromString(b64_to_utf8(data.content), 'text/html');
@@ -601,11 +599,7 @@ LOADED_ARTICLES_CACHE.push({ index, title, summary, slug, keywords, content, cat
 
 const item = document.createElement('div');
 item.className = 'article-item';
-item.innerHTML = &lt;div class="article-info"&gt; &lt;div class="item-title"&gt;${title}</div>
-<div class="item-meta">الرابط المباشر: ?p=${slug}&lt;/div&gt; &lt;/div&gt; &lt;div class="item-actions"&gt; &lt;a class="btn-action btn-view" href="https://akjassem.com/insights.html?p=${slug}" target="_blank">معاينة بالموقع 👁️</a>
-<button class="btn-action btn-edit" onclick="startEdit(${index})"&gt;تعديل ✏️&lt;/button&gt; &lt;button class="btn-action btn-delete" onclick="deleteArticle(${index})">حذف 🗑️</button>
-</div>
-`;
+item.innerHTML = `<div class="article-info"><div class="item-title">${title}</div><div class="item-meta">الرابط المباشر: ?p=${slug}</div></div><div class="item-actions"><a class="btn-action btn-view" href="https://akjassem.com/insights.html?p=${slug}" target="_blank">معاينة بالموقع 👁️</a><button class="btn-action btn-edit" onclick="startEdit(${index})">تعديل ✏️</button><button class="btn-action btn-delete" onclick="deleteArticle(${index})">حذف 🗑️</button></div>`;
 container.appendChild(item);
 });
 } catch (e) { container.innerHTML = 'خطأ في جلب المقالات.'; }
@@ -620,7 +614,7 @@ document.getElementById('articleSlug').value = art.slug;
 document.getElementById('keywords').value = art.keywords;
 document.getElementById('content').value = art.content;
 document.getElementById('editBanner').style.display = 'flex';
-document.getElementById('editBannerText').innerText = ✏️ تعديل: "${art.title}"`;
+document.getElementById('editBannerText').innerText = `✏️ تعديل: "${art.title}"`;
 document.getElementById('submitBtn').innerText = 'حفظ التعديلات 💾';
 window.scrollTo({ top: 120, behavior: 'smooth' });
 }
@@ -635,14 +629,15 @@ document.getElementById('submitBtn').innerText = 'نـشـر الآن 🚀';
 async function deleteArticle(index) {
 if (!confirm('حذف هذا المقال نهائياً؟')) return;
 try {
-const getUrl = https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}; const res = await fetch(getUrl, { headers: { 'Authorization':Bearer ${ACTIVE_TOKEN} } });
+const getUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
+const res = await fetch(getUrl, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
 const fileData = await res.json();
 const doc = new DOMParser().parseFromString(b64_to_utf8(fileData.content), 'text/html');
 doc.querySelectorAll('article')[index].remove();
 
 await fetch(getUrl, {
 method: 'PUT',
-headers: { 'Authorization': Bearer ${ACTIVE_TOKEN}, 'Content-Type': 'application/json' },
+headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}`, 'Content-Type': 'application/json' },
 body: JSON.stringify({ message: 'Delete article', content: utf8_to_b64('<!DOCTYPE html>\n' + doc.documentElement.outerHTML), sha: fileData.sha })
 });
 loadArticles();
