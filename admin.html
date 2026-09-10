@@ -700,9 +700,27 @@ seenSlugs.add(slug);
 const summary = art.querySelector('p') ? art.querySelector('p').innerText : '';
 const keywords = art.getAttribute('data-keywords') || '';
 const category = art.getAttribute('data-category') || '';
-// استخراج نص المقال الكامل بشكل صحيح من عنصر .article-content-body
-const contentEl = art.querySelector('.article-content-body');
-const content = contentEl ? contentEl.innerText.trim() : '';
+
+
+// استخراج دقيق ومتين لنص المقال (سواء بالنسخة القديمة أو الجديدة)
+let content = '';
+const contentBodyEl = art.querySelector('.article-content-body');
+if (contentBodyEl) {
+content = contentBodyEl.innerText.trim();
+} else {
+const expandedEl = art.querySelector('.article-expanded');
+if (expandedEl) {
+const clone = expandedEl.cloneNode(true);
+const footer = clone.querySelector('.legal-footer-box');
+if (footer) footer.remove();
+content = clone.innerText.trim();
+} else {
+const paragraphs = art.querySelectorAll('p');
+if (paragraphs.length > 1) {
+content = paragraphs[1].innerText.trim();
+}
+}
+}
 
 const changelog = art.getAttribute('data-changelog') || (lang==='en' ? 'No modifications yet' : 'لا توجد تعديلات سابقة حتى الآن');
 
@@ -762,8 +780,8 @@ document.getElementById('title').value = art.title;
 document.getElementById('summary').value = art.summary;
 document.getElementById('articleSlug').value = art.slug;
 document.getElementById('keywords').value = art.keywords;
-document.getElementById('content').value = art.content; // تم ضبطها لتسترجع النص بالكامل
-document.getElementById('categorySelect').value = art.category; // ضبط التصنيف القديم تلقائياً
+document.getElementById('content').value = art.content; // استرجاع النص كاملاً دون أن يترك فارغاً
+document.getElementById('categorySelect').value = art.category; // ضبط التخصص القديم تلقائياً
 document.getElementById('editBanner').style.display = 'flex';
 document.getElementById('editBannerText').innerText = `✏️ Edit: "${art.title}" (سيتم توثيق التعديل في السجل)`;
 document.getElementById('submitBtn').innerText = document.documentElement.lang==='en' ? 'Save Changes 💾' : 'حفظ التعديلات 💾';
