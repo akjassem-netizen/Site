@@ -236,6 +236,7 @@ font-family: inherit;
 .btn-edit { background-color: #3182ce; color: #ffffff; }
 .btn-view { background-color: #38a169; color: #ffffff; text-decoration: none; }
 .btn-delete { background-color: #e53e3e; color: #ffffff; }
+.btn-logs { background-color: #d69e2e; color: #ffffff; }
 </style>
 </head>
 <body>
@@ -552,11 +553,11 @@ const ctaCode = document.getElementById('ctaCustomCode').value.trim();
 const content = document.getElementById('content').value.trim();
 const publishAtIso = document.getElementById('scheduleMode').value === 'schedule' ? new Date(document.getElementById('publishTimestamp').value).toISOString() : new Date().toISOString();
 const displayDate = new Date().toLocaleDateString(isEn ? 'en-GB' : 'ar-IQ', { year: 'numeric', month: 'long', day: 'numeric' });
-const editTimestamp = EDITING_ARTICLE_INDEX !== null ? ` | (سجل التعديلات: تم تحديث المحتوى والعنوان في ${new Date().toLocaleDateString('ar-IQ')})` : '';
+const timestampNow = new Date().toLocaleString('ar-IQ');
 
 const legalFooterHtml = `<div class="legal-footer-box" style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #edf2f7; font-size: 11.5px; color: #718096; line-height: 1.7;">${ctaCode ? '<div style="margin-bottom: 15px;">' + ctaCode + '</div>' : ''}
 <p class="notranslate" translate="no" style="margin-bottom: 4px; font-weight: 700; color: #4a5568;">© ${isEn ? 'All rights reserved to Law Office of Ali Kadhem Hashimi (AKH Law Office)' : 'جميع الحقوق محفوظة لمكتب المحامي علي كاظم الهاشمي (AKH Law Office)'}.</p>
-<p style="margin: 0;">${isEn ? 'Disclaimer: Published legal materials are for general awareness.' : 'إخلاء مسؤولية وحجية النص: المواد والتحليلات القانونية المنشورة مُعدّة لأغراض التوعية العامة.'}${editTimestamp}</p>
+<p style="margin: 0;">${isEn ? 'Disclaimer: Published legal materials are for general awareness.' : 'إخلاء مسؤولية وحجية النص: المواد والتحليلات القانونية المنشورة مُعدّة لأغراض التوعية العامة.'}</p>
 </div>`;
 
 const btn = document.getElementById('submitBtn');
@@ -570,7 +571,20 @@ if (!res.ok) throw new Error('تعذر جلب ملف insights/index.html من ا
 const fileData = await res.json();
 let html = b64_to_utf8(fileData.content);
 
-const articleHtml = `<article class="legal-card" data-category="${category}" data-slug="${slug}" data-keywords="${keywords}" data-publish-at="${publishAtIso}" style="border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; margin-bottom: 24px; text-align: ${isEn ? 'left' : 'right'}; direction: ${isEn ? 'ltr' : 'rtl'}; background: #ffffff;">
+// حفظ سجل التعديلات ضمن خصائص الـ article ليبقى محفوظاً بالسيرفر
+let existingLogs = '';
+if (EDITING_ARTICLE_INDEX !== null) {
+const parserTemp = new DOMParser();
+const docTemp = parserTemp.parseFromString(html, 'text/html');
+const artsTemp = docTemp.querySelectorAll('article');
+if(artsTemp[EDITING_ARTICLE_INDEX]) {
+existingLogs = artsTemp[EDITING_ARTICLE_INDEX].getAttribute('data-changelog') || '';
+}
+}
+const newLogEntry = `تم التعديل في: ${timestampNow}`;
+const finalLogs = existingLogs ? `${existingLogs} | ${newLogEntry}` : newLogEntry;
+
+const articleHtml = `<article class="legal-card" data-category="${category}" data-slug="${slug}" data-keywords="${keywords}" data-publish-at="${publishAtIso}" data-changelog="${finalLogs}" style="border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; margin-bottom: 24px; text-align: ${isEn ? 'left' : 'right'}; direction: ${isEn ? 'ltr' : 'rtl'}; background: #ffffff;">
 <div style="font-size: 13px; color: #d32f2f; font-weight: 700; margin-bottom: 8px;">${category} • ${displayDate}</div>
 <h2 style="font-size: 19px; font-weight: 800; color: #0b1a30; margin-bottom: 12px;">${title}</h2>
 <p style="font-size: 15px; color: #4a5568; line-height: 1.8; margin-bottom: 12px;">${summary}</p>
@@ -598,11 +612,11 @@ updatedHtml = updatedHtml.replace(`id="${targetFeed}">`, `id="${targetFeed}">\n`
 const putRes = await fetch(getUrl.split('?')[0], {
 method: 'PUT',
 headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}`, 'Content-Type': 'application/json' },
-body: JSON.stringify({ message: EDITING_ARTICLE_INDEX !== null ? `Update article with change log: ${title}` : `Publish: ${title}`, content: utf8_to_b64(updatedHtml), sha: fileData.sha, branch: BRANCH })
+body: JSON.stringify({ message: EDITING_ARTICLE_INDEX !== null ? `Update article: ${title}` : `Publish: ${title}`, content: utf8_to_b64(updatedHtml), sha: fileData.sha, branch: BRANCH })
 });
 
 if (!putRes.ok) throw new Error('فشل حفظ التحديثات في GitHub.');
-showAlert(isEn ? 'Published successfully!' : (EDITING_ARTICLE_INDEX !== null ? 'تم تحديث المقال بنجاح وتسجيل التعديلات في الأرشيف!' : 'تم النشر بنجاح!'), true);
+showAlert(isEn ? 'Published successfully!' : (EDITING_ARTICLE_INDEX !== null ? 'تم تحديث المقال بنجاح وتسجيله في سجل التعديلات!' : 'تم النشر بنجاح!'), true);
 cancelEdit();
 loadArticles();
 } catch (err) {
@@ -636,14 +650,22 @@ return;
 }
 container.innerHTML = '';
 
+// منع تكرار العرض بأخذ المقالات الفريدة بحسب الـ slug
+const seenSlugs = new Set();
+
 for (let index = 0; index < articles.length; index++) {
 const art = articles[index];
 const title = art.querySelector('h2') ? art.querySelector('h2').innerText : 'Legal Article';
 const slug = art.getAttribute('data-slug') || ('article-' + (index + 1));
+
+if (seenSlugs.has(slug)) continue;
+seenSlugs.add(slug);
+
 const summary = art.querySelector('p') ? art.querySelector('p').innerText : '';
 const keywords = art.getAttribute('data-keywords') || '';
 const category = art.getAttribute('data-category') || '';
 const content = art.querySelector('.article-content-body') ? art.querySelector('.article-content-body').innerHTML.trim() : '';
+const changelog = art.getAttribute('data-changelog') || (lang==='en' ? 'No modifications yet' : 'لا توجد تعديلات سابقة');
 
 let views = 0;
 try {
@@ -652,16 +674,21 @@ const vData = await vRes.json();
 if (vData && typeof vData.value === 'number') { views = vData.value; }
 } catch(err) { views = 0; }
 
-LOADED_ARTICLES_CACHE.push({ index, title, summary, slug, keywords, content, category, views });
+LOADED_ARTICLES_CACHE.push({ index, title, summary, slug, keywords, content, category, views, changelog });
 
 const item = document.createElement('div');
 item.className = 'article-item';
-item.innerHTML = `<div class="article-info"><div class="item-title">${title}</div><div class="item-meta"><span>Slug: ?p=${slug}</span><span class="views-badge">👁️ Views: ${views}</span></div></div><div class="item-actions"><a class="btn-action btn-view" href="https://akjassem.com/insights/?p=${slug}" target="_blank">${lang==='en' ? 'Preview 👁️' : 'معاينة بالموقع 👁️'}</a><button class="btn-action btn-edit" onclick="verifyAndEdit(${index})">${lang==='en' ? 'Edit ✏️' : 'تعديل ✏️'}</button><button class="btn-action btn-delete" onclick="verifyAndDelete(${index})">${lang==='en' ? 'Delete 🗑️' : 'حذف 🗑️'}</button></div>`;
+item.innerHTML = `<div class="article-info"><div class="item-title">${title}</div><div class="item-meta"><span>Slug: ?p=${slug}</span><span class="views-badge">👁️ Views: ${views}</span></div></div><div class="item-actions"><a class="btn-action btn-view" href="https://akjassem.com/insights/?p=${slug}" target="_blank">${lang==='en' ? 'Preview 👁️' : 'معاينة بالموقع 👁️'}</a><button class="btn-action btn-edit" onclick="verifyAndEdit(${index})">${lang==='en' ? 'Edit ✏️' : 'تعديل ✏️'}</button><button class="btn-action btn-logs" onclick="showChangelog('${changelog.replace(/'/g, "\\'")}')">${lang==='en' ? 'Logs 🕒' : 'سجل التعديلات 🕒'}</button><button class="btn-action btn-delete" onclick="verifyAndDelete(${index})">${lang==='en' ? 'Delete 🗑️' : 'حذف 🗑️'}</button></div>`;
 container.appendChild(item);
 }
 } catch (e) { 
 container.innerHTML = `<p style="font-size: 13px; color: #e53e3e; text-align: center;">Error: ${e.message}</p>`; 
 }
+}
+
+// عرض سجل التعديلات بنافذة منبثقة
+function showChangelog(logText) {
+alert('سجل التعديلات والأرشيف لهذا المقال:\n\n' + logText);
 }
 
 // التحقق من رمز الـ PIN قبل السماح بالتعديل
@@ -687,7 +714,7 @@ document.getElementById('articleSlug').value = art.slug;
 document.getElementById('keywords').value = art.keywords;
 document.getElementById('content').value = art.content;
 document.getElementById('editBanner').style.display = 'flex';
-document.getElementById('editBannerText').innerText = `✏️ Edit: "${art.title}" (سجل التعديلات سيسجل التحديث تلقائياً)`;
+document.getElementById('editBannerText').innerText = `✏️ Edit: "${art.title}" (سيتم توثيق التعديل في السجل)`;
 document.getElementById('submitBtn').innerText = document.documentElement.lang==='en' ? 'Save Changes 💾' : 'حفظ التعديلات 💾';
 window.scrollTo({ top: 120, behavior: 'smooth' });
 }
