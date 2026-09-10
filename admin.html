@@ -184,14 +184,14 @@ textarea { resize: vertical; min-height: 160px; line-height: 1.7; }
 <div id="trashModal">
 <div class="modal-content">
 <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px; margin-bottom: 15px;">
-<h3 style="margin:0;">🗑️ سلة المهملات والمقالات المحذوفة</h3>
+<h3 style="margin:0;">🗑️ سلة المهملات (تُحذف تلقائياً بعد 30 يوماً)</h3>
 <button onclick="closeTrashModal()" style="background:#e53e3e; color:#fff; border:none; padding:4px 10px; border-radius:4px; cursor:pointer;">إغلاق ✕</button>
 </div>
 <div id="trashModalBody">
-<p style="font-size: 13px; color: #718096; text-align: center;">لا توجد مقالات محذوفة حالياً.</p>
+<p style="font-size: 13px; color: #718096; text-align: center;">سلة المهملات فارغة تماماً.</p>
 </div>
 <div style="margin-top: 15px; text-align: center;">
-<button onclick="emptyTrash()" style="background: #e53e3e; color: white; border: none; padding: 8px 16px; border-radius: 6px; font-weight: 700; cursor: pointer;">تفريغ سلة المهملات نهائياً ⚠️</button>
+<button onclick="emptyTrashWithConfirmation()" style="background: #e53e3e; color: white; border: none; padding: 8px 16px; border-radius: 6px; font-weight: 700; cursor: pointer;">تفريغ سلة المهملات بالكامل نهائياً ⚠️</button>
 </div>
 </div>
 </div>
@@ -337,7 +337,7 @@ const displayDate = new Date().toLocaleDateString(isEn ? 'en-GB' : 'ar-IQ', { ye
 const nowObj = new Date();
 const logEntry = `التاريخ: ${nowObj.toLocaleDateString('ar-IQ')} | الوقت: ${nowObj.toLocaleTimeString('ar-IQ')} | الإجراء: ${EDITING_SLUG ? 'تعديل وتحديث' : 'نشر جديد'}`;
 
-// أزرار المشاركة الحديثة المتكاملة بنهاية كل مقال (نسخ الرابط، واتساب، لينكدإن، إكس)
+// شريط مشاركة المقال الفرعي الحديث
 const shareBarHtml = `<div class="share-bar" style="margin-top: 25px; padding-top: 15px; border-top: 1px dashed #cbd5e0; display: flex; align-items: center; flex-wrap: wrap; gap: 8px;">
 <span class="share-label" style="font-size: 12px; font-weight: 700; color: #4a5568; margin-left: 6px;">مشاركة الرابط المباشر:</span>
 <button class="btn-share btn-share-copy" onclick="navigator.clipboard.writeText('https://akjassem.com/insights/?p=${slug}'); alert('تم نسخ رابط المقال مباشرة 📋');" style="border: none; padding: 6px 12px; border-radius: 6px; font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer; background-color: #edf2f7; color: #2d3748;">📋 نسخ الرابط</button>
@@ -512,10 +512,19 @@ document.getElementById('logModal').style.display = 'flex';
 }
 function closeLogModal() { document.getElementById('logModal').style.display = 'none'; }
 
-// نظام سلة المهملات المطور (مثل ويندوز)
+// سلة المهملات مع نظام الاحتفاظ لمدة 30 يوماً والتنظيف التلقائي
 function getTrash() {
-return JSON.parse(localStorage.getItem('akh_trash_bin') || '[]');
+let trash = JSON.parse(localStorage.getItem('akh_trash_bin') || '[]');
+const thirtyDaysMs = 30 * 24 * 60 * 60 * 1000;
+const now = Date.now();
+// تصفية المحذوفات الأقدم من 30 يوماً تلقائياً
+const filtered = trash.filter(item => (now - (item.timestamp || now)) < thirtyDaysMs);
+if (filtered.length !== trash.length) {
+localStorage.setItem('akh_trash_bin', JSON.stringify(filtered));
 }
+return filtered;
+}
+
 function saveTrash(trash) {
 localStorage.setItem('akh_trash_bin', JSON.stringify(trash));
 }
@@ -532,9 +541,8 @@ const doc = new DOMParser().parseFromString(b64_to_utf8(fileData.content), 'text
 const art = doc.querySelector(`article[data-slug="${slug}"]`);
 if (!art) throw new Error('المقال غير موجود.');
 
-// حفظ نسخة في سلة المهملات المحلية
 const trash = getTrash();
-trash.push({ slug: slug, html: art.outerHTML, deletedAt: new Date().toLocaleString('ar-IQ') });
+trash.push({ slug: slug, html: art.outerHTML, deletedAt: new Date().toLocaleString('ar-IQ'), timestamp: Date.now() });
 saveTrash(trash);
 
 art.remove();
@@ -553,7 +561,7 @@ function openTrashModal() {
 const body = document.getElementById('trashModalBody');
 const trash = getTrash();
 if (trash.length === 0) {
-body.innerHTML = '<p style="font-size: 13px; color: #718096; text-align: center;">سلة المهملات فارغة تماماً.</p>';
+body.innerHTML = '<p style="font-size: 13px; color: #718096; text-align: center;">سلة المهملات فارغة تماماً أو تم مسح المقالات الأقدم من 30 يوماً.</p>';
 } else {
 body.innerHTML = '';
 trash.forEach((item, idx) => {
@@ -603,11 +611,16 @@ loadArticles();
 } catch(e) { alert(e.message); }
 }
 
-function emptyTrash() {
-if (!confirm('هل أنت متأكد من تفريغ سلة المهملات نهائياً؟')) return;
+// تأكيد مزدوج وحماية لتفريغ السلة بالكامل
+function emptyTrashWithConfirmation() {
+const confirmCode = prompt('⚠️ تحذير خطير: سيتم تفريغ سلة المهملات نهائياً وحذف المقالات القديمة التي تجاوزت مدة الاسترجاع.\nللتأكيد، اكتب كلمة (حذف) بالصندوق أدناه:');
+if (confirmCode === 'حذف') {
 saveTrash([]);
 closeTrashModal();
 alert('تم تفريغ سلة المهملات بنجاح.');
+} else if (confirmCode !== null) {
+alert('كلمة التأكيد غير صحيحة! تم إلغاء العملية حمايةً للمحتوى.');
+}
 }
 
 async function toggleHide(slug) {
