@@ -147,10 +147,10 @@
     .est { font-size: 10.5px; color: #777; letter-spacing: 2px; margin-top: 3px; direction: ltr; }
     
     .intro-box { background: #ffffff; padding: 16px 20px; border-radius: 10px; border: 1px solid #e2e8f0; color: #4a5568; font-size: 14.5px; line-height: 1.8; margin-bottom: 25px; text-align: justify; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
-    .category-group { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; margin-bottom: 16px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
-    .category-header { padding: 18px 20px; background: #ffffff; display: flex; justify-content: space-between; align-items: center; font-weight: 800; font-size: 16px; color: #0b1a30; border-right: 4px solid #d32f2f; }
-    .badge-count { background: #edf2f7; color: #4a5568; font-size: 12px; font-weight: 700; padding: 3px 9px; border-radius: 20px; margin-left: 8px; }
-    .category-body { padding: 18px 20px; background: #fcfdfe; border-top: 1px solid #edf2f7; }
+    
+    /* حاوية التجميع الإنجليزية الفارغة والجاهزة لاستقبال المقالات */
+    #english-feed { width: 100%; }
+
     .legal-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); position: relative; overflow: hidden; text-align: start; }
     .legal-card::after { content: "AKH LAW OFFICE - ALI KADHEM HASHIMI"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-25deg); font-size: 38px; font-weight: 900; color: rgba(11, 26, 48, 0.035); pointer-events: none; z-index: 0; letter-spacing: 3px; white-space: nowrap; }
     .legal-card > * { position: relative; z-index: 1; }
@@ -215,70 +215,8 @@
       A specialized legal portal dedicated to publishing studies and procedural clarifications across branches of Iraqi law: labor, residency and social security, company formation and registration, trademarks, personal status, and civil/commercial litigation.
     </div>
 
-    <div class="category-group">
-      <div class="category-header">
-        <div style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
-          <span id="catTitle">Labor, Residency & Social Security</span><span class="badge-count">1 Article</span>
-        </div>
-      </div>
-      <div class="category-body">
-        <article class="legal-card" data-slug="labor-social-security-iraq">
-          <div class="article-meta-info">
-            <span id="cardDate" style="color: #d32f2f; font-weight: 700;">Labor, Residency & Social Security • September 5, 2026</span>
-          </div>
-
-          <h2 id="artTitle" style="font-size: 19px; font-weight: 800; color: #0b1a30; margin-bottom: 12px;">Foreign Labor Compliance & Iraqi Social Security Law No. 18 of 2023: A Guide for Companies and Investors</h2>
-          
-          <p id="artDesc" style="font-size: 15px; color: #4a5568; line-height: 1.8; margin-bottom: 12px;">A comprehensive analytical study of Iraqi Labor Law provisions and the Workers' Retirement and Social Security Law, outlining employer and corporate obligations.</p>
-          
-          <div class="article-expanded" style="display: none; border-top: 1px dashed #cbd5e0; padding-top: 16px; margin-top: 12px; font-size: 15px; color: #2d3748; line-height: 1.9;">
-            <div class="article-image-box">
-              <img src="../../og-logo.jpg" alt="Foreign Labor Compliance and Social Security in Iraq - AKH Law Office" loading="lazy">
-            </div>
-
-            <div id="artBody" style="white-space: pre-line;">The business and investment environment in the Republic of Iraq is promising, yet governed by a strict regulatory framework requiring foreign and local companies to thoroughly understand the provisions of Labor Law No. (37) of 2015 and the Workers' Retirement and Social Security Law No. (18) of 2023. This analysis highlights key legal and procedural obligations imposed on employers.
-
-1. Employment Contracts and Legal Drafting:
-Iraqi legislation mandates that employment contracts be executed in writing and in two copies in Arabic (with a foreign translation permitted, provided the Arabic text prevails in case of dispute). Contracts must clearly state the nature of work, remuneration, working hours, and a probationary period not exceeding three months. Drafting contracts in compliance with mandatory legal rules protects entities from fines and labor disputes before labor courts.
-
-2. Social Security Contributions (A Core Obligation):
-The active Social Security Law requires all employers to cover their employees (whether Iraqi or foreign) under social security provisions and remit statutory contributions to the retirement and social security fund. Failure to register or delays in contribution payments subject entities to severe financial penalties and legal prosecution that may impact work licenses and residency renewals.
-
-3. Foreign Labor Recruitment and Work Permits:
-Foreign personnel in companies operating in Iraq are subject to rigorous regulations, including obtaining approval from the Ministry of Labor and Social Affairs, issuing work permits, and official residency visas according to national employment quotas. Employers bear the responsibility for employee insurance and repatriation upon contract termination.
-
-4. Settlement of Labor Disputes:
-In the event of a dispute between employer and employees, recourse to amicable settlement or labor inspection committees is strongly recommended prior to escalating matters before competent labor courts, ensuring business continuity and corporate reputation protection.
-
-Conclusion and Executive Recommendation:
-Given procedural sensitivities and multiple oversight bodies (labor inspectors, social security directorate, and corporate boards), we emphasize the necessity of reviewing and auditing all employment contracts and internal corporate bylaws by specialized legal counsel to prevent unintended legal violations.</div>
-
-            <div style="text-align: center; margin: 25px 0 10px;">
-              <a href="/booking/en/" id="btnAudit" style="display: inline-block; background-color: #0b1a30; color: #ffffff; padding: 13px 25px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 15px; box-shadow: 0 4px 12px rgba(11,26,48,0.25); border: 1.5px solid #d32f2f;">Request Corporate Labor Compliance Audit (AKH Office) →</a>
-            </div>
-
-            <div style="text-align: left; margin-top: 20px;">
-              <button type="button" id="btnBackList" onclick="const card = this.closest('.legal-card'); card.querySelector('.article-expanded').style.display='none'; card.querySelector('[id^=readMoreBtn]').innerText = 'Read More →'; window.scrollTo({top: card.offsetTop - 50, behavior: 'smooth'});" style="background: #edf2f7; border: 1px solid #cbd5e0; color: #2d3748; padding: 8px 16px; border-radius: 6px; font-weight: 700; cursor: pointer; font-family: inherit; font-size: 13px;">← Back to Insights List</button>
-            </div>
-
-            <div style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #edf2f7; font-size: 11.5px; color: #718096; line-height: 1.7;">
-              <p id="copyRight" style="margin-bottom: 4px; font-weight: 700; color: #4a5568;">© All rights reserved to the Law Office of Ali Kadhem Hashimi (AKH Law Office).</p>
-              <p id="disclaimer" style="margin: 0;">Disclaimer and Authority: Published legal materials and analyses are prepared for general awareness purposes and do not constitute binding legal advice. <strong>The Arabic text is the official governing version</strong>.</p>
-            </div>
-          </div>
-
-          <button type="button" id="readMoreBtn" onclick="const b = this.previousElementSibling; const open = b.style.display==='block'; b.style.display = open?'none':'block'; this.innerText = open ? (window.currentLang==='ar'?'قراءة المزيد ←':'Read More →') : (window.currentLang==='ar'?'عرض أقل ↑':'Show Less ↑');" style="background: none; border: 1.5px solid #0b1a30; color: #0b1a30; padding: 8px 18px; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 10px;">Read More →</button>
-
-          <div class="share-bar">
-            <span id="shareLabel" class="share-label">Share Direct Link:</span>
-            <button class="btn-share btn-share-copy" onclick="copyLink()">📋 <span id="copyBtnText">Copy Link</span></button>
-            <a class="btn-share btn-share-wa" href="https://api.whatsapp.com/send?text=https://akjassem.com/insights/en/" target="_blank">🟢 WhatsApp</a>
-            <a class="btn-share btn-share-li" href="https://www.linkedin.com/sharing/share-offsite/?url=https://akjassem.com/insights/en/" target="_blank">💼 LinkedIn</a>
-            <a class="btn-share btn-share-x" href="https://twitter.com/intent/tweet?url=https://akjassem.com/insights/en/" target="_blank">𝕏 Post</a>
-          </div>
-        </article>
-      </div>
-    </div>
+    <!-- منطقة عرض المقالات الإنجليزية (فارغة ونظيفة وجاهزة) -->
+    <div id="english-feed"></div>
 
     <div style="text-align: center; margin-top: 30px; margin-bottom: 20px;">
       <a href="https://akjassem.com/en/" id="backHomeBtn" style="display: inline-block; background-color: #0b1a30; color: #ffffff; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 14px; border: 1.5px solid #d32f2f; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">🏠 Back to Main Home Page ←</a>
@@ -342,18 +280,6 @@ Given procedural sensitivities and multiple oversight bodies (labor inspectors, 
 
       document.getElementById('mainTitle').innerText = t.mainTitle;
       document.getElementById('introText').innerText = t.introText;
-      document.getElementById('catTitle').innerText = t.catTitle;
-      document.getElementById('cardDate').innerText = t.cardDate;
-      document.getElementById('artTitle').innerText = t.artTitle;
-      document.getElementById('artDesc').innerText = t.artDesc;
-      document.getElementById('artBody').innerText = t.artBody;
-      document.getElementById('btnAudit').innerText = t.btnAudit;
-      document.getElementById('btnBackList').innerText = t.btnBackList;
-      document.getElementById('copyRight').innerText = t.copyRight;
-      document.getElementById('disclaimer').innerHTML = t.disclaimer;
-      document.getElementById('readMoreBtn').innerText = t.readMore;
-      document.getElementById('shareLabel').innerText = t.shareLabel;
-      document.getElementById('copyBtnText').innerText = t.copyBtnText;
       document.getElementById('backHomeBtn').innerText = t.backHomeBtn;
 
       document.getElementById('languageSelect').value = lang;
@@ -366,33 +292,6 @@ Given procedural sensitivities and multiple oversight bodies (labor inspectors, 
         home: "Home", menuServices: "Legal Services Directory", menuConsultations: "Legal Consultations", menuInsights: "Iraq Legal Insights", menuAbout: "عربي / Arabic (Insights)", menuContact: "Contact Us",
         mainTitle: "Legal Insights & Analyses",
         introText: "A specialized legal portal dedicated to publishing studies and procedural clarifications across branches of Iraqi law: labor, residency and social security, company formation and registration, trademarks, personal status, and civil/commercial litigation.",
-        catTitle: "Labor, Residency & Social Security",
-        cardDate: "Labor, Residency & Social Security • September 5, 2026",
-        artTitle: "Foreign Labor Compliance & Iraqi Social Security Law No. 18 of 2023: A Guide for Companies and Investors",
-        artDesc: "A comprehensive analytical study of Iraqi Labor Law provisions and the Workers' Retirement and Social Security Law, outlining employer and corporate obligations.",
-        artBody: `The business and investment environment in the Republic of Iraq is promising, yet governed by a strict regulatory framework requiring foreign and local companies to thoroughly understand the provisions of Labor Law No. (37) of 2015 and the Workers' Retirement and Social Security Law No. (18) of 2023. This analysis highlights key legal and procedural obligations imposed on employers.
-
-1. Employment Contracts and Legal Drafting:
-Iraqi legislation mandates that employment contracts be executed in writing and in two copies in Arabic (with a foreign translation permitted, provided the Arabic text prevails in case of dispute). Contracts must clearly state the nature of work, remuneration, working hours, and a probationary period not exceeding three months. Drafting contracts in compliance with mandatory legal rules protects entities from fines and labor disputes before labor courts.
-
-2. Social Security Contributions (A Core Obligation):
-The active Social Security Law requires all employers to cover their employees (whether Iraqi or foreign) under social security provisions and remit statutory contributions to the retirement and social security fund. Failure to register or delays in contribution payments subject entities to severe financial penalties and legal prosecution that may impact work licenses and residency renewals.
-
-3. Foreign Labor Recruitment and Work Permits:
-Foreign personnel in companies operating in Iraq are subject to rigorous regulations, including obtaining approval from the Ministry of Labor and Social Affairs, issuing work permits, and official residency visas according to national employment quotas. Employers bear the responsibility for employee insurance and repatriation upon contract termination.
-
-4. Settlement of Labor Disputes:
-In the event of a dispute between employer and employees, recourse to amicable settlement or labor inspection committees is strongly recommended prior to escalating matters before competent labor courts, ensuring business continuity and corporate reputation protection.
-
-Conclusion and Executive Recommendation:
-Given procedural sensitivities and multiple oversight bodies (labor inspectors, social security directorate, and corporate boards), we emphasize the necessity of reviewing and auditing all employment contracts and internal corporate bylaws by specialized legal counsel to prevent unintended legal violations.`,
-        btnAudit: "Request Corporate Labor Compliance Audit (AKH Office) →",
-        btnBackList: "← Back to Insights List",
-        copyRight: "© All rights reserved to the Law Office of Ali Kadhem Hashimi (AKH Law Office).",
-        disclaimer: "Disclaimer and Authority: Published legal materials and analyses are prepared for general awareness purposes and do not constitute binding legal advice. <strong>The Arabic text is the official governing version</strong>.",
-        readMore: "Read More →",
-        shareLabel: "Share Direct Link:",
-        copyBtnText: "Copy Link",
         backHomeBtn: "🏠 Back to Main Home Page ←"
       },
       tr: {
@@ -401,18 +300,6 @@ Given procedural sensitivities and multiple oversight bodies (labor inspectors, 
         home: "Ana Sayfa", menuServices: "Hizmetler", menuConsultations: "Hukuki Danışmanlık", menuInsights: "İçgörüler", menuAbout: "عربي / Arabic (Insights)", menuContact: "İletişim",
         mainTitle: "Hukuki İçgörüler ve Analizler",
         introText: "Irak hukuku dallarında çalışmalar ve usuli açıklamalar yayınlamaya adanmış özel bir hukuk portalı.",
-        catTitle: "İş, İkamet ve Sosyal Güvenlik",
-        cardDate: "İş, İkamet ve Sosyal Güvenlik • 5 Eylül 2026",
-        artTitle: "Yabancı İşçi Uyumu ve 2018 Tarihli 18 Sayılı Irak Sosyal Güvenlik Kanunu",
-        artDesc: "İşveren ve şirket yükümlülüklerini özetleyen kapsamlı analitik çalışma.",
-        artBody: `Irak Cumhuriyeti'ndeki iş ve yatırım ortamı umut verici olmakla birlikte, yabancı ve yerel şirketlerin İş Kanunu hükümlerini tam olarak anlamalarını gerektiren sıkı bir düzenleyici çerçeveye tabidir...`,
-        btnAudit: "Kurumsal İş Uyumluluğu Denetimi Talep Et →",
-        btnBackList: "← İçgörüler Listesine Dön",
-        copyRight: "© Tüm hakları Av. Ali Kazım Haşimi Hukuk Bürosu'na aittir.",
-        disclaimer: "Yasal Uyarı: Yayınlanan materyaller genel bilgilendirme amaçlıdır. <strong>Arapça metin resmi geçerli versiyondur</strong>.",
-        readMore: "Devamını Oku →",
-        shareLabel: "Bağlantıyı Paylaş:",
-        copyBtnText: "Bağlantıyı Kopyala",
         backHomeBtn: "🏠 Ana Sayfaya Dön ←"
       },
       zh: {
@@ -420,19 +307,7 @@ Given procedural sensitivities and multiple oversight bodies (labor inspectors, 
         metaDesc: "专注于伊拉克法律、劳动法规及公司设立的专业法律洞察。",
         home: "首页", menuServices: "法律服务", menuConsultations: "法律咨询", menuInsights: "法律洞察", menuAbout: "عربي / Arabic (Insights)", menuContact: "联系我们",
         mainTitle: "法律洞察与分析",
-        introText: "致力于发布伊拉克 法律分支研究与 procedural 澄清的专业法律门户。",
-        catTitle: "劳动、居留与社会保障",
-        cardDate: "劳动、居留与社会保障 • 2026年9月5日",
-        artTitle: "外籍劳工合规与伊拉克2023年第18号社会保障法：公司与投资者指南",
-        artDesc: "关于伊拉克劳动法 provisions 的全面分析研究。",
-        artBody: `伊拉克共和国的商业和投资环境充满希望，但受制于严格的监管框架...`,
-        btnAudit: "请求企业劳工合规审计 →",
-        btnBackList: "← 返回洞察列表",
-        copyRight: "© 阿里·卡德姆·哈希米律所版权所有。",
-        disclaimer: "免责声明：发布的法律材料仅供一般参考。<strong>阿拉伯文版本为官方正式版本</strong>。",
-        readMore: "阅读更多 →",
-        shareLabel: "分享直接链接:",
-        copyBtnText: "复制链接",
+        introText: "致力于发布伊拉克法律分支研究与 procedural 澄清的专业法律门户。",
         backHomeBtn: "🏠 返回首页 ←"
       },
       fr: {
@@ -441,18 +316,6 @@ Given procedural sensitivities and multiple oversight bodies (labor inspectors, 
         home: "Accueil", menuServices: "Services", menuConsultations: "Consultations Juridiques", menuInsights: "Aperçus", menuAbout: "عربي / Arabic (Insights)", menuContact: "Contact",
         mainTitle: "Aperçus et Analyses Juridiques",
         introText: "Un portail juridique spécialisé dédié à la publication d'études et de clarifications procédurales.",
-        catTitle: "Travail, Résidence et Sécurité Sociale",
-        cardDate: "Travail, Résidence et Sécurité Sociale • 5 septembre 2026",
-        artTitle: "Conformité de la Main-d'œuvre Étrangère et Loi Irakienne sur la Sécurité Sociale n° 18 de 2023",
-        artDesc: "Étude analytique complète des dispositions du droit du travail irakien.",
-        artBody: `L'environnement des affaires et des investissements en République d'Irak est prometteur...`,
-        btnAudit: "Demander un Audit de Conformité Sociale →",
-        btnBackList: "← Retour à la liste",
-        copyRight: "© Tous droits réservés au Cabinet d'Avocats Ali Kadhem Hashimi.",
-        disclaimer: "Avertissement : Les documents publiés sont à titre informatif. <strong>Le texte arabe fait foi</strong>.",
-        readMore: "Lire la suite →",
-        shareLabel: "Partager le lien :",
-        copyBtnText: "Copier le lien",
         backHomeBtn: "🏠 Retour à l'accueil ←"
       },
       es: {
@@ -461,18 +324,6 @@ Given procedural sensitivities and multiple oversight bodies (labor inspectors, 
         home: "Inicio", menuServices: "Servicios", menuConsultations: "Consultas Legales", menuInsights: "Perspectivas", menuAbout: "Sobre Nosotros (عربي)", menuContact: "Contacto",
         mainTitle: "Perspectivas y Análisis Legales",
         introText: "Un portal legal especializado dedicado a publicar estudios y aclaraciones procedimentales.",
-        catTitle: "Trabajo, Residencia y Seguridad Social",
-        cardDate: "Trabajo, Residencia y Seguridad Social • 5 de septiembre de 2026",
-        artTitle: "Cumplimiento Laboral Extranjero y Ley de Seguridad Social de Irak No. 18 de 2023",
-        artDesc: "Un estudio analítico completo de las disposiciones de la ley laboral iraquí.",
-        artBody: `El entorno empresarial y de inversión en la República de Irak es prometedor...`,
-        btnAudit: "Solicitar Auditoría de Cumplimiento Laboral →",
-        btnBackList: "← Volver a la lista",
-        copyRight: "© Todos los derechos reservados al Bufete de Abogados Ali Kadhem Hashimi.",
-        disclaimer: "Descargo de responsabilidad: Los materiales publicados son informativos. <strong>El texto en árabe es la versión oficial</strong>.",
-        readMore: "Leer más →",
-        shareLabel: "Compartir enlace:",
-        copyBtnText: "Copiar enlace",
         backHomeBtn: "🏠 Volver al inicio ←"
       },
       de: {
@@ -481,18 +332,6 @@ Given procedural sensitivities and multiple oversight bodies (labor inspectors, 
         home: "Startseite", menuServices: "Dienste", menuConsultations: "Rechtliche Beratung", menuInsights: "Einblicke", menuAbout: "Über uns (عربي)", menuContact: "Kontakt",
         mainTitle: "Rechtliche Einblicke & Analysen",
         introText: "Ein spezialisiertes Rechtsportal zur Veröffentlichung von Studien und Analysen.",
-        catTitle: "Arbeit, Aufenthalt & Soziale Sicherheit",
-        cardDate: "Arbeit, Aufenthalt & Soziale Sicherheit • 5. September 2026",
-        artTitle: "Compliance ausländischer Arbeitskräfte & Irakisches Sozialgesetz Nr. 18 von 2023",
-        artDesc: "Eine umfassende analytische Studie der irakischen Arbeitsgesetze.",
-        artBody: `Das Geschäfts- und Investitionsumfeld in der Republik Irak ist vielversprechend...`,
-        btnAudit: "Audit zur Arbeitsrecht-Compliance anfordern →",
-        btnBackList: "← Zurück zur Liste",
-        copyRight: "© Alle Rechte vorbehalten für die Kanzlei Ali Kadhem Hashimi.",
-        disclaimer: "Haftungsausschluss: Veröffentlichte Materialien dienen allgemeinen Informationszwecken. <strong>Der arabische Text ist die maßgebliche Version</strong>.",
-        readMore: "Mehr lesen →",
-        shareLabel: "Direktlink teilen:",
-        copyBtnText: "Link kopieren",
         backHomeBtn: "🏠 Zurück zur Startseite ←"
       },
       ku: {
@@ -501,18 +340,6 @@ Given procedural sensitivities and multiple oversight bodies (labor inspectors, 
         home: "سەرەکی", menuServices: "خزمەتگوزارییەکان", menuConsultations: "ڕاوێژی یاسایی", menuInsights: "تێڕوانینەکان", menuAbout: "دەرباره‌ی ئێمە (عربي)", menuContact: "پەیوەندی",
         mainTitle: "تێڕوانین و شیکارییەکانی یاسایی",
         introText: "دەروازەیەکی یاسایی تایبەتمەند کە تەرخان کراوە بۆ بڵاوکردنەوەی لێکۆڵینەوەکان.",
-        catTitle: "کار، نیشتەجێبوون و دڵنیایی کۆمەڵایەتی",
-        cardDate: "کار، نیشتەجێبوون و دڵنیایی کۆمەڵایەتی • 5ی ئەیلوولی 2026",
-        artTitle: "پاپەندبوونی کارمەندانی بیانی و یاسای دڵنیایی کۆمەڵایەتی عێراقی ژمارە 18 ساڵی 2023",
-        artDesc: "لێکۆڵینەوەیەکی شیکاری گشتگیر دەربارەی بڕگەکانی یاسای کار.",
-        artBody: `ژینگەی کار و وەبەرهێران لە كۆماری عێراقدا بەهێزە...`,
-        btnAudit: "داواکردنی وردبینی پابەندبوونی کارمەندان →",
-        btnBackList: "← گەڕانەوە بۆ لیست",
-        copyRight: "© هەموو مافەکان پارێزراون بۆ نووسینگەی پارێزەر عەلی کازمی هاشمی.",
-        disclaimer: "بەرپرسیارێتی: ماددە یاساییە بڵاوکراوەکان بۆ مەبەستی هۆشیاری گشتییە. <strong>نصە عەرەبییەكە دەقی فەرمییە</strong>.",
-        readMore: "زیاتر بخوێنە ←",
-        shareLabel: "هاوبەشکردنی بەستەر:",
-        copyBtnText: "کۆپیکردنی بەستەر",
         backHomeBtn: "🏠 گەڕانەوە بۆ سەرەکی ←"
       }
     };
