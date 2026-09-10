@@ -3,698 +3,307 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <link rel="alternate" hreflang="ar" href="https://akjassem.com/insights.html?lang=ar">
-  <link rel="alternate" hreflang="en" href="https://akjassem.com/insights.html?lang=en">
-  <link rel="alternate" hreflang="tr" href="https://akjassem.com/insights.html?lang=tr">
-  <link rel="alternate" hreflang="zh" href="https://akjassem.com/insights.html?lang=zh">
-  <link rel="alternate" hreflang="fr" href="https://akjassem.com/insights.html?lang=fr">
-  <link rel="alternate" hreflang="es" href="https://akjassem.com/insights.html?lang=es">
-  <link rel="alternate" hreflang="de" href="https://akjassem.com/insights.html?lang=de">
-  <link rel="alternate" hreflang="ku" href="https://akjassem.com/insights.html?lang=ku">
-  <link rel="alternate" hreflang="x-default" href="https://akjassem.com/insights.html">
-
-  <title id="pageMetaTitle">الآراء والتحليلات القانونية | Law Office Of Ali Kadhem Hashimi</title>
-  <meta name="description" id="metaDesc" content="نافذة قانونية تنفيذية متخصصة بنشر التحليلات الإجرائية في فروع القانون العراقي وتأسيس الشركات.">
-  <meta name="keywords" id="metaKeywords" content="محامي في بغداد, قانون العمل العراقي, محامي شركات في العراق, تأسيس شركات بغداد">
+  <title>لوحة التحكم والتحرير - الآراء والرؤى القانونية | AKH Law Office</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    
     body {
       font-family: 'Cairo', system-ui, sans-serif;
-      background-color: #f7f9fc;
-      color: #1a1a1a;
-      padding: 30px 16px;
+      background-color: #f8fafc;
+      color: #0f172a;
+      min-height: 100vh;
       display: flex;
-      justify-content: center;
-      user-select: none !important;
-      -webkit-user-select: none !important;
-      -moz-user-select: none !important;
-      -ms-user-select: none !important;
-      transition: filter 0.3s ease;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 16px;
     }
 
-    body.security-blur { filter: blur(20px); }
-
-    .container { max-width: 800px; width: 100%; }
-    .brand-section {
-      text-align: center;
-      margin-bottom: 25px;
-      border-bottom: 1.5px solid #e2e8f0;
-      padding-bottom: 20px;
+    .container {
+      width: 100%;
+      max-width: 850px;
+      background: #ffffff;
+      padding: 35px 25px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      border-top: 5px solid #c5a059;
+      margin-top: 20px;
     }
+
     .brand-logo {
-      direction: ltr;
-      display: inline-block;
       text-align: center;
-      margin-bottom: 12px;
-      text-decoration: none;
-    }
-    .logo-text {
-      font-size: 46px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      color: #0b1a30;
-      line-height: 1;
-    }
-    .logo-text span { color: #d32f2f; }
-    .sub-brand {
-      font-size: 13px;
-      font-weight: 700;
-      color: #111;
-      letter-spacing: 3px;
-      margin-top: 6px;
-      direction: ltr;
-    }
-    .sub-brand span { color: #d32f2f; margin-right: 4px; font-weight: 800; }
-    .est {
-      font-size: 10.5px;
-      color: #777;
-      letter-spacing: 2px;
-      margin-top: 3px;
-      direction: ltr;
-    }
-    .page-title h1 {
-      font-size: 24px;
-      font-weight: 800;
-      color: #1a202c;
-      margin-top: 10px;
-    }
-    .page-title h2 {
-      font-size: 15px;
-      font-weight: 700;
-      color: #718096;
-      direction: ltr;
-      margin-top: 2px;
-    }
-
-    .toolbar-box {
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
-      padding: 12px 18px;
-      margin-bottom: 22px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-    }
-    .lang-selector-wrapper {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      width: 100%;
-      justify-content: space-between;
-    }
-    .lang-select {
-      padding: 9px 15px;
-      border-radius: 8px;
-      border: 1.5px solid #0b1a30;
-      background: #ffffff;
-      color: #0b1a30;
-      font-weight: 700;
-      font-size: 14px;
-      font-family: inherit;
-      cursor: pointer;
-      outline: none;
-      width: 100%;
-      max-width: 300px;
-    }
-
-    .intro-box {
-      background: #ffffff;
-      padding: 16px 20px;
-      border-radius: 10px;
-      border: 1px solid #e2e8f0;
-      color: #4a5568;
-      font-size: 14.5px;
-      line-height: 1.8;
       margin-bottom: 25px;
-      text-align: justify;
+      direction: ltr;
     }
-
-    .category-group {
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
-      margin-bottom: 16px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-    }
-    .category-header {
-      padding: 18px 20px;
-      background: #ffffff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: 800;
-      font-size: 16px;
-      color: #0b1a30;
-      border-left: 4px solid #d32f2f;
-    }
-    .badge-count {
-      background: #edf2f7;
-      color: #4a5568;
-      font-size: 12px;
-      font-weight: 700;
-      padding: 3px 9px;
-      border-radius: 20px;
-      margin-right: 8px;
-    }
-    .category-body {
-      padding: 18px 20px;
-      background: #fcfdfe;
-      border-top: 1px solid #edf2f7;
-    }
-
-    .legal-card {
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
-      padding: 22px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-      position: relative;
-      overflow: hidden;
-    }
-    .legal-card::after {
-      content: "AKH LAW OFFICE - ALI KADHEM HASHIMI";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) rotate(-25deg);
+    .brand-logo .akh {
       font-size: 38px;
       font-weight: 900;
-      color: rgba(11, 26, 48, 0.035);
-      pointer-events: none;
-      z-index: 0;
-      letter-spacing: 3px;
-      white-space: nowrap;
+      color: #0f172a;
+      letter-spacing: 4px;
+      line-height: 1;
     }
-    .legal-card > * { position: relative; z-index: 1; }
-    .legal-card.highlighted {
-      border: 2px solid #0b1a30;
-      box-shadow: 0 0 15px rgba(49,130,206,0.2);
+    .brand-logo .akh .red-k { color: #dc2626; }
+    .brand-logo .sub-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #0f172a;
+      letter-spacing: 3px;
+      margin-top: 6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .brand-logo .sub-title .slash { color: #dc2626; font-weight: 900; font-size: 15px; }
+
+    .page-title {
+      text-align: center;
+      font-size: 20px;
+      font-weight: 900;
+      color: #0f172a;
+      margin-bottom: 25px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #f1f5f9;
     }
 
-    .article-meta-info {
+    /* نماذج الإدخال */
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 6px;
+    }
+    .form-input, .form-textarea, .form-select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 10px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 14px;
+      color: #0f172a;
+      outline: none;
+      transition: border-color 0.3s;
+      background: #f8fafc;
+    }
+    .form-input:focus, .form-textarea:focus, .form-select:focus {
+      border-color: #c5a059;
+      background: #ffffff;
+    }
+    .form-textarea {
+      resize: vertical;
+      min-height: 130px;
+    }
+
+    .btn-submit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #0f172a;
+      color: white;
+      padding: 14px 28px;
+      border-radius: 10px;
+      border: none;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      width: 100%;
+      box-shadow: 0 4px 15px rgba(15, 23, 42, 0.15);
+      transition: background 0.3s;
+      font-family: 'Cairo', sans-serif;
+    }
+    .btn-submit:hover { background: #c5a059; color: #0f172a; }
+
+    /* قائمة المقالات المنشورة */
+    .insights-manage-section {
+      margin-top: 40px;
+      border-top: 2px dashed #e2e8f0;
+      padding-top: 25px;
+    }
+    .section-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 15px;
+    }
+    .insight-item-admin {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 12px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      font-size: 13px;
-      color: #718096;
-      margin-bottom: 8px;
+      gap: 15px;
     }
-
-    .share-bar {
-      margin-top: 20px;
-      padding-top: 15px;
-      border-top: 1px dashed #cbd5e0;
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 8px;
+    .insight-info h4 {
+      font-size: 15px;
+      color: #0f172a;
+      margin-bottom: 4px;
     }
-    .share-label {
+    .insight-info span {
       font-size: 12px;
-      font-weight: 700;
-      color: #4a5568;
-      margin-left: 6px;
+      color: #64748b;
     }
-    .btn-share {
+    .btn-delete {
+      background: #ef4444;
+      color: white;
       border: none;
-      padding: 6px 12px;
-      border-radius: 6px;
-      font-family: inherit;
-      font-size: 12px;
-      font-weight: 700;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      text-decoration: none;
-      transition: opacity 0.2s;
-    }
-    .btn-share:hover { opacity: 0.85; }
-    .btn-share-copy { background-color: #edf2f7; color: #2d3748; }
-    .btn-share-wa { background-color: #25d366; color: #ffffff; }
-    .btn-share-li { background-color: #0a66c2; color: #ffffff; }
-    .btn-share-x { background-color: #000000; color: #ffffff; }
-
-    #securityWarning {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #d32f2f;
-      color: #ffffff;
-      padding: 10px 20px;
+      padding: 8px 14px;
       border-radius: 8px;
       font-size: 13px;
       font-weight: 700;
-      display: none;
-      z-index: 99999;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-family: 'Cairo', sans-serif;
     }
+    .btn-delete:hover { background: #dc2626; }
 
-    #copyToast {
-      position: fixed;
-      bottom: 25px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #0b1a30;
-      color: #ffffff;
-      padding: 10px 22px;
-      border-radius: 30px;
-      font-size: 13px;
-      font-weight: 700;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-      display: none;
-      z-index: 99999;
+    .nav-links {
+      text-align: center;
+      margin-top: 20px;
     }
+    .nav-links a {
+      color: #64748b;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 650;
+    }
+    .nav-links a:hover { color: #0f172a; text-decoration: underline; }
   </style>
 </head>
 <body>
 
-  <div id="securityWarning">⚠️ تنبيه أمني: المحتوى القانوني محمي بحقوق الملكية الفكرية لمكتب AKH.</div>
-  <div id="copyToast">تم نسخ الرابط المباشر بنجاح 📋</div>
-
   <div class="container">
-    <div class="brand-section">
-      <a href="insights.html" class="brand-logo" style="text-decoration:none;">
-        <div class="logo-text">A<span>K</span>H</div>
-        <div class="sub-brand"><span>/</span> LAW OFFICE</div>
-        <div class="est">EST. 2014</div>
-      </a>
-      <div class="page-title">
-        <h1 id="mainTitle">الآراء والتحليلات القانونية</h1>
-        <h2>Law Office Of Ali Kadhem Hashimi</h2>
-      </div>
+    <div class="brand-logo">
+      <div class="akh">A<span class="red-k">K</span>H</div>
+      <div class="sub-title"><span class="slash">/</span><span>ADMIN DASHBOARD</span></div>
     </div>
+    
+    <div class="page-title">إدارة ونشر الآراء والرؤى القانونية (Insights)</div>
+    
+    <form id="insightForm" onsubmit="saveInsight(event)">
+      <div class="form-group">
+        <label class="form-label">عنوان الرأي أو المقال القانوني</label>
+        <input type="text" id="insightTitle" class="form-input" placeholder="مثال: الآثار القانونية لتأسيس الشركات الأجنبية في العراق..." required>
+      </div>
 
-    <div class="toolbar-box">
-      <div class="lang-selector-wrapper">
-        <span style="font-weight: 700; font-size: 14px; color: #0b1a30;">🌐 اختر اللغة / Select Language:</span>
-        <select id="langSelect" class="lang-select" onchange="changeLanguage(this.value)">
-          <option value="ar">العربية (Arabic)</option>
-          <option value="en">English</option>
-          <option value="tr">Türkçe</option>
-          <option value="zh">中文 (Chinese)</option>
-          <option value="fr">Français</option>
-          <option value="es">Español</option>
-          <option value="de">Deutsch</option>
-          <option value="ku">کوردی (Kurdish)</option>
+      <div class="form-group">
+        <label class="form-label">تصنيف المقال / القسم</label>
+        <select id="insightCategory" class="form-select">
+          <option value="تأسيس الشركات">تأسيس الشركات والاستثمار</option>
+          <option value="القضاء والتقاضي">التمثيل القضائي والتقاضي</option>
+          <option value="العقود والالتزامات">العقود والالتزامات التجارية</option>
+          <option value="الضرائب والمالية">الاستشارات الضريبية والمالية</option>
+          <option value="الملكية الفكرية">العلامات التجارية والملكية الفكرية</option>
+          <option value="الأحوال الشخصية">الأحوال الشخصية والأسرية</option>
         </select>
       </div>
-    </div>
 
-    <div class="intro-box" id="introText">
-      نافذة متخصصة تُعنى بنشر الدراسات والإيضاحات الإجرائية في فروع القانون العراقي: قانون العمل والإقامة والضمان الاجتماعي، تأسيس وتسجيل الشركات، العلامات التجارية، وقضايا الأحوال الشخصية والدعاوى المدنية والتجارية.
-    </div>
-
-    <div id="arabic-feed">
-      <div class="category-group">
-        <div class="category-header">
-          <div><span id="catName">العمل والإقامة والضمان الاجتماعي</span><span class="badge-count">1 مقال</span></div>
-        </div>
-        <div class="category-body">
-          <article class="legal-card" data-slug="labor-social-security-iraq">
-            <div class="article-meta-info">
-              <span id="artDate" style="color: #d32f2f; font-weight: 700;">العمل والإقامة والضمان الاجتماعي • 5 سبتمبر 2026</span>
-            </div>
-
-            <h2 id="artTitle" style="font-size: 19px; font-weight: 800; color: #0b1a30; margin-bottom: 12px;">امتثال العمالة الأجنبية وقانون الضمان الاجتماعي العراقي رقم 18 لسنة 2023: دليل الشركات والمستثمرين</h2>
-            <p id="artDesc" style="font-size: 15px; color: #4a5568; line-height: 1.8; margin-bottom: 12px;">دراسة تحليلية شاملة لأحكام قانون العمل العراقي وقانون التقاعد والضمان الاجتماعي للعمال، مع بيان التزامات أصحاب العمل والشركات الأجنبية والمحلية.</p>
-            
-            <div class="article-expanded" style="display: none; border-top: 1px dashed #cbd5e0; padding-top: 16px; margin-top: 12px; font-size: 15px; color: #2d3748; line-height: 1.9;">
-              <div id="artBody" style="white-space: pre-line;">تُعد بيئة الأعمال والاستثمار في جمهورية العراق واعدة، إلا أنها محكومة بمنظومة تشريعية صارمة تتطلب من الشركات الأجنبية والمحلية إلماماً تاما بأحكام قانون العمل رقم (37) لسنة 2015 وقانون التقاعد والضمان الاجتماعي للعمال رقم (18) لسنة 2023. يهدف هذا التحليل إلى تسليط الضوء على أبرز الالتزامات القانونية والإجرائية الملقاة على عاتق أصحاب العمل.
-
-1. عقود العمل وصياغتها القانونية:
-يُحتم المشرع العراقي أن يُحرر عقد العمل خطياً وبنسختين باللغة العربية (ويمكن ترجمته للغة أجنبية مع الاعتماد النص العربي عند النزاع). يجب أن يتضمن العقد بوضوح طبيعة العمل، الأجر، ساعات العمل، وفترة الاختبار التي لا يجوز أن تزيد على ثلاثة أشهر. إن صياغة العقود بما يتوافق مع القواعد الآمرة قانوناً تحمي المنشأة من الغرامات والمنازعات العمالية أمام محاكم العمل.
-
-2. اشتراكات الضمان الاجتماعي (التزام جوهري):
-أوجب قانون التقاعد والضمان الاجتماعي النافذ على جميع أصحاب العمل شمول العاملين لديهم (سواء كانوا عراقيين أو أجانب) بأحكام الضمان الاجتماعي ودفع النسب المقررة قانوناً لصندوق التقاعد والضمان. إن التخلف عن التسجيل أو التأخير في سداد الاشتراكات يُعرض المنشأة لعقوبات مالية جسيمة وملاحقات قانونية قد تؤثر على رخصة العمل وتجديد الإقامات.
-
-3. استقدام العمالة الأجنبية وتراخيص العمل:
-تخضع العمالة الأجنبية في الشركات العاملة في العراق لضوابط دقيقة تشمل الحصول على موافقة وزارة العمل والشؤون الاجتماعية، وإصدار رخصة العمل وإجازة الإقامة الرسمية وفق النسب المقررة للتشغيل الوطني. ويتحمل صاحب العمل مسؤولية تأمين العمال وإعادتهم إلى بلدانهم عند انتهاء التعاقد.
-
-4. تسوية النزاعات العمالية:
-في حال حدوث نزاع بين صاحب العمل والعمال، يُفضل دائماً اللجوء إلى التسوية الودية أو لجان تفتيش العمل قبل تصعيد النزاع إلى القضاء العمالي المختص، لضمان استمرارية النشاط التجاري وحماية السمعة المؤسسية للشركة.
-
-خاتمة وتوصية تنفيذية:
-نظراً لدقة الإجراءات وتعدد الجهات الرقابية (مفتشو العمل، دائرة التقاعد والضمان الاجتماعي، ومجلس الإدارة للشركات)، نؤكد على ضرورة مراجعة وتدقيق كافة عقود العمل واللوائح الداخلية للشركات من قبل مستشار قانوني مختص لتجنب أي مخالفات قانونية غير مقصودة.</div>
-
-              <div style="text-align: center; margin: 25px 0 10px;">
-                <a id="btnBooking" href="https://akjassem.com/booking" style="display: inline-block; background-color: #0b1a30; color: #ffffff; padding: 13px 25px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 15px; box-shadow: 0 4px 12px rgba(11,26,48,0.25); border: 1.5px solid #d32f2f;">طلب تدقيق الامتثال العمالي للشركات (مكتب AKH) ←</a>
-              </div>
-
-              <div id="artFooter" style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #edf2f7; font-size: 11.5px; color: #718096; line-height: 1.7;">
-                <p style="margin-bottom: 4px; font-weight: 700; color: #4a5568;">© جميع الحقوق محفوظة لمكتب المحامي علي كاظم الهاشمي (AKH Law Office).</p>
-                <p style="margin: 0;">إخلاء مسؤولية وحجية النص: المواد والتحليلات القانونية المنشورة مُعدّة لأغراض التوعية العامة ولا تُعد استشارة قانونية ملزمة. <strong>يُعد النص العربي هو الأصل المعتمد</strong>.</p>
-              </div>
-            </div>
-
-            <button type="button" id="readMoreBtn" onclick="const b = this.previousElementSibling; const open = b.style.display==='block'; b.style.display = open?'none':'block'; this.innerText = open ? (currentLang==='ar'?'قراءة المزيد ←':'Read More ←') : (currentLang==='ar'?'عرض أقل ↑':'Show Less ↑');" style="background: none; border: 1.5px solid #0b1a30; color: #0b1a30; padding: 8px 18px; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 10px;">قراءة المزيد ←</button>
-
-            <div class="share-bar">
-              <span id="shareLabel" class="share-label">مشاركة الرابط المباشر:</span>
-              <button class="btn-share btn-share-copy" onclick="copyArticleLink('labor-social-security-iraq')">📋 <span id="copyTxt">نسخ الرابط</span></button>
-              <a class="btn-share btn-share-wa" href="https://api.whatsapp.com/send?text=https://akjassem.com/insights.html?p=labor-social-security-iraq" target="_blank">🟢 WhatsApp</a>
-              <a class="btn-share btn-share-li" href="https://www.linkedin.com/sharing/share-offsite/?url=https://akjassem.com/insights.html?p=labor-social-security-iraq" target="_blank">💼 LinkedIn</a>
-              <a class="btn-share btn-share-x" href="https://twitter.com/intent/tweet?url=https://akjassem.com/insights.html?p=labor-social-security-iraq" target="_blank">𝕏 Post</a>
-            </div>
-          </article>
-        </div>
+      <div class="form-group">
+        <label class="form-label">نبذة مختصرة (تظهر في الواجهة الرئيسية)</label>
+        <textarea id="insightSummary" class="form-textarea" style="min-height: 80px;" placeholder="اكتب ملخصاً مركزاً يوضح أهمية الفكرة القانونية..." required></textarea>
       </div>
+
+      <div class="form-group">
+        <label class="form-label">نص المقال أو الرأي القانوني الكامل</label>
+        <textarea id="insightContent" class="form-textarea" placeholder="اكتب التفاصيل القانونية والمادة القانونية والتحليل المهني..." required></textarea>
+      </div>
+
+      <button type="submit" class="btn-submit">
+        <span>🚀 نشر الرأي القانوني فوراً</span>
+      </button>
+    </form>
+
+    <div class="insights-manage-section">
+      <div class="section-title">الأرآء والرؤى المنشورة حالياً</div>
+      <div id="adminInsightsList">
+        </div>
+    </div>
+
+    <div class="nav-links">
+      <a href="insights.html">← الانتقال إلى صفحة الآراء العامة</a> | 
+      <a href="https://akjassem.com">العودة إلى الرئيسية</a>
     </div>
   </div>
 
   <script>
-    let currentLang = 'ar';
-
-    const translations = {
-      ar: {
-        dir: 'rtl',
-        title: 'الآراء والتحليلات القانونية | Law Office Of Ali Kadhem Hashimi',
-        mainTitle: 'الآراء والتحليلات القانونية',
-        keywords: 'محامي في بغداد, قانون العمل العراقي, محامي شركات في العراق, تأسيس شركات بغداد',
-        intro: 'نافذة متخصصة تُعنى بنشر الدراسات والإيضاحات الإجرائية في فروع القانون العراقي: قانون العمل والإقامة والضمان الاجتماعي، تأسيس وتسجيل الشركات، العلامات التجارية، وقضايا الأحوال الشخصية والدعاوى المدنية والتجارية.',
-        catName: 'العمل والإقامة والضمان الاجتماعي',
-        artDate: 'العمل والإقامة والضمان الاجتماعي • 5 سبتمبر 2026',
-        artTitle: 'امتثال العمالة الأجنبية وقانون الضمان الاجتماعي العراقي رقم 18 لسنة 2023: دليل الشركات والمستثمرين',
-        artDesc: 'دراسة تحليلية شاملة لأحكام قانون العمل العراقي وقانون التقاعد والضمان الاجتماعي للعمال، مع بيان التزامات أصحاب العمل والشركات الأجنبية والمحلية.',
-        artBody: `تُعد بيئة الأعمال والاستثمار في جمهورية العراق واعدة، إلا أنها محكومة بمنظومة تشريعية صارمة تتطلب من الشركات الأجنبية والمحلية إلماماً تاما بأحكام قانون العمل رقم (37) لسنة 2015 وقانون التقاعد والضمان الاجتماعي للعمال رقم (18) لسنة 2023. يهدف هذا التحليل إلى تسليط الضوء على أبرز الالتزامات القانونية والإجرائية الملقاة على عاتق أصحاب العمل.
-
-1. عقود العمل وصياغتها القانونية:
-يُحتم المشرع العراقي أن يُحرر عقد العمل خطياً وبنسختين باللغة العربية (ويمكن ترجمته للغة أجنبية مع الاعتماد النص العربي عند النزاع). يجب أن يتضمن العقد بوضوح طبيعة العمل، الأجر، ساعات العمل، وفترة الاختبار التي لا يجوز أن تزيد على ثلاثة أشهر. إن صياغة العقود بما يتوافق مع القواعد الآمرة قانوناً تحمي المنشأة من الغرامات والمنازعات العمالية أمام محاكم العمل.
-
-2. اشتراكات الضمان الاجتماعي (التزام جوهري):
-أوجب قانون التقاعد والضمان الاجتماعي النافذ على جميع أصحاب العمل شمول العاملين لديهم (سواء كانوا عراقيين أو أجانب) بأحكام الضمان الاجتماعي ودفع النسب المقررة قانوناً لصندوق التقاعد والضمان. إن التخلف عن التسجيل أو التأخير في سداد الاشتراكات يُعرض المنشأة لعقوبات مالية جسيمة وملاحقات قانونية قد تؤثر على رخصة العمل وتجديد الإقامات.
-
-3. استقدام العمالة الأجنبية وتراخيص العمل:
-تخضع العمالة الأجنبية في الشركات العاملة في العراق لضوابط دقيقة تشمل الحصول على موافقة وزارة العمل والشؤون الاجتماعية، وإصدار رخصة العمل وإجازة الإقامة الرسمية وفق النسب المقررة للتشغيل الوطني. ويتحمل صاحب العمل مسؤولية تأمين العمال وإعادتهم إلى بلدانهم عند انتهاء التعاقد.
-
-4. تسوية النزاعات العمالية:
-في حال حدوث نزاع بين صاحب العمل والعمال، يُفضل دائماً اللجوء إلى التسوية الودية أو لجان تفتيش العمل قبل تصعيد النزاع إلى القضاء العمالي المختص، لضمان استمرارية النشاط التجاري وحماية السمعة المؤسسية للشركة.
-
-خاتمة وتوصية تنفيذية:
-نظراً لدقة الإجراءات وتعدد الجهات الرقابية (مفتشو العمل، دائرة التقاعد والضمان الاجتماعي، ومجلس الإدارة للشركات)، نؤكد على ضرورة مراجعة وتدقيق كافة عقود العمل واللوائح الداخلية للشركات من قبل مستشار قانوني مختص لتجنب أي مخالفات قانونية غير مقصودة.`,
-        bookingBtn: 'طلب تدقيق الامتثال العمالي للشركات (مكتب AKH) ←',
-        footer: '© جميع الحقوق محفوظة لمكتب المحامي علي كاظم الهاشمي (AKH Law Office). <br>إخلاء مسؤولية وحجية النص: المواد والتحليلات القانونية المنشورة مُعدّة لأغراض التوعية العامة ولا تُعد استشارة قانونية ملزمة. <strong>يُعد النص العربي هو الأصل المعتمد</strong>.',
-        readMore: 'قراءة المزيد ←',
-        shareLabel: 'مشاركة الرابط المباشر:',
-        copyTxt: 'نسخ الرابط'
-      },
-      en: {
-        dir: 'ltr',
-        title: 'Legal Insights & Analysis | Law Office Of Ali Kadhem Hashimi',
-        mainTitle: 'Legal Insights & Analysis',
-        keywords: 'Lawyer in Baghdad, Iraqi Labor Law, Corporate Lawyer Iraq, Baghdad Company Formation',
-        intro: 'A specialized window dedicated to publishing procedural studies and clarifications across branches of Iraqi law: Labor, residency and social security law, corporate formation, trademarks, personal status cases, and civil and commercial litigation.',
-        catName: 'Labor, Residency & Social Security',
-        artDate: 'Labor & Social Security • September 5, 2026',
-        artTitle: 'Foreign Labor Compliance & Iraqi Social Security Law No. 18 of 2023: Corporate & Investor Guide',
-        artDesc: 'A comprehensive analytical study of the provisions of the Iraqi Labor Law and the Workers Retirement and Social Security Law, outlining employer and corporate obligations.',
-        artBody: `The business and investment environment in the Republic of Iraq is promising yet governed by a strict legislative framework requiring foreign and local companies to be fully familiar with Labor Law No. (37) of 2015 and Workers Retirement and Social Security Law No. (18) of 2023. This analysis highlights key legal obligations:
-
-1. Employment Contracts and Legal Drafting:
-Iraqi legislation mandates that employment contracts be in writing and in two copies in Arabic (with foreign language translations permitted, while the Arabic text prevails in disputes). Contracts must clearly state work nature, wages, working hours, and a probationary period not exceeding three months.
-
-2. Social Security Contributions (A Core Obligation):
-The active Social Security Law requires employers to enroll all workers (national and foreign) and pay mandatory contributions. Failure to do so leads to heavy financial penalties and legal liabilities affecting work licenses and residency renewals.
-
-3. Foreign Recruitment & Work Permits:
-Foreign workers are subject to strict controls requiring Ministry of Labor approvals, work permits, and residency visas complying with national employment quotas.
-
-4. Labor Dispute Resolution:
-Amicable settlement and labor inspection committees are advised before escalating disputes to labor courts to maintain business continuity and corporate reputation.
-
-Executive Recommendation:
-Given procedural complexities and multiple regulatory bodies, we emphasize having all employment contracts and corporate bylaws audited by specialized legal counsel.`,
-        bookingBtn: 'Request Corporate Labor Compliance Audit (AKH Law Office) →',
-        footer: '© All rights reserved to Lawyer Ali Kadhem Hashimi Law Office (AKH). <br>Disclaimer: Published legal insights are for general awareness and do not constitute formal legal advice. <strong>The Arabic text remains the authoritative original</strong>.',
-        readMore: 'Read More →',
-        shareLabel: 'Share Direct Link:',
-        copyTxt: 'Copy Link'
-      },
-      tr: {
-        dir: 'ltr',
-        title: 'Hukuki Görüşler ve Analizler | Law Office Of Ali Kazım Haşimi',
-        mainTitle: 'Hukuki Görüşler ve Analizler',
-        keywords: 'Bağdat avukat, Irak iş hukuku, Irak şirketler hukuku, Bağdat şirket kuruluşu',
-        intro: 'Irak hukuku dallarında usul çalışmaları ve açıklamaları yayınlamaya adanmış özel bir pencere: İş hukuku, ikamet ve sosyal güvenlik, şirket kuruluşları ve ticari davalar.',
-        catName: 'İş, İkamet ve Sosyal Güvenlik',
-        artDate: 'İş ve Sosyal Güvenlik • 5 Eylül 2026',
-        artTitle: 'Yabancı İşçi Uyumu ve 2023 Tarihli ve 18 Sayılı Irak Sosyal Güvenlik Kanunu: Şirketler ve Yatırımcılar Rehberi',
-        artDesc: 'Irak İş Kanunu hükümlerinin kapsamlı analitik çalışması ve işveren yükümlülükleri.',
-        artBody: `Irak Cumhuriyeti'ndeki iş ve yatırım ortamı umut vadediyor ancak katı bir yasal çerçeveye tabi bulunuyor.
-
-1. İş Sözleşmeleri ve Hukuki Düzenleme:
-Irak mevzuatı, iş sözleşmelerinin yazılı ve Arapça olarak iki nüsha halinde düzenlenmesini zorunlu kılar.
-
-2. Sosyal Güvenlik Primleri:
-Yürürlükteki Sosyal Güvenlik Kanunu, işverenlerin tüm çalışanlarını kaydetmesini zorunlu kılar.
-
-3. Yabancı İşçi İstihdamı ve Çalışma İzinleri:
-Yabancı işçiler, Çalışma Bakanlığı onayına tabidir.
-
-4. İş Uyuşmazlıklarının Çözümü.`,
-        bookingBtn: 'Kurumsal Uyum Denetimi Talep Et (AKH Bürosu) →',
-        footer: '© Tüm hakları Avukat Ali Kadhem Hashimi Hukuk Bürosu\'na saklıdır.',
-        readMore: 'Devamını Oku →',
-        shareLabel: 'Doğrudan Bağlantıyı Paylaş:',
-        copyTxt: 'Bağlantıyı Kopyala'
-      },
-      zh: {
-        dir: 'ltr',
-        title: '法律见解与分析 | Law Office Of Ali Kadhem Hashimi',
-        mainTitle: '法律见解与分析',
-        keywords: '巴格达律师, 伊拉克劳动法, 伊拉克公司注册, 伊拉克商事律师',
-        intro: '一个专注于发布伊拉克法律各领域（劳工、居留与社会保障、公司注册、商标及民商事诉讼）程序性研究与说明的专业窗口。',
-        catName: '劳工、居留与社会保障',
-        artDate: '劳工与社会保障 • 2026年9月5日',
-        artTitle: '外籍劳工合规与2023年第18号伊拉克社会保障法：企业与投资者指南',
-        artDesc: '对伊拉克劳工法及社会保障法 provisions 的全面分析研究与雇主义务。',
-        artBody: `伊拉克共和国的商业和投资环境充满希望，但受严格的法律框架管辖。
-
-1. 劳动合同及其法律起草：
-伊拉克法律规定劳动合同必须以阿拉伯语书面一式两份签署。
-
-2. 社会保障缴款（核心义务）：
-现行的《社会保障法》要求雇主为所有工人和雇员缴纳社保。
-
-3. 外籍劳务派遣与工作许可：
-外籍员工需获得劳动和社会事务部的批准。
-
-4. 劳动争议解决。`,
-        bookingBtn: '申请企业劳工合规审计 (AKH律所) →',
-        footer: '© 阿里·卡德姆·哈希米律师事务所版权所有。',
-        readMore: '阅读更多 →',
-        shareLabel: '分享直接链接：',
-        copyTxt: '复制链接'
-      },
-      fr: {
-        dir: 'ltr',
-        title: 'Analyses Juridiques | Law Office Of Ali Kadhem Hashimi',
-        mainTitle: 'Analyses et Études Juridiques',
-        keywords: 'Avocat à Bagdad, Droit du travail irakien, Avocat d\'affaires Irak',
-        intro: 'Une fenêtre spécialisée dédiée à la publication d’études et d’éclaircissements procéduraux dans les branches du droit irakien.',
-        catName: 'Travail et Sécurité Sociale',
-        artDate: 'Travail et Sécurité • 5 Septembre 2026',
-        artTitle: 'Conformité de la Main-d’Oeuvre Étrangère et Loi Irakienne de Sécurité Sociale n° 18 de 2023',
-        artDesc: 'Étude analytique complète des dispositions du droit du travail irakien et de la sécurité sociale.',
-        artBody: `L'environnement des affaires et des investissements en République d'Irak est prometteur, régi par un cadre législatif strict.
-
-1. Contrats de travail et rédaction juridique.
-2. Cotisations de sécurité sociale (obligation fondamentale).
-3. Recrutement de main-d'œuvre étrangère et permis de travail.
-4. Règlement des litiges du travail.`,
-        bookingBtn: 'Demander un audit de conformité (Bureau AKH) →',
-        footer: '© Tous droits réservés au Cabinet d’Avocats Ali Kadhem Hashimi.',
-        readMore: 'Lire la suite →',
-        shareLabel: 'Partager le lien :',
-        copyTxt: 'Copier le lien'
-      },
-      es: {
-        dir: 'ltr',
-        title: 'Perspectivas Jurídicas | Law Office Of Ali Kadhem Hashimi',
-        mainTitle: 'Análisis y Estudios Jurídicos',
-        keywords: 'Abogado en Bagdad, Derecho laboral iraquí, Abogado corporativo Irak',
-        intro: 'Ventana especializada dedicada a la publicación de estudios procesales en las ramas del derecho iraquí.',
-        catName: 'Trabajo y Seguridad Social',
-        artDate: 'Trabajo y Seguridad • 5 de Septiembre de 2026',
-        artTitle: 'Cumplimiento Laboral Extranjero y Ley de Seguridad Social de Irak No. 18 de 2023',
-        artDesc: 'Estudio analítico integral de las disposiciones de la ley laboral iraquí y seguridad social.',
-        artBody: `El entorno empresarial e inversión en la República de Irak es prometedor pero riguroso.
-
-1. Contratos de trabajo y redacción jurídica.
-2. Contribuciones a la seguridad social.
-3. Contratación de personal extranjero y permisos.
-4. Resolución de conflictos laborales.`,
-        bookingBtn: 'Solicitar auditoría de cumplimiento (Oficina AKH) →',
-        footer: '© Todos los derechos reservados al Abogado Ali Kadhem Hashimi.',
-        readMore: 'Leer más →',
-        shareLabel: 'Compartir enlace :',
-        copyTxt: 'Copiar enlace'
-      },
-      de: {
-        dir: 'ltr',
-        title: 'Rechtliche Analysen | Law Office Of Ali Kadhem Hashimi',
-        mainTitle: 'Rechtliche Einblicke und Analysen',
-        keywords: 'Anwalt in Bagdad, Irakisches Arbeitsrecht, Unternehmensanwalt Irak',
-        intro: 'Ein spezialisiertes Fenster für verfahrensrechtliche Studien und Erläuterungen im irakischen Recht.',
-        catName: 'Arbeit und Soziale Sicherheit',
-        artDate: 'Arbeit & Soziales • 5. September 2026',
-        artTitle: 'Einhaltung der ausländischen Beschäftigung und irakisches Sozialversicherungsgesetz Nr. 18 von 2023',
-        artDesc: 'Umfassende analytische Studie zu den Bestimmungen des irakischen Arbeitsrechts.',
-        artBody: `Das Geschäfts- und Investitionsumfeld in der Republik Irak ist vielversprechend und unterliegt strengen Vorschriften.
-
-1. Arbeitsverträge und rechtliche Gestaltung.
-2. Sozialversicherungsbeiträge.
-3. Beschäftigung ausländischer Arbeitskräfte.
-4. Beilegung von Arbeitskonflikten.`,
-        bookingBtn: 'Compliance-Audit anfordern (Kanzlei AKH) →',
-        footer: '© Alle Rechte vorbehalten für Rechtsanwalt Ali Kadhem Hashimi.',
-        readMore: 'Weiterlesen →',
-        shareLabel: 'Direktlink teilen:',
-        copyTxt: 'Link kopieren'
-      },
-      ku: {
-        dir: 'rtl',
-        title: 'Şîrove û Lêkolînên Hiqûqî | Law Office Of Ali Kadhem Hashimi',
-        mainTitle: 'Şîrove û Lêkolînên Hiqûqî',
-        keywords: 'Parêzer li Bexdayê, Qanûna Kar a Iraqê, Parêzerê pargîdaniyan li Iraqê',
-        intro: 'Pەncereyek taybetمەند bi weşandina lêkolînên pêvajoyî di şaxên qanûna Iraqê de.',
-        catName: 'Karkerî û Ewlehiya Civakî',
-        artDate: 'Karkerî • 5 Îlon 2026',
-        artTitle: 'Lihevhatina Karkerên Biyanî û Qanûna Ewlehiya Civakî ya Iraqê Hejmara 18 ya sala 2023an',
-        artDesc: 'Lêkolîneke analîtîk a berfireh li ser qanûna kar a Iraqê û erkên kardêr.',
-        artBody: `Jîngeha karsaziyê li Komara Iraqê xwedî çarçoveyek qanûnî ya hişk e.
-
-1. گرێبەستێن کار û nivîsîna wan.
-2. beşdariyên ewlehiya civakî.
-3. anîna karkerên biyanî û destûrên kar.`,
-        bookingBtn: 'Daxwaza Lêkolîna Karkirinê (Ofîsa AKH) ←',
-        footer: '© Hemû maf parastî ne ji bo Buroya Parêzer Ali Kadhem Hashimi.',
-        readMore: 'Zêdetir bixwîne ←',
-        shareLabel: 'Parvekirina lînkê:',
-        copyTxt: 'Lînkê kopî bike'
-      }
-    };
-
-    function changeLanguage(lang) {
-      currentLang = lang;
-      const t = translations[lang] || translations['ar'];
-      const root = document.getElementById('htmlRoot');
-      
-      root.setAttribute('lang', lang);
-      root.setAttribute('dir', t.dir);
-
-      document.getElementById('pageMetaTitle').innerText = t.title;
-      document.getElementById('mainTitle').innerText = t.mainTitle;
-      document.getElementById('introText').innerText = t.intro;
-      document.getElementById('catName').innerText = t.catName;
-      document.getElementById('artDate').innerText = t.artDate;
-      document.getElementById('artTitle').innerText = t.artTitle;
-      document.getElementById('artDesc').innerText = t.artDesc;
-      document.getElementById('artBody').innerText = t.artBody;
-      document.getElementById('btnBooking').innerText = t.bookingBtn;
-      document.getElementById('artFooter').innerHTML = t.footer;
-      document.getElementById('shareLabel').innerText = t.shareLabel;
-      document.getElementById('copyTxt').innerText = t.copyTxt;
-      
-      let metaKw = document.querySelector('meta[name="keywords"]');
-      if (!metaKw) {
-        metaKw = document.createElement('meta');
-        metaKw.name = 'keywords';
-        document.head.appendChild(metaKw);
-      }
-      metaKw.content = t.keywords;
-
-      const readBtn = document.getElementById('readMoreBtn');
-      const expandedDiv = document.querySelector('.article-expanded');
-      if (expandedDiv.style.display === 'block') {
-        readBtn.innerText = (t.dir === 'rtl' ? 'عرض أقل ↑' : 'Show Less ↑');
-      } else {
-        readBtn.innerText = t.readMore;
-      }
-    }
-
-    document.addEventListener('contextmenu', e => e.preventDefault());
-    
-    document.addEventListener('keydown', e => {
-      if (e.key === 'PrintScreen' || (e.ctrlKey && ['c','u','s','a','p','x'].includes(e.key))) {
-        e.preventDefault();
-        showSecurityWarning();
-      }
-    });
-
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) {
-        document.body.classList.add('security-blur');
-        showSecurityWarning();
-      } else {
-        setTimeout(() => { document.body.classList.remove('security-blur'); }, 800);
-      }
-    });
-
-    window.addEventListener('blur', () => {
-      document.body.classList.add('security-blur');
-      showSecurityWarning();
-    });
-
-    window.addEventListener('focus', () => {
-      setTimeout(() => { document.body.classList.remove('security-blur'); }, 800);
-    });
-
-    function showSecurityWarning() {
-      const warn = document.getElementById('securityWarning');
-      if (warn) {
-        warn.style.display = 'block';
-        setTimeout(() => { warn.style.display = 'none'; }, 3000);
-      }
-    }
-
+    // تحميل وعرض المقالات عند فتح الصفحة
     window.addEventListener('DOMContentLoaded', () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const targetSlug = urlParams.get('p');
-
-      if (targetSlug) {
-        const expanded = document.querySelector('.article-expanded');
-        if (expanded) expanded.style.display = 'block';
-        const btn = document.getElementById('readMoreBtn');
-        if (btn) btn.innerText = 'عرض أقل ↑';
-        const card = document.querySelector('.legal-card');
-        if (card) {
-          card.classList.add('highlighted');
-          setTimeout(() => {
-            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }, 300);
-        }
-      }
+      renderAdminInsights();
     });
 
-    function showToast(msg) {
-      const toast = document.getElementById('copyToast');
-      toast.innerText = msg;
-      toast.style.display = 'block';
-      setTimeout(() => { toast.style.display = 'none'; }, 2500);
+    function saveInsight(e) {
+      e.preventDefault();
+      
+      const title = document.getElementById('insightTitle').value.trim();
+      const category = document.getElementById('insightCategory').value;
+      const summary = document.getElementById('insightSummary').value.trim();
+      const content = document.getElementById('insightContent').value.trim();
+      const date = new Date().toLocaleDateString('ar-IQ', { year: 'numeric', month: 'long', day: 'numeric' });
+
+      const newInsight = {
+        id: Date.now(),
+        title,
+        category,
+        summary,
+        content,
+        date
+      };
+
+      // جلب المقالات القديمة من localStorage
+      let insights = JSON.parse(localStorage.getItem('akhInsights')) || [];
+      insights.unshift(newInsight); // إضافة المقال الجديد في البداية
+
+      // حفظ القائمة المحدثة
+      localStorage.setItem('akhInsights', JSON.stringify(insights));
+
+      // إعادة تعيين النموذج وتحديث القائمة
+      document.getElementById('insightForm').reset();
+      renderAdminInsights();
+      alert('تم نشر الرأي القانوني بنجاح!');
     }
 
-    function copyArticleLink(slug) {
-      const url = `https://akjassem.com/insights.html?p=${slug}`;
-      navigator.clipboard.writeText(url).then(() => {
-        showToast(currentLang === 'ar' ? 'تم نسخ الرابط المباشر بنجاح 📋' : 'Direct link copied successfully 📋');
+    function renderAdminInsights() {
+      const listContainer = document.getElementById('adminInsightsList');
+      let insights = JSON.parse(localStorage.getItem('akhInsights')) || [];
+
+      if (insights.length === 0) {
+        listContainer.innerHTML = '<p style="color: #64748b; font-size: 13px; text-align: center; padding: 10px;">لا توجد آراء منشورة حالياً.</p>';
+        return;
+      }
+
+      listContainer.innerHTML = '';
+      insights.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'insight-item-admin';
+        div.innerHTML = `
+          <div class="insight-info">
+            <h4>${item.title}</h4>
+            <span>📅 ${item.date} | 🏷️ ${item.category}</span>
+          </div>
+          <button class="btn-delete" onclick="deleteInsight(${item.id})">حذف</button>
+        `;
+        listContainer.appendChild(div);
       });
     }
+
+    function deleteInsight(id) {
+      if (confirm('هل أنت متأكد من حذف هذا الرأي القانوني؟')) {
+        let insights = JSON.parse(localStorage.getItem('akhInsights')) || [];
+        insights = insights.filter(item => item.id !== id);
+        localStorage.setItem('akhInsights', JSON.stringify(insights));
+        renderAdminInsights();
+      }
+    }
   </script>
+
 </body>
 </html>
