@@ -216,6 +216,7 @@ html[dir="ltr"] .article-info { text-align: left; }
 .article-info .item-title { font-size: 14.5px; font-weight: 700; color: #0b1a30; line-height: 1.4; }
 .article-info .item-meta { font-size: 12px; color: #718096; margin-top: 4px; display: flex; gap: 15px; align-items: center; flex-wrap: wrap; }
 .views-badge { background: #edf2f7; color: #2d3748; padding: 2px 8px; border-radius: 4px; font-weight: 700; }
+.status-hidden-badge { background: #fed7d7; color: #9b1c1c; padding: 2px 8px; border-radius: 4px; font-weight: 700; }
 
 .item-actions {
 display: flex;
@@ -238,6 +239,7 @@ font-family: inherit;
 .btn-view { background-color: #38a169; color: #ffffff; text-decoration: none; }
 .btn-delete { background-color: #e53e3e; color: #ffffff; }
 .btn-logs { background-color: #d69e2e; color: #ffffff; }
+.btn-hide { background-color: #4a5568; color: #ffffff; }
 
 #pinModal, #logModal {
 display: none;
@@ -624,12 +626,14 @@ const docTemp = parserTemp.parseFromString(html, 'text/html');
 const artsTemp = docTemp.querySelectorAll('article');
 
 let existingLogs = '';
+let existingStatus = 'active';
 if (EDITING_INDEX !== null && artsTemp[EDITING_INDEX]) {
 existingLogs = artsTemp[EDITING_INDEX].getAttribute('data-changelog') || '';
+existingStatus = artsTemp[EDITING_INDEX].getAttribute('data-status') || 'active';
 }
 const finalLogs = existingLogs ? `${existingLogs}///${logEntryString}` : logEntryString;
 
-const articleHtml = `<article class="legal-card" data-category="${category}" data-slug="${slug}" data-keywords="${keywords}" data-publish-at="${publishAtIso}" data-changelog="${finalLogs}" style="border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; margin-bottom: 24px; text-align: ${isEn ? 'left' : 'right'}; direction: ${isEn ? 'ltr' : 'rtl'}; background: #ffffff;">
+const articleHtml = `<article class="legal-card" data-category="${category}" data-slug="${slug}" data-keywords="${keywords}" data-publish-at="${publishAtIso}" data-changelog="${finalLogs}" data-status="${existingStatus}" style="border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; margin-bottom: 24px; text-align: ${isEn ? 'left' : 'right'}; direction: ${isEn ? 'ltr' : 'rtl'}; background: #ffffff; ${existingStatus==='hidden'?'display:none;':''}">
 <div style="font-size: 13px; color: #d32f2f; font-weight: 700; margin-bottom: 8px;">${category} • ${displayDate}</div>
 <h2 style="font-size: 19px; font-weight: 800; color: #0b1a30; margin-bottom: 12px;">${title}</h2>
 <p style="font-size: 15px; color: #4a5568; line-height: 1.8; margin-bottom: 12px;">${summary}</p>
@@ -651,7 +655,7 @@ updatedHtml = '<!DOCTYPE html>\n' + doc.documentElement.outerHTML;
 }
 } else {
 const targetFeed = isEn ? 'english-feed' : 'arabic-feed';
-updatedHtml = updatedHtml.replace(`id="${targetFeed}">`, `id="${targetFeed}">\n` + articleHtml);
+updatedHtml = updatedHtml.replace(`id="${targetFeed}">`, `id="${targetFeed}"\n` + articleHtml);
 }
 
 const putRes = await fetch(getUrl.split('?')[0], {
@@ -701,8 +705,9 @@ const slug = art.getAttribute('data-slug') || ('analysis-' + (index + 1));
 const summary = art.querySelector('p') ? art.querySelector('p').innerText : '';
 const keywords = art.getAttribute('data-keywords') || '';
 const category = art.getAttribute('data-category') || '';
+const status = art.getAttribute('data-status') || 'active';
 
-// استخدام textContent بدلاً من innerText لضمان جلب النص حتى لو كان العنصر مخفياً
+// استخراج النص الكامل بـ textContent لضمان جلب النصوص حتى لو كانت مخفية
 let content = '';
 const contentBodyEl = art.querySelector('.article-content-body');
 if (contentBodyEl) {
@@ -714,16 +719,31 @@ const clone = expandedEl.cloneNode(true);
 const footer = clone.querySelector('.legal-footer-box');
 if (footer) footer.remove();
 content = clone.textContent.trim();
+} else {
+const paragraphs = art.querySelectorAll('p');
+if (paragraphs.length > 1) {
+content = paragraphs[1].textContent.trim();
+}
 }
 }
 
 const changelog = art.getAttribute('data-changelog') || (lang==='en' ? 'No modifications yet' : 'لا توجد تعديلات سابقة حتى الآن');
 
-LOADED_ARTICLES_CACHE.push({ index, slug, title, summary, keywords, content, category, changelog });
+LOADED_ARTICLES_CACHE.push({ index, slug, title, summary, keywords, content, category, changelog, status });
+
+let views = 0;
+try {
+const vRes = await fetch(`https://api.countapi.xyz/get/akjassem-site/${slug}`);
+const vData = await vRes.json();
+if (vData && typeof vData.value === 'number') { views = vData.value; }
+} catch(err) { views = 0; }
 
 const item = document.createElement('div');
 item.className = 'article-item';
-item.innerHTML = `<div class="article-info"><div class="item-title">${title}</div><div class="item-meta"><span>Slug: ?p=${slug}</span></div></div><div class="item-actions"><a class="btn-action btn-view" href="https://akjassem.com/insights/?p=${slug}" target="_blank">${lang==='en' ? 'Preview 👁️' : 'معاينة بالموقع 👁️'}</a><button class="btn-action btn-edit" onclick="requestPinForAction('edit', ${index})">${lang==='en' ? 'Edit ✏️' : 'تعديل ✏️'}</button><button class="btn-action btn-logs" onclick="openLogModal('${changelog.replace(/'/g, "\\'")}')">${lang==='en' ? 'Logs 🕒' : 'سجل التعديلات 🕒'}</button><button class="btn-action btn-delete" onclick="requestPinForAction('delete', ${index})">${lang==='en' ? 'Delete 🗑️' : 'حذف 🗑️'}</button></div>`;
+const statusBadge = status === 'hidden' ? `<span class="status-hidden-badge">🙈 مخفي</span>` : '';
+const hideBtnText = status === 'hidden' ? (lang==='en' ? 'Show 👁️‍🗨️' : 'إظهار 👁️‍🗨️') : (lang==='en' ? 'Hide 🙈' : 'إخفاء 🙈');
+
+item.innerHTML = `<div class="article-info"><div class="item-title">${title} ${statusBadge}</div><div class="item-meta"><span>Slug: ?p=${slug}</span><span class="views-badge">👁️ Views: ${views}</span></div></div><div class="item-actions"><a class="btn-action btn-view" href="https://akjassem.com/insights/?p=${slug}" target="_blank">${lang==='en' ? 'Preview 👁️' : 'معاينة بالموقع 👁️'}</a><button class="btn-action btn-edit" onclick="requestPinForAction('edit', ${index})">${lang==='en' ? 'Edit ✏️' : 'تعديل ✏️'}</button><button class="btn-action btn-logs" onclick="requestPinForAction('logs', ${index})">${lang==='en' ? 'Logs 🕒' : 'سجل التعديلات 🕒'}</button><button class="btn-action btn-hide" onclick="requestPinForAction('toggleHide', ${index})">${hideBtnText}</button><button class="btn-action btn-delete" onclick="requestPinForAction('delete', ${index})">${lang==='en' ? 'Delete 🗑️' : 'حذف 🗑️'}</button></div>`;
 container.appendChild(item);
 });
 } catch (e) { 
@@ -733,10 +753,19 @@ container.innerHTML = `<p style="font-size: 13px; color: #e53e3e; text-align: ce
 
 function requestPinForAction(actionType, index) {
 document.getElementById('modalPinInput').value = '';
-document.getElementById('pinModalTitle').innerText = actionType === 'edit' ? 'أدخل رمز PIN لتأكيد التعديل:' : 'أدخل رمز PIN لتأكيد الحذف:';
+if(actionType === 'edit') document.getElementById('pinModalTitle').innerText = 'أدخل رمز PIN لتأكيد التعديل:';
+else if(actionType === 'delete') document.getElementById('pinModalTitle').innerText = 'أدخل رمز PIN لتأكيد الحذف:';
+else if(actionType === 'logs') document.getElementById('pinModalTitle').innerText = 'أدخل رمز PIN لعرض سجل التعديلات:';
+else if(actionType === 'toggleHide') document.getElementById('pinModalTitle').innerText = 'أدخل رمز PIN لتغيير حالة الإخفاء/الظهور:';
+
 PENDING_ACTION_CALLBACK = () => {
 if (actionType === 'edit') startEdit(index);
 if (actionType === 'delete') deleteArticle(index);
+if (actionType === 'logs') {
+const art = LOADED_ARTICLES_CACHE.find(a => a.index === index);
+if(art) openLogModal(art.changelog);
+}
+if (actionType === 'toggleHide') toggleHideStatus(index);
 };
 document.getElementById('pinModal').style.display = 'flex';
 document.getElementById('modalPinInput').focus();
@@ -773,7 +802,7 @@ document.getElementById('title').value = art.title;
 document.getElementById('summary').value = art.summary;
 document.getElementById('articleSlug').value = art.slug;
 document.getElementById('keywords').value = art.keywords;
-document.getElementById('content').value = art.content;
+document.getElementById('content').value = art.content; // جلب النص بالكامل الآن بدقة
 
 const catSelect = document.getElementById('categorySelect');
 let foundCat = false;
@@ -822,6 +851,37 @@ document.getElementById('logModal').style.display = 'flex';
 
 function closeLogModal() {
 document.getElementById('logModal').style.display = 'none';
+}
+
+async function toggleHideStatus(index) {
+try {
+const getUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}?ref=${BRANCH}`;
+const res = await fetch(getUrl, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
+if (!res.ok) throw new Error('تعذر جلب الملف.');
+const fileData = await res.json();
+const doc = new DOMParser().parseFromString(b64_to_utf8(fileData.content), 'text/html');
+const articles = doc.querySelectorAll('article');
+
+if (!articles[index]) throw new Error('المقال غير موجود.');
+const currentStatus = articles[index].getAttribute('data-status') || 'active';
+const newStatus = currentStatus === 'hidden' ? 'active' : 'hidden';
+
+articles[index].setAttribute('data-status', newStatus);
+if(newStatus === 'hidden') {
+articles[index].style.display = 'none';
+} else {
+articles[index].style.display = 'block';
+}
+
+const putRes = await fetch(getUrl.split('?')[0], {
+method: 'PUT',
+headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}`, 'Content-Type': 'application/json' },
+body: JSON.stringify({ message: `Toggle article visibility to ${newStatus}`, content: utf8_to_b64('<!DOCTYPE html>\n' + doc.documentElement.outerHTML), sha: fileData.sha, branch: BRANCH })
+});
+if (!putRes.ok) throw new Error('فشل تحديث حالة الإخفاء.');
+alert(newStatus === 'hidden' ? 'تم إخفاء المنشور بنجاح (الرابط المباشر يظل يعمل)' : 'تم إظهار المنشور بنجاح في الواجهة العامة!');
+loadArticles();
+} catch(e) { alert(e.message); }
 }
 
 async function deleteArticle(index) {
