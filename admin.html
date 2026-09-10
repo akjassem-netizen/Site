@@ -212,7 +212,7 @@ gap: 8px;
 }
 .article-info { text-align: right; }
 .article-info .item-title { font-size: 14.5px; font-weight: 700; color: #0b1a30; line-height: 1.4; }
-.article-info .item-meta { font-size: 12px; color: #718096; margin-top: 4px; display: flex; gap: 15px; align-items: center; }
+.article-info .item-meta { font-size: 12px; color: #718096; margin-top: 4px; display: flex; gap: 15px; align-items: center; flex-wrap: wrap; }
 .views-badge { background: #edf2f7; color: #2d3748; padding: 2px 8px; border-radius: 4px; font-weight: 700; }
 
 .item-actions {
@@ -350,7 +350,7 @@ font-family: inherit;
 <button type="button" class="btn-reload" onclick="loadArticles()">تحديث 🔄</button>
 </div>
 <div id="articlesListContainer">
-<p style="font-size: 13px; color: #718096; text-align: center;">جارٍ جلب المقالات...</p>
+<p style="font-size: 13px; color: #718096; text-align: center;">جارٍ جلب المقالات من المستودع...</p>
 </div>
 </div>
 </div>
@@ -360,6 +360,7 @@ font-family: inherit;
 const REPO_OWNER = 'akjassem-netizen';
 const REPO_NAME = 'Site';
 const FILE_PATH = 'insights.html';
+const BRANCH = 'main';
 
 const AR_CATEGORIES = [
 "قانون الأحوال الشخصية والأسرة",
@@ -527,9 +528,9 @@ btn.innerText = 'جارٍ النشر...';
 btn.disabled = true;
 
 try {
-const getUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
+const getUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}?ref=${BRANCH}`;
 const res = await fetch(getUrl, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
-if (!res.ok) throw new Error('تعذر العثور على ملف insights.html في المستودع.');
+if (!res.ok) throw new Error('تعذر جلب ملف insights.html من الفرع main (تأكد من وجود الملف في المستودع).');
 const fileData = await res.json();
 let html = b64_to_utf8(fileData.content);
 
@@ -558,13 +559,13 @@ const targetFeed = isEn ? 'english-feed' : 'arabic-feed';
 updatedHtml = updatedHtml.replace(`id="${targetFeed}">`, `id="${targetFeed}">\n` + articleHtml);
 }
 
-const putRes = await fetch(getUrl, {
+const putRes = await fetch(getUrl.split('?')[0], {
 method: 'PUT',
 headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}`, 'Content-Type': 'application/json' },
-body: JSON.stringify({ message: `Publish: ${title}`, content: utf8_to_b64(updatedHtml), sha: fileData.sha })
+body: JSON.stringify({ message: `Publish: ${title}`, content: utf8_to_b64(updatedHtml), sha: fileData.sha, branch: BRANCH })
 });
 
-if (!putRes.ok) throw new Error('فشل الحفظ في GitHub.');
+if (!putRes.ok) throw new Error('فشل حفظ التحديثات في GitHub.');
 showAlert('تم النشر بنجاح!', true);
 cancelEdit();
 loadArticles();
@@ -578,10 +579,12 @@ btn.disabled = false;
 
 async function loadArticles() {
 const container = document.getElementById('articlesListContainer');
+container.innerHTML = '<p style="font-size: 13px; color: #718096; text-align: center;">جارٍ جلب المقالات من المستودع...</p>';
+
 try {
-const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
+const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}?ref=${BRANCH}`, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
 if (!res.ok) {
-container.innerHTML = '<p style="font-size: 13px; color: #e53e3e; text-align: center;">تنبيه: ملف insights.html غير موجود أو فارغ في المستودع حالياً.</p>';
+container.innerHTML = `<p style="font-size: 13px; color: #e53e3e; text-align: center;">تنبيه: تعذر الوصول إلى ملف insights.html (رمز الخطأ: ${res.status}). تأكد من وجوده في المستودع.</p>`;
 return;
 }
 const data = await res.json();
@@ -591,22 +594,21 @@ const articles = doc.querySelectorAll('article');
 LOADED_ARTICLES_CACHE = [];
 
 if (articles.length === 0) { 
-container.innerHTML = '<p style="font-size: 13px; color: #718096; text-align: center;">لا توجد مقالات منشورة بعد.</p>'; 
+container.innerHTML = '<p style="font-size: 13px; color: #718096; text-align: center;">لا توجد مقالات منشورة حالياً في الملف.</p>'; 
 return; 
 }
 container.innerHTML = '';
 
-// جلب عداد المشاهدات لكل مقال عبر CountAPI المجاني
 for (let index = 0; index < articles.length; index++) {
 const art = articles[index];
-const title = art.querySelector('h2') ? art.querySelector('h2').innerText : 'مقال';
+const title = art.querySelector('h2') ? art.querySelector('h2').innerText : 'مقال قانوني';
 const slug = art.getAttribute('data-slug') || ('article-' + (index + 1));
 const summary = art.querySelector('p') ? art.querySelector('p').innerText : '';
 const keywords = art.getAttribute('data-keywords') || '';
 const category = art.getAttribute('data-category') || '';
 const content = art.querySelector('.article-content-body') ? art.querySelector('.article-content-body').innerHTML.trim() : '';
 
-// جلب عدد المشاهدات
+// جلب عداد المشاهدات عبر CountAPI المجاني
 let views = 0;
 try {
 const vRes = await fetch(`https://api.countapi.xyz/get/akjassem-site/${slug}`);
@@ -618,11 +620,11 @@ LOADED_ARTICLES_CACHE.push({ index, title, summary, slug, keywords, content, cat
 
 const item = document.createElement('div');
 item.className = 'article-item';
-item.innerHTML = `<div class="article-info"><div class="item-title">${title}</div><div class="item-meta"><span>الرابط: ?p=${slug}</span><span class="views-badge">👁️ عدد المشاهدات: ${views}</span></div></div><div class="item-actions"><a class="btn-action btn-view" href="https://akjassem.com/insights.html?p=${slug}" target="_blank">معاينة 👁️</a><button class="btn-action btn-edit" onclick="startEdit(${index})">تعديل ✏️</button><button class="btn-action btn-delete" onclick="deleteArticle(${index})">حذف 🗑️</button></div>`;
+item.innerHTML = `<div class="article-info"><div class="item-title">${title}</div><div class="item-meta"><span>الرابط: ?p=${slug}</span><span class="views-badge">👁️ المشاهدات: ${views}</span></div></div><div class="item-actions"><a class="btn-action btn-view" href="https://akjassem.com/insights.html?p=${slug}" target="_blank">معاينة بالموقع 👁️</a><button class="btn-action btn-edit" onclick="startEdit(${index})">تعديل ✏️</button><button class="btn-action btn-delete" onclick="deleteArticle(${index})">حذف 🗑️</button></div>`;
 container.appendChild(item);
 }
 } catch (e) { 
-container.innerHTML = '<p style="font-size: 13px; color: #e53e3e; text-align: center;">خطأ في جلب المقالات. تأكد من وجود ملف insights.html.</p>'; 
+container.innerHTML = `<p style="font-size: 13px; color: #e53e3e; text-align: center;">خطأ في الاتصال: ${e.message}</p>`; 
 }
 }
 
@@ -648,21 +650,22 @@ document.getElementById('submitBtn').innerText = 'نـشـر الآن 🚀';
 }
 
 async function deleteArticle(index) {
-if (!confirm('حذف هذا المقال نهائياً؟')) return;
+if (!confirm('هل أنت متأكد من حذف هذا المقال نهائياً؟')) return;
 try {
-const getUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
+const getUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}?ref=${BRANCH}`;
 const res = await fetch(getUrl, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
 const fileData = await res.json();
 const doc = new DOMParser().parseFromString(b64_to_utf8(fileData.content), 'text/html');
 doc.querySelectorAll('article')[index].remove();
 
-await fetch(getUrl, {
+const putRes = await fetch(getUrl.split('?')[0], {
 method: 'PUT',
 headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}`, 'Content-Type': 'application/json' },
-body: JSON.stringify({ message: 'Delete article', content: utf8_to_b64('<!DOCTYPE html>\n' + doc.documentElement.outerHTML), sha: fileData.sha })
+body: JSON.stringify({ message: 'Delete article', content: utf8_to_b64('<!DOCTYPE html>\n' + doc.documentElement.outerHTML), sha: fileData.sha, branch: BRANCH })
 });
+if (!putRes.ok) throw new Error('فشل الحذف من المستودع.');
 loadArticles();
-} catch(e) { alert('فشل الحذف.'); }
+} catch(e) { alert(e.message); }
 }
 
 function showAlert(msg, isSuccess) {
