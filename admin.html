@@ -20,7 +20,7 @@ min-height: 100vh;
 align-items: flex-start;
 }
 .panel {
-max-width: 700px;
+max-width: 750px;
 width: 100%;
 background: #ffffff;
 border-radius: 14px;
@@ -212,7 +212,8 @@ gap: 8px;
 }
 .article-info { text-align: right; }
 .article-info .item-title { font-size: 14.5px; font-weight: 700; color: #0b1a30; line-height: 1.4; }
-.article-info .item-meta { font-size: 12px; color: #718096; margin-top: 4px; }
+.article-info .item-meta { font-size: 12px; color: #718096; margin-top: 4px; display: flex; gap: 15px; align-items: center; }
+.views-badge { background: #edf2f7; color: #2d3748; padding: 2px 8px; border-radius: 4px; font-weight: 700; }
 
 .item-actions {
 display: flex;
@@ -345,11 +346,11 @@ font-family: inherit;
 
 <div class="manager-box">
 <div class="manager-header">
-<h3>📚 المنشورات السابقة</h3>
+<h3>📚 المنشورات السابقة ومتابعة المشاهدات</h3>
 <button type="button" class="btn-reload" onclick="loadArticles()">تحديث 🔄</button>
 </div>
 <div id="articlesListContainer">
-<p style="font-size: 13px; color: #718096; text-align: center;">جارٍ الجلب...</p>
+<p style="font-size: 13px; color: #718096; text-align: center;">جارٍ جلب المقالات...</p>
 </div>
 </div>
 </div>
@@ -528,6 +529,7 @@ btn.disabled = true;
 try {
 const getUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
 const res = await fetch(getUrl, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
+if (!res.ok) throw new Error('تعذر العثور على ملف insights.html في المستودع.');
 const fileData = await res.json();
 let html = b64_to_utf8(fileData.content);
 
@@ -578,16 +580,25 @@ async function loadArticles() {
 const container = document.getElementById('articlesListContainer');
 try {
 const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
+if (!res.ok) {
+container.innerHTML = '<p style="font-size: 13px; color: #e53e3e; text-align: center;">تنبيه: ملف insights.html غير موجود أو فارغ في المستودع حالياً.</p>';
+return;
+}
 const data = await res.json();
 const parser = new DOMParser();
 const doc = parser.parseFromString(b64_to_utf8(data.content), 'text/html');
 const articles = doc.querySelectorAll('article');
 LOADED_ARTICLES_CACHE = [];
 
-if (articles.length === 0) { container.innerHTML = 'لا توجد مقالات.'; return; }
+if (articles.length === 0) { 
+container.innerHTML = '<p style="font-size: 13px; color: #718096; text-align: center;">لا توجد مقالات منشورة بعد.</p>'; 
+return; 
+}
 container.innerHTML = '';
 
-articles.forEach((art, index) => {
+// جلب عداد المشاهدات لكل مقال عبر CountAPI المجاني
+for (let index = 0; index < articles.length; index++) {
+const art = articles[index];
 const title = art.querySelector('h2') ? art.querySelector('h2').innerText : 'مقال';
 const slug = art.getAttribute('data-slug') || ('article-' + (index + 1));
 const summary = art.querySelector('p') ? art.querySelector('p').innerText : '';
@@ -595,14 +606,24 @@ const keywords = art.getAttribute('data-keywords') || '';
 const category = art.getAttribute('data-category') || '';
 const content = art.querySelector('.article-content-body') ? art.querySelector('.article-content-body').innerHTML.trim() : '';
 
-LOADED_ARTICLES_CACHE.push({ index, title, summary, slug, keywords, content, category });
+// جلب عدد المشاهدات
+let views = 0;
+try {
+const vRes = await fetch(`https://api.countapi.xyz/get/akjassem-site/${slug}`);
+const vData = await vRes.json();
+if (vData && typeof vData.value === 'number') { views = vData.value; }
+} catch(err) { views = 0; }
+
+LOADED_ARTICLES_CACHE.push({ index, title, summary, slug, keywords, content, category, views });
 
 const item = document.createElement('div');
 item.className = 'article-item';
-item.innerHTML = `<div class="article-info"><div class="item-title">${title}</div><div class="item-meta">الرابط المباشر: ?p=${slug}</div></div><div class="item-actions"><a class="btn-action btn-view" href="https://akjassem.com/insights.html?p=${slug}" target="_blank">معاينة بالموقع 👁️</a><button class="btn-action btn-edit" onclick="startEdit(${index})">تعديل ✏️</button><button class="btn-action btn-delete" onclick="deleteArticle(${index})">حذف 🗑️</button></div>`;
+item.innerHTML = `<div class="article-info"><div class="item-title">${title}</div><div class="item-meta"><span>الرابط: ?p=${slug}</span><span class="views-badge">👁️ عدد المشاهدات: ${views}</span></div></div><div class="item-actions"><a class="btn-action btn-view" href="https://akjassem.com/insights.html?p=${slug}" target="_blank">معاينة 👁️</a><button class="btn-action btn-edit" onclick="startEdit(${index})">تعديل ✏️</button><button class="btn-action btn-delete" onclick="deleteArticle(${index})">حذف 🗑️</button></div>`;
 container.appendChild(item);
-});
-} catch (e) { container.innerHTML = 'خطأ في جلب المقالات.'; }
+}
+} catch (e) { 
+container.innerHTML = '<p style="font-size: 13px; color: #e53e3e; text-align: center;">خطأ في جلب المقالات. تأكد من وجود ملف insights.html.</p>'; 
+}
 }
 
 function startEdit(index) {
