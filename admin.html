@@ -293,7 +293,7 @@ text-align: right;
 
 <div id="statusAlert" class="alert"></div>
 
-<div id="setupScreen" style="display: none;">
+<div id="setupScreen">
 <p class="lock-desc"><strong>إعداد الحماية لأول مرة:</strong><br>أدخل مفتاح GitHub ورمز PIN (6 أرقام):</p>
 <div class="form-group" style="max-width: 420px; margin: 0 auto 12px;">
 <input type="password" id="setupTokenInput" placeholder="أدخل رمز GitHub (ghp_xxxx...)" dir="ltr">
@@ -312,7 +312,7 @@ text-align: right;
 <button type="button" class="btn-unlock" onclick="attemptPinUnlock()">دخول سريع ←</button>
 </div>
 
-<div id="dashboardScreen">
+<div id="dashboardScreen" style="display: none;">
 <div class="top-bar">
 <span class="status-badge">● متصل بالحساب والمحتوى محمي</span>
 <button type="button" class="btn-lock" onclick="lockPortal()">قفل اللوحة 🔒</button>
@@ -486,7 +486,8 @@ const decrypted = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: iv }, key, 
 return new TextDecoder().decode(decrypted);
 }
 
-window.onload = async function() {
+window.onload = function() {
+try {
 populateCategories('ar');
 const savedSessionToken = sessionStorage.getItem('akh_active_token');
 if (savedSessionToken) {
@@ -496,8 +497,14 @@ document.getElementById('setupScreen').style.display = 'none';
 document.getElementById('dashboardScreen').style.display = 'block';
 loadArticles();
 } else if (localStorage.getItem('akh_vault')) {
+document.getElementById('setupScreen').style.display = 'none';
 document.getElementById('lockScreen').style.display = 'block';
 } else {
+document.getElementById('setupScreen').style.display = 'block';
+document.getElementById('lockScreen').style.display = 'none';
+}
+} catch (err) {
+console.error("Initialization error:", err);
 document.getElementById('setupScreen').style.display = 'block';
 }
 };
@@ -707,7 +714,6 @@ const keywords = art.getAttribute('data-keywords') || '';
 const category = art.getAttribute('data-category') || '';
 const status = art.getAttribute('data-status') || 'active';
 
-// استخراج النص الكامل بـ textContent لضمان جلب النصوص حتى لو كانت مخفية
 let content = '';
 const contentBodyEl = art.querySelector('.article-content-body');
 if (contentBodyEl) {
@@ -802,7 +808,7 @@ document.getElementById('title').value = art.title;
 document.getElementById('summary').value = art.summary;
 document.getElementById('articleSlug').value = art.slug;
 document.getElementById('keywords').value = art.keywords;
-document.getElementById('content').value = art.content; // جلب النص بالكامل الآن بدقة
+document.getElementById('content').value = art.content;
 
 const catSelect = document.getElementById('categorySelect');
 let foundCat = false;
@@ -879,7 +885,7 @@ headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}`, 'Content-Type': 'applicati
 body: JSON.stringify({ message: `Toggle article visibility to ${newStatus}`, content: utf8_to_b64('<!DOCTYPE html>\n' + doc.documentElement.outerHTML), sha: fileData.sha, branch: BRANCH })
 });
 if (!putRes.ok) throw new Error('فشل تحديث حالة الإخفاء.');
-alert(newStatus === 'hidden' ? 'تم إخفاء المنشور بنجاح (الرابط المباشر يظل يعمل)' : 'تم إظهار المنشور بنجاح في الواجهة العامة!');
+alert(newStatus === 'hidden' ? 'تم إخفاء المنشور بنجاح (الرابط المباشر يظل يعمل دون أخطاء)' : 'تم إظهار المنشور بنجاح في الواجهة العامة!');
 loadArticles();
 } catch(e) { alert(e.message); }
 }
