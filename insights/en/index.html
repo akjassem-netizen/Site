@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" id="htmlRoot"><head>
+<html lang="en" dir="ltr" id="htmlRoot">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
@@ -9,49 +10,17 @@
 
   <title id="pageTitle">Legal Insights & Analyses | Law Office Of Ali Kadhem Hashimi</title>
   <meta id="metaDesc" name="description" content="Specialized legal insights and procedural analyses in Iraqi laws, labor regulations, and corporate setup by the Law Office of Ali Kadhem Hashimi in Baghdad. | AKH Law Office">
-  <meta id="metaKeywords" name="keywords" content="Baghdad lawyer, Iraq labor law, corporate lawyer Iraq, corporate registration Baghdad, legal consultations">
-  <meta name="author" content="Ali Kadhem Hashimi Law Office">
   <meta name="robots" content="index, follow, max-image-preview:large">
 
   <meta property="og:title" id="ogTitle" content="Legal Insights & Analyses | Law Office Of Ali Kadhem Hashimi">
   <meta property="og:description" id="ogDesc" content="Specialized studies and procedural clarifications in Iraqi laws, corporate formation, and social security in Baghdad.">
   <meta property="og:image" content="https://akjassem.com/og-logo.jpg">
-  <meta property="og:image:secure_url" content="https://akjassem.com/og-logo.jpg">
-  <meta property="og:image:type" content="image/jpeg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:url" content="https://akjassem.com/insights/en/">
+  <meta property="og:url" id="ogUrl" content="https://akjassem.com/insights/en/">
   <meta property="og:type" content="article">
-  <meta property="og:site_name" content="AKH Law Office Baghdad">
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" id="twTitle" content="Legal Insights & Analyses | Law Office Of Ali Kadhem Hashimi">
-  <meta name="twitter:description" id="twDesc" content="Specialized studies and procedural clarifications in Iraqi laws, corporate formation, and social security in Baghdad.">
-  <meta name="twitter:image" content="https://akjassem.com/og-logo.jpg">
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LegalService",
-    "name": "Law Office Of Ali Kadhem Hashimi",
-    "alternateName": "مكتب المحامي علي كاظم الهاشمي",
-    "url": "https://akjassem.com/insights/en/",
-    "logo": "https://akjassem.com/og-logo.jpg",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Baghdad",
-      "addressCountry": "IQ"
-    },
-    "founder": {
-      "@type": "Person",
-      "name": "Ali Kadhem Hashimi"
-    }
-  }
-  </script>
-  
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -97,15 +66,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: background 0.2s;
     }
-    .menu-toggle:hover { background: rgba(197,160,89,0.2); }
 
     .dropdown-menu {
       position: absolute;
       top: calc(100% + 10px);
       right: 0;
-      left: auto;
       min-width: 260px;
       background: #0f172a;
       border: 1.5px solid #c5a059;
@@ -126,12 +92,9 @@
       font-size: 14px;
       font-weight: 700;
       border-bottom: 1px solid rgba(255,255,255,0.08);
-      white-space: nowrap;
-      transition: background 0.2s, color 0.2s;
       display: flex;
       align-items: center;
       width: 100%;
-      text-align: inherit;
       font-family: 'Cairo', sans-serif;
     }
     .dropdown-menu a:hover { background: rgba(197,160,89,0.15); color: #c5a059; }
@@ -147,17 +110,13 @@
     
     .intro-box { background: #ffffff; padding: 16px 20px; border-radius: 10px; border: 1px solid #e2e8f0; color: #4a5568; font-size: 14.5px; line-height: 1.8; margin-bottom: 25px; text-align: justify; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
     
-    /* حاوية التجميع الإنجليزية */
     #english-feed { width: 100%; }
 
     .legal-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); position: relative; overflow: hidden; text-align: start; }
     .legal-card::after { content: "AKH LAW OFFICE - ALI KADHEM HASHIMI"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-25deg); font-size: 38px; font-weight: 900; color: rgba(11, 26, 48, 0.035); pointer-events: none; z-index: 0; letter-spacing: 3px; white-space: nowrap; }
     .legal-card > * { position: relative; z-index: 1; }
-    .article-image-box { margin: 15px 0 18px 0; border-radius: 10px; overflow: hidden; border: 1px solid #e2e8f0; background: #edf2f7; max-height: 380px; }
-    .article-image-box img { width: 100%; height: auto; max-height: 380px; object-fit: cover; display: block; }
-    .article-meta-info { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; font-size: 13px; color: #718096; margin-bottom: 8px; }
+    
     .share-bar { margin-top: 20px; padding-top: 15px; border-top: 1px dashed #cbd5e0; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
-    .share-label { font-size: 12px; font-weight: 700; color: #4a5568; margin-right: 6px; }
     .btn-share { border: none; padding: 6px 12px; border-radius: 6px; font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; text-decoration: none; }
     .btn-share-copy { background-color: #edf2f7; color: #2d3748; }
     .btn-share-wa { background-color: #25d366; color: #ffffff; }
@@ -170,8 +129,8 @@
 
   <header class="icover-header">
     <div>
-      <select id="languageSelect" class="lang-select-bar" onchange="switchLanguage(this.value)">
-        <option value="ar">العربية / Arabic</option>
+      <select id="languageSelect" class="lang-select-bar" onchange="changeSystemLanguage(this.value)">
+        <option value="ar">العربية</option>
         <option value="en" selected>English</option>
         <option value="tr">Türkçe</option>
         <option value="zh">中文</option>
@@ -189,7 +148,7 @@
         <a href="https://akjassem.com/services/" id="menuServices">Legal Services Directory</a>
         <a href="https://akjassem.com/consultations/en/" id="menuConsultations">Legal Consultations</a>
         <a href="https://akjassem.com/insights/en/" id="menuInsights">Iraq Legal Insights</a>
-        <a href="../" id="menuAbout">عربي / Arabic (Insights)</a>
+        <a href="https://akjassem.com/about/" id="menuAbout">About Us</a>
         <a href="https://akjassem.com/contact/en/" id="menuContact">Contact Us</a>
       </div>
     </div>
@@ -205,18 +164,18 @@
         <div class="est">EST. 2014</div>
       </a>
       <div class="page-title">
-        <h1 id="mainTitle" style="font-size: 24px; font-weight: 800; color: #1a202c; margin-top: 10px;">Legal Insights & Analyses</h1>
+        <h1 id="siteMainTitle">Legal Insights & Analyses</h1>
         <h2>Law Office Of Ali Kadhem Hashimi</h2>
       </div>
     </div>
 
-    <div class="intro-box" id="introText">
+    <div class="intro-box" id="siteIntroText">
       A specialized legal portal dedicated to publishing studies and procedural clarifications across branches of Iraqi law: labor, residency and social security, company formation and registration, trademarks, personal status, and civil/commercial litigation.
     </div>
 
-    <!-- حاوية المقالات الإنجليزية -->
+    <!-- حاوية عرض المقالات الإنجليزية -->
     <div id="english-feed">
-      <!-- ستظهر المقالات الإنجليزية هنا عند نشرها -->
+      <!-- المقالات المنشورة بالإنجليزية ستظهر هنا -->
     </div>
 
     <div style="text-align: center; margin-top: 30px; margin-bottom: 20px;">
@@ -236,114 +195,55 @@
       }
     }
 
-    function switchLanguage(lang) {
+    const langDict = {
+      ar: { title: "الآراء والتحليلات القانونية | Law Office Of Ali Kadhem Hashimi", intro: "نافذة متخصصة تُعنى بنشر الدراسات والإيضاحات الإجرائية في فروع القانون العراقي...", home: "الرئيسية", services: "دليل الخدمات القانونية", consultations: "الاستشارات القانونية", insights: "الآراء والرؤى القانونية", about: "من نحن", contact: "اتصل بنا", backHome: "🏠 العودة إلى الموقع الرئيسي الكامل ←" },
+      en: { title: "Legal Insights & Analyses | Law Office Of Ali Kadhem Hashimi", intro: "A specialized legal portal dedicated to publishing studies and procedural clarifications across branches of Iraqi law...", home: "Home", services: "Legal Services Directory", consultations: "Legal Consultations", insights: "Iraq Legal Insights", about: "About Us", contact: "Contact Us", backHome: "🏠 Back to Main Home Page ←" },
+      tr: { title: "Hukuki İçgörüler ve Analizler | Av. Ali Kazım Haşimi", intro: "Irak hukuku dallarında çalışmalar ve usuli açıklamalar yayınlamaya adanmış özel bir hukuk portalı.", home: "Ana Sayfa", services: "Hizmetler", consultations: "Hukuki Danışmanlık", insights: "İçgörüler", about: "Hakkımızda", contact: "İletişim", backHome: "🏠 Ana Sayfaya Dön ←" },
+      zh: { title: "法律洞察与分析 | 阿里·卡德姆·哈希米律所", intro: "专注于伊拉克法律分支研究与 procedural 澄清的专业法律门户。", home: "首页", services: "法律服务", consultations: "法律咨询", insights: "法律洞察", about: "关于我们", contact: "联系我们", backHome: "🏠 返回首页 ←" },
+      fr: { title: "Aperçus et Analyses Juridiques | Cabinet AKH", intro: "Un portail juridique spécialisé dédié à la publication d'études et de clarifications procédurales en droit irakien.", home: "Accueil", services: "Services", consultations: "Consultations", insights: "Aperçus", about: "À propos", contact: "Contact", backHome: "🏠 Retour à l'accueil ←" },
+      es: { title: "Perspectivas y Análisis Legales | Bufete AKH", intro: "Un portal legal especializado dedicado a publicar estudios y aclaraciones procedimentales en el derecho iraquí.", home: "Inicio", services: "Servicios", consultations: "Consultas", insights: "Perspectivas", about: "Sobre nosotros", contact: "Contacto", backHome: "🏠 Volver al inicio ←" },
+      de: { title: "Rechtliche Einblicke & Analysen | Kanzlei AKH", intro: "Ein spezialisiertes Rechtsportal zur Veröffentlichung von Studien und Analysen zum irakischen Recht.", home: "Startseite", services: "Dienste", consultations: "Beratung", insights: "Einblicke", about: "Über uns", contact: "Kontakt", backHome: "🏠 Zurück zur Startseite ←" },
+      ku: { title: "تێڕوانین و شیکارییەکانی یاسایی | نووسینگەی عەلی کازمی", intro: "دەروازەیەکی یاسایی تایبەتمەند کە تەرخان کراوە بۆ بڵاوکردنەوەی لێکۆڵینەوەکان لە یاساکانی عێراقدا.", home: "سرەکی", services: "خزمەتگوزاری", consultations: "ڕاوێژ", insights: "تێڕوانین", about: "دەربارە", contact: "پەیوەندی", backHome: "🏠 گەڕانەوە بۆ سەرەکی ←" }
+    };
+
+    function changeSystemLanguage(lang) {
       if (lang === 'ar') {
-        localStorage.setItem('preferredLang', 'ar');
-        window.location.href = '../';
+        window.location.href = '../'; // يحولك للصفحة العربية فوراً إذا اخترت العربية
         return;
       }
-      localStorage.setItem('preferredLang', lang);
-      changeLanguage(lang);
-    }
-
-    function changeLanguage(lang) {
       window.currentLang = lang;
+      const t = langDict[lang] || langDict['en'];
       const root = document.getElementById('htmlRoot');
+      
       root.setAttribute('lang', lang);
       root.setAttribute('dir', (lang === 'ku') ? 'rtl' : 'ltr');
 
-      const t = insightsDict[lang] || insightsDict['en'];
-
-      document.getElementById('pageTitle').innerText = t.pageTitle;
-      document.getElementById('metaDesc').setAttribute('content', t.metaDesc);
-      document.getElementById('ogTitle').setAttribute('content', t.pageTitle);
-      document.getElementById('ogDesc').setAttribute('content', t.metaDesc);
-
+      document.getElementById('pageTitle').innerText = t.title;
+      document.getElementById('siteIntroText').innerText = t.intro;
       document.getElementById('menuHome').innerText = t.home;
-      document.getElementById('menuServices').innerText = t.menuServices;
-      document.getElementById('menuConsultations').innerText = t.menuConsultations;
-      document.getElementById('menuInsights').innerText = t.menuInsights;
-      document.getElementById('menuAbout').innerText = t.menuAbout;
-      document.getElementById('menuContact').innerText = t.menuContact;
-
-      document.getElementById('mainTitle').innerText = t.mainTitle;
-      document.getElementById('introText').innerText = t.introText;
-      document.getElementById('backHomeBtn').innerText = t.backHomeBtn;
-
+      document.getElementById('menuServices').innerText = t.services;
+      document.getElementById('menuConsultations').innerText = t.consultations;
+      document.getElementById('menuInsights').innerText = t.insights;
+      document.getElementById('menuAbout').innerText = t.about;
+      document.getElementById('menuContact').innerText.innerText = t.contact;
+      document.getElementById('backHomeBtn').innerText = t.backHome;
+      
+      localStorage.setItem('preferredSystemLangEn', lang);
       document.getElementById('languageSelect').value = lang;
     }
 
-    const insightsDict = {
-      en: {
-        pageTitle: "Legal Insights & Analyses | Law Office Of Ali Kadhem Hashimi",
-        metaDesc: "Specialized legal insights and procedural analyses in Iraqi laws, labor regulations, and corporate setup by the Law Office of Ali Kadhem Hashimi in Baghdad.",
-        home: "Home", menuServices: "Legal Services Directory", menuConsultations: "Legal Consultations", menuInsights: "Iraq Legal Insights", menuAbout: "عربي / Arabic (Insights)", menuContact: "Contact Us",
-        mainTitle: "Legal Insights & Analyses",
-        introText: "A specialized legal portal dedicated to publishing studies and procedural clarifications across branches of Iraqi law: labor, residency and social security, company formation and registration, trademarks, personal status, and civil/commercial litigation.",
-        backHomeBtn: "🏠 Back to Main Home Page ←"
-      },
-      tr: {
-        pageTitle: "Hukuki İçgörüler ve Analizler | Av. Ali Kazım Haşimi Hukuk Bürosu",
-        metaDesc: "Irak yasaları, iş mevzuatı ve şirket kuruluşu üzerine uzman hukuki içgörüler ve analizler.",
-        home: "Ana Sayfa", menuServices: "Hizmetler", menuConsultations: "Hukuki Danışmanlık", menuInsights: "İçgörüler", menuAbout: "عربي / Arabic (Insights)", menuContact: "İletişim",
-        mainTitle: "Hukuki İçgörüler ve Analizler",
-        introText: "Irak hukuku dallarında çalışmalar ve usuli açıklamalar yayınlamaya adanmış özel bir hukuk portalı.",
-        backHomeBtn: "🏠 Ana Sayfaya Dön ←"
-      },
-      zh: {
-        pageTitle: "阿里·卡德姆·哈希米律所 | 伊拉克法律服务",
-        metaDesc: "专注于伊拉克法律、劳动法规及公司设立的专业法律洞察。",
-        home: "首页", menuServices: "法律服务", menuConsultations: "法律咨询", menuInsights: "法律洞察", menuAbout: "عربي / Arabic (Insights)", menuContact: "联系我们",
-        mainTitle: "法律洞察与分析",
-        introText: "致力于发布伊拉克法律分支研究与 procedural 澄清的专业法律门户。",
-        backHomeBtn: "🏠 返回首页 ←"
-      },
-      fr: {
-        pageTitle: "Aperçus et Analyses Juridiques | Cabinet AKH",
-        metaDesc: "Aperçus juridiques spécialisés et analyses procédurales sur le droit irakien.",
-        home: "Accueil", menuServices: "Services", menuConsultations: "Consultations Juridiques", menuInsights: "Aperçus", menuAbout: "عربي / Arabic (Insights)", menuContact: "Contact",
-        mainTitle: "Aperçus et Analyses Juridiques",
-        introText: "Un portail juridique spécialisé dédié à la publication d'études et de clarifications procédurales.",
-        backHomeBtn: "🏠 Retour à l'accueil ←"
-      },
-      es: {
-        pageTitle: "Perspectivas y Análisis Legales | Bufete AKH",
-        metaDesc: "Perspectivas legales especializadas y análisis procedimentales en las leyes de Irak.",
-        home: "Inicio", menuServices: "Servicios", menuConsultations: "Consultas Legales", menuInsights: "Perspectivas", menuAbout: "Sobre Nosotros (عربي)", menuContact: "Contacto",
-        mainTitle: "Perspectivas y Análisis Legales",
-        introText: "Un portal legal especializado dedicado a publicar estudios y aclaraciones procedimentales.",
-        backHomeBtn: "🏠 Volver al inicio ←"
-      },
-      de: {
-        pageTitle: "Rechtliche Einblicke & Analysen | Kanzlei AKH",
-        metaDesc: "Spezialisierte rechtliche Einblicke und Analysen zum irakischen Recht.",
-        home: "Startseite", menuServices: "Dienste", menuConsultations: "Rechtliche Beratung", menuInsights: "Einblicke", menuAbout: "Über uns (عربي)", menuContact: "Kontakt",
-        mainTitle: "Rechtliche Einblicke & Analysen",
-        introText: "Ein spezialisiertes Rechtsportal zur Veröffentlichung von Studien und Analysen.",
-        backHomeBtn: "🏠 Zurück zur Startseite ←"
-      },
-      ku: {
-        pageTitle: "تێڕوانین و شیکارییەکانی یاسایی | نووسینگەی پارێزەر عەلی کازمی",
-        metaDesc: "تێڕوانینی یاسایی تایبەتمەند و شیکاری پرۆسەیی لە یاساکانی عێراقدا.",
-        home: "سرەکی", menuServices: "خزمەتگوزارییەکان", menuConsultations: "ڕاوێژی یاسایی", menuInsights: "تێڕوانینەکان", menuAbout: "دەرباره‌ی ئێمە (عربي)", menuContact: "پەیوەندی",
-        mainTitle: "تێڕوانین و شیکارییەکانی یاسایی",
-        introText: "دەروازەیەکی یاسایی تایبەتمەند کە تەرخان کراوە بۆ بڵاوکردنەوەی لێکۆڵینەوەکان.",
-        backHomeBtn: "🏠 گەڕانەوە بۆ سەرەکی ←"
-      }
-    };
+    function switchLanguage(lang) {
+      changeSystemLanguage(lang);
+    }
 
-    // المعالجة الذكية: فتح المقال تلقائياً عند الدخول عبر الرابط الفرعي (?p=...)
+    // الفتح التلقائي للمقال عند الدخول عبر الرابط الفرعي (?p=...)
     window.addEventListener('DOMContentLoaded', () => {
-      const savedLang = localStorage.getItem('preferredLang') || 'en';
+      const savedLang = localStorage.getItem('preferredSystemLangEn') || 'en';
       if (savedLang === 'ar') {
         window.location.href = '../';
         return;
       }
-      if (insightsDict[savedLang]) {
-        changeLanguage(savedLang);
-      } else {
-        changeLanguage('en');
-      }
+      changeSystemLanguage(savedLang);
 
       const urlParams = new URLSearchParams(window.location.search);
       const slug = urlParams.get('p');
