@@ -552,11 +552,11 @@ const ctaCode = document.getElementById('ctaCustomCode').value.trim();
 const content = document.getElementById('content').value.trim();
 const publishAtIso = document.getElementById('scheduleMode').value === 'schedule' ? new Date(document.getElementById('publishTimestamp').value).toISOString() : new Date().toISOString();
 const displayDate = new Date().toLocaleDateString(isEn ? 'en-GB' : 'ar-IQ', { year: 'numeric', month: 'long', day: 'numeric' });
-const editTimestamp = EDITING_ARTICLE_INDEX !== null ? ` (تم التعديل في: ${new Date().toLocaleDateString('ar-IQ')} - سجل التعديلات: تم تحديث المحتوى والعنوان)` : '';
+const editTimestamp = EDITING_ARTICLE_INDEX !== null ? ` | (سجل التعديلات: تم تحديث المحتوى والعنوان في ${new Date().toLocaleDateString('ar-IQ')})` : '';
 
 const legalFooterHtml = `<div class="legal-footer-box" style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #edf2f7; font-size: 11.5px; color: #718096; line-height: 1.7;">${ctaCode ? '<div style="margin-bottom: 15px;">' + ctaCode + '</div>' : ''}
 <p class="notranslate" translate="no" style="margin-bottom: 4px; font-weight: 700; color: #4a5568;">© ${isEn ? 'All rights reserved to Law Office of Ali Kadhem Hashimi (AKH Law Office)' : 'جميع الحقوق محفوظة لمكتب المحامي علي كاظم الهاشمي (AKH Law Office)'}.</p>
-<p style="margin: 0;">${isEn ? 'Disclaimer: Published legal materials are for general awareness.' : 'إخلاء مسؤولية وحجية النص: المواد والتحليلات القانونية المنشورة مُعدّة لأغراض التوعية العامة.'} ${editTimestamp}</p>
+<p style="margin: 0;">${isEn ? 'Disclaimer: Published legal materials are for general awareness.' : 'إخلاء مسؤولية وحجية النص: المواد والتحليلات القانونية المنشورة مُعدّة لأغراض التوعية العامة.'}${editTimestamp}</p>
 </div>`;
 
 const btn = document.getElementById('submitBtn');
@@ -598,11 +598,11 @@ updatedHtml = updatedHtml.replace(`id="${targetFeed}">`, `id="${targetFeed}">\n`
 const putRes = await fetch(getUrl.split('?')[0], {
 method: 'PUT',
 headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}`, 'Content-Type': 'application/json' },
-body: JSON.stringify({ message: EDITING_ARTICLE_INDEX !== null ? `Update article: ${title}` : `Publish: ${title}`, content: utf8_to_b64(updatedHtml), sha: fileData.sha, branch: BRANCH })
+body: JSON.stringify({ message: EDITING_ARTICLE_INDEX !== null ? `Update article with change log: ${title}` : `Publish: ${title}`, content: utf8_to_b64(updatedHtml), sha: fileData.sha, branch: BRANCH })
 });
 
 if (!putRes.ok) throw new Error('فشل حفظ التحديثات في GitHub.');
-showAlert(isEn ? 'Published successfully!' : (EDITING_ARTICLE_INDEX !== null ? 'تم تحديث المقال بنجاح وتسجيل التعديلات!' : 'تم النشر بنجاح!'), true);
+showAlert(isEn ? 'Published successfully!' : (EDITING_ARTICLE_INDEX !== null ? 'تم تحديث المقال بنجاح وتسجيل التعديلات في الأرشيف!' : 'تم النشر بنجاح!'), true);
 cancelEdit();
 loadArticles();
 } catch (err) {
@@ -656,11 +656,25 @@ LOADED_ARTICLES_CACHE.push({ index, title, summary, slug, keywords, content, cat
 
 const item = document.createElement('div');
 item.className = 'article-item';
-item.innerHTML = `<div class="article-info"><div class="item-title">${title}</div><div class="item-meta"><span>Slug: ?p=${slug}</span><span class="views-badge">👁️ Views: ${views}</span></div></div><div class="item-actions"><a class="btn-action btn-view" href="https://akjassem.com/insights/?p=${slug}" target="_blank">${lang==='en' ? 'Preview 👁️' : 'معاينة بالموقع 👁️'}</a><button class="btn-action btn-edit" onclick="startEdit(${index})">${lang==='en' ? 'Edit ✏️' : 'تعديل ✏️'}</button><button class="btn-action btn-delete" onclick="verifyAndDelete(${index})">${lang==='en' ? 'Delete 🗑️' : 'حذف 🗑️'}</button></div>`;
+item.innerHTML = `<div class="article-info"><div class="item-title">${title}</div><div class="item-meta"><span>Slug: ?p=${slug}</span><span class="views-badge">👁️ Views: ${views}</span></div></div><div class="item-actions"><a class="btn-action btn-view" href="https://akjassem.com/insights/?p=${slug}" target="_blank">${lang==='en' ? 'Preview 👁️' : 'معاينة بالموقع 👁️'}</a><button class="btn-action btn-edit" onclick="verifyAndEdit(${index})">${lang==='en' ? 'Edit ✏️' : 'تعديل ✏️'}</button><button class="btn-action btn-delete" onclick="verifyAndDelete(${index})">${lang==='en' ? 'Delete 🗑️' : 'حذف 🗑️'}</button></div>`;
 container.appendChild(item);
 }
 } catch (e) { 
 container.innerHTML = `<p style="font-size: 13px; color: #e53e3e; text-align: center;">Error: ${e.message}</p>`; 
+}
+}
+
+// التحقق من رمز الـ PIN قبل السماح بالتعديل
+async function verifyAndEdit(index) {
+const pinInput = prompt('حماية أمنية: أدخل رمز الـ PIN المكون من 6 أرقام لتأكيد فتح وضع التعديل:');
+if (!pinInput) return;
+
+try {
+const vaultObj = JSON.parse(localStorage.getItem('akh_vault'));
+await decryptToken(vaultObj, pinInput);
+startEdit(index);
+} catch(e) {
+alert('خطأ: رمز الـ PIN غير صحيح! تم رفض عملية التعديل حمايةً للمحتوى.');
 }
 }
 
@@ -673,7 +687,7 @@ document.getElementById('articleSlug').value = art.slug;
 document.getElementById('keywords').value = art.keywords;
 document.getElementById('content').value = art.content;
 document.getElementById('editBanner').style.display = 'flex';
-document.getElementById('editBannerText').innerText = `✏️ Edit: "${art.title}" (سجل التعديلات جاهز للتحديث)`;
+document.getElementById('editBannerText').innerText = `✏️ Edit: "${art.title}" (سجل التعديلات سيسجل التحديث تلقائياً)`;
 document.getElementById('submitBtn').innerText = document.documentElement.lang==='en' ? 'Save Changes 💾' : 'حفظ التعديلات 💾';
 window.scrollTo({ top: 120, behavior: 'smooth' });
 }
@@ -686,16 +700,14 @@ const lang = document.documentElement.lang;
 document.getElementById('submitBtn').innerText = lang==='en' ? 'Publish Now 🚀' : 'نـشـر الآن 🚀';
 }
 
-// دالة التحقق من رمز الـ PIN قبل الحذف
+// التحقق من رمز الـ PIN قبل الحذف
 async function verifyAndDelete(index) {
 const pinInput = prompt('حماية أمنية: أدخل رمز الـ PIN المكون من 6 أرقام لتأكيد عملية الحذف:');
 if (!pinInput) return;
 
 try {
 const vaultObj = JSON.parse(localStorage.getItem('akh_vault'));
-// التحقق من صحة الـ PIN عن طريق محاولة فك التشفير
 await decryptToken(vaultObj, pinInput);
-// إذا نجح فك التشفير، فالرمز صحيح
 deleteArticle(index);
 } catch(e) {
 alert('خطأ: رمز الـ PIN غير صحيح! تم إلغاء عملية الحذف حمايةً للمحتوى.');
