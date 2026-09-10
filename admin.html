@@ -267,10 +267,10 @@ text-align: right;
 <div id="setupScreen" class="screen-box" style="display: none;">
 <p class="lock-desc"><strong>إعداد الحماية لأول مرة:</strong><br>أدخل مفتاح GitHub ورمز PIN (6 أرقام):</p>
 <div class="form-group" style="max-width: 420px; margin: 0 auto 12px;">
-<input type="password" id="setupTokenInput" placeholder="أدخل رمز GitHub (ghp_... أو github_pat_...)" dir="ltr">
+<input type="password" id="setupTokenInput" placeholder="أدخل رمز GitHub (ghp_... أو github_pat_...)" dir="ltr" autocomplete="off">
 </div>
 <div class="form-group" style="max-width: 260px; margin: 0 auto 16px;">
-<input type="password" id="setupPinInput" class="pin-input" maxlength="6" placeholder="******" pattern="\d">
+<input type="password" id="setupPinInput" class="pin-input" maxlength="6" placeholder="******" autocomplete="off">
 </div>
 <button type="button" class="btn-unlock" onclick="performSetup()">تشفير وحفظ رمز الـ PIN 🔒</button>
 </div>
@@ -279,7 +279,7 @@ text-align: right;
 <div id="lockScreen" class="screen-box" style="display: none;">
 <p class="lock-desc">أدخل رمز الـ PIN السري الخاص بك لفك القفل والدخول:</p>
 <div class="form-group" style="max-width: 260px; margin: 0 auto 16px;">
-<input type="password" id="unlockPinInput" class="pin-input" maxlength="6" placeholder="******" pattern="\d" autofocus>
+<input type="password" id="unlockPinInput" class="pin-input" maxlength="6" placeholder="******" autocomplete="off" autofocus>
 </div>
 <button type="button" class="btn-unlock" onclick="attemptPinUnlock()">دخول سريع ←</button>
 </div>
@@ -289,6 +289,11 @@ text-align: right;
 <div class="top-bar">
 <span class="status-badge">● متصل بالحساب والمحتوى محمي</span>
 <button type="button" class="btn-lock" onclick="lockPortal()">قفل اللوحة 🔒</button>
+</div>
+
+<div id="editBanner" style="display: none; background-color: #ebf8ff; border: 1.5px solid #bee3f8; color: #2b6cb0; padding: 10px 14px; border-radius: 8px; margin-bottom: 16px; justify-content: space-between; align-items: center;">
+<span id="editBannerText">✏️ تعديل التحليل القانوني...</span>
+<button type="button" class="btn-cancel-edit" onclick="cancelEdit()">إلغاء ✕</button>
 </div>
 
 <form id="articleForm">
@@ -308,22 +313,22 @@ text-align: right;
 
 <div class="form-group">
 <label>رابط التحليل أو الإضاءة المختصر (URL Slug):</label>
-<input type="text" id="articleSlug" placeholder="مثال: labor-social-security-iraq" dir="ltr" required>
+<input type="text" id="articleSlug" placeholder="مثال: labor-social-security-iraq" dir="ltr" required autocomplete="off">
 </div>
 
 <div class="form-group">
 <label>عنوان التحليل أو الرأي القانوني:</label>
-<input type="text" id="title" placeholder="عنوان الدراسة أو التحليل القانوني" required>
+<input type="text" id="title" placeholder="عنوان الدراسة أو التحليل القانوني" required autocomplete="off">
 </div>
 
 <div class="form-group">
 <label>الموجز التسويقي لمحركات البحث (SEO Snippet):</label>
-<input type="text" id="summary" placeholder="تحليل موجز وشامل لأبرز الأحكام القانونية..." required>
+<input type="text" id="summary" placeholder="تحليل موجز وشامل لأبرز الأحكام القانونية..." required autocomplete="off">
 </div>
 
 <div class="form-group">
 <label>الكلمات المفتاحية لجوجل (SEO Keywords):</label>
-<input type="text" id="keywords" placeholder="محامي في بغداد, قانون العمل, استشارات قانونية">
+<input type="text" id="keywords" placeholder="محامي في بغداد, قانون العمل, استشارات قانونية" autocomplete="off">
 </div>
 
 <div class="form-group">
@@ -359,7 +364,7 @@ text-align: right;
 <div id="pinModal">
 <div class="modal-content">
 <h3 id="pinModalTitle">حماية أمنية: أدخل رمز الـ PIN</h3>
-<input type="password" id="modalPinInput" class="pin-input" maxlength="6" placeholder="******" style="-webkit-text-security: disc;">
+<input type="password" id="modalPinInput" class="pin-input" maxlength="6" placeholder="******" autocomplete="new-password" autocorrect="off" autocapitalize="off" spellcheck="false" style="-webkit-text-security: disc;">
 <div class="modal-buttons">
 <button class="btn-cancel-pin" onclick="closePinModal()">إلغاء</button>
 <button class="btn-confirm-pin" onclick="confirmPinAction()">تأكيد 🔒</button>
@@ -432,6 +437,7 @@ return new TextDecoder().decode(decrypted);
 }
 
 window.onload = function() {
+try {
 populateCategories('ar');
 const savedSessionToken = sessionStorage.getItem('akh_active_token');
 if (savedSessionToken) {
@@ -448,6 +454,10 @@ document.getElementById('dashboardScreen').style.display = 'none';
 document.getElementById('setupScreen').style.display = 'block';
 document.getElementById('lockScreen').style.display = 'none';
 document.getElementById('dashboardScreen').style.display = 'none';
+}
+} catch (err) {
+console.error("Initialization error:", err);
+document.getElementById('setupScreen').style.display = 'block';
 }
 };
 
@@ -618,7 +628,7 @@ const articles = doc.querySelectorAll('article');
 LOADED_ARTICLES_CACHE = [];
 
 if (articles.length === 0) { 
-container.innerHTML = '<p style="font-size: 13px; color: #718096; text-align: center;">لا توجد تحليلات.</p>'; 
+container.innerHTML = '<p style="font-size: 13px; color: #718096; text-align: center;">لا توجد تحليلات منشورة.</p>'; 
 return; 
 }
 container.innerHTML = '';
