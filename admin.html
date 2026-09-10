@@ -337,7 +337,7 @@ const displayDate = new Date().toLocaleDateString(isEn ? 'en-GB' : 'ar-IQ', { ye
 const nowObj = new Date();
 const logEntry = `التاريخ: ${nowObj.toLocaleDateString('ar-IQ')} | الوقت: ${nowObj.toLocaleTimeString('ar-IQ')} | الإجراء: ${EDITING_SLUG ? 'تعديل وتحديث' : 'نشر جديد'}`;
 
-// شريط مشاركة المقال الفرعي الحديث
+// شريط مشاركة المقال الفرعي الحديث مع الروابط الفرعية لكل منصة
 const shareBarHtml = `<div class="share-bar" style="margin-top: 25px; padding-top: 15px; border-top: 1px dashed #cbd5e0; display: flex; align-items: center; flex-wrap: wrap; gap: 8px;">
 <span class="share-label" style="font-size: 12px; font-weight: 700; color: #4a5568; margin-left: 6px;">مشاركة الرابط المباشر:</span>
 <button class="btn-share btn-share-copy" onclick="navigator.clipboard.writeText('https://akjassem.com/insights/?p=${slug}'); alert('تم نسخ رابط المقال مباشرة 📋');" style="border: none; padding: 6px 12px; border-radius: 6px; font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer; background-color: #edf2f7; color: #2d3748;">📋 نسخ الرابط</button>
@@ -375,6 +375,22 @@ oldArt.remove();
 }
 const finalLogs = existingLogs ? `${existingLogs}///${logEntry}` : logEntry;
 
+// حقن وسوم الـ SEO الديناميكية (مهم جداً للمشاركة عبر وسائل التواصل مثل فيسبوك ولينكد إن لتظهر عناوين المقال الفريدة)
+let headEl = doc.querySelector('head');
+if (headEl) {
+// إزالة أي وسوم قديمة مكررة للمقال
+const oldOg = headEl.querySelectorAll('meta[data-dynamic-seo]');
+oldOg.forEach(el => el.remove());
+
+headEl.insertAdjacentHTML('beforeend', `
+<meta property="og:title" content="${title} | AKH Law Office" data-dynamic-seo="true">
+<meta property="og:description" content="${summary}" data-dynamic-seo="true">
+<meta property="og:url" content="https://akjassem.com/insights/?p=${slug}" data-dynamic-seo="true">
+<meta name="twitter:title" content="${title} | AKH Law Office" data-dynamic-seo="true">
+<meta name="twitter:description" content="${summary}" data-dynamic-seo="true">
+`);
+}
+
 const articleHtml = `<article class="legal-card" data-category="${category}" data-slug="${slug}" data-keywords="${keywords}" data-changelog="${finalLogs}" data-status="${existingStatus}" style="border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; margin-bottom: 24px; text-align: right; direction: rtl; background: #ffffff; ${existingStatus==='hidden'?'display:none;':''}">
 <div style="font-size: 13px; color: #d32f2f; font-weight: 700; margin-bottom: 8px;">${category} • ${displayDate}</div>
 <h2 style="font-size: 19px; font-weight: 800; color: #0b1a30; margin-bottom: 12px;">${title}</h2>
@@ -396,11 +412,11 @@ feed.insertAdjacentHTML('afterbegin', articleHtml);
 const putRes = await fetch(getUrl.split('?')[0], {
 method: 'PUT',
 headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}`, 'Content-Type': 'application/json' },
-body: JSON.stringify({ message: 'Save article', content: utf8_to_b64('<!DOCTYPE html>\n' + doc.documentElement.outerHTML), sha: fileData.sha, branch: BRANCH })
+body: JSON.stringify({ message: 'Save article and SEO meta', content: utf8_to_b64('<!DOCTYPE html>\n' + doc.documentElement.outerHTML), sha: fileData.sha, branch: BRANCH })
 });
 
 if (!putRes.ok) throw new Error('فشل الحفظ في غيت هب.');
-showAlert('تم الحفظ بنجاح!', true);
+showAlert('تم الحفظ والنشر بنجاح!', true);
 cancelEdit();
 loadArticles();
 } catch (err) {
@@ -517,7 +533,6 @@ function getTrash() {
 let trash = JSON.parse(localStorage.getItem('akh_trash_bin') || '[]');
 const thirtyDaysMs = 30 * 24 * 60 * 60 * 1000;
 const now = Date.now();
-// تصفية المحذوفات الأقدم من 30 يوماً تلقائياً
 const filtered = trash.filter(item => (now - (item.timestamp || now)) < thirtyDaysMs);
 if (filtered.length !== trash.length) {
 localStorage.setItem('akh_trash_bin', JSON.stringify(filtered));
@@ -611,15 +626,14 @@ loadArticles();
 } catch(e) { alert(e.message); }
 }
 
-// تأكيد مزدوج وحماية لتفريغ السلة بالكامل
 function emptyTrashWithConfirmation() {
-const confirmCode = prompt('⚠️ تحذير خطير: سيتم تفريغ سلة المهملات نهائياً وحذف المقالات القديمة التي تجاوزت مدة الاسترجاع.\nللتأكيد، اكتب كلمة (حذف) بالصندوق أدناه:');
+const confirmCode = prompt('⚠️ تحذير خطير: سيتم تفريغ سلة المهملات نهائياً وحذف المقالات القديمة.\nللتأكيد، اكتب كلمة (حذف) بالصندوق أدناه:');
 if (confirmCode === 'حذف') {
 saveTrash([]);
 closeTrashModal();
 alert('تم تفريغ سلة المهملات بنجاح.');
 } else if (confirmCode !== null) {
-alert('كلمة التأكيد غير صحيحة! تم إلغاء العملية حمايةً للمحتوى.');
+alert('كلمة التأكيد غير صحيحة! تم إلغاء العملية.');
 }
 }
 
