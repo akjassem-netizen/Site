@@ -129,7 +129,7 @@
 
   <header class="icover-header">
     <div>
-      <select id="languageSelect" class="lang-select-bar" onchange="changeSystemLanguage(this.value)">
+      <select id="languageSelect" class="lang-select-bar" onchange="switchLanguage(this.value)">
         <option value="ar">العربية</option>
         <option value="en" selected>English</option>
         <option value="tr">Türkçe</option>
@@ -208,7 +208,7 @@
 
     function changeSystemLanguage(lang) {
       if (lang === 'ar') {
-        window.location.href = '../'; // يحولك للصفحة العربية فوراً إذا اخترت العربية
+        window.location.href = '../';
         return;
       }
       window.currentLang = lang;
@@ -225,7 +225,7 @@
       document.getElementById('menuConsultations').innerText = t.consultations;
       document.getElementById('menuInsights').innerText = t.insights;
       document.getElementById('menuAbout').innerText = t.about;
-      document.getElementById('menuContact').innerText.innerText = t.contact;
+      document.getElementById('menuContact').innerText = t.contact;
       document.getElementById('backHomeBtn').innerText = t.backHome;
       
       localStorage.setItem('preferredSystemLangEn', lang);
@@ -236,7 +236,6 @@
       changeSystemLanguage(lang);
     }
 
-    // الفتح التلقائي للمقال عند الدخول عبر الرابط الفرعي (?p=...)
     window.addEventListener('DOMContentLoaded', () => {
       const savedLang = localStorage.getItem('preferredSystemLangEn') || 'en';
       if (savedLang === 'ar') {
