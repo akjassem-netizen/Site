@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>بوابة الإدارة القانونية المحمية | Law Office Of Ali Kadhem Hashimi</title>
+<title>بوابة الإدارة القانونية | Law Office Of Ali Kadhem Hashimi</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -69,7 +69,6 @@ font-weight: 800;
 text-align: center;
 max-width: 260px;
 margin: 0 auto 16px;
--webkit-text-security: disc;
 }
 
 .top-bar {
@@ -108,7 +107,7 @@ font-size: 14px;
 margin-bottom: 6px;
 color: #2d3748;
 }
-input[type="text"], input[type="password"], input[type="datetime-local"], textarea, select {
+input[type="text"], input[type="password"], textarea, select {
 width: 100%;
 padding: 11px 13px;
 border: 1.5px solid #cbd5e0;
@@ -185,7 +184,6 @@ gap: 8px;
 .article-info { text-align: right; }
 .article-info .item-title { font-size: 14.5px; font-weight: 700; color: #0b1a30; line-height: 1.4; }
 .article-info .item-meta { font-size: 12px; color: #718096; margin-top: 4px; display: flex; gap: 15px; align-items: center; flex-wrap: wrap; }
-.views-badge { background: #edf2f7; color: #2d3748; padding: 2px 8px; border-radius: 4px; font-weight: 700; }
 .status-hidden-badge { background: #fed7d7; color: #9b1c1c; padding: 2px 8px; border-radius: 4px; font-weight: 700; }
 
 .item-actions {
@@ -211,7 +209,7 @@ font-family: inherit;
 .btn-logs { background-color: #d69e2e; color: #ffffff; }
 .btn-hide { background-color: #4a5568; color: #ffffff; }
 
-#pinModal, #logModal {
+#logModal {
 display: none;
 position: fixed;
 top: 0; left: 0; width: 100%; height: 100%;
@@ -230,11 +228,6 @@ padding: 25px;
 box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 text-align: center;
 }
-.modal-content h3 { font-size: 16px; color: #0b1a30; margin-bottom: 12px; font-weight: 800; }
-.modal-buttons { display: flex; gap: 10px; margin-top: 15px; }
-.modal-buttons button { flex: 1; padding: 10px; border-radius: 6px; border: none; font-weight: 700; cursor: pointer; font-family: inherit; }
-.btn-confirm-pin { background: #0b1a30; color: #fff; }
-.btn-cancel-pin { background: #e53e3e; color: #fff; }
 .log-box-item {
 background: #f8fafc;
 border: 1px solid #cbd5e0;
@@ -267,10 +260,10 @@ text-align: right;
 <div id="setupScreen" class="screen-box" style="display: none;">
 <p class="lock-desc"><strong>إعداد الحماية لأول مرة:</strong><br>أدخل مفتاح GitHub ورمز PIN (6 أرقام):</p>
 <div class="form-group" style="max-width: 420px; margin: 0 auto 12px;">
-<input type="password" id="setupTokenInput" placeholder="أدخل رمز GitHub (ghp_... أو github_pat_...)" dir="ltr" autocomplete="off">
+<input type="password" id="setupTokenInput" placeholder="أدخل رمز GitHub (ghp_... أو github_pat_...)" dir="ltr">
 </div>
 <div class="form-group" style="max-width: 260px; margin: 0 auto 16px;">
-<input type="password" id="setupPinInput" class="pin-input" maxlength="6" placeholder="******" autocomplete="off">
+<input type="password" id="setupPinInput" class="pin-input" maxlength="6" placeholder="******">
 </div>
 <button type="button" class="btn-unlock" onclick="performSetup()">تشفير وحفظ رمز الـ PIN 🔒</button>
 </div>
@@ -279,7 +272,7 @@ text-align: right;
 <div id="lockScreen" class="screen-box" style="display: none;">
 <p class="lock-desc">أدخل رمز الـ PIN السري الخاص بك لفك القفل والدخول:</p>
 <div class="form-group" style="max-width: 260px; margin: 0 auto 16px;">
-<input type="password" id="unlockPinInput" class="pin-input" maxlength="6" placeholder="******" autocomplete="off" autofocus>
+<input type="password" id="unlockPinInput" class="pin-input" maxlength="6" placeholder="******" autofocus>
 </div>
 <button type="button" class="btn-unlock" onclick="attemptPinUnlock()">دخول سريع ←</button>
 </div>
@@ -293,47 +286,38 @@ text-align: right;
 
 <div id="editBanner" style="display: none; background-color: #ebf8ff; border: 1.5px solid #bee3f8; color: #2b6cb0; padding: 10px 14px; border-radius: 8px; margin-bottom: 16px; justify-content: space-between; align-items: center;">
 <span id="editBannerText">✏️ تعديل التحليل القانوني...</span>
-<button type="button" class="btn-cancel-edit" onclick="cancelEdit()">إلغاء ✕</button>
+<button type="button" onclick="cancelEdit()" style="background: #e53e3e; color: white; border: none; padding: 4px 10px; border-radius: 5px; cursor: pointer;">إلغاء ✕</button>
 </div>
 
 <form id="articleForm">
 <div class="form-group">
-<label>لغة المحتوى / Content Language:</label>
-<select id="articleLang" onchange="onLanguageChange()">
-<option value="ar" selected>العربية (Arabic)</option>
-<option value="en">English (الإنجليزية)</option>
-</select>
-</div>
-
-<div class="form-group">
 <label>التخصص أو الفرع القانوني:</label>
-<select id="categorySelect" onchange="onCategoryChange()"></select>
-<input type="text" id="customCategoryInput" style="display: none; margin-top: 8px;" placeholder="اكتب التخصص القانوني هنا بحرية...">
+<select id="categorySelect"></select>
 </div>
 
 <div class="form-group">
 <label>رابط التحليل أو الإضاءة المختصر (URL Slug):</label>
-<input type="text" id="articleSlug" placeholder="مثال: labor-social-security-iraq" dir="ltr" required autocomplete="off">
+<input type="text" id="articleSlug" placeholder="مثال: labor-social-security-iraq" dir="ltr" required>
 </div>
 
 <div class="form-group">
 <label>عنوان التحليل أو الرأي القانوني:</label>
-<input type="text" id="title" placeholder="عنوان الدراسة أو التحليل القانوني" required autocomplete="off">
+<input type="text" id="title" placeholder="عنوان الدراسة أو التحليل القانوني" required>
 </div>
 
 <div class="form-group">
 <label>الموجز التسويقي لمحركات البحث (SEO Snippet):</label>
-<input type="text" id="summary" placeholder="تحليل موجز وشامل لأبرز الأحكام القانونية..." required autocomplete="off">
+<input type="text" id="summary" placeholder="تحليل موجز وشامل لأبرز الأحكام القانونية..." required>
 </div>
 
 <div class="form-group">
 <label>الكلمات المفتاحية لجوجل (SEO Keywords):</label>
-<input type="text" id="keywords" placeholder="محامي في بغداد, قانون العمل, استشارات قانونية" autocomplete="off">
+<input type="text" id="keywords" placeholder="محامي في بغداد, قانون العمل, استشارات قانونية">
 </div>
 
 <div class="form-group">
 <label>زر تفاعل مخصص بنهاية النص (اختياري):</label>
-<textarea id="ctaCustomCode" style="min-height: 70px; direction: ltr;" placeholder='<a href="https://wa.me/9647..." style="...">طلب الاستشارة عبر الواتساب</a>'></textarea>
+<textarea id="ctaCustomCode" style="min-height: 70px; direction: ltr;" placeholder='<a href="...">طلب الاستشارة</a>'></textarea>
 </div>
 
 <div class="form-group">
@@ -358,18 +342,6 @@ text-align: right;
 </div>
 </div>
 
-</div>
-
-<!-- نافذة PIN -->
-<div id="pinModal">
-<div class="modal-content">
-<h3 id="pinModalTitle">حماية أمنية: أدخل رمز الـ PIN</h3>
-<input type="password" id="modalPinInput" class="pin-input" maxlength="6" placeholder="******" autocomplete="new-password" autocorrect="off" autocapitalize="off" spellcheck="false" style="-webkit-text-security: disc;">
-<div class="modal-buttons">
-<button class="btn-cancel-pin" onclick="closePinModal()">إلغاء</button>
-<button class="btn-confirm-pin" onclick="confirmPinAction()">تأكيد 🔒</button>
-</div>
-</div>
 </div>
 
 <!-- نافذة السجل -->
@@ -402,9 +374,8 @@ const AR_CATEGORIES = [
 ];
 
 let ACTIVE_TOKEN = '';
-let EDITING_INDEX = null;
+let EDITING_SLUG = null;
 let LOADED_ARTICLES_CACHE = [];
-let PENDING_ACTION_CALLBACK = null;
 
 async function deriveKey(pin, salt) {
 const enc = new TextEncoder();
@@ -437,8 +408,7 @@ return new TextDecoder().decode(decrypted);
 }
 
 window.onload = function() {
-try {
-populateCategories('ar');
+populateCategories();
 const savedSessionToken = sessionStorage.getItem('akh_active_token');
 if (savedSessionToken) {
 ACTIVE_TOKEN = savedSessionToken;
@@ -449,26 +419,27 @@ loadArticles();
 } else if (localStorage.getItem('akh_vault')) {
 document.getElementById('setupScreen').style.display = 'none';
 document.getElementById('lockScreen').style.display = 'block';
-document.getElementById('dashboardScreen').style.display = 'none';
 } else {
-document.getElementById('setupScreen').style.display = 'block';
-document.getElementById('lockScreen').style.display = 'none';
-document.getElementById('dashboardScreen').style.display = 'none';
-}
-} catch (err) {
-console.error("Initialization error:", err);
 document.getElementById('setupScreen').style.display = 'block';
 }
 };
+
+function populateCategories() {
+const select = document.getElementById('categorySelect');
+select.innerHTML = '';
+AR_CATEGORIES.forEach(cat => {
+const opt = document.createElement('option');
+opt.value = cat;
+opt.innerText = cat === 'CUSTOM' ? '✍️ تخصص آخر...' : cat;
+select.appendChild(opt);
+});
+}
 
 function previewArticle() {
 const title = document.getElementById('title').value;
 const summary = document.getElementById('summary').value;
 const content = document.getElementById('content').value;
-if (!title || !content) {
-alert('يرجى كتابة العنوان والنص أولاً.');
-return;
-}
+if (!title || !content) { alert('يرجى كتابة العنوان والنص أولاً.'); return; }
 const win = window.open('', '_blank');
 win.document.write(`<html dir="rtl"><head><title>معاينة</title></head><body><h1>${title}</h1><p>${summary}</p><hr><div style="white-space:pre-line;">${content}</div></body></html>`);
 }
@@ -509,34 +480,13 @@ sessionStorage.removeItem('akh_active_token');
 location.reload();
 }
 
-function populateCategories(lang) {
-const select = document.getElementById('categorySelect');
-select.innerHTML = '';
-AR_CATEGORIES.forEach(cat => {
-const opt = document.createElement('option');
-opt.value = cat;
-opt.innerText = cat === 'CUSTOM' ? '✍️ تخصص آخر...' : cat;
-select.appendChild(opt);
-});
-onCategoryChange();
-}
-
-function onCategoryChange() {
-const select = document.getElementById('categorySelect');
-document.getElementById('customCategoryInput').style.display = (select.value === 'CUSTOM') ? 'block' : 'none';
-}
-
-function utf8_to_b64(str) {
-return btoa(String.fromCharCode.apply(null, new TextEncoder().encode(str)));
-}
-function b64_to_utf8(b64) {
-return new TextDecoder().decode(Uint8Array.from(atob(b64.replace(/\s/g, '')), c => c.charCodeAt(0)));
-}
+function utf8_to_b64(str) { return btoa(String.fromCharCode.apply(null, new TextEncoder().encode(str))); }
+function b64_to_utf8(b64) { return new TextDecoder().decode(Uint8Array.from(atob(b64.replace(/\s/g, '')), c => c.charCodeAt(0))); }
 
 document.getElementById('articleForm').addEventListener('submit', async function(e) {
 e.preventDefault();
 const title = document.getElementById('title').value.trim();
-const category = document.getElementById('categorySelect').value === 'CUSTOM' ? document.getElementById('customCategoryInput').value.trim() : document.getElementById('categorySelect').value;
+const category = document.getElementById('categorySelect').value;
 const slug = document.getElementById('articleSlug').value.trim().toLowerCase().replace(/\s+/g, '-');
 const summary = document.getElementById('summary').value.trim();
 const keywords = document.getElementById('keywords').value.trim();
@@ -545,11 +495,9 @@ const content = document.getElementById('content').value.trim();
 const displayDate = new Date().toLocaleDateString('ar-IQ', { year: 'numeric', month: 'long', day: 'numeric' });
 
 const nowObj = new Date();
-const logEntryString = `التاريخ: ${nowObj.toLocaleDateString('ar-IQ')} | الساعة: ${nowObj.toLocaleTimeString('ar-IQ')} | الإجراء: ${EDITING_INDEX !== null ? 'تعديل وتحديث محتوى التحليل' : 'نشر لأول مرة'}`;
+const logEntry = `التاريخ: ${nowObj.toLocaleDateString('ar-IQ')} | الوقت: ${nowObj.toLocaleTimeString('ar-IQ')} | الإجراء: ${EDITING_SLUG ? 'تعديل وتحديث' : 'نشر جديد'}`;
 
-const legalFooterHtml = `<div class="legal-footer-box" style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #edf2f7; font-size: 11.5px; color: #718096; line-height: 1.7;">${ctaCode ? '<div style="margin-bottom: 15px;">' + ctaCode + '</div>' : ''}
-<p>© جميع الحقوق محفوظة لمكتب المحامي علي كاظم الهاشمي.</p>
-</div>`;
+const legalFooterHtml = `<div class="legal-footer-box" style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #edf2f7; font-size: 11.5px; color: #718096; line-height: 1.7;">${ctaCode ? '<div style="margin-bottom: 15px;">' + ctaCode + '</div>' : ''}<p>© جميع الحقوق محفوظة لمكتب المحامي علي كاظم الهاشمي.</p></div>`;
 
 const btn = document.getElementById('submitBtn');
 btn.innerText = 'جارٍ النشر...';
@@ -558,21 +506,25 @@ btn.disabled = true;
 try {
 const getUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}?ref=${BRANCH}`;
 const res = await fetch(getUrl, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
-if (!res.ok) throw new Error('تعذر جلب ملف insights/index.html');
+if (!res.ok) throw new Error('تعذر جلب الملف.');
 const fileData = await res.json();
 let html = b64_to_utf8(fileData.content);
 
-const parserTemp = new DOMParser();
-const docTemp = parserTemp.parseFromString(html, 'text/html');
-const artsTemp = docTemp.querySelectorAll('article');
+const parser = new DOMParser();
+const doc = parser.parseFromString(html, 'text/html');
 
 let existingLogs = '';
 let existingStatus = 'active';
-if (EDITING_INDEX !== null && artsTemp[EDITING_INDEX]) {
-existingLogs = artsTemp[EDITING_INDEX].getAttribute('data-changelog') || '';
-existingStatus = artsTemp[EDITING_INDEX].getAttribute('data-status') || 'active';
+
+if (EDITING_SLUG) {
+const oldArt = doc.querySelector(`article[data-slug="${EDITING_SLUG}"]`);
+if (oldArt) {
+existingLogs = oldArt.getAttribute('data-changelog') || '';
+existingStatus = oldArt.getAttribute('data-status') || 'active';
+oldArt.remove();
 }
-const finalLogs = existingLogs ? `${existingLogs}///${logEntryString}` : logEntryString;
+}
+const finalLogs = existingLogs ? `${existingLogs}///${logEntry}` : logEntry;
 
 const articleHtml = `<article class="legal-card" data-category="${category}" data-slug="${slug}" data-keywords="${keywords}" data-changelog="${finalLogs}" data-status="${existingStatus}" style="border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; margin-bottom: 24px; text-align: right; direction: rtl; background: #ffffff; ${existingStatus==='hidden'?'display:none;':''}">
 <div style="font-size: 13px; color: #d32f2f; font-weight: 700; margin-bottom: 8px;">${category} • ${displayDate}</div>
@@ -585,26 +537,21 @@ ${legalFooterHtml}
 <button type="button" onclick="const b = this.previousElementSibling; const open = b.style.display==='block'; b.style.display = open?'none':'block'; this.innerText = open ? 'قراءة المزيد ←' : 'عرض أقل ↑';" style="background: none; border: 1.5px solid #0b1a30; color: #0b1a30; padding: 8px 18px; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 10px;">قراءة المزيد ←</button>
 </article>`;
 
-let updatedHtml = html;
-if (EDITING_INDEX !== null && artsTemp[EDITING_INDEX]) {
-const doc = parserTemp.parseFromString(html, 'text/html');
-const articles = doc.querySelectorAll('article');
-if (articles[EDITING_INDEX]) {
-articles[EDITING_INDEX].outerHTML = articleHtml;
-updatedHtml = '<!DOCTYPE html>\n' + doc.documentElement.outerHTML;
+let feed = doc.getElementById('arabic-feed');
+if (!feed) {
+doc.body.innerHTML = '<div id="arabic-feed"></div>' + doc.body.innerHTML;
+feed = doc.getElementById('arabic-feed');
 }
-} else {
-updatedHtml = updatedHtml.replace('id="arabic-feed">', 'id="arabic-feed">\n' + articleHtml);
-}
+feed.insertAdjacentHTML('afterbegin', articleHtml);
 
 const putRes = await fetch(getUrl.split('?')[0], {
 method: 'PUT',
 headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}`, 'Content-Type': 'application/json' },
-body: JSON.stringify({ message: 'Update analysis', content: utf8_to_b64(updatedHtml), sha: fileData.sha, branch: BRANCH })
+body: JSON.stringify({ message: 'Save article', content: utf8_to_b64('<!DOCTYPE html>\n' + doc.documentElement.outerHTML), sha: fileData.sha, branch: BRANCH })
 });
 
-if (!putRes.ok) throw new Error('فشل الحفظ في GitHub.');
-showAlert('تم الحفظ والنشر بنجاح!', true);
+if (!putRes.ok) throw new Error('فشل الحفظ في غيت هب.');
+showAlert('تم الحفظ بنجاح!', true);
 cancelEdit();
 loadArticles();
 } catch (err) {
@@ -617,99 +564,68 @@ btn.disabled = false;
 
 async function loadArticles() {
 const container = document.getElementById('articlesListContainer');
-container.innerHTML = '<p style="font-size: 13px; color: #718096; text-align: center;">جارٍ جلب التحليلات...</p>';
+container.innerHTML = '<p style="font-size: 13px; color: #718096; text-align: center;">جلب التحليلات...</p>';
 
 try {
 const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}?ref=${BRANCH}`, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
-if (!res.ok) throw new Error('تعذر الوصول إلى الملف.');
+if (!res.ok) throw new Error('تعذر جلب الملف.');
 const data = await res.json();
 const doc = new DOMParser().parseFromString(b64_to_utf8(data.content), 'text/html');
 const articles = doc.querySelectorAll('article');
 LOADED_ARTICLES_CACHE = [];
 
-if (articles.length === 0) { 
-container.innerHTML = '<p style="font-size: 13px; color: #718096; text-align: center;">لا توجد تحليلات منشورة.</p>'; 
-return; 
+if (articles.length === 0) {
+container.innerHTML = '<p style="font-size: 13px; color: #718096; text-align: center;">لا توجد تحليلات منشورة حالياً.</p>';
+return;
 }
 container.innerHTML = '';
 
-articles.forEach((art, index) => {
+const seenSlugs = new Set();
+articles.forEach((art) => {
 const title = art.querySelector('h2') ? art.querySelector('h2').innerText : 'مقال';
-const slug = art.getAttribute('data-slug') || ('analysis-' + (index + 1));
+const slug = art.getAttribute('data-slug') || 'article';
+if (seenSlugs.has(slug)) return;
+seenSlugs.add(slug);
+
 const summary = art.querySelector('p') ? art.querySelector('p').innerText : '';
 const keywords = art.getAttribute('data-keywords') || '';
 const category = art.getAttribute('data-category') || '';
 const status = art.getAttribute('data-status') || 'active';
+const changelog = art.getAttribute('data-changelog') || 'لا توجد تعديلات';
 
-let content = '';
-const contentBodyEl = art.querySelector('.article-content-body');
-if (contentBodyEl) {
-content = contentBodyEl.textContent.trim();
-} else {
-const expandedEl = art.querySelector('.article-expanded');
-if (expandedEl) {
-const clone = expandedEl.cloneNode(true);
-const footer = clone.querySelector('.legal-footer-box');
-if (footer) footer.remove();
-content = clone.textContent.trim();
-}
-}
+const contentBody = art.querySelector('.article-content-body');
+const content = contentBody ? contentBody.textContent.trim() : '';
 
-const changelog = art.getAttribute('data-changelog') || 'لا توجد تعديلات سابقة';
-LOADED_ARTICLES_CACHE.push({ index, slug, title, summary, keywords, content, category, changelog, status });
+LOADED_ARTICLES_CACHE.push({ slug, title, summary, keywords, content, category, changelog, status });
 
 const item = document.createElement('div');
 item.className = 'article-item';
 const statusBadge = status === 'hidden' ? `<span class="status-hidden-badge">🙈 مخفي</span>` : '';
-const hideBtnText = status === 'hidden' ? 'إظهار 👁️‍🗨️' : 'إخفاء 🙈';
+const hideText = status === 'hidden' ? 'إظهار 👁️' : 'إخفاء 🙈';
 
-item.innerHTML = `<div class="article-info"><div class="item-title">${title} ${statusBadge}</div><div class="item-meta"><span>Slug: ?p=${slug}</span></div></div><div class="item-actions"><a class="btn-action btn-view" href="https://akjassem.com/insights/?p=${slug}" target="_blank">معاينة 👁️</a><button class="btn-action btn-edit" onclick="requestPinForAction('edit', ${index})">تعديل ✏️</button><button class="btn-action btn-logs" onclick="requestPinForAction('logs', ${index})">السجل 🕒</button><button class="btn-action btn-hide" onclick="requestPinForAction('toggleHide', ${index})">${hideBtnText}</button><button class="btn-action btn-delete" onclick="requestPinForAction('delete', ${index})">حذف 🗑️</button></div>`;
+item.innerHTML = `
+<div class="article-info">
+<div class="item-title">${title} ${statusBadge}</div>
+<div class="item-meta"><span>Slug: ?p=${slug}</span></div>
+</div>
+<div class="item-actions">
+<a class="btn-action btn-view" href="https://akjassem.com/insights/?p=${slug}" target="_blank">معاينة 👁️</a>
+<button class="btn-action btn-edit" onclick="startEdit('${slug}')">تعديل ✏️</button>
+<button class="btn-action btn-logs" onclick="openLogModal('${changelog.replace(/'/g, "\\'")}')">السجل 🕒</button>
+<button class="btn-action btn-hide" onclick="toggleHide('${slug}')">${hideText}</button>
+<button class="btn-action btn-delete" onclick="deleteArticle('${slug}')">حذف 🗑️</button>
+</div>`;
 container.appendChild(item);
 });
-} catch (e) { 
-container.innerHTML = `<p style="font-size: 13px; color: #e53e3e; text-align: center;">خطأ: ${e.message}</p>`; 
-}
-}
-
-function requestPinForAction(actionType, index) {
-document.getElementById('modalPinInput').value = '';
-document.getElementById('pinModalTitle').innerText = 'أدخل رمز PIN لتأكيد العملية:';
-PENDING_ACTION_CALLBACK = () => {
-if (actionType === 'edit') startEdit(index);
-if (actionType === 'delete') deleteArticle(index);
-if (actionType === 'logs') {
-const art = LOADED_ARTICLES_CACHE.find(a => a.index === index);
-if(art) openLogModal(art.changelog);
-}
-if (actionType === 'toggleHide') toggleHideStatus(index);
-};
-document.getElementById('pinModal').style.display = 'flex';
-document.getElementById('modalPinInput').focus();
-}
-
-function closePinModal() {
-document.getElementById('pinModal').style.display = 'none';
-PENDING_ACTION_CALLBACK = null;
-}
-
-async function confirmPinAction() {
-const pinInput = document.getElementById('modalPinInput').value.trim();
-try {
-const vaultObj = JSON.parse(localStorage.getItem('akh_vault'));
-await decryptToken(vaultObj, pinInput);
-closePinModal();
-if (PENDING_ACTION_CALLBACK) PENDING_ACTION_CALLBACK();
 } catch(e) {
-alert('خطأ: رمز الـ PIN غير صحيح!');
-document.getElementById('modalPinInput').value = '';
+container.innerHTML = `<p style="font-size: 13px; color: #e53e3e; text-align: center;">خطأ: ${e.message}</p>`;
 }
 }
 
-function startEdit(index) {
-const art = LOADED_ARTICLES_CACHE.find(a => a.index === index);
-if (!art) { alert('المقال غير موجود.'); return; }
-
-EDITING_INDEX = art.index;
+function startEdit(slug) {
+const art = LOADED_ARTICLES_CACHE.find(a => a.slug === slug);
+if (!art) return;
+EDITING_SLUG = art.slug;
 document.getElementById('title').value = art.title;
 document.getElementById('summary').value = art.summary;
 document.getElementById('articleSlug').value = art.slug;
@@ -720,63 +636,62 @@ document.getElementById('categorySelect').value = art.category;
 document.getElementById('editBanner').style.display = 'flex';
 document.getElementById('editBannerText').innerText = `✏️ تعديل: "${art.title}"`;
 document.getElementById('submitBtn').innerText = 'حفظ التعديلات 💾';
-window.scrollTo({ top: 120, behavior: 'smooth' });
+window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function cancelEdit() {
-EDITING_INDEX = null;
+EDITING_SLUG = null;
 document.getElementById('editBanner').style.display = 'none';
 document.getElementById('articleForm').reset();
 document.getElementById('submitBtn').innerText = 'نـشـر الآن 🚀';
 }
 
 function openLogModal(logText) {
-const modalBody = document.getElementById('logModalBody');
-modalBody.innerHTML = '';
+const body = document.getElementById('logModalBody');
+body.innerHTML = '';
 logText.split('///').forEach((entry, i) => {
-const div = document.createElement('div');
-div.className = 'log-box-item';
-div.innerHTML = `<div class="log-time">التعديل (${i + 1})</div><div>${entry}</div>`;
-modalBody.appendChild(div);
+body.innerHTML += `<div class="log-box-item"><div class="log-time">التعديل (${i + 1})</div><div>${entry}</div></div>`;
 });
 document.getElementById('logModal').style.display = 'flex';
 }
-
 function closeLogModal() { document.getElementById('logModal').style.display = 'none'; }
 
-async function toggleHideStatus(index) {
+async function toggleHide(slug) {
 try {
 const getUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}?ref=${BRANCH}`;
 const res = await fetch(getUrl, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
 const fileData = await res.json();
 const doc = new DOMParser().parseFromString(b64_to_utf8(fileData.content), 'text/html');
-const articles = doc.querySelectorAll('article');
+const art = doc.querySelector(`article[data-slug="${slug}"]`);
+if (!art) throw new Error('المقال غير موجود.');
 
-const currentStatus = articles[index].getAttribute('data-status') || 'active';
-const newStatus = currentStatus === 'hidden' ? 'active' : 'hidden';
-
-articles[index].setAttribute('data-status', newStatus);
-articles[index].style.display = (newStatus === 'hidden') ? 'none' : 'block';
+const status = art.getAttribute('data-status') || 'active';
+const newStatus = status === 'hidden' ? 'active' : 'hidden';
+art.setAttribute('data-status', newStatus);
+if(newStatus === 'hidden') art.style.display = 'none';
+else art.style.display = 'block';
 
 await fetch(getUrl.split('?')[0], {
 method: 'PUT',
 headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}`, 'Content-Type': 'application/json' },
-body: JSON.stringify({ message: 'Toggle visibility', content: utf8_to_b64('<!DOCTYPE html>\n' + doc.documentElement.outerHTML), sha: fileData.sha, branch: BRANCH })
+body: JSON.stringify({ message: 'Toggle hide', content: utf8_to_b64('<!DOCTYPE html>\n' + doc.documentElement.outerHTML), sha: fileData.sha, branch: BRANCH })
 });
-alert('تم تغيير حالة الإخفاء/الظهور بنجاح!');
+alert('تم تغيير حالة الإخفاء بنجاح!');
 loadArticles();
 } catch(e) { alert(e.message); }
 }
 
-async function deleteArticle(index) {
+async function deleteArticle(slug) {
+if (!confirm('هل أنت متأكد من الحذف النهائي؟')) return;
 try {
 const getUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}?ref=${BRANCH}`;
 const res = await fetch(getUrl, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
 const fileData = await res.json();
 const doc = new DOMParser().parseFromString(b64_to_utf8(fileData.content), 'text/html');
-const articles = doc.querySelectorAll('article');
+const art = doc.querySelector(`article[data-slug="${slug}"]`);
+if (!art) throw new Error('المقال غير موجود.');
 
-articles[index].remove();
+art.remove();
 
 await fetch(getUrl.split('?')[0], {
 method: 'PUT',
