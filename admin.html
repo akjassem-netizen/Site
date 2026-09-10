@@ -237,6 +237,50 @@ font-family: inherit;
 .btn-view { background-color: #38a169; color: #ffffff; text-decoration: none; }
 .btn-delete { background-color: #e53e3e; color: #ffffff; }
 .btn-logs { background-color: #d69e2e; color: #ffffff; }
+
+/* تصميم نافذة سجل التعديلات المنبثقة */
+#logModal {
+display: none;
+position: fixed;
+top: 0; left: 0; width: 100%; height: 100%;
+background: rgba(0,0,0,0.5);
+z-index: 2000;
+justify-content: center;
+align-items: center;
+padding: 15px;
+}
+.modal-content {
+background: #fff;
+width: 100%;
+max-width: 500px;
+border-radius: 12px;
+padding: 25px;
+box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+text-align: right;
+max-height: 80vh;
+overflow-y: auto;
+}
+.modal-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+border-bottom: 1px solid #e2e8f0;
+padding-bottom: 10px;
+margin-bottom: 15px;
+}
+.modal-header h3 { font-size: 16px; color: #0b1a30; font-weight: 800; }
+.close-modal { background: #e53e3e; color: #fff; border: none; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-weight: 700; }
+.log-box-item {
+background: #f8fafc;
+border: 1px solid #cbd5e0;
+border-radius: 8px;
+padding: 10px 14px;
+margin-bottom: 10px;
+font-size: 13px;
+color: #2d3748;
+line-height: 1.6;
+}
+.log-time { font-weight: 700; color: #d32f2f; margin-bottom: 3px; font-size: 12px; }
 </style>
 </head>
 <body>
@@ -357,6 +401,19 @@ font-family: inherit;
 </div>
 </div>
 
+<!-- نافذة عرض سجل التعديلات المنبثقة -->
+<div id="logModal">
+<div class="modal-content">
+<div class="modal-header">
+<h3>سجل التعديلات والأرشيف الزمني</h3>
+<button class="close-modal" onclick="closeLogModal()">إغلاق ✕</button>
+</div>
+<div id="logModalBody">
+<!-- سيتم عرض الخانات هنا -->
+</div>
+</div>
+</div>
+
 <script>
 const REPO_OWNER = 'akjassem-netizen';
 const REPO_NAME = 'Site';
@@ -421,9 +478,17 @@ const decrypted = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: iv }, key, 
 return new TextDecoder().decode(decrypted);
 }
 
-window.onload = function() {
+window.onload = async function() {
 populateCategories('ar');
-if (localStorage.getItem('akh_vault')) {
+// التحقق من sessionStorage ليبقى مسجلاً عند عمل Refresh للصفحة
+const savedSessionToken = sessionStorage.getItem('akh_active_token');
+if (savedSessionToken) {
+ACTIVE_TOKEN = savedSessionToken;
+document.getElementById('lockScreen').style.display = 'none';
+document.getElementById('setupScreen').style.display = 'none';
+document.getElementById('dashboardScreen').style.display = 'block';
+loadArticles();
+} else if (localStorage.getItem('akh_vault')) {
 document.getElementById('lockScreen').style.display = 'block';
 } else {
 document.getElementById('setupScreen').style.display = 'block';
@@ -451,6 +516,7 @@ try {
 const vaultObj = await encryptToken(token, pin);
 localStorage.setItem('akh_vault', JSON.stringify(vaultObj));
 ACTIVE_TOKEN = token;
+sessionStorage.setItem('akh_active_token', token);
 document.getElementById('setupScreen').style.display = 'none';
 document.getElementById('dashboardScreen').style.display = 'block';
 loadArticles();
@@ -462,6 +528,7 @@ const pin = document.getElementById('unlockPinInput').value.trim();
 try {
 const vaultObj = JSON.parse(localStorage.getItem('akh_vault'));
 ACTIVE_TOKEN = await decryptToken(vaultObj, pin);
+sessionStorage.setItem('akh_active_token', ACTIVE_TOKEN);
 document.getElementById('lockScreen').style.display = 'none';
 document.getElementById('dashboardScreen').style.display = 'block';
 loadArticles();
@@ -471,7 +538,10 @@ document.getElementById('unlockPinInput').value = '';
 }
 }
 
-function lockPortal() { location.reload(); }
+function lockPortal() {
+sessionStorage.removeItem('akh_active_token');
+location.reload();
+}
 
 function populateCategories(lang) {
 const select = document.getElementById('categorySelect');
@@ -553,7 +623,11 @@ const ctaCode = document.getElementById('ctaCustomCode').value.trim();
 const content = document.getElementById('content').value.trim();
 const publishAtIso = document.getElementById('scheduleMode').value === 'schedule' ? new Date(document.getElementById('publishTimestamp').value).toISOString() : new Date().toISOString();
 const displayDate = new Date().toLocaleDateString(isEn ? 'en-GB' : 'ar-IQ', { year: 'numeric', month: 'long', day: 'numeric' });
-const timestampNow = new Date().toLocaleString('ar-IQ');
+
+const nowObj = new Date();
+const dateStr = nowObj.toLocaleDateString('ar-IQ');
+const timeStr = nowObj.toLocaleTimeString('ar-IQ');
+const logEntryString = `التاريخ: ${dateStr} | الساعة: ${timeStr} | الإجراء: ${EDITING_ARTICLE_INDEX !== null ? 'تعديل المقال وتحديث محتواه' : 'إنشاء ونشر المقال لأول مرة'}`;
 
 const legalFooterHtml = `<div class="legal-footer-box" style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #edf2f7; font-size: 11.5px; color: #718096; line-height: 1.7;">${ctaCode ? '<div style="margin-bottom: 15px;">' + ctaCode + '</div>' : ''}
 <p class="notranslate" translate="no" style="margin-bottom: 4px; font-weight: 700; color: #4a5568;">© ${isEn ? 'All rights reserved to Law Office of Ali Kadhem Hashimi (AKH Law Office)' : 'جميع الحقوق محفوظة لمكتب المحامي علي كاظم الهاشمي (AKH Law Office)'}.</p>
@@ -571,7 +645,6 @@ if (!res.ok) throw new Error('تعذر جلب ملف insights/index.html من ا
 const fileData = await res.json();
 let html = b64_to_utf8(fileData.content);
 
-// حفظ سجل التعديلات ضمن خصائص الـ article ليبقى محفوظاً بالسيرفر
 let existingLogs = '';
 if (EDITING_ARTICLE_INDEX !== null) {
 const parserTemp = new DOMParser();
@@ -581,8 +654,7 @@ if(artsTemp[EDITING_ARTICLE_INDEX]) {
 existingLogs = artsTemp[EDITING_ARTICLE_INDEX].getAttribute('data-changelog') || '';
 }
 }
-const newLogEntry = `تم التعديل في: ${timestampNow}`;
-const finalLogs = existingLogs ? `${existingLogs} | ${newLogEntry}` : newLogEntry;
+const finalLogs = existingLogs ? `${existingLogs}///${logEntryString}` : logEntryString;
 
 const articleHtml = `<article class="legal-card" data-category="${category}" data-slug="${slug}" data-keywords="${keywords}" data-publish-at="${publishAtIso}" data-changelog="${finalLogs}" style="border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; margin-bottom: 24px; text-align: ${isEn ? 'left' : 'right'}; direction: ${isEn ? 'ltr' : 'rtl'}; background: #ffffff;">
 <div style="font-size: 13px; color: #d32f2f; font-weight: 700; margin-bottom: 8px;">${category} • ${displayDate}</div>
@@ -616,7 +688,7 @@ body: JSON.stringify({ message: EDITING_ARTICLE_INDEX !== null ? `Update article
 });
 
 if (!putRes.ok) throw new Error('فشل حفظ التحديثات في GitHub.');
-showAlert(isEn ? 'Published successfully!' : (EDITING_ARTICLE_INDEX !== null ? 'تم تحديث المقال بنجاح وتسجيله في سجل التعديلات!' : 'تم النشر بنجاح!'), true);
+showAlert(isEn ? 'Published successfully!' : (EDITING_ARTICLE_INDEX !== null ? 'تم تحديث المقال بنجاح وتوثيق التعديل في السجل!' : 'تم النشر بنجاح!'), true);
 cancelEdit();
 loadArticles();
 } catch (err) {
@@ -650,7 +722,6 @@ return;
 }
 container.innerHTML = '';
 
-// منع تكرار العرض بأخذ المقالات الفريدة بحسب الـ slug
 const seenSlugs = new Set();
 
 for (let index = 0; index < articles.length; index++) {
@@ -665,7 +736,7 @@ const summary = art.querySelector('p') ? art.querySelector('p').innerText : '';
 const keywords = art.getAttribute('data-keywords') || '';
 const category = art.getAttribute('data-category') || '';
 const content = art.querySelector('.article-content-body') ? art.querySelector('.article-content-body').innerHTML.trim() : '';
-const changelog = art.getAttribute('data-changelog') || (lang==='en' ? 'No modifications yet' : 'لا توجد تعديلات سابقة');
+const changelog = art.getAttribute('data-changelog') || (lang==='en' ? 'No modifications yet' : 'لا توجد تعديلات سابقة حتى الآن');
 
 let views = 0;
 try {
@@ -678,7 +749,7 @@ LOADED_ARTICLES_CACHE.push({ index, title, summary, slug, keywords, content, cat
 
 const item = document.createElement('div');
 item.className = 'article-item';
-item.innerHTML = `<div class="article-info"><div class="item-title">${title}</div><div class="item-meta"><span>Slug: ?p=${slug}</span><span class="views-badge">👁️ Views: ${views}</span></div></div><div class="item-actions"><a class="btn-action btn-view" href="https://akjassem.com/insights/?p=${slug}" target="_blank">${lang==='en' ? 'Preview 👁️' : 'معاينة بالموقع 👁️'}</a><button class="btn-action btn-edit" onclick="verifyAndEdit(${index})">${lang==='en' ? 'Edit ✏️' : 'تعديل ✏️'}</button><button class="btn-action btn-logs" onclick="showChangelog('${changelog.replace(/'/g, "\\'")}')">${lang==='en' ? 'Logs 🕒' : 'سجل التعديلات 🕒'}</button><button class="btn-action btn-delete" onclick="verifyAndDelete(${index})">${lang==='en' ? 'Delete 🗑️' : 'حذف 🗑️'}</button></div>`;
+item.innerHTML = `<div class="article-info"><div class="item-title">${title}</div><div class="item-meta"><span>Slug: ?p=${slug}</span><span class="views-badge">👁️ Views: ${views}</span></div></div><div class="item-actions"><a class="btn-action btn-view" href="https://akjassem.com/insights/?p=${slug}" target="_blank">${lang==='en' ? 'Preview 👁️' : 'معاينة بالموقع 👁️'}</a><button class="btn-action btn-edit" onclick="verifyAndEdit(${index})">${lang==='en' ? 'Edit ✏️' : 'تعديل ✏️'}</button><button class="btn-action btn-logs" onclick="openLogModal('${changelog.replace(/'/g, "\\'")}')">${lang==='en' ? 'Logs 🕒' : 'سجل التعديلات 🕒'}</button><button class="btn-action btn-delete" onclick="verifyAndDelete(${index})">${lang==='en' ? 'Delete 🗑️' : 'حذف 🗑️'}</button></div>`;
 container.appendChild(item);
 }
 } catch (e) { 
@@ -686,9 +757,24 @@ container.innerHTML = `<p style="font-size: 13px; color: #e53e3e; text-align: ce
 }
 }
 
-// عرض سجل التعديلات بنافذة منبثقة
-function showChangelog(logText) {
-alert('سجل التعديلات والأرشيف لهذا المقال:\n\n' + logText);
+// عرض نافذة سجل التعديلات المنبثقة بشكل خانات مرتبة
+function openLogModal(logText) {
+const modalBody = document.getElementById('logModalBody');
+modalBody.innerHTML = '';
+
+const entries = logText.split('///');
+entries.forEach((entry, i) => {
+const div = document.createElement('div');
+div.className = 'log-box-item';
+div.innerHTML = `<div class="log-time">التعديل رقم (${i + 1})</div><div>${entry}</div>`;
+modalBody.appendChild(div);
+});
+
+document.getElementById('logModal').style.display = 'flex';
+}
+
+function closeLogModal() {
+document.getElementById('logModal').style.display = 'none';
 }
 
 // التحقق من رمز الـ PIN قبل السماح بالتعديل
