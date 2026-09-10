@@ -238,7 +238,8 @@ font-family: inherit;
 .btn-delete { background-color: #e53e3e; color: #ffffff; }
 .btn-logs { background-color: #d69e2e; color: #ffffff; }
 
-#logModal {
+/* نافذة إدخال الرمز الآمن المشفر */
+#pinModal, #logModal {
 display: none;
 position: fixed;
 top: 0; left: 0; width: 100%; height: 100%;
@@ -251,35 +252,17 @@ padding: 15px;
 .modal-content {
 background: #fff;
 width: 100%;
-max-width: 500px;
+max-width: 400px;
 border-radius: 12px;
 padding: 25px;
 box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-text-align: right;
-max-height: 80vh;
-overflow-y: auto;
+text-align: center;
 }
-.modal-header {
-display: flex;
-justify-content: space-between;
-align-items: center;
-border-bottom: 1px solid #e2e8f0;
-padding-bottom: 10px;
-margin-bottom: 15px;
-}
-.modal-header h3 { font-size: 16px; color: #0b1a30; font-weight: 800; }
-.close-modal { background: #e53e3e; color: #fff; border: none; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-weight: 700; }
-.log-box-item {
-background: #f8fafc;
-border: 1px solid #cbd5e0;
-border-radius: 8px;
-padding: 10px 14px;
-margin-bottom: 10px;
-font-size: 13px;
-color: #2d3748;
-line-height: 1.6;
-}
-.log-time { font-weight: 700; color: #d32f2f; margin-bottom: 3px; font-size: 12px; }
+.modal-content h3 { font-size: 16px; color: #0b1a30; margin-bottom: 12px; font-weight: 800; }
+.modal-buttons { display: flex; gap: 10px; margin-top: 15px; }
+.modal-buttons button { flex: 1; padding: 10px; border-radius: 6px; border: none; font-weight: 700; cursor: pointer; font-family: inherit; }
+.btn-confirm-pin { background: #0b1a30; color: #fff; }
+.btn-cancel-pin { background: #e53e3e; color: #fff; }
 </style>
 </head>
 <body>
@@ -400,12 +383,25 @@ line-height: 1.6;
 </div>
 </div>
 
+<!-- نافذة إدخال الرمز السري المشفر (PIN Modal) -->
+<div id="pinModal">
+<div class="modal-content">
+<h3 id="pinModalTitle">حماية أمنية: أدخل رمز الـ PIN</h3>
+<p style="font-size: 12.5px; color: #64748b; margin-bottom: 12px;">أدخل رمز الـ PIN المكون من 6 أرقام للمتابعة:</p>
+<input type="password" id="modalPinInput" class="pin-input" maxlength="6" placeholder="******" pattern="\d">
+<div class="modal-buttons">
+<button class="btn-cancel-pin" onclick="closePinModal()">إلغاء</button>
+<button class="btn-confirm-pin" onclick="confirmPinAction()">تأكيد 🔒</button>
+</div>
+</div>
+</div>
+
 <!-- نافذة عرض سجل التعديلات المنبثقة -->
 <div id="logModal">
-<div class="modal-content">
-<div class="modal-header">
-<h3>سجل التعديلات والأرشيف الزمني</h3>
-<button class="close-modal" onclick="closeLogModal()">إغلاق ✕</button>
+<div class="modal-content" style="max-width: 500px; text-align: right; max-height: 80vh; overflow-y: auto;">
+<div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px; margin-bottom: 15px;">
+<h3 style="margin:0;">سجل التعديلات والأرشيف الزمني</h3>
+<button onclick="closeLogModal()" style="background:#e53e3e; color:#fff; border:none; padding:4px 10px; border-radius:4px; cursor:pointer; font-weight:700;">إغلاق ✕</button>
 </div>
 <div id="logModalBody"></div>
 </div>
@@ -444,6 +440,7 @@ const EN_CATEGORIES = [
 let ACTIVE_TOKEN = '';
 let EDITING_ARTICLE_INDEX = null;
 let LOADED_ARTICLES_CACHE = [];
+let PENDING_ACTION_CALLBACK = null;
 
 async function deriveKey(pin, salt) {
 const enc = new TextEncoder();
@@ -659,7 +656,7 @@ loadArticles();
 } catch (err) {
 showAlert(err.message, false);
 } finally {
-btn.innerText = isEn ? 'Publish Now 🚀' : 'نـشـر الآن 🚀';
+btn.innerText = isEn ? 'PublishNow 🚀' : 'نـشـر الآن 🚀';
 btn.disabled = false;
 }
 });
@@ -701,8 +698,7 @@ const summary = art.querySelector('p') ? art.querySelector('p').innerText : '';
 const keywords = art.getAttribute('data-keywords') || '';
 const category = art.getAttribute('data-category') || '';
 
-
-// استخراج دقيق ومتين لنص المقال (سواء بالنسخة القديمة أو الجديدة)
+// استخراج دقيق لنص المقال الكامل
 let content = '';
 const contentBodyEl = art.querySelector('.article-content-body');
 if (contentBodyEl) {
@@ -714,11 +710,6 @@ const clone = expandedEl.cloneNode(true);
 const footer = clone.querySelector('.legal-footer-box');
 if (footer) footer.remove();
 content = clone.innerText.trim();
-} else {
-const paragraphs = art.querySelectorAll('p');
-if (paragraphs.length > 1) {
-content = paragraphs[1].innerText.trim();
-}
 }
 }
 
@@ -735,12 +726,69 @@ LOADED_ARTICLES_CACHE.push({ index, title, summary, slug, keywords, content, cat
 
 const item = document.createElement('div');
 item.className = 'article-item';
-item.innerHTML = `<div class="article-info"><div class="item-title">${title}</div><div class="item-meta"><span>Slug: ?p=${slug}</span><span class="views-badge">👁️ Views: ${views}</span></div></div><div class="item-actions"><a class="btn-action btn-view" href="https://akjassem.com/insights/?p=${slug}" target="_blank">${lang==='en' ? 'Preview 👁️' : 'معاينة بالموقع 👁️'}</a><button class="btn-action btn-edit" onclick="verifyAndEdit(${index})">${lang==='en' ? 'Edit ✏️' : 'تعديل ✏️'}</button><button class="btn-action btn-logs" onclick="openLogModal('${changelog.replace(/'/g, "\\'")}')">${lang==='en' ? 'Logs 🕒' : 'سجل التعديلات 🕒'}</button><button class="btn-action btn-delete" onclick="verifyAndDelete(${index})">${lang==='en' ? 'Delete 🗑️' : 'حذف 🗑️'}</button></div>`;
+item.innerHTML = `<div class="article-info"><div class="item-title">${title}</div><div class="item-meta"><span>Slug: ?p=${slug}</span><span class="views-badge">👁️ Views: ${views}</span></div></div><div class="item-actions"><a class="btn-action btn-view" href="https://akjassem.com/insights/?p=${slug}" target="_blank">${lang==='en' ? 'Preview 👁️' : 'معاينة بالموقع 👁️'}</a><button class="btn-action btn-edit" onclick="requestPinForAction('edit', ${index})">${lang==='en' ? 'Edit ✏️' : 'تعديل ✏️'}</button><button class="btn-action btn-logs" onclick="openLogModal('${changelog.replace(/'/g, "\\'")}')">${lang==='en' ? 'Logs 🕒' : 'سجل التعديلات 🕒'}</button><button class="btn-action btn-delete" onclick="requestPinForAction('delete', ${index})">${lang==='en' ? 'Delete 🗑️' : 'حذف 🗑️'}</button></div>`;
 container.appendChild(item);
 }
 } catch (e) { 
 container.innerHTML = `<p style="font-size: 13px; color: #e53e3e; text-align: center;">Error: ${e.message}</p>`; 
 }
+}
+
+// إدارة طلب الـ PIN الآمن المشفر (بدون نافذة prompt المكشوفة)
+function requestPinForAction(actionType, index) {
+document.getElementById('modalPinInput').value = '';
+document.getElementById('pinModalTitle').innerText = actionType === 'edit' ? 'أدخل رمز PIN لتأكيد التعديل:' : 'أدخل رمز PIN لتأكيد الحذف:';
+PENDING_ACTION_CALLBACK = () => {
+if (actionType === 'edit') startEdit(index);
+if (actionType === 'delete') deleteArticle(index);
+};
+document.getElementById('pinModal').style.display = 'flex';
+document.getElementById('modalPinInput').focus();
+}
+
+function closePinModal() {
+document.getElementById('pinModal').style.display = 'none';
+PENDING_ACTION_CALLBACK = null;
+}
+
+async function confirmPinAction() {
+const pinInput = document.getElementById('modalPinInput').value.trim();
+if (pinInput.length !== 6) {
+alert('يرجى إدخال رمز PIN المكون من 6 أرقام بشكل صحيح.');
+return;
+}
+try {
+const vaultObj = JSON.parse(localStorage.getItem('akh_vault'));
+await decryptToken(vaultObj, pinInput);
+closePinModal();
+if (PENDING_ACTION_CALLBACK) PENDING_ACTION_CALLBACK();
+} catch(e) {
+alert('خطأ: رمز الـ PIN غير صحيح! تم رفض العملية حمايةً للمحتوى.');
+document.getElementById('modalPinInput').value = '';
+}
+}
+
+function startEdit(index) {
+const art = LOADED_ARTICLES_CACHE[index];
+EDITING_ARTICLE_INDEX = index;
+document.getElementById('title').value = art.title;
+document.getElementById('summary').value = art.summary;
+document.getElementById('articleSlug').value = art.slug;
+document.getElementById('keywords').value = art.keywords;
+document.getElementById('content').value = art.content; // استرجاع نص المقال بالكامل
+document.getElementById('categorySelect').value = art.category; // استرجاع التخصص تلقائياً
+document.getElementById('editBanner').style.display = 'flex';
+document.getElementById('editBannerText').innerText = `✏️ Edit: "${art.title}" (سيتم توثيق التعديل في السجل)`;
+document.getElementById('submitBtn').innerText = document.documentElement.lang==='en' ? 'Save Changes 💾' : 'حفظ التعديلات 💾';
+window.scrollTo({ top: 120, behavior: 'smooth' });
+}
+
+function cancelEdit() {
+EDITING_ARTICLE_INDEX = null;
+document.getElementById('editBanner').style.display = 'none';
+document.getElementById('articleForm').reset();
+const lang = document.documentElement.lang;
+document.getElementById('submitBtn').innerText = lang==='en' ? 'Publish Now 🚀' : 'نـشـر الآن 🚀';
 }
 
 function openLogModal(logText) {
@@ -758,55 +806,6 @@ document.getElementById('logModal').style.display = 'flex';
 
 function closeLogModal() {
 document.getElementById('logModal').style.display = 'none';
-}
-
-async function verifyAndEdit(index) {
-const pinInput = prompt('حماية أمنية: أدخل رمز الـ PIN المكون من 6 أرقام لتأكيد فتح وضع التعديل:');
-if (!pinInput) return;
-
-try {
-const vaultObj = JSON.parse(localStorage.getItem('akh_vault'));
-await decryptToken(vaultObj, pinInput);
-startEdit(index);
-} catch(e) {
-alert('خطأ: رمز الـ PIN غير صحيح! تم رفض عملية التعديل حمايةً للمحتوى.');
-}
-}
-
-function startEdit(index) {
-const art = LOADED_ARTICLES_CACHE[index];
-EDITING_ARTICLE_INDEX = index;
-document.getElementById('title').value = art.title;
-document.getElementById('summary').value = art.summary;
-document.getElementById('articleSlug').value = art.slug;
-document.getElementById('keywords').value = art.keywords;
-document.getElementById('content').value = art.content; // استرجاع النص كاملاً دون أن يترك فارغاً
-document.getElementById('categorySelect').value = art.category; // ضبط التخصص القديم تلقائياً
-document.getElementById('editBanner').style.display = 'flex';
-document.getElementById('editBannerText').innerText = `✏️ Edit: "${art.title}" (سيتم توثيق التعديل في السجل)`;
-document.getElementById('submitBtn').innerText = document.documentElement.lang==='en' ? 'Save Changes 💾' : 'حفظ التعديلات 💾';
-window.scrollTo({ top: 120, behavior: 'smooth' });
-}
-
-function cancelEdit() {
-EDITING_ARTICLE_INDEX = null;
-document.getElementById('editBanner').style.display = 'none';
-document.getElementById('articleForm').reset();
-const lang = document.documentElement.lang;
-document.getElementById('submitBtn').innerText = lang==='en' ? 'Publish Now 🚀' : 'نـشـر الآن 🚀';
-}
-
-async function verifyAndDelete(index) {
-const pinInput = prompt('حماية أمنية: أدخل رمز الـ PIN المكون من 6 أرقام لتأكيد عملية الحذف:');
-if (!pinInput) return;
-
-try {
-const vaultObj = JSON.parse(localStorage.getItem('akh_vault'));
-await decryptToken(vaultObj, pinInput);
-deleteArticle(index);
-} catch(e) {
-alert('خطأ: رمز الـ PIN غير صحيح! تم إلغاء عملية الحذف حمايةً للمحتوى.');
-}
 }
 
 async function deleteArticle(index) {
