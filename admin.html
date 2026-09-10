@@ -450,7 +450,7 @@ const EN_CATEGORIES = [
 ];
 
 let ACTIVE_TOKEN = '';
-let EDITING_INDEX = null; // الاعتماد على الفهرس الفعلي داخل الملف لتوافق تام مع المقالات القديمة والجديدة
+let EDITING_INDEX = null;
 let LOADED_ARTICLES_CACHE = [];
 let PENDING_ACTION_CALLBACK = null;
 
@@ -702,17 +702,18 @@ const summary = art.querySelector('p') ? art.querySelector('p').innerText : '';
 const keywords = art.getAttribute('data-keywords') || '';
 const category = art.getAttribute('data-category') || '';
 
+// استخدام textContent بدلاً من innerText لضمان جلب النص حتى لو كان العنصر مخفياً
 let content = '';
 const contentBodyEl = art.querySelector('.article-content-body');
 if (contentBodyEl) {
-content = contentBodyEl.innerText.trim();
+content = contentBodyEl.textContent.trim();
 } else {
 const expandedEl = art.querySelector('.article-expanded');
 if (expandedEl) {
 const clone = expandedEl.cloneNode(true);
 const footer = clone.querySelector('.legal-footer-box');
 if (footer) footer.remove();
-content = clone.innerText.trim();
+content = clone.textContent.trim();
 }
 }
 
