@@ -70,6 +70,7 @@ font-weight: 800;
 text-align: center;
 max-width: 260px;
 margin: 0 auto 16px;
+-webkit-text-security: disc;
 }
 
 .top-bar {
@@ -394,12 +395,12 @@ text-align: right;
 </div>
 </div>
 
-<!-- نافذة إدخال الرمز السري المخفي بنقاط -->
+<!-- نافذة إدخال الرمز السري المخفي بنقاط سرية -->
 <div id="pinModal">
 <div class="modal-content">
 <h3 id="pinModalTitle">حماية أمنية: أدخل رمز الـ PIN</h3>
 <p style="font-size: 12.5px; color: #64748b; margin-bottom: 12px;">أدخل رمز الـ PIN المكون من 6 أرقام للمتابعة:</p>
-<input type="password" id="modalPinInput" class="pin-input" maxlength="6" placeholder="******" autocomplete="current-password">
+<input type="password" id="modalPinInput" class="pin-input" maxlength="6" placeholder="******" autocomplete="current-password" style="-webkit-text-security: disc;">
 <div class="modal-buttons">
 <button class="btn-cancel-pin" onclick="closePinModal()">إلغاء</button>
 <button class="btn-confirm-pin" onclick="confirmPinAction()">تأكيد 🔒</button>
@@ -449,7 +450,7 @@ const EN_CATEGORIES = [
 ];
 
 let ACTIVE_TOKEN = '';
-let EDITING_SLUG = null; // الاعتماد على الـ Slug بدلاً من الفهرس لتفادي أي أخطاء
+let EDITING_INDEX = null; // الاعتماد على الفهرس الفعلي داخل الملف لتوافق تام مع المقالات القديمة والجديدة
 let LOADED_ARTICLES_CACHE = [];
 let PENDING_ACTION_CALLBACK = null;
 
@@ -600,7 +601,7 @@ const displayDate = new Date().toLocaleDateString(isEn ? 'en-GB' : 'ar-IQ', { ye
 const nowObj = new Date();
 const dateStr = nowObj.toLocaleDateString('ar-IQ');
 const timeStr = nowObj.toLocaleTimeString('ar-IQ');
-const logEntryString = `التاريخ: ${dateStr} | الساعة: ${timeStr} | الإجراء: ${EDITING_SLUG !== null ? 'تعديل وتحديث محتوى التحليل' : 'نشر التحليل لأول مرة'}`;
+const logEntryString = `التاريخ: ${dateStr} | الساعة: ${timeStr} | الإجراء: ${EDITING_INDEX !== null ? 'تعديل وتحديث محتوى التحليل' : 'نشر التحليل لأول مرة'}`;
 
 const legalFooterHtml = `<div class="legal-footer-box" style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #edf2f7; font-size: 11.5px; color: #718096; line-height: 1.7;">${ctaCode ? '<div style="margin-bottom: 15px;">' + ctaCode + '</div>' : ''}
 <p class="notranslate" translate="no" style="margin-bottom: 4px; font-weight: 700; color: #4a5568;">© ${isEn ? 'All rights reserved to Law Office of Ali Kadhem Hashimi (AKH Law Office)' : 'جميع الحقوق محفوظة لمكتب المحامي علي كاظم الهاشمي (AKH Law Office)'}.</p>
@@ -618,15 +619,13 @@ if (!res.ok) throw new Error('تعذر جلب ملف insights/index.html من ا
 const fileData = await res.json();
 let html = b64_to_utf8(fileData.content);
 
-let existingLogs = '';
 const parserTemp = new DOMParser();
 const docTemp = parserTemp.parseFromString(html, 'text/html');
+const artsTemp = docTemp.querySelectorAll('article');
 
-if (EDITING_SLUG !== null) {
-const targetArt = docTemp.querySelector(`article[data-slug="${EDITING_SLUG}"]`);
-if (targetArt) {
-existingLogs = targetArt.getAttribute('data-changelog') || '';
-}
+let existingLogs = '';
+if (EDITING_INDEX !== null && artsTemp[EDITING_INDEX]) {
+existingLogs = artsTemp[EDITING_INDEX].getAttribute('data-changelog') || '';
 }
 const finalLogs = existingLogs ? `${existingLogs}///${logEntryString}` : logEntryString;
 
@@ -642,17 +641,13 @@ ${legalFooterHtml}
 </article>`;
 
 let updatedHtml = html;
-if (EDITING_SLUG !== null) {
+if (EDITING_INDEX !== null && artsTemp[EDITING_INDEX]) {
 const parser = new DOMParser();
 const doc = parser.parseFromString(html, 'text/html');
-const targetArt = doc.querySelector(`article[data-slug="${EDITING_SLUG}"]`);
-if (targetArt) {
-targetArt.outerHTML = articleHtml;
+const articles = doc.querySelectorAll('article');
+if (articles[EDITING_INDEX]) {
+articles[EDITING_INDEX].outerHTML = articleHtml;
 updatedHtml = '<!DOCTYPE html>\n' + doc.documentElement.outerHTML;
-} else {
-// إذا لم يتم العثور عليه بالـ slug القديم لأي سبب، يتم استبداله بالجديد أو إضافته
-const targetFeed = isEn ? 'english-feed' : 'arabic-feed';
-updatedHtml = updatedHtml.replace(`id="${targetFeed}">`, `id="${targetFeed}">\n` + articleHtml);
 }
 } else {
 const targetFeed = isEn ? 'english-feed' : 'arabic-feed';
@@ -662,11 +657,11 @@ updatedHtml = updatedHtml.replace(`id="${targetFeed}">`, `id="${targetFeed}">\n`
 const putRes = await fetch(getUrl.split('?')[0], {
 method: 'PUT',
 headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}`, 'Content-Type': 'application/json' },
-body: JSON.stringify({ message: EDITING_SLUG !== null ? `Update analysis: ${title}` : `Publish: ${title}`, content: utf8_to_b64(updatedHtml), sha: fileData.sha, branch: BRANCH })
+body: JSON.stringify({ message: EDITING_INDEX !== null ? `Update analysis: ${title}` : `Publish: ${title}`, content: utf8_to_b64(updatedHtml), sha: fileData.sha, branch: BRANCH })
 });
 
 if (!putRes.ok) throw new Error('فشل حفظ التحديثات في GitHub.');
-showAlert(isEn ? 'Published successfully!' : (EDITING_SLUG !== null ? 'تم تحديث التحليل القانوني بنجاح وتوثيق التعديل في السجل!' : 'تم النشر بنجاح!'), true);
+showAlert(isEn ? 'Published successfully!' : (EDITING_INDEX !== null ? 'تم تحديث التحليل القانوني بنجاح وتوثيق التعديل في السجل!' : 'تم النشر بنجاح!'), true);
 cancelEdit();
 loadArticles();
 } catch (err) {
@@ -700,15 +695,9 @@ return;
 }
 container.innerHTML = '';
 
-const seenSlugs = new Set();
-
 articles.forEach((art, index) => {
 const title = art.querySelector('h2') ? art.querySelector('h2').innerText : 'Legal Analysis';
 const slug = art.getAttribute('data-slug') || ('analysis-' + (index + 1));
-
-if (seenSlugs.has(slug)) return;
-seenSlugs.add(slug);
-
 const summary = art.querySelector('p') ? art.querySelector('p').innerText : '';
 const keywords = art.getAttribute('data-keywords') || '';
 const category = art.getAttribute('data-category') || '';
@@ -729,11 +718,11 @@ content = clone.innerText.trim();
 
 const changelog = art.getAttribute('data-changelog') || (lang==='en' ? 'No modifications yet' : 'لا توجد تعديلات سابقة حتى الآن');
 
-LOADED_ARTICLES_CACHE.push({ slug, title, summary, keywords, content, category, changelog });
+LOADED_ARTICLES_CACHE.push({ index, slug, title, summary, keywords, content, category, changelog });
 
 const item = document.createElement('div');
 item.className = 'article-item';
-item.innerHTML = `<div class="article-info"><div class="item-title">${title}</div><div class="item-meta"><span>Slug: ?p=${slug}</span></div></div><div class="item-actions"><a class="btn-action btn-view" href="https://akjassem.com/insights/?p=${slug}" target="_blank">${lang==='en' ? 'Preview 👁️' : 'معاينة بالموقع 👁️'}</a><button class="btn-action btn-edit" onclick="requestPinForAction('edit', '${slug}')">${lang==='en' ? 'Edit ✏️' : 'تعديل ✏️'}</button><button class="btn-action btn-logs" onclick="openLogModal('${changelog.replace(/'/g, "\\'")}')">${lang==='en' ? 'Logs 🕒' : 'سجل التعديلات 🕒'}</button><button class="btn-action btn-delete" onclick="requestPinForAction('delete', '${slug}')">${lang==='en' ? 'Delete 🗑️' : 'حذف 🗑️'}</button></div>`;
+item.innerHTML = `<div class="article-info"><div class="item-title">${title}</div><div class="item-meta"><span>Slug: ?p=${slug}</span></div></div><div class="item-actions"><a class="btn-action btn-view" href="https://akjassem.com/insights/?p=${slug}" target="_blank">${lang==='en' ? 'Preview 👁️' : 'معاينة بالموقع 👁️'}</a><button class="btn-action btn-edit" onclick="requestPinForAction('edit', ${index})">${lang==='en' ? 'Edit ✏️' : 'تعديل ✏️'}</button><button class="btn-action btn-logs" onclick="openLogModal('${changelog.replace(/'/g, "\\'")}')">${lang==='en' ? 'Logs 🕒' : 'سجل التعديلات 🕒'}</button><button class="btn-action btn-delete" onclick="requestPinForAction('delete', ${index})">${lang==='en' ? 'Delete 🗑️' : 'حذف 🗑️'}</button></div>`;
 container.appendChild(item);
 });
 } catch (e) { 
@@ -741,12 +730,12 @@ container.innerHTML = `<p style="font-size: 13px; color: #e53e3e; text-align: ce
 }
 }
 
-function requestPinForAction(actionType, slugVal) {
+function requestPinForAction(actionType, index) {
 document.getElementById('modalPinInput').value = '';
 document.getElementById('pinModalTitle').innerText = actionType === 'edit' ? 'أدخل رمز PIN لتأكيد التعديل:' : 'أدخل رمز PIN لتأكيد الحذف:';
 PENDING_ACTION_CALLBACK = () => {
-if (actionType === 'edit') startEdit(slugVal);
-if (actionType === 'delete') deleteArticle(slugVal);
+if (actionType === 'edit') startEdit(index);
+if (actionType === 'delete') deleteArticle(index);
 };
 document.getElementById('pinModal').style.display = 'flex';
 document.getElementById('modalPinInput').focus();
@@ -774,11 +763,11 @@ document.getElementById('modalPinInput').value = '';
 }
 }
 
-function startEdit(slugVal) {
-const art = LOADED_ARTICLES_CACHE.find(a => a.slug === slugVal);
-if (!art) { alert('المقال غير موجود في الذاكرة المؤقتة.'); return; }
+function startEdit(index) {
+const art = LOADED_ARTICLES_CACHE.find(a => a.index === index);
+if (!art) { alert('المقال غير موجود.'); return; }
 
-EDITING_SLUG = art.slug;
+EDITING_INDEX = art.index;
 document.getElementById('title').value = art.title;
 document.getElementById('summary').value = art.summary;
 document.getElementById('articleSlug').value = art.slug;
@@ -809,7 +798,7 @@ window.scrollTo({ top: 120, behavior: 'smooth' });
 }
 
 function cancelEdit() {
-EDITING_SLUG = null;
+EDITING_INDEX = null;
 document.getElementById('editBanner').style.display = 'none';
 document.getElementById('articleForm').reset();
 document.getElementById('customCategoryInput').style.display = 'none';
@@ -834,17 +823,17 @@ function closeLogModal() {
 document.getElementById('logModal').style.display = 'none';
 }
 
-async function deleteArticle(slugVal) {
+async function deleteArticle(index) {
 try {
 const getUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}?ref=${BRANCH}`;
 const res = await fetch(getUrl, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
 if (!res.ok) throw new Error('تعذر جلب ملف التحليلات.');
 const fileData = await res.json();
 const doc = new DOMParser().parseFromString(b64_to_utf8(fileData.content), 'text/html');
+const articles = doc.querySelectorAll('article');
 
-const targetArt = doc.querySelector(`article[data-slug="${slugVal}"]`);
-if (!targetArt) throw new Error('المقال المراد حذفه غير موجود في الملف.');
-targetArt.remove();
+if (!articles[index]) throw new Error('المقال المراد حذفه غير موجود.');
+articles[index].remove();
 
 const putRes = await fetch(getUrl.split('?')[0], {
 method: 'PUT',
