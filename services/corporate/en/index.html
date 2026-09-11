@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" id="htmlRoot">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WL4KNM0PG1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-WL4KNM0PG1');
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
@@ -133,7 +143,7 @@
     }
     .dropdown-menu a:hover { background: rgba(197,160,89,0.15); color: #c5a059; }
 
-    .container { width: 100%; max-width: 750px; background: #ffffff; padding: 35px 25px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border-top: 5px solid #c5a059; margin: 30px 16px; text-align: start; }
+    .container { width: 100%; max-width: 750px; background: #ffffff; padding: 35px 25px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border-top: 5px solid #c5a059; margin: 30px 16px; text-align: start; flex: 1; }
     .brand-logo { text-align: center; margin-bottom: 28px; direction: ltr; text-decoration: none; display: inline-block; width: 100%; }
     .brand-logo .akh { font-size: 40px; font-weight: 900; color: #0f172a; letter-spacing: 4px; line-height: 1; }
     .brand-logo .akh .red-k { color: #dc2626; }
@@ -161,6 +171,27 @@
     .btn-booking:hover { background: #c5a059; }
     .back-link { display: block; margin-top: 5px; font-size: 13px; color: #64748b; text-decoration: none; }
     .back-link:hover { color: #0f172a; }
+
+    /* تنسيق الفوتر */
+    .site-footer {
+      text-align: center;
+      padding: 25px;
+      font-size: 13px;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      margin-top: 40px;
+      background: #ffffff;
+      width: 100%;
+    }
+    .site-footer a {
+      color: #0f172a;
+      text-decoration: none;
+      font-weight: 700;
+      margin: 0 10px;
+    }
+    .site-footer a:hover {
+      color: #c5a059;
+    }
   </style>
 </head>
 <body>
@@ -212,6 +243,12 @@
       <a href="/services/" class="back-link" id="backLinkText">← Back to Services List</a>
     </div>
   </div>
+
+  <!-- الفوتر ورابط سياسة الخصوصية -->
+  <footer class="site-footer">
+    <a href="/privacy/en/" id="footerLink">Privacy Policy</a> | 
+    <span id="footerRights">All Rights Reserved © 2026 AKH Law Office</span>
+  </footer>
 
   <script>
     function toggleMenu() {
@@ -267,6 +304,10 @@
       document.getElementById('btnBookText').innerHTML = `<span>${t.btnBook}</span>`;
       document.getElementById('backLinkText').innerText = t.backLink;
 
+      document.getElementById('footerLink').innerText = t.privacyText;
+      document.getElementById('footerLink').href = '/privacy/en/';
+      document.getElementById('footerRights').innerText = t.rightsText;
+
       document.getElementById('languageSelect').value = lang;
     }
 
@@ -279,7 +320,8 @@
         pageMainTitle: "Corporate Formation of All Types",
         contentBody: "The Law Office of Ali Kadhem Hashimi welcomes all individuals and institutions seeking company registration and formation services in Iraq. Company formation is a precise legal process carried out in accordance with active legislation, requiring deep expertise in official procedures, which the office provides to help clients overcome challenges and succeed.",
         btnBook: "📅 Click here to go to the appointment booking page",
-        backLink: "← Back to Services List"
+        backLink: "← Back to Services List",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       tr: {
         pageTitle: "Irak'ta Yerli ve Yabancı Şirket Kuruluşu | Av. Ali Kazım Haşimi",
@@ -289,7 +331,8 @@
         pageMainTitle: "Her Türlü Şirket Kuruluşu",
         contentBody: "Av. Ali Kazım Haşimi Hukuk Bürosu, Irak'ta şirket tescil ve kuruluş hizmeti arayan tüm birey ve kurumlara hoş geldiniz der. Şirket kuruluşu, yürürlükteki mevzuata uygun olarak yürütülen, resmi prosedürler konusunda derin uzmanlık gerektiren hassas bir hukuki süreçtir.",
         btnBook: "📅 Randevu rezervasyon sayfasına gitmek için tıklayın",
-        backLink: "← Hizmetler Listesine Dön"
+        backLink: "← Hizmetler Listesine Dön",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       zh: {
         pageTitle: "伊拉克内外资公司注册与组建 | 阿里·卡德姆·哈希米律所",
@@ -299,7 +342,8 @@
         pageMainTitle: "各类公司注册与组建",
         contentBody: "阿里·卡德姆·哈希米律所欢迎所有在伊拉克寻求公司注册和设立服务的个人与机构。公司注册是一项根据现行法律进行的精确法律程序，需要对官方程序有深入的专业知识，律所旨在协助客户克服挑战并圆满完成各项手续。",
         btnBook: "📅 点击此处跳转至预约页面",
-        backLink: "← 返回服务列表"
+        backLink: "← 返回服务列表",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       fr: {
         pageTitle: "Création de Sociétés Locales et Étrangères en Iraq | Cabinet AKH",
@@ -309,7 +353,8 @@
         pageMainTitle: "Création de Sociétés de Tous Types",
         contentBody: "Le Cabinet d'Avocats Ali Kadhem Hashimi accueille tous les individus et institutions cherchant des services de constitution de sociétés en Iraq. La création d'entreprise est un processus juridique précis réalisé conformément à la législation en vigueur, nécessitant une expertise approfondie des procédures officielles.",
         btnBook: "📅 Cliquez ici pour accéder à la page de réservation",
-        backLink: "← Retour à la liste des services"
+        backLink: "← Retour à la liste des services",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       es: {
         pageTitle: "Constitución de Empresas Locales y Extranjeras en Irak | Bufete AKH",
@@ -319,7 +364,8 @@
         pageMainTitle: "Constitución de Empresas de Todo Tipo",
         contentBody: "El Bufete de Abogados Ali Kadhem Hashimi da la bienvenida a todas las personas e instituciones que buscan servicios de registro y constitución de empresas en Irak. La formación de empresas es un proceso legal preciso llevado a cabo conforme a la legislación vigente, que requiere una profunda experiencia en procedimientos oficiales.",
         btnBook: "📅 Haga clic aquí para ir a la página de reservas",
-        backLink: "← Volver a la lista de servicios"
+        backLink: "← Volver a la lista de servicios",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       de: {
         pageTitle: "Firmengründung im Irak | Kanzlei Ali Kadhem Hashimi",
@@ -329,7 +375,8 @@
         pageMainTitle: "Unternehmensgründung aller Art",
         contentBody: "Die Anwaltskanzlei Ali Kadhem Hashimi begrüßt alle Personen und Institutionen, die Dienstleistungen zur Registrierung und Gründung von Unternehmen im Irak suchen. Die Firmengründung ist ein präziser rechtlicher Prozess, der tiefgreifende Expertise in offiziellen Verfahren erfordert.",
         btnBook: "📅 Klicken Sie hier, um zur Buchungsseite zu gelangen",
-        backLink: "← Zurück zur Dienstleistungsliste"
+        backLink: "← Zurück zur Dienstleistungsliste",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       ku: {
         pageTitle: "دامەزراندنی کۆمپانیا لە عێراق | نووسینگەی پارێزەر عەلی کازمی هاشمی",
@@ -339,7 +386,8 @@
         pageMainTitle: "دامەزراندنی کۆمپانیاکان بە هەموو جۆرەکانیان",
         contentBody: "نووسینگەی پارێزەر عەلی کازمی هاشمی پێشوازی لە هەموو ئەو کەس و دەزگایانە دەکات کە داوای خزمەتگوزاری تۆمارکردن و دامەزراندنی کۆمپانیا دەکەن لە عێراق. دامەزراندنی کۆمپانیا پرۆسەیەکی یاسایی وردە کە بە پێی یاسا کارپێکراوەکان ئەنجام دەدرێت و پێویستی بە شارەزایی قووڵ هەیە لە ڕێکارە فەرمییەکاندا.",
         btnBook: "📅 کلیک لێرە بکە بۆ گواستنەوە بۆ لاپەڕەی حجز",
-        backLink: "← گەڕانەوە بۆ خشتەی خزمەتگوزارییەکان"
+        backLink: "← گەڕانەوە بۆ خشتەی خزمەتگوزارییەکان",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       }
     };
   </script>
