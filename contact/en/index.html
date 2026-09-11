@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" id="htmlRoot">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WL4KNM0PG1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-WL4KNM0PG1');
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
@@ -95,7 +105,7 @@
       display: flex;
       align-items: center;
       width: 100%;
-      text-align: left;
+      text-align: inherit;
     }
     .dropdown-menu a:hover { background: rgba(197,160,89,0.15); color: #c5a059; }
 
@@ -108,6 +118,7 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.06);
       border-top: 5px solid #c5a059;
       margin: 30px 16px;
+      flex: 1;
     }
     
     .brand-logo {
@@ -179,6 +190,10 @@
       margin-right: 12px;
       min-width: 24px;
       text-align: center;
+    }
+    [dir="rtl"] .info-row .icon {
+      margin-right: 0;
+      margin-left: 12px;
     }
     .info-row .content strong {
       display: block;
@@ -286,6 +301,27 @@
       transition: background 0.3s;
     }
     .btn-back-home:hover { background: #c5a059; color: #0f172a; }
+
+    /* تنسيق الفوتر */
+    .site-footer {
+      text-align: center;
+      padding: 25px;
+      font-size: 13px;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      margin-top: 40px;
+      background: #ffffff;
+      width: 100%;
+    }
+    .site-footer a {
+      color: #0f172a;
+      text-decoration: none;
+      font-weight: 700;
+      margin: 0 10px;
+    }
+    .site-footer a:hover {
+      color: #c5a059;
+    }
   </style>
 </head>
 <body>
@@ -294,6 +330,7 @@
   <header class="icover-header">
     <div>
       <select id="languageSelect" class="lang-select-bar" onchange="changeLanguage(this.value)">
+        <option value="ar">العربية / Arabic</option>
         <option value="en" selected>English</option>
         <option value="tr">Türkçe</option>
         <option value="zh">中文</option>
@@ -307,12 +344,12 @@
     <div class="menu-container">
       <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu">☰</button>
       <div id="dropdownMenu" class="dropdown-menu">
-        <a href="https://akjassem.com" id="menuHome">Home</a>
+        <a href="https://akjassem.com/en/" id="menuHome">Home</a>
         <a href="https://akjassem.com/services/" id="menuServices">Legal Services Directory</a>
-        <a href="https://akjassem.com/consultations.html" id="menuConsultations">Legal Consultations</a>
-        <a href="https://akjassem.com/insights.html" id="menuInsights">Iraq Legal Insights</a>
+        <a href="https://akjassem.com/consultations/en/" id="menuConsultations">Legal Consultations</a>
+        <a href="https://akjassem.com/insights/en/" id="menuInsights">Iraq Legal Insights</a>
         <a href="../" id="menuAbout">عربي / Arabic (About Us)</a>
-        <a href="https://akjassem.com/contact/" id="menuContact">Contact Us</a>
+        <a href="./" id="menuContact">Contact Us</a>
       </div>
     </div>
   </header>
@@ -382,11 +419,17 @@
       <a href="https://wa.me/9647838759047" target="_blank" class="btn-whatsapp" id="btnWhatsappText">
         <span>💬 Contact via WhatsApp Directly</span>
       </a>
-      <a href="https://akjassem.com" class="btn-back-home" id="btnBackHomeText">
+      <a href="https://akjassem.com/en/" class="btn-back-home" id="btnBackHomeText">
         <span>🏠 Back to Home Page</span>
       </a>
     </div>
   </div>
+
+  <!-- الفوتر ورابط سياسة الخصوصية -->
+  <footer class="site-footer">
+    <a href="/privacy/en/" id="footerLink">Privacy Policy</a> | 
+    <span id="footerRights">All Rights Reserved © 2026 AKH Law Office</span>
+  </footer>
 
   <script>
     function toggleMenu() {
@@ -400,11 +443,21 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-      // فتح النسخة الإنجليزية افتراضياً بغض النظر عن ذاكرة المتصفح السابقة
-      changeLanguage('en', false);
+      const savedLang = localStorage.getItem('preferredLang') || 'en';
+      if (savedLang === 'ar') {
+        window.location.href = '../';
+        return;
+      }
+      document.getElementById('languageSelect').value = savedLang;
+      changeLanguage(savedLang, false);
     });
 
     function changeLanguage(lang, save = true) {
+      if (lang === 'ar') {
+        localStorage.setItem('preferredLang', 'ar');
+        window.location.href = '../';
+        return;
+      }
       if (save) {
         localStorage.setItem('preferredLang', lang);
       }
@@ -437,6 +490,10 @@
       document.getElementById('btnWhatsappText').innerHTML = `<span>${t.btnWhatsapp}</span>`;
       document.getElementById('btnBackHomeText').innerHTML = `<span>${t.btnBackHome}</span>`;
 
+      document.getElementById('footerLink').innerText = t.privacyText;
+      document.getElementById('footerLink').href = '/privacy/en/';
+      document.getElementById('footerRights').innerText = t.rightsText;
+
       document.getElementById('languageSelect').value = lang;
     }
 
@@ -445,85 +502,92 @@
         pageTitle: "Contact Us | Law Office of Ali Kadhem Hashimi in Iraq",
         metaDesc: "Contact the Law Office of Ali Kadhem Hashimi in Baghdad - Zayouna. Office address, working hours, phone, WhatsApp, and email.",
         metaKeywords: "Contact AKH Law Office, Baghdad lawyer contact, Iraq law firm address",
-        home: "Home", menuServices: "Legal Services Directory", menuConsultations: "Legal Consultations", menuInsights: "Iraq Legal Insights", about: "About Us (عربي)", contact: "Contact Us",
+        home: "Home", menuServices: "Legal Services Directory", menuConsultations: "Legal Consultations", menuInsights: "Iraq Legal Insights", about: "About Us", contact: "Contact Us",
         pageMainTitle: "Contact Us",
         lblAddress: "Address", valAddress: "Baghdad - Zayouna - Near the Iraqi Fashion House",
         lblHours: "Working Hours", valHours: "Sunday to Thursday (08:00 AM - 04:00 PM Baghdad Time)",
         lblPhone: "Office Phone & WhatsApp", lblEmail: "Email",
         mapBoxTitle: "View Office Location on Google Maps", mapBoxSub: "Click here to navigate and track the route to the office",
-        btnWhatsapp: "💬 Contact via WhatsApp Directly", btnBackHome: "🏠 Back to Home Page"
+        btnWhatsapp: "💬 Contact via WhatsApp Directly", btnBackHome: "🏠 Back to Home Page",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       tr: {
         pageTitle: "İletişim | Av. Ali Kazım Haşimi Hukuk Bürosu Irak",
         metaDesc: "Bağdat'taki Av. Ali Kazım Haşimi Hukuk Bürosu ile iletişime geçin - Zeytuna. Adres, çalışma saatleri, telefon, WhatsApp ve e-posta.",
         metaKeywords: "Avukat Bağdat iletişim, Irak hukuk bürosu telefon, Anwaltskanzlei Bagdad Kontakt",
-        home: "Ana Sayfa", menuServices: "Hizmetler", menuConsultations: "Hukuki Danışmanlık", menuInsights: "İçgörüler", about: "Hakkımızda (عربي)", contact: "İletişim",
+        home: "Ana Sayfa", menuServices: "Hizmetler", menuConsultations: "Hukuki Danışmanlık", menuInsights: "İçgörüler", about: "Hakkımızda", contact: "İletişim",
         pageMainTitle: "İletişim",
         lblAddress: "Adres", valAddress: "Bağdat - Zeytuna - Irak Moda Evi Yakını",
         lblHours: "Çalışma Saatleri", valHours: "Pazar - Perşembe (08:00 - 16:00 Bağdat Saati)",
         lblPhone: "Ofis Telefon ve WhatsApp", lblEmail: "E-posta",
         mapBoxTitle: "Ofis Konumunu Google Haritalar'da Görüntüle", mapBoxSub: "Ofise rota oluşturmak ve gitmek için buraya tıklayın",
-        btnWhatsapp: "💬 Doğrudan WhatsApp ile İletişim", btnBackHome: "🏠 Ana Sayfaya Dön"
+        btnWhatsapp: "💬 Doğrudan WhatsApp ile İletişim", btnBackHome: "🏠 Ana Sayfaya Dön",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       zh: {
         pageTitle: "联系我们 | 阿里·卡德姆·哈希米律所伊拉克",
         metaDesc: "联系巴格达阿里·卡德姆·哈希米律所 - 宰尤纳。办公地址、工作时间、电话、WhatsApp和电子邮箱。",
         metaKeywords: "巴格达律师事务所联系方式, 伊拉克律所地址, 法律咨询",
-        home: "首页", menuServices: "法律服务", menuConsultations: "法律咨询", menuInsights: "法律洞察", about: "关于我们 (عربي)", contact: "联系我们",
+        home: "首页", menuServices: "法律服务", menuConsultations: "法律咨询", menuInsights: "法律洞察", about: "关于我们", contact: "联系我们",
         pageMainTitle: "联系我们",
         lblAddress: "地址", valAddress: "巴格达 - 宰尤纳 - 伊拉克时装屋附近",
         lblHours: "工作时间", valHours: "周日至周四（巴格达时间上午 08:00 - 下午 04:00）",
         lblPhone: "办公室电话与 WhatsApp", lblEmail: "电子邮箱",
         mapBoxTitle: "在谷歌地图上查看办公室位置", mapBoxSub: "点击此处导航并追踪前往办公室的路线",
-        btnWhatsapp: "💬 直接通过 WhatsApp 联系", btnBackHome: "🏠 返回首页"
+        btnWhatsapp: "💬 直接通过 WhatsApp 联系", btnBackHome: "🏠 返回首页",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       fr: {
         pageTitle: "Contactez-nous | Cabinet d'Avocats Ali Kadhem Hashimi en Iraq",
         metaDesc: "Contactez le Cabinet d'Avocats Ali Kadhem Hashimi à Bagdad - Zayouna. Adresse, horaires, téléphone, WhatsApp et email.",
         metaKeywords: "Contact Cabinet d'avocats Bagdad, adresse cabinet Irak, téléphone avocat",
-        home: "Accueil", menuServices: "Services", menuConsultations: "Consultations Juridiques", menuInsights: "Aperçus", about: "À Propos (عربي)", contact: "Contact",
+        home: "Accueil", menuServices: "Services", menuConsultations: "Consultations Juridiques", menuInsights: "Aperçus", about: "À Propos", contact: "Contact",
         pageMainTitle: "Contactez-nous",
-        lblAddress: "Adresse", valAddress: "Bagdad - Zayouna - Près de la Maison de la Mode Irakienne",
+        lblAddress: "Adresse", valAddress: "Baghdad - Zayouna - Près de la Maison de la Mode Irakienne",
         lblHours: "Horaires de Travail", valHours: "Dimanche au Jeudi (08h00 - 16h00 heure de Bagdad)",
         lblPhone: "Téléphone & WhatsApp du Bureau", lblEmail: "Email",
         mapBoxTitle: "Voir l'emplacement sur Google Maps", mapBoxSub: "Cliquez ici pour naviguer et suivre l'itinéraire vers le bureau",
-        btnWhatsapp: "💬 Contacter via WhatsApp Directement", btnBackHome: "🏠 Retour à la Page d'Accueil"
+        btnWhatsapp: "💬 Contacter via WhatsApp Directement", btnBackHome: "🏠 Retour à la Page d'Accueil",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       es: {
         pageTitle: "Contacto | Bufete de Abogados Ali Kadhem Hashimi en Irak",
         metaDesc: "Contacte al Bufete de Abogados Ali Kadhem Hashimi en Bagdad - Zayouna. Dirección, horario de trabajo, teléfono, WhatsApp y correo.",
         metaKeywords: "Contacto bufete Bagdad, dirección abogados Irak, teléfono legal",
-        home: "Inicio", menuServices: "Servicios", menuConsultations: "Consultas Legales", menuInsights: "Perspectivas", about: "Sobre Nosotros (عربي)", contact: "Contacto",
+        home: "Inicio", menuServices: "Servicios", menuConsultations: "Consultas Legales", menuInsights: "Perspectivas", about: "Sobre Nosotros", contact: "Contacto",
         pageMainTitle: "Contacto",
         lblAddress: "Dirección", valAddress: "Bagdad - Zayouna - Cerca de la Casa de la Moda Iraquí",
         lblHours: "Horario de Trabajo", valHours: "Domingo a Jueves (08:00 a.m. - 04:00 p.m. hora de Bagdad)",
         lblPhone: "Teléfono y WhatsApp de la Oficina", lblEmail: "Correo Electrónico",
         mapBoxTitle: "Ver ubicación en Google Maps", mapBoxSub: "Haga clic aquí para navegar y seguir la ruta a la oficina",
-        btnWhatsapp: "💬 Contactar por WhatsApp Directamente", btnBackHome: "🏠 Volver a la Página Principal"
+        btnWhatsapp: "💬 Contactar por WhatsApp Directamente", btnBackHome: "🏠 Volver a la Página Principal",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       de: {
         pageTitle: "Kontakt | Anwaltskanzlei Ali Kadhem Hashimi im Irak",
         metaDesc: "Kontaktieren Sie die Anwaltskanzlei Ali Kadhem Hashimi in Bagdad - Zayouna. Adresse, Arbeitszeiten, Telefon, WhatsApp und E-Mail.",
         metaKeywords: "Kontakt Anwaltskanzlei Bagdad, Adresse Kanzlei Irak, Telefon rechtliche Beratung",
-        home: "Startseite", menuServices: "Dienste", menuConsultations: "Rechtliche Beratung", menuInsights: "Einblicke", about: "Über uns (عربي)", contact: "Kontakt",
+        home: "Startseite", menuServices: "Dienste", menuConsultations: "Rechtliche Beratung", menuInsights: "Einblicke", about: "Über uns", contact: "Kontakt",
         pageMainTitle: "Kontakt",
         lblAddress: "Adresse", valAddress: "Bagdad - Zayouna - In der Nähe des irakischen Modehauses",
         lblHours: "Arbeitszeiten", valHours: "Sonntag bis Donnerstag (08:00 Uhr - 16:00 Uhr Bagdader Zeit)",
         lblPhone: "Büro Telefon & WhatsApp", lblEmail: "E-Mail",
         mapBoxTitle: "Bürostandort auf Google Maps anzeigen", mapBoxSub: "Klicken Sie hier, um den Weg zum Büro zu finden",
-        btnWhatsapp: "💬 Direkt über WhatsApp kontaktieren", btnBackHome: "🏠 Zurück zur Startseite"
+        btnWhatsapp: "💬 Direkt über WhatsApp kontaktieren", btnBackHome: "🏠 Zurück zur Startseite",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       ku: {
         pageTitle: "پەیوەندی بکەن | نووسینگەی پارێزەر عەلی کازمی هاشمی لە عێراق",
         metaDesc: "پەیوەندی بکە بە نووسینگەی پارێزەر عەلی کازمی هاشمی لە بەغداد - زەیونە. ناونیشان، کاتی کارکردن، مۆبایل، واتساب، و ئیمەیڵ.",
         metaKeywords: "پەیوەندی بە پارێزەر لە بەغداد, ناونیشانی نووسینگەی یاسایی عێراق",
-        home: "سەرەکی", menuServices: "خزمەتگوزارییەکان", menuConsultations: "ڕاوێژی یاسایی", menuInsights: "تێڕوانینەکان", about: "دەرباره‌ی ئێمە (عربي)", contact: "پەیوەندی",
+        home: "سەرەکی", menuServices: "خزمەتگوزارییەکان", menuConsultations: "ڕاوێژی یاسایی", menuInsights: "تێڕوانینەکان", about: "دەرباره‌ی ئێمە", contact: "پەیوەندی",
         pageMainTitle: "پەیوەندی بە ئێمە",
         lblAddress: "ناونیشان", valAddress: "بەغداد - زەیونە - نزیک خانەی فاشنی عێراقی",
         lblHours: "کاتی کارکردن", valHours: "یەکشەممە تا پێنجشەممە (٠٨:٠٠ بەیانی - ٠٤:٠٠ ئێوارە بە کاتی بەغداد)",
         lblPhone: "مۆبایل و واتسأپی نووسینگە", lblEmail: "ئیمەیڵ",
         mapBoxTitle: "پیشاندانی شوێنی نووسینگە لە نەخشەی گۆگڵ", mapBoxSub: "کلیک لێرە بکە بۆ چوون و شوێنکەوتنی ڕێگا بۆ نووسینگە",
-        btnWhatsapp: "💬 پەیوەندی لە ڕێگەی واتسأپەوە بە ڕاستەوخۆ", btnBackHome: "🏠 گەڕانەوە بۆ لاپەڕەی سەرەکی"
+        btnWhatsapp: "💬 پەیوەندی لە ڕێگەی واتسأپەوە بە ڕاستەوخۆ", btnBackHome: "🏠 گەڕانەوە بۆ لاپەڕەی سەرەکی",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       }
     };
   </script>
