@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" id="htmlRoot">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WL4KNM0PG1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-WL4KNM0PG1');
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
@@ -293,6 +303,27 @@
       width: 100%;
     }
     .btn-read-more:hover { background: #c5a059; }
+
+    /* تنسيق الفوتر */
+    .site-footer {
+      text-align: center;
+      padding: 25px;
+      font-size: 13px;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      margin-top: 40px;
+      background: #ffffff;
+      width: 100%;
+    }
+    .site-footer a {
+      color: #0f172a;
+      text-decoration: none;
+      font-weight: 700;
+      margin: 0 10px;
+    }
+    .site-footer a:hover {
+      color: #c5a059;
+    }
   </style>
 </head>
 <body>
@@ -508,6 +539,12 @@
     </div>
   </div>
 
+  <!-- الفوتر ورابط سياسة الخصوصية -->
+  <footer class="site-footer">
+    <a href="/privacy/en/">Privacy Policy</a> | 
+    <span>All Rights Reserved © 2026 AKH Law Office</span>
+  </footer>
+
   <script>
     function toggleMenu() {
       document.getElementById('dropdownMenu').classList.toggle('active');
@@ -646,7 +683,7 @@
         pageTitle: "Directorio de Servicios Legales Integrales en Irak | Bufete AKH",
         metaDesc: "Consulte todos los servicios legales acreditados del Bufete de Abogados Ali Kadhem Hashimi en Bagdad: constitución de empresas, litigio, contratos e inversión.",
         metaKeywords: "Servicios legales Irak, constitución de empresas Bagdad, litigio, cobro de deudas, licencias de inversión, registro de marcas, contratos, asesoría fiscal",
-        home: "Inicio", menuServices: "Servicios", menuConsultations: "Consultas Legales", menuInsights: "Perspectivas", menuAbout: "Sobre Nosotros", menuContact: "Contacto",
+        home: "Inicio", menuServices: "Servicios", menuConsultations: "Consultas Legales", menuInsights: "Perspectivas", menuAbout: "Sobre Nosotros", contact: "Contacto",
         pageMainTitle: "Nuestros Servicios y Negocios Legales",
         pageSubTitle: "Seleccione el servicio requerido para ver todos los detalles y reservar una cita directa",
         btnText: "Ver Detalles y Más ➔",
@@ -664,7 +701,7 @@
         pageTitle: "Verzeichnis der Rechtsdienste im Irak | Kanzlei Ali Kadhem Hashimi",
         metaDesc: "Überprüfen Sie alle akkreditierten Rechtsdienste der Kanzlei Ali Kadhem Hashimi in Bagdad: Firmengründung, Prozessvertretung, Verträge und Steuerberatung.",
         metaKeywords: "Rechtsdienste Irak, Firmengründung Bagdad, Prozessvertretung, Forderungseinzug, Investitionslizenzen, Markenanmeldung, Vertragsgestaltung, Steuerberatung",
-        home: "Startseite", menuServices: "Dienste", menuConsultations: "Rechtliche Beratung", menuInsights: "Einblicke", menuAbout: "Über uns", menuContact: "Kontakt",
+        home: "Startseite", menuServices: "Dienste", menuConsultations: "Rechtliche Beratung", menuInsights: "Einblicke", about: "Über uns", contact: "Kontakt",
         pageMainTitle: "Unsere Rechtsdienste & Geschäfte",
         pageSubTitle: "Wählen Sie den gewünschten Dienst aus, um vollständige Details anzuzeigen und einen Termin zu buchen",
         btnText: "Details ansehen ➔",
@@ -682,7 +719,7 @@
         pageTitle: "رێبەری خزمەتگوزارییە یاساییە گشتگیرەکان لە عێراق | نووسینگەی پارێزەر عەلی کاظم",
         metaDesc: "پێداچوونەوە بە هەموو خزمەتگوزارییە یاساییە پەسەندکراوەکانی نووسینگەی پارێزەر عەلی کازمی هاشمی لە بەغداد: دامەزراندنی کۆمپانیا، نوێنەرایەتی دادوەری، گرێبەست و باج.",
         metaKeywords: "خزمەتگوزاری یاسایی لە عێراق, دامەزراندنی کۆمپانیا بغداد, نوێنەرایەتی دادوەری, وەرگرتنەوەی قەرز, مۆڵەتی وەبەرهێنان, تۆمارکردنی مارکە, گرێبەست, ڕاوێژکاری باج",
-        home: "سەرەکی", menuServices: "خزمەتگوزارییەکان", menuConsultations: "ڕاوێژی یاسایی", menuInsights: "تێڕوانینەکان", menuAbout: "دەرباره‌ی ئێمە", menuContact: "پەیوەندی",
+        home: "سەرەکی", menuServices: "خزمەتگوزارییەکان", menuConsultations: "ڕاوێژی یاسایی", menuInsights: "تێڕوانینەکان", menuAbout: "دەرباره‌ی ئێمە", contact: "پەیوەندی",
         pageMainTitle: "خزمەتگوزاری و کارە یاساییەکانمان",
         pageSubTitle: "خزمەتگوزارییخراوە هەڵبژێرە بۆ بینینی وردەکارییەکان و دیاریکردنی کاتی چاوپێکەوتن",
         btnText: "ببینە وردەکاری زیاتر ➔",
