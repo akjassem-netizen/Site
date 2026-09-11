@@ -447,7 +447,7 @@
       document.getElementById('menuCodeOfConduct').innerText = t.menuCodeOfConduct;
       document.getElementById('menuContact').innerText = t.contact;
 
-      // ضبط الروابط بدقة لتعمل بسلاسة وتوجه للنسخ الأجنبية (دليل الخدمات والخدمات التسع الفرعية)
+      // ضبط روابط القائمة والخدمات الفرعية ديناميكياً حسب اللغة (عربي / إنجليزي أو أجنبي)
       const isArabic = (lang === 'ar');
       document.getElementById('menuServices').href = isArabic ? '/services/' : '/services/en/';
       document.getElementById('menuAbout').href = isArabic ? '/about/' : '/about/en/';
@@ -455,7 +455,7 @@
       document.getElementById('menuConsultations').href = isArabic ? '/consultations/' : '/consultations/en/';
       document.getElementById('menuInsights').href = isArabic ? '/insights/' : '/insights/en/';
 
-      // تحديث مسارات روابط الخدمات الفرعية التسع تلقائياً بناءً على اللغة (عربي / إنجليزي)
+      // تحديث مسارات روابط الخدمات الفرعية التسع تلقائياً (تأكد من أن فولدراتك الإنجليزية تتبع هذا النمط أو عدله حسب رغبتك)
       const suffix = isArabic ? '/' : '/en/';
       document.getElementById('cardS1').href = '/services/corporate' + suffix;
       document.getElementById('cardS2').href = '/services/litigation' + suffix;
@@ -628,11 +628,11 @@
         s2Title: "نوێنەرایەتی دادوەری", s2Desc: "بریوکاری و بەدواداچوونی یاسایی لە هەموو دادگاکانی عێراقدا.", s2Link: "وردەکاری و حجز ←",
         s3Title: "وەرگرتن و ڕێکخستنی مافە مالییەکان", s3Desc: "کۆکردنەوەی قەرز، ناردنی ئاگاداری فەرمی و ڕێککەوتنی تجاری.", s3Link: "وردەکاری و حجز ←",
         s4Title: "مۆڵەتی وەبەرهێنانی بیانی", s4Desc: "پاڵپشتی و بەدەستهێنانی مۆڵەتی فەرمی بۆ پروژەکانی وەبەرهێنان.", s4Link: "وردەکاری و حجز ←",
-        s5Title: "براند و مافی مڵکی فکری", s5Desc: "پاراستنی مافی خاوەندارێتی فکری و داهێنانی تجاری.", s5Link: "وردەکاری و حجز ←",
+        s5Title: "براند و مافی مڵکی فکری", s5Desc: "پاراستنی مافی خاوەندارێتی فکری و داهێنانی تجاری.", s4Link: "وردەکاری و حجز ←", s5Link: "وردەکاری و حجز ←",
         s6Title: "ئامادەکردن و داڕشتنی گرێبەستەکان", s6Desc: "داڕشتن و وردبینی گرێبەستە تجاری و مدنییەکان بەپێی یاسا.", s6Link: "وردەکاری و حجز ←",
         s7Title: "بارودۆخی کەسی و جێبەجێکردن", s7Desc: "کێشەی خێزانی، قەسامی شرعی، نفقة، حضانة و بەدواداچوونی جێبەجێکردن.", s7Link: "وردەکاری و حجز ←",
         s8Title: "ڕاوێژی باج و پابەندبوون", s8Desc: "ڕێکخستنی باج، تۆمارکردن لە دەستە باجییەکان و دڵنیابوون لە پابەندبوونی مالی.", s8Link: "وردەکاری و حجز ←",
-        s9Title: "خزمەتگوزارییە یاسایی و عقارییەکان", s9Desc: "باوەڕپێکردنی گرێبەستە عقارییەکان، سندات و چارەسەرکردنی کێشەکان.", s8Link: "وردەکاری و حجز ←", s9Link: "وردەکاری و حجز ←",
+        s9Title: "خزمەتگوزارییە یاسایی و عقارییەکان", s9Desc: "باوەڕپێکردنی گرێبەستە عقارییەکان، سندات و چارەسەرکردنی کێشەکان.", s9Link: "وردەکاری و حجز ←",
         privacyText: "Privacy Policy", disclaimerText: "Disclaimer", codeText: "Code of Conduct", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       }
     };
