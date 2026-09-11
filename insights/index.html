@@ -137,25 +137,45 @@
     .btn-share-x { background-color: #000000; color: #ffffff; }
     #copyToast { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); background-color: #0b1a30; color: #ffffff; padding: 10px 22px; border-radius: 30px; font-size: 13px; font-weight: 700; box-shadow: 0 4px 15px rgba(0,0,0,0.2); display: none; z-index: 99999; }
 
-    /* تنسيق الفوتر */
+    /* تنسيق الفوتر المحدث (سطر أفقي واحد متناسق) */
     .site-footer {
       text-align: center;
-      padding: 25px;
-      font-size: 13px;
+      padding: 22px 10px;
+      font-size: 12px;
       color: #64748b;
       border-top: 1px solid #e2e8f0;
       margin-top: 40px;
       background: #ffffff;
       width: 100%;
     }
-    .site-footer a {
+    .footer-legal-links {
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      overflow-x: auto;
+      padding: 2px 0;
+    }
+    .footer-legal-links a {
       color: #0f172a;
       text-decoration: none;
       font-weight: 700;
-      margin: 0 10px;
+      font-size: 11.5px;
     }
-    .site-footer a:hover {
+    .footer-legal-links a:hover {
       color: #c5a059;
+    }
+    .footer-legal-links .separator {
+      color: #cbd5e1;
+      font-weight: 400;
+    }
+    .site-footer span.copy-text {
+      color: #64748b;
+      display: block;
+      margin-top: 4px;
+      font-size: 11px;
     }
   </style>
 
@@ -213,7 +233,7 @@
       نافذة متخصصة تُعنى بنشر الدراسات والإيضاحات الإجرائية في فروع القانون العراقي: قانون العمل والإقامة والضمان الاجتماعي، تأسيس وتسجيل الشركات، العلامات التجارية، وقضايا الأحوال الشخصية والدعاوى المدنية والتجارية.
     </div>
 
-    <!-- حاوية عرض المقالات (تستقبل مقالاتك المنشورة من لوحة التحكم) -->
+    <!-- حاوية عرض المقالات -->
     <div id="arabic-feed"><article class="legal-card" data-category="العمل والإقامة والضمان الاجتماعي" data-slug="foreign-labor-compliance-iraq" data-keywords="قانون العمل العراقي, قانون الضمان الاجتماعي, تصاريح العمل في العراق, كوتة العمالة الأجنبية, محامي شركات في بغداد, تأسيس شركات في العراق" data-changelog="التاريخ: ١٠‏/٩‏/٢٠٢٦ | الوقت: ٩:٢٤:٤٤ م | الإجراء: نشر جديد" data-status="active" style="border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; margin-bottom: 24px; text-align: right; direction: rtl; background: #ffffff; ">
 <div style="font-size: 13px; color: #d32f2f; font-weight: 700; margin-bottom: 8px;">العمل والإقامة والضمان الاجتماعي • ١٠ أيلول ٢٠٢٦</div>
 <h2 style="font-size: 19px; font-weight: 800; color: #0b1a30; margin-bottom: 12px;">امتثال العمالة الأجنبية وقانون الضمان الاجتماعي العراقي رقم 18 لسنة 2023: دليل الشركات والمستثمرين</h2>
@@ -257,7 +277,6 @@
 </div>
 <button type="button" onclick="const b = this.previousElementSibling; const open = b.style.display==='block'; b.style.display = open?'none':'block'; this.innerText = open ? 'قراءة المزيد ←' : 'عرض أقل ↑';" style="background: none; border: 1.5px solid #0b1a30; color: #0b1a30; padding: 8px 18px; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 10px;">قراءة المزيد ←</button>
 </article>
-      <!-- المقالات المنشورة تظهر هنا تلقائياً -->
     </div>
 
     <div style="text-align: center; margin-top: 30px; margin-bottom: 20px;">
@@ -266,10 +285,16 @@
 
   </div>
 
-  <!-- الفوتر ورابط سياسة الخصوصية -->
+  <!-- الفوتر بمعالجة الروابط القانونية في سطر أفقي واحد متناسق -->
   <footer class="site-footer">
-    <a href="/privacy/">سياسة الخصوصية</a> | 
-    <span>جميع الحقوق محفوظة © 2026 مكتب المحامي علي كاظم الهاشمي</span>
+    <div class="footer-legal-links">
+      <a href="/privacy/">سياسة الخصوصية</a>
+      <span class="separator">|</span>
+      <a href="/disclaimer/">إخلاء المسؤولية</a>
+      <span class="separator">|</span>
+      <a href="/code-of-conduct.html">قواعد السلوك المهني</a>
+    </div>
+    <span class="copy-text">جميع الحقوق محفوظة © 2026 مكتب المحامي علي كاظم الهاشمي</span>
   </footer>
 
   <script>
@@ -286,7 +311,7 @@
     const langDict = {
       ar: { title: "الآراء والتحليلات القانونية | Law Office Of Ali Kadhem Hashimi", intro: "نافذة متخصصة تُعنى بنشر الدراسات والإيضاحات الإجرائية في فروع القانون العراقي: قانون العمل والإقامة والضمان الاجتماعي، تأسيس وتسجيل الشركات، العلامات التجارية، وقضايا الأحوال الشخصية والدعاوى المدنية والتجارية.", home: "الرئيسية", services: "دليل الخدمات القانونية", consultations: "الاستشارات القانونية", insights: "الآراء والرؤى القانونية", about: "من نحن", contact: "اتصل بنا", backHome: "🏠 العودة إلى الموقع الرئيسي الكامل ←" },
       en: { title: "Legal Insights & Analyses | Law Office Of Ali Kadhem Hashimi", intro: "A specialized legal portal dedicated to publishing studies and procedural clarifications across branches of Iraqi law: labor, residency and social security, company formation and registration, trademarks, personal status, and civil/commercial litigation.", home: "Home", services: "Legal Services Directory", consultations: "Legal Consultations", insights: "Iraq Legal Insights", about: "About Us", contact: "Contact Us", backHome: "🏠 Back to Main Home Page ←" },
-      tr: { title: "Hukuki İçgörüler ve Analizler | Av. Ali Kazım Haşimi", intro: "Irak hukuku dallarında çalışmalar ve usuli açıklamalar yayınlamaya adanmış özel bir hukuk portalı.", home: "Ana Sayfa", services: "Hizmetler", consultations: "Hukuki Danışmanlık", insights: "İçgörüler", about: "Hakkımızda", contact: "İletişim", backHome: "🏠 Ana Sayfaya Dön ←" },
+      tr: { title: "Hukuki İçgörüler ve Analizler | Av. Ali Kazım Haşimi", intro: "Irak hukuku dallarında çalışmalar ve usuli açıklamalar yayınlamaya adanmış özel bir hukuk portalı.", home: "Ana Sayfa", services: "Hizmetler", consultations: "Hukuki Danışمانlık", insights: "İçgörüler", about: "Hakkımızda", contact: "İletişim", backHome: "🏠 Ana Sayfaya Dön ←" },
       zh: { title: "法律洞察与分析 | 阿里·卡德姆·哈希米律所", intro: "专注于伊拉克法律分支研究与 procedural 澄清的专业法律门户。", home: "首页", services: "法律服务", consultations: "法律咨询", insights: "法律洞察", about: "关于我们", contact: "联系我们", backHome: "🏠 返回首页 ←" },
       fr: { title: "Aperçus et Analyses Juridiques | Cabinet AKH", intro: "Un portail juridique spécialisé dédié à la publication d'études et de clarifications procédurales en droit irakien.", home: "Accueil", services: "Services", consultations: "Consultations", insights: "Aperçus", about: "À propos", contact: "Contact", backHome: "🏠 Retour à l'accueil ←" },
       es: { title: "Perspectivas y Análisis Legales | Bufete AKH", intro: "Un portal legal especializado dedicado a publicar estudios y aclaraciones procedimentales en el derecho iraquí.", home: "Inicio", services: "Servicios", consultations: "Consultas", insights: "Perspectivas", about: "Sobre nosotros", contact: "Contacto", backHome: "🏠 Volver al inicio ←" },
@@ -324,7 +349,6 @@
       changeSystemLanguage(lang);
     }
 
-    // المعالجة الذكية: فتح المقال تلقائياً عند الدخول عبر الرابط الفرعي (?p=...)
     window.addEventListener('DOMContentLoaded', () => {
       const savedLang = localStorage.getItem('preferredSystemLang') || 'ar';
       changeSystemLanguage(savedLang);
