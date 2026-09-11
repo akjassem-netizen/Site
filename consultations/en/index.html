@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" id="htmlRoot">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WL4KNM0PG1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-WL4KNM0PG1');
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
@@ -57,7 +67,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Cairo', sans-serif; background: #f8fafc; color: #0f172a; scroll-behavior: smooth; }
+    body { font-family: 'Cairo', sans-serif; background: #f8fafc; color: #0f172a; scroll-behavior: smooth; min-height: 100vh; display: flex; flex-direction: column; }
 
     /* الهيدر الموحد الفاخر */
     .icover-header {
@@ -148,6 +158,8 @@
       grid-template-columns: 380px 1fr;
       gap: 30px;
       align-items: start;
+      flex: 1;
+      width: 100%;
     }
     @media (max-width: 950px) { .main-container { grid-template-columns: 1fr; } }
 
@@ -287,6 +299,27 @@
       transition: color 0.2s;
     }
     .back-home-link:hover { color: #c5a059; }
+
+    /* تنسيق الفوتر */
+    .site-footer {
+      text-align: center;
+      padding: 25px;
+      font-size: 13px;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      margin-top: 50px;
+      background: #ffffff;
+      width: 100%;
+    }
+    .site-footer a {
+      color: #0f172a;
+      text-decoration: none;
+      font-weight: 700;
+      margin: 0 10px;
+    }
+    .site-footer a:hover {
+      color: #c5a059;
+    }
   </style>
 
   <script>
@@ -298,7 +331,7 @@
 </head>
 <body>
 
-  <!-- الهيدر التنفيذي الموحد -->
+  <!-- الهيدر الموحد الفاخر -->
   <header class="icover-header">
     <div>
       <select id="languageSelect" class="lang-select-bar" onchange="switchLanguage(this.value)">
@@ -380,6 +413,12 @@
     </section>
 
   </main>
+
+  <!-- الفوتر ورابط سياسة الخصوصية -->
+  <footer class="site-footer">
+    <a href="/privacy/en/">Privacy Policy</a> | 
+    <span>All Rights Reserved © 2026 AKH Law Office</span>
+  </footer>
 
   <script>
     function toggleMenu() {
@@ -469,7 +508,7 @@
         pageTitle: "Specialized Legal Consultations in Iraq | Law Office of Ali Kadhem Hashimi",
         metaDesc: "Get accurate and reliable legal consultations in Baghdad from the Law Office of Ali Kadhem Hashimi. Commercial advice, corporate setup, contracts, and dispute resolution.",
         metaKeywords: "Legal consultations Baghdad, corporate lawyer Iraq, Iraq law firm, Ali Kadhem Hashimi law office, corporate setup Baghdad, commercial contracts",
-        home: "Home", menuServices: "Legal Services Directory", menuConsultations: "Legal Consultations", menuInsights: "Iraq Legal Insights", menuAbout: "About Us (عربي)", menuContact: "Contact Us",
+        home: "Home", menuServices: "Legal Services Directory", menuConsultations: "Legal Consultations", menuInsights: "Iraq Legal Insights", menuAbout: "About Us", menuContact: "Contact Us",
         title: "Law Office of Ali Kadhem Hashimi",
         subtitle: "Reliable legal representation and specialized advisory for corporations and individuals with a professional vision from Baghdad.",
         cta: "📅 Book Official Consultation",
@@ -492,7 +531,7 @@
         pageTitle: "Irak Uzman Hukuki Danışmanlık | Av. Ali Kazım Haşimi Hukuk Bürosu",
         metaDesc: "Bağdat'ta Av. Ali Kazım Haşimi Hukuk Bürosu'ndan doğru ve güvenilir hukuki danışmanlık alın. Ticari danışmanlık, şirket kuruluşu, sözleşmeler ve uyuşmazlık çözümü.",
         metaKeywords: "Bağdat hukuki danışmanlık, Irak şirket avukatı, Irak hukuk bürosu, Av. Ali Kazım Haşimi, Bağdat şirket kuruluşu, ticari sözleşmeler",
-        home: "Ana Sayfa", menuServices: "Hizmetler", menuConsultations: "Hukuki Danışmanlık", menuInsights: "İçgörüler", menuAbout: "Hakkımızda (عربي)", menuContact: "İletişim",
+        home: "Ana Sayfa", menuServices: "Hizmetler", menuConsultations: "Hukuki Danışmanlık", menuInsights: "İçgörüler", menuAbout: "Hakkımızda", contact: "İletişim",
         title: "Av. Ali Kazım Haşimi Hukuk Bürosu",
         subtitle: "Bağdat'tan şirketler ve bireyler için güvenilir hukuki temsil ve uzman danışmanlık.",
         cta: "📅 Resmi Randevu Al",
@@ -515,7 +554,7 @@
         pageTitle: "伊拉克专业法律咨询 | 阿里·卡德姆·哈希米律所",
         metaDesc: "在巴格达获得阿里·卡德姆·哈希米律所提供准确可靠的法律咨询。商业咨询、公司设立、合同与纠纷解决。",
         metaKeywords: "巴格达法律咨询, 伊拉克公司律师, 伊拉克律所, 阿里·卡德姆·哈希米律所, 巴格达公司注册, 商业合同",
-        home: "首页", menuServices: "法律服务", menuConsultations: "法律咨询", menuInsights: "法律洞察", menuAbout: "关于我们 (عربي)", menuContact: "联系我们",
+        home: "首页", menuServices: "法律服务", menuConsultations: "法律咨询", menuInsights: "法律洞察", menuAbout: "关于我们", contact: "联系我们",
         title: "阿里·卡德姆·哈希米律所",
         subtitle: "立足巴格达，为企业和个人提供可靠的法律代理与专项咨询服务。",
         cta: "📅 预约正式咨询",
@@ -538,7 +577,7 @@
         pageTitle: "Consultations Juridiques Spécialisées en Iraq | Cabinet AKH",
         metaDesc: "Obtenez des consultations juridiques précises à Bagdad auprès du Cabinet d'Avocats Ali Kadhem Hashimi. Conseil commercial, création d'entreprise et contrats.",
         metaKeywords: "Consultations juridiques Bagdad, avocat d'affaires Irak, cabinet d'avocats Irak, création d'entreprise Bagdad, contrats commerciaux",
-        home: "Accueil", menuServices: "Services", menuConsultations: "Consultations Juridiques", menuInsights: "Aperçus", menuAbout: "À Propos (عربي)", menuContact: "Contact",
+        home: "Accueil", menuServices: "Services", menuConsultations: "Consultations Juridiques", menuInsights: "Aperçus", menuAbout: "À Propos", contact: "Contact",
         title: "Cabinet d'Avocats Ali Kadhem Hashimi",
         subtitle: "Représentation juridique fiable et conseil spécialisé pour les entreprises et les particuliers depuis Bagdad.",
         cta: "📅 Réserver une Consultation",
@@ -561,7 +600,7 @@
         pageTitle: "Consultas Legales Especializadas en Irak | Bufete AKH",
         metaDesc: "Obtenga asesoría legal precisa y confiable en Bagdad del Bufete de Abogados Ali Kadhem Hashimi. Asesoría comercial, constitución de empresas y contratos.",
         metaKeywords: "Consultas legales Bagdad, abogado corporativo Irak, bufete de abogados Irak, constitución de empresas Bagdad, contratos comerciales",
-        home: "Inicio", menuServices: "Servicios", menuConsultations: "Consultas Legales", menuInsights: "Perspectivas", menuAbout: "Sobre Nosotros (عربي)", menuContact: "Contacto",
+        home: "Inicio", menuServices: "Servicios", menuConsultations: "Consultas Legales", menuInsights: "Perspectivas", about: "Sobre Nosotros", contact: "Contacto",
         title: "Bufete de Abogados Ali Kadhem Hashimi",
         subtitle: "Representación legal confiable y asesoría especializada para corporaciones e individuos desde Bagdad.",
         cta: "📅 Reservar Consulta Oficial",
@@ -584,7 +623,7 @@
         pageTitle: "Spezialisierte Rechtsberatung im Irak | Kanzlei Ali Kadhem Hashimi",
         metaDesc: "Erhalten Sie präzise Rechtsberatung in Bagdad von der Anwaltskanzlei Ali Kadhem Hashimi. Wirtschaftsberatung, Firmengründung, Verträge und Streitbeilegung.",
         metaKeywords: "Rechtsberatung Bagdad, Firmenanwalt Irak, Anwaltskanzlei Irak, Firmengründung Bagdad, Handelsverträge",
-        home: "Startseite", menuServices: "Dienste", menuConsultations: "Rechtliche Beratung", menuInsights: "Einblicke", menuAbout: "Über uns (عربي)", menuContact: "Kontakt",
+        home: "Startseite", menuServices: "Dienste", menuConsultations: "Rechtliche Beratung", menuInsights: "Einblicke", about: "Über uns", contact: "Kontakt",
         title: "Anwaltskanzlei Ali Kadhem Hashimi",
         subtitle: "Ihr vertrauenswürdiger Rechtspartner in Bagdad. Umfassende Beratung, Unternehmensgründung und Vertretung.",
         cta: "📅 Offizielle Beratung buchen",
@@ -607,7 +646,7 @@
         pageTitle: "راوێژی یاسایی تایبەتمەند لە عێراق | نووسینگەی پارێزەر عەلی کازمی هاشمی",
         metaDesc: "راوێژی یاسایی ورد و متمانەپێکراو لە بەغداد لە نووسینگەی پارێزەر عەلی کازمی هاشمی وەرگرە. راوێژی بازرگانی، دامەزراندنی کۆمپانیا، گرێبەست و یەکلاکردنەوەی کێشەکان.",
         metaKeywords: "راوێژی یاسایی بەغداد, پارێزەری کۆمپانیاکان لە عێراق, نووسینگەی پارێزەر عەلی کازمی هاشمی, دامەزراندنی کۆمپانیاکان, گرێبەستی بازرگانی",
-        home: "سەرەکی", menuServices: "خزمەتگوزارییەکان", menuConsultations: "ڕاوێژی یاسایی", menuInsights: "تێڕوانینەکان", menuAbout: "دەرباره‌ی ئێمە (عربي)", menuContact: "پەیوەندی",
+        home: "سەرەکی", menuServices: "خزمەتگوزارییەکان", menuConsultations: "ڕاوێژی یاسایی", menuInsights: "تێڕوانینەکان", about: "دەرباره‌ی ئێمە", contact: "پەیوەندی",
         title: "نووسینگەی پارێزەر عەلی کازمی هاشمی",
         subtitle: "نوێنەرایەتی یاسایی متمانەپێکراو و راوێژی تایبەتمەند بۆ کۆمپانیاکان و تاکەکان لە دڵی بەغدادەوە.",
         cta: "📅 چاوپێکەوتنی فەرمی تۆماربکە",
