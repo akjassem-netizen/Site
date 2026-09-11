@@ -74,7 +74,6 @@
       flex-direction: column;
     }
 
-    /* الهيدر الموحد الفاخر */
     .icover-header {
       background: #0f172a;
       border-bottom: 3px solid #c5a059;
@@ -304,25 +303,45 @@
     }
     .btn-read-more:hover { background: #c5a059; }
 
-    /* تنسيق الفوتر */
+    /* تنسيق الفوتر بمعالجة سطر واحد متناسق */
     .site-footer {
       text-align: center;
-      padding: 25px;
-      font-size: 13px;
+      padding: 22px 10px;
+      font-size: 12px;
       color: #64748b;
       border-top: 1px solid #e2e8f0;
-      margin-top: 40px;
+      margin-top: 50px;
       background: #ffffff;
       width: 100%;
     }
-    .site-footer a {
+    .footer-legal-links {
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      overflow-x: auto;
+      padding: 2px 0;
+    }
+    .footer-legal-links a {
       color: #0f172a;
       text-decoration: none;
       font-weight: 700;
-      margin: 0 10px;
+      font-size: 11.5px;
     }
-    .site-footer a:hover {
+    .footer-legal-links a:hover {
       color: #c5a059;
+    }
+    .footer-legal-links .separator {
+      color: #cbd5e1;
+      font-weight: 400;
+    }
+    .site-footer span.copy-text {
+      color: #64748b;
+      display: block;
+      margin-top: 4px;
+      font-size: 11px;
     }
   </style>
 </head>
@@ -346,10 +365,11 @@
       <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu">☰</button>
       <div id="dropdownMenu" class="dropdown-menu">
         <a href="https://akjassem.com/en/" id="menuHome">Home</a>
-        <a href="/services/" id="menuServices">Legal Services Directory</a>
+        <a href="/services/en/" id="menuServices">Legal Services Directory</a>
         <a href="/consultations/en/" id="menuConsultations">Legal Consultations</a>
         <a href="/insights/en/" id="menuInsights">Iraq Legal Insights</a>
-        <a href="../" id="menuAbout">عربي / Arabic (Services)</a>
+        <a href="/about/en/" id="menuAbout">About Us</a>
+        <a href="/code-of-conduct-en.html" id="menuCodeOfConduct">Code of Conduct</a>
         <a href="/contact/en/" id="menuContact">Contact Us</a>
       </div>
     </div>
@@ -378,7 +398,7 @@
               <div class="service-icon">📊</div>
               <div class="service-title-area">
                 <div class="service-title" id="s1Title">Tax Advisory & Financial Compliance</div>
-                <span class="service-path">/services/tax-advisory/</span>
+                <span class="service-path">/services/tax-advisory/en/</span>
               </div>
             </div>
             <div class="service-summary" id="s1Summary">
@@ -386,7 +406,7 @@
             </div>
           </div>
           <div class="service-footer">
-            <a href="/services/tax-advisory/" class="btn-read-more" id="btnS1">View Details & More ➔</a>
+            <a href="/services/tax-advisory/en/" class="btn-read-more" id="btnS1">View Details & More ➔</a>
           </div>
         </div>
 
@@ -396,7 +416,7 @@
               <div class="service-icon">🏢</div>
               <div class="service-title-area">
                 <div class="service-title" id="s2Title">Corporate Formation of All Types</div>
-                <span class="service-path">/services/corporate/</span>
+                <span class="service-path">/services/corporate/en/</span>
               </div>
             </div>
             <div class="service-summary" id="s2Summary">
@@ -404,7 +424,7 @@
             </div>
           </div>
           <div class="service-footer">
-            <a href="/services/corporate/" class="btn-read-more" id="btnS2">View Details & More ➔</a>
+            <a href="/services/corporate/en/" class="btn-read-more" id="btnS2">View Details & More ➔</a>
           </div>
         </div>
 
@@ -414,7 +434,7 @@
               <div class="service-icon">🏠</div>
               <div class="service-title-area">
                 <div class="service-title" id="s3Title">Legal & Real Estate Services</div>
-                <span class="service-path">/services/real-estate/</span>
+                <span class="service-path">/services/real-estate/en/</span>
               </div>
             </div>
             <div class="service-summary" id="s3Summary">
@@ -422,7 +442,7 @@
             </div>
           </div>
           <div class="service-footer">
-            <a href="/services/real-estate/" class="btn-read-more" id="btnS3">View Details & More ➔</a>
+            <a href="/services/real-estate/en/" class="btn-read-more" id="btnS3">View Details & More ➔</a>
           </div>
         </div>
 
@@ -432,7 +452,7 @@
               <div class="service-icon">⚖️</div>
               <div class="service-title-area">
                 <div class="service-title" id="s4Title">Legal Representation Before Courts</div>
-                <span class="service-path">/services/litigation/</span>
+                <span class="service-path">/services/litigation/en/</span>
               </div>
             </div>
             <div class="service-summary" id="s4Summary">
@@ -440,7 +460,7 @@
             </div>
           </div>
           <div class="service-footer">
-            <a href="/services/litigation/" class="btn-read-more" id="btnS4">View Details & More ➔</a>
+            <a href="/services/litigation/en/" class="btn-read-more" id="btnS4">View Details & More ➔</a>
           </div>
         </div>
 
@@ -450,7 +470,7 @@
               <div class="service-icon">💰</div>
               <div class="service-title-area">
                 <div class="service-title" id="s5Title">Financial Rights Collection & Settlement</div>
-                <span class="service-path">/services/financial-rights/</span>
+                <span class="service-path">/services/financial-rights/en/</span>
               </div>
             </div>
             <div class="service-summary" id="s5Summary">
@@ -458,7 +478,7 @@
             </div>
           </div>
           <div class="service-footer">
-            <a href="/services/financial-rights/" class="btn-read-more" id="btnS5">View Details & More ➔</a>
+            <a href="/services/financial-rights/en/" class="btn-read-more" id="btnS5">View Details & More ➔</a>
           </div>
         </div>
 
@@ -468,7 +488,7 @@
               <div class="service-icon">🌐</div>
               <div class="service-title-area">
                 <div class="service-title" id="s6Title">Foreign Investment Licenses Issuance</div>
-                <span class="service-path">/services/investment-licenses/</span>
+                <span class="service-path">/services/investment-licenses/en/</span>
               </div>
             </div>
             <div class="service-summary" id="s6Summary">
@@ -476,7 +496,7 @@
             </div>
           </div>
           <div class="service-footer">
-            <a href="/services/investment-licenses/" class="btn-read-more" id="btnS6">View Details & More ➔</a>
+            <a href="/services/investment-licenses/en/" class="btn-read-more" id="btnS6">View Details & More ➔</a>
           </div>
         </div>
 
@@ -486,7 +506,7 @@
               <div class="service-icon">🛡️</div>
               <div class="service-title-area">
                 <div class="service-title" id="s7Title">Trademarks & Intellectual Property</div>
-                <span class="service-path">/services/trademarks/</span>
+                <span class="service-path">/services/trademarks/en/</span>
               </div>
             </div>
             <div class="service-summary" id="s7Summary">
@@ -494,7 +514,7 @@
             </div>
           </div>
           <div class="service-footer">
-            <a href="/services/trademarks/" class="btn-read-more" id="btnS7">View Details & More ➔</a>
+            <a href="/services/trademarks/en/" class="btn-read-more" id="btnS7">View Details & More ➔</a>
           </div>
         </div>
 
@@ -504,7 +524,7 @@
               <div class="service-icon">📜</div>
               <div class="service-title-area">
                 <div class="service-title" id="s8Title">Contracts Drafting, Review & Preparation</div>
-                <span class="service-path">/services/contracts/</span>
+                <span class="service-path">/services/contracts/en/</span>
               </div>
             </div>
             <div class="service-summary" id="s8Summary">
@@ -512,7 +532,7 @@
             </div>
           </div>
           <div class="service-footer">
-            <a href="/services/contracts/" class="btn-read-more" id="btnS8">View Details & More ➔</a>
+            <a href="/services/contracts/en/" class="btn-read-more" id="btnS8">View Details & More ➔</a>
           </div>
         </div>
 
@@ -522,7 +542,7 @@
               <div class="service-icon">👨‍👩‍👧‍👦</div>
               <div class="service-title-area">
                 <div class="service-title" id="s9Title">Personal Status & Judicial Execution</div>
-                <span class="service-path">/services/personal-status/</span>
+                <span class="service-path">/services/personal-status/en/</span>
               </div>
             </div>
             <div class="service-summary" id="s9Summary">
@@ -530,7 +550,7 @@
             </div>
           </div>
           <div class="service-footer">
-            <a href="/services/personal-status/" class="btn-read-more" id="btnS9">View Details & More ➔</a>
+            <a href="/services/personal-status/en/" class="btn-read-more" id="btnS9">View Details & More ➔</a>
           </div>
         </div>
 
@@ -539,10 +559,16 @@
     </div>
   </div>
 
-  <!-- الفوتر ورابط سياسة الخصوصية -->
+  <!-- الفوتر بمعالجة سطر واحد متناسق -->
   <footer class="site-footer">
-    <a href="/privacy/en/">Privacy Policy</a> | 
-    <span>All Rights Reserved © 2026 AKH Law Office</span>
+    <div class="footer-legal-links">
+      <a href="/privacy/en/" id="footerPrivacy">Privacy Policy</a>
+      <span class="separator">|</span>
+      <a href="/disclaimer/en/" id="footerDisclaimer">Disclaimer</a>
+      <span class="separator">|</span>
+      <a href="/code-of-conduct-en.html" id="footerCode">Code of Conduct</a>
+    </div>
+    <span class="copy-text" id="footerRights">All Rights Reserved © 2026 AKH Law Office</span>
   </footer>
 
   <script>
@@ -592,7 +618,8 @@
       document.getElementById('menuConsultations').innerText = t.menuConsultations;
       document.getElementById('menuInsights').innerText = t.menuInsights;
       document.getElementById('menuAbout').innerText = t.menuAbout;
-      document.getElementById('menuContact').innerText = t.menuContact;
+      document.getElementById('menuCodeOfConduct').innerText = t.codeText;
+      document.getElementById('menuContact').innerText = t.contact;
 
       document.getElementById('pageMainTitle').innerText = t.pageMainTitle;
       document.getElementById('pageSubTitle').innerText = t.pageSubTitle;
@@ -602,6 +629,11 @@
         document.getElementById(`s${i}Summary`).innerText = t[`s${i}Summary`];
         document.getElementById(`btnS${i}`).innerText = t.btnText;
       }
+
+      document.getElementById('footerPrivacy').innerText = t.privacyText;
+      document.getElementById('footerDisclaimer').innerText = t.disclaimerText;
+      document.getElementById('footerCode').innerText = t.codeText;
+      document.getElementById('footerRights').innerText = t.rightsText;
 
       document.getElementById('languageSelect').value = lang;
     }
@@ -623,115 +655,122 @@
         s6Title: "Foreign Investment Licenses Issuance", s6Summary: "Providing support and guidance to investors in Iraq, preparing required legal coordination documents, and monitoring legislative compliance for projects.",
         s7Title: "Trademarks & Intellectual Property", s7Summary: "Protection of IP rights, valuation and registration of trademarks, industrial designs, and patents against legal infringement and counterfeiting.",
         s8Title: "Contracts Drafting, Review & Preparation", s8Summary: "Drafting and auditing commercial and civil contracts with high precision to ensure rights protection and full compliance with applicable legislation.",
-        s9Title: "Personal Status & Judicial Execution", s9Summary: "Follow-up on personal status lawsuits, family settlements, and judicial execution cases to recover legal rights smoothly and professionally."
+        s9Title: "Personal Status & Judicial Execution", s9Summary: "Follow-up on personal status lawsuits, family settlements, and judicial execution cases to recover legal rights smoothly and professionally.",
+        privacyText: "Privacy Policy", disclaimerText: "Disclaimer", codeText: "Code of Conduct", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       tr: {
         pageTitle: "Irak Kapsamlı Hukuki Hizmetler Rehberi | Av. Ali Kazım Haşimi",
-        metaDesc: "Bağdat'taki Av. Ali Kazım Haşimi Hukuk Bürosu'nun tüm akredite hukuki hizmetlerini inceleyin: Şirket kuruluşu, dava ve temsil, sözleşmeler.",
-        metaKeywords: "Irak hukuki hizmetler, şirket kuruluşu Bağdat, dava ve temsil, alacak tahsili, yabancı yatırım lisansları, marka tescili, sözleşme hazırlama",
+        metaDesc: "Bağdat'taki Av. Ali Kazım Haşimi Hukuk Bürosu'nun tüm akredite hukuki hizmetlerini inceleyin.",
+        metaKeywords: "Irak hukuki hizmetler, şirket kuruluşu Bağdat, dava ve temsil",
         home: "Ana Sayfa", menuServices: "Hizmetler", menuConsultations: "Hukuki Danışmanlık", menuInsights: "İçgörüler", menuAbout: "Hakkımızda", menuContact: "İletişim",
         pageMainTitle: "Hukuki Hizmetlerimiz ve İşlerimiz",
         pageSubTitle: "Tüm detayları görmek ve doğrudan randevu almak için gerekli hizmeti seçin",
         btnText: "Detaylar ve Daha Fazlası ➔",
-        s1Title: "Vergi Danışmanlığı ve Mali Uyum", s1Summary: "Vergi yapılandırması, vergi dairelerine kayıt ve Irak yasalarına tam uyumu sağlamak için şirket muhasebe gereksinimlerinin takibi.",
-        s2Title: "Şirket Kuruluşu", s2Summary: "Yerli ve yabancı şirketlerin tescili, yasal belgelerin hazırlanması, banka hesaplarının açılması ve resmi lisansların alınması.",
-        s3Title: "Hukuki ve Gayrimenkul Hizmetleri", s3Summary: "Gayrimenkul sözleşmelerinin takibi, tapu senetlerinin çıkarılması ve resmi makamlar nezdinde gayrimenkul uyuşmazlıklarının çözümü.",
-        s4Title: "Yargı Önünde Yasal Temsil", s4Summary: "Irak'taki tüm mahkeme derecelerinde ve her türlü davada maliyetleri ve riskleri en aza indiren profesyonel yasal temsil.",
-        s5Title: "Finansal Hakların Tahsili ve Uzlaşması", s5Summary: "Vadesi geçmiş alacakların tahsili, resmi ihtarların gönderilmesi, ödeme planlarının müzakeresi ve bağlayıcı sözleşmeler.",
-        s6Title: "Yabancı Yatırım Lisanslarının Verilmesi", s6Summary: "Irak'taki yatırımcılara destek sağlanması, gerekli yasal belgelerin hazırlanması ve proje başarısı için uyumluluk takibi.",
-        s7Title: "Markalar ve Fikri Mülkiyet", s7Summary: "Fikri mülkiyet haklarının korunması, ticari markaların ve patentlerin ihlal ve taklitlere karşı tescili.",
-        s8Title: "Sözleşme Hazırlama ve İnceleme", s8Summary: "Hakların korunmasını ve yürürlükteki mevzuata tam uyumu sağlamak için ticari ve medeni sözleşmelerin hazırlanması.",
-        s9Title: "Şahsi Haller ve Yargısal İcra", s9Summary: "Aile hukuku davalarının, uzlaşmaların takibi ve yasal hakların profesyonel şekilde tahsili için icra takipleri."
+        s1Title: "Vergi Danışmanlığı ve Mali Uyum", s1Summary: "Vergi yapılandırması ve vergi dairelerine kayıt.",
+        s2Title: "Şirket Kuruluşu", s2Summary: "Yerli ve yabancı şirketlerin tescili.",
+        s3Title: "Hukuki ve Gayrimenkul Hizmetleri", s3Summary: "Gayrimenkul sözleşmelerinin takibi.",
+        s4Title: "Yargı Önünde Yasal Temsil", s4Summary: "Irak'taki tüm mahkeme derecelerinde yasal temsil.",
+        s5Title: "Finansal Hakların Tahsili ve Uzlaşması", s5Summary: "Vadesi geçmiş alacakların tahsili.",
+        s6Title: "Yabancı Yatırım Lisanslarının Verilmesi", s6Summary: "Irak'taki yatırımcılara destek sağlanması.",
+        s7Title: "Markalar ve Fikri Mülkiyet", s7Summary: "Fikri mülkiyet haklarının korunması.",
+        s8Title: "Sözleşme Hazırlama ve İnceleme", s8Summary: "Ticari ve medeni sözleşmelerin hazırlanması.",
+        s9Title: "Şahsi Haller ve Yargısal İcra", s9Summary: "Aile hukuku ve icra takipleri.",
+        privacyText: "Gizlilik Politikası", disclaimerText: "Yasal Uyarı", codeText: "Mesleki Etik Kuralları", rightsText: "Tüm Hakları Saklıdır © 2026 AKH Law Office"
       },
       zh: {
         pageTitle: "伊拉克综合法律服务目录 | 阿里·卡德姆·哈希米律所",
-        metaDesc: "查看阿里·卡德姆·哈希米律所在巴格达提供的所有认可法律服务：公司注册、诉讼代理、合同、投资、税务和房地产。",
-        metaKeywords: "伊拉克法律服务, 公司注册巴格达, 诉讼代理, 债务追讨, 外商投资许可证, 商标注册, 合同起草, 税务咨询",
+        metaDesc: "查看阿里·卡德姆·哈希米律所在巴格达提供的所有认可法律服务。",
+        metaKeywords: "伊拉克法律服务, 公司注册巴格达",
         home: "首页", menuServices: "法律服务", menuConsultations: "法律咨询", menuInsights: "法律洞察", menuAbout: "关于我们", menuContact: "联系我们",
         pageMainTitle: "我们的法律服务与业务",
         pageSubTitle: "选择所需服务以查看完整详情并预约直接咨询",
         btnText: "查看详情与更多 ➔",
-        s1Title: "税务咨询与财务合规", s1Summary: "税务架构设计、税务登记以及跟进公司的会计和财务要求，以确保完全遵守伊拉克现行法律。",
-        s2Title: "各类公司注册", s2Summary: "内外资公司注册、法律文件准备、银行开户以及高专业度、高效率地获取官方许可证。",
-        s3Title: "法律与房地产服务", s3Summary: "房地产合同、租赁和投资合同的跟进与公证，地契和图纸的提取，以及在官方机构面前解决房地产纠纷。",
-        s4Title: "出庭代理与诉讼", s4Summary: "在伊拉克各级法院代理各类诉讼，凭借经过深思熟虑的策略最大限度地降低成本和风险。",
-        s5Title: "财务权益追讨与结算", s5Summary: "收回逾期应收款项和债务，发送官方通知，协商还款计划，并通过具有法律约束力的合同记录协议。",
-        s6Title: "签发外商投资许可证", s6Summary: "为伊拉克投资者提供支持与指导，准备所需的法律协调和文件，并跟进立法合规性以确保项目成功。",
-        s7Title: "商标与知识产权", s7Summary: "保护知识产权，评估和注册商标、工业设计及专利，以防范法律侵权和假冒伪劣。",
-        s8Title: "合同起草、审核与准备", s8Summary: "以高精度起草和审核商事及民事合同，以确保保护权利并完全符合适用法律法规。",
-        s9Title: "个人身份法与司法执行", s9Summary: "跟进个人身份诉讼、家庭和解以及司法执行案件，以顺利、专业地追回合法权益。"
+        s1Title: "税务咨询与财务合规", s1Summary: "税务架构设计与税务登记。",
+        s2Title: "各类公司注册", s2Summary: "内外资公司注册与银行开户。",
+        s3Title: "法律与房地产服务", s3Summary: "房地产合同管理与纠纷解决。",
+        s4Title: "出庭代理与诉讼", s4Summary: "伊拉克各级法院专业出庭代理。",
+        s5Title: "财务权益追讨与结算", s5Summary: "追收逾期款项与债务。",
+        s6Title: "签发外商投资许可证", s6Summary: "为投资者提供支持与许可申请。",
+        s7Title: "商标与知识产权", s7Summary: "保护知识产权与商标注册。",
+        s8Title: "合同起草、审核与准备", s8Summary: "起草商事及民事合同。",
+        s9Title: "个人身份法与司法执行", s9Summary: "家事诉讼与司法执行。",
+        privacyText: "隐私政策", disclaimerText: "免责声明", codeText: "行为准则", rightsText: "版权所有 © 2026 AKH Law Office"
       },
       fr: {
         pageTitle: "Répertoire des Services Juridiques en Iraq | Cabinet AKH",
-        metaDesc: "Découvrez tous les services juridiques du Cabinet d'Avocats Ali Kadhem Hashimi à Bagdad : création d'entreprise, contentieux, contrats, investissement et fiscalité.",
-        metaKeywords: "Services juridiques Iraq, création d'entreprise Bagdad, contentieux, recouvrement de créances, licences d'investissement, marques, contrats, conseil fiscal",
+        metaDesc: "Découvrez tous les services juridiques du Cabinet d'Avocats Ali Kadhem Hashimi à Bagdad.",
+        metaKeywords: "Services juridiques Iraq, création d'entreprise Bagdad",
         home: "Accueil", menuServices: "Services", menuConsultations: "Consultations Juridiques", menuInsights: "Aperçus", menuAbout: "À Propos", menuContact: "Contact",
         pageMainTitle: "Nos Services & Affaires Juridiques",
         pageSubTitle: "Sélectionnez le service requis pour voir tous les détails et réserver un rendez-vous",
         btnText: "Voir les Détails ➔",
-        s1Title: "Conseil Fiscal et Conformité Financière", s1Summary: "Structuration fiscale, enregistrement auprès des autorités fiscales et suivi des exigences comptables et financières des entreprises en Iraq.",
-        s2Title: "Création de Sociétés de Tous Types", s2Summary: "Enregistrement de sociétés locales et étrangères, préparation de documents juridiques, ouverture de comptes et obtention de licences officielles.",
-        s3Title: "Services Juridiques et Immobiliers", s3Summary: "Suivi et documentation des contrats immobiliers, contrats de location et d'investissement, actes, plans et règlement des litiges.",
-        s4Title: "Représentation Juridique Devant les Tribunaux", s4Summary: "Représentation juridique professionnelle dans tous les types de litiges et à tous les niveaux de juridiction en Iraq, avec des stratégies de réduction des risques.",
-        s5Title: "Recouvrement et Règlement des Droits Financiers", s5Summary: "Recouvrement des créances et dettes impayées, mises en demeure officielles, négociation de plans de remboursement et documentation par contrats.",
-        s6Title: "Délivrance de Licences d'Investissement Étranger", s6Summary: "Fournir soutien et orientation aux investisseurs en Iraq, préparer la coordination juridique requise et suivre la conformité législative.",
-        s7Title: "Marques et Propriété Intellectuelle", s7Summary: "Protection des droits de propriété intellectuelle, évaluation et enregistrement des marques, dessins et brevets contre les contrefaçons.",
-        s8Title: "Rédaction, Révision et Préparation de Contrats", s8Summary: "Rédaction et audit de contrats commerciaux et civils avec précision pour garantir la protection des droits et la conformité légale.",
-        s9Title: "Statut Personnel et Exécution Judiciaire", s9Summary: "Suivi des affaires de statut personnel, règlements familiaux et exécution judiciaire pour recouvrer les droits légaux avec professionnalisme."
+        s1Title: "Conseil Fiscal et Conformité Financière", s1Summary: "Structuration fiscale et enregistrement.",
+        s2Title: "Création de Sociétés de Tous Types", s2Summary: "Enregistrement de sociétés locales et étrangères.",
+        s3Title: "Services Juridiques et Immobiliers", s3Summary: "Suivi et documentation des contrats immobiliers.",
+        s4Title: "Représentation Juridique Devant les Tribunaux", s4Summary: "Représentation juridique professionnelle en Iraq.",
+        s5Title: "Recouvrement et Règlement des Droits Financiers", s5Summary: "Recouvrement de créances et dettes.",
+        s6Title: "Délivrance de Licences d'Investissement Étranger", s6Summary: "Soutien aux investisseurs en Iraq.",
+        s7Title: "Marques et Propriété Intellectuelle", s7Summary: "Protection des droits de propriété intellectuelle.",
+        s8Title: "Rédaction, Révision et Préparation de Contrats", s8Summary: "Rédaction et audit de contrats.",
+        s9Title: "Statut Personnel et Exécution Judiciaire", s9Summary: "Suivi des affaires personnelles et exécution.",
+        privacyText: "Politique de Confidentialité", disclaimerText: "Avertissement", codeText: "Code de Conduite", rightsText: "Tous Droits Réservés © 2026 AKH Law Office"
       },
       es: {
         pageTitle: "Directorio de Servicios Legales Integrales en Irak | Bufete AKH",
-        metaDesc: "Consulte todos los servicios legales acreditados del Bufete de Abogados Ali Kadhem Hashimi en Bagdad: constitución de empresas, litigio, contratos e inversión.",
-        metaKeywords: "Servicios legales Irak, constitución de empresas Bagdad, litigio, cobro de deudas, licencias de inversión, registro de marcas, contratos, asesoría fiscal",
+        metaDesc: "Consulte todos los servicios legales acreditados del Bufete de Abogados Ali Kadhem Hashimi en Bagdad.",
+        metaKeywords: "Servicios legales Irak, constitución de empresas Bagdad",
         home: "Inicio", menuServices: "Servicios", menuConsultations: "Consultas Legales", menuInsights: "Perspectivas", menuAbout: "Sobre Nosotros", contact: "Contacto",
         pageMainTitle: "Nuestros Servicios y Negocios Legales",
         pageSubTitle: "Seleccione el servicio requerido para ver todos los detalles y reservar una cita directa",
         btnText: "Ver Detalles y Más ➔",
-        s1Title: "Asesoría Fiscal y Cumplimiento Financiero", s1Summary: "Estructuración fiscal, registro ante las autoridades fiscales y seguimiento de los requisitos contables y financieros de las empresas en Irak.",
-        s2Title: "Constitución de Empresas de Todo Tipo", s2Summary: "Registro de empresas locales y extranjeras, preparación de documentos legales, apertura de cuentas bancarias y obtención de licencias oficiales.",
-        s3Title: "Servicios Legales e Inmobiliarios", s3Summary: "Seguimiento y documentación de contratos inmobiliarios, contratos de arrendamiento e inversión, extracción de escrituras y resolución de disputas.",
-        s4Title: "Representación Legal Ante los Tribunales", s4Summary: "Representación legal profesional en todo tipo de demandas y en todos los niveles de tribunales en Irak, con estrategias para minimizar costos y riesgos.",
-        s5Title: "Cobranza y Liquidación de Derechos Financieros", s5Summary: "Recuperación de deudas y pagos vencidos, emisión de notificaciones oficiales, negociación de planes de pago y documentación con contratos legales.",
-        s6Title: "Emisión de Licencias de Inversión Extranjera", s6Summary: "Proporcionar apoyo a los inversores en Irak, preparar la coordinación y los documentos legales requeridos, y supervisar el cumplimiento legislativo.",
-        s7Title: "Marcas y Propiedad Intelectual", s7Summary: "Protección de los derechos de propiedad intelectual, valoración y registro de marcas, diseños industriales y patentes contra la infracción.",
-        s8Title: "Redacción, Revisión y Preparación de Contratos", s8Summary: "Redacción y auditoría de contratos comerciales y civiles con alta precisión para garantizar la protección de derechos y el pleno cumplimiento legal.",
-        s9Title: "Estado Personal y Ejecución Judicial", s9Summary: "Seguimiento de demandas de estado personal, acuerdos familiares y casos de ejecución judicial para recuperar derechos legales con profesionalismo."
+        s1Title: "Asesoría Fiscal y Cumplimiento Financiero", s1Summary: "Estructuración fiscal y registro.",
+        s2Title: "Constitución de Empresas de Todo Tipo", s2Summary: "Registro de empresas locales y extranjeras.",
+        s3Title: "Servicios Legales e Inmobiliarios", s3Summary: "Documentación de contratos inmobiliarios.",
+        s4Title: "Representación Legal Ante los Tribunales", s4Summary: "Representación legal profesional en Irak.",
+        s5Title: "Cobranza y Liquidación de Derechos Financieros", s5Summary: "Recuperación de deudas y pagos.",
+        s6Title: "Emisión de Licencias de Inversión Extranjera", s6Summary: "Apoyo a inversores en Irak.",
+        s7Title: "Marcas y Propiedad Intelectual", s7Summary: "Protección de derechos de PI.",
+        s8Title: "Redacción, Revisión y Preparación de Contratos", s8Summary: "Redacción y auditoría de contratos.",
+        s9Title: "Estado Personal y Ejecución Judicial", s9Summary: "Seguimiento de demandas familiares.",
+        privacyText: "Política de Privacidad", disclaimerText: "Aviso Legal", codeText: "Código de Conducta", rightsText: "Todos los Derechos Reservados © 2026 AKH Law Office"
       },
       de: {
         pageTitle: "Verzeichnis der Rechtsdienste im Irak | Kanzlei Ali Kadhem Hashimi",
-        metaDesc: "Überprüfen Sie alle akkreditierten Rechtsdienste der Kanzlei Ali Kadhem Hashimi in Bagdad: Firmengründung, Prozessvertretung, Verträge und Steuerberatung.",
-        metaKeywords: "Rechtsdienste Irak, Firmengründung Bagdad, Prozessvertretung, Forderungseinzug, Investitionslizenzen, Markenanmeldung, Vertragsgestaltung, Steuerberatung",
+        metaDesc: "Überprüfen Sie alle akkreditierten Rechtsdienste der Kanzlei Ali Kadhem Hashimi in Bagdad.",
+        metaKeywords: "Rechtsdienste Irak, Firmengründung Bagdad",
         home: "Startseite", menuServices: "Dienste", menuConsultations: "Rechtliche Beratung", menuInsights: "Einblicke", about: "Über uns", contact: "Kontakt",
         pageMainTitle: "Unsere Rechtsdienste & Geschäfte",
         pageSubTitle: "Wählen Sie den gewünschten Dienst aus, um vollständige Details anzuzeigen und einen Termin zu buchen",
         btnText: "Details ansehen ➔",
-        s1Title: "Steuerberatung & Finanzielle Compliance", s1Summary: "Steuerstrukturierung, Registrierung bei den Steuerbehörden und Überwachung der buchhalterischen Anforderungen im Irak.",
-        s2Title: "Unternehmensgründung aller Art", s2Summary: "Registrierung in- und ausländischer Unternehmen, Vorbereitung rechtlicher Dokumente, Eröffnung von Bankkonten und Einholung von Lizenzen.",
-        s3Title: "Rechtliche & Immobiliendienstleistungen", s3Summary: "Verfolgung und Dokumentation von Immobilienverträgen, Mietverträgen, Einholung von Urkunden und Beilegung von Streitigkeiten.",
-        s4Title: "Gerichtliche Vertretung", s4Summary: "Professionelle rechtliche Vertretung in allen Arten von Klagen vor irakischen Gerichten mit Strategien zur Minimierung von Risiken.",
-        s5Title: "Beitreibung & Vergleich finanzieller Rechte", s5Summary: "Beitreibung überfälliger Forderungen, Versendung offizieller Mahnungen, Verhandlung von Rückzahlungsplänen und vertragliche Sicherung.",
-        s6Title: "Ausstellung von Ausländischen Investitionslizenzen", s6Summary: "Unterstützung für Investoren im Irak, Erstellung erforderlicher rechtlicher Dokumente und Überwachung der Einhaltung von Gesetzen.",
-        s7Title: "Marken & Geistiges Eigentum", s7Summary: "Schutz von IP-Rechten, Bewertung und Registrierung von Marken, gewerblichen Mustern und Patenten gegen Rechtsverletzungen.",
-        s8Title: "Vertragsgestaltung, Prüfung & Erstellung", s8Summary: "Ausarbeitung und Prüfung von Handels- und Zivilverträgen mit hoher Präzision zur Gewährleistung des Rechtsschutzes.",
-        s9Title: "Familienrecht & Gerichtliche Vollstreckung", s9Summary: "Verfolgung von Personenstandsverfahren, familiären Vergleichen und Vollstreckungsverfahren zur Durchsetzung von Ansprüchen."
+        s1Title: "Steuerberatung & Finanzielle Compliance", s1Summary: "Steuerstrukturierung und Registrierung.",
+        s2Title: "Unternehmensgründung aller Art", s2Summary: "Registrierung in- und ausländischer Unternehmen.",
+        s3Title: "Rechtliche & Immobiliendienstleistungen", s3Summary: "Dokumentation von Immobilienverträgen.",
+        s4Title: "Gerichtliche Vertretung", s4Summary: "Professionelle rechtliche Vertretung.",
+        s5Title: "Beitreibung & Vergleich finanzieller Rechte", s5Summary: "Beitreibung überfälliger Forderungen.",
+        s6Title: "Ausstellung von Ausländischen Investitionslizenzen", s6Summary: "Unterstützung für Investoren.",
+        s7Title: "Marken & Geistiges Eigentum", s7Summary: "Schutz von IP-Rechten.",
+        s8Title: "Vertragsgestaltung, Prüfung & Erstellung", s8Summary: "Ausarbeitung und Prüfung von Verträgen.",
+        s9Title: "Familienrecht & Gerichtliche Vollstreckung", s9Summary: "Verfolgung von Personenstandsverfahren.",
+        privacyText: "Datenschutz", disclaimerText: "Haftungsausschluss", codeText: "Verhaltenskodex", rightsText: "Alle Rechte vorbehalten © 2026 AKH Law Office"
       },
       ku: {
         pageTitle: "رێبەری خزمەتگوزارییە یاساییە گشتگیرەکان لە عێراق | نووسینگەی پارێزەر عەلی کاظم",
-        metaDesc: "پێداچوونەوە بە هەموو خزمەتگوزارییە یاساییە پەسەندکراوەکانی نووسینگەی پارێزەر عەلی کازمی هاشمی لە بەغداد: دامەزراندنی کۆمپانیا، نوێنەرایەتی دادوەری، گرێبەست و باج.",
-        metaKeywords: "خزمەتگوزاری یاسایی لە عێراق, دامەزراندنی کۆمپانیا بغداد, نوێنەرایەتی دادوەری, وەرگرتنەوەی قەرز, مۆڵەتی وەبەرهێنان, تۆمارکردنی مارکە, گرێبەست, ڕاوێژکاری باج",
+        metaDesc: "پێداچوونەوە بە هەموو خزمەتگوزارییە یاساییە پەسەندکراوەکانی نووسینگەی پارێزەر عەلی کازمی هاشمی لە بەغداد.",
+        metaKeywords: "خزمەتگوزاری یاسایی لە عێراق, دامەزراندنی کۆمپانیا بغداد",
         home: "سەرەکی", menuServices: "خزمەتگوزارییەکان", menuConsultations: "ڕاوێژی یاسایی", menuInsights: "تێڕوانینەکان", menuAbout: "دەرباره‌ی ئێمە", contact: "پەیوەندی",
         pageMainTitle: "خزمەتگوزاری و کارە یاساییەکانمان",
         pageSubTitle: "خزمەتگوزارییخراوە هەڵبژێرە بۆ بینینی وردەکارییەکان و دیاریکردنی کاتی چاوپێکەوتن",
         btnText: "ببینە وردەکاری زیاتر ➔",
-        s1Title: "ڕاوێژی باج و پابەندبوونی دارایی", s1Summary: "ڕێکخستنی باج، تۆمارکردن لە دەستەکانی باج، و بەدواداچوونی پێداویستییە ژمێریاری و داراییەکانی کۆمپانیاکان بۆ دڵنیابوون لە پابەندبوونی تەواو بە یاسا.",
-        s2Title: "دامەزراندنی کۆمپانیاکان بە هەموو جۆرەکانیان", s2Summary: "تۆمارکردنی کۆمپانیا خۆماڵی و بیانییەکان، ئامادەکردنی دۆکومێنتە یاساییەکان، کردنەوەی هەژماری بانکی، و بەدەستهێنانی مۆڵەتە فەرمییەکان.",
-        s3Title: "خزمەتگوزارییە یاسایی و خانووبەرەکان", s3Summary: "بەدواداچوون و بەلگەنامەکردنی گرێبەستە خانووبەرەکان، گرێبەستەکانی کرێ و وەبەرهێنان, دەرکردنی سەنەد و نەخشەکان، و یەکلاکردنەوەی کێشەکان.",
-        s4Title: "نوێنەرایەتی یاسایی لەبەردەم دادگاکاندا", s4Summary: "نوێنەرایەتی یاسایی پیشەیی لە هەموو جۆرە داوایەکدا و لە هەموو ئاستەکانی دادگاکان لە عێراقدا، بە ستراتیژی ورد بۆ کەمکردنەوەی مەترسییەکان.",
-        s5Title: "وەرگرتنەوە و ڕێکخستنی مافە داراییەکان", s5Summary: "کۆکردنەوەی قەرز و شایستە دواکەوتووەکان، ناردنی ئاگاداری فەرمی، دانوستان لەسەر پلانی دانەوە، و بەلگەنامەکردنی ڕێککەوتنەکان بە گرێبەست.",
-        s6Title: "دەرکردنی مۆڵەتی وەبەرهێنانی بیانی", s6Summary: "دابینکردنی پشتگیری و ڕێنمایی بۆ وەبەرهێنەران لە عێراقدا، ئامادەکردنی دۆکومێنتە یاساییە پێویستەکان، و بەدواداچوونی پابەندبوونی یاسایی.",
-        s7Title: "مارکە و خاوەندارێتی فکری", s7Summary: "پاراستنی مافی خاوەندارێتی فکری، هەڵسەنگاندن و تۆمارکردنی مارکە بازرگانییەکان، نموونە پیشەسازییەکان، و مۆڵەتی داهێنان دژی دەستدرێژی.",
-        s8Title: "ئامادەکردن، داڕشتن و پێداچوونەوەی گرێبەستەکان", s8Summary: "داڕشتن و وردبینی گرێبەستە بازرگانی و مەدەنییەکان بە وردبینییەکی بەرز بۆ دڵنیابوون لە پاراستنی مافەکان و سازگاری لەگەڵ یاسادا.",
-        s9Title: "بارودۆخی کەسێتی و جێبەجێکردنی دادوەری", s9Summary: "بەدواداچوونی دۆسیەکانی باری کەسێتی، ڕێککەوتنە خێزانییەکان، و بەدواداچوونی دۆسیەکانی جێبەجێکردنی دادوەری بۆ وەگرتنەوەی مافەکان."
+        s1Title: "ڕاوێژی باج و پابەندبوونی دارایی", s1Summary: "ڕێکخستنی باج و تۆمارکردن.",
+        s2Title: "دامەزراندنی کۆمپانیاکان بە هەموو جۆرەکانیان", s2Summary: "تۆمارکردنی کۆمپانیا خۆماڵی و بیانییەکان.",
+        s3Title: "خزمەتگوزارییە یاسایی و خانووبەرەکان", s3Summary: "بەلگەنامەکردنی گرێبەستی خانووبەرە.",
+        s4Title: "نوێنەرایەتی یاسایی لەبەردەم دادگاکاندا", s4Summary: "نوێنەرایەتی یاسایی پیشەیی لە عێراق.",
+        s5Title: "وەرگرتنەوە و ڕێکخستنی مافە داراییەکان", s5Summary: "کۆکردنەوەی قەرز و شایستەکان.",
+        s6Title: "دەرکردنی مۆڵەتی وەبەرهێنانی بیانی", s6Summary: "پشتگیری بۆ وەبەرهێنەران.",
+        s7Title: "مارکە و خاوەندارێتی فکری", s7Summary: "پاراستنی مافی خاوەندارێتی فکری.",
+        s8Title: "ئامادەکردن، داڕشتن و پێداچوونەوەی گرێبەستەکان", s8Summary: "داڕشتنی گرێبەستە بازرگانییەکان.",
+        s9Title: "بارودۆخی کەسێتی و جێبەجێکردنی دادوەری", s9Summary: "بەدواداچوونی دۆسیەی خێزانی.",
+        privacyText: "سیاسەتی تایبەتمەندی", disclaimerText: "بەرپرسیارێتی", codeText: "ڕەفتاری پیشەیی", rightsText: "هەموو مافەکان پارێزراون © 2026 AKH Law Office"
       }
     };
   </script>
