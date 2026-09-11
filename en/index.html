@@ -25,7 +25,7 @@
   <link rel="alternate" hreflang="en" href="https://akjassem.com/en/">
   <link rel="alternate" hreflang="x-default" href="https://akjassem.com/en/">
 
-  <!-- معاينة وسائل التواصل الاجتماعي (WhatsApp, LinkedIn, Facebook) -->
+  <!-- معاينة وسائل التواصل الاجتماعي -->
   <meta property="og:title" id="ogTitle" content="Law Office of Ali Kadhem Hashimi | Legal Services in Iraq">
   <meta property="og:description" id="ogDesc" content="Official website of the Law Office of Ali Kadhem Hashimi in Baghdad. Comprehensive legal services and corporate setup.">
   <meta property="og:image" content="https://akjassem.com/og-logo.jpg">
@@ -129,6 +129,7 @@
       z-index: 1100;
     }
     [dir="rtl"] .dropdown-menu { left: 0; right: auto; }
+    [dir="ltr"] .dropdown-menu { right: 0; left: auto; }
     .dropdown-menu.active { display: flex; }
     
     .dropdown-menu a {
@@ -314,10 +315,10 @@
       <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu">☰</button>
       <div id="dropdownMenu" class="dropdown-menu">
         <a href="https://akjassem.com/en/" id="menuHome">Home</a>
-        <a href="https://akjassem.com/services/" id="menuServices">Legal Services Directory</a>
+        <a href="https://akjassem.com/services/en/" id="menuServices">Legal Services Directory</a>
         <a href="https://akjassem.com/consultations/en/" id="menuConsultations">Legal Consultations</a>
         <a href="https://akjassem.com/insights/en/" id="menuInsights">Iraq Legal Insights</a>
-        <a href="../" id="menuAbout">About Us (عربي / English)</a>
+        <a href="/about/en/" id="menuAbout">About Us</a>
         <a href="/code-of-conduct-en.html" id="menuCodeOfConduct">Code of Conduct</a>
         <a href="https://akjassem.com/contact/en/" id="menuContact">Contact Us</a>
       </div>
@@ -348,39 +349,39 @@
       <h2 class="services-section-title" id="secMainTitle">Specialized Legal Services</h2>
       
       <div class="services-grid">
-        <a href="/services/corporate/" class="service-card">
+        <a href="/services/corporate/en/" class="service-card" id="card1">
           <div><h3 id="s1Title">Corporate Formation</h3><p id="s1Desc">Local and foreign company setup, drafting articles of association, and bank accounts.</p></div>
           <span class="card-link" id="l1">Details & Booking →</span>
         </a>
-        <a href="/services/litigation/" class="service-card">
+        <a href="/services/litigation/en/" class="service-card" id="card2">
           <div><h3 id="s2Title">Judicial Representation</h3><p id="s2Desc">Legal representation and litigation across all courts and judicial degrees in Iraq.</p></div>
           <span class="card-link" id="l2">Details & Booking →</span>
         </a>
-        <a href="/services/financial-rights/" class="service-card">
+        <a href="/services/financial-rights/en/" class="service-card" id="card3">
           <div><h3 id="s3Title">Financial Rights & Collection</h3><p id="s3Desc">Debt collection, official notices, and commercial financial settlements.</p></div>
           <span class="card-link" id="l3">Details & Booking →</span>
         </a>
-        <a href="/services/investment-licenses/" class="service-card">
+        <a href="/services/investment-licenses/en/" class="service-card" id="card4">
           <div><h3 id="s4Title">Foreign Investment Licenses</h3><p id="s4Desc">Support and acquisition of investment licenses and official permits for projects.</p></div>
           <span class="card-link" id="l4">Details & Booking →</span>
         </a>
-        <a href="/services/trademarks/" class="service-card">
+        <a href="/services/trademarks/en/" class="service-card" id="card5">
           <div><h3 id="s5Title">Trademarks & Intellectual Property</h3><p id="s5Desc">Protection of IP rights, industrial designs, and commercial innovations.</p></div>
           <span class="card-link" id="l5">Details & Booking →</span>
         </a>
-        <a href="/services/contracts/" class="service-card">
+        <a href="/services/contracts/en/" class="service-card" id="card6">
           <div><h3 id="s6Title">Contract Drafting & Review</h3><p id="s6Desc">Drafting and auditing commercial and civil contracts under active laws.</p></div>
           <span class="card-link" id="l6">Details & Booking →</span>
         </a>
-        <a href="/services/personal-status/" class="service-card">
+        <a href="/services/personal-status/en/" class="service-card" id="card7">
           <div><h3 id="s7Title">Personal Status & Execution</h3><p id="s7Desc">Family cases, alimony, custody, and execution directorate follow-ups.</p></div>
           <span class="card-link" id="l7">Details & Booking →</span>
         </a>
-        <a href="/services/tax-advisory/" class="service-card">
+        <a href="/services/tax-advisory/en/" class="service-card" id="card8">
           <div><h3 id="s8Title">Tax Advisory & Compliance</h3><p id="s8Desc">Tax structuring, registration with tax authorities, and financial compliance.</p></div>
           <span class="card-link" id="l8">Details & Booking →</span>
         </a>
-        <a href="/services/real-estate/" class="service-card">
+        <a href="/services/real-estate/en/" class="service-card" id="card9">
           <div><h3 id="s9Title">Real Estate Legal Services</h3><p id="s9Desc">Documentation of real estate contracts, deeds, maps, and dispute resolution.</p></div>
           <span class="card-link" id="l9">Details & Booking →</span>
         </a>
@@ -391,11 +392,11 @@
   <!-- الفوتر بمعالجة الروابط القانونية في سطر أفقي واحد متناسق -->
   <footer class="site-footer">
     <div class="footer-legal-links">
-      <a href="/privacy/en/">Privacy Policy</a>
+      <a href="/privacy/en/" id="footerPrivacy">Privacy Policy</a>
       <span class="separator">|</span>
-      <a href="/disclaimer/en/">Disclaimer</a>
+      <a href="/disclaimer/en/" id="footerDisclaimer">Disclaimer</a>
       <span class="separator">|</span>
-      <a href="/code-of-conduct-en.html">Code of Conduct</a>
+      <a href="/code-of-conduct-en.html" id="footerCode">Code of Conduct</a>
     </div>
     <span class="copy-text">All Rights Reserved © 2026 AKH Law Office</span>
   </footer>
@@ -545,13 +546,13 @@
         pageTitle: "Bufete de Abogados Ali Kadhem Hashimi | Servicios en Irak",
         metaDesc: "Sitio web oficial del Bufete de Abogados Ali Kadhem Hashimi en Bagdad. Fundado en 2014. Servicios legales integrales: constitución de empresas y litigios.",
         metaKeywords: "Abogado Bagdad, servicios legales Irak, constitución de empresas Irak",
-        home: "Inicio", menuServices: "Servicios", menuConsultations: "Consultas Legales", menuInsights: "Perspectivas", menuAbout: "Sobre Nosotros", menuCodeOfConduct: "Código de Conducta", menuContact: "Contacto",
+        home: "Inicio", menuServices: "Servicios", menuConsultations: "Consultas Legales", menuInsights: "Perspectivas", menuAbout: "Sobre Nosotros", menuCodeOfConduct: "Código de Conducta", contact: "Contacto",
         heroTitle: "Bufete de Abogados Ali Kadhem Hashimi", heroSubtitle: "Su socio legal de confianza en Bagdad. Asesoría integral, constitución de empresas y representación judicial.",
         heroCta: "📅 Reservar Consulta Oficial", secMainTitle: "Servicios Legales Especializados", cardLink: "Detalles y Reserva →",
         s1Title: "Constitución de Empresas", s1Desc: "Creación de empresas locales y extranjeras, estatutos y cuentas bancarias.",
         s2Title: "Representación Judicial", s2Desc: "Representación legal y litigio en todos los tribunales y grados en Irak.",
         s3Title: "Derechos Financieros y Cobranza", s3Desc: "Cobro de deudas, notificaciones oficiales y acuerdos comerciales.",
-        s4Title: "Licencias de Inversión", s4Desc: "Apoyo y adquisición de licencias de inversión y permisos oficiales.",
+        s4Title: "Licencias de Inversión", s4Desc: "Apoyo y obtención de licencias de inversión y permisos oficiales.",
         s5Title: "Marcas y Propiedad Intelectual", s5Desc: "Protección de derechos de PI, diseños industriales e innovaciones.",
         s6Title: "Redacción y Revisión de Contratos", s6Desc: "Redacción y auditoría de contratos comerciales y civiles.",
         s7Title: "Estatus Personal y Ejecución", s7Desc: "Casos familiares, pensión alimenticia, custodia y ejecución.",
