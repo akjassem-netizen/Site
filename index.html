@@ -447,7 +447,7 @@
       document.getElementById('menuCodeOfConduct').innerText = t.menuCodeOfConduct;
       document.getElementById('menuContact').innerText = t.contact;
 
-      // ضبط الروابط الرئيسية بدقة ديناميكياً
+      // ضبط الروابط الرئيسية ديناميكياً بدقة مطابقة لهيكلة السيرفر لديك
       const isArabic = (lang === 'ar');
       document.getElementById('menuServices').href = isArabic ? '/services/' : '/services/en/';
       document.getElementById('menuAbout').href = isArabic ? '/about/' : '/about/en/';
@@ -455,9 +455,7 @@
       document.getElementById('menuConsultations').href = isArabic ? '/consultations/' : '/consultations/en/';
       document.getElementById('menuInsights').href = isArabic ? '/insights/' : '/insights/en/';
 
-      // ضبط مسارات روابط الخدمات الفرعية التسع تلقائياً بناءً على ما إذا كانت الصفحة عربية أم أجنبية
-      // (تدعم هيكلتك الخاصة: مثلاً /services/corporate/en/ أو /services/en/corporate/ - تم ضبطها على الرابط الصحيح)
-      const serviceSuffix = isArabic ? '/' : '/en/';
+      // ضبط مسارات روابط الخدمات الفرعية التسع بناءً على فولدراتك الظاهرة في السيرفر (corporate/en)
       document.getElementById('cardS1').href = isArabic ? '/services/corporate/' : '/services/corporate/en/';
       document.getElementById('cardS2').href = isArabic ? '/services/litigation/' : '/services/litigation/en/';
       document.getElementById('cardS3').href = isArabic ? '/services/financial-rights/' : '/services/financial-rights/en/';
@@ -549,7 +547,7 @@
         s2Title: "诉讼与司法代理", s2Desc: "在伊拉克各级法院代表客户进行诉讼与辩护。", s2Link: "详情与预约 →",
         s3Title: "财务权益与债务追收", s3Desc: "债务追收、发送正式通知及商业结算。", s3Link: "详情与预约 →",
         s4Title: "外商投资许可", s4Desc: "协助获取投资项目及许可证。", s4Link: "详情与预约 →",
-        s5Title: "商标与知识产权", s5Desc: "保护知识产权、工业品外观设计及商业创新。", s4Link: "详情与预约 →", s5Link: "详情与预约 →",
+        s5Title: "商标与知识产权", s5Desc: "保护知识产权、工业品外观设计及商业创新。", s5Link: "详情与预约 →",
         s6Title: "合同起草与审核", s6Desc: "根据现行法律起草、审核商业及民事合同。", s6Link: "详情与预约 →",
         s7Title: "个人身份与强制执行", s7Desc: "家事纠纷、继承、赡养、抚养权及执行署跟进。", s7Link: "详情与预约 →",
         s8Title: "税务咨询与合规", s8Desc: "税收筹划、税务机关登记及确保财务合规。", s8Link: "详情与预约 →",
@@ -592,7 +590,7 @@
         s5Title: "Marcas y Propiedad Intelectual", s5Desc: "Protección de derechos de propiedad intelectual e innovaciones.", s5Link: "Detalles y Reserva →",
         s6Title: "Redacción y Revisión de Contratos", s6Desc: "Redacción y auditoría de contratos comerciales y civiles.", s6Link: "Detalles y Reserva →",
         s7Title: "Estatus Personal y Ejecución", s7Desc: "Disputas familiares, herencias, pensión alimenticia y custodia.", s7Link: "Detalles y Reserva →",
-        s8Title: "Asesoría Fiscal y Cumplimiento", s8Desc: "Estructuración fiscal, registro y cumplimiento financiero.", s8Link: "Detalles y Reserva →",
+        s8Title: "Asesoría Fiscal y Cumplimiento", s8Desc: "Estructuración fiscal, registro y cumplimiento financiero.", s7Link: "Detalles y Reserva →", s8Link: "Detalles y Reserva →",
         s9Title: "Servicios Inmobiliarios y Legales", s9Desc: "Notarización de contratos inmobiliarios y solución de disputas.", s9Link: "Detalles y Reserva →",
         privacyText: "Privacy Policy", disclaimerText: "Disclaimer", codeText: "Code of Conduct", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
