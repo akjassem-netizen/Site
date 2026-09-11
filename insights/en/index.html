@@ -134,25 +134,45 @@
     .btn-share-x { background-color: #000000; color: #ffffff; }
     #copyToast { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); background-color: #0b1a30; color: #ffffff; padding: 10px 22px; border-radius: 30px; font-size: 13px; font-weight: 700; box-shadow: 0 4px 15px rgba(0,0,0,0.2); display: none; z-index: 99999; }
 
-    /* تنسيق الفوتر */
+    /* تنسيق الفوتر (سطر أفقي واحد متناسق) */
     .site-footer {
       text-align: center;
-      padding: 25px;
-      font-size: 13px;
+      padding: 22px 10px;
+      font-size: 12px;
       color: #64748b;
       border-top: 1px solid #e2e8f0;
       margin-top: 40px;
       background: #ffffff;
       width: 100%;
     }
-    .site-footer a {
+    .footer-legal-links {
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      overflow-x: auto;
+      padding: 2px 0;
+    }
+    .footer-legal-links a {
       color: #0f172a;
       text-decoration: none;
       font-weight: 700;
-      margin: 0 10px;
+      font-size: 11.5px;
     }
-    .site-footer a:hover {
+    .footer-legal-links a:hover {
       color: #c5a059;
+    }
+    .footer-legal-links .separator {
+      color: #cbd5e1;
+      font-weight: 400;
+    }
+    .site-footer span.copy-text {
+      color: #64748b;
+      display: block;
+      margin-top: 4px;
+      font-size: 11px;
     }
   </style>
 </head>
@@ -161,7 +181,7 @@
   <header class="icover-header">
     <div>
       <select id="languageSelect" class="lang-select-bar" onchange="switchLanguage(this.value)">
-        <option value="ar">العربية</option>
+        <option value="ar">العربية / Arabic</option>
         <option value="en" selected>English</option>
         <option value="tr">Türkçe</option>
         <option value="zh">中文</option>
@@ -176,10 +196,11 @@
       <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu">☰</button>
       <div id="dropdownMenu" class="dropdown-menu">
         <a href="https://akjassem.com/en/" id="menuHome">Home</a>
-        <a href="https://akjassem.com/services/" id="menuServices">Legal Services Directory</a>
+        <a href="https://akjassem.com/services/en/" id="menuServices">Legal Services Directory</a>
         <a href="https://akjassem.com/consultations/en/" id="menuConsultations">Legal Consultations</a>
         <a href="https://akjassem.com/insights/en/" id="menuInsights">Iraq Legal Insights</a>
-        <a href="https://akjassem.com/about/" id="menuAbout">About Us</a>
+        <a href="https://akjassem.com/about/en/" id="menuAbout">About Us</a>
+        <a href="/code-of-conduct-en.html" id="menuCodeOfConduct">Code of Conduct</a>
         <a href="https://akjassem.com/contact/en/" id="menuContact">Contact Us</a>
       </div>
     </div>
@@ -215,10 +236,16 @@
 
   </div>
 
-  <!-- الفوتر ورابط سياسة الخصوصية -->
+  <!-- الفوتر المتكامل للنسخة الإنجليزية -->
   <footer class="site-footer">
-    <a href="/privacy/en/">Privacy Policy</a> | 
-    <span>All Rights Reserved © 2026 AKH Law Office</span>
+    <div class="footer-legal-links">
+      <a href="/privacy/en/" id="footerPrivacy">Privacy Policy</a>
+      <span class="separator">|</span>
+      <a href="/disclaimer/en/" id="footerDisclaimer">Disclaimer</a>
+      <span class="separator">|</span>
+      <a href="/code-of-conduct-en.html" id="footerCode">Code of Conduct</a>
+    </div>
+    <span class="copy-text" id="footerRights">All Rights Reserved © 2026 AKH Law Office</span>
   </footer>
 
   <script>
@@ -233,14 +260,14 @@
     }
 
     const langDict = {
-      ar: { title: "الآراء والتحليلات القانونية | Law Office Of Ali Kadhem Hashimi", intro: "نافذة متخصصة تُعنى بنشر الدراسات والإيضاحات الإجرائية في فروع القانون العراقي...", home: "الرئيسية", services: "دليل الخدمات القانونية", consultations: "الاستشارات القانونية", insights: "الآراء والرؤى القانونية", about: "من نحن", contact: "اتصل بنا", backHome: "🏠 العودة إلى الموقع الرئيسي الكامل ←" },
-      en: { title: "Legal Insights & Analyses | Law Office Of Ali Kadhem Hashimi", intro: "A specialized legal portal dedicated to publishing studies and procedural clarifications across branches of Iraqi law...", home: "Home", services: "Legal Services Directory", consultations: "Legal Consultations", insights: "Iraq Legal Insights", about: "About Us", contact: "Contact Us", backHome: "🏠 Back to Main Home Page ←" },
-      tr: { title: "Hukuki İçgörüler ve Analizler | Av. Ali Kazım Haşimi", intro: "Irak hukuku dallarında çalışmalar ve usuli açıklamalar yayınlamaya adanmış özel bir hukuk portalı.", home: "Ana Sayfa", services: "Hizmetler", consultations: "Hukuki Danışmanlık", insights: "İçgörüler", about: "Hakkımızda", contact: "İletişim", backHome: "🏠 Ana Sayfaya Dön ←" },
-      zh: { title: "法律洞察与分析 | 阿里·卡德姆·哈希米律所", intro: "专注于伊拉克法律分支研究与 procedural 澄清的专业法律门户。", home: "首页", services: "法律服务", consultations: "法律咨询", insights: "法律洞察", about: "关于我们", contact: "联系我们", backHome: "🏠 返回首页 ←" },
-      fr: { title: "Aperçus et Analyses Juridiques | Cabinet AKH", intro: "Un portail juridique spécialisé dédié à la publication d'études et de clarifications procédurales en droit irakien.", home: "Accueil", services: "Services", consultations: "Consultations", insights: "Aperçus", about: "À propos", contact: "Contact", backHome: "🏠 Retour à l'accueil ←" },
-      es: { title: "Perspectivas y Análisis Legales | Bufete AKH", intro: "Un portal legal especializado dedicado a publicar estudios y aclaraciones procedimentales en el derecho iraquí.", home: "Inicio", services: "Servicios", consultations: "Consultas", insights: "Perspectivas", about: "Sobre nosotros", contact: "Contacto", backHome: "🏠 Volver al inicio ←" },
-      de: { title: "Rechtliche Einblicke & Analysen | Kanzlei AKH", intro: "Ein spezialisiertes Rechtsportal zur Veröffentlichung von Studien und Analysen zum irakischen Recht.", home: "Startseite", services: "Dienste", consultations: "Beratung", insights: "Einblicke", about: "Über uns", contact: "Kontakt", backHome: "🏠 Zurück zur Startseite ←" },
-      ku: { title: "تێڕوانین و شیکارییەکانی یاسایی | نووسینگەی عەلی کازمی", intro: "دەروازەیەکی یاسایی تایبەتمەند کە تەرخان کراوە بۆ بڵاوکردنەوەی لێکۆڵینەوەکان لە یاساکانی عێراقدا.", home: "سرەکی", services: "خزمەتگوزاری", consultations: "ڕاوێژ", insights: "تێڕوانین", about: "دەربارە", contact: "پەیوەندی", backHome: "🏠 گەڕانەوە بۆ سەرەکی ←" }
+      ar: { title: "الآراء والتحليلات القانونية | Law Office Of Ali Kadhem Hashimi", intro: "نافذة متخصصة تُعنى بنشر الدراسات والإيضاحات الإجرائية في فروع القانون العراقي...", home: "الرئيسية", services: "دليل الخدمات القانونية", consultations: "الاستشارات القانونية", insights: "الآراء والرؤى القانونية", about: "من نحن", contact: "اتصل بنا", backHome: "🏠 العودة إلى الموقع الرئيسي الكامل ←", privacyText: "سياسة الخصوصية", disclaimerText: "إخلاء المسؤولية", codeText: "قواعد السلوك المهني", rightsText: "جميع الحقوق محفوظة © 2026 مكتب المحامي علي كاظم الهاشمي" },
+      en: { title: "Legal Insights & Analyses | Law Office Of Ali Kadhem Hashimi", intro: "A specialized legal portal dedicated to publishing studies and procedural clarifications across branches of Iraqi law: labor, residency and social security, company formation and registration, trademarks, personal status, and civil/commercial litigation.", home: "Home", services: "Legal Services Directory", consultations: "Legal Consultations", insights: "Iraq Legal Insights", about: "About Us", contact: "Contact Us", backHome: "🏠 Back to Main Home Page ←", privacyText: "Privacy Policy", disclaimerText: "Disclaimer", codeText: "Code of Conduct", rightsText: "All Rights Reserved © 2026 AKH Law Office" },
+      tr: { title: "Hukuki İçgörüler ve Analizler | Av. Ali Kazım Haşimi", intro: "Irak hukuku dallarında çalışmalar ve usuli açıklamalar yayınlamaya adanmış özel bir hukuk portalı.", home: "Ana Sayfa", services: "Hizmetler", consultations: "Hukuki Danışmanlık", insights: "İçgörüler", about: "Hakkımızda", contact: "İletişim", backHome: "🏠 Ana Sayfaya Dön ←", privacyText: "Gizlilik Politikası", disclaimerText: "Yasal Uyarı", codeText: "Mesleki Etik Kuralları", rightsText: "Tüm Hakları Saklıdır © 2026 AKH Law Office" },
+      zh: { title: "法律洞察与分析 | 阿里·卡德姆·哈希米律所", intro: "专注于伊拉克法律分支研究与 procedural 澄清的专业法律门户。", home: "首页", services: "法律服务", consultations: "法律咨询", insights: "法律洞察", about: "关于我们", contact: "联系我们", backHome: "🏠 返回首页 ←", privacyText: "隐私政策", disclaimerText: "免责声明", codeText: "行为准则", rightsText: "版权所有 © 2026 AKH Law Office" },
+      fr: { title: "Aperçus et Analyses Juridiques | Cabinet AKH", intro: "Un portail juridique spécialisé dédié à la publication d'études et de clarifications procédurales en droit irakien.", home: "Accueil", services: "Services", consultations: "Consultations", insights: "Aperçus", about: "À propos", contact: "Contact", backHome: "🏠 Retour à l'accueil ←", privacyText: "Politique de Confidentialité", disclaimerText: "Avertissement", codeText: "Code de Conduite", rightsText: "Tous Droits Réservés © 2026 AKH Law Office" },
+      es: { title: "Perspectivas y Análisis Legales | Bufete AKH", intro: "Un portal legal especializado dedicado a publicar estudios y aclaraciones procedimentales en el derecho iraquí.", home: "Inicio", services: "Servicios", consultations: "Consultas", insights: "Perspectivas", about: "Sobre nosotros", contact: "Contacto", backHome: "🏠 Volver al inicio ←", privacyText: "Política de Privacidad", disclaimerText: "Aviso Legal", codeText: "Código de Conducta", rightsText: "Todos los Derechos Reservados © 2026 AKH Law Office" },
+      de: { title: "Rechtliche Einblicke & Analysen | Kanzlei AKH", intro: "Ein spezialisiertes Rechtsportal zur Veröffentlichung von Studien und Analysen zum irakischen Recht.", home: "Startseite", services: "Dienste", consultations: "Beratung", insights: "Einblicke", about: "Über uns", contact: "Kontakt", backHome: "🏠 Zurück zur Startseite ←", privacyText: "Datenschutz", disclaimerText: "Haftungsausschluss", codeText: "Verhaltenskodex", rightsText: "Alle Rechte vorbehalten © 2026 AKH Law Office" },
+      ku: { title: "تێڕوانین و شیکارییەکانی یاسایی | نووسینگەی عەلی کازمی", intro: "دەروازەیەکی یاسایی تایبەتمەند کە تەرخان کراوە بۆ بڵاوکردنەوەی لێکۆڵینەوەکان لە یاساکانی عێراقدا.", home: "سرەکی", services: "خزمەتگوزاری", consultations: "ڕاوێژ", insights: "تێڕوانین", about: "دەربارە", contact: "پەیوەندی", backHome: "🏠 گەڕانەوە بۆ سەرەکی ←", privacyText: "سیاسەتی تایبەتمەندی", disclaimerText: "بەرپرسیارێتی", codeText: "ڕەفتاری پیشەیی", rightsText: "هەموو مافەکان پارێزراون © 2026 AKH Law Office" }
     };
 
     function changeSystemLanguage(lang) {
@@ -264,6 +291,11 @@
       document.getElementById('menuAbout').innerText = t.about;
       document.getElementById('menuContact').innerText = t.contact;
       document.getElementById('backHomeBtn').innerText = t.backHome;
+
+      document.getElementById('footerPrivacy').innerText = t.privacyText;
+      document.getElementById('footerDisclaimer').innerText = t.disclaimerText;
+      document.getElementById('footerCode').innerText = t.codeText;
+      document.getElementById('footerRights').innerText = t.rightsText;
       
       localStorage.setItem('preferredSystemLangEn', lang);
       document.getElementById('languageSelect').value = lang;
