@@ -10,8 +10,8 @@
   <meta name="robots" content="index, follow">
 
   <link rel="alternate" hreflang="ar" href="https://akjassem.com/disclaimer.html">
-  <link rel="alternate" hreflang="en" href="https://akjassem.com/disclaimer/en/">
-  <link rel="alternate" hreflang="x-default" href="https://akjassem.com/disclaimer/en/">
+  <link rel="alternate" hreflang="en" href="https://akjassem.com/disclaimer-en.html">
+  <link rel="alternate" hreflang="x-default" href="https://akjassem.com/disclaimer-en.html">
 
   <meta property="og:title" content="Legal Disclaimer & Terms of Use | AKH Law Office">
   <meta property="og:description" content="Legal disclaimer and terms of use for AKH Law Office in Iraq.">
@@ -20,7 +20,7 @@
   <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:url" content="https://akjassem.com/disclaimer/en/">
+  <meta property="og:url" content="https://akjassem.com/disclaimer-en.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="AKH Law Office Baghdad">
 
@@ -73,11 +73,12 @@
       align-items: center;
       justify-content: center;
     }
+    /* تم ضبط المحاذاة هنا لتفتح القائمة باتجاه الداخل بشكل سليم */
     .dropdown-menu {
       position: absolute;
       top: calc(100% + 10px);
-      left: 0;
-      right: auto;
+      right: 0;
+      left: auto;
       min-width: 250px;
       background: #0f172a;
       border: 1.5px solid #c5a059;
@@ -144,9 +145,9 @@
     <div class="menu-container">
       <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu">☰</button>
       <div id="dropdownMenu" class="dropdown-menu">
-        <a href="https://akjassem.com">Home</a>
+        <a href="https://akjassem.com/en/">Home</a>
         <a href="https://akjassem.com/services/">Legal Services</a>
-        <a href="https://akjassem.com/consultations/">Legal Consultations</a>
+        <a href="https://akjassem.com/consultations/en/">Legal Consultations</a>
         <a href="https://akjassem.com/insights/">Legal Insights</a>
         <a href="https://akjassem.com/about/">About Us</a>
         <a href="https://akjassem.com/contact/">Contact Us</a>
@@ -155,7 +156,7 @@
   </header>
 
   <div class="container">
-    <a href="https://akjassem.com" class="brand-logo">
+    <a href="https://akjassem.com/en/" class="brand-logo">
       <div class="akh">A<span class="red-k">K</span>H</div>
       <div class="sub-title"><span class="slash">/</span><span>LAW OFFICE</span></div>
       <div class="est">EST. 2014</div>
@@ -183,7 +184,7 @@
     </div>
     
     <div class="action-area" style="text-align: center; border-top: 1px solid #f1f5f9; padding-top: 20px;">
-      <a href="https://akjassem.com" class="back-link">← Back to Homepage</a>
+      <a href="https://akjassem.com/en/" class="back-link">← Back to Homepage</a>
     </div>
   </div>
 
@@ -198,7 +199,7 @@
     }
     function switchLanguage(lang) {
       if (lang === 'ar') {
-        window.location.href = '../../disclaimer.html';
+        window.location.href = 'disclaimer.html';
       }
     }
   </script>
