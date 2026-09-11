@@ -142,56 +142,64 @@
     .features-list { margin-top: 15px; margin-bottom: 15px; padding-right: 20px; }
     .features-list li { margin-bottom: 8px; color: #334155; font-size: 14px; }
     
-    /* تصميم بطاقات الاعتمادات الرسمية الفاخرة */
+    /* التصميم العالمي الجديد والمنسق بدقة للبطاقات */
     .credentials-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: 1fr;
       gap: 16px;
-      margin: 20px 0;
+      margin: 22px 0;
     }
     .credential-card {
       background: #ffffff;
-      border: 1.5px solid #cbd5e1;
-      border-radius: 10px;
-      padding: 16px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 18px 20px;
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 16px;
       transition: all 0.3s ease;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      text-align: right;
     }
     .credential-card:hover {
       border-color: #c5a059;
+      box-shadow: 0 6px 20px rgba(197, 160, 89, 0.1);
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(197, 160, 89, 0.12);
     }
     .cred-icon {
-      font-size: 24px;
+      font-size: 26px;
       background: #f8fafc;
       border: 1px solid #e2e8f0;
-      width: 48px;
-      height: 48px;
+      width: 52px;
+      height: 52px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 8px;
+      border-radius: 10px;
       flex-shrink: 0;
     }
     .cred-info {
       display: flex;
       flex-direction: column;
+      gap: 3px;
+      width: 100%;
     }
-    .cred-label {
-      font-size: 11.5px;
-      font-weight: 700;
+    .cred-title {
+      font-size: 14.5px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+    .cred-issuer {
+      font-size: 12px;
+      font-weight: 600;
       color: #64748b;
-      margin-bottom: 2px;
     }
     .cred-number {
       font-size: 13.5px;
       font-weight: 900;
       color: #0f172a;
-      letter-spacing: 0.2px;
+      margin-top: 2px;
+      letter-spacing: 0.3px;
     }
 
     .action-area { text-align: center; border-top: 1px solid #f1f5f9; padding-top: 20px; display: flex; flex-direction: column; gap: 12px; }
@@ -285,21 +293,25 @@
       <span>يُعد مكتب المحامي علي كاظم الهاشمي صرحاً قانونياً مهنياً متقدماً في العاصمة بغداد، حيث يقدم خدمات قانونية واستشارية شاملة ومتكاملة للأفراد، الشركات المحلية، والمستثمرين والشركات الأجنبية في العراق. ونحمل على عاتقنا مسؤولية تقديم أعلى معايير الدقة والاحترافية لحماية حقوق ومصالح عملائنا بفعالية تامة.</span>
       <br><br>
 
-      <!-- بطاقات الاعتمادات والتراخيص الرسمية الفاخرة -->
+      <!-- بطاقات الاعتمادات والتراخيص الرسمية بتصميم عالمي نظيف -->
       <div class="credentials-grid">
+        <!-- البطاقة الأولى -->
         <div class="credential-card">
           <div class="cred-icon">📜</div>
           <div class="cred-info">
-            <span class="cred-label">ترخيص مكتب المحاماة (نقابة المحامين)</span>
+            <span class="cred-title">ترخيص مكتب المحاماة</span>
+            <span class="cred-issuer">الصادر عن: نقابة المحامين العراقية</span>
             <span class="cred-number">رقم الترخيص: 52</span>
           </div>
         </div>
 
+        <!-- البطاقة الثانية -->
         <div class="credential-card">
           <div class="cred-icon">🏛️</div>
           <div class="cred-info">
-            <span class="cred-label">وكيل تسجيل شركات وعلامات تجارية (وزارة التجارة)</span>
-            <span class="cred-number">إجازة رقم: (2571) | محضر (34)</span>
+            <span class="cred-title">وكيل تسجيل شركات وعلامات تجارية</span>
+            <span class="cred-issuer">الصادر عن: وزارة التجارة (دائرة تسجيل الشركات)</span>
+            <span class="cred-number">إجازة رقم: 2571 | محضر رقم: 34</span>
           </div>
         </div>
       </div>
