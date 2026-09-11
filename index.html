@@ -392,7 +392,7 @@
       <span class="separator">|</span>
       <a href="/code-of-conduct.html" id="footerCode">قواعد السلوك المهني</a>
     </div>
-    <span class="copy-text" id="footerRights">جميع الحقوق محفوظة © 2026 مكتب المحامي علي كاظم الهاشمي</span>
+    <span class="copy-text">جميع الحقوق محفوظة © 2026 مكتب المحامي علي كاظم الهاشمي</span>
   </footer>
 
   <script>
@@ -447,13 +447,25 @@
       document.getElementById('menuCodeOfConduct').innerText = t.menuCodeOfConduct;
       document.getElementById('menuContact').innerText = t.contact;
 
-      // ضبط الروابط بدقة لتعمل بسلاسة وتوجه للنسخ الأجنبية (بما فيها دليل الخدمات)
+      // ضبط الروابط بدقة لتعمل بسلاسة وتوجه للنسخ الأجنبية (دليل الخدمات والخدمات التسع الفرعية)
       const isArabic = (lang === 'ar');
       document.getElementById('menuServices').href = isArabic ? '/services/' : '/services/en/';
       document.getElementById('menuAbout').href = isArabic ? '/about/' : '/about/en/';
       document.getElementById('menuContact').href = isArabic ? '/contact/' : '/contact/en/';
       document.getElementById('menuConsultations').href = isArabic ? '/consultations/' : '/consultations/en/';
       document.getElementById('menuInsights').href = isArabic ? '/insights/' : '/insights/en/';
+
+      // تحديث مسارات روابط الخدمات الفرعية التسع تلقائياً بناءً على اللغة (عربي / إنجليزي)
+      const suffix = isArabic ? '/' : '/en/';
+      document.getElementById('cardS1').href = '/services/corporate' + suffix;
+      document.getElementById('cardS2').href = '/services/litigation' + suffix;
+      document.getElementById('cardS3').href = '/services/financial-rights' + suffix;
+      document.getElementById('cardS4').href = '/services/investment-licenses' + suffix;
+      document.getElementById('cardS5').href = '/services/trademarks' + suffix;
+      document.getElementById('cardS6').href = '/services/contracts' + suffix;
+      document.getElementById('cardS7').href = '/services/personal-status' + suffix;
+      document.getElementById('cardS8').href = '/services/tax-advisory' + suffix;
+      document.getElementById('cardS9').href = '/services/real-estate' + suffix;
 
       document.getElementById('heroTitle').innerText = t.heroTitle;
       document.getElementById('heroSubtitle').innerText = t.heroSubtitle;
