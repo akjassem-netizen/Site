@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" id="htmlRoot">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WL4KNM0PG1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-WL4KNM0PG1');
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
@@ -106,6 +116,7 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.06);
       border-top: 5px solid #c5a059;
       margin: 30px 16px;
+      flex: 1;
     }
     
     .brand-logo {
@@ -271,7 +282,6 @@
     }
     .btn-whatsapp:hover { background: #1ebe5d; }
 
-    /* زر العودة للرئيسية المضاف حديثاً */
     .btn-back-home {
       display: flex;
       align-items: center;
@@ -289,6 +299,27 @@
       transition: background 0.3s;
     }
     .btn-back-home:hover { background: #c5a059; color: #0f172a; }
+
+    /* تنسيق الفوتر */
+    .site-footer {
+      text-align: center;
+      padding: 25px;
+      font-size: 13px;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      margin-top: 40px;
+      background: #ffffff;
+      width: 100%;
+    }
+    .site-footer a {
+      color: #0f172a;
+      text-decoration: none;
+      font-weight: 700;
+      margin: 0 10px;
+    }
+    .site-footer a:hover {
+      color: #c5a059;
+    }
   </style>
 </head>
 <body>
@@ -313,10 +344,10 @@
       <div id="dropdownMenu" class="dropdown-menu">
         <a href="https://akjassem.com" id="menuHome">الرئيسية</a>
         <a href="/services/" id="menuServices">دليل الخدمات القانونية</a>
-        <a href="../consultations.html" id="menuConsultations">الاستشارات القانونية</a>
-        <a href="../insights.html" id="menuInsights">الآراء والرؤى القانونية (Insights)</a>
-        <a href="../about.html" id="menuAbout">من نحن</a>
-        <a href="../contact/" id="menuContact">اتصل بنا</a>
+        <a href="../consultations/" id="menuConsultations">الاستشارات القانونية</a>
+        <a href="../insights/" id="menuInsights">الآراء والرؤى القانونية (Insights)</a>
+        <a href="../about/" id="menuAbout">من نحن</a>
+        <a href="./" id="menuContact">اتصل بنا</a>
       </div>
     </div>
   </header>
@@ -366,7 +397,7 @@
         </div>
       </div>
 
-      <a href="https://maps.google.com/?q=%D9%85%D9%83%D8%AA%D8%A8+%D8%A7%D9%84%D9%85%D8%AD%D8%A7%D9%85%D9%8A+%D8%B9%D9%84%D9%8A+%D9%83%D8%A7%D8%B8%D9%85+%D8%A7%D9%84%D9%87%D8%A7%D8%B4%D9%85%D9%8A" target="_blank" class="map-card-box">
+      <a href="https://maps.google.com/?q=%D9%85%D9%83%D8%AA%D8%A8+%D8%A7%D9%84%D9%85%D8%AD%D8%A7%D9%85%D9%8A+%D8%B9%D9%84%D9%8A+%D8%BA%D8%A7%D8%B8%D9%85+%D8%A7%D9%84%D9%87%D8%A7%D8%B4%D9%85%D9%8A" target="_blank" class="map-card-box">
         <div class="map-card-left">
           <div class="map-pin-icon">
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -386,12 +417,17 @@
       <a href="https://wa.me/9647838759047" target="_blank" class="btn-whatsapp" id="btnWhatsappText">
         <span>💬 تواصل عبر الواتساب مباشرة</span>
       </a>
-      <!-- زر العودة إلى القائمة الرئيسية المضاف حديثاً -->
       <a href="https://akjassem.com" class="btn-back-home" id="btnBackHomeText">
         <span>🏠 العودة إلى الصفحة الرئيسية</span>
       </a>
     </div>
   </div>
+
+  <!-- الفوتر ورابط سياسة الخصوصية -->
+  <footer class="site-footer">
+    <a href="/privacy/" id="footerLink">سياسة الخصوصية</a> | 
+    <span id="footerRights">جميع الحقوق محفوظة © 2026 مكتب المحامي علي كاظم الهاشمي</span>
+  </footer>
 
   <script>
     function toggleMenu() {
@@ -404,7 +440,6 @@
       }
     }
 
-    // استمرار وتخزين اللغة تلقائياً عبر الموقع
     window.addEventListener('DOMContentLoaded', () => {
       const savedLang = localStorage.getItem('preferredLang') || 'ar';
       document.getElementById('languageSelect').value = savedLang;
@@ -443,6 +478,10 @@
       document.getElementById('mapBoxSub').innerText = t.mapBoxSub;
       document.getElementById('btnWhatsappText').innerHTML = `<span>${t.btnWhatsapp}</span>`;
       document.getElementById('btnBackHomeText').innerHTML = `<span>${t.btnBackHome}</span>`;
+
+      document.getElementById('footerLink').innerText = t.privacyText;
+      document.getElementById('footerLink').href = (lang === 'ar') ? '/privacy/' : '/privacy/en/';
+      document.getElementById('footerRights').innerText = t.rightsText;
     }
 
     const dictionary = {
@@ -456,7 +495,8 @@
         lblHours: "أوقات العمل", valHours: "الأحد إلى الخميس (08:00 صباحاً - 04:00 عصراً بتوقيت بغداد)",
         lblPhone: "هاتف وواتساب المكتب", lblEmail: "البريد الإلكتروني",
         mapBoxTitle: "عرض موقع المكتب على خرائط جوجل", mapBoxSub: "انقر هنا للانتقال وتتبع الطريق إلى المكتب",
-        btnWhatsapp: "💬 تواصل عبر الواتساب مباشرة", btnBackHome: "🏠 العودة إلى الصفحة الرئيسية"
+        btnWhatsapp: "💬 تواصل عبر الواتساب مباشرة", btnBackHome: "🏠 العودة إلى الصفحة الرئيسية",
+        privacyText: "سياسة الخصوصية", rightsText: "جميع الحقوق محفوظة © 2026 مكتب المحامي علي كاظم الهاشمي"
       },
       en: {
         pageTitle: "Contact Us | Law Office of Ali Kadhem Hashimi in Iraq",
@@ -468,7 +508,8 @@
         lblHours: "Working Hours", valHours: "Sunday to Thursday (08:00 AM - 04:00 PM Baghdad Time)",
         lblPhone: "Office Phone & WhatsApp", lblEmail: "Email",
         mapBoxTitle: "View Office Location on Google Maps", mapBoxSub: "Click here to navigate and track the route to the office",
-        btnWhatsapp: "💬 Contact via WhatsApp Directly", btnBackHome: "🏠 Back to Home Page"
+        btnWhatsapp: "💬 Contact via WhatsApp Directly", btnBackHome: "🏠 Back to Home Page",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       tr: {
         pageTitle: "İletişim | Av. Ali Kazım Haşimi Hukuk Bürosu Irak",
@@ -480,7 +521,8 @@
         lblHours: "Çalışma Saatleri", valHours: "Pazar - Perşembe (08:00 - 16:00 Bağdat Saati)",
         lblPhone: "Ofis Telefon ve WhatsApp", lblEmail: "E-posta",
         mapBoxTitle: "Ofis Konumunu Google Haritalar'da Görüntüle", mapBoxSub: "Ofise rota oluşturmak ve gitmek için buraya tıklayın",
-        btnWhatsapp: "💬 Doğrudan WhatsApp ile İletişim", btnBackHome: "🏠 Ana Sayfaya Dön"
+        btnWhatsapp: "💬 Doğrudan WhatsApp ile İletişim", btnBackHome: "🏠 Ana Sayfaya Dön",
+        privacyText: "Gizlilik Politikası", rightsText: "Tüm Hakları Saklıdır © 2026 AKH Hukuk Bürosu"
       },
       zh: {
         pageTitle: "联系我们 | 阿里·卡德姆·哈希米律所伊拉克",
@@ -492,7 +534,8 @@
         lblHours: "工作时间", valHours: "周日至周四（巴格达时间上午 08:00 - 下午 04:00）",
         lblPhone: "办公室电话与 WhatsApp", lblEmail: "电子邮箱",
         mapBoxTitle: "在谷歌地图上查看办公室位置", mapBoxSub: "点击此处导航并追踪前往办公室的路线",
-        btnWhatsapp: "💬 直接通过 WhatsApp 联系", btnBackHome: "🏠 返回首页"
+        btnWhatsapp: "💬 直接通过 WhatsApp 联系", btnBackHome: "🏠 返回首页",
+        privacyText: "隐私政策", rightsText: "版权所有 © 2026 AKH 律师事务所"
       },
       fr: {
         pageTitle: "Contactez-nous | Cabinet d'Avocats Ali Kadhem Hashimi en Iraq",
@@ -500,11 +543,12 @@
         metaKeywords: "Contact Cabinet d'avocats Bagdad, adresse cabinet Irak, téléphone avocat",
         home: "Accueil", menuServices: "Services", menuConsultations: "Consultations Juridiques", menuInsights: "Aperçus", about: "À Propos", contact: "Contact",
         pageMainTitle: "Contactez-nous",
-        lblAddress: "Adresse", valAddress: "Bagdad - Zayouna - Près de la Maison de la Mode Irakienne",
+        lblAddress: "Adresse", valAddress: "Baghdad - Zayouna - Près de la Maison de la Mode Irakienne",
         lblHours: "Horaires de Travail", valHours: "Dimanche au Jeudi (08h00 - 16h00 heure de Bagdad)",
         lblPhone: "Téléphone & WhatsApp du Bureau", lblEmail: "Email",
         mapBoxTitle: "Voir l'emplacement sur Google Maps", mapBoxSub: "Cliquez ici pour naviguer et suivre l'itinéraire vers le bureau",
-        btnWhatsapp: "💬 Contacter via WhatsApp Directement", btnBackHome: "🏠 Retour à la Page d'Accueil"
+        btnWhatsapp: "💬 Contacter via WhatsApp Directement", btnBackHome: "🏠 Retour à la Page d'Accueil",
+        privacyText: "Politique de Confidentialité", rightsText: "Tous Droits Réservés © 2026 Cabinet AKH"
       },
       es: {
         pageTitle: "Contacto | Bufete de Abogados Ali Kadhem Hashimi en Irak",
@@ -516,7 +560,8 @@
         lblHours: "Horario de Trabajo", valHours: "Domingo a Jueves (08:00 a.m. - 04:00 p.m. hora de Bagdad)",
         lblPhone: "Teléfono y WhatsApp de la Oficina", lblEmail: "Correo Electrónico",
         mapBoxTitle: "Ver ubicación en Google Maps", mapBoxSub: "Haga clic aquí para navegar y seguir la ruta a la oficina",
-        btnWhatsapp: "💬 Contactar por WhatsApp Directamente", btnBackHome: "🏠 Volver a la Página Principal"
+        btnWhatsapp: "💬 Contactar por WhatsApp Directemente", btnBackHome: "🏠 Volver a la Página Principal",
+        privacyText: "Política de Privacidad", rightsText: "Todos los Derechos Reservados © 2026 Bufete AKH"
       },
       de: {
         pageTitle: "Kontakt | Anwaltskanzlei Ali Kadhem Hashimi im Irak",
@@ -528,7 +573,8 @@
         lblHours: "Arbeitszeiten", valHours: "Sonntag bis Donnerstag (08:00 Uhr - 16:00 Uhr Bagdader Zeit)",
         lblPhone: "Büro Telefon & WhatsApp", lblEmail: "E-Mail",
         mapBoxTitle: "Bürostandort auf Google Maps anzeigen", mapBoxSub: "Klicken Sie hier, um den Weg zum Büro zu finden",
-        btnWhatsapp: "💬 Direkt über WhatsApp kontaktieren", btnBackHome: "🏠 Zurück zur Startseite"
+        btnWhatsapp: "💬 Direkt über WhatsApp kontaktieren", btnBackHome: "🏠 Zurück zur Startseite",
+        privacyText: "Datenschutzrichtlinie", rightsText: "Alle Rechte vorbehalten © 2026 Kanzlei AKH"
       },
       ku: {
         pageTitle: "پەیوەندی بە مەزنی پارێزەر عەلی کازمی هاشمی لە عێراق",
@@ -540,7 +586,8 @@
         lblHours: "کاتی کارکردن", valHours: "یەکشەممە تا پێنجشەممە (٠٨:٠٠ بەیانی - ٠٤:٠٠ ئێوارە بە کاتی بەغداد)",
         lblPhone: "مۆبایل و واتسأپی نووسینگە", lblEmail: "ئیمەیڵ",
         mapBoxTitle: "پیشاندانی شوێنی نووسینگە لە نەخشەی گۆگڵ", mapBoxSub: "کلیک لێرە بکە بۆ چوون و شوێنکەوتنی ڕێگا بۆ نووسینگە",
-        btnWhatsapp: "💬 پەیوەندی لە ڕێگەی واتسأپەوە بە ڕاستەوخۆ", btnBackHome: "🏠 گەڕانەوە بۆ لاپەڕەی سەرەکی"
+        btnWhatsapp: "💬 پەیوەندی لە ڕێگەی واتسأپەوە بە ڕاستەوخۆ", btnBackHome: "🏠 گەڕانەوە بۆ لاپەڕەی سەرەکی",
+        privacyText: "سیاسەتی تایبەتمەندێتی", rightsText: "هەموو مافەکان پارێزراون © 2026 نووسینگەی پارێزەر عەلی کاظم"
       }
     };
   </script>
