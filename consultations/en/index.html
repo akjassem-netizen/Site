@@ -119,7 +119,7 @@
       top: calc(100% + 10px);
       right: 0;
       left: auto;
-      min-width: 260px;
+      min-width: 280px;
       background: #0f172a;
       border: 1.5px solid #c5a059;
       border-radius: 10px;
@@ -242,6 +242,25 @@
     }
     .content-card ul { margin-inline-start: 20px; margin-bottom: 15px; }
 
+    /* صندوق إشعار السرية وقواعد السلوك داخل المحتوى */
+    .conduct-notice-box {
+      background: #f8fafc;
+      border-left: 4px solid #c5a059;
+      padding: 16px 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      font-size: 13.5px;
+      color: #334155;
+      line-height: 1.7;
+      text-align: left;
+    }
+    .conduct-notice-box a {
+      color: #0f172a;
+      font-weight: 700;
+      text-decoration: underline;
+    }
+    .conduct-notice-box a:hover { color: #c5a059; }
+
     /* أزرار الحجز والواتساب المزدوجة داخل المقال */
     .cta-buttons-box {
       display: flex;
@@ -300,25 +319,45 @@
     }
     .back-home-link:hover { color: #c5a059; }
 
-    /* تنسيق الفوتر */
+    /* تنسيق الفوتر بمعالجة سطر أفقي واحد دائمًا */
     .site-footer {
       text-align: center;
-      padding: 25px;
-      font-size: 13px;
+      padding: 22px 10px;
+      font-size: 12px;
       color: #64748b;
       border-top: 1px solid #e2e8f0;
       margin-top: 50px;
       background: #ffffff;
       width: 100%;
     }
-    .site-footer a {
+    .footer-legal-links {
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      overflow-x: auto;
+      padding: 2px 0;
+    }
+    .footer-legal-links a {
       color: #0f172a;
       text-decoration: none;
       font-weight: 700;
-      margin: 0 10px;
+      font-size: 11.5px;
     }
-    .site-footer a:hover {
+    .footer-legal-links a:hover {
       color: #c5a059;
+    }
+    .footer-legal-links .separator {
+      color: #cbd5e1;
+      font-weight: 400;
+    }
+    .site-footer span.copy-text {
+      color: #64748b;
+      display: block;
+      margin-top: 4px;
+      font-size: 11px;
     }
   </style>
 
@@ -353,7 +392,8 @@
         <a href="https://akjassem.com/services/" id="menuServices">Legal Services Directory</a>
         <a href="/consultations/en/" id="menuConsultations">Legal Consultations</a>
         <a href="../../insights/en/" id="menuInsights">Iraq Legal Insights</a>
-        <a href="../" id="menuAbout">عربي / Arabic (About Us)</a>
+        <a href="../" id="menuAbout">About Us</a>
+        <a href="/code-of-conduct-en.html" id="menuCodeOfConduct">Code of Conduct</a>
         <a href="https://akjassem.com/contact/en/" id="menuContact">Contact Us</a>
       </div>
     </div>
@@ -399,6 +439,11 @@
           <li>Simplifying laws and regulations to resolve disputes and avoid future risks.</li>
         </ul>
 
+        <!-- إشعار السرية وقواعد السلوك المهني داخل المحتوى -->
+        <div class="conduct-notice-box">
+          <strong id="noticeTitle">🔒 Institutional Confidentiality Commitment:</strong> <span id="noticeText">All consultations and booking sessions are subject to strict standards of absolute confidentiality and the</span> <a href="/code-of-conduct-en.html" id="noticeLink">Code of Conduct</a> <span id="noticeText2">adopted by our office. Please also review the</span> <a href="/disclaimer/en/" id="disclaimerLink">Disclaimer</a> <span id="noticeText3">regarding initial preliminary consultations.</span>
+        </div>
+
         <h3 id="subHeading3">Direct Consultation Booking Mechanism:</h3>
         <p id="subHeading3Desc">We ensure prompt and effective responses to your requirements. Appointments are managed through the official booking form to ensure time management and high service efficiency, or via direct WhatsApp chat.</p>
 
@@ -414,10 +459,16 @@
 
   </main>
 
-  <!-- الفوتر ورابط سياسة الخصوصية -->
+  <!-- الفوتر بمعالجة الروابط القانونية في سطر أفقي واحد متناسق -->
   <footer class="site-footer">
-    <a href="/privacy/en/">Privacy Policy</a> | 
-    <span>All Rights Reserved © 2026 AKH Law Office</span>
+    <div class="footer-legal-links">
+      <a href="/privacy/en/">Privacy Policy</a>
+      <span class="separator">|</span>
+      <a href="/disclaimer/en/">Disclaimer</a>
+      <span class="separator">|</span>
+      <a href="/code-of-conduct-en.html">Code of Conduct</a>
+    </div>
+    <span class="copy-text">All Rights Reserved © 2026 AKH Law Office</span>
   </footer>
 
   <script>
@@ -474,6 +525,7 @@
       document.getElementById('menuConsultations').innerText = t.menuConsultations;
       document.getElementById('menuInsights').innerText = t.menuInsights;
       document.getElementById('menuAbout').innerText = t.menuAbout;
+      document.getElementById('menuCodeOfConduct').innerText = t.menuCodeOfConduct;
       document.getElementById('menuContact').innerText = t.menuContact;
 
       document.getElementById('heroTitleText').innerText = t.title;
@@ -493,6 +545,13 @@
         <li>${t.li3}</li>
         <li>${t.li4}</li>
       `;
+
+      document.getElementById('noticeTitle').innerText = t.noticeTitle;
+      document.getElementById('noticeText').innerText = t.noticeText;
+      document.getElementById('noticeLink').innerText = t.noticeLink;
+      document.getElementById('noticeText2').innerText = t.noticeText2;
+      document.getElementById('disclaimerLink').innerText = t.disclaimerLink;
+      document.getElementById('noticeText3').innerText = t.noticeText3;
       
       document.getElementById('subHeading3').innerText = t.subHeading3;
       document.getElementById('subHeading3Desc').innerText = t.subHeading3Desc;
@@ -508,7 +567,7 @@
         pageTitle: "Specialized Legal Consultations in Iraq | Law Office of Ali Kadhem Hashimi",
         metaDesc: "Get accurate and reliable legal consultations in Baghdad from the Law Office of Ali Kadhem Hashimi. Commercial advice, corporate setup, contracts, and dispute resolution.",
         metaKeywords: "Legal consultations Baghdad, corporate lawyer Iraq, Iraq law firm, Ali Kadhem Hashimi law office, corporate setup Baghdad, commercial contracts",
-        home: "Home", menuServices: "Legal Services Directory", menuConsultations: "Legal Consultations", menuInsights: "Iraq Legal Insights", menuAbout: "About Us", menuContact: "Contact Us",
+        home: "Home", menuServices: "Legal Services Directory", menuConsultations: "Legal Consultations", menuInsights: "Iraq Legal Insights", menuAbout: "About Us", menuCodeOfConduct: "Code of Conduct", menuContact: "Contact Us",
         title: "Law Office of Ali Kadhem Hashimi",
         subtitle: "Reliable legal representation and specialized advisory for corporations and individuals with a professional vision from Baghdad.",
         cta: "📅 Book Official Consultation",
@@ -521,6 +580,12 @@
         li2: "Legal advisory concerning real estate, labor, criminal, administrative, and tax laws.",
         li3: "Drafting, reviewing, and preparing legal documents, contracts, agreements, and official power of attorney.",
         li4: "Simplifying laws and regulations to resolve disputes and avoid future risks.",
+        noticeTitle: "🔒 Institutional Confidentiality Commitment:",
+        noticeText: "All consultations and booking sessions are subject to strict standards of absolute confidentiality and the",
+        noticeLink: "Code of Conduct",
+        noticeText2: "adopted by our office. Please also review the",
+        disclaimerLink: "Disclaimer",
+        noticeText3: "regarding initial preliminary consultations.",
         subHeading3: "Direct Consultation Booking Mechanism:",
         subHeading3Desc: "We ensure prompt and effective responses to your requirements. Appointments are managed through the official booking form to ensure time management and high service efficiency, or via direct WhatsApp chat.",
         btnBookInline: "📅 Book Official Consultation",
@@ -531,7 +596,7 @@
         pageTitle: "Irak Uzman Hukuki Danışmanlık | Av. Ali Kazım Haşimi Hukuk Bürosu",
         metaDesc: "Bağdat'ta Av. Ali Kazım Haşimi Hukuk Bürosu'ndan doğru ve güvenilir hukuki danışmanlık alın. Ticari danışmanlık, şirket kuruluşu, sözleşmeler ve uyuşmazlık çözümü.",
         metaKeywords: "Bağdat hukuki danışmanlık, Irak şirket avukatı, Irak hukuk bürosu, Av. Ali Kazım Haşimi, Bağdat şirket kuruluşu, ticari sözleşmeler",
-        home: "Ana Sayfa", menuServices: "Hizmetler", menuConsultations: "Hukuki Danışmanlık", menuInsights: "İçgörüler", menuAbout: "Hakkımızda", contact: "İletişim",
+        home: "Ana Sayfa", menuServices: "Hizmetler", menuConsultations: "Hukuki Danışmanlık", menuInsights: "İçgörüler", menuAbout: "Hakkımızda", menuCodeOfConduct: "Mesleki Etik Kuralları", menuContact: "İletişim",
         title: "Av. Ali Kazım Haşimi Hukuk Bürosu",
         subtitle: "Bağdat'tan şirketler ve bireyler için güvenilir hukuki temsil ve uzman danışmanlık.",
         cta: "📅 Resmi Randevu Al",
@@ -544,6 +609,12 @@
         li2: "Gayrimenkul, iş, ceza, idare ve vergi hukuku alanında danışmanlık.",
         li3: "Sözleşmelerin, anlaşmaların ve resmi belgelerin hazırlanması.",
         li4: "Uyuşmazlıkların çözümü ve gelecekteki risklerin önlenmesi.",
+        noticeTitle: "🔒 Kurumsal Gizlilik Taahhüdü:",
+        noticeText: "Tüm danışmanlık ve randevu seansları, katı mutlak gizlilik standartlarına ve büromuz tarafından benimsenen",
+        noticeLink: "Mesleki Etik Kuralları",
+        noticeText2: "na tabidir. Lütfen ilk ön danışmanlıklarla ilgili",
+        disclaimerLink: "Sorumluluk Reddi Beyanı",
+        noticeText3: "ni de inceleyin.",
         subHeading3: "Doğrudan Randevu Prosedürü:",
         subHeading3Desc: "Randevular resmi başvuru formu veya WhatsApp üzerinden kolayca organize edilmektedir.",
         btnBookInline: "📅 Resmi Randevu Al",
@@ -554,7 +625,7 @@
         pageTitle: "伊拉克专业法律咨询 | 阿里·卡德姆·哈希米律所",
         metaDesc: "在巴格达获得阿里·卡德姆·哈希米律所提供准确可靠的法律咨询。商业咨询、公司设立、合同与纠纷解决。",
         metaKeywords: "巴格达法律咨询, 伊拉克公司律师, 伊拉克律所, 阿里·卡德姆·哈希米律所, 巴格达公司注册, 商业合同",
-        home: "首页", menuServices: "法律服务", menuConsultations: "法律咨询", menuInsights: "法律洞察", menuAbout: "关于我们", contact: "联系我们",
+        home: "首页", menuServices: "法律服务", menuConsultations: "法律咨询", menuInsights: "法律洞察", menuAbout: "关于我们", menuCodeOfConduct: "行为准则", menuContact: "联系我们",
         title: "阿里·卡德姆·哈希米律所",
         subtitle: "立足巴格达，为企业和个人提供可靠的法律代理与专项咨询服务。",
         cta: "📅 预约正式咨询",
@@ -567,6 +638,12 @@
         li2: "涵盖房产法、劳动法、刑法、行政法与税法的专项咨询。",
         li3: "起草、审查并准备法律合同、协议及授权书。",
         li4: "以简明方式阐述法规，化解纠纷并规避未来风险。",
+        noticeTitle: "🔒 机构保密承诺：",
+        noticeText: "所有咨询和预约均遵循严格的绝对保密标准以及本所采纳的",
+        noticeLink: "行为准则",
+        noticeText2: "。请同时参阅关于初步咨询的",
+        disclaimerLink: "免责声明",
+        noticeText3: "。",
         subHeading3: "直接预约流程：",
         subHeading3Desc: "我们致力于提供高效优质的服务。您可以通过官方预约表单或WhatsApp即时与我们沟通。",
         btnBookInline: "📅 预约正式咨询",
@@ -577,7 +654,7 @@
         pageTitle: "Consultations Juridiques Spécialisées en Iraq | Cabinet AKH",
         metaDesc: "Obtenez des consultations juridiques précises à Bagdad auprès du Cabinet d'Avocats Ali Kadhem Hashimi. Conseil commercial, création d'entreprise et contrats.",
         metaKeywords: "Consultations juridiques Bagdad, avocat d'affaires Irak, cabinet d'avocats Irak, création d'entreprise Bagdad, contrats commerciaux",
-        home: "Accueil", menuServices: "Services", menuConsultations: "Consultations Juridiques", menuInsights: "Aperçus", menuAbout: "À Propos", contact: "Contact",
+        home: "Accueil", menuServices: "Services", menuConsultations: "Consultations Juridiques", menuInsights: "Aperçus", menuAbout: "À Propos", menuCodeOfConduct: "Code de Conduite", menuContact: "Contact",
         title: "Cabinet d'Avocats Ali Kadhem Hashimi",
         subtitle: "Représentation juridique fiable et conseil spécialisé pour les entreprises et les particuliers depuis Bagdad.",
         cta: "📅 Réserver une Consultation",
@@ -590,6 +667,12 @@
         li2: "Conseil juridique en droit immobilier, du travail, pénal, administratif et fiscal.",
         li3: "Rédaction et révision de documents juridiques, contrats et procurations.",
         li4: "Simplification des réglementations pour résoudre les litiges et éviter les risques.",
+        noticeTitle: "🔒 Engagement de Confidentialité Institutionnelle :",
+        noticeText: "Toutes les consultations et sessions de réservation sont soumises à des normes strictes de confidentialité absolue et au",
+        noticeLink: "Code de Conduite",
+        noticeText2: "adopté par notre cabinet. Veuillez également consulter le",
+        disclaimerLink: "Avertissement (Disclaimer)",
+        noticeText3: "concernant les consultations préliminaires initiales.",
         subHeading3: "Procédure de Réservation Directe :",
         subHeading3Desc: "Les rendez-vous sont organisés via le formulaire officiel ou via notre canal WhatsApp instantané.",
         btnBookInline: "📅 Réserver une Consultation",
@@ -600,7 +683,7 @@
         pageTitle: "Consultas Legales Especializadas en Irak | Bufete AKH",
         metaDesc: "Obtenga asesoría legal precisa y confiable en Bagdad del Bufete de Abogados Ali Kadhem Hashimi. Asesoría comercial, constitución de empresas y contratos.",
         metaKeywords: "Consultas legales Bagdad, abogado corporativo Irak, bufete de abogados Irak, constitución de empresas Bagdad, contratos comerciales",
-        home: "Inicio", menuServices: "Servicios", menuConsultations: "Consultas Legales", menuInsights: "Perspectivas", about: "Sobre Nosotros", contact: "Contacto",
+        home: "Inicio", menuServices: "Servicios", menuConsultations: "Consultas Legales", menuInsights: "Perspectivas", menuAbout: "Sobre Nosotros", menuCodeOfConduct: "Código de Conducta", menuContact: "Contacto",
         title: "Bufete de Abogados Ali Kadhem Hashimi",
         subtitle: "Representación legal confiable y asesoría especializada para corporaciones e individuos desde Bagdad.",
         cta: "📅 Reservar Consulta Oficial",
@@ -613,6 +696,12 @@
         li2: "Consultoría legal en derecho inmobiliario, laboral, penal, administrativo y fiscal.",
         li3: "Redacción y revisión de documentos legales, contratos y poderes.",
         li4: "Simplificación de normativas para resolver disputas y evitar riesgos futuros.",
+        noticeTitle: "🔒 Compromiso de Confidencialidad Institucional:",
+        noticeText: "Todas las consultas y sesiones de reserva están sujetas a estrictos estándares de confidencialidad absoluta y al",
+        noticeLink: "Código de Conducta",
+        noticeText2: "adoptado por nuestra oficina. Por favor, revise también el",
+        disclaimerLink: "Descargo de Responsabilidad (Disclaimer)",
+        noticeText3: "relativo a las consultas preliminares iniciales.",
         subHeading3: "Procedimiento de Reserva Directa:",
         subHeading3Desc: "Las citas se gestionan a través del formulario de reserva oficial o mediante el chat instantáneo de WhatsApp.",
         btnBookInline: "📅 Reservar Consulta Oficial",
@@ -623,7 +712,7 @@
         pageTitle: "Spezialisierte Rechtsberatung im Irak | Kanzlei Ali Kadhem Hashimi",
         metaDesc: "Erhalten Sie präzise Rechtsberatung in Bagdad von der Anwaltskanzlei Ali Kadhem Hashimi. Wirtschaftsberatung, Firmengründung, Verträge und Streitbeilegung.",
         metaKeywords: "Rechtsberatung Bagdad, Firmenanwalt Irak, Anwaltskanzlei Irak, Firmengründung Bagdad, Handelsverträge",
-        home: "Startseite", menuServices: "Dienste", menuConsultations: "Rechtliche Beratung", menuInsights: "Einblicke", about: "Über uns", contact: "Kontakt",
+        home: "Startseite", menuServices: "Dienste", menuConsultations: "Rechtliche Beratung", menuInsights: "Einblicke", menuAbout: "Über uns", menuCodeOfConduct: "Verhaltenskodex", menuContact: "Kontakt",
         title: "Anwaltskanzlei Ali Kadhem Hashimi",
         subtitle: "Ihr vertrauenswürdiger Rechtspartner in Bagdad. Umfassende Beratung, Unternehmensgründung und Vertretung.",
         cta: "📅 Offizielle Beratung buchen",
@@ -636,6 +725,12 @@
         li2: "Rechtsberatung im Immobilien-, Arbeits-, Straf-, Verwaltungs- und Steuerrecht.",
         li3: "Ausarbeitung und Prüfung von Verträgen und offiziellen Dokumenten.",
         li4: "Vereinfachung von Vorschriften zur Beilegung von Streitigkeiten.",
+        noticeTitle: "🔒 Verpflichtung zur institutionellen Vertraulichkeit:",
+        noticeText: "Alle Beratungen und Buchungssitzungen unterliegen strengen Standards absoluter Vertraulichkeit und dem von unserem Büro übernommenen",
+        noticeLink: "Verhaltenskodex (Code of Conduct)",
+        noticeText2: "Bitte beachten Sie auch den",
+        disclaimerLink: "Haftungsausschluss (Disclaimer)",
+        noticeText3: "bezüglich erster vorläufiger Konsultationen.",
         subHeading3: "Direktes Buchungsverfahren:",
         subHeading3Desc: "Termine werden über das offizielle Buchungsformular oder den WhatsApp-Chat koordiniert.",
         btnBookInline: "📅 Offizielle Beratung buchen",
@@ -646,7 +741,7 @@
         pageTitle: "راوێژی یاسایی تایبەتمەند لە عێراق | نووسینگەی پارێزەر عەلی کازمی هاشمی",
         metaDesc: "راوێژی یاسایی ورد و متمانەپێکراو لە بەغداد لە نووسینگەی پارێزەر عەلی کازمی هاشمی وەرگرە. راوێژی بازرگانی، دامەزراندنی کۆمپانیا، گرێبەست و یەکلاکردنەوەی کێشەکان.",
         metaKeywords: "راوێژی یاسایی بەغداد, پارێزەری کۆمپانیاکان لە عێراق, نووسینگەی پارێزەر عەلی کازمی هاشمی, دامەزراندنی کۆمپانیاکان, گرێبەستی بازرگانی",
-        home: "سەرەکی", menuServices: "خزمەتگوزارییەکان", menuConsultations: "ڕاوێژی یاسایی", menuInsights: "تێڕوانینەکان", about: "دەرباره‌ی ئێمە", contact: "پەیوەندی",
+        home: "سەرەکی", menuServices: "خزمەتگوزارییەکان", menuConsultations: "ڕاوێژی یاسایی", menuInsights: "تێڕوانینەکان", menuAbout: "دەرباره‌ی ئێمە", menuCodeOfConduct: "ڕەفتاری پیشەیی", menuContact: "پەیوەندی",
         title: "نووسینگەی پارێزەر عەلی کازمی هاشمی",
         subtitle: "نوێنەرایەتی یاسایی متمانەپێکراو و راوێژی تایبەتمەند بۆ کۆمپانیاکان و تاکەکان لە دڵی بەغدادەوە.",
         cta: "📅 چاوپێکەوتنی فەرمی تۆماربکە",
@@ -659,6 +754,12 @@
         li2: "راوێژی یاسایی تایبەت بە یاسای موڵکداری، کار، سزادان و کارگێڕی.",
         li3: "ئامادەکردن و پێداچوونەوەی گرێبەست و دۆکومێنتە فەرمییەکان.",
         li4: "ڕوونکردنەوەی یاساکان بۆ چارەسەرکردنی کێشەکان و دوورکەوتنەوە لە مەترسی.",
+        noticeTitle: "🔒 پابەندبوونی نهێنی مؤسساتی:",
+        noticeText: "هەموو راوێژ و چاوپێکەوتنەکان لەژێر پەیڕەوکردنی توندی نهێنی ڕەها و",
+        noticeLink: "ڕەفتاری پیشەیی (Code of Conduct)",
+        noticeText2: "ی نووسینگەکەماندا دەبن. تکایە پێداچوونەوەش بکە بە",
+        disclaimerLink: "بەرپرسارێتی (Disclaimer)",
+        noticeText3: "سەبارەت بە راوێژە سەرەتاییەکان.",
         subHeading3: "رێکاری تۆمارکردنی چاوپێکەوتنی ڕاستەوخۆ:",
         subHeading3Desc: "کاتی چاوپێکەوتنەکان لە ڕێگەی فۆڕمی فەرمی یان پەیوەندی ڕاستەوخۆ لە واتساب ڕێکدەخرێن.",
         btnBookInline: "📅 چاوپێکەوتنی فەرمی تۆماربکە",
