@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" id="htmlRoot">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WL4KNM0PG1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-WL4KNM0PG1');
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
@@ -130,7 +140,7 @@
     }
     .dropdown-menu a:hover { background: rgba(197,160,89,0.15); color: #c5a059; }
 
-    .container { width: 100%; max-width: 750px; background: #ffffff; padding: 35px 25px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border-top: 5px solid #c5a059; margin: 30px 16px; text-align: start; }
+    .container { width: 100%; max-width: 750px; background: #ffffff; padding: 35px 25px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border-top: 5px solid #c5a059; margin: 30px 16px; text-align: start; flex: 1; }
     .brand-logo { text-align: center; margin-bottom: 28px; direction: ltr; text-decoration: none; display: inline-block; width: 100%; }
     .brand-logo .akh { font-size: 40px; font-weight: 900; color: #0f172a; letter-spacing: 4px; line-height: 1; }
     .brand-logo .akh .red-k { color: #dc2626; }
@@ -158,6 +168,27 @@
     .btn-booking:hover { background: #c5a059; }
     .back-link { display: block; margin-top: 5px; font-size: 13px; color: #64748b; text-decoration: none; }
     .back-link:hover { color: #0f172a; }
+
+    /* تنسيق الفوتر */
+    .site-footer {
+      text-align: center;
+      padding: 25px;
+      font-size: 13px;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      margin-top: 40px;
+      background: #ffffff;
+      width: 100%;
+    }
+    .site-footer a {
+      color: #0f172a;
+      text-decoration: none;
+      font-weight: 700;
+      margin: 0 10px;
+    }
+    .site-footer a:hover {
+      color: #c5a059;
+    }
   </style>
 </head>
 <body>
@@ -209,6 +240,12 @@
       <a href="/services/" class="back-link" id="backLinkText">← Back to Services List</a>
     </div>
   </div>
+
+  <!-- الفوتر ورابط سياسة الخصوصية -->
+  <footer class="site-footer">
+    <a href="/privacy/en/" id="footerLink">Privacy Policy</a> | 
+    <span id="footerRights">All Rights Reserved © 2026 AKH Law Office</span>
+  </footer>
 
   <script>
     function toggleMenu() {
@@ -264,6 +301,10 @@
       document.getElementById('btnBookText').innerHTML = `<span>${t.btnBook}</span>`;
       document.getElementById('backLinkText').innerText = t.backLink;
 
+      document.getElementById('footerLink').innerText = t.privacyText;
+      document.getElementById('footerLink').href = '/privacy/en/';
+      document.getElementById('footerRights').innerText = t.rightsText;
+
       document.getElementById('languageSelect').value = lang;
     }
 
@@ -276,7 +317,8 @@
         pageMainTitle: "Personal Status & Judicial Execution Cases",
         contentBody: "The Law Office of Ali Kadhem Hashimi handles personal status lawsuits and family settlements, including legal estate distribution (Qasam Sharia), inheritance, custody, child visitation and escort, spousal and child support claims, as well as obedience suits, desertion proof, and gold-valued dowers. The office also specializes in close follow-up within execution directorates and judicial execution cases to secure our clients' rights professionally and swiftly.",
         btnBook: "📅 Click here to go to the appointment booking page",
-        backLink: "← Back to Services List"
+        backLink: "← Back to Services List",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       tr: {
         pageTitle: "Irak'ta Şahsi Haller ve Yargısal İcra Davaları | Av. Ali Kazım Haşimi",
@@ -286,7 +328,8 @@
         pageMainTitle: "Şahsi Haller ve Yargısal İcra Davaları",
         contentBody: "Av. Ali Kazım Haşimi Hukuk Bürosu; miras, velayet, çocuk görme, nafaka davaları ile itaat davaları, nüşuz (terk) ispatı ve altın mehir gibi şahsi haller davaları ve aile uzlaşmalarını takip etmektedir. Büro ayrıca, müvekkillerimizin haklarını profesyonelce ve hızlı bir şekilde güvence altına almak için icra müdürlüklerinde yakın takip konusunda uzmanlaşmıştır.",
         btnBook: "📅 Randevu rezervasyon sayfasına gitmek için tıklayın",
-        backLink: "← Hizmetler Listesine Dön"
+        backLink: "← Hizmetler Listesine Dön",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       zh: {
         pageTitle: "伊拉克个人身份法与司法执行案件 | 阿里·卡德姆·哈希米律所",
@@ -296,7 +339,8 @@
         pageMainTitle: "个人身份法与司法执行案件",
         contentBody: "阿里·卡德姆·哈希米律所承办个人身份诉讼与家庭和解，包括法定继承遗产分配、监护权、探视与陪伴儿童、配偶及子女抚养费诉讼，以及顺从案、遗弃证明及黄金彩礼等案件。律所还专注于在执行局进行紧密跟进与司法执行，以专业和高效的方式确保客户权益。",
         btnBook: "📅 点击此处跳转至预约页面",
-        backLink: "← 返回服务列表"
+        backLink: "← 返回服务列表",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       fr: {
         pageTitle: "Affaires de Statut Personnel et Exécution Judiciaire en Iraq | Cabinet AKH",
@@ -306,7 +350,8 @@
         pageMainTitle: "Affaires de Statut Personnel et Exécution Judiciaire",
         contentBody: "Le Cabinet d'Avocats Ali Kadhem Hashimi gère les affaires de statut personnel et les règlements familiaux, y compris le partage successoral, la garde, le droit de visite et d'accompagnement des enfants, les pensions alimentaires, ainsi que les actions en obéissance, de désertion et de dot en or. Le cabinet est également spécialisé dans le suivi rigoureux auprès des directions d'exécution pour garantir les droits de nos clients.",
         btnBook: "📅 Cliquez ici pour accéder à la page de réservation",
-        backLink: "← Retour à la liste des services"
+        backLink: "← Retour à la liste des services",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       es: {
         pageTitle: "Casos de Estado Personal y Ejecución Judicial en Irak | Bufete AKH",
@@ -316,7 +361,8 @@
         pageMainTitle: "Casos de Estado Personal y Ejecución Judicial",
         contentBody: "El Bufete de Abogados Ali Kadhem Hashimi se encarga de las demandas de estado personal y acuerdos familiares, incluyendo la distribución de herencias, custodia, visitas y acompañamiento de menores, pensiones alimenticias, así como demandas de obediencia, prueba de abandono y dote valorada en oro. El despacho también se especializa en el seguimiento riguroso dentro de las direcciones de ejecución para asegurar los derechos de nuestros clientes con profesionalismo.",
         btnBook: "📅 Haga clic aquí para ir a la página de reservas",
-        backLink: "← Volver a la lista de servicios"
+        backLink: "← Volver a la lista de servicios",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       de: {
         pageTitle: "Familienrecht und Zwangsvollstreckung im Irak | Kanzlei Ali Kadhem Hashimi",
@@ -326,7 +372,8 @@
         pageMainTitle: "Familienrecht und Zwangsvollstreckung",
         contentBody: "Die Kanzlei Ali Kadhem Hashimi bearbeitet Personenstandssachen und Familienvergleiche, einschließlich Erbschaftsverteilung, Sorgerecht, Umgangsrecht, Kindes- und Ehegattenunterhalt sowie Gehorsamsklagen, Nachweise des Verlassens und Gold-Mahr. Die Kanzlei ist zudem auf die genaue Verfolgung in Vollstreckungsdirektionen spezialisiert, um die Rechte unserer Mandanten professionell und zügig zu sichern.",
         btnBook: "📅 Klicken Sie hier, um zur Buchungsseite zu gelangen",
-        backLink: "← Zurück zur Dienstleistungsliste"
+        backLink: "← Zurück zur Dienstleistungsliste",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       ku: {
         pageTitle: "دۆسیەکانی باری کەسێتی و جێبەجێکردنی دادوەری لە عێراق | نووسینگەی پارێزەر",
@@ -336,7 +383,8 @@
         pageMainTitle: "دۆسیەکانی باری کەسێتی و جێبەجێکردنی دادوەری",
         contentBody: "نووسینگەی پارێزەر عەلی کازمی هاشمی بەدواداچوون بۆ دۆسیەکانی باری کەسێتی و ڕێککەوتنی خێزانی دەکات، کە ئەمەش پرسەکانی قەسامی شرعی، میراث، بەخێوکردن، بینین و هێنانی منداڵ، نفقة، هەروەها داواکارییەکانی گوێڕایەڵی، نشوز، و مهری زێڕ لەخۆ دەگرێت. هەروەها نووسینگە تایبەتمەندە بە بەدواداچوونی ورد لە بەڕێوەبەرایەتییەکانی جێبەجێکردندا بۆ مسۆگەرکردن و وەرگرتنەوەی مافی کڕیارەکانمان بە شێوازێکی پیشەیی.",
         btnBook: "📅 کلیک لێرە بکە بۆ گواستنەوە بۆ لاپەڕەی حجز",
-        backLink: "← گەڕانەوە بۆ خشتەی خزمەتگوزارییەکان"
+        backLink: "← گەڕانەوە بۆ خشتەی خزمەتگوزارییەکان",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       }
     };
   </script>
