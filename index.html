@@ -113,7 +113,7 @@
       top: calc(100% + 10px);
       right: 0;
       left: auto;
-      min-width: 260px;
+      min-width: 280px;
       background: #0f172a;
       border: 1.5px solid #c5a059;
       border-radius: 10px;
@@ -142,6 +142,13 @@
       font-family: 'Cairo', sans-serif;
     }
     .dropdown-menu a:hover { background: rgba(197,160,89,0.15); color: #c5a059; }
+    
+    /* تمييز قواعد السلوك المهني في القائمة */
+    .dropdown-menu a.special-conduct-link {
+      color: #c5a059;
+      font-weight: 900;
+      background: rgba(197, 160, 89, 0.08);
+    }
 
     .main-container {
       max-width: 1200px;
@@ -241,7 +248,7 @@
     .service-card p { font-size: 13px; color: #64748b; line-height: 1.6; margin-bottom: 14px; text-align: justify; }
     .card-link { font-size: 13px; font-weight: 800; color: #c5a059; display: inline-flex; align-items: center; gap: 5px; }
 
-    /* تنسيق الفوتر ورابط سياسة الخصوصية */
+    /* تنسيق الفوتر والروابط القانونية في الأسفل */
     .site-footer {
       text-align: center;
       padding: 25px;
@@ -251,14 +258,25 @@
       margin-top: 50px;
       background: #ffffff;
     }
+    .footer-legal-links {
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
     .site-footer a {
       color: #0f172a;
       text-decoration: none;
       font-weight: 700;
-      margin: 0 10px;
     }
     .site-footer a:hover {
       color: #c5a059;
+    }
+    .site-footer span.copy-text {
+      color: #64748b;
+      display: block;
+      margin-top: 5px;
     }
   </style>
 
@@ -290,6 +308,7 @@
       <div id="dropdownMenu" class="dropdown-menu">
         <a href="https://akjassem.com">الرئيسية</a>
         <a href="/services/">دليل الخدمات القانونية</a>
+        <a href="/code-of-conduct.html" class="special-conduct-link">قواعد السلوك المهني وأخلاقيات العمل</a>
         <a href="/consultations/">الاستشارات القانونية</a>
         <a href="/insights/">الآراء والرؤى القانونية (Insights)</a>
         <a href="/about/">من نحن</a>
@@ -363,8 +382,12 @@
   </main>
 
   <footer class="site-footer">
-    <a href="/privacy/">سياسة الخصوصية</a> | 
-    <span>جميع الحقوق محفوظة © 2026 مكتب المحامي علي كاظم الهاشمي</span>
+    <div class="footer-legal-links">
+      <a href="/privacy/">سياسة الخصوصية</a> | 
+      <a href="/disclaimer/">إخلاء المسؤولية</a> | 
+      <a href="/code-of-conduct.html">قواعد السلوك المهني</a>
+    </div>
+    <span class="copy-text">جميع الحقوق محفوظة © 2026 مكتب المحامي علي كاظم الهاشمي</span>
   </footer>
 
   <script>
