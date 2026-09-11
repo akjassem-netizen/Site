@@ -1,5 +1,16 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" id="htmlRoot"><head>
+<html lang="ar" dir="rtl" id="htmlRoot">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WL4KNM0PG1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-WL4KNM0PG1');
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
@@ -99,7 +110,7 @@
     }
     .dropdown-menu a:hover { background: rgba(197,160,89,0.15); color: #c5a059; }
 
-    .container { max-width: 800px; width: 100%; padding: 30px 16px; }
+    .container { max-width: 800px; width: 100%; padding: 30px 16px; flex: 1; }
     .brand-section { text-align: center; margin-bottom: 25px; border-bottom: 1.5px solid #e2e8f0; padding-bottom: 20px; }
     .brand-logo { direction: ltr; display: inline-block; text-align: center; margin-bottom: 12px; text-decoration: none; }
     .logo-text { font-size: 46px; font-weight: 800; letter-spacing: 2px; color: #0b1a30; line-height: 1; }
@@ -125,6 +136,27 @@
     .btn-share-li { background-color: #0a66c2; color: #ffffff; }
     .btn-share-x { background-color: #000000; color: #ffffff; }
     #copyToast { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); background-color: #0b1a30; color: #ffffff; padding: 10px 22px; border-radius: 30px; font-size: 13px; font-weight: 700; box-shadow: 0 4px 15px rgba(0,0,0,0.2); display: none; z-index: 99999; }
+
+    /* تنسيق الفوتر */
+    .site-footer {
+      text-align: center;
+      padding: 25px;
+      font-size: 13px;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      margin-top: 40px;
+      background: #ffffff;
+      width: 100%;
+    }
+    .site-footer a {
+      color: #0f172a;
+      text-decoration: none;
+      font-weight: 700;
+      margin: 0 10px;
+    }
+    .site-footer a:hover {
+      color: #c5a059;
+    }
   </style>
 
 <meta property="og:title" content="امتثال العمالة الأجنبية وقانون الضمان الاجتماعي العراقي رقم 18 لسنة 2023: دليل الشركات والمستثمرين | AKH Law Office" data-dynamic-seo="true">
@@ -234,6 +266,12 @@
 
   </div>
 
+  <!-- الفوتر ورابط سياسة الخصوصية -->
+  <footer class="site-footer">
+    <a href="/privacy/">سياسة الخصوصية</a> | 
+    <span>جميع الحقوق محفوظة © 2026 مكتب المحامي علي كاظم الهاشمي</span>
+  </footer>
+
   <script>
     function toggleMenu() {
       document.getElementById('dropdownMenu').classList.toggle('active');
@@ -309,6 +347,5 @@
       }
     });
   </script>
-
-
-</body></html>
+</body>
+</html>
