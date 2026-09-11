@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" id="htmlRoot">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WL4KNM0PG1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-WL4KNM0PG1');
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
@@ -57,7 +67,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { background: #f4f6f9; color: #070f1e; font-family: 'Cairo', sans-serif; min-height: 100vh; }
+    html, body { background: #f4f6f9; color: #070f1e; font-family: 'Cairo', sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
 
     .icover-header {
       background: #070f1e;
@@ -108,6 +118,8 @@
       padding: 40px 35px;
       box-shadow: 0 15px 40px rgba(0,0,0,0.06);
       border-top: 6px solid #c5a059;
+      flex: 1;
+      width: 100%;
     }
 
     .brand-logo-box {
@@ -200,6 +212,26 @@
 
     .conditional-section { display: none; }
     .conditional-section.active { display: block; }
+
+    /* تنسيق الفوتر ورابط سياسة الخصوصية */
+    .site-footer {
+      text-align: center;
+      padding: 25px;
+      font-size: 13px;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      margin-top: 40px;
+      background: #ffffff;
+    }
+    .site-footer a {
+      color: #070f1e;
+      text-decoration: none;
+      font-weight: 700;
+      margin: 0 10px;
+    }
+    .site-footer a:hover {
+      color: #c5a059;
+    }
   </style>
 
   <script>
@@ -386,6 +418,12 @@
       <button type="submit" class="submit-btn" id="submitBtnText">Submit Request for Legal Review &larr;</button>
     </form>
   </main>
+
+  <!-- الفوتر ورابط سياسة الخصوصية -->
+  <footer class="site-footer">
+    <a href="/privacy/en/">Privacy Policy</a> | 
+    <span>All Rights Reserved © 2026 AKH Law Office</span>
+  </footer>
 
   <script>
     window.addEventListener('DOMContentLoaded', () => {
