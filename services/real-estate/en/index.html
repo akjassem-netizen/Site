@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" id="htmlRoot">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WL4KNM0PG1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-WL4KNM0PG1');
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
@@ -130,7 +140,7 @@
     }
     .dropdown-menu a:hover { background: rgba(197,160,89,0.15); color: #c5a059; }
 
-    .container { width: 100%; max-width: 750px; background: #ffffff; padding: 35px 25px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border-top: 5px solid #c5a059; margin: 30px 16px; text-align: start; }
+    .container { width: 100%; max-width: 750px; background: #ffffff; padding: 35px 25px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border-top: 5px solid #c5a059; margin: 30px 16px; text-align: start; flex: 1; }
     .brand-logo { text-align: center; margin-bottom: 28px; direction: ltr; text-decoration: none; display: inline-block; width: 100%; }
     .brand-logo .akh { font-size: 40px; font-weight: 900; color: #0f172a; letter-spacing: 4px; line-height: 1; }
     .brand-logo .akh .red-k { color: #dc2626; }
@@ -158,6 +168,27 @@
     .btn-booking:hover { background: #c5a059; }
     .back-link { display: block; margin-top: 5px; font-size: 13px; color: #64748b; text-decoration: none; }
     .back-link:hover { color: #0f172a; }
+
+    /* تنسيق الفوتر */
+    .site-footer {
+      text-align: center;
+      padding: 25px;
+      font-size: 13px;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      margin-top: 40px;
+      background: #ffffff;
+      width: 100%;
+    }
+    .site-footer a {
+      color: #0f172a;
+      text-decoration: none;
+      font-weight: 700;
+      margin: 0 10px;
+    }
+    .site-footer a:hover {
+      color: #c5a059;
+    }
   </style>
 </head>
 <body>
@@ -209,6 +240,12 @@
       <a href="/services/" class="back-link" id="backLinkText">← Back to Services List</a>
     </div>
   </div>
+
+  <!-- الفوتر ورابط سياسة الخصوصية -->
+  <footer class="site-footer">
+    <a href="/privacy/en/" id="footerLink">Privacy Policy</a> | 
+    <span id="footerRights">All Rights Reserved © 2026 AKH Law Office</span>
+  </footer>
 
   <script>
     function toggleMenu() {
@@ -264,6 +301,10 @@
       document.getElementById('btnBookText').innerHTML = `<span>${t.btnBook}</span>`;
       document.getElementById('backLinkText').innerText = t.backLink;
 
+      document.getElementById('footerLink').innerText = t.privacyText;
+      document.getElementById('footerLink').href = '/privacy/en/';
+      document.getElementById('footerRights').innerText = t.rightsText;
+
       document.getElementById('languageSelect').value = lang;
     }
 
@@ -276,7 +317,8 @@
         pageMainTitle: "Legal & Real Estate Services",
         contentBody: "The Law Office of Ali Kadhem Hashimi provides integrated legal and real estate services including follow-up and documentation of real estate contracts, drafting lease and commercial investment contracts, extracting real estate deeds and maps, and resolving real estate disputes before official and judicial authorities, ensuring the protection of our clients' investments and properties with the highest levels of legal security.",
         btnBook: "📅 Click here to go to the appointment booking page",
-        backLink: "← Back to Services List"
+        backLink: "← Back to Services List",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       tr: {
         pageTitle: "Irak'ta Hukuki ve Gayrimenkul Hizmetleri ve Sözleşme Belgelendirme | Av. Ali Kazım",
@@ -286,7 +328,8 @@
         pageMainTitle: "Hukuki ve Gayrimenkul Hizmetleri",
         contentBody: "Av. Ali Kazım Haşimi Hukuk Bürosu; gayrimenkul sözleşmelerinin takibi ve belgelendirilmesi, kira ve ticari yatırım sözleşmelerinin hazırlanması, tapu ve gayrimenkul haritalarının çıkarılması ve resmi makamlar önünde gayrimenkul uyuşmazlıklarının çözümü dahil olmak üzere entegre hukuki ve gayrimenkul hizmetleri sunmaktadır.",
         btnBook: "📅 Randevu rezervasyon sayfasına gitmek için tıklayın",
-        backLink: "← Hizmetler Listesine Dön"
+        backLink: "← Hizmetler Listesine Dön",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       zh: {
         pageTitle: "伊拉克法律与房地产服务及合同公证 | 阿里·卡德姆·哈希米律所",
@@ -296,7 +339,8 @@
         pageMainTitle: "法律与房地产服务",
         contentBody: "阿里·卡德姆·哈希米律所提供全面的法律与房地产服务，包括房地产合同的跟进与公证、租赁和商业投资合同的起草、房地产地契与图纸的提取，以及在官方和司法机构面前解决房地产纠纷，以最高水平的法律安全保障客户的投资和房地产产权。",
         btnBook: "📅 点击此处跳转至预约页面",
-        backLink: "← 返回服务列表"
+        backLink: "← 返回服务列表",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       fr: {
         pageTitle: "Services Juridiques & Immobiliers et Documentation de Contrats en Iraq | AKH",
@@ -306,7 +350,8 @@
         pageMainTitle: "Services Juridiques et Immobiliers",
         contentBody: "Le Cabinet d'Avocats Ali Kadhem Hashimi propose des services juridiques et immobiliers intégrés comprenant le suivi et la documentation des contrats immobiliers, la rédaction de baux et de contrats d'investissement commercial, l'extraction de titres de propriété et de plans, ainsi que le règlement des litiges immobiliers devant les autorités officielles, garantissant la protection des investissements et des biens de nos clients.",
         btnBook: "📅 Cliquez ici pour accéder à la page de réservation",
-        backLink: "← Retour à la liste des services"
+        backLink: "← Retour à la liste des services",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       es: {
         pageTitle: "Servicios Legales e Inmobiliarios y Documentación de Contratos en Irak | AKH",
@@ -316,7 +361,8 @@
         pageMainTitle: "Servicios Legales e Inmobiliarios",
         contentBody: "El Bufete de Abogados Ali Kadhem Hashimi ofrece servicios legales e inmobiliarios integrales que incluyen el seguimiento y la documentación de contratos inmobiliarios, la redacción de contratos de arrendamiento e inversión comercial, la extracción de escrituras y mapas catastrales, y la resolución de disputas inmobiliarias ante las autoridades oficiales y judiciales, garantizando la protección de las inversiones y propiedades de nuestros clientes con el más alto nivel de seguridad jurídica.",
         btnBook: "📅 Haga clic aquí para ir a la página de reservas",
-        backLink: "← Volver a la lista de servicios"
+        backLink: "← Volver a la lista de servicios",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       de: {
         pageTitle: "Rechts- und Immobiliendienste sowie Vertragsdokumentation im Irak | Kanzlei AKH",
@@ -326,17 +372,19 @@
         pageMainTitle: "Rechts- und Immobiliendienste",
         contentBody: "Die Kanzlei Ali Kadhem Hashimi bietet integrierte Rechts- und Immobiliendienste an, darunter die Verfolgung und Dokumentation von Immobilienverträgen, den Entwurf von Miet- und gewerblichen Investitionsverträgen, die Beschaffung von Grundbuchauszügen und Plänen sowie die Beilegung von Immobilienstreitigkeiten vor offiziellen und gerichtlichen Behörden, um den Schutz von Investitionen und Eigentum unserer Mandanten mit höchster Rechtssicherheit zu gewährleisten.",
         btnBook: "📅 Klicken Sie hier, um zur Buchungsseite zu gelangen",
-        backLink: "← Zurück zur Dienstleistungsliste"
+        backLink: "← Zurück zur Dienstleistungsliste",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       ku: {
         pageTitle: "خزمەتگوزارییە یاسایی و خانووبەرەکان و بەلگەنامەکردنی گرێبەست لە عێراق | نووسینگەی پارێزەر",
         metaDesc: "خزمەتگوزاری یاسایی و خانووبەرەی گشتگیر لە عێراق، بەلگەنامەکردنی گرێبەستی خانووبەرە، داڕشتنی گرێبەستی کرێ و وەبەرهێنان، دەرهێنانی سەنەد و نەخشە، و یەکلاکردنەوەی کێشەکان.",
         metaKeywords: "خزمەتگوزاری خانووبەرە لە عێراق, گرێبەستی خانووبەرە, تابلۆی تاپۆ بغداد, کێشەی خانووبەرە",
-        home: "سەرەکی", menuServices: "خزمەتگوزارییەکان", menuConsultations: "ڕاوێژی یاسایی", menuInsights: "تێڕوانینەکان", about: "دەرباره‌ی ئێمە", contact: "پەیوەندی",
+        home: "سرەکی", menuServices: "خزمەتگوزارییەکان", menuConsultations: "ڕاوێژی یاسایی", menuInsights: "تێڕوانینەکان", about: "دەرباره‌ی ئێمە", contact: "پەیوەندی",
         pageMainTitle: "خزمەتگوزارییە یاسایی و خانووبەرەکان",
         contentBody: "نووسینگەی پارێزەر عەلی کازمی هاشمی خزمەتگوزاری یاسایی و خانووبەرەی گشتگیر پێشکەش دەکات کە بریتییە لە بەدواداچوون و بەلگەنامەکردنی گرێبەستەکانی خانووبەرە، داڕشتنی گرێبەستی کرێ و وەبەرهێنانی بازرگانی، دەرهێنانی سەنەد و نەخشەی خانووبەرە، و یەکلاکردنەوەی کێشەکانی خانووبەرە لەبەردەم دەسەڵاتە فەرمی و دادوەرییەکاندا، بۆ دڵنیابوون لە پاراستنی وەبەرهێنان و موڵک و ماڵی کڕیارەکانمان بە بەرزترین ئاستی سەلامەتی یاسایی.",
         btnBook: "📅 کلیک لێرە بکە بۆ گواستنەوە بۆ لاپەڕەی حجز",
-        backLink: "← گەڕانەوە بۆ خشتەی خزمەتگوزارییەکان"
+        backLink: "← گەڕانەوە بۆ خشتەی خزمەتگوزارییەکان",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       }
     };
   </script>
