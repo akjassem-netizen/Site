@@ -172,25 +172,45 @@
     .back-link { display: block; margin-top: 5px; font-size: 13px; color: #64748b; text-decoration: none; }
     .back-link:hover { color: #0f172a; }
 
-    /* تنسيق الفوتر */
+    /* تنسيق الفوتر بمعالجة سطر واحد متناسق */
     .site-footer {
       text-align: center;
-      padding: 25px;
-      font-size: 13px;
+      padding: 22px 10px;
+      font-size: 12px;
       color: #64748b;
       border-top: 1px solid #e2e8f0;
-      margin-top: 40px;
+      margin-top: 50px;
       background: #ffffff;
       width: 100%;
     }
-    .site-footer a {
+    .footer-legal-links {
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      overflow-x: auto;
+      padding: 2px 0;
+    }
+    .footer-legal-links a {
       color: #0f172a;
       text-decoration: none;
       font-weight: 700;
-      margin: 0 10px;
+      font-size: 11.5px;
     }
-    .site-footer a:hover {
+    .footer-legal-links a:hover {
       color: #c5a059;
+    }
+    .footer-legal-links .separator {
+      color: #cbd5e1;
+      font-weight: 400;
+    }
+    .site-footer span.copy-text {
+      color: #64748b;
+      display: block;
+      margin-top: 4px;
+      font-size: 11px;
     }
   </style>
 </head>
@@ -214,10 +234,11 @@
       <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu">☰</button>
       <div id="dropdownMenu" class="dropdown-menu">
         <a href="https://akjassem.com/en/" id="menuHome">Home</a>
-        <a href="/services/" id="menuServices">Legal Services Directory</a>
+        <a href="/services/en/" id="menuServices">Legal Services Directory</a>
         <a href="https://akjassem.com/consultations/en/" id="menuConsultations">Legal Consultations</a>
         <a href="https://akjassem.com/insights/en/" id="menuInsights">Iraq Legal Insights</a>
-        <a href="../" id="menuAbout">عربي / Arabic (Service)</a>
+        <a href="../" id="menuAbout">Arabic (Service)</a>
+        <a href="/code-of-conduct-en.html" id="menuCodeOfConduct">Code of Conduct</a>
         <a href="https://akjassem.com/contact/en/" id="menuContact">Contact Us</a>
       </div>
     </div>
@@ -227,7 +248,7 @@
     <a href="https://akjassem.com/en/" class="brand-logo">
       <div class="akh">A<span class="red-k">K</span>H</div>
       <div class="sub-title"><span class="slash">/</span><span>LAW OFFICE</span></div>
-      <div class="est">EST. 2014</div>
+      <div class="b-est">EST. 2014</div>
     </a>
     
     <div class="page-title" id="pageMainTitle">Legal Representation Before Judicial Authorities</div>
@@ -240,14 +261,20 @@
       <a href="/booking/en/" target="_blank" class="btn-booking" id="btnBookText">
         <span>📅 Click here to go to the appointment booking page</span>
       </a>
-      <a href="/services/" class="back-link" id="backLinkText">← Back to Services List</a>
+      <a href="/services/en/" class="back-link" id="backLinkText">← Back to Services List</a>
     </div>
   </div>
 
-  <!-- الفوتر ورابط سياسة الخصوصية -->
+  <!-- الفوتر المتكامل للنسخة الإنجليزية -->
   <footer class="site-footer">
-    <a href="/privacy/en/" id="footerLink">Privacy Policy</a> | 
-    <span id="footerRights">All Rights Reserved © 2026 AKH Law Office</span>
+    <div class="footer-legal-links">
+      <a href="/privacy/en/" id="footerPrivacy">Privacy Policy</a>
+      <span class="separator">|</span>
+      <a href="/disclaimer/en/" id="footerDisclaimer">Disclaimer</a>
+      <span class="separator">|</span>
+      <a href="/code-of-conduct-en.html" id="footerCode">Code of Conduct</a>
+    </div>
+    <span class="copy-text" id="footerRights">All Rights Reserved © 2026 AKH Law Office</span>
   </footer>
 
   <script>
@@ -297,15 +324,17 @@
       document.getElementById('menuConsultations').innerText = t.menuConsultations;
       document.getElementById('menuInsights').innerText = t.menuInsights;
       document.getElementById('menuAbout').innerText = t.about;
+      document.getElementById('menuCodeOfConduct').innerText = t.codeText;
       document.getElementById('menuContact').innerText = t.contact;
 
       document.getElementById('pageMainTitle').innerText = t.pageMainTitle;
-      document.getElementById('contentBodyText').innerText = t.contentBody;
+      document.getElementById('contentBodyText').innerHTML = t.contentBody;
       document.getElementById('btnBookText').innerHTML = `<span>${t.btnBook}</span>`;
       document.getElementById('backLinkText').innerText = t.backLink;
 
-      document.getElementById('footerLink').innerText = t.privacyText;
-      document.getElementById('footerLink').href = '/privacy/en/';
+      document.getElementById('footerPrivacy').innerText = t.privacyText;
+      document.getElementById('footerDisclaimer').innerText = t.disclaimerText;
+      document.getElementById('footerCode').innerText = t.codeText;
       document.getElementById('footerRights').innerText = t.rightsText;
 
       document.getElementById('languageSelect').value = lang;
@@ -318,76 +347,76 @@
         metaKeywords: "Legal representation Iraq, litigation lawyer Baghdad, court representation Iraq, dispute resolution Baghdad, trial lawyer Iraq",
         home: "Home", menuServices: "Legal Services Directory", menuConsultations: "Legal Consultations", menuInsights: "Iraq Legal Insights", about: "About Us", contact: "Contact Us",
         pageMainTitle: "Legal Representation Before Judicial Authorities",
-        contentBody: "The office undertakes legal representation and advocacy for our clients in all types of lawsuits. The office has built a solid professional reputation in providing the best legal representation across all courts and degrees throughout Iraq, working with dedication to follow up cases beyond expectations to achieve the best possible legal outcomes.",
+        contentBody: "The office undertakes legal representation and advocacy for our clients in all types of lawsuits. The office has built a solid professional reputation in providing the best legal representation across all courts and degrees throughout Iraq, working with dedication to follow up cases beyond expectations to achieve the best possible legal outcomes.<br><br>Sufficient time is dedicated to studying the details of each case, providing precise consultations regarding its merits, and drafting a solid legal strategy aimed at minimizing costs and avoiding potential risks. In certain cases, the office is keen to adopt alternative solutions and settle disputes out of court in a firm, professional manner that preserves the client's rights.",
         btnBook: "📅 Click here to go to the appointment booking page",
         backLink: "← Back to Services List",
-        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
+        privacyText: "Privacy Policy", disclaimerText: "Disclaimer", codeText: "Code of Conduct", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       tr: {
-        pageTitle: "Irak'ta Yargı Mercileri ve Mahkemeler Önünde Yasal Temsil | Av. Ali Kazım Haşimi",
-        metaDesc: "Av. Ali Kazım Haşimi gözetiminde Irak'taki tüm dava türlerinde ve mahkeme derecelerinde profesyonel yasal temsil ve vekillik hizmetleri.",
-        metaKeywords: "Irak hukuki temsil, Bağdat dava avukati, mahkeme temsili Irak, hukuki uyuşmazlıkların çözümü",
+        pageTitle: "Irak'ta Yargı Mercileri ve Mahkemeler Önünde Yasal Temsil | Av. Ali Kazım",
+        metaDesc: "Irak'taki tüm dava türlerinde profesyonel yasal temsil ve vekillik hizmetleri.",
+        metaKeywords: "Irak hukuki temsil, Bağdat dava avukati, mahkeme temsili Irak",
         home: "Ana Sayfa", menuServices: "Hizmetler", menuConsultations: "Hukuki Danışmanlık", menuInsights: "İçgörüler", about: "Hakkımızda", contact: "İletişim",
         pageMainTitle: "Yargı Mercileri Önünde Yasal Temsil",
-        contentBody: "Büro, tüm dava türlerinde müvekkillerimiz adına yasal vekillik ve temsil görevini üstlenmektedir. Büro, Irak genelindeki tüm mahkemelerde en iyi yasal temsili sağlama konusunda sağlam bir mesleki itibar inşa etmiş olup, mümkün olan en iyi hukuki sonuçları elde etmek için özveriyle çalışmaktadır.",
+        contentBody: "Büro, tüm dava türlerinde müvekkillerimiz adına yasal vekillik ve vekalet görevini üstlenmektedir. Büro, Irak genelindeki tüm mahkemelerde en iyi yasal temsili sağlama konusunda sağlam bir mesleki itibar inşa etmiştir.<br><br>Her davanın detaylarını incelemek, maliyetleri en aza indirmek ve riskleri önlemek için sağlam bir yasal strateji oluşturmak üzere yeterli zaman ayrılmaktadır.",
         btnBook: "📅 Randevu rezervasyon sayfasına gitmek için tıklayın",
         backLink: "← Hizmetler Listesine Dön",
-        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
+        privacyText: "Privacy Policy", disclaimerText: "Disclaimer", codeText: "Code of Conduct", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       zh: {
         pageTitle: "伊拉克司法机关与法院出庭代理 | 阿里·卡德姆·哈希米律所",
-        metaDesc: "在阿里·卡德姆·哈希米律所的监督下，在伊拉克各级法院代理各类诉讼，提供专业法律代理与出庭服务。",
-        metaKeywords: "伊拉克法律代理, 巴格达诉讼律师, 法庭代表伊拉克, 诉讼纠纷解决",
+        metaDesc: "在伊拉克各级法院代理各类诉讼，提供专业法律代理与出庭服务。",
+        metaKeywords: "伊拉克法律代理, 巴格达诉讼律师, 法庭代表伊拉克",
         home: "首页", menuServices: "法律服务", menuConsultations: "法律咨询", menuInsights: "法律洞察", about: "关于我们", contact: "联系我们",
         pageMainTitle: "司法机关出庭代理",
-        contentBody: "律所承接各类诉讼案件，并为客户提供专业的法律代理和出庭服务。律所在伊拉克全国各级法院的法律代理方面树立了坚实的专业声誉，致力于以超越期望的敬业精神跟进案件，以实现最佳的法律结果。",
+        contentBody: "律所承接各类诉讼案件，并为客户提供专业的法律代理和出庭服务。律所在伊拉克全国各级法院的法律代理方面树立了坚实的专业声誉。<br><br>我们投入充足的时间研究每个案件的细节，提供精确的咨询，并制定旨在降低成本和规避潜在风险的扎实法律策略。",
         btnBook: "📅 点击此处跳转至预约页面",
         backLink: "← 返回服务列表",
-        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
+        privacyText: "Privacy Policy", disclaimerText: "Disclaimer", codeText: "Code of Conduct", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       fr: {
         pageTitle: "Représentation Juridique Devant les Tribunaux en Iraq | Cabinet AKH",
-        metaDesc: "Représentation juridique professionnelle et plaidoyer pour les clients dans tous types de litiges à travers les tribunaux d'Iraq sous la supervision d'Ali Kadhem.",
-        metaKeywords: "Représentation juridique en Iraq, avocat contentieux Bagdad, représentation devant les tribunaux Irak, règlement des litiges",
+        metaDesc: "Représentation juridique professionnelle et plaidoyer pour les clients dans tous types de litiges à travers les tribunaux d'Iraq.",
+        metaKeywords: "Représentation juridique en Iraq, avocat contentieux Bagdad, représentation devant les tribunaux",
         home: "Accueil", menuServices: "Services", menuConsultations: "Consultations Juridiques", menuInsights: "Aperçus", about: "À Propos", contact: "Contact",
         pageMainTitle: "Représentation Juridique Devant les Autorités Judiciaires",
-        contentBody: "Le cabinet assume la représentation juridique et le plaidoyer pour nos clients dans tous types de litiges. Le cabinet s'est bâti une solide réputation professionnelle en fournissant la meilleure représentation juridique auprès de toutes les juridictions en Iraq, en travaillant avec dévouement pour obtenir les meilleurs résultats possibles.",
+        contentBody: "Le cabinet assume la représentation juridique et le plaidoyer pour nos clients dans tous types de litiges. Le cabinet s'est bâti une solide réputation professionnelle en fournissant la meilleure représentation juridique auprès de toutes les juridictions en Iraq.<br><br>Un temps suffisant est consacré à l'étude des détails de chaque affaire, à la fourniture de conseils précis et à la rédaction d'une stratégie juridique solide.",
         btnBook: "📅 Cliquez ici pour accéder à la page de réservation",
         backLink: "← Retour à la liste des services",
-        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
+        privacyText: "Privacy Policy", disclaimerText: "Disclaimer", codeText: "Code of Conduct", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       es: {
-        pageTitle: "Representación Legal Ante Autoridades Judiciales y Tribunales en Irak | AKH",
-        metaDesc: "Representación legal profesional y defensa para clientes en todo tipo de demandas y tribunales en Irak bajo la supervisión de Ali Kadhem Hashimi.",
-        metaKeywords: "Representación legal Irak, abogado litigante Bagdad, representación en tribunales Irak, resolución de disputas",
+        pageTitle: "Representación Legal Ante Autoridades Judiciales en Irak | Bufete AKH",
+        metaDesc: "Representación legal profesional y defensa para clientes en todo tipo de demandas y tribunales en Irak.",
+        metaKeywords: "Representación legal Irak, abogado litigante Bagdad, representación en tribunales",
         home: "Inicio", menuServices: "Servicios", menuConsultations: "Consultas Legales", menuInsights: "Perspectivas", about: "Sobre Nosotros", contact: "Contacto",
         pageMainTitle: "Representación Legal Ante las Autoridades Judiciales",
-        contentBody: "El bufete asume la representación legal y la defensa de nuestros clientes en todo tipo de demandas judiciales. El despacho se ha forjado una sólida reputación profesional al ofrecer la mejor representación legal en todos los tribunales y grados en todo Irak, trabajando con dedicación para lograr los mejores resultados posibles.",
+        contentBody: "El bufete asume la representación legal y la defensa de nuestros clientes en todo tipo de demandas judiciales. El despacho se ha forjado una sólida reputación profesional al ofrecer la mejor representación legal en todos los tribunales en todo Irak.<br><br>Se dedica el tiempo suficiente a estudiar los detalles de cada caso, proporcionar consultas precisas y redactar una estrategia legal sólida.",
         btnBook: "📅 Haga clic aquí para ir a la página de reservas",
         backLink: "← Volver a la lista de servicios",
-        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
+        privacyText: "Privacy Policy", disclaimerText: "Disclaimer", codeText: "Code of Conduct", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       de: {
-        pageTitle: "Gerichtliche Vertretung vor Justizbehörden im Irak | Kanzlei Ali Kadhem Hashimi",
-        metaDesc: "Professionelle rechtliche Vertretung und Prozessführung für Mandanten in allen Arten von Klagen und Gerichten im Irak unter Leitung von Ali Kadhem.",
-        metaKeywords: "Gerichtliche Vertretung Irak, Prozessanwalt Bagdad, Streitbeilegung Irak, Anwalt für Gerichtsverfahren",
+        pageTitle: "Gerichtliche Vertretung vor Justizbehörden im Irak | Kanzlei AKH",
+        metaDesc: "Professionelle rechtliche Vertretung und Prozessführung für Mandanten in allen Arten von Klagen im Irak.",
+        metaKeywords: "Gerichtliche Vertretung Irak, Prozessanwalt Bagdad, Streitbeilegung",
         home: "Startseite", menuServices: "Dienste", menuConsultations: "Rechtliche Beratung", menuInsights: "Einblicke", about: "Über uns", contact: "Kontakt",
         pageMainTitle: "Gerichtliche Vertretung vor den Justizbehörden",
-        contentBody: "Die Kanzlei übernimmt die rechtliche Vertretung und Prozessführung für unsere Mandanten in allen Arten von Rechtsstreitigkeiten. Die Kanzlei hat sich einen soliden professionellen Ruf aufgebaut, indem sie die beste rechtliche Vertretung vor allen Gerichten im gesamten Irak bietet und engagiert daran arbeitet, bestmögliche Ergebnisse zu erzielen.",
+        contentBody: "Die Kanzlei übernimmt die rechtliche Vertretung und Prozessführung für unsere Mandanten in allen Arten von Rechtsstreitigkeiten. Die Kanzlei hat sich einen soliden professionellen Ruf aufgebaut, indem sie die beste rechtliche Vertretung bietet.<br><br>Es wird genügend Zeit darauf verwendet, die Details jedes Falles zu studieren, präzise Beratungen anzubieten und eine solide Rechtsstrategie auszuarbeiten.",
         btnBook: "📅 Klicken Sie hier, um zur Buchungsseite zu gelangen",
         backLink: "← Zurück zur Dienstleistungsliste",
-        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
+        privacyText: "Privacy Policy", disclaimerText: "Disclaimer", codeText: "Code of Conduct", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       ku: {
-        pageTitle: "نوێنەرایەتی یاسایی لەبەردەم دادگاکان و دەسەڵاتی دادوەری لە عێراق | نووسینگەی پارێزەر",
-        metaDesc: "نوێنەرایەتی یاسایی پیشەیی و بریوکاری بۆ کڕیارەکان لە هەموو جۆرە داوایەک و دادگایەک لە عێراق لە ژێر چاودێری نووسینگەی پارێزەر عەلی کازمی هاشمی.",
-        metaKeywords: "نوێنەرایەتی یاسایی لە عێراق, پارێزەری دادگا بغداد, دادبینیکردن لە عێراق",
+        pageTitle: "نوێنەرایەتی یاسایی لەبەردەم دادگاکان لە عێراق | نووسینگەی پارێزەر",
+        metaDesc: "نوێنەرایەتی یاسایی پیشەیی و بریوکاری بۆ کڕیارەکان لە هەموو جۆرە داوایەک لە عێراق.",
+        metaKeywords: "نوێنەرایەتی یاسایی لە عێراق, پارێزەری دادگا بغداد",
         home: "سەرەکی", menuServices: "خزمەتگوزارییەکان", menuConsultations: "ڕاوێژی یاسایی", menuInsights: "تێڕوانینەکان", about: "دەرباره‌ی ئێمە", contact: "پەیوەندی",
         pageMainTitle: "نوێنەرایەتی یاسایی لەبەردەم دەسەڵاتی دادوەریدا",
-        contentBody: "نووسینگە بریوکاری یاسایی و نوێنەرایەتی کڕیارەکانمان لە هەموو جۆرە داوایەکی دادوەریدا لە ئەستۆ دەگرێت. نووسینگە ناوبانگی پیشەیی خۆی بنیاد ناوە لە پێشکەشکردنی باشترین نوێنەرایەتی یاسایی لەسەر ئاستی هەموو دادگاکان لە سەرجەم عێراقدا، و بە دڵسۆزییەوە کار دەکات بۆ بەدەستهێنانی باشترین ئەنجامە یاساییەکان.",
+        contentBody: "نووسینگە بریوکاری یاسایی و نوێنەرایەتی کڕیارەکانمان لە هەموو جۆرە داوایەکی دادوەریدا لە ئەستۆ دەگرێت. نووسینگە ناوبانگی پیشەیی خۆی بنیاد ناوە لە پێشکەشکردنی باشترین نوێنەرایەتی یاسایی لەسەر ئاستی هەموو دادگاکان لە سەرجەم عێراقدا.<br><br>کاتی پێویست تەرخان دەکرێت بۆ لێکۆڵینەوە لە وردەکارییەکان و دابینکردنی ڕاوێژی ورد و داڕشتنی ستراتیژییەکی یاسایی پته‌و.",
         btnBook: "📅 کلیک لێرە بکە بۆ گواستنەوە بۆ لاپەڕەی حجز",
         backLink: "← گەڕانەوە بۆ خشتەی خزمەتگوزارییەکان",
-        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
+        privacyText: "Privacy Policy", disclaimerText: "Disclaimer", codeText: "Code of Conduct", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       }
     };
   </script>
