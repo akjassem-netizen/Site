@@ -119,7 +119,7 @@
       top: calc(100% + 10px);
       right: 0;
       left: auto;
-      min-width: 260px;
+      min-width: 280px;
       background: #0f172a;
       border: 1.5px solid #c5a059;
       border-radius: 10px;
@@ -242,6 +242,24 @@
     }
     .content-card ul { margin-right: 20px; margin-bottom: 15px; }
 
+    /* صندوق ملاحظة السرية وقواعد السلوك داخل المقال */
+    .conduct-notice-box {
+      background: #f8fafc;
+      border-right: 4px solid #c5a059;
+      padding: 16px 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      font-size: 13.5px;
+      color: #334155;
+      line-height: 1.7;
+    }
+    .conduct-notice-box a {
+      color: #0f172a;
+      font-weight: 700;
+      text-decoration: underline;
+    }
+    .conduct-notice-box a:hover { color: #c5a059; }
+
     /* أزرار الحجز والواتساب المزدوجة داخل المقال */
     .cta-buttons-box {
       display: flex;
@@ -300,24 +318,44 @@
     }
     .back-home-link:hover { color: #c5a059; }
 
-    /* الفوتر ورابط سياسة الخصوصية */
+    /* الفوتر بمعالجة الروابط في سطر أفقي واحد */
     .site-footer {
       text-align: center;
-      padding: 25px;
-      font-size: 13px;
+      padding: 22px 10px;
+      font-size: 12px;
       color: #64748b;
       border-top: 1px solid #e2e8f0;
       margin-top: 50px;
       background: #ffffff;
     }
-    .site-footer a {
+    .footer-legal-links {
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      overflow-x: auto;
+      padding: 2px 0;
+    }
+    .footer-legal-links a {
       color: #0f172a;
       text-decoration: none;
       font-weight: 700;
-      margin: 0 10px;
+      font-size: 11.5px;
     }
-    .site-footer a:hover {
+    .footer-legal-links a:hover {
       color: #c5a059;
+    }
+    .footer-legal-links .separator {
+      color: #cbd5e1;
+      font-weight: 400;
+    }
+    .site-footer span.copy-text {
+      color: #64748b;
+      display: block;
+      margin-top: 4px;
+      font-size: 11px;
     }
   </style>
 
@@ -353,6 +391,7 @@
         <a href="/consultations/" id="menuConsultations">الاستشارات القانونية</a>
         <a href="/insights/" id="menuInsights">الآراء والرؤى القانونية (Insights)</a>
         <a href="/about/" id="menuAbout">من نحن</a>
+        <a href="/code-of-conduct.html" id="menuCodeOfConduct">قواعد السلوك المهني وأخلاقيات العمل</a>
         <a href="/contact/" id="menuContact">اتصل بنا</a>
       </div>
     </div>
@@ -393,10 +432,15 @@
         <h3 id="subHeading2">مجالات الاستشارات القانونية المتخصصة:</h3>
         <ul id="serviceList">
           <li>توفير النصح والمشورة في القانون التجاري وقانون الشركات.</li>
-          <li>الاستشارات القانونية المتعلقة بالقانون العقاري، العمالي، الجنائي، والإداري والضريبي.</li>
+          <li>الاستشارات القانونية المتعلقة بالقانون العقاري، العمالي، الجنائي، والإداري والضريبية.</li>
           <li>إعداد وصياغة وتدقيق الوثائق والعقود والاتفاقيات والوكالات الرسمية.</li>
           <li>توضيح اللوائح والتشريعات بأسلوب مبسط لحل النزاعات وتفادي المخاطر المستقبلية.</li>
         </ul>
+
+        <!-- إشعار السرية وقواعد السلوك المهني لزيادة الثقة عند الحجز -->
+        <div class="conduct-notice-box">
+          <strong>🔒 الالتزام بالسرية المؤسسية:</strong> تخضع كافة الاستشارات وجلسات الحجز لصارم معايير السرية المطلقة و<a href="/code-of-conduct.html">قواعد السلوك المهني</a> المعتمدة في مكتبنا. كما يُرجى الاطلاع على <a href="/disclaimer/">إخلاء المسؤولية</a> المتعلق بتبادل الاستشارات الأولية.
+        </div>
 
         <h3 id="subHeading3">آلية حجز الاستشارة المباشرة:</h3>
         <p id="subHeading3Desc">نحرص على تقديم خدمة متميزة واستجابة سريعة لمتطلباتك. يتم تنظيم حجوزات المواعيد عبر استمارة الحجز الرسمية لضمان تنظيم الوقت وتقديم الخدمة بكفاءة عالية، أو التواصل الفوري عبر الواتساب المباشر.</p>
@@ -413,10 +457,16 @@
 
   </main>
 
-  <!-- الفوتر ورابط سياسة الخصوصية -->
+  <!-- الفوتر بمعالجة الروابط القانونية في سطر أفقي واحد متناسق -->
   <footer class="site-footer">
-    <a href="/privacy/">سياسة الخصوصية</a> | 
-    <span>جميع الحقوق محفوظة © 2026 مكتب المحامي علي كاظم الهاشمي</span>
+    <div class="footer-legal-links">
+      <a href="/privacy/">سياسة الخصوصية</a>
+      <span class="separator">|</span>
+      <a href="/disclaimer/">إخلاء المسؤولية</a>
+      <span class="separator">|</span>
+      <a href="/code-of-conduct.html">قواعد السلوك المهني</a>
+    </div>
+    <span class="copy-text">جميع الحقوق محفوظة © 2026 مكتب المحامي علي كاظم الهاشمي</span>
   </footer>
 
   <script>
