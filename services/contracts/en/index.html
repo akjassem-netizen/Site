@@ -172,25 +172,45 @@
     .back-link { display: block; margin-top: 5px; font-size: 13px; color: #64748b; text-decoration: none; }
     .back-link:hover { color: #0f172a; }
 
-    /* تنسيق الفوتر */
+    /* تنسيق الفوتر بمعالجة سطر واحد متناسق */
     .site-footer {
       text-align: center;
-      padding: 25px;
-      font-size: 13px;
+      padding: 22px 10px;
+      font-size: 12px;
       color: #64748b;
       border-top: 1px solid #e2e8f0;
-      margin-top: 40px;
+      margin-top: 50px;
       background: #ffffff;
       width: 100%;
     }
-    .site-footer a {
+    .footer-legal-links {
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      overflow-x: auto;
+      padding: 2px 0;
+    }
+    .footer-legal-links a {
       color: #0f172a;
       text-decoration: none;
       font-weight: 700;
-      margin: 0 10px;
+      font-size: 11.5px;
     }
-    .site-footer a:hover {
+    .footer-legal-links a:hover {
       color: #c5a059;
+    }
+    .footer-legal-links .separator {
+      color: #cbd5e1;
+      font-weight: 400;
+    }
+    .site-footer span.copy-text {
+      color: #64748b;
+      display: block;
+      margin-top: 4px;
+      font-size: 11px;
     }
   </style>
 </head>
@@ -214,10 +234,11 @@
       <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu">☰</button>
       <div id="dropdownMenu" class="dropdown-menu">
         <a href="https://akjassem.com/en/" id="menuHome">Home</a>
-        <a href="/services/" id="menuServices">Legal Services Directory</a>
+        <a href="/services/en/" id="menuServices">Legal Services Directory</a>
         <a href="https://akjassem.com/consultations/en/" id="menuConsultations">Legal Consultations</a>
         <a href="https://akjassem.com/insights/en/" id="menuInsights">Iraq Legal Insights</a>
-        <a href="../" id="menuAbout">عربي / Arabic (Service)</a>
+        <a href="../" id="menuAbout">Arabic (Service)</a>
+        <a href="/code-of-conduct-en.html" id="menuCodeOfConduct">Code of Conduct</a>
         <a href="https://akjassem.com/contact/en/" id="menuContact">Contact Us</a>
       </div>
     </div>
@@ -240,14 +261,20 @@
       <a href="/booking/en/" target="_blank" class="btn-booking" id="btnBookText">
         <span>📅 Click here to go to the appointment booking page</span>
       </a>
-      <a href="/services/" class="back-link" id="backLinkText">← Back to Services List</a>
+      <a href="/services/en/" class="back-link" id="backLinkText">← Back to Services List</a>
     </div>
   </div>
 
-  <!-- الفوتر ورابط سياسة الخصوصية -->
+  <!-- الفوتر بمعالجة سطر واحد متناسق -->
   <footer class="site-footer">
-    <a href="/privacy/en/" id="footerLink">Privacy Policy</a> | 
-    <span id="footerRights">All Rights Reserved © 2026 AKH Law Office</span>
+    <div class="footer-legal-links">
+      <a href="/privacy/en/" id="footerPrivacy">Privacy Policy</a>
+      <span class="separator">|</span>
+      <a href="/disclaimer/en/" id="footerDisclaimer">Disclaimer</a>
+      <span class="separator">|</span>
+      <a href="/code-of-conduct-en.html" id="footerCode">Code of Conduct</a>
+    </div>
+    <span class="copy-text" id="footerRights">All Rights Reserved © 2026 AKH Law Office</span>
   </footer>
 
   <script>
@@ -297,6 +324,7 @@
       document.getElementById('menuConsultations').innerText = t.menuConsultations;
       document.getElementById('menuInsights').innerText = t.menuInsights;
       document.getElementById('menuAbout').innerText = t.about;
+      document.getElementById('menuCodeOfConduct').innerText = t.codeText;
       document.getElementById('menuContact').innerText = t.contact;
 
       document.getElementById('pageMainTitle').innerText = t.pageMainTitle;
@@ -304,8 +332,9 @@
       document.getElementById('btnBookText').innerHTML = `<span>${t.btnBook}</span>`;
       document.getElementById('backLinkText').innerText = t.backLink;
 
-      document.getElementById('footerLink').innerText = t.privacyText;
-      document.getElementById('footerLink').href = '/privacy/en/';
+      document.getElementById('footerPrivacy').innerText = t.privacyText;
+      document.getElementById('footerDisclaimer').innerText = t.disclaimerText;
+      document.getElementById('footerCode').innerText = t.codeText;
       document.getElementById('footerRights').innerText = t.rightsText;
 
       document.getElementById('languageSelect').value = lang;
@@ -316,78 +345,78 @@
         pageTitle: "Commercial & Civil Contract Preparation, Drafting and Review in Iraq | AKH Law Office",
         metaDesc: "Specialized legal services in preparing, drafting, and reviewing all types of commercial and civil contracts under Iraqi legislation.",
         metaKeywords: "Commercial contract drafting, contract review Iraq, business lawyer Baghdad, legal contract drafting Iraq, corporate contracts Baghdad",
-        home: "Home", menuServices: "Legal Services Directory", menuConsultations: "Legal Consultations", menuInsights: "Iraq Legal Insights", about: "About Us", contact: "Contact Us",
+        home: "Home", menuServices: "Legal Services Directory", menuConsultations: "Legal Consultations", menuInsights: "Iraq Legal Insights", menuAbout: "About Us", menuContact: "Contact Us",
         pageMainTitle: "Commercial & Civil Contract Preparation, Drafting and Review",
         contentBody: "The Law Office of Ali Kadhem Hashimi provides a comprehensive and professional service for individuals and corporations in preparing, drafting, reviewing, and documenting all types of contracts. This service aims to provide the necessary legal and advisory support in all aspects of contracting to ensure the protection of our clients' rights and the achievement of their interests with the highest standards of accuracy and legal security.",
         btnBook: "📅 Click here to go to the appointment booking page",
         backLink: "← Back to Services List",
-        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
+        privacyText: "Privacy Policy", disclaimerText: "Disclaimer", codeText: "Code of Conduct", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       tr: {
         pageTitle: "Irak'ta Ticari ve Medeni Sözleşmelerin Hazırlanması ve İncelenmesi | Av. Ali Kazım",
-        metaDesc: "Irak mevzuatına uygun olarak her türlü ticari ve medeni sözleşmenin hazırlanması, taslağı, incelenmesi ve belgelendirilmesinde uzman hukuki hizmetler.",
-        metaKeywords: "Ticari sözleşme hazırlama, sözleşme inceleme Irak, Bağdat avukat, hukuki sözleşmeler",
+        metaDesc: "Irak mevzuatına uygun olarak her türlü ticari ve medeni sözleşmenin hazırlanması, taslağı, incelenmesi.",
+        metaKeywords: "Ticari sözleşme hazırlama, sözleşme inceleme Irak, Bağdat avukat",
         home: "Ana Sayfa", menuServices: "Hizmetler", menuConsultations: "Hukuki Danışmanlık", menuInsights: "İçgörüler", about: "Hakkımızda", contact: "İletişim",
         pageMainTitle: "Ticari ve Medeni Sözleşmelerin Hazırlanması, Taslağı ve İncelenmesi",
-        contentBody: "Av. Ali Kazım Haşimi Hukuk Bürosu, bireylere ve şirketlere her türlü sözleşmenin hazırlanması, taslağı, incelenmesi ve belgelendirilmesi konusunda kapsamlı ve profesyonel hizmet sunmaktadır. Bu hizmet, müvekkillerimizin haklarını korumak ve çıkarlarını en yüksek doğruluk ve hukuki güvenlik standartlarıyla güvence altına almak için gerekli hukuki ve danışmanlık desteğini sağlamayı amaçlamaktadır.",
+        contentBody: "Av. Ali Kazım Haşimi Hukuk Bürosu, bireylere ve şirketlere her türlü sözleşmenin hazırlanması, taslağı, incelenmesi ve belgelendirilmesi konusunda kapsamlı ve profesyonel hizmet sunmaktadır.",
         btnBook: "📅 Randevu rezervasyon sayfasına gitmek için tıklayın",
         backLink: "← Hizmetler Listesine Dön",
-        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
+        privacyText: "Gizlilik Politikası", disclaimerText: "Yasal Uyarı", codeText: "Mesleki Etik Kuralları", rightsText: "Tüm Hakları Saklıdır © 2026 AKH Law Office"
       },
       zh: {
         pageTitle: "伊拉克商事与民事合同的准备、起草与审查 | 阿里·卡德姆·哈希米律所",
-        metaDesc: "根据伊拉克法律法规，专业提供各类商事及民事合同的准备、起草、审查与公证服务，以保护企业和个人权益。",
-        metaKeywords: "商业合同起草, 合同审查伊拉克, 巴格达合同律师, 法律合同起草伊拉克",
+        metaDesc: "根据伊拉克法律法规，专业提供各类商事及民事合同的准备、起草、审查与公证服务。",
+        metaKeywords: "商业合同起草, 合同审查伊拉克, 巴格达合同律师",
         home: "首页", menuServices: "法律服务", menuConsultations: "法律咨询", menuInsights: "法律洞察", about: "关于我们", contact: "联系我们",
         pageMainTitle: "商事与民事合同的准备、起草与审查",
-        contentBody: "阿里·卡德姆·哈希米律所为个人和企业提供全面且专业的服务，涵盖各类合同的准备、起草、审查与公证。本服务旨在为签约各环节提供必要的法律与咨询支持，以最高标准的准确性和法律安全性确保客户权益并实现其利益。",
+        contentBody: "阿里·卡德姆·哈希米律所为个人和企业提供全面且专业的服务，涵盖各类合同的准备、起草、审查与公证。",
         btnBook: "📅 点击此处跳转至预约页面",
         backLink: "← 返回服务列表",
-        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
+        privacyText: "隐私政策", disclaimerText: "免责声明", codeText: "行为准则", rightsText: "版权所有 © 2026 AKH Law Office"
       },
       fr: {
         pageTitle: "Préparation, Rédaction et Révision de Contrats Commerciaux et Civils en Iraq | AKH",
-        metaDesc: "Services juridiques spécialisés dans la préparation, la rédaction, la révision et la documentation de tous types de contrats commerciaux et civils en Iraq.",
-        metaKeywords: "Rédaction de contrats commerciaux, révision de contrats Irak, avocat en contrats Bagdad, contrats d'entreprise Irak",
+        metaDesc: "Services juridiques spécialisés dans la préparation, la rédaction, la révision de contrats commerciaux et civils.",
+        metaKeywords: "Rédaction de contrats commerciaux, révision de contrats Irak, avocat Bagdad",
         home: "Accueil", menuServices: "Services", menuConsultations: "Consultations Juridiques", menuInsights: "Aperçus", about: "À Propos", contact: "Contact",
         pageMainTitle: "Préparation, Rédaction et Révision de Contrats Commerciaux et Civils",
-        contentBody: "Le Cabinet d'Avocats Ali Kadhem Hashimi offre un service complet et professionnel aux particuliers et aux entreprises dans la préparation, la rédaction, la révision et la documentation de tous types de contrats. Ce service vise à fournir un soutien juridique et consultatif pour assurer la protection des droits de nos clients avec les plus hauts standards de sécurité juridique.",
+        contentBody: "Le Cabinet d'Avocats Ali Kadhem Hashimi offre un service complet et professionnel aux particuliers et aux entreprises dans la préparation, la rédaction, la révision et la documentation de tous types de contrats.",
         btnBook: "📅 Cliquez ici pour accéder à la page de réservation",
         backLink: "← Retour à la liste des services",
-        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
+        privacyText: "Politique de Confidentialité", disclaimerText: "Avertissement", codeText: "Code de Conduite", rightsText: "Tous Droits Réservés © 2026 AKH Law Office"
       },
       es: {
         pageTitle: "Preparación, Redacción y Revisión de Contratos Comerciales y Civiles en Irak | AKH",
-        metaDesc: "Servicios legales especializados en la preparación, redacción, revisión y documentación de todo tipo de contratos comerciales y civiles en Irak.",
-        metaKeywords: "Redacción de contratos comerciales, revisión de contratos Irak, abogado de contratos Bagdad, contratos corporativos Irak",
+        metaDesc: "Servicios legales especializados en la preparación, redacción, revisión y documentación de contratos.",
+        metaKeywords: "Redacción de contratos comerciales, revisión de contratos Irak",
         home: "Inicio", menuServices: "Servicios", menuConsultations: "Consultas Legales", menuInsights: "Perspectivas", about: "Sobre Nosotros", contact: "Contacto",
         pageMainTitle: "Preparación, Redacción y Revisión de Contratos Comerciales y Civiles",
-        contentBody: "El Bufete de Abogados Ali Kadhem Hashimi ofrece un servicio integral y profesional para particulares y empresas en la preparación, redacción, revisión y documentación de todo tipo de contratos. Este servicio tiene como objetivo proporcionar el apoyo legal y de asesoramiento necesario para garantizar la protección de los derechos de nuestros clientes con los más altos estándares de seguridad jurídica.",
+        contentBody: "El Bufete de Abogados Ali Kadhem Hashimi ofrece un servicio integral y profesional para particulares y empresas en la preparación, redacción, revisión y documentación de todo tipo de contratos.",
         btnBook: "📅 Haga clic aquí para ir a la página de reservas",
         backLink: "← Volver a la lista de servicios",
-        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
+        privacyText: "Política de Privacidad", disclaimerText: "Aviso Legal", codeText: "Código de Conducta", rightsText: "Todos los Derechos Reservados © 2026 AKH Law Office"
       },
       de: {
         pageTitle: "Erstellung, Entwurf und Prüfung von Handels- und Zivilverträgen im Irak | Kanzlei AKH",
-        metaDesc: "Spezialisierte Rechtsdienste bei der Erstellung, Ausarbeitung, Prüfung und Dokumentation aller Arten von Handels- und Zivilverträgen im Irak.",
-        metaKeywords: "Handelsvertragsgestaltung, Vertragsprüfung Irak, Anwalt für Verträge Bagdad, juristische Verträge Irak",
+        metaDesc: "Spezialisierte Rechtsdienste bei der Erstellung, Ausarbeitung, Prüfung von Verträgen im Irak.",
+        metaKeywords: "Handelsvertragsgestaltung, Vertragsprüfung Irak, Anwalt Bagdad",
         home: "Startseite", menuServices: "Dienste", menuConsultations: "Rechtliche Beratung", menuInsights: "Einblicke", about: "Über uns", contact: "Kontakt",
         pageMainTitle: "Erstellung, Entwurf und Prüfung von Handels- und Zivilverträgen",
-        contentBody: "Die Kanzlei Ali Kadhem Hashimi bietet Einzelpersonen und Unternehmen einen umfassenden und professionellen Service bei der Erstellung, Ausarbeitung, Prüfung und Dokumentation aller Arten von Verträgen. Dieser Service zielt darauf ab, die notwendige rechtliche und beratende Unterstützung in allen vertraglichen Aspekten zu bieten, um den Schutz der Rechte unserer Mandanten mit höchster Genauigkeit zu gewährleisten.",
+        contentBody: "Die Kanzlei Ali Kadhem Hashimi bietet Einzelpersonen und Unternehmen einen umfassenden und professionellen Service bei der Erstellung, Ausarbeitung, Prüfung und Dokumentation aller Arten von Verträgen.",
         btnBook: "📅 Klicken Sie hier, um zur Buchungsseite zu gelangen",
         backLink: "← Zurück zur Dienstleistungsliste",
-        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
+        privacyText: "Datenschutz", disclaimerText: "Haftungsausschluss", codeText: "Verhaltenskodex", rightsText: "Alle Rechte vorbehalten © 2026 AKH Law Office"
       },
       ku: {
-        pageTitle: "ئامادەکردن، داڕشتن و پێداچوونەوەی گرێبەستە بازرگانی و مەدەنییەکان لە عێراق | نووسینگە",
-        metaDesc: "خزمەتگوزاری یاسایی تایبەتمەند لە ئامادەکردن، داڕشتن، پێداچوونەوە و بەلگەنامەکردنی هەموو جۆرە گرێبەستێکی بازرگانی و مەدەنی لە عێراق.",
-        metaKeywords: "ئامادەکردن و ڕێکخستنی گرێبەستەکان, پێداچوونەوەی گرێبەست لە عێراق, پارێزەری گرێبەستەکان بغداد",
+        pageTitle: "ئامادەکردن، داڕشتن و پێداچوونەوەی گرێبەستە بازرگانی و مەدەنییەکان | نووسینگە",
+        metaDesc: "خزمەتگوزاری یاسایی تایبەتمەند لە ئامادەکردن، داڕشتن، پێداچوونەوەی گرێبەستەکان لە عێراق.",
+        metaKeywords: "ئامادەکردن و ڕێکخستنی گرێبەستەکان, پێداچوونەوەی گرێبەست لە عێراق",
         home: "سەرەکی", menuServices: "خزمەتگوزارییەکان", menuConsultations: "ڕاوێژی یاسایی", menuInsights: "تێڕوانینەکان", about: "دەرباره‌ی ئێمە", contact: "پەیوەندی",
         pageMainTitle: "ئامادەکردن، داڕشتن و پێداچوونەوەی گرێبەستە بازرگانی و مەدەنییەکان",
-        contentBody: "نووسینگەی پارێزەر عەلی کازمی هاشمی خزمەتگوزارییەکی گشتگیر و پیشەیی بۆ تاک و کۆمپانیاکان پێشکەش دەکات لە ئامادەکردن، داڕشتن، پێداچوونەوە و بەلگەنامەکردنی هەموو جۆرە گرێبەستێکدا. ئەم خزمەتگوزارییە ئامانجی دابینکردنی پشتگیری یاسایی و ڕاوێژکارییە بۆ مسۆگەرکردنی پاراستنی مافی کڕیارەکانمان بە بەرزترین ئاستی وردبینی و سەلامەتی یاسایی.",
+        contentBody: "نووسینگەی پارێزەر عەلی کازمی هاشمی خزمەتگوزارییەکی گشتگیر و پیشەیی بۆ تاک و کۆمپانیاکان پێشکەش دەکات لە ئامادەکردن، داڕشتن، پێداچوونەوە و بەلگەنامەکردنی هەموو جۆرە گرێبەستێکدا.",
         btnBook: "📅 کلیک لێرە بکە بۆ گواستنەوە بۆ لاپەڕەی حجز",
         backLink: "← گەڕانەوە بۆ خشتەی خزمەتگوزارییەکان",
-        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
+        privacyText: "سیاسەتی تایبەتمەندی", disclaimerText: "بەرپرسیارێتی", codeText: "ڕەفتاری پیشەیی", rightsText: "هەموو مافەکان پارێزراون © 2026 AKH Law Office"
       }
     };
   </script>
