@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" id="htmlRoot">
 <head>
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WL4KNM0PG1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -345,39 +344,39 @@
       <h2 class="services-section-title" id="servicesTitle">خدماتنا القانونية التخصصية</h2>
       
       <div class="services-grid" id="servicesGrid">
-        <a href="/services/corporate/" class="service-card">
+        <a href="/services/corporate/" class="service-card" id="cardS1">
           <div><h3 id="s1Title">تأسيس الشركات بأنواعها</h3><p id="s1Desc">تأسيس الشركات المحلية والأجنبية، صياغة عقود التأسيس، وفتح الحسابات المصرفية.</p></div>
           <span class="card-link" id="s1Link">التفاصيل والحجز ←</span>
         </a>
-        <a href="/services/litigation/" class="service-card">
+        <a href="/services/litigation/" class="service-card" id="cardS2">
           <div><h3 id="s2Title">التمثيل القانوني أمام القضاء</h3><p id="s2Desc">النيابة القانونية والمرافعات في كافة المحاكم والدرجات القضائية في العراق.</p></div>
           <span class="card-link" id="s2Link">التفاصيل والحجز ←</span>
         </a>
-        <a href="/services/financial-rights/" class="service-card">
+        <a href="/services/financial-rights/" class="service-card" id="cardS3">
           <div><h3 id="s3Title">تحصيل وتسوية الحقوق المالية</h3><p id="s3Desc">تحصيل الديون، توجيه الإنذارات الرسمية، وإتمام التسويات المالية والتجارية.</p></div>
           <span class="card-link" id="s3Link">التفاصيل والحجز ←</span>
         </a>
-        <a href="/services/investment-licenses/" class="service-card">
+        <a href="/services/investment-licenses/" class="service-card" id="cardS4">
           <div><h3 id="s4Title">إصدار تراخيص الاستثمار الأجنبي</h3><p id="s4Desc">دعم واستحصال إجازات الاستثمار والتراخيص الرسمية للمشاريع الاستثمارية.</p></div>
           <span class="card-link" id="s4Link">التفاصيل والحجز ←</span>
         </a>
-        <a href="/services/trademarks/" class="service-card">
+        <a href="/services/trademarks/" class="service-card" id="cardS5">
           <div><h3 id="s5Title">العلامات التجارية والملكية الفكرية</h3><p id="s5Desc">حماية حقوق الملكية الفكرية، النماذج الصناعية، والابتكارات التجارية.</p></div>
           <span class="card-link" id="s5Link">التفاصيل والحجز ←</span>
         </a>
-        <a href="/services/contracts/" class="service-card">
+        <a href="/services/contracts/" class="service-card" id="cardS6">
           <div><h3 id="s6Title">إعداد وصياغة ومراجعة العقود</h3><p id="s6Desc">صياغة وتدقيق العقود التجارية والمدنية وتوثيقها وفق القوانين النافذة.</p></div>
           <span class="card-link" id="s6Link">التفاصيل والحجز ←</span>
         </a>
-        <a href="/services/personal-status/" class="service-card">
+        <a href="/services/personal-status/" class="service-card" id="cardS7">
           <div><h3 id="s7Title">الأحوال الشخصية والتنفيذ القضائي</h3><p id="s7Desc">دعاوى الأسرة، القسام الشرعي، النفقة، الحضانة، ومتابعة مديريات التنفيذ.</p></div>
           <span class="card-link" id="s7Link">التفاصيل والحجز ←</span>
         </a>
-        <a href="/services/tax-advisory/" class="service-card">
+        <a href="/services/tax-advisory/" class="service-card" id="cardS8">
           <div><h3 id="s8Title">الاستشارات الضريبية والامتثال</h3><p id="s8Desc">هيكلة الضرائب، التسجيل لدى الهيئات الضريبية، وضمان الامتثال المالي.</p></div>
           <span class="card-link" id="s8Link">التفاصيل والحجز ←</span>
         </a>
-        <a href="/services/real-estate/" class="service-card">
+        <a href="/services/real-estate/" class="service-card" id="cardS9">
           <div><h3 id="s9Title">الخدمات القانونية والعقارية</h3><p id="s9Desc">توثيق العقود العقارية، السندات، الخرائط، وتسوية النزاعات العقارية.</p></div>
           <span class="card-link" id="s9Link">التفاصيل والحجز ←</span>
         </a>
@@ -385,7 +384,6 @@
     </section>
   </main>
 
-  <!-- ذيل الصفحة بمعالجة سطر واحد متناسق -->
   <footer class="site-footer">
     <div class="footer-legal-links">
       <a href="/privacy/" id="footerPrivacy">سياسة الخصوصية</a>
@@ -449,11 +447,13 @@
       document.getElementById('menuCodeOfConduct').innerText = t.menuCodeOfConduct;
       document.getElementById('menuContact').innerText = t.contact;
 
-      // ضبط الروابط بدقة لتعمل بسلاسة داخل النسخة الأجنبية
-      document.getElementById('menuAbout').href = '/about/en/';
-      document.getElementById('menuContact').href = '/contact/en/';
-      document.getElementById('menuConsultations').href = '/consultations/en/';
-      document.getElementById('menuInsights').href = '/insights/en/';
+      // ضبط الروابط بدقة لتعمل بسلاسة وتوجه للنسخ الأجنبية (بما فيها دليل الخدمات)
+      const isArabic = (lang === 'ar');
+      document.getElementById('menuServices').href = isArabic ? '/services/' : '/services/en/';
+      document.getElementById('menuAbout').href = isArabic ? '/about/' : '/about/en/';
+      document.getElementById('menuContact').href = isArabic ? '/contact/' : '/contact/en/';
+      document.getElementById('menuConsultations').href = isArabic ? '/consultations/' : '/consultations/en/';
+      document.getElementById('menuInsights').href = isArabic ? '/insights/' : '/insights/en/';
 
       document.getElementById('heroTitle').innerText = t.heroTitle;
       document.getElementById('heroSubtitle').innerText = t.heroSubtitle;
@@ -472,11 +472,11 @@
       document.getElementById('s9Title').innerText = t.s9Title; document.getElementById('s9Desc').innerText = t.s9Desc; document.getElementById('s9Link').innerText = t.s9Link;
 
       document.getElementById('footerPrivacy').innerText = t.privacyText;
-      document.getElementById('footerPrivacy').href = '/privacy/en/';
+      document.getElementById('footerPrivacy').href = isArabic ? '/privacy/' : '/privacy/en/';
       document.getElementById('footerDisclaimer').innerText = t.disclaimerText;
-      document.getElementById('footerDisclaimer').href = '/disclaimer-en.html';
+      document.getElementById('footerDisclaimer').href = isArabic ? '/disclaimer/' : '/disclaimer-en.html';
       document.getElementById('footerCode').innerText = t.codeText;
-      document.getElementById('footerCode').href = '/code-of-conduct-en.html';
+      document.getElementById('footerCode').href = '/code-of-conduct.html';
       document.getElementById('footerRights').innerText = t.rightsText;
 
       document.getElementById('languageSelect').value = lang;
@@ -513,7 +513,7 @@
         heroCta: "📅 Resmi Randevu Al",
         servicesTitle: "Uzmanlık Gerektiren Hukuki Hizmetler",
         s1Title: "Şirket Kuruluşu", s1Desc: "Yerli ve yabancı şirketlerin kuruluşu, ana sözleşme hazırlama ve banka hesap açılışı.", s1Link: "Detaylar ve Randevu →",
-        s2Title: "Yargı ve Dava Temsiliyeti", s2Desc: "Irak'taki tüm mahkemelerde hukuki temsil ve avukatlık hizmetleri.", s1Link: "Detaylar ve Randevu →", s2Link: "Detaylar ve Randevu →",
+        s2Title: "Yargı ve Dava Temsiliyeti", s2Desc: "Irak'taki tüm mahkemelerde hukuki temsil ve avukatlık hizmetleri.", s2Link: "Detaylar ve Randevu →",
         s3Title: "Mali Haklar ve Borç Tahsilatı", s3Desc: "Borç tahsilatı, resmi ihtarnameler ve ticari uzlaşmalar.", s3Link: "Detaylar ve Randevu →",
         s4Title: "Yabancı Yatırım Lisansları", s4Desc: "Yatırım projeleri için lisans ve resmi izinlerin alınması.", s4Link: "Detaylar ve Randevu →",
         s5Title: "Ticari Markalar ve Fikri Mülkiyet", s5Desc: "Fikri mülkiyet haklarının korunması ve tescili.", s5Link: "Detaylar ve Randevu →",
