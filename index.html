@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" id="htmlRoot">
 <head>
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WL4KNM0PG1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -13,9 +14,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>مكتب المحامي علي كاظم الهاشمي | الاستشارات والخدمات القانونية في العراق</title>
-  <meta name="description" content="الموقع الرسمي لمكتب المحامي علي كاظم الهاشمي في بغداد. تأسست في 2014. خدمات قانونية متكاملة: تأسيس الشركات، التمثيل القضائي، الاستشارات الضريبية، والعقود. | AKH Law Office Iraq">
-  <meta name="keywords" content="مكتب المحامي علي كاظم الهاشمي, محامي في بغداد, خدمات قانونية في العراق, تأسيس شركات بغداد, تمثيل قضائي, تحصيل الديون, استشارات ضريبية, علامات تجارية العراق">
+  <title id="pageTitle">مكتب المحامي علي كاظم الهاشمي | الاستشارات والخدمات القانونية في العراق</title>
+  <meta id="metaDesc" name="description" content="الموقع الرسمي لمكتب المحامي علي كاظم الهاشمي في بغداد. تأسست في 2014. خدمات قانونية متكاملة: تأسيس الشركات، التمثيل القضائي، الاستشارات الضريبية، والعقود. | AKH Law Office Iraq">
+  <meta id="metaKeywords" name="keywords" content="مكتب المحامي علي كاظم الهاشمي, محامي في بغداد, خدمات قانونية في العراق, تأسيس شركات بغداد, تمثيل قضائي, تحصيل الديون, استشارات ضريبية, علامات تجارية العراق">
   <meta name="author" content="Ali Kadhem Hashimi Law Office">
   <meta name="robots" content="index, follow">
 
@@ -23,8 +24,8 @@
   <link rel="alternate" hreflang="en" href="https://akjassem.com/en/">
   <link rel="alternate" hreflang="x-default" href="https://akjassem.com/">
 
-  <meta property="og:title" content="مكتب المحامي علي كاظم الهاشمي | الاستشارات والخدمات القانونية">
-  <meta property="og:description" content="الموقع الرسمي لمكتب المحامي علي كاظم الهاشمي في بغداد. خدمات قانونية متكاملة وتأسيس شركات.">
+  <meta property="og:title" id="ogTitle" content="مكتب المحامي علي كاظم الهاشمي | الاستشارات والخدمات القانونية">
+  <meta property="og:description" id="ogDesc" content="الموقع الرسمي لمكتب المحامي علي كاظم الهاشمي في بغداد. خدمات قانونية متكاملة وتأسيس شركات.">
   <meta property="og:image" content="https://akjassem.com/og-logo.jpg">
   <meta property="og:image:secure_url" content="https://akjassem.com/og-logo.jpg">
   <meta property="og:image:type" content="image/jpeg">
@@ -124,6 +125,7 @@
       z-index: 1100;
     }
     [dir="rtl"] .dropdown-menu { left: 0; right: auto; }
+    [dir="ltr"] .dropdown-menu { right: 0; left: auto; }
     .dropdown-menu.active { display: flex; }
     
     .dropdown-menu a {
@@ -294,7 +296,7 @@
   <header class="icover-header">
     <div>
       <select id="languageSelect" class="lang-select-bar" onchange="switchLanguage(this.value)">
-        <option value="ar" selected>العربية</option>
+        <option value="ar" selected>العربية / Arabic</option>
         <option value="en">English</option>
         <option value="tr">Türkçe</option>
         <option value="zh">中文</option>
@@ -308,13 +310,13 @@
     <div class="menu-container">
       <button class="menu-toggle" onclick="toggleMenu()" aria-label="القائمة">☰</button>
       <div id="dropdownMenu" class="dropdown-menu">
-        <a href="https://akjassem.com">الرئيسية</a>
-        <a href="/services/">دليل الخدمات القانونية</a>
-        <a href="/consultations/">الاستشارات القانونية</a>
-        <a href="/insights/">الآراء والرؤى القانونية (Insights)</a>
-        <a href="/about/">من نحن</a>
-        <a href="/code-of-conduct.html">قواعد السلوك المهني وأخلاقيات العمل</a>
-        <a href="/contact/">اتصل بنا</a>
+        <a href="https://akjassem.com" id="menuHome">الرئيسية</a>
+        <a href="/services/" id="menuServices">دليل الخدمات القانونية</a>
+        <a href="/consultations/" id="menuConsultations">الاستشارات القانونية</a>
+        <a href="/insights/" id="menuInsights">الآراء والرؤى القانونية (Insights)</a>
+        <a href="/about/" id="menuAbout">من نحن</a>
+        <a href="/code-of-conduct.html" id="menuCodeOfConduct">قواعد السلوك المهني وأخلاقيات العمل</a>
+        <a href="/contact/" id="menuContact">اتصل بنا</a>
       </div>
     </div>
   </header>
@@ -330,54 +332,54 @@
           </div>
         </a>
 
-        <h1 class="hero-title">مكتب المحامي علي كاظم الهاشمي</h1>
-        <p class="hero-subtitle">شريككم القانوني الموثوق في بغداد. نقدم خدمات استشارية متكاملة، تأسيس الشركات، والتمثيل القضائي وفق أعلى معايير الاحترافية والأمان القانوني.</p>
+        <h1 class="hero-title" id="heroTitle">مكتب المحامي علي كاظم الهاشمي</h1>
+        <p class="hero-subtitle" id="heroSubtitle">شريككم القانوني الموثوق في بغداد. نقدم خدمات استشارية متكاملة، تأسيس الشركات، والتمثيل القضائي وفق أعلى معايير الاحترافية والأمان القانوني.</p>
         
-        <a href="/booking/" target="_blank" class="hero-cta-btn">
+        <a href="/booking/" target="_blank" class="hero-cta-btn" id="heroCta">
           📅 حجز موعد استشارة رسمية
         </a>
       </section>
     </aside>
 
     <section>
-      <h2 class="services-section-title">خدماتنا القانونية التخصصية</h2>
+      <h2 class="services-section-title" id="servicesTitle">خدماتنا القانونية التخصصية</h2>
       
-      <div class="services-grid">
+      <div class="services-grid" id="servicesGrid">
         <a href="/services/corporate/" class="service-card">
-          <div><h3>تأسيس الشركات بأنواعها</h3><p>تأسيس الشركات المحلية والأجنبية، صياغة عقود التأسيس، وفتح الحسابات المصرفية.</p></div>
-          <span class="card-link">التفاصيل والحجز ←</span>
+          <div><h3 id="s1Title">تأسيس الشركات بأنواعها</h3><p id="s1Desc">تأسيس الشركات المحلية والأجنبية، صياغة عقود التأسيس، وفتح الحسابات المصرفية.</p></div>
+          <span class="card-link" id="s1Link">التفاصيل والحجز ←</span>
         </a>
         <a href="/services/litigation/" class="service-card">
-          <div><h3>التمثيل القانوني أمام القضاء</h3><p>النيابة القانونية والمرافعات في كافة المحاكم والدرجات القضائية في العراق.</p></div>
-          <span class="card-link">التفاصيل والحجز ←</span>
+          <div><h3 id="s2Title">التمثيل القانوني أمام القضاء</h3><p id="s2Desc">النيابة القانونية والمرافعات في كافة المحاكم والدرجات القضائية في العراق.</p></div>
+          <span class="card-link" id="s2Link">التفاصيل والحجز ←</span>
         </a>
         <a href="/services/financial-rights/" class="service-card">
-          <div><h3>تحصيل وتسوية الحقوق المالية</h3><p>تحصيل الديون، توجيه الإنذارات الرسمية، وإتمام التسويات المالية والتجارية.</p></div>
-          <span class="card-link">التفاصيل والحجز ←</span>
+          <div><h3 id="s3Title">تحصيل وتسوية الحقوق المالية</h3><p id="s3Desc">تحصيل الديون، توجيه الإنذارات الرسمية، وإتمام التسويات المالية والتجارية.</p></div>
+          <span class="card-link" id="s3Link">التفاصيل والحجز ←</span>
         </a>
         <a href="/services/investment-licenses/" class="service-card">
-          <div><h3>إصدار تراخيص الاستثمار الأجنبي</h3><p>دعم واستحصال إجازات الاستثمار والتراخيص الرسمية للمشاريع الاستثمارية.</p></div>
-          <span class="card-link">التفاصيل والحجز ←</span>
+          <div><h3 id="s4Title">إصدار تراخيص الاستثمار الأجنبي</h3><p id="s4Desc">دعم واستحصال إجازات الاستثمار والتراخيص الرسمية للمشاريع الاستثمارية.</p></div>
+          <span class="card-link" id="s4Link">التفاصيل والحجز ←</span>
         </a>
         <a href="/services/trademarks/" class="service-card">
-          <div><h3>العلامات التجارية والملكية الفكرية</h3><p>حماية حقوق الملكية الفكرية، النماذج الصناعية، والابتكارات التجارية.</p></div>
-          <span class="card-link">التفاصيل والحجز ←</span>
+          <div><h3 id="s5Title">العلامات التجارية والملكية الفكرية</h3><p id="s5Desc">حماية حقوق الملكية الفكرية، النماذج الصناعية، والابتكارات التجارية.</p></div>
+          <span class="card-link" id="s5Link">التفاصيل والحجز ←</span>
         </a>
         <a href="/services/contracts/" class="service-card">
-          <div><h3>إعداد وصياغة ومراجعة العقود</h3><p>صياغة وتدقيق العقود التجارية والمدنية وتوثيقها وفق القوانين النافذة.</p></div>
-          <span class="card-link">التفاصيل والحجز ←</span>
+          <div><h3 id="s6Title">إعداد وصياغة ومراجعة العقود</h3><p id="s6Desc">صياغة وتدقيق العقود التجارية والمدنية وتوثيقها وفق القوانين النافذة.</p></div>
+          <span class="card-link" id="s6Link">التفاصيل والحجز ←</span>
         </a>
         <a href="/services/personal-status/" class="service-card">
-          <div><h3>الأحوال الشخصية والتنفيذ القضائي</h3><p>دعاوى الأسرة، القسام الشرعي، النفقة، الحضانة، ومتابعة مديريات التنفيذ.</p></div>
-          <span class="card-link">التفاصيل والحجز ←</span>
+          <div><h3 id="s7Title">الأحوال الشخصية والتنفيذ القضائي</h3><p id="s7Desc">دعاوى الأسرة، القسام الشرعي، النفقة، الحضانة، ومتابعة مديريات التنفيذ.</p></div>
+          <span class="card-link" id="s7Link">التفاصيل والحجز ←</span>
         </a>
         <a href="/services/tax-advisory/" class="service-card">
-          <div><h3>الاستشارات الضريبية والامتثال</h3><p>هيكلة الضرائب، التسجيل لدى الهيئات الضريبية، وضمان الامتثال المالي.</p></div>
-          <span class="card-link">التفاصيل والحجز ←</span>
+          <div><h3 id="s8Title">الاستشارات الضريبية والامتثال</h3><p id="s8Desc">هيكلة الضرائب، التسجيل لدى الهيئات الضريبية، وضمان الامتثال المالي.</p></div>
+          <span class="card-link" id="s8Link">التفاصيل والحجز ←</span>
         </a>
         <a href="/services/real-estate/" class="service-card">
-          <div><h3>الخدمات القانونية والعقارية</h3><p>توثيق العقود العقارية، السندات، الخرائط، وتسوية النزاعات العقارية.</p></div>
-          <span class="card-link">التفاصيل والحجز ←</span>
+          <div><h3 id="s9Title">الخدمات القانونية والعقارية</h3><p id="s9Desc">توثيق العقود العقارية، السندات، الخرائط، وتسوية النزاعات العقارية.</p></div>
+          <span class="card-link" id="s9Link">التفاصيل والحجز ←</span>
         </a>
       </div>
     </section>
@@ -386,13 +388,13 @@
   <!-- ذيل الصفحة بمعالجة سطر واحد متناسق -->
   <footer class="site-footer">
     <div class="footer-legal-links">
-      <a href="/privacy/">سياسة الخصوصية</a>
+      <a href="/privacy/" id="footerPrivacy">سياسة الخصوصية</a>
       <span class="separator">|</span>
-      <a href="/disclaimer/">إخلاء المسؤولية</a>
+      <a href="/disclaimer/" id="footerDisclaimer">إخلاء المسؤولية</a>
       <span class="separator">|</span>
-      <a href="/code-of-conduct.html">قواعد السلوك المهني</a>
+      <a href="/code-of-conduct.html" id="footerCode">قواعد السلوك المهني</a>
     </div>
-    <span class="copy-text">جميع الحقوق محفوظة © 2026 مكتب المحامي علي كاظم الهاشمي</span>
+    <span class="copy-text" id="footerRights">جميع الحقوق محفوظة © 2026 مكتب المحامي علي كاظم الهاشمي</span>
   </footer>
 
   <script>
@@ -406,14 +408,222 @@
       }
     }
 
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('preferredLang') || 'ar';
+      document.getElementById('languageSelect').value = savedLang;
+      if (savedLang !== 'ar' && dictionary[savedLang]) {
+        changeLanguage(savedLang, false);
+      }
+    });
+
     function switchLanguage(lang) {
+      changeLanguage(lang, true);
+    }
+
+    function changeLanguage(lang, save = true) {
+      if (save) {
+        localStorage.setItem('preferredLang', lang);
+      }
+
       if (lang === 'ar') {
-        localStorage.setItem('preferredLang', 'ar');
+        window.location.href = 'https://akjassem.com/';
         return;
       }
-      localStorage.setItem('preferredLang', lang);
-      window.location.href = '/en/';
+
+      const root = document.getElementById('htmlRoot');
+      const t = dictionary[lang] || dictionary['en'];
+      
+      root.setAttribute('lang', lang);
+      root.setAttribute('dir', t.dir);
+
+      document.getElementById('pageTitle').innerText = t.pageTitle;
+      document.getElementById('metaDesc').setAttribute('content', t.metaDesc);
+      document.getElementById('ogTitle').setAttribute('content', t.pageTitle);
+      document.getElementById('ogDesc').setAttribute('content', t.metaDesc);
+
+      document.getElementById('menuHome').innerText = t.home;
+      document.getElementById('menuServices').innerText = t.menuServices;
+      document.getElementById('menuConsultations').innerText = t.menuConsultations;
+      document.getElementById('menuInsights').innerText = t.menuInsights;
+      document.getElementById('menuAbout').innerText = t.about;
+      document.getElementById('menuCodeOfConduct').innerText = t.menuCodeOfConduct;
+      document.getElementById('menuContact').innerText = t.contact;
+
+      // ضبط الروابط بدقة لتعمل بسلاسة داخل النسخة الأجنبية
+      document.getElementById('menuAbout').href = '/about/en/';
+      document.getElementById('menuContact').href = '/contact/en/';
+      document.getElementById('menuConsultations').href = '/consultations/en/';
+      document.getElementById('menuInsights').href = '/insights/en/';
+
+      document.getElementById('heroTitle').innerText = t.heroTitle;
+      document.getElementById('heroSubtitle').innerText = t.heroSubtitle;
+      document.getElementById('heroCta').innerText = t.heroCta;
+      document.getElementById('servicesTitle').innerText = t.servicesTitle;
+
+      // تحديث الخدمات
+      document.getElementById('s1Title').innerText = t.s1Title; document.getElementById('s1Desc').innerText = t.s1Desc; document.getElementById('s1Link').innerText = t.s1Link;
+      document.getElementById('s2Title').innerText = t.s2Title; document.getElementById('s2Desc').innerText = t.s2Desc; document.getElementById('s2Link').innerText = t.s2Link;
+      document.getElementById('s3Title').innerText = t.s3Title; document.getElementById('s3Desc').innerText = t.s3Desc; document.getElementById('s3Link').innerText = t.s3Link;
+      document.getElementById('s4Title').innerText = t.s4Title; document.getElementById('s4Desc').innerText = t.s4Desc; document.getElementById('s4Link').innerText = t.s4Link;
+      document.getElementById('s5Title').innerText = t.s5Title; document.getElementById('s5Desc').innerText = t.s5Desc; document.getElementById('s5Link').innerText = t.s5Link;
+      document.getElementById('s6Title').innerText = t.s6Title; document.getElementById('s6Desc').innerText = t.s6Desc; document.getElementById('s6Link').innerText = t.s6Link;
+      document.getElementById('s7Title').innerText = t.s7Title; document.getElementById('s7Desc').innerText = t.s7Desc; document.getElementById('s7Link').innerText = t.s7Link;
+      document.getElementById('s8Title').innerText = t.s8Title; document.getElementById('s8Desc').innerText = t.s8Desc; document.getElementById('s8Link').innerText = t.s8Link;
+      document.getElementById('s9Title').innerText = t.s9Title; document.getElementById('s9Desc').innerText = t.s9Desc; document.getElementById('s9Link').innerText = t.s9Link;
+
+      document.getElementById('footerPrivacy').innerText = t.privacyText;
+      document.getElementById('footerPrivacy').href = '/privacy/en/';
+      document.getElementById('footerDisclaimer').innerText = t.disclaimerText;
+      document.getElementById('footerDisclaimer').href = '/disclaimer-en.html';
+      document.getElementById('footerCode').innerText = t.codeText;
+      document.getElementById('footerCode').href = '/code-of-conduct-en.html';
+      document.getElementById('footerRights').innerText = t.rightsText;
+
+      document.getElementById('languageSelect').value = lang;
     }
+
+    const dictionary = {
+      en: {
+        dir: 'ltr',
+        pageTitle: "Law Office of Ali Kadhem Hashimi | Legal Services in Iraq",
+        metaDesc: "Official website of the Law Office of Ali Kadhem Hashimi in Baghdad. Established 2014. Comprehensive legal services: corporate formation, litigation, and advisory.",
+        home: "Home", menuServices: "Legal Services Directory", menuConsultations: "Legal Consultations", menuInsights: "Iraq Legal Insights", about: "About Us", menuCodeOfConduct: "Code of Conduct", contact: "Contact Us",
+        heroTitle: "Law Office of Ali Kadhem Hashimi",
+        heroSubtitle: "Your trusted legal partner in Baghdad. We provide comprehensive advisory, corporate formation, and judicial representation under the highest standards of professionalism and legal security.",
+        heroCta: "📅 Book Official Consultation",
+        servicesTitle: "Specialized Legal Services",
+        s1Title: "Corporate Formation & Entities", s1Desc: "Establishing local and foreign companies, drafting incorporation contracts, and opening bank accounts.", s1Link: "Details & Booking →",
+        s2Title: "Judicial & Litigation Representation", s2Desc: "Legal representation and advocacy across all courts and judicial degrees in Iraq.", s2Link: "Details & Booking →",
+        s3Title: "Financial Rights & Debt Recovery", s3Desc: "Debt collection, serving formal notices, and completing financial and commercial settlements.", s3Link: "Details & Booking →",
+        s4Title: "Foreign Investment Licenses", s4Desc: "Supporting and securing investment licenses and official permits for investment projects.", s4Link: "Details & Booking →",
+        s5Title: "Trademarks & Intellectual Property", s5Desc: "Protecting intellectual property rights, industrial designs, and commercial innovations.", s5Link: "Details & Booking →",
+        s6Title: "Contract Drafting & Review", s6Desc: "Drafting, auditing, and notarizing commercial and civil contracts in accordance with active laws.", s6Link: "Details & Booking →",
+        s7Title: "Personal Status & Execution", s7Desc: "Family disputes, legal inheritance divisions, alimony, custody, and following up execution directorates.", s7Link: "Details & Booking →",
+        s8Title: "Tax Advisory & Compliance", s8Desc: "Tax structuring, registration with tax authorities, and ensuring financial compliance.", s8Link: "Details & Booking →",
+        s9Title: "Legal & Real Estate Services", s9Desc: "Notarizing real estate contracts, deeds, maps, and settling property disputes.", s9Link: "Details & Booking →",
+        privacyText: "Privacy Policy", disclaimerText: "Disclaimer", codeText: "Code of Conduct", rightsText: "All Rights Reserved © 2026 AKH Law Office"
+      },
+      tr: {
+        dir: 'ltr',
+        pageTitle: "Av. Ali Kazım Haşimi Hukuk Bürosu | Irak Hukuki Hizmetler",
+        metaDesc: "Bağdat'taki Av. Ali Kazım Haşimi Hukuk Bürosu'nun resmi web sitesi. 2014 yılında kuruldu. Şirket kuruluşu, dava takibi ve danışmanlık.",
+        home: "Ana Sayfa", menuServices: "Hizmetler", menuConsultations: "Hukuki Danışmanlık", menuInsights: "İçgörüler", about: "Hakkımızda", menuCodeOfConduct: "Mesleki Etik Kuralları", contact: "İletişim",
+        heroTitle: "Av. Ali Kazım Haşimi Hukuk Bürosu",
+        heroSubtitle: "Bağdat'taki güvenilir hukuk partneriniz. Profesyonellik ve hukuki güvenlik standartlarında kapsamlı danışmanlık ve şirket kuruluşu sunuyoruz.",
+        heroCta: "📅 Resmi Randevu Al",
+        servicesTitle: "Uzmanlık Gerektiren Hukuki Hizmetler",
+        s1Title: "Şirket Kuruluşu", s1Desc: "Yerli ve yabancı şirketlerin kuruluşu, ana sözleşme hazırlama ve banka hesap açılışı.", s1Link: "Detaylar ve Randevu →",
+        s2Title: "Yargı ve Dava Temsiliyeti", s2Desc: "Irak'taki tüm mahkemelerde hukuki temsil ve avukatlık hizmetleri.", s1Link: "Detaylar ve Randevu →", s2Link: "Detaylar ve Randevu →",
+        s3Title: "Mali Haklar ve Borç Tahsilatı", s3Desc: "Borç tahsilatı, resmi ihtarnameler ve ticari uzlaşmalar.", s3Link: "Detaylar ve Randevu →",
+        s4Title: "Yabancı Yatırım Lisansları", s4Desc: "Yatırım projeleri için lisans ve resmi izinlerin alınması.", s4Link: "Detaylar ve Randevu →",
+        s5Title: "Ticari Markalar ve Fikri Mülkiyet", s5Desc: "Fikri mülkiyet haklarının korunması ve tescili.", s5Link: "Detaylar ve Randevu →",
+        s6Title: "Sözleşme Hazırlama ve İnceleme", s6Desc: "Ticari ve medeni sözleşmelerin hazırlanması ve denetlenmesi.", s6Link: "Detaylar ve Randevu →",
+        s7Title: "Şahsi Haller ve İcra", s7Desc: "Aile hukuku, nafaka, velayet ve icra dairelerinin takibi.", s7Link: "Detaylar ve Randevu →",
+        s8Title: "Vergi Danışmanlığı ve Uyum", s8Desc: "Vergi yapılandırması, kayıt ve mali uyum sağlama.", s8Link: "Detaylar ve Randevu →",
+        s9Title: "Gayrimenkul Hukuku Hizmetleri", s9Desc: "Gayrimenkul sözleşmeleri ve tapu işlemleri.", s9Link: "Detaylar ve Randevu →",
+        privacyText: "Privacy Policy", disclaimerText: "Disclaimer", codeText: "Code of Conduct", rightsText: "All Rights Reserved © 2026 AKH Law Office"
+      },
+      zh: {
+        dir: 'ltr',
+        pageTitle: "阿里·卡德姆·哈希米律所 | 伊拉克法律服务",
+        metaDesc: "巴格达阿里·卡德姆·哈希米律所官方网站。成立于2014年。提供公司设立、诉讼及咨询等全方位法律服务。",
+        home: "首页", menuServices: "法律服务", menuConsultations: "法律咨询", menuInsights: "法律洞察", about: "关于我们", menuCodeOfConduct: "行为准则", contact: "联系我们",
+        heroTitle: "阿里·卡德姆·哈希米律所",
+        heroSubtitle: "您在巴格达值得信赖的法律伙伴。我们以最高水平的专业精神提供综合咨询、公司设立与诉讼代理。",
+        heroCta: "📅 预约正式咨询",
+        servicesTitle: "专业法律服务",
+        s1Title: "公司设立与组建", s1Desc: "设立内外资公司、起草章程及开设银行账户。", s1Link: "详情与预约 →",
+        s2Title: "诉讼与司法代理", s2Desc: "在伊拉克各级法院代表客户进行诉讼与辩护。", s2Link: "详情与预约 →",
+        s3Title: "财务权益与债务追收", s3Desc: "债务追收、发送正式通知及商业结算。", s3Link: "详情与预约 →",
+        s4Title: "外商投资许可", s4Desc: "协助获取投资项目及许可证。", s4Link: "详情与预约 →",
+        s5Title: "商标与知识产权", s5Desc: "保护知识产权、工业品外观设计及商业创新。", s5Link: "详情与预约 →",
+        s6Title: "合同起草与审核", s6Desc: "根据现行法律起草、审核商业及民事合同。", s6Link: "详情与预约 →",
+        s7Title: "个人身份与强制执行", s7Desc: "家事纠纷、继承、赡养、抚养权及执行署跟进。", s7Link: "详情与预约 →",
+        s8Title: "税务咨询与合规", s8Desc: "税收筹划、税务机关登记及确保财务合规。", s8Link: "详情与预约 →",
+        s9Title: "法律与房地产服务", s9Desc: "房地产合同公证、产权证、地图及房产纠纷解决。", s9Link: "详情与预约 →",
+        privacyText: "Privacy Policy", disclaimerText: "Disclaimer", codeText: "Code of Conduct", rightsText: "All Rights Reserved © 2026 AKH Law Office"
+      },
+      fr: {
+        dir: 'ltr',
+        pageTitle: "Cabinet d'Avocats Ali Kadhem Hashimi | Services Juridiques en Iraq",
+        metaDesc: "Site officiel du Cabinet d'Avocats Ali Kadhem Hashimi à Bagdad. Fondé en 2014. Services juridiques complets : constitution de sociétés, contentieux et conseil.",
+        home: "Accueil", menuServices: "Services", menuConsultations: "Consultations Juridiques", menuInsights: "Aperçus", about: "À Propos", menuCodeOfConduct: "Code de Conduite", contact: "Contact",
+        heroTitle: "Cabinet d'Avocats Ali Kadhem Hashimi",
+        heroSubtitle: "Votre partenaire juridique de confiance à Bagdad. Nous offrons des services de conseil, constitution de sociétés et représentation judiciaire.",
+        heroCta: "📅 Réserver une Consultation",
+        servicesTitle: "Services Juridiques Spécialisés",
+        s1Title: "Constitution de Sociétés", s1Desc: "Création de sociétés locales et étrangères, rédaction de statuts et ouverture de comptes bancaires.", s1Link: "Détails & Réservation →",
+        s2Title: "Représentation Judiciaire", s2Desc: "Représentation juridique et plaidoyer devant toutes les juridictions en Iraq.", s2Link: "Détails & Réservation →",
+        s3Title: "Droits Financiers & Recouvrement", s3Desc: "Recouvrement de créances, mises en demeure et règlements financiers.", s3Link: "Détails & Réservation →",
+        s4Title: "Licences d'Investissement Étranger", s4Desc: "Soutien et obtention de licences d'investissement pour les projets.", s4Link: "Détails & Réservation →",
+        s5Title: "Marques & Propriété Intellectuelle", s5Desc: "Protection des droits de propriété intellectuelle et innovations.", s5Link: "Détails & Réservation →",
+        s6Title: "Rédaction & Révision de Contrats", s6Desc: "Rédaction et vérification de contrats commerciaux et civils.", s6Link: "Détails & Réservation →",
+        s7Title: "Statut Personnel & Exécution", s7Desc: "Litiges familiaux, successions, pension, garde et suivi des exécutions.", s7Link: "Détails & Réservation →",
+        s8Title: "Conseil Fiscal & Conformité", s8Desc: "Structuration fiscale, enregistrement et conformité financière.", s8Link: "Détails & Réservation →",
+        s9Title: "Services Immobiliers & Juridiques", s9Desc: "Notarisation de contrats immobiliers et règlement des litiges.", s9Link: "Détails & Réservation →",
+        privacyText: "Privacy Policy", disclaimerText: "Disclaimer", codeText: "Code of Conduct", rightsText: "All Rights Reserved © 2026 AKH Law Office"
+      },
+      es: {
+        dir: 'ltr',
+        pageTitle: "Bufete de Abogados Ali Kadhem Hashimi | Servicios Legales en Irak",
+        metaDesc: "Sitio web oficial del Bufete de Abogados Ali Kadhem Hashimi en Bagdad. Fundado en 2014. Servicios legales integrales: constitución de empresas y litigios.",
+        home: "Inicio", menuServices: "Servicios", menuConsultations: "Consultas Legales", menuInsights: "Perspectivas", about: "Sobre Nosotros", menuCodeOfConduct: "Código de Conducta", contact: "Contacto",
+        heroTitle: "Bufete de Abogados Ali Kadhem Hashimi",
+        heroSubtitle: "Su socio legal de confianza en Bagdad. Brindamos asesoría integral, constitución de empresas y representación judicial.",
+        heroCta: "📅 Reservar Consulta Oficial",
+        servicesTitle: "Servicios Legales Especializados",
+        s1Title: "Constitución de Empresas", s1Desc: "Establecimiento de empresas locales y extranjeras, redacción de contratos y cuentas bancarias.", s1Link: "Detalles y Reserva →",
+        s2Title: "Representación Judicial y Litigios", s2Desc: "Representación legal y defensa en todos los tribunales de Irak.", s2Link: "Detalles y Reserva →",
+        s3Title: "Derechos Financieros y Recuperación", s3Desc: "Cobro de deudas, avisos formales y acuerdos comerciales.", s3Link: "Detalles y Reserva →",
+        s4Title: "Licencias de Inversión Extranjera", s4Desc: "Apoyo y obtención de licencias para proyectos de inversión.", s4Link: "Detalles y Reserva →",
+        s5Title: "Marcas y Propiedad Intelectual", s5Desc: "Protección de derechos de propiedad intelectual e innovaciones.", s5Link: "Detalles y Reserva →",
+        s6Title: "Redacción y Revisión de Contratos", s6Desc: "Redacción y auditoría de contratos comerciales y civiles.", s6Link: "Detalles y Reserva →",
+        s7Title: "Estatus Personal y Ejecución", s7Desc: "Disputas familiares, herencias, pensión alimenticia y custodia.", s7Link: "Detalles y Reserva →",
+        s8Title: "Asesoría Fiscal y Cumplimiento", s8Desc: "Estructuración fiscal, registro y cumplimiento financiero.", s8Link: "Detalles y Reserva →",
+        s9Title: "Servicios Inmobiliarios y Legales", s9Desc: "Notarización de contratos inmobiliarios y solución de disputas.", s9Link: "Detalles y Reserva →",
+        privacyText: "Privacy Policy", disclaimerText: "Disclaimer", codeText: "Code of Conduct", rightsText: "All Rights Reserved © 2026 AKH Law Office"
+      },
+      de: {
+        dir: 'ltr',
+        pageTitle: "Anwaltskanzlei Ali Kadhem Hashimi | Rechtsberatung im Irak",
+        metaDesc: "Offizielle Website der Kanzlei Ali Kadhem Hashimi in Bagdad. Gegründet 2014. Umfassende Rechtsdienstleistungen: Firmengründung, Prozessführung.",
+        home: "Startseite", menuServices: "Dienste", menuConsultations: "Rechtliche Beratung", menuInsights: "Einblicke", about: "Über uns", menuCodeOfConduct: "Verhaltenskodex", contact: "Kontakt",
+        heroTitle: "Anwaltskanzlei Ali Kadhem Hashimi",
+        heroSubtitle: "Ihr vertrauenswürdiger Rechtspartner in Bagdad. Wir bieten umfassende Beratung, Firmengründung und gerichtliche Vertretung.",
+        heroCta: "📅 Offizielle Beratung buchen",
+        servicesTitle: "Spezialisierte Rechtsdienstleistungen",
+        s1Title: "Firmengründung", s1Desc: "Gründung lokaler und ausländischer Unternehmen, Vertragseröffnung und Bankkonten.", s1Link: "Details & Buchung →",
+        s2Title: "Gerichtliche Vertretung & Prozessführung", s2Desc: "Rechtliche Vertretung und Plädoyers vor allen irakischen Gerichten.", s2Link: "Details & Buchung →",
+        s3Title: "Mali Haklar (Fordern & Beitreiben)", s3Desc: "Forderungseinzug, formelle Mahnungen und finanzielle Vergleiche.", s3Link: "Details & Buchung →",
+        s4Title: "Ausländische Investitionslizenzen", s4Desc: "Unterstützung und Einholung von Investitionslizenzen.", s4Link: "Details & Buchung →",
+        s5Title: "Marken & Geistiges Eigentum", s5Desc: "Schutz von geistigen Eigentumsrechten und Innovationen.", s5Link: "Details & Buchung →",
+        s6Title: "Vertragserstellung & Prüfung", s6Desc: "Erstellung und Prüfung von Handels- und Zivilverträgen.", s6Link: "Details & Buchung →",
+        s7Title: "Personenstand & Vollstreckung", s7Desc: "Familienstreitigkeiten, Erbschaft, Unterhalt und Vollstreckung.", s7Link: "Details & Buchung →",
+        s8Title: "Steuerberatung & Compliance", s8Desc: "Steuerstrukturierung, Registrierung und Finanzcompliance.", s8Link: "Details & Buchung →",
+        s9Title: "Immobilienrechtliche Dienstleistungen", s9Desc: "Notarielle Beglaubigung von Immobilienverträgen und Beilegung von Streitigkeiten.", s9Link: "Details & Buchung →",
+        privacyText: "Privacy Policy", disclaimerText: "Disclaimer", codeText: "Code of Conduct", rightsText: "All Rights Reserved © 2026 AKH Law Office"
+      },
+      ku: {
+        dir: 'rtl',
+        pageTitle: "نووسینگەی پارێزەر عەلی کازمی هاشمی | خزمەتگوزاری یاسایی لە عێراق",
+        metaDesc: "ماڵپەڕی فەرمی نووسینگەی پارێزەر عەلی کازمی هاشمی لە بەغداد. دامەزراوە لە 2014. خزمەتگوزاری گشتگیر: دامەزراندنی کۆمپانیاکان، دادبینی و ڕاوێژ.",
+        home: "سەرەکی", menuServices: "خزمەتگوزارییەکان", menuConsultations: "ڕاوێژی یاسایی", menuInsights: "تێڕوانینەکان", about: "دەرباره‌ی ئێمە", menuCodeOfConduct: "ڕەفتاری پیشەیی", contact: "پەیوەندی",
+        heroTitle: "نووسینگەی پارێزەر عەلی کازمی هاشمی",
+        heroSubtitle: "هاوبەشی یاسایی متمانەپێکراوی ئێوە لە بەغداد. ڕاوێژی گشتگیر، دامەزراندنی کۆمپانیاکان، و نوێنەرایەتی دادوەری پێشکەش دەکەین.",
+        heroCta: "📅 چاوپێکەوتنی فەرمی تۆماربکە",
+        servicesTitle: "خزمەتگوزارییە یاساییە تخصصییەکان",
+        s1Title: "دامەزراندنی کۆمپانیاکان", s1Desc: "دامەزراندنی کۆمپانیا خۆماڵی و بیانییەکان، داڕشتنی گرێبەست و کردنەوەی حساب.", s1Link: "وردەکاری و حجز ←",
+        s2Title: "نوێنەرایەتی دادوەری", s2Desc: "بریوکاری و بەدواداچوونی یاسایی لە هەموو دادگاکانی عێراقدا.", s2Link: "وردەکاری و حجز ←",
+        s3Title: "وەرگرتن و ڕێکخستنی مافە مالییەکان", s3Desc: "کۆکردنەوەی قەرز، ناردنی ئاگاداری فەرمی و ڕێککەوتنی تجاری.", s3Link: "وردەکاری و حجز ←",
+        s4Title: "مۆڵەتی وەبەرهێنانی بیانی", s4Desc: "پاڵپشتی و بەدەستهێنانی مۆڵەتی فەرمی بۆ پروژەکانی وەبەرهێنان.", s4Link: "وردەکاری و حجز ←",
+        s5Title: "براند و مافی مڵکی فکری", s5Desc: "پاراستنی مافی خاوەندارێتی فکری و داهێنانی تجاری.", s5Link: "وردەکاری و حجز ←",
+        s6Title: "ئامادەکردن و داڕشتنی گرێبەستەکان", s6Desc: "داڕشتن و وردبینی گرێبەستە تجاری و مدنییەکان بەپێی یاسا.", s6Link: "وردەکاری و حجز ←",
+        s7Title: "بارودۆخی کەسی و جێبەجێکردن", s7Desc: "کێشەی خێزانی، قەسامی شرعی، نفقة، حضانة و بەدواداچوونی جێبەجێکردن.", s7Link: "وردەکاری و حجز ←",
+        s8Title: "ڕاوێژی باج و پابەندبوون", s8Desc: "ڕێکخستنی باج، تۆمارکردن لە دەستە باجییەکان و دڵنیابوون لە پابەندبوونی مالی.", s8Link: "وردەکاری و حجز ←",
+        s9Title: "خزمەتگوزارییە یاسایی و عقارییەکان", s9Desc: "باوەڕپێکردنی گرێبەستە عقارییەکان، سندات و چارەسەرکردنی کێشەکان.", s8Link: "وردەکاری و حجز ←", s9Link: "وردەکاری و حجز ←",
+        privacyText: "Privacy Policy", disclaimerText: "Disclaimer", codeText: "Code of Conduct", rightsText: "All Rights Reserved © 2026 AKH Law Office"
+      }
+    };
   </script>
 
 </body>
