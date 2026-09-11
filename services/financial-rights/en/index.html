@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" id="htmlRoot">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WL4KNM0PG1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-WL4KNM0PG1');
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
@@ -133,7 +143,7 @@
     }
     .dropdown-menu a:hover { background: rgba(197,160,89,0.15); color: #c5a059; }
 
-    .container { width: 100%; max-width: 750px; background: #ffffff; padding: 35px 25px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border-top: 5px solid #c5a059; margin: 30px 16px; text-align: start; }
+    .container { width: 100%; max-width: 750px; background: #ffffff; padding: 35px 25px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border-top: 5px solid #c5a059; margin: 30px 16px; text-align: start; flex: 1; }
     .brand-logo { text-align: center; margin-bottom: 28px; direction: ltr; text-decoration: none; display: inline-block; width: 100%; }
     .brand-logo .akh { font-size: 40px; font-weight: 900; color: #0f172a; letter-spacing: 4px; line-height: 1; }
     .brand-logo .akh .red-k { color: #dc2626; }
@@ -161,6 +171,27 @@
     .btn-booking:hover { background: #c5a059; }
     .back-link { display: block; margin-top: 5px; font-size: 13px; color: #64748b; text-decoration: none; }
     .back-link:hover { color: #0f172a; }
+
+    /* تنسيق الفوتر */
+    .site-footer {
+      text-align: center;
+      padding: 25px;
+      font-size: 13px;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      margin-top: 40px;
+      background: #ffffff;
+      width: 100%;
+    }
+    .site-footer a {
+      color: #0f172a;
+      text-decoration: none;
+      font-weight: 700;
+      margin: 0 10px;
+    }
+    .site-footer a:hover {
+      color: #c5a059;
+    }
   </style>
 </head>
 <body>
@@ -196,7 +227,7 @@
     <a href="https://akjassem.com/en/" class="brand-logo">
       <div class="akh">A<span class="red-k">K</span>H</div>
       <div class="sub-title"><span class="slash">/</span><span>LAW OFFICE</span></div>
-      <div class="est">EST. 2014</div>
+      <div class="b-est">EST. 2014</div>
     </a>
     
     <div class="page-title" id="pageMainTitle">Financial Rights Collection, Settlement & Documentation</div>
@@ -212,6 +243,12 @@
       <a href="/services/" class="back-link" id="backLinkText">← Back to Services List</a>
     </div>
   </div>
+
+  <!-- الفوتر ورابط سياسة الخصوصية -->
+  <footer class="site-footer">
+    <a href="/privacy/en/" id="footerLink">Privacy Policy</a> | 
+    <span id="footerRights">All Rights Reserved © 2026 AKH Law Office</span>
+  </footer>
 
   <script>
     function toggleMenu() {
@@ -267,6 +304,10 @@
       document.getElementById('btnBookText').innerHTML = `<span>${t.btnBook}</span>`;
       document.getElementById('backLinkText').innerText = t.backLink;
 
+      document.getElementById('footerLink').innerText = t.privacyText;
+      document.getElementById('footerLink').href = '/privacy/en/';
+      document.getElementById('footerRights').innerText = t.rightsText;
+
       document.getElementById('languageSelect').value = lang;
     }
 
@@ -279,7 +320,8 @@
         pageMainTitle: "Financial Rights Collection, Settlement & Documentation",
         contentBody: "The Law Office of Ali Kadhem Hashimi provides comprehensive specialized services in collecting, settling, and documenting financial rights. These services include essential aspects aimed at protecting our clients' interests and securing their financial rights through effective, carefully studied legal methods.",
         btnBook: "📅 Click here to go to the appointment booking page",
-        backLink: "← Back to Services List"
+        backLink: "← Back to Services List",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       tr: {
         pageTitle: "Irak'ta Finansal Hakların Tahsili, Uzlaşması ve Belgelendirilmesi | Av. Ali Kazım Haşimi",
@@ -289,7 +331,8 @@
         pageMainTitle: "Finansal Hakların Tahsili, Uzlaşması ve Belgelendirilmesi",
         contentBody: "Av. Ali Kazım Haşimi Hukuk Bürosu, finansal hakların tahsili, uzlaşması ve belgelendirilmesi konularında entegre uzmanlık hizmetleri sunmaktadır. Bu hizmetler, müvekkillerimizin çıkarlarını korumayı ve finansal haklarını etkili ve özenle çalışılmış yasal yöntemlerle güvence altına almayı amaçlayan temel yönleri içermektedir.",
         btnBook: "📅 Randevu rezervasyon sayfasına gitmek için tıklayın",
-        backLink: "← Hizmetler Listesine Dön"
+        backLink: "← Hizmetler Listesine Dön",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       zh: {
         pageTitle: "伊拉克财务权益追讨、结算与文件化 | 阿里·卡德姆·哈希米律所",
@@ -299,7 +342,8 @@
         pageMainTitle: "财务权益追讨、结算与文件化",
         contentBody: "阿里·卡德姆·哈希米律所提供全面的专业服务，涵盖财务权益的追讨、结算与文件化。这些服务旨在通过有效且经过审慎研究的法律手段，切实保护客户利益并保障其财务权益。",
         btnBook: "📅 点击此处跳转至预约页面",
-        backLink: "← 返回服务列表"
+        backLink: "← 返回服务列表",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       fr: {
         pageTitle: "Recouvrement, Règlement et Documentation des Droits Financiers en Iraq | Cabinet AKH",
@@ -309,7 +353,8 @@
         pageMainTitle: "Recouvrement, Règlement et Documentation des Droits Financiers",
         contentBody: "Le Cabinet d'Avocats Ali Kadhem Hashimi propose des services spécialisés et intégrés dans le recouvrement, le règlement et la documentation des droits financiers. Ces services visent à protéger les intérêts de nos clients et à sécuriser leurs droits financiers par des méthodes juridiques efficaces.",
         btnBook: "📅 Cliquez ici pour accéder à la page de réservation",
-        backLink: "← Retour à la liste des services"
+        backLink: "← Retour à la liste des services",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       es: {
         pageTitle: "Cobro, Liquidación y Documentación de Derechos Financieros en Irak | Bufete AKH",
@@ -319,7 +364,8 @@
         pageMainTitle: "Cobro, Liquidación y Documentación de Derechos Financieros",
         contentBody: "El Bufete de Abogados Ali Kadhem Hashimi ofrece servicios especializados e integrales en el cobro, liquidación y documentación de derechos financieros. Estos servicios incluyen aspectos esenciales destinados a proteger los intereses de nuestros clientes y asegurar sus derechos financieros mediante métodos legales eficaces.",
         btnBook: "📅 Haga clic aquí para ir a la página de reservas",
-        backLink: "← Volver a la lista de servicios"
+        backLink: "← Volver a la lista de servicios",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       de: {
         pageTitle: "Beitreibung, Vergleich und Dokumentation finanzieller Rechte im Irak | Kanzlei AKH",
@@ -329,7 +375,8 @@
         pageMainTitle: "Beitreibung, Vergleich und Dokumentation finanzieller Rechte",
         contentBody: "Die Anwaltskanzlei Ali Kadhem Hashimi bietet integrierte und spezialisierte Dienstleistungen bei der Beitreibung, dem Vergleich und der Dokumentation finanzieller Rechte an. Diese Dienste zielen darauf ab, die Interessen unserer Mandanten zu schützen und ihre finanziellen Rechte durch wirksame rechtliche Methoden abzusichern.",
         btnBook: "📅 Klicken Sie hier, um zur Buchungsseite zu gelangen",
-        backLink: "← Zurück zur Dienstleistungsliste"
+        backLink: "← Zurück zur Dienstleistungsliste",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       ku: {
         pageTitle: "وەرگرتنەوە، ڕێکخستن و بەلگەنامەکردنی مافە داراییەکان لە عێراق | نووسینگەی پارێزەر عەلی کاظم",
@@ -339,7 +386,8 @@
         pageMainTitle: "وەرگرتنەوە، ڕێکخستن و بەلگەنامەکردنی مافە داراییەکان",
         contentBody: "نووسینگەی پارێزەر عەلی کازمی هاشمی خزمەتگوزاری تایبەتمەند و گشتگیر پێشکەش دەکات لە کۆکردنەوە و ڕێکخستن و بەلگەنامەکردنی مافە داراییەکاندا. ئەم خزمەتگوزارییەکانە لایەنی سەرەکی لەخۆ دەگرن کە ئامانجیان پاراستنی بەرژەوەندی کڕیارەکانمان و دڵنیابوون لە مافە داراییەکانیان بە ڕێگەی یاسایی کاریگەر.",
         btnBook: "📅 کلیک لێرە بکە بۆ گواستنەوە بۆ لاپەڕەی حجز",
-        backLink: "← گەڕانەوە بۆ خشتەی خزمەتگوزارییەکان"
+        backLink: "← گەڕانەوە بۆ خشتەی خزمەتگوزارییەکان",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       }
     };
   </script>
