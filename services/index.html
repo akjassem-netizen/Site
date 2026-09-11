@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" id="htmlRoot">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WL4KNM0PG1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-WL4KNM0PG1');
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
@@ -297,6 +307,27 @@
       width: 100%;
     }
     .btn-read-more:hover { background: #c5a059; }
+
+    /* تنسيق الفوتر */
+    .site-footer {
+      text-align: center;
+      padding: 25px;
+      font-size: 13px;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      margin-top: 40px;
+      background: #ffffff;
+      width: 100%;
+    }
+    .site-footer a {
+      color: #0f172a;
+      text-decoration: none;
+      font-weight: 700;
+      margin: 0 10px;
+    }
+    .site-footer a:hover {
+      color: #c5a059;
+    }
   </style>
 </head>
 <body>
@@ -511,6 +542,12 @@
 
     </div>
   </div>
+
+  <!-- الفوتر ورابط سياسة الخصوصية -->
+  <footer class="site-footer">
+    <a href="/privacy/">سياسة الخصوصية</a> | 
+    <span>جميع الحقوق محفوظة © 2026 مكتب المحامي علي كاظم الهاشمي</span>
+  </footer>
 
   <script>
     function toggleMenu() {
