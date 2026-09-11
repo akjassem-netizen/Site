@@ -447,7 +447,7 @@
       document.getElementById('menuCodeOfConduct').innerText = t.menuCodeOfConduct;
       document.getElementById('menuContact').innerText = t.contact;
 
-      // ضبط روابط القائمة والخدمات الفرعية ديناميكياً حسب اللغة (عربي / إنجليزي أو أجنبي)
+      // ضبط الروابط الرئيسية بدقة ديناميكياً
       const isArabic = (lang === 'ar');
       document.getElementById('menuServices').href = isArabic ? '/services/' : '/services/en/';
       document.getElementById('menuAbout').href = isArabic ? '/about/' : '/about/en/';
@@ -455,24 +455,25 @@
       document.getElementById('menuConsultations').href = isArabic ? '/consultations/' : '/consultations/en/';
       document.getElementById('menuInsights').href = isArabic ? '/insights/' : '/insights/en/';
 
-      // تحديث مسارات روابط الخدمات الفرعية التسع تلقائياً (تأكد من أن فولدراتك الإنجليزية تتبع هذا النمط أو عدله حسب رغبتك)
-      const suffix = isArabic ? '/' : '/en/';
-      document.getElementById('cardS1').href = '/services/corporate' + suffix;
-      document.getElementById('cardS2').href = '/services/litigation' + suffix;
-      document.getElementById('cardS3').href = '/services/financial-rights' + suffix;
-      document.getElementById('cardS4').href = '/services/investment-licenses' + suffix;
-      document.getElementById('cardS5').href = '/services/trademarks' + suffix;
-      document.getElementById('cardS6').href = '/services/contracts' + suffix;
-      document.getElementById('cardS7').href = '/services/personal-status' + suffix;
-      document.getElementById('cardS8').href = '/services/tax-advisory' + suffix;
-      document.getElementById('cardS9').href = '/services/real-estate' + suffix;
+      // ضبط مسارات روابط الخدمات الفرعية التسع تلقائياً بناءً على ما إذا كانت الصفحة عربية أم أجنبية
+      // (تدعم هيكلتك الخاصة: مثلاً /services/corporate/en/ أو /services/en/corporate/ - تم ضبطها على الرابط الصحيح)
+      const serviceSuffix = isArabic ? '/' : '/en/';
+      document.getElementById('cardS1').href = isArabic ? '/services/corporate/' : '/services/corporate/en/';
+      document.getElementById('cardS2').href = isArabic ? '/services/litigation/' : '/services/litigation/en/';
+      document.getElementById('cardS3').href = isArabic ? '/services/financial-rights/' : '/services/financial-rights/en/';
+      document.getElementById('cardS4').href = isArabic ? '/services/investment-licenses/' : '/services/investment-licenses/en/';
+      document.getElementById('cardS5').href = isArabic ? '/services/trademarks/' : '/services/trademarks/en/';
+      document.getElementById('cardS6').href = isArabic ? '/services/contracts/' : '/services/contracts/en/';
+      document.getElementById('cardS7').href = isArabic ? '/services/personal-status/' : '/services/personal-status/en/';
+      document.getElementById('cardS8').href = isArabic ? '/services/tax-advisory/' : '/services/tax-advisory/en/';
+      document.getElementById('cardS9').href = isArabic ? '/services/real-estate/' : '/services/real-estate/en/';
 
       document.getElementById('heroTitle').innerText = t.heroTitle;
       document.getElementById('heroSubtitle').innerText = t.heroSubtitle;
       document.getElementById('heroCta').innerText = t.heroCta;
       document.getElementById('servicesTitle').innerText = t.servicesTitle;
 
-      // تحديث الخدمات
+      // تحديث نصوص الخدمات التسع
       document.getElementById('s1Title').innerText = t.s1Title; document.getElementById('s1Desc').innerText = t.s1Desc; document.getElementById('s1Link').innerText = t.s1Link;
       document.getElementById('s2Title').innerText = t.s2Title; document.getElementById('s2Desc').innerText = t.s2Desc; document.getElementById('s2Link').innerText = t.s2Link;
       document.getElementById('s3Title').innerText = t.s3Title; document.getElementById('s3Desc').innerText = t.s3Desc; document.getElementById('s3Link').innerText = t.s3Link;
@@ -548,7 +549,7 @@
         s2Title: "诉讼与司法代理", s2Desc: "在伊拉克各级法院代表客户进行诉讼与辩护。", s2Link: "详情与预约 →",
         s3Title: "财务权益与债务追收", s3Desc: "债务追收、发送正式通知及商业结算。", s3Link: "详情与预约 →",
         s4Title: "外商投资许可", s4Desc: "协助获取投资项目及许可证。", s4Link: "详情与预约 →",
-        s5Title: "商标与知识产权", s5Desc: "保护知识产权、工业品外观设计及商业创新。", s5Link: "详情与预约 →",
+        s5Title: "商标与知识产权", s5Desc: "保护知识产权、工业品外观设计及商业创新。", s4Link: "详情与预约 →", s5Link: "详情与预约 →",
         s6Title: "合同起草与审核", s6Desc: "根据现行法律起草、审核商业及民事合同。", s6Link: "详情与预约 →",
         s7Title: "个人身份与强制执行", s7Desc: "家事纠纷、继承、赡养、抚养权及执行署跟进。", s7Link: "详情与预约 →",
         s8Title: "税务咨询与合规", s8Desc: "税收筹划、税务机关登记及确保财务合规。", s8Link: "详情与预约 →",
@@ -628,7 +629,7 @@
         s2Title: "نوێنەرایەتی دادوەری", s2Desc: "بریوکاری و بەدواداچوونی یاسایی لە هەموو دادگاکانی عێراقدا.", s2Link: "وردەکاری و حجز ←",
         s3Title: "وەرگرتن و ڕێکخستنی مافە مالییەکان", s3Desc: "کۆکردنەوەی قەرز، ناردنی ئاگاداری فەرمی و ڕێککەوتنی تجاری.", s3Link: "وردەکاری و حجز ←",
         s4Title: "مۆڵەتی وەبەرهێنانی بیانی", s4Desc: "پاڵپشتی و بەدەستهێنانی مۆڵەتی فەرمی بۆ پروژەکانی وەبەرهێنان.", s4Link: "وردەکاری و حجز ←",
-        s5Title: "براند و مافی مڵکی فکری", s5Desc: "پاراستنی مافی خاوەندارێتی فکری و داهێنانی تجاری.", s4Link: "وردەکاری و حجز ←", s5Link: "وردەکاری و حجز ←",
+        s5Title: "براند و مافی مڵکی فکری", s5Desc: "پاراستنی مافی خاوەندارێتی فکری و داهێنانی تجاری.", s5Link: "وردەکاری و حجز ←",
         s6Title: "ئامادەکردن و داڕشتنی گرێبەستەکان", s6Desc: "داڕشتن و وردبینی گرێبەستە تجاری و مدنییەکان بەپێی یاسا.", s6Link: "وردەکاری و حجز ←",
         s7Title: "بارودۆخی کەسی و جێبەجێکردن", s7Desc: "کێشەی خێزانی، قەسامی شرعی، نفقة، حضانة و بەدواداچوونی جێبەجێکردن.", s7Link: "وردەکاری و حجز ←",
         s8Title: "ڕاوێژی باج و پابەندبوون", s8Desc: "ڕێکخستنی باج، تۆمارکردن لە دەستە باجییەکان و دڵنیابوون لە پابەندبوونی مالی.", s8Link: "وردەکاری و حجز ←",
