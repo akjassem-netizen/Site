@@ -212,24 +212,44 @@
     .conditional-section { display: none; }
     .conditional-section.active { display: block; }
 
-    /* تنسيق الفوتر ورابط سياسة الخصوصية */
+    /* تنسيق الفوتر لضمان بقاء الروابط القانونية في سطر أفقي واحد دائمًا */
     .site-footer {
       text-align: center;
-      padding: 25px;
-      font-size: 13px;
+      padding: 22px 10px;
+      font-size: 12px;
       color: #64748b;
       border-top: 1px solid #e2e8f0;
-      margin-top: 40px;
+      margin-top: 50px;
       background: #ffffff;
     }
-    .site-footer a {
+    .footer-legal-links {
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      overflow-x: auto;
+      padding: 2px 0;
+    }
+    .footer-legal-links a {
       color: #070f1e;
       text-decoration: none;
       font-weight: 700;
-      margin: 0 10px;
+      font-size: 11.5px;
     }
-    .site-footer a:hover {
+    .footer-legal-links a:hover {
       color: #c5a059;
+    }
+    .footer-legal-links .separator {
+      color: #cbd5e1;
+      font-weight: 400;
+    }
+    .site-footer span.copy-text {
+      color: #64748b;
+      display: block;
+      margin-top: 4px;
+      font-size: 11px;
     }
   </style>
 
@@ -418,10 +438,16 @@
     </form>
   </main>
 
-  <!-- الفوتر ورابط سياسة الخصوصية -->
+  <!-- الفوتر بمعالجة سطر واحد متناسق -->
   <footer class="site-footer">
-    <a href="/privacy/">سياسة الخصوصية</a> | 
-    <span>جميع الحقوق محفوظة © 2026 مكتب المحامي علي كاظم الهاشمي</span>
+    <div class="footer-legal-links">
+      <a href="/privacy/">سياسة الخصوصية</a>
+      <span class="separator">|</span>
+      <a href="/disclaimer/">إخلاء المسؤولية</a>
+      <span class="separator">|</span>
+      <a href="/code-of-conduct.html">قواعد السلوك المهني</a>
+    </div>
+    <span class="copy-text">جميع الحقوق محفوظة © 2026 مكتب المحامي علي كاظم الهاشمي</span>
   </footer>
 
   <script>
@@ -477,7 +503,7 @@
         return;
       }
       localStorage.setItem('preferredLang', lang);
-      window.location.href = 'en/';
+      window.location.href = '/booking/en/';
     }
 
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw7yF264dmPNlUy2Nng5jwz-qXRTZvoDIRjKNmLhWoDJ5Fk1RJEISFo3GIb5Xw4b0ycSA/exec";
