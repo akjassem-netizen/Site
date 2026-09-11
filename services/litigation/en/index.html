@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" id="htmlRoot">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WL4KNM0PG1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-WL4KNM0PG1');
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
@@ -133,7 +143,7 @@
     }
     .dropdown-menu a:hover { background: rgba(197,160,89,0.15); color: #c5a059; }
 
-    .container { width: 100%; max-width: 750px; background: #ffffff; padding: 35px 25px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border-top: 5px solid #c5a059; margin: 30px 16px; text-align: start; }
+    .container { width: 100%; max-width: 750px; background: #ffffff; padding: 35px 25px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border-top: 5px solid #c5a059; margin: 30px 16px; text-align: start; flex: 1; }
     .brand-logo { text-align: center; margin-bottom: 28px; direction: ltr; text-decoration: none; display: inline-block; width: 100%; }
     .brand-logo .akh { font-size: 40px; font-weight: 900; color: #0f172a; letter-spacing: 4px; line-height: 1; }
     .brand-logo .akh .red-k { color: #dc2626; }
@@ -161,6 +171,27 @@
     .btn-booking:hover { background: #c5a059; }
     .back-link { display: block; margin-top: 5px; font-size: 13px; color: #64748b; text-decoration: none; }
     .back-link:hover { color: #0f172a; }
+
+    /* تنسيق الفوتر */
+    .site-footer {
+      text-align: center;
+      padding: 25px;
+      font-size: 13px;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      margin-top: 40px;
+      background: #ffffff;
+      width: 100%;
+    }
+    .site-footer a {
+      color: #0f172a;
+      text-decoration: none;
+      font-weight: 700;
+      margin: 0 10px;
+    }
+    .site-footer a:hover {
+      color: #c5a059;
+    }
   </style>
 </head>
 <body>
@@ -212,6 +243,12 @@
       <a href="/services/" class="back-link" id="backLinkText">← Back to Services List</a>
     </div>
   </div>
+
+  <!-- الفوتر ورابط سياسة الخصوصية -->
+  <footer class="site-footer">
+    <a href="/privacy/en/" id="footerLink">Privacy Policy</a> | 
+    <span id="footerRights">All Rights Reserved © 2026 AKH Law Office</span>
+  </footer>
 
   <script>
     function toggleMenu() {
@@ -267,6 +304,10 @@
       document.getElementById('btnBookText').innerHTML = `<span>${t.btnBook}</span>`;
       document.getElementById('backLinkText').innerText = t.backLink;
 
+      document.getElementById('footerLink').innerText = t.privacyText;
+      document.getElementById('footerLink').href = '/privacy/en/';
+      document.getElementById('footerRights').innerText = t.rightsText;
+
       document.getElementById('languageSelect').value = lang;
     }
 
@@ -279,7 +320,8 @@
         pageMainTitle: "Legal Representation Before Judicial Authorities",
         contentBody: "The office undertakes legal representation and advocacy for our clients in all types of lawsuits. The office has built a solid professional reputation in providing the best legal representation across all courts and degrees throughout Iraq, working with dedication to follow up cases beyond expectations to achieve the best possible legal outcomes.",
         btnBook: "📅 Click here to go to the appointment booking page",
-        backLink: "← Back to Services List"
+        backLink: "← Back to Services List",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       tr: {
         pageTitle: "Irak'ta Yargı Mercileri ve Mahkemeler Önünde Yasal Temsil | Av. Ali Kazım Haşimi",
@@ -289,7 +331,8 @@
         pageMainTitle: "Yargı Mercileri Önünde Yasal Temsil",
         contentBody: "Büro, tüm dava türlerinde müvekkillerimiz adına yasal vekillik ve temsil görevini üstlenmektedir. Büro, Irak genelindeki tüm mahkemelerde en iyi yasal temsili sağlama konusunda sağlam bir mesleki itibar inşa etmiş olup, mümkün olan en iyi hukuki sonuçları elde etmek için özveriyle çalışmaktadır.",
         btnBook: "📅 Randevu rezervasyon sayfasına gitmek için tıklayın",
-        backLink: "← Hizmetler Listesine Dön"
+        backLink: "← Hizmetler Listesine Dön",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       zh: {
         pageTitle: "伊拉克司法机关与法院出庭代理 | 阿里·卡德姆·哈希米律所",
@@ -299,7 +342,8 @@
         pageMainTitle: "司法机关出庭代理",
         contentBody: "律所承接各类诉讼案件，并为客户提供专业的法律代理和出庭服务。律所在伊拉克全国各级法院的法律代理方面树立了坚实的专业声誉，致力于以超越期望的敬业精神跟进案件，以实现最佳的法律结果。",
         btnBook: "📅 点击此处跳转至预约页面",
-        backLink: "← 返回服务列表"
+        backLink: "← 返回服务列表",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       fr: {
         pageTitle: "Représentation Juridique Devant les Tribunaux en Iraq | Cabinet AKH",
@@ -309,7 +353,8 @@
         pageMainTitle: "Représentation Juridique Devant les Autorités Judiciaires",
         contentBody: "Le cabinet assume la représentation juridique et le plaidoyer pour nos clients dans tous types de litiges. Le cabinet s'est bâti une solide réputation professionnelle en fournissant la meilleure représentation juridique auprès de toutes les juridictions en Iraq, en travaillant avec dévouement pour obtenir les meilleurs résultats possibles.",
         btnBook: "📅 Cliquez ici pour accéder à la page de réservation",
-        backLink: "← Retour à la liste des services"
+        backLink: "← Retour à la liste des services",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       es: {
         pageTitle: "Representación Legal Ante Autoridades Judiciales y Tribunales en Irak | AKH",
@@ -319,7 +364,8 @@
         pageMainTitle: "Representación Legal Ante las Autoridades Judiciales",
         contentBody: "El bufete asume la representación legal y la defensa de nuestros clientes en todo tipo de demandas judiciales. El despacho se ha forjado una sólida reputación profesional al ofrecer la mejor representación legal en todos los tribunales y grados en todo Irak, trabajando con dedicación para lograr los mejores resultados posibles.",
         btnBook: "📅 Haga clic aquí para ir a la página de reservas",
-        backLink: "← Volver a la lista de servicios"
+        backLink: "← Volver a la lista de servicios",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       de: {
         pageTitle: "Gerichtliche Vertretung vor Justizbehörden im Irak | Kanzlei Ali Kadhem Hashimi",
@@ -329,7 +375,8 @@
         pageMainTitle: "Gerichtliche Vertretung vor den Justizbehörden",
         contentBody: "Die Kanzlei übernimmt die rechtliche Vertretung und Prozessführung für unsere Mandanten in allen Arten von Rechtsstreitigkeiten. Die Kanzlei hat sich einen soliden professionellen Ruf aufgebaut, indem sie die beste rechtliche Vertretung vor allen Gerichten im gesamten Irak bietet und engagiert daran arbeitet, bestmögliche Ergebnisse zu erzielen.",
         btnBook: "📅 Klicken Sie hier, um zur Buchungsseite zu gelangen",
-        backLink: "← Zurück zur Dienstleistungsliste"
+        backLink: "← Zurück zur Dienstleistungsliste",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       ku: {
         pageTitle: "نوێنەرایەتی یاسایی لەبەردەم دادگاکان و دەسەڵاتی دادوەری لە عێراق | نووسینگەی پارێزەر",
@@ -339,7 +386,8 @@
         pageMainTitle: "نوێنەرایەتی یاسایی لەبەردەم دەسەڵاتی دادوەریدا",
         contentBody: "نووسینگە بریوکاری یاسایی و نوێنەرایەتی کڕیارەکانمان لە هەموو جۆرە داوایەکی دادوەریدا لە ئەستۆ دەگرێت. نووسینگە ناوبانگی پیشەیی خۆی بنیاد ناوە لە پێشکەشکردنی باشترین نوێنەرایەتی یاسایی لەسەر ئاستی هەموو دادگاکان لە سەرجەم عێراقدا، و بە دڵسۆزییەوە کار دەکات بۆ بەدەستهێنانی باشترین ئەنجامە یاساییەکان.",
         btnBook: "📅 کلیک لێرە بکە بۆ گواستنەوە بۆ لاپەڕەی حجز",
-        backLink: "← گەڕانەوە بۆ خشتەی خزمەتگوزارییەکان"
+        backLink: "← گەڕانەوە بۆ خشتەی خزمەتگوزارییەکان",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       }
     };
   </script>
