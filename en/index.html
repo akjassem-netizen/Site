@@ -118,7 +118,7 @@
       top: calc(100% + 10px);
       right: 0;
       left: auto;
-      min-width: 260px;
+      min-width: 280px;
       background: #0f172a;
       border: 1.5px solid #c5a059;
       border-radius: 10px;
@@ -246,24 +246,44 @@
     .service-card p { font-size: 13px; color: #64748b; line-height: 1.6; margin-bottom: 14px; text-align: justify; }
     .card-link { font-size: 13px; font-weight: 800; color: #c5a059; display: inline-flex; align-items: center; gap: 5px; }
 
-    /* تنسيق الفوتر ورابط سياسة الخصوصية */
+    /* تنسيق الفوتر لضمان بقاء الروابط القانونية في سطر أفقي واحد دائمًا */
     .site-footer {
       text-align: center;
-      padding: 25px;
-      font-size: 13px;
+      padding: 22px 10px;
+      font-size: 12px;
       color: #64748b;
       border-top: 1px solid #e2e8f0;
       margin-top: 50px;
       background: #ffffff;
     }
-    .site-footer a {
+    .footer-legal-links {
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      overflow-x: auto;
+      padding: 2px 0;
+    }
+    .footer-legal-links a {
       color: #0f172a;
       text-decoration: none;
       font-weight: 700;
-      margin: 0 10px;
+      font-size: 11.5px;
     }
-    .site-footer a:hover {
+    .footer-legal-links a:hover {
       color: #c5a059;
+    }
+    .footer-legal-links .separator {
+      color: #cbd5e1;
+      font-weight: 400;
+    }
+    .site-footer span.copy-text {
+      color: #64748b;
+      display: block;
+      margin-top: 4px;
+      font-size: 11px;
     }
   </style>
 
@@ -297,7 +317,8 @@
         <a href="https://akjassem.com/services/" id="menuServices">Legal Services Directory</a>
         <a href="https://akjassem.com/consultations/en/" id="menuConsultations">Legal Consultations</a>
         <a href="https://akjassem.com/insights/en/" id="menuInsights">Iraq Legal Insights</a>
-        <a href="../" id="menuAbout">عربي / Arabic (Home)</a>
+        <a href="../" id="menuAbout">About Us (عربي / English)</a>
+        <a href="/code-of-conduct-en.html" id="menuCodeOfConduct">Code of Conduct</a>
         <a href="https://akjassem.com/contact/en/" id="menuContact">Contact Us</a>
       </div>
     </div>
@@ -367,10 +388,16 @@
     </section>
   </main>
 
-  <!-- الفوتر ورابط سياسة الخصوصية -->
+  <!-- الفوتر بمعالجة الروابط القانونية في سطر أفقي واحد متناسق -->
   <footer class="site-footer">
-    <a href="/privacy/en/">Privacy Policy</a> | 
-    <span>All Rights Reserved © 2026 AKH Law Office</span>
+    <div class="footer-legal-links">
+      <a href="/privacy/en/">Privacy Policy</a>
+      <span class="separator">|</span>
+      <a href="/disclaimer/en/">Disclaimer</a>
+      <span class="separator">|</span>
+      <a href="/code-of-conduct-en.html">Code of Conduct</a>
+    </div>
+    <span class="copy-text">All Rights Reserved © 2026 AKH Law Office</span>
   </footer>
 
   <script>
@@ -397,11 +424,10 @@
       }
     });
 
-    // دالة تغيير اللغة النظيفة بدون ?lang= في الرابط
     function switchLanguage(lang) {
       if (lang === 'ar') {
         localStorage.setItem('preferredLang', 'ar');
-        window.location.href = '../'; // تحويل فوري للصفحة العربية النظيفة
+        window.location.href = '../';
         return;
       }
       localStorage.setItem('preferredLang', lang);
@@ -428,6 +454,7 @@
       document.getElementById('menuConsultations').innerText = t.menuConsultations;
       document.getElementById('menuInsights').innerText = t.menuInsights;
       document.getElementById('menuAbout').innerText = t.menuAbout;
+      document.getElementById('menuCodeOfConduct').innerText = t.menuCodeOfConduct;
       document.getElementById('menuContact').innerText = t.menuContact;
 
       document.getElementById('heroTitle').innerText = t.heroTitle;
@@ -450,7 +477,7 @@
         pageTitle: "Law Office of Ali Kadhem Hashimi | Legal Services in Iraq",
         metaDesc: "Official website of the Law Office of Ali Kadhem Hashimi in Baghdad. Est. 2014. Corporate setup, judicial representation, tax advisory, and contracts.",
         metaKeywords: "Law Office of Ali Kadhem Hashimi, Baghdad lawyer, legal services Iraq, corporate registration Baghdad, litigation, tax advisory",
-        home: "Home", menuServices: "Legal Services Directory", menuConsultations: "Legal Consultations", menuInsights: "Iraq Legal Insights", menuAbout: "عربي / Arabic (Home)", menuContact: "Contact Us",
+        home: "Home", menuServices: "Legal Services Directory", menuConsultations: "Legal Consultations", menuInsights: "Iraq Legal Insights", menuAbout: "About Us", menuCodeOfConduct: "Code of Conduct", menuContact: "Contact Us",
         heroTitle: "Law Office of Ali Kadhem Hashimi", heroSubtitle: "Your trusted legal partner in Baghdad. Comprehensive advisory, corporate formation, and judicial representation at the highest standards.",
         heroCta: "📅 Book Official Consultation", secMainTitle: "Specialized Legal Services", cardLink: "Details & Booking →",
         s1Title: "Corporate Formation", s1Desc: "Local and foreign company setup, drafting articles of association, and bank accounts.",
@@ -467,7 +494,7 @@
         pageTitle: "Av. Ali Kazım Haşimi Hukuk Bürosu | Irak Hukuki Hizmetler",
         metaDesc: "Bağdat'taki Av. Ali Kazım Haşimi Hukuk Bürosu'nun resmi web sitesi. 2014 yılında kuruldu. Şirket kuruluşu, dava takibi ve vergi danışmanlığı.",
         metaKeywords: "Avukat Bağdat, Irak hukuk bürosu, şirket kuruluşu Irak, ticari dava",
-        home: "Ana Sayfa", menuServices: "Hizmetler", menuConsultations: "Hukuki Danışmanlık", menuInsights: "İçgörüler", menuAbout: "عربي / Arabic (Home)", menuContact: "İletişim",
+        home: "Ana Sayfa", menuServices: "Hizmetler", menuConsultations: "Hukuki Danışmanlık", menuInsights: "İçgörüler", menuAbout: "Hakkımızda", menuCodeOfConduct: "Mesleki Etik Kuralları", menuContact: "İletişim",
         heroTitle: "Av. Ali Kazım Haşimi Hukuk Bürosu", heroSubtitle: "Bağdat'taki güvenilir yasal ortağınız. Kapsamlı danışmanlık, şirket kuruluşu ve yargı temsilciliği.",
         heroCta: "📅 Resmi Randevu Al", secMainTitle: "Uzmanlık Alanlarımız", cardLink: "Detaylar ve Randevu →",
         s1Title: "Şirket Kuruluşu", s1Desc: "Yerel ve yabancı şirketlerin kuruluşu, ana sözleşme hazırlama ve banka hesapları.",
@@ -484,7 +511,7 @@
         pageTitle: "阿里·卡德姆·哈希米律所 | 伊拉克法律服务",
         metaDesc: "巴格达阿里·卡德姆·哈希米律所官方网站。成立于2014年。综合法律服务：公司注册、司法代理、税务咨询与合同审查。",
         metaKeywords: "巴格达律师, 伊拉克法律服务, 公司注册, 知识产权, 法律咨询",
-        home: "首页", menuServices: "法律服务", menuConsultations: "法律咨询", menuInsights: "法律洞察", menuAbout: "关于我们 (عربي)", menuContact: "联系我们",
+        home: "首页", menuServices: "法律服务", menuConsultations: "法律咨询", menuInsights: "法律洞察", menuAbout: "关于我们", menuCodeOfConduct: "行为准则", menuContact: "联系我们",
         heroTitle: "阿里·卡德姆·哈希米律所", heroSubtitle: "您在巴格达值得信赖的法律伙伴。以最高标准提供综合咨询、公司注册和司法代理服务。",
         heroCta: "📅 预约正式咨询", secMainTitle: "专业法律服务", cardLink: "详情与预约 →",
         s1Title: "公司注册与组建", s1Desc: "内外资公司设立、章程起草及银行开户协助。",
@@ -501,7 +528,7 @@
         pageTitle: "Cabinet d'Avocats Ali Kadhem Hashimi | Services en Iraq",
         metaDesc: "Site officiel du Cabinet d'Avocats Ali Kadhem Hashimi à Bagdad. Fondé en 2014. Services juridiques complets : création d'entreprise, contentieux et fiscalité.",
         metaKeywords: "Avocat Bagdad, services juridiques Irak, création d'entreprise Irak, contentieux",
-        home: "Accueil", menuServices: "Services", menuConsultations: "Consultations Juridiques", menuInsights: "Aperçus", menuAbout: "À Propos (عربي)", menuContact: "Contact",
+        home: "Accueil", menuServices: "Services", menuConsultations: "Consultations Juridiques", menuInsights: "Aperçus", menuAbout: "À Propos", menuCodeOfConduct: "Code de Conduite", menuContact: "Contact",
         heroTitle: "Cabinet d'Avocats Ali Kadhem Hashimi", heroSubtitle: "Votre partenaire juridique de confiance à Bagdad. Conseil global, création d'entreprise et représentation judiciaire.",
         heroCta: "📅 Réserver une Consultation", secMainTitle: "Services Juridiques Spécialisés", cardLink: "Détails & Réservation →",
         s1Title: "Création d'Entreprise", s1Desc: "Création de sociétés locales et étrangères, statuts et comptes bancaires.",
@@ -518,7 +545,7 @@
         pageTitle: "Bufete de Abogados Ali Kadhem Hashimi | Servicios en Irak",
         metaDesc: "Sitio web oficial del Bufete de Abogados Ali Kadhem Hashimi en Bagdad. Fundado en 2014. Servicios legales integrales: constitución de empresas y litigios.",
         metaKeywords: "Abogado Bagdad, servicios legales Irak, constitución de empresas Irak",
-        home: "Inicio", menuServices: "Servicios", menuConsultations: "Consultas Legales", menuInsights: "Perspectivas", menuAbout: "Sobre Nosotros (عربي)", menuContact: "Contacto",
+        home: "Inicio", menuServices: "Servicios", menuConsultations: "Consultas Legales", menuInsights: "Perspectivas", menuAbout: "Sobre Nosotros", menuCodeOfConduct: "Código de Conducta", menuContact: "Contacto",
         heroTitle: "Bufete de Abogados Ali Kadhem Hashimi", heroSubtitle: "Su socio legal de confianza en Bagdad. Asesoría integral, constitución de empresas y representación judicial.",
         heroCta: "📅 Reservar Consulta Oficial", secMainTitle: "Servicios Legales Especializados", cardLink: "Detalles y Reserva →",
         s1Title: "Constitución de Empresas", s1Desc: "Creación de empresas locales y extranjeras, estatutos y cuentas bancarias.",
@@ -535,7 +562,7 @@
         pageTitle: "Anwaltskanzlei Ali Kadhem Hashimi | Rechtsdienste im Irak",
         metaDesc: "Offizielle Website der Anwaltskanzlei Ali Kadhem Hashimi in Bagdad. Gegründet 2014. Umfassende Rechtsdienste: Unternehmensgründung und Prozessführung.",
         metaKeywords: "Anwalt Bagdad, Rechtsdienstleistungen Irak, Unternehmensgründung Irak",
-        home: "Startseite", menuServices: "Dienste", menuConsultations: "Rechtliche Beratung", menuInsights: "Einblicke", menuAbout: "Über uns (عربي)", menuContact: "Kontakt",
+        home: "Startseite", menuServices: "Dienste", menuConsultations: "Rechtliche Beratung", menuInsights: "Einblicke", menuAbout: "Über uns", menuCodeOfConduct: "Verhaltenskodex", menuContact: "Kontakt",
         heroTitle: "Anwaltskanzlei Ali Kadhem Hashimi", heroSubtitle: "Ihr vertrauenswürdiger Rechtspartner in Bagdad. Umfassende Beratung, Unternehmensgründung und Vertretung.",
         heroCta: "📅 Offizielle Beratung buchen", secMainTitle: "Spezialisierte Rechtsdienstleistungen", cardLink: "Details & Buchung →",
         s1Title: "Unternehmensgründung", s1Desc: "Einrichtung in- und ausländischer Unternehmen, Satzungen, Bankkonten.",
@@ -552,7 +579,7 @@
         pageTitle: "نووسینگەی پارێزەر عەلی کازمی هاشمی | خزمەتگوزاری یاسایی لە عێراق",
         metaDesc: "ماڵپەڕی فەرمی نووسینگەی پارێزەر عەلی کازمی هاشمی لە بەغداد. دامەزراوە لە 2014. خزمەتگوزاری یاسایی گشتگیر: دامەزراندنی کۆمپانیا، نوێنەرایەتی دادوەری و ڕاوێژی باج.",
         metaKeywords: "پارێزەر لە بەغداد, خزمەتگوزاری یاسایی عێراق, دامەزراندنی کۆمپانیاکان",
-        home: "سەرەکی", menuServices: "خزمەتگوزارییەکان", menuConsultations: "ڕاوێژی یاسایی", menuInsights: "تێڕوانینەکان", menuAbout: "دەرباره‌ی ئێمە (عربي)", menuContact: "پەیوەندی",
+        home: "سەرەکی", menuServices: "خزمەتگوزارییەکان", menuConsultations: "ڕاوێژی یاسایی", menuInsights: "تێڕوانینەکان", menuAbout: "دەرباره‌ی ئێمە", menuCodeOfConduct: "ڕەفتاری پیشەیی", menuContact: "پەیوەندی",
         heroTitle: "نووسینگەی پارێزەر عەلی کازمی هاشمی", heroSubtitle: "هاوبەشی یاسایی متمانەپێکراوی ئێوە لە بەغداد. ڕاوێژی گشتگیر، دامەزراندنی کۆمپانیا و نوێنەرایەتی دادوەری.",
         heroCta: "📅 چاوپێکەوتنی فەرمی تۆماربکە", secMainTitle: "خزمەتگوزارییە یاساییە تایبەتمەندەکان", cardLink: "وردەکاری و چاوپێکەوتن ←",
         s1Title: "دامەزراندنی کۆمپانیاکان", s1Desc: "دامەزراندنی کۆمپانیای خۆماڵی و بیانی، داڕشتنی گرێبەستی دامەزراندن و هەژماری بانکی.",
