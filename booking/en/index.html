@@ -25,7 +25,7 @@
   <link rel="alternate" hreflang="en" href="https://akjassem.com/booking/en/">
   <link rel="alternate" hreflang="x-default" href="https://akjassem.com/booking/en/">
 
-  <!-- معاينة وسائل التواصل الاجتماعي (WhatsApp, LinkedIn, Facebook) -->
+  <!-- معاينة وسائل التواصل الاجتماعي -->
   <meta property="og:title" id="ogTitle" content="Book a Legal Consultation | Law Office of Ali Kadhem Hashimi">
   <meta property="og:description" id="ogDesc" content="Book a legal consultation appointment with the Law Office of Ali Kadhem Hashimi in Baghdad. Expert corporate and individual legal services.">
   <meta property="og:image" content="https://akjassem.com/og-logo.jpg">
@@ -213,24 +213,44 @@
     .conditional-section { display: none; }
     .conditional-section.active { display: block; }
 
-    /* تنسيق الفوتر ورابط سياسة الخصوصية */
+    /* تنسيق الفوتر لضمان بقاء الروابط القانونية في سطر أفقي واحد دائمًا */
     .site-footer {
       text-align: center;
-      padding: 25px;
-      font-size: 13px;
+      padding: 22px 10px;
+      font-size: 12px;
       color: #64748b;
       border-top: 1px solid #e2e8f0;
-      margin-top: 40px;
+      margin-top: 50px;
       background: #ffffff;
     }
-    .site-footer a {
+    .footer-legal-links {
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      overflow-x: auto;
+      padding: 2px 0;
+    }
+    .footer-legal-links a {
       color: #070f1e;
       text-decoration: none;
       font-weight: 700;
-      margin: 0 10px;
+      font-size: 11.5px;
     }
-    .site-footer a:hover {
+    .footer-legal-links a:hover {
       color: #c5a059;
+    }
+    .footer-legal-links .separator {
+      color: #cbd5e1;
+      font-weight: 400;
+    }
+    .site-footer span.copy-text {
+      color: #64748b;
+      display: block;
+      margin-top: 4px;
+      font-size: 11px;
     }
   </style>
 
@@ -419,10 +439,16 @@
     </form>
   </main>
 
-  <!-- الفوتر ورابط سياسة الخصوصية -->
+  <!-- الفوتر بمعالجة سطر واحد متناسق -->
   <footer class="site-footer">
-    <a href="/privacy/en/">Privacy Policy</a> | 
-    <span>All Rights Reserved © 2026 AKH Law Office</span>
+    <div class="footer-legal-links">
+      <a href="/privacy/en/" id="footerPrivacy">Privacy Policy</a>
+      <span class="separator">|</span>
+      <a href="/disclaimer/en/" id="footerDisclaimer">Disclaimer</a>
+      <span class="separator">|</span>
+      <a href="/code-of-conduct-en.html" id="footerCode">Code of Conduct</a>
+    </div>
+    <span class="copy-text" id="footerRights">All Rights Reserved © 2026 AKH Law Office</span>
   </footer>
 
   <script>
@@ -539,6 +565,11 @@
       document.getElementById('countryInc').placeholder = t.phCountry;
       document.getElementById('regNo').placeholder = t.phRegNo;
       document.getElementById('consultationDetails').placeholder = t.phDetails;
+
+      document.getElementById('footerPrivacy').innerText = t.privacyText;
+      document.getElementById('footerDisclaimer').innerText = t.disclaimerText;
+      document.getElementById('footerCode').innerText = t.codeText;
+      document.getElementById('footerRights').innerText = t.rightsText;
 
       document.getElementById('languageSelect').value = lang;
 
@@ -661,7 +692,11 @@
         phNat: "e.g., British / American / German",
         phCountry: "e.g., Iraq / UAE / UK",
         phRegNo: "Certificate or Registration Number",
-        phDetails: "Briefly explain the facts of your case or legal consultation topic..."
+        phDetails: "Briefly explain the facts of your case or legal consultation topic...",
+        privacyText: "Privacy Policy",
+        disclaimerText: "Disclaimer",
+        codeText: "Code of Conduct",
+        rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       tr: {
         title: "Danışmanlık Randevusu | Av. Ali Kazım Haşimi Hukuk Bürosu",
@@ -729,7 +764,11 @@
         phNat: "örn. İngiliz / Amerikan",
         phCountry: "örn. Irak / BAE / İngiltere",
         phRegNo: "Kayıt veya Sertifika Numarası",
-        phDetails: "Davanızın detaylarını kısaca açıklayın..."
+        phDetails: "Davanızın detaylarını kısaca açıklayın...",
+        privacyText: "Gizlilik Politikası",
+        disclaimerText: "Yasal Uyarı",
+        codeText: "Mesleki Etik Kuralları",
+        rightsText: "Tüm Hakları Saklıdır © 2026 AKH Law Office"
       },
       zh: {
         title: "预约法律咨询 | 阿里·卡德姆·哈希米律所 巴格达",
@@ -797,7 +836,11 @@
         phNat: "例如：英国 / 美国",
         phCountry: "例如：伊拉克 / 阿联酋",
         phRegNo: "注册或证书编号",
-        phDetails: "请简要说明您的案件或咨询主题..."
+        phDetails: "请简要说明您的案件或咨询主题...",
+        privacyText: "隐私政策",
+        disclaimerText: "免责声明",
+        codeText: "行为准则",
+        rightsText: "版权所有 © 2026 AKH Law Office"
       },
       fr: {
         title: "Réserver une Consultation | Cabinet Ali Kadhem Hashimi - Bagdad",
@@ -865,7 +908,11 @@
         phNat: "ex: Britannique / Américain",
         phCountry: "ex: Irak / EAU / R-U",
         phRegNo: "Numéro d'enregistrement",
-        phDetails: "Veuillez expliquer brièvement les faits de votre affaire..."
+        phDetails: "Veuillez expliquer brièvement les faits de votre affaire...",
+        privacyText: "Politique de Confidentialité",
+        disclaimerText: "Avertissement",
+        codeText: "Code de Conduite",
+        rightsText: "Tous Droits Réservés © 2026 AKH Law Office"
       },
       es: {
         title: "Reservar Consulta | Bufete Ali Kadhem Hashimi - Bagdad",
@@ -933,7 +980,11 @@
         phNat: "ej: Británico / Americano",
         phCountry: "ej: Irak / EAU / RU",
         phRegNo: "Número de registro",
-        phDetails: "Explique brevemente los hechos de su caso..."
+        phDetails: "Explique brevemente los hechos de su caso...",
+        privacyText: "Política de Privacidad",
+        disclaimerText: "Aviso Legal",
+        codeText: "Código de Conducta",
+        rightsText: "Todos los Derechos Reservados © 2026 AKH Law Office"
       },
       de: {
         title: "Beratung buchen | Kanzlei Ali Kadhem Hashimi - Bagdad",
@@ -1001,7 +1052,11 @@
         phNat: "z.B. Britisch / Amerikanisch",
         phCountry: "z.B. Irak / VAE / GB",
         phRegNo: "Registriernummer",
-        phDetails: "Erläutern Sie kurz die Fakten Ihres Falles..."
+        phDetails: "Erläutern Sie kurz die Fakten Ihres Falles...",
+        privacyText: "Datenschutz",
+        disclaimerText: "Haftungsausschluss",
+        codeText: "Verhaltenskodex",
+        rightsText: "Alle Rechte vorbehalten © 2026 AKH Law Office"
       },
       ku: {
         title: "چاوپێکەوتنی راوێژکاری | نووسینگەی پارێزەر عەلی کازمی هاشمی - بەغداد",
@@ -1069,7 +1124,11 @@
         phNat: "نموونە: بەریتانی / ئەمریکی",
         phCountry: "نموونە: عێراق / ئێمارات",
         phRegNo: "ژمارەی تۆمارکردن",
-        phDetails: "بە کورتەیەک وردەکاری دۆسیەکەت بنووسە..."
+        phDetails: "بە کورتەیەک وردەکاری دۆسیەکەت بنووسە...",
+        privacyText: "سیاسەتی تایبەتمەندی",
+        disclaimerText: "بەرپرسیارێتی",
+        codeText: "ڕەفتاری پیشەیی",
+        rightsText: "هەموو مافەکان پارێزراون © 2026 AKH Law Office"
       }
     };
   </script>
