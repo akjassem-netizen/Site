@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" id="htmlRoot">
 <head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WL4KNM0PG1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-WL4KNM0PG1');
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <!-- تحسين محركات البحث (SEO) والروابط البديلة -->
   <title>مكتب المحامي علي كاظم الهاشمي | الاستشارات والخدمات القانونية في العراق</title>
   <meta name="description" content="الموقع الرسمي لمكتب المحامي علي كاظم الهاشمي في بغداد. تأسست في 2014. خدمات قانونية متكاملة: تأسيس الشركات، التمثيل القضائي، الاستشارات الضريبية، والعقود. | AKH Law Office Iraq">
   <meta name="keywords" content="مكتب المحامي علي كاظم الهاشمي, محامي في بغداد, خدمات قانونية في العراق, تأسيس شركات بغداد, تمثيل قضائي, تحصيل الديون, استشارات ضريبية, علامات تجارية العراق">
@@ -15,7 +23,6 @@
   <link rel="alternate" hreflang="en" href="https://akjassem.com/en/">
   <link rel="alternate" hreflang="x-default" href="https://akjassem.com/">
 
-  <!-- معاينة وسائل التواصل الاجتماعي (WhatsApp, LinkedIn, Facebook) -->
   <meta property="og:title" content="مكتب المحامي علي كاظم الهاشمي | الاستشارات والخدمات القانونية">
   <meta property="og:description" content="الموقع الرسمي لمكتب المحامي علي كاظم الهاشمي في بغداد. خدمات قانونية متكاملة وتأسيس شركات.">
   <meta property="og:image" content="https://akjassem.com/og-logo.jpg">
@@ -27,13 +34,11 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="AKH Law Office Baghdad">
 
-  <!-- بطاقة تويتر -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="مكتب المحامي علي كاظم الهاشمي | الاستشارات والخدمات القانونية">
   <meta name="twitter:description" content="الموقع الرسمي لمكتب المحامي علي كاظم الهاشمي في بغداد. خدمات قانونية متكاملة.">
   <meta name="twitter:image" content="https://akjassem.com/og-logo.jpg">
 
-  <!-- بيانات المنظمة Schema.org -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -57,7 +62,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Cairo', sans-serif; background: #f8fafc; color: #0f172a; scroll-behavior: smooth; }
+    body { font-family: 'Cairo', sans-serif; background: #f8fafc; color: #0f172a; scroll-behavior: smooth; min-height: 100vh; display: flex; flex-direction: column; }
 
     .icover-header {
       background: #0f172a;
@@ -146,6 +151,7 @@
       grid-template-columns: 380px 1fr;
       gap: 30px;
       align-items: start;
+      flex: 1;
     }
     @media (max-width: 950px) { .main-container { grid-template-columns: 1fr; } }
 
@@ -234,6 +240,26 @@
     .service-card h3 { font-size: 15.5px; font-weight: 800; color: #0f172a; margin-bottom: 8px; }
     .service-card p { font-size: 13px; color: #64748b; line-height: 1.6; margin-bottom: 14px; text-align: justify; }
     .card-link { font-size: 13px; font-weight: 800; color: #c5a059; display: inline-flex; align-items: center; gap: 5px; }
+
+    /* تنسيق الفوتر ورابط سياسة الخصوصية */
+    .site-footer {
+      text-align: center;
+      padding: 25px;
+      font-size: 13px;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      margin-top: 50px;
+      background: #ffffff;
+    }
+    .site-footer a {
+      color: #0f172a;
+      text-decoration: none;
+      font-weight: 700;
+      margin: 0 10px;
+    }
+    .site-footer a:hover {
+      color: #c5a059;
+    }
   </style>
 
   <script>
@@ -336,6 +362,11 @@
     </section>
   </main>
 
+  <footer class="site-footer">
+    <a href="/privacy/">سياسة الخصوصية</a> | 
+    <span>جميع الحقوق محفوظة © 2026 مكتب المحامي علي كاظم الهاشمي</span>
+  </footer>
+
   <script>
     function toggleMenu() {
       document.getElementById('dropdownMenu').classList.toggle('active');
@@ -347,13 +378,11 @@
       }
     }
 
-    // دالة التحويل النظيفة بدون ?lang=
     function switchLanguage(lang) {
       if (lang === 'ar') {
         localStorage.setItem('preferredLang', 'ar');
         return;
       }
-      // حفظ اللغة المختارة في الذاكرة وتحويل الزائر للمجلد النظيف /en/ مباشرة
       localStorage.setItem('preferredLang', lang);
       window.location.href = '/en/';
     }
