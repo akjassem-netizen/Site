@@ -143,7 +143,7 @@
     }
     .dropdown-menu a:hover { background: rgba(197,160,89,0.15); color: #c5a059; }
     
-    /* تمييز قواعد السلوك المهني في القائمة المنسدلة */
+    /* تمييز قواعد السلوك المهني كعنصر حوكمة رئيسي مجاور لقسم من نحن */
     .dropdown-menu a.special-conduct-link {
       color: #c5a059;
       font-weight: 900;
@@ -248,35 +248,44 @@
     .service-card p { font-size: 13px; color: #64748b; line-height: 1.6; margin-bottom: 14px; text-align: justify; }
     .card-link { font-size: 13px; font-weight: 800; color: #c5a059; display: inline-flex; align-items: center; gap: 5px; }
 
-    /* تنسيق الفوتر والروابط القانونية في سطر واحد نظيف */
+    /* تنسيق الفوتر لضمان بقاء الروابط القانونية في سطر أفقي واحد دائمًا */
     .site-footer {
       text-align: center;
-      padding: 25px;
-      font-size: 13px;
+      padding: 22px 10px;
+      font-size: 12px;
       color: #64748b;
       border-top: 1px solid #e2e8f0;
       margin-top: 50px;
       background: #ffffff;
     }
     .footer-legal-links {
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       display: flex;
       justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      overflow-x: auto;
+      padding: 2px 0;
     }
-    .site-footer a {
+    .footer-legal-links a {
       color: #0f172a;
       text-decoration: none;
       font-weight: 700;
+      font-size: 11.5px;
     }
-    .site-footer a:hover {
+    .footer-legal-links a:hover {
       color: #c5a059;
+    }
+    .footer-legal-links .separator {
+      color: #cbd5e1;
+      font-weight: 400;
     }
     .site-footer span.copy-text {
       color: #64748b;
       display: block;
-      margin-top: 5px;
+      margin-top: 4px;
+      font-size: 11px;
     }
   </style>
 
@@ -381,10 +390,13 @@
     </section>
   </main>
 
+  <!-- ذيل الصفحة بمعالجة سطر واحد متناسق -->
   <footer class="site-footer">
     <div class="footer-legal-links">
-      <a href="/privacy/">سياسة الخصوصية</a> | 
-      <a href="/disclaimer/">إخلاء المسؤولية</a> | 
+      <a href="/privacy/">سياسة الخصوصية</a>
+      <span class="separator">|</span>
+      <a href="/disclaimer/">إخلاء المسؤولية</a>
+      <span class="separator">|</span>
       <a href="/code-of-conduct.html">قواعد السلوك المهني</a>
     </div>
     <span class="copy-text">جميع الحقوق محفوظة © 2026 مكتب المحامي علي كاظم الهاشمي</span>
