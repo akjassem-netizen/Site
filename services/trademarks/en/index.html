@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" id="htmlRoot">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WL4KNM0PG1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-WL4KNM0PG1');
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
@@ -130,7 +140,7 @@
     }
     .dropdown-menu a:hover { background: rgba(197,160,89,0.15); color: #c5a059; }
 
-    .container { width: 100%; max-width: 750px; background: #ffffff; padding: 35px 25px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border-top: 5px solid #c5a059; margin: 30px 16px; text-align: start; }
+    .container { width: 100%; max-width: 750px; background: #ffffff; padding: 35px 25px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border-top: 5px solid #c5a059; margin: 30px 16px; text-align: start; flex: 1; }
     .brand-logo { text-align: center; margin-bottom: 28px; direction: ltr; text-decoration: none; display: inline-block; width: 100%; }
     .brand-logo .akh { font-size: 40px; font-weight: 900; color: #0f172a; letter-spacing: 4px; line-height: 1; }
     .brand-logo .akh .red-k { color: #dc2626; }
@@ -158,6 +168,27 @@
     .btn-booking:hover { background: #c5a059; }
     .back-link { display: block; margin-top: 5px; font-size: 13px; color: #64748b; text-decoration: none; }
     .back-link:hover { color: #0f172a; }
+
+    /* تنسيق الفوتر */
+    .site-footer {
+      text-align: center;
+      padding: 25px;
+      font-size: 13px;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      margin-top: 40px;
+      background: #ffffff;
+      width: 100%;
+    }
+    .site-footer a {
+      color: #0f172a;
+      text-decoration: none;
+      font-weight: 700;
+      margin: 0 10px;
+    }
+    .site-footer a:hover {
+      color: #c5a059;
+    }
   </style>
 </head>
 <body>
@@ -214,6 +245,12 @@
     </div>
   </div>
 
+  <!-- الفوتر ورابط سياسة الخصوصية -->
+  <footer class="site-footer">
+    <a href="/privacy/en/" id="footerLink">Privacy Policy</a> | 
+    <span id="footerRights">All Rights Reserved © 2026 AKH Law Office</span>
+  </footer>
+
   <script>
     function toggleMenu() {
       document.getElementById('dropdownMenu').classList.toggle('active');
@@ -268,6 +305,10 @@
       document.getElementById('btnBookText').innerHTML = `<span>${t.btnBook}</span>`;
       document.getElementById('backLinkText').innerText = t.backLink;
 
+      document.getElementById('footerLink').innerText = t.privacyText;
+      document.getElementById('footerLink').href = '/privacy/en/';
+      document.getElementById('footerRights').innerText = t.rightsText;
+
       document.getElementById('languageSelect').value = lang;
     }
 
@@ -280,7 +321,8 @@
         pageMainTitle: "Trademark & Patent Registration",
         contentBody: "The Law Office of Ali Kadhem Hashimi welcomes all individuals and institutions in need of trademark and patent registration services. This vital specialized process is an essential tool for protecting the intellectual property rights of individuals and companies, ensuring that innovators and business owners benefit from exclusive rights to their innovations and products.<br><br>The office provides comprehensive support and the necessary legal expertise to register and protect trademarks, industrial designs, and innovations. The service begins with evaluating ideas and products, analyzing legal and technological suitability, and studying proposed marks and inventions to verify required legal standards.<br><br>The office ensures clients receive precise guidance to enhance their market position and achieve complete protection for their intellectual property, fostering development, innovation, and trust.",
         btnBook: "📅 Click here to go to the appointment booking page",
-        backLink: "← Back to Services List"
+        backLink: "← Back to Services List",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       tr: {
         pageTitle: "Irak'ta Marka ve Patent Tescili | Av. Ali Kazım Haşimi Hukuk Bürosu",
@@ -290,7 +332,8 @@
         pageMainTitle: "Marka ve Patent Tescili",
         contentBody: "Av. Ali Kazım Haşimi Hukuk Bürosu, marka ve patent tescil hizmetine ihtiyaç duyan tüm birey ve kurumlara hoş geldiniz der. Bu hayati uzmanlık süreci, bireylerin ve şirketlerin fikri mülkiyet haklarını korumak için temel bir araçtır.<br><br>Büro, marka, endüstriyel tasarım ve yeniliklerin tescili ve korunması için kapsamlı destek ve gerekli hukuki uzmanlığı sağlar. Hizmet, fikir ve ürünlerin değerlendirilmesi, yasal uygunluğun analizi ile başlar.<br><br>Büro, müvekkillerine piyasadaki konumlarını güçlendirmek ve fikri mülkiyetleri için tam koruma sağlamak amacıyla kesin rehberlik sunar.",
         btnBook: "📅 Randevu rezervasyon sayfasına gitmek için tıklayın",
-        backLink: "← Hizmetler Listesine Dön"
+        backLink: "← Hizmetler Listesine Dön",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       zh: {
         pageTitle: "伊拉克商标与专利注册 | 阿里·卡德姆·哈希米律所",
@@ -300,7 +343,8 @@
         pageMainTitle: "商标与专利注册",
         contentBody: "阿里·卡德姆·哈希米律所欢迎所有需要商标和专利注册服务的个人与机构。这一至关重要的专业流程是保护个人和企业知识产权的基本工具，确保创新者和企业主对其创新和产品享有独占权。<br><br>律所提供全面的支持和必要的法律专业知识，以注册和保护商标、工业设计和创新。服务从评估创意和产品、分析法律和技术适宜性开始，研究拟议的标志和发明以核实法律要求。<br><br>律所致力于指导客户并提供精准指引，以巩固其市场地位并实现对其知识产权的全面保护。",
         btnBook: "📅 点击此处跳转至预约页面",
-        backLink: "← 返回服务列表"
+        backLink: "← 返回服务列表",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       fr: {
         pageTitle: "Enregistrement de Marques et Brevets en Iraq | Cabinet AKH",
@@ -310,7 +354,8 @@
         pageMainTitle: "Enregistrement de Marques et de Brevets",
         contentBody: "Le Cabinet d'Avocats Ali Kadhem Hashimi accueille tous les individus et institutions nécessitant des services d'enregistrement de marques et de brevets. Ce processus spécialisé est un outil essentiel pour protéger les droits de propriété intellectuelle des individus et des entreprises.<br><br>Le cabinet fournit un soutien complet et l'expertise juridique nécessaire pour enregistrer et protéger les marques, les modèles industriels et les innovations. Le service commence par l'évaluation des idées et des produits, l'analyse de leur adéquation juridique et l'étude des marques proposées.<br><br>Le cabinet veille à orienter les clients avec précision pour renforcer leur position sur le marché et assurer une protection totale de leur propriété intellectuelle.",
         btnBook: "📅 Cliquez ici pour accéder à la page de réservation",
-        backLink: "← Retour à la liste des services"
+        backLink: "← Retour à la liste des services",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       es: {
         pageTitle: "Registro de Marcas y Patentes en Irak | Bufete AKH",
@@ -320,7 +365,8 @@
         pageMainTitle: "Registro de Marcas y Patentes",
         contentBody: "El Bufete de Abogados Ali Kadhem Hashimi da la bienvenida a todas las personas e instituciones que necesitan servicios de registro de marcas y patentes. Este proceso especializado es una herramienta esencial para proteger los derechos de propiedad intelectual de personas y empresas, garantizando beneficios exclusivos.<br><br>El bufete ofrece apoyo integral y la experiencia legal necesaria para registrar y proteger marcas, diseños industriales e innovaciones. El servicio comienza evaluando ideas y productos, analizando la idoneidad legal y tecnológica, y estudiando las marcas propuestas.<br><br>El bufete se compromete a orientar a los clientes y ofrecer una guía precisa para fortalecer su posición en el mercado y lograr una protección total de su propiedad intelectual.",
         btnBook: "📅 Haga clic aquí para ir a la página de reservas",
-        backLink: "← Volver a la lista de servicios"
+        backLink: "← Volver a la lista de servicios",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       de: {
         pageTitle: "Marken- und Patentregistrierung im Irak | Kanzlei Ali Kadhem Hashimi",
@@ -330,7 +376,8 @@
         pageMainTitle: "Marken- und Patentregistrierung",
         contentBody: "Die Anwaltskanzlei Ali Kadhem Hashimi begrüßt alle Personen und Institutionen, die Dienstleistungen zur Registrierung von Marken und Patenten benötigen. Dieser spezialisierte Prozess ist ein wesentliches Instrument zum Schutz der Rechte am geistigen Eigentum von Einzelpersonen und Unternehmen.<br><br>Die Kanzlei bietet umfassende Unterstützung und das erforderliche juristische Fachwissen, um Marken, gewerbliche Muster und Innovationen zu registrieren und zu schützen. Der Service beginnt mit der Bewertung von Ideen und Produkten sowie der Prüfung rechtlicher Standards.<br><br>Die Kanzlei achtet darauf, Mandanten präzise zu beraten, um ihre Marktposition zu stärken und einen vollständigen Schutz ihres geistigen Eigentums zu erreichen.",
         btnBook: "📅 Klicken Sie hier, um zur Buchungsseite zu gelangen",
-        backLink: "← Zurück zur Dienstleistungsliste"
+        backLink: "← Zurück zur Dienstleistungsliste",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       ku: {
         pageTitle: "تۆمارکردنی مارکە بازرگانی و مۆڵەتی داهێنان لە عێراق | نووسینگەی پارێزەر",
@@ -340,7 +387,8 @@
         pageMainTitle: "تۆمارکردنی مارکە بازرگانی و مۆڵەتی داهێنان",
         contentBody: "نووسینگەی پارێزەر عەلی کازمی هاشمی پێشوازی لە هەموو ئەو کەس و دەزگایانە دەکات کە پێویستیان بە خزمەتگوزاری تۆمارکردنی مارکە بازرگانی و مۆڵەتی داهێنان هەبێت؛ چونکە ئەم پرۆسەیە ئامرازێکی سەرەکییە بۆ پاراستنی مافی خاوەندارێتی فکری بۆ تاک و کۆمپانیاکان.<br><br>نووسینگە پشتگیری گشتگیر و شارەزایی یاسایی پێویست پێشکەش دەکات بۆ تۆمارکردن و پاراستنی مارکەکان و داهێنانەکان. خزمەتگوزارییەکە دەست پێ دەکات بە هەڵسەنگاندنی بیرۆکە و بەرهەمەکان و شیکردنەوەی گونجاوی یاسایی.<br><br>نووسینگە گرنگی دەدات بە ئاراستەکردنی کڕیارەکان و پێشکەشکردنی ڕێنمایی ورد بۆ بەهێزکردنی پێگەیان لە بازاڕدا و بەدەستهێنانی پاراستنی تەواو بۆ خاوەندارێتی فکرییریان.",
         btnBook: "📅 کلیک لێرە بکە بۆ گواستنەوە بۆ لاپەڕەی حجز",
-        backLink: "← گەڕانەوە بۆ خشتەی خزمەتگوزارییەکان"
+        backLink: "← گەڕانەوە بۆ خشتەی خزمەتگوزارییەکان",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       }
     };
   </script>
