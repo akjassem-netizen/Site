@@ -308,25 +308,45 @@
     }
     .btn-read-more:hover { background: #c5a059; }
 
-    /* تنسيق الفوتر */
+    /* تنسيق الفوتر بمعالجة سطر واحد متناسق */
     .site-footer {
       text-align: center;
-      padding: 25px;
-      font-size: 13px;
+      padding: 22px 10px;
+      font-size: 12px;
       color: #64748b;
       border-top: 1px solid #e2e8f0;
-      margin-top: 40px;
+      margin-top: 50px;
       background: #ffffff;
       width: 100%;
     }
-    .site-footer a {
+    .footer-legal-links {
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      overflow-x: auto;
+      padding: 2px 0;
+    }
+    .footer-legal-links a {
       color: #0f172a;
       text-decoration: none;
       font-weight: 700;
-      margin: 0 10px;
+      font-size: 11.5px;
     }
-    .site-footer a:hover {
+    .footer-legal-links a:hover {
       color: #c5a059;
+    }
+    .footer-legal-links .separator {
+      color: #cbd5e1;
+      font-weight: 400;
+    }
+    .site-footer span.copy-text {
+      color: #64748b;
+      display: block;
+      margin-top: 4px;
+      font-size: 11px;
     }
   </style>
 </head>
@@ -335,7 +355,7 @@
   <header class="icover-header">
     <div>
       <select id="languageSelect" class="lang-select-bar" onchange="switchLanguage(this.value)">
-        <option value="ar" selected>العربية</option>
+        <option value="ar" selected>العربية / Arabic</option>
         <option value="en">English</option>
         <option value="tr">Türkçe</option>
         <option value="zh">中文</option>
@@ -354,6 +374,7 @@
         <a href="/consultations/">الاستشارات القانونية</a>
         <a href="/insights/">الآراء والرؤى القانونية</a>
         <a href="/about/">من نحن</a>
+        <a href="/code-of-conduct.html">قواعد السلوك المهني</a>
         <a href="/contact/">اتصل بنا</a>
       </div>
     </div>
@@ -543,10 +564,16 @@
     </div>
   </div>
 
-  <!-- الفوتر ورابط سياسة الخصوصية -->
+  <!-- الفوتر بمعالجة سطر واحد متناسق -->
   <footer class="site-footer">
-    <a href="/privacy/">سياسة الخصوصية</a> | 
-    <span>جميع الحقوق محفوظة © 2026 مكتب المحامي علي كاظم الهاشمي</span>
+    <div class="footer-legal-links">
+      <a href="/privacy/">سياسة الخصوصية</a>
+      <span class="separator">|</span>
+      <a href="/disclaimer/">إخلاء المسؤولية</a>
+      <span class="separator">|</span>
+      <a href="/code-of-conduct.html">قواعد السلوك المهني</a>
+    </div>
+    <span class="copy-text">جميع الحقوق محفوظة © 2026 مكتب المحامي علي كاظم الهاشمي</span>
   </footer>
 
   <script>
