@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" id="htmlRoot">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WL4KNM0PG1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-WL4KNM0PG1');
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
@@ -130,7 +140,7 @@
     }
     .dropdown-menu a:hover { background: rgba(197,160,89,0.15); color: #c5a059; }
 
-    .container { width: 100%; max-width: 750px; background: #ffffff; padding: 35px 25px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border-top: 5px solid #c5a059; margin: 30px 16px; text-align: start; }
+    .container { width: 100%; max-width: 750px; background: #ffffff; padding: 35px 25px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border-top: 5px solid #c5a059; margin: 30px 16px; text-align: start; flex: 1; }
     .brand-logo { text-align: center; margin-bottom: 28px; direction: ltr; text-decoration: none; display: inline-block; width: 100%; }
     .brand-logo .akh { font-size: 40px; font-weight: 900; color: #0f172a; letter-spacing: 4px; line-height: 1; }
     .brand-logo .akh .red-k { color: #dc2626; }
@@ -158,6 +168,27 @@
     .btn-booking:hover { background: #c5a059; }
     .back-link { display: block; margin-top: 5px; font-size: 13px; color: #64748b; text-decoration: none; }
     .back-link:hover { color: #0f172a; }
+
+    /* تنسيق الفوتر */
+    .site-footer {
+      text-align: center;
+      padding: 25px;
+      font-size: 13px;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      margin-top: 40px;
+      background: #ffffff;
+      width: 100%;
+    }
+    .site-footer a {
+      color: #0f172a;
+      text-decoration: none;
+      font-weight: 700;
+      margin: 0 10px;
+    }
+    .site-footer a:hover {
+      color: #c5a059;
+    }
   </style>
 </head>
 <body>
@@ -209,6 +240,12 @@
       <a href="/services/" class="back-link" id="backLinkText">← Back to Services List</a>
     </div>
   </div>
+
+  <!-- الفوتر ورابط سياسة الخصوصية -->
+  <footer class="site-footer">
+    <a href="/privacy/en/" id="footerLink">Privacy Policy</a> | 
+    <span id="footerRights">All Rights Reserved © 2026 AKH Law Office</span>
+  </footer>
 
   <script>
     function toggleMenu() {
@@ -264,6 +301,10 @@
       document.getElementById('btnBookText').innerHTML = `<span>${t.btnBook}</span>`;
       document.getElementById('backLinkText').innerText = t.backLink;
 
+      document.getElementById('footerLink').innerText = t.privacyText;
+      document.getElementById('footerLink').href = '/privacy/en/';
+      document.getElementById('footerRights').innerText = t.rightsText;
+
       document.getElementById('languageSelect').value = lang;
     }
 
@@ -276,7 +317,8 @@
         pageMainTitle: "Tax Advisory & Financial Compliance for Corporations",
         contentBody: "The Law Office of Ali Kadhem Hashimi provides precise specialized advisory in tax structuring, registration with tax authorities, and monitoring corporate accounting requirements to ensure full compliance with financial and tax laws active in Iraq, minimizing legal risks associated with commercial businesses for local and foreign companies.",
         btnBook: "📅 Click here to go to the appointment booking page",
-        backLink: "← Back to Services List"
+        backLink: "← Back to Services List",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       tr: {
         pageTitle: "Irak'ta Şirketler İçin Vergi Danışmanlığı ve Mali Uyum | Av. Ali Kazım Haşimi",
@@ -286,7 +328,8 @@
         pageMainTitle: "Şirketler İçin Vergi Danışmanlığı ve Mali Uyum",
         contentBody: "Av. Ali Kazım Haşimi Hukuk Bürosu; yerli ve yabancı şirketlerin ticari faaliyetleriyle ilgili hukuki riskleri en aza indirmek, Irak'ta yürürlükte olan finansal ve vergi kanunlarına tam uyumu sağlamak amacıyla vergi yapılandırması, vergi dairelerine kayıt ve şirketlerin muhasebe gereksinimlerinin takibi konularında uzman danışmanlık hizmeti sunmaktadır.",
         btnBook: "📅 Randevu rezervasyon sayfasına gitmek için tıklayın",
-        backLink: "← Hizmetler Listesine Dön"
+        backLink: "← Hizmetler Listesine Dön",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       zh: {
         pageTitle: "伊拉克企业税务咨询与财务合规 | 阿里·卡德姆·哈希米律所",
@@ -296,7 +339,8 @@
         pageMainTitle: "企业税务咨询与财务合规",
         contentBody: "阿里·卡德姆·哈希米律所提供精准的专业咨询，涵盖税务架构设计、税务登记以及跟进公司的会计和财务要求，以确完全遵守伊拉克现行财税法律法规，并最大限度地减少本地及外资企业商业活动相关的法律风险。",
         btnBook: "📅 点击此处跳转至预约页面",
-        backLink: "← 返回服务列表"
+        backLink: "← 返回服务列表",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       fr: {
         pageTitle: "Conseil Fiscal et Conformité Financière pour les Entreprises en Iraq | AKH",
@@ -306,7 +350,8 @@
         pageMainTitle: "Conseil Fiscal et Conformité Financière pour les Entreprises",
         contentBody: "Le Cabinet d'Avocats Ali Kadhem Hashimi propose des services de conseil spécialisé en structuration fiscale, enregistrement auprès des autorités fiscales et suivi des exigences comptables et financières des entreprises, garantissant la conformité totale avec les lois fiscales en Iraq et réduisant les risques juridiques pour les sociétés locales et étrangères.",
         btnBook: "📅 Cliquez ici pour accéder à la page de réservation",
-        backLink: "← Retour à la liste des services"
+        backLink: "← Retour à la liste des services",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       es: {
         pageTitle: "Asesoría Fiscal y Cumplimiento Financiero para Empresas en Irak | Bufete AKH",
@@ -316,7 +361,8 @@
         pageMainTitle: "Asesoría Fiscal y Cumplimiento Financiero para Empresas",
         contentBody: "El Bufete de Abogados Ali Kadhem Hashimi ofrece asesoría especializada en estructuración fiscal, registro ante las autoridades fiscales y seguimiento de los requisitos contables y financieros de las empresas, garantizando el pleno cumplimiento de las leyes fiscales en Irak y minimizando los riesgos legales para empresas locales y extranjeras.",
         btnBook: "📅 Haga clic aquí para ir a la página de reservas",
-        backLink: "← Volver a la lista de servicios"
+        backLink: "← Volver a la lista de servicios",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       de: {
         pageTitle: "Steuerberatung & Finanzielle Compliance für Unternehmen im Irak | Kanzlei AKH",
@@ -326,7 +372,8 @@
         pageMainTitle: "Steuerberatung & Finanzielle Compliance für Unternehmen",
         contentBody: "Die Anwaltskanzlei Ali Kadhem Hashimi bietet spezialisierte Beratung in den Bereichen Steuerstrukturierung, Registrierung bei den Steuerbehörden und Überwachung der buchhalterischen Anforderungen an, um die vollständige Einhaltung der geltenden irakischen Steuergesetze zu gewährleisten und rechtliche Risiken für lokale und ausländische Unternehmen zu minimieren.",
         btnBook: "📅 Klicken Sie hier, um zur Buchungsseite zu gelangen",
-        backLink: "← Zurück zur Dienstleistungsliste"
+        backLink: "← Zurück zur Dienstleistungsliste",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       ku: {
         pageTitle: "ڕاوێژی باج و پابەندبوونی دارایی بۆ کۆمپانیاکان لە عێراق | نووسینگەی پارێزەر",
@@ -336,7 +383,8 @@
         pageMainTitle: "ڕاوێژی باج و پابەندبوونی دارایی بۆ کۆمپانیاکان",
         contentBody: "نووسینگەی پارێزەر عەلی کازمی هاشمی ڕاوێژی تخصصد و ورد پێشکەش دەکات لە ڕێکخستنی باج، تۆمارکردن لە دەستەکانی باج، و بەدواداچوونی پێداویستییە ژمێریاری و داراییەکانی کۆمپانیاکان بۆ دڵنیابوون لە پابەندبوونی تەواو بە یاسا باج و داراییە کارپێکراوەکان لە عێراقدا، و کەمکردنەوەی مەترسییە یاساییەکان کە پەیوەندیدارن بە کارە بازرگانییەکانی کۆمپانیا خۆماڵی و بیانییەکانەوە.",
         btnBook: "📅 کلیک لێرە بکە بۆ گواستنەوە بۆ لاپەڕەی حجز",
-        backLink: "← گەڕانەوە بۆ خشتەی خزمەتگوزارییەکان"
+        backLink: "← گەڕانەوە بۆ خشتەی خزمەتگوزارییەکان",
+        privacyText: "Privacy Policy", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       }
     };
   </script>
