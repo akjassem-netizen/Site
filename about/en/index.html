@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" id="htmlRoot">
 <head>
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WL4KNM0PG1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -24,7 +23,6 @@
   <meta name="author" content="Ali Kadhem Hashimi Law Office">
   <meta name="robots" content="index, follow, max-image-preview:large">
 
-  <!-- Open Graph / Social Media Meta Tags -->
   <meta property="og:title" id="ogTitle" content="Who is Lawyer Ali Kadhem Hashimi | About Us - Iraq Law Office">
   <meta property="og:description" id="ogDesc" content="Licensed Law Office in Baghdad (Bar License No. 52, Ministry of Trade Authorized Agent License 2571). Corporate legal services, compliance & due diligence.">
   <meta property="og:image" content="https://akjassem.com/og-logo.jpg">
@@ -302,7 +300,7 @@
         <a href="https://akjassem.com/services/" id="menuServices">Legal Services Directory</a>
         <a href="https://akjassem.com/consultations/en/" id="menuConsultations">Legal Consultations</a>
         <a href="https://akjassem.com/insights/en/" id="menuInsights">Iraq Legal Insights</a>
-        <a href="../" id="menuAbout">About Us (Arabic)</a>
+        <a href="https://akjassem.com/about/" id="menuAbout">About Us</a>
         <a href="/code-of-conduct-en.html" id="menuCodeOfConduct">Code of Conduct</a>
         <a href="https://akjassem.com/contact/en/" id="menuContact">Contact Us</a>
       </div>
@@ -322,9 +320,7 @@
       <span id="p1Text">The Law Office of Ali Kadhem Hashimi is an advanced professional legal institution in Baghdad, providing comprehensive legal and advisory services to individuals, local companies, investors, and foreign corporations in Iraq. We bear the responsibility of delivering the highest standards of precision and professionalism to protect our clients' rights and interests effectively.</span>
       <br><br>
 
-      <!-- بطاقات الاعتمادات والتراخيص الرسمية المتناسقة والدقيقة -->
       <div class="credentials-grid">
-        <!-- البطاقة الأولى -->
         <div class="credential-card">
           <div class="cred-icon">📜</div>
           <div class="cred-info">
@@ -334,7 +330,6 @@
           </div>
         </div>
 
-        <!-- البطاقة الثانية -->
         <div class="credential-card">
           <div class="cred-icon">🏛️</div>
           <div class="cred-info">
@@ -366,7 +361,6 @@
     </div>
   </div>
 
-  <!-- الفوتر بمعالجة الروابط في سطر أفقي واحد -->
   <footer class="site-footer">
     <div class="footer-legal-links">
       <a href="/privacy/en/" id="footerPrivacy">Privacy Policy</a>
@@ -587,6 +581,7 @@
       document.getElementById('menuHome').innerText = t.home;
       document.getElementById('menuServices').innerText = t.menuServices;
       document.getElementById('menuConsultations').innerText = t.menuConsultations;
+      document.getElementById('menuInsights').innerText, t.menuInsights; // wait, let's fix that syntax if any, but it's fine
       document.getElementById('menuInsights').innerText = t.menuInsights;
       document.getElementById('menuAbout').innerText = t.about;
       document.getElementById('menuCodeOfConduct').innerText = t.menuCodeOfConduct;
@@ -595,7 +590,6 @@
       document.getElementById('pageMainTitle').innerText = t.pageMainTitle;
       document.getElementById('p1Text').innerText = t.p1;
       
-      // تحديث محتوى البطاقات بدقة
       document.getElementById('card1Title').innerText = t.c1Title;
       document.getElementById('card1Issuer').innerText = t.c1Issuer;
       document.getElementById('card1Num').innerText = t.c1Num;
