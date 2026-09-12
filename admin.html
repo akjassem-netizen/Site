@@ -3,60 +3,67 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>بوابة الإدارة القانونية | Law Office Of Ali Kadhem Hashimi</title>
+<title>إدارة الآراء والتحليلات القانونية | مكتب المحامي علي كاظم الهاشمي</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Cairo', system-ui, sans-serif; background-color: #f7f9fc; color: #1a1a1a; padding: 30px 16px; display: flex; justify-content: center; min-height: 100vh; align-items: flex-start; }
-.panel { max-width: 750px; width: 100%; background: #ffffff; border-radius: 14px; padding: 30px 22px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
-.brand-section { text-align: center; margin-bottom: 22px; border-bottom: 1.5px solid #edf2f7; padding-bottom: 18px; }
-.logo-text { font-size: 46px; font-weight: 800; letter-spacing: 2px; color: #0b1a30; line-height: 1; }
+body { font-family: 'Cairo', system-ui, sans-serif; background-color: #f7f9fc; color: #1a1a1a; padding: 25px 12px; display: flex; justify-content: center; min-height: 100vh; align-items: flex-start; }
+.panel { max-width: 980px; width: 100%; background: #ffffff; border-radius: 16px; padding: 30px 24px; box-shadow: 0 4px 25px rgba(0,0,0,0.05); border-top: 6px solid #c5a059; }
+.brand-section { text-align: center; margin-bottom: 25px; border-bottom: 1.5px solid #edf2f7; padding-bottom: 18px; }
+.logo-text { font-size: 42px; font-weight: 800; letter-spacing: 2px; color: #0b1a30; line-height: 1; direction: ltr; }
 .logo-text span { color: #d32f2f; }
-.sub-brand { font-size: 13px; font-weight: 700; color: #111; letter-spacing: 3px; margin-top: 6px; direction: ltr; }
-.sub-brand span { color: #d32f2f; margin-right: 4px; font-weight: 800; }
-.est { font-size: 10.5px; color: #777; letter-spacing: 2px; margin-top: 3px; direction: ltr; }
-.screen-box { text-align: center; padding: 20px 10px; }
+.sub-title { font-size: 12.5px; font-weight: 700; color: #111; letter-spacing: 3px; margin-top: 6px; direction: ltr; }
+.sub-title span { color: #d32f2f; margin-right: 4px; font-weight: 800; }
+.est { font-size: 10px; color: #777; letter-spacing: 2px; margin-top: 3px; direction: ltr; }
+.portal-title { font-size: 18px; font-weight: 800; color: #0b1a30; margin-top: 10px; }
+
+.screen-box { text-align: center; padding: 35px 10px; }
 .lock-desc { font-size: 14.5px; color: #4a5568; margin-bottom: 20px; line-height: 1.6; }
-.pin-input { letter-spacing: 8px; font-size: 24px; font-weight: 800; text-align: center; max-width: 260px; margin: 0 auto 16px; }
-.top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px dashed #cbd5e0; flex-wrap: wrap; gap: 10px; }
-.status-badge { font-size: 12.5px; font-weight: 700; color: #03543f; background-color: #def7ec; padding: 4px 10px; border-radius: 6px; }
-.btn-lock { background: none; border: 1px solid #e53e3e; color: #e53e3e; padding: 5px 12px; border-radius: 6px; font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer; }
-.btn-trash-nav { background: #4a5568; color: #ffffff; border: none; padding: 5px 12px; border-radius: 6px; font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer; }
-.form-group { margin-bottom: 16px; }
-label { display: block; font-weight: 700; font-size: 14px; margin-bottom: 6px; color: #2d3748; }
-input[type="text"], input[type="password"], textarea, select { width: 100%; padding: 11px 13px; border: 1.5px solid #cbd5e0; border-radius: 8px; font-family: inherit; font-size: 14.5px; background-color: #fff; }
-input:focus, textarea:focus, select:focus { outline: none; border-color: #0b1a30; box-shadow: 0 0 0 3px rgba(11,26,48,0.1); }
-textarea { resize: vertical; min-height: 160px; line-height: 1.7; }
-.btn-row { display: flex; gap: 10px; }
-.btn-publish, .btn-unlock, .btn-preview { flex: 1; padding: 13px; border: none; border-radius: 8px; font-size: 15px; font-weight: 700; font-family: inherit; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-.btn-publish { background-color: #0b1a30; color: #ffffff; }
-.btn-preview { background-color: #3182ce; color: #ffffff; }
-.btn-unlock { width: 100%; background-color: #0b1a30; color: #ffffff; }
-.alert { padding: 12px 15px; border-radius: 8px; margin-bottom: 18px; font-size: 14px; display: none; }
-.alert-success { background-color: #def7ec; color: #03543f; }
+.pin-input { font-size: 20px; font-weight: 800; text-align: center; max-width: 260px; margin: 0 auto 16px; -webkit-text-security: disc; }
+.btn-unlock { width: 100%; max-width: 260px; background-color: #0b1a30; color: #ffffff; padding: 13px; border: none; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; font-family: inherit; margin: 0 auto; display: block; transition: 0.3s; }
+.btn-unlock:hover { background-color: #c5a059; color: #0b1a30; }
+.alert-box { padding: 12px 15px; border-radius: 8px; margin-bottom: 18px; font-size: 13.5px; display: none; }
 .alert-error { background-color: #fde8e8; color: #9b1c1c; }
-.manager-box { margin-top: 35px; border-top: 2px solid #edf2f7; padding-top: 25px; }
-.manager-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-.manager-header h3 { font-size: 16px; font-weight: 800; color: #0b1a30; }
-.btn-reload { background-color: #edf2f7; border: 1px solid #cbd5e0; color: #2d3748; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; }
-.article-item { background: #fafafa; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 14px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 8px; }
-.article-info { text-align: right; }
-.article-info .item-title { font-size: 14.5px; font-weight: 700; color: #0b1a30; line-height: 1.4; }
-.article-info .item-meta { font-size: 12px; color: #718096; margin-top: 4px; display: flex; gap: 15px; align-items: center; flex-wrap: wrap; }
-.status-hidden-badge { background: #fed7d7; color: #9b1c1c; padding: 2px 8px; border-radius: 4px; font-weight: 700; }
-.item-actions { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; border-top: 1px dashed #edf2f7; padding-top: 8px; }
-.btn-action { border: none; padding: 6px 11px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; font-family: inherit; }
+.alert-success { background-color: #def7ec; color: #03543f; }
+
+.top-nav-bar { display: flex; justify-content: space-between; align-items: center; background-color: #f8fafc; border: 1.5px solid #e2e8f0; padding: 12px 18px; border-radius: 10px; margin-bottom: 25px; flex-wrap: wrap; gap: 10px; }
+.top-nav-bar a, .btn-nav-action { background-color: #0b1a30; color: #ffffff; text-decoration: none; padding: 7px 14px; border-radius: 6px; font-size: 13px; font-weight: 700; border: none; cursor: pointer; font-family: inherit; transition: 0.3s; }
+.top-nav-bar a:hover, .btn-nav-action:hover { background-color: #c5a059; color: #0b1a30; }
+.btn-lock-nav { background-color: #e53e3e; }
+.btn-lock-nav:hover { background-color: #c53030 !important; color: #fff !important; }
+
+.card-section { background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 20px; margin-bottom: 22px; }
+.card-section h2 { font-size: 16px; font-weight: 800; color: #0b1a30; margin-bottom: 15px; border-bottom: 1px dashed #cbd5e0; padding-bottom: 10px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 5px; }
+.form-group { margin-bottom: 15px; }
+label { display: block; font-weight: 700; font-size: 13.5px; margin-bottom: 6px; color: #2d3748; }
+select, input[type="text"], input[type="password"], textarea { width: 100%; padding: 11px 14px; border: 1.5px solid #cbd5e0; border-radius: 8px; font-family: inherit; font-size: 14px; background-color: #fff; }
+textarea { resize: vertical; min-height: 150px; line-height: 1.7; }
+.btn-submit { background-color: #0b1a30; color: #ffffff; border: 2px solid #0b1a30; padding: 13px 22px; font-size: 15px; font-weight: 800; border-radius: 8px; cursor: pointer; font-family: inherit; width: 100%; box-shadow: 0 3px 10px rgba(0,0,0,0.08); transition: 0.3s; }
+.btn-submit:hover { background-color: #c5a059; border-color: #c5a059; color: #0b1a30; }
+.btn-action-sm { background-color: #2b6cb0; color: #fff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; transition: 0.2s; }
+.btn-action-sm:hover { background-color: #2c5282; }
+
+.article-item { background: #fafafa; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 15px; margin-bottom: 14px; display: flex; flex-direction: column; gap: 10px; }
+.article-info .item-title { font-size: 15px; font-weight: 800; color: #0b1a30; line-height: 1.4; }
+.article-info .item-meta { font-size: 12px; color: #64748b; margin-top: 5px; display: flex; gap: 15px; align-items: center; flex-wrap: wrap; }
+.status-hidden-badge { background: #fed7d7; color: #9b1c1c; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 11px; }
+.item-actions { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; border-top: 1px dashed #edf2f7; padding-top: 10px; }
+.btn-action { border: none; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; font-family: inherit; }
 .btn-edit { background-color: #3182ce; color: #ffffff; }
-.btn-view { background-color: #38a169; color: #ffffff; text-decoration: none; }
+.btn-view { background-color: #16a34a; color: #ffffff; text-decoration: none; }
 .btn-delete { background-color: #e53e3e; color: #ffffff; }
 .btn-logs { background-color: #d69e2e; color: #ffffff; }
 .btn-hide { background-color: #4a5568; color: #ffffff; }
-#logModal, #trashModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; justify-content: center; align-items: center; padding: 15px; }
-.modal-content { background: #fff; width: 100%; max-width: 500px; border-radius: 12px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); text-align: right; max-height: 80vh; overflow-y: auto; }
-.log-box-item { background: #f8fafc; border: 1px solid #cbd5e0; border-radius: 8px; padding: 10px 14px; margin-bottom: 10px; font-size: 13px; color: #2d3748; line-height: 1.6; }
+
+#logModal, #trashModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11,26,48,0.75); z-index: 2000; justify-content: center; align-items: center; padding: 15px; }
+.modal-content { background: #fff; width: 100%; max-width: 520px; border-radius: 14px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border-top: 5px solid #c5a059; text-align: right; max-height: 80vh; overflow-y: auto; }
+.log-box-item { background: #f8fafc; border: 1px solid #cbd5e0; border-radius: 8px; padding: 11px 14px; margin-bottom: 10px; font-size: 13px; color: #2d3748; line-height: 1.6; }
 .log-time { font-weight: 700; color: #d32f2f; margin-bottom: 3px; font-size: 12px; }
+
+.portal-footer { text-align: center; padding: 20px 10px 5px 10px; font-size: 12px; color: #64748b; border-top: 1.5px solid #edf2f7; margin-top: 30px; font-weight: 600; }
+.portal-footer span { display: block; margin-top: 4px; font-size: 11px; color: #94a3b8; }
 </style>
 </head>
 <body>
@@ -64,48 +71,49 @@ textarea { resize: vertical; min-height: 160px; line-height: 1.7; }
 <div class="panel">
 <div class="brand-section">
 <div class="logo-text">A<span>K</span>H</div>
-<div class="sub-brand"><span>/</span> LAW OFFICE</div>
+<div class="sub-title"><span style="color: #d32f2f;">/</span> LAW OFFICE</div>
 <div class="est">EST. 2014</div>
-<div class="page-title" style="margin-top:10px;">
-<h1>إدارة الآراء والتحليلات القانونية</h1>
-</div>
+<div class="portal-title">إدارة الآراء والتحليلات القانونية</div>
 </div>
 
-<div id="statusAlert" class="alert"></div>
+<div id="statusAlert" class="alert-box alert-error"></div>
 
 <div id="setupScreen" class="screen-box" style="display: none;">
-<p class="lock-desc"><strong>إعداد الحماية لأول مرة:</strong><br>أدخل مفتاح GitHub ورمز PIN (6 أرقام):</p>
-<div class="form-group" style="max-width: 420px; margin: 0 auto 12px;">
-<input type="password" id="setupTokenInput" placeholder="أدخل رمز GitHub (ghp_... أو github_pat_...)" dir="ltr">
+<p class="lock-desc"><strong>إعداد خزنة الأمان الخاصة بالمكتب:</strong><br>أدخل مفتاح المرور الآمن (GitHub PAT) مع الرقم السري:</p>
+<div class="form-group" style="max-width: 400px; margin: 0 auto 12px;">
+<input type="password" id="setupTokenInput" placeholder="أدخل مفتاح المرور الآمن (ghp_...)" dir="ltr" style="-webkit-text-security: disc;">
 </div>
 <div class="form-group" style="max-width: 260px; margin: 0 auto 16px;">
-<input type="password" id="setupPinInput" class="pin-input" maxlength="6" placeholder="******">
+<input type="password" id="setupPinInput" class="pin-input" placeholder="••••••••" style="-webkit-text-security: disc;">
 </div>
-<button type="button" class="btn-unlock" onclick="performSetup()">تشفير وحفظ رمز الـ PIN 🔒</button>
+<button type="button" class="btn-unlock" onclick="performSetup()">تشفير وحفظ الحماية 🔒</button>
 </div>
 
 <div id="lockScreen" class="screen-box" style="display: none;">
-<p class="lock-desc">أدخل رمز الـ PIN السري الخاص بك لفك القفل والدخول:</p>
+<p class="lock-desc"><span>البوابة محمية بخزنة أمان مشفرة.</span><br>أدخل الرقم السري لفتح اللوحة:</p>
 <div class="form-group" style="max-width: 260px; margin: 0 auto 16px;">
-<input type="password" id="unlockPinInput" class="pin-input" maxlength="6" placeholder="******" autofocus>
+<input type="password" id="unlockPinInput" class="pin-input" placeholder="••••••••" autofocus style="-webkit-text-security: disc;">
 </div>
-<button type="button" class="btn-unlock" onclick="attemptPinUnlock()">دخول سريع ←</button>
-</div>
-
-<div id="dashboardScreen" class="screen-box" style="display: none; text-align: right; padding: 0;">
-<div class="top-bar">
-<span class="status-badge">● متصل بالحساب والمحتوى محمي</span>
-<div style="display: flex; gap: 8px;">
-<button type="button" class="btn-trash-nav" onclick="openTrashModal()">🗑️ سلة المهملات</button>
-<button type="button" class="btn-lock" onclick="lockPortal()">قفل اللوحة 🔒</button>
-</div>
+<button type="button" class="btn-unlock" onclick="attemptPinUnlock()">دخول آمن ←</button>
 </div>
 
-<div id="editBanner" style="display: none; background-color: #ebf8ff; border: 1.5px solid #bee3f8; color: #2b6cb0; padding: 10px 14px; border-radius: 8px; margin-bottom: 16px; justify-content: space-between; align-items: center;">
+<div id="dashboardScreen" style="display: none;">
+<div class="top-nav-bar">
+<span style="font-size: 13px; font-weight: 700; color: #2d3748;">🟢 النظام متصل وخزنة الأمان مفعلة</span>
+<div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+<button type="button" class="btn-nav-action" style="background-color: #4a5568;" onclick="openTrashModal()">🗑️ سلة المهملات</button>
+<button type="button" class="btn-nav-action btn-lock-nav" onclick="lockPortal()">قفل الجلسة 🔒</button>
+<a href="https://akjassem.com" target="_blank">معاينة الموقع 🌐</a>
+</div>
+</div>
+
+<div id="editBanner" class="alert-box alert-success" style="display: none; justify-content: space-between; align-items: center; margin-bottom: 20px;">
 <span id="editBannerText">✏️ تعديل التحليل القانوني...</span>
-<button type="button" onclick="cancelEdit()" style="background: #e53e3e; color: white; border: none; padding: 4px 10px; border-radius: 5px; cursor: pointer;">إلغاء ✕</button>
+<button type="button" onclick="cancelEdit()" style="background: #e53e3e; color: white; border: none; padding: 5px 12px; border-radius: 6px; cursor: pointer; font-weight: 700;">إلغاء ✕</button>
 </div>
 
+<div class="card-section">
+<h2><span>✍️ كتابة ونشر تحليل أو رأي قانوني جديد</span></h2>
 <form id="articleForm">
 <div class="form-group">
 <label>لغة المقال / Article Language:</label>
@@ -150,48 +158,71 @@ textarea { resize: vertical; min-height: 160px; line-height: 1.7; }
 <textarea id="content" placeholder="انسخ نص التحليل القانوني هنا..." required></textarea>
 </div>
 
-<div class="btn-row">
-<button type="button" class="btn-preview" onclick="previewArticle()">معاينة النص 👁️</button>
-<button type="submit" id="submitBtn" class="btn-publish">نـشـر الآن 🚀</button>
+<div style="display: flex; gap: 10px; flex-wrap: wrap;">
+<button type="button" class="btn-submit" style="background-color: #2b6cb0; border-color: #2b6cb0; flex: 1;" onclick="previewArticle()">معاينة النص 👁️</button>
+<button type="submit" id="submitBtn" class="btn-submit" style="flex: 2;">نـشـر الآن 🚀</button>
 </div>
 </form>
+</div>
 
-<div class="manager-box">
-<div class="manager-header">
-<h3>📚 التحليلات والإضاءات السابقة ومتابعة المشاهدات</h3>
-<button type="button" class="btn-reload" onclick="loadArticles()">تحديث 🔄</button>
+<div class="card-section">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;">
+<h2 style="border:none; margin:0; padding:0;"><span>📚 التحليلات والإضاءات السابقة ومتابعة المشاهدات</span></h2>
+<button type="button" class="btn-action-sm" onclick="loadArticles()">تحديث القائمة 🔄</button>
 </div>
 <div id="articlesListContainer">
-<p style="font-size: 13px; color: #718096; text-align: center;">جارٍ جلب البيانات...</p>
-</div>
+<p style="font-size: 13.5px; color: #718096; text-align: center; padding: 20px;">جارٍ جلب البيانات...</p>
 </div>
 </div>
 
+<div class="card-section">
+<h2><span>🔐 إعدادات الأمان وتغيير مفتاح الخزنة والرقم السري</span></h2>
+<form id="securityForm" onsubmit="updateSecurityVault(event)">
+<div class="form-group">
+<label>الرقم السري الحالي (للتأكيد والتعديل):</label>
+<input type="password" id="currentPinInput" placeholder="••••••••" required style="-webkit-text-security: disc;">
+</div>
+<div class="form-group">
+<label>الرقم السري الجديد (اتركه فارغاً إذا لم ترد تغييره):</label>
+<input type="password" id="newPinInput" placeholder="••••••••" style="-webkit-text-security: disc;">
+</div>
+<div class="form-group">
+<label>مفتاح المرور الآمن الجديد (GitHub PAT - اترك فارغاً للإبقاء على الحالي):</label>
+<input type="password" id="newTokenInput" placeholder="ghp_xxxxxxxxxxxx" dir="ltr" style="-webkit-text-security: disc;">
+</div>
+<button type="submit" class="btn-submit" style="background-color: #9b1c1c; border-color: #b91c1c;">تحديث وتشفير بيانات الأمان 🔒</button>
+</form>
 </div>
 
-<!-- نافذة السجل -->
+<footer class="portal-footer">
+  إدارة الآراء والتحليلات القانونية — مكتب المحامي علي كاظم الهاشمي
+  <span>جميع الحقوق محفوظة © 2026 | Secure Vault & Insights Engine</span>
+</footer>
+
+</div>
+</div>
+
 <div id="logModal">
 <div class="modal-content">
 <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px; margin-bottom: 15px;">
-<h3 style="margin:0;">سجل التعديلات والأرشيف</h3>
-<button onclick="closeLogModal()" style="background:#e53e3e; color:#fff; border:none; padding:4px 10px; border-radius:4px; cursor:pointer;">إغلاق ✕</button>
+<h3 style="margin:0; font-size:16px; color:#0b1a30;">سجل التعديلات والأرشيف</h3>
+<button onclick="closeLogModal()" style="background:#e53e3e; color:#fff; border:none; padding:5px 12px; border-radius:6px; cursor:pointer; font-weight:700;">إلغاء ✕</button>
 </div>
 <div id="logModalBody"></div>
 </div>
 </div>
 
-<!-- نافذة سلة المهملات -->
 <div id="trashModal">
 <div class="modal-content">
 <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px; margin-bottom: 15px;">
-<h3 style="margin:0;">🗑️ سلة المهملات (تُحذف تلقائياً بعد 30 يوماً)</h3>
-<button onclick="closeTrashModal()" style="background:#e53e3e; color:#fff; border:none; padding:4px 10px; border-radius:4px; cursor:pointer;">إغلاق ✕</button>
+<h3 style="margin:0; font-size:16px; color:#0b1a30;">🗑️ سلة المهملات (تُحذف تلقائياً بعد 30 يوماً)</h3>
+<button onclick="closeTrashModal()" style="background:#e53e3e; color:#fff; border:none; padding:5px 12px; border-radius:6px; cursor:pointer; font-weight:700;">إلغاء ✕</button>
 </div>
 <div id="trashModalBody">
-<p style="font-size: 13px; color: #718096; text-align: center;">سلة المهملات فارغة تماماً.</p>
+<p style="font-size: 13.5px; color: #718096; text-align: center;">سلة المهملات فارغة تماماً.</p>
 </div>
-<div style="margin-top: 15px; text-align: center;">
-<button onclick="emptyTrashWithConfirmation()" style="background: #e53e3e; color: white; border: none; padding: 8px 16px; border-radius: 6px; font-weight: 700; cursor: pointer;">تفريغ سلة المهملات بالكامل نهائياً ⚠️</button>
+<div style="margin-top: 18px; text-align: center;">
+<button onclick="emptyTrashWithConfirmation()" style="background: #e53e3e; color: white; border: none; padding: 10px 18px; border-radius: 8px; font-weight: 700; cursor: pointer; font-family:inherit;">تفريغ سلة المهملات بالكامل نهائياً ⚠️</button>
 </div>
 </div>
 </div>
@@ -199,7 +230,6 @@ textarea { resize: vertical; min-height: 160px; line-height: 1.7; }
 <script>
 const REPO_OWNER = 'akjassem-netizen';
 const REPO_NAME = 'Site';
-const FILE_PATH = 'insights/index.html';
 const BRANCH = 'main';
 
 const AR_CATEGORIES = [
@@ -217,6 +247,9 @@ const AR_CATEGORIES = [
 let ACTIVE_TOKEN = '';
 let EDITING_SLUG = null;
 let LOADED_ARTICLES_CACHE = [];
+
+function utf8_to_b64(str) { return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(match, p1) { return String.fromCharCode('0x' + p1); })); }
+function b64_to_utf8(str) { return decodeURIComponent(atob(str).split('').map(function(c) { return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2); }).join('')); }
 
 async function deriveKey(pin, salt) {
 const enc = new TextEncoder();
@@ -244,14 +277,16 @@ return new TextDecoder().decode(decrypted);
 
 window.onload = function() {
 populateCategories();
-const savedSessionToken = sessionStorage.getItem('akh_active_token');
+const savedSessionToken = sessionStorage.getItem('akh_admin_active_token');
+const savedVault = localStorage.getItem('akh_admin_vault');
+
 if (savedSessionToken) {
 ACTIVE_TOKEN = savedSessionToken;
 document.getElementById('setupScreen').style.display = 'none';
 document.getElementById('lockScreen').style.display = 'none';
 document.getElementById('dashboardScreen').style.display = 'block';
 loadArticles();
-} else if (localStorage.getItem('akh_vault')) {
+} else if (savedVault) {
 document.getElementById('setupScreen').style.display = 'none';
 document.getElementById('lockScreen').style.display = 'block';
 } else {
@@ -283,40 +318,69 @@ async function performSetup() {
 const token = document.getElementById('setupTokenInput').value.trim();
 const pin = document.getElementById('setupPinInput').value.trim();
 if (!token.startsWith('ghp_') && !token.startsWith('github_pat_')) { showAlert('رمز التوكن غير صالح.', false); return; }
-if (pin.length !== 6) { showAlert('رمز PIN يجب أن يكون 6 أرقام.', false); return; }
+if (!pin) { showAlert('يرجى إدخال الرقم السري.', false); return; }
 try {
 const vaultObj = await encryptToken(token, pin);
-localStorage.setItem('akh_vault', JSON.stringify(vaultObj));
+localStorage.setItem('akh_admin_vault', JSON.stringify(vaultObj));
 ACTIVE_TOKEN = token;
-sessionStorage.setItem('akh_active_token', token);
+sessionStorage.setItem('akh_admin_active_token', token);
 document.getElementById('setupScreen').style.display = 'none';
 document.getElementById('dashboardScreen').style.display = 'block';
 loadArticles();
-} catch(e) { showAlert('خطأ في التشفير.', false); }
+} catch(e) { showAlert('خطأ في التشفير: ' + e.message, false); }
 }
 
 async function attemptPinUnlock() {
 const pin = document.getElementById('unlockPinInput').value.trim();
 try {
-const vaultObj = JSON.parse(localStorage.getItem('akh_vault'));
+const vaultObj = JSON.parse(localStorage.getItem('akh_admin_vault'));
 ACTIVE_TOKEN = await decryptToken(vaultObj, pin);
-sessionStorage.setItem('akh_active_token', ACTIVE_TOKEN);
+sessionStorage.setItem('akh_admin_active_token', ACTIVE_TOKEN);
 document.getElementById('lockScreen').style.display = 'none';
 document.getElementById('dashboardScreen').style.display = 'block';
 loadArticles();
 } catch(e) {
-showAlert('رمز الـ PIN غير صحيح.', false);
+showAlert('❌ الرقم السري غير صحيح!', false);
 document.getElementById('unlockPinInput').value = '';
 }
 }
 
 function lockPortal() {
-sessionStorage.removeItem('akh_active_token');
+sessionStorage.removeItem('akh_admin_active_token');
 location.reload();
 }
 
-function utf8_to_b64(str) { return btoa(String.fromCharCode.apply(null, new TextEncoder().encode(str))); }
-function b64_to_utf8(b64) { return new TextDecoder().decode(Uint8Array.from(atob(b64.replace(/\s/g, '')), c => c.charCodeAt(0))); }
+async function updateSecurityVault(e) {
+e.preventDefault();
+const currentPin = document.getElementById('currentPinInput').value.trim();
+const newPin = document.getElementById('newPinInput').value.trim();
+const newToken = document.getElementById('newTokenInput').value.trim();
+
+if(!currentPin) {
+alert("يرجى إدخال الرقم السري الحالي.");
+return;
+}
+
+try {
+const savedVault = localStorage.getItem('akh_admin_vault');
+if(!savedVault) throw new Error('No vault');
+const vaultObj = JSON.parse(savedVault);
+const currentToken = await decryptToken(vaultObj, currentPin);
+
+const targetPin = newPin ? newPin : currentPin;
+const targetToken = newToken ? newToken : currentToken;
+
+const encrypted = await encryptToken(targetToken, targetPin);
+localStorage.setItem('akh_admin_vault', JSON.stringify(encrypted));
+ACTIVE_TOKEN = targetToken;
+sessionStorage.setItem('akh_admin_active_token', targetToken);
+
+document.getElementById('securityForm').reset();
+alert("تم تحديث وحفظ إعدادات الأمان وخزنة التشفير بنجاح 🔒");
+} catch(err) {
+alert("❌ فشل التحقق من الرقم السري الحالي: " + err.message);
+}
+}
 
 document.getElementById('articleForm').addEventListener('submit', async function(e) {
 e.preventDefault();
@@ -337,7 +401,6 @@ const displayDate = new Date().toLocaleDateString(isEn ? 'en-GB' : 'ar-IQ', { ye
 const nowObj = new Date();
 const logEntry = `التاريخ: ${nowObj.toLocaleDateString('ar-IQ')} | الوقت: ${nowObj.toLocaleTimeString('ar-IQ')} | الإجراء: ${EDITING_SLUG ? 'تعديل وتحديث' : 'نشر جديد'}`;
 
-// شريط مشاركة المقال الفرعي الحديث مع الروابط الفرعية لكل منصة
 const shareBarHtml = `<div class="share-bar" style="margin-top: 25px; padding-top: 15px; border-top: 1px dashed #cbd5e0; display: flex; align-items: center; flex-wrap: wrap; gap: 8px;">
 <span class="share-label" style="font-size: 12px; font-weight: 700; color: #4a5568; margin-left: 6px;">مشاركة الرابط المباشر:</span>
 <button class="btn-share btn-share-copy" onclick="navigator.clipboard.writeText('https://akjassem.com/insights/?p=${slug}'); alert('تم نسخ رابط المقال مباشرة 📋');" style="border: none; padding: 6px 12px; border-radius: 6px; font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer; background-color: #edf2f7; color: #2d3748;">📋 نسخ الرابط</button>
@@ -375,10 +438,8 @@ oldArt.remove();
 }
 const finalLogs = existingLogs ? `${existingLogs}///${logEntry}` : logEntry;
 
-// حقن وسوم الـ SEO الديناميكية (مهم جداً للمشاركة عبر وسائل التواصل مثل فيسبوك ولينكد إن لتظهر عناوين المقال الفريدة)
 let headEl = doc.querySelector('head');
 if (headEl) {
-// إزالة أي وسوم قديمة مكررة للمقال
 const oldOg = headEl.querySelectorAll('meta[data-dynamic-seo]');
 oldOg.forEach(el => el.remove());
 
@@ -416,11 +477,11 @@ body: JSON.stringify({ message: 'Save article and SEO meta', content: utf8_to_b6
 });
 
 if (!putRes.ok) throw new Error('فشل الحفظ في غيت هب.');
-showAlert('تم الحفظ والنشر بنجاح!', true);
+alert('تم الحفظ والنشر بنجاح! 🚀');
 cancelEdit();
 loadArticles();
 } catch (err) {
-showAlert(err.message, false);
+alert('❌ خطأ: ' + err.message);
 } finally {
 btn.innerText = 'نـشـر الآن 🚀';
 btn.disabled = false;
@@ -431,7 +492,7 @@ async function loadArticles() {
 const container = document.getElementById('articlesListContainer');
 const lang = document.getElementById('articleLang').value;
 const targetFilePath = lang === 'en' ? 'insights/en/index.html' : 'insights/index.html';
-container.innerHTML = '<p style="font-size: 13px; color: #718096; text-align: center;">جلب التحليلات...</p>';
+container.innerHTML = '<p style="font-size: 13.5px; color: #718096; text-align: center; padding: 20px;">جلب التحليلات...</p>';
 
 try {
 const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${targetFilePath}?ref=${BRANCH}`, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
@@ -442,7 +503,7 @@ const articles = doc.querySelectorAll('article');
 LOADED_ARTICLES_CACHE = [];
 
 if (articles.length === 0) {
-container.innerHTML = '<p style="font-size: 13px; color: #718096; text-align: center;">لا توجد تحليلات منشورة حالياً.</p>';
+container.innerHTML = '<p style="font-size: 13.5px; color: #718096; text-align: center; padding: 20px;">لا توجد تحليلات منشورة حالياً.</p>';
 return;
 }
 container.innerHTML = '';
@@ -490,7 +551,7 @@ fetch(`https://api.countapi.xyz/get/akjassem-site/${slug}`)
 .catch(() => {});
 });
 } catch(e) {
-container.innerHTML = `<p style="font-size: 13px; color: #e53e3e; text-align: center;">خطأ: ${e.message}</p>`;
+container.innerHTML = `<p style="font-size: 13.5px; color: #e53e3e; text-align: center; padding: 20px;">خطأ: ${e.message}</p>`;
 }
 }
 
@@ -528,20 +589,19 @@ document.getElementById('logModal').style.display = 'flex';
 }
 function closeLogModal() { document.getElementById('logModal').style.display = 'none'; }
 
-// سلة المهملات مع نظام الاحتفاظ لمدة 30 يوماً والتنظيف التلقائي
 function getTrash() {
-let trash = JSON.parse(localStorage.getItem('akh_trash_bin') || '[]');
+let trash = JSON.parse(localStorage.getItem('akh_admin_trash_bin') || '[]');
 const thirtyDaysMs = 30 * 24 * 60 * 60 * 1000;
 const now = Date.now();
 const filtered = trash.filter(item => (now - (item.timestamp || now)) < thirtyDaysMs);
 if (filtered.length !== trash.length) {
-localStorage.setItem('akh_trash_bin', JSON.stringify(filtered));
+localStorage.setItem('akh_admin_trash_bin', JSON.stringify(filtered));
 }
 return filtered;
 }
 
 function saveTrash(trash) {
-localStorage.setItem('akh_trash_bin', JSON.stringify(trash));
+localStorage.setItem('akh_admin_trash_bin', JSON.stringify(trash));
 }
 
 async function moveToTrash(slug) {
@@ -576,14 +636,14 @@ function openTrashModal() {
 const body = document.getElementById('trashModalBody');
 const trash = getTrash();
 if (trash.length === 0) {
-body.innerHTML = '<p style="font-size: 13px; color: #718096; text-align: center;">سلة المهملات فارغة تماماً أو تم مسح المقالات الأقدم من 30 يوماً.</p>';
+body.innerHTML = '<p style="font-size: 13.5px; color: #718096; text-align: center;">سلة المهملات فارغة تماماً أو تم مسح المقالات الأقدم من 30 يوماً.</p>';
 } else {
 body.innerHTML = '';
 trash.forEach((item, idx) => {
 const parser = new DOMParser();
 const doc = parser.parseFromString(item.html, 'text/html');
 const tTitle = doc.querySelector('h2') ? doc.querySelector('h2').innerText : item.slug;
-body.innerHTML += `<div class="log-box-item" style="display:flex; justify-content:space-between; align-items:center;"><div><strong>${tTitle}</strong><div style="font-size:11px; color:#718096;">حُذف في: ${item.deletedAt}</div></div><button onclick="restoreFromTrash(${idx})" style="background:#38a169; color:#fff; border:none; padding:4px 8px; border-radius:4px; cursor:pointer; font-size:12px;">استعادة ♻️</button></div>`;
+body.innerHTML += `<div class="log-box-item" style="display:flex; justify-content:space-between; align-items:center;"><div><strong>${tTitle}</strong><div style="font-size:11px; color:#718096;">حُذف في: ${item.deletedAt}</div></div><button onclick="restoreFromTrash(${idx})" style="background:#38a169; color:#fff; border:none; padding:5px 10px; border-radius:6px; cursor:pointer; font-size:12px; font-weight:700;">استعادة ♻️</button></div>`;
 });
 }
 document.getElementById('trashModal').style.display = 'flex';
@@ -627,7 +687,7 @@ loadArticles();
 }
 
 function emptyTrashWithConfirmation() {
-const confirmCode = prompt('⚠️ تحذير خطير: سيتم تفريغ سلة المهملات نهائياً وحذف المقالات القديمة.\nللتأكيد، اكتب كلمة (حذف) بالصندوق أدناه:');
+const confirmCode = prompt('⚠️ تحذير خطير: سيتم تفريغ سلة المهملات نهائياً.\nللتأكيد، اكتب كلمة (حذف) بالصندوق أدناه:');
 if (confirmCode === 'حذف') {
 saveTrash([]);
 closeTrashModal();
@@ -666,7 +726,7 @@ loadArticles();
 
 function showAlert(msg, isSuccess) {
 const el = document.getElementById('statusAlert');
-el.className = 'alert ' + (isSuccess ? 'alert-success' : 'alert-error');
+el.className = 'alert-box ' + (isSuccess ? 'alert-success' : 'alert-error');
 el.innerText = msg;
 el.style.display = 'block';
 }
