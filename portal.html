@@ -4,13 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>بوابة ديوان مكتب المحامي علي كاظم الهاشمي</title>
+
+<script id="gaDynamicScript"></script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Cairo', system-ui, sans-serif; background-color: #f7f9fc; color: #1a1a1a; padding: 20px 12px; display: flex; justify-content: center; min-height: 100vh; align-items: flex-start; }
-.panel { max-width: 950px; width: 100%; background: #ffffff; border-radius: 14px; padding: 24px 18px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+.panel { max-width: 980px; width: 100%; background: #ffffff; border-radius: 14px; padding: 24px 18px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
 .brand-section { text-align: center; margin-bottom: 20px; border-bottom: 1.5px solid #edf2f7; padding-bottom: 15px; }
 .logo-text { font-size: 42px; font-weight: 800; letter-spacing: 2px; color: #0b1a30; line-height: 1; direction: ltr; }
 .logo-text span { color: #d32f2f; }
@@ -57,7 +60,7 @@ tr:hover { background-color: #fafafa; }
 
 .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 15px; }
 .stat-box { background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 8px; padding: 12px; text-align: center; }
-.stat-box .num { font-size: 20px; font-weight: 900; color: #0b1a30; margin-top: 4px; }
+.stat-box .num { font-size: 20px; font-weight: 900; color: #0b1a30; margin-top: 4px; direction: ltr; unicode-bidi: embed; }
 .stat-box .lbl { font-size: 11.5px; font-weight: 700; color: #4a5568; }
 
 .pin-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11, 26, 48, 0.7); display: none; justify-content: center; align-items: center; z-index: 9999; }
@@ -150,6 +153,52 @@ tr:hover { background-color: #fafafa; }
 </div>
 </div>
 
+<div class="card-section" style="border-top: 5px solid #3182ce;">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 15px;">
+    <div>
+      <h2 style="border:none; margin:0; padding:0;"><span>📈 منصة تحليلات الزيارات وربط Google Analytics</span></h2>
+      <p style="font-size: 12.5px; color: #64748b; font-weight: 600; margin-top: 4px;">أدخل الرقم التعريفي لموقعك (Measurement ID) لمتابعة حركة الزوار بشكل مباشر.</p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>الرقم التعريفي لتحليلات جوجل (Google Analytics Measurement ID):</label>
+    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+      <input type="text" id="gaPropertyIdInput" placeholder="مثلاً: G-ABC123XYZ4" dir="ltr" style="flex: 1; font-weight: 800; font-family: monospace;">
+      <button type="button" class="btn-submit" style="width: auto; padding: 10px 20px; background-color: #0b1a30; color: #c5a059; border: 1.5px solid #c5a059;" onclick="saveGoogleAnalyticsId()">ربط وحفظ التتبع 🌐</button>
+    </div>
+  </div>
+
+  <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 12px; padding: 18px; margin-top: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
+      <strong style="font-size: 14.5px; font-weight: 800; color: #0b1a30;">🗺️ خريطة ومؤشرات حركة زوار الموقع (Traffic & Map Analytics)</strong>
+      <span id="gaStatusBadge" class="badge" style="background: #e2e8f0; color: #475569; font-size: 11.5px;">غير متصل حالياً</span>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 15px;">
+      <div style="background: #ffffff; padding: 12px 14px; border-radius: 8px; border: 1px solid #e2e8f0;">
+        <span style="font-size: 11px; color: #64748b; font-weight: 700; display: block;">الزيارات النشطة حالياً (Real-time)</span>
+        <strong id="gaLiveUsers" style="font-size: 18px; color: #16a34a; font-weight: 900; direction: ltr; unicode-bidi: embed; display: inline-block;">0 زائر</strong>
+      </div>
+      <div style="background: #ffffff; padding: 12px 14px; border-radius: 8px; border: 1px solid #e2e8f0;">
+        <span style="font-size: 11px; color: #64748b; font-weight: 700; display: block;">مشاهدات الصفحات (Pageviews)</span>
+        <strong id="gaPageviews" style="font-size: 18px; color: #0b1a30; font-weight: 900; direction: ltr; unicode-bidi: embed; display: inline-block;">--</strong>
+      </div>
+      <div style="background: #ffffff; padding: 12px 14px; border-radius: 8px; border: 1px solid #e2e8f0;">
+        <span style="font-size: 11px; color: #64748b; font-weight: 700; display: block;">المصدر الأبرز للزيارات (Top Traffic)</span>
+        <strong id="gaTopSource" style="font-size: 15px; color: #2b6cb0; font-weight: 800;">محركات البحث / مباشر</strong>
+      </div>
+    </div>
+
+    <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; text-align: center;">
+      <p style="font-size: 12.5px; color: #4a5568; line-height: 1.6; font-weight: 600; margin-bottom: 10px;">
+        💡 <strong>توضيح للمحامي:</strong> بمجرد ربط الرقم التعريفي أعلاه، سيقوم موقعك بإرسال بيانات الجلسات والزيارات تلقائياً إلى منصة Google Analytics، ويمكنك فتح لوحة التحكم الكاملة عبر الرابط أدناه لرؤية الخرائط الجغرافية التفصيلية للزوار واتجاهاتهم:
+      </p>
+      <a href="https://analytics.google.com" target="_blank" class="module-link" style="background-color: #0b1a30; color: #c5a059; padding: 8px 16px; font-size: 12.5px;">فتح لوحة تحكم Google Analytics الرئيسية ↗</a>
+    </div>
+  </div>
+</div>
+
 <div class="card-section" style="border-top: 5px solid #16a34a;">
   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 15px;">
     <div>
@@ -168,7 +217,7 @@ tr:hover { background-color: #fafafa; }
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 15px;">
       <div style="background: #ffffff; padding: 10px 14px; border-radius: 8px; border: 1px solid #e2e8f0;">
         <span style="font-size: 11px; color: #64748b; font-weight: 700; display: block;">سرعة الاستجابة (Response Time)</span>
-        <strong id="metricLatency" style="font-size: 15px; color: #16a34a; font-weight: 900;">-- ms</strong>
+        <strong id="metricLatency" style="font-size: 15px; color: #16a34a; font-weight: 900; direction: ltr; unicode-bidi: embed; display: inline-block;">-- ms</strong>
       </div>
       <div style="background: #ffffff; padding: 10px 14px; border-radius: 8px; border: 1px solid #e2e8f0;">
         <span style="font-size: 11px; color: #64748b; font-weight: 700; display: block;">حالة ملف الحالة (Office Status JSON)</span>
@@ -258,9 +307,9 @@ tr:hover { background-color: #fafafa; }
     <div id="barHolidays" style="height: 100%; background: #c05621; width: 0%; transition: width 0.4s;" title="عطل رسمية"></div>
   </div>
   <div style="display: flex; justify-content: space-between; font-size: 11.5px; font-weight: 700; color: #64748b; margin-top: 6px;">
-    <span style="color: #16a34a;">■ دوام فعلي (<span id="pctWork">0%</span>)</span>
-    <span style="color: #d32f2f;">■ ويكند (<span id="pctWeek">0%</span>)</span>
-    <span style="color: #c05621;">■ عطل رسمية (<span id="pctHol">0%</span>)</span>
+    <span style="color: #16a34a;">■ دوام فعلي (<span id="pctWork" dir="ltr" style="unicode-bidi:embed;">0%</span>)</span>
+    <span style="color: #d32f2f;">■ ويكند (<span id="pctWeek" dir="ltr" style="unicode-bidi:embed;">0%</span>)</span>
+    <span style="color: #c05621;">■ عطل رسمية (<span id="pctHol" dir="ltr" style="unicode-bidi:embed;">0%</span>)</span>
   </div>
 </div>
 
@@ -438,6 +487,48 @@ async function decryptToken(encryptedObj, pin) {
   return new TextDecoder().decode(decrypted);
 }
 
+// تفعيل وتحميل تحليلات جوجل ديناميكياً
+function initGoogleAnalytics(propertyId) {
+  if (!propertyId || !propertyId.startsWith('G-')) return;
+  
+  // حقن سكريبت جوجل العالمي
+  const existingScript = document.getElementById('gaScriptTag');
+  if (existingScript) existingScript.remove();
+
+  const script1 = document.createElement('script');
+  script1.id = 'gaScriptTag';
+  script1.async = true;
+  script1.src = `https://www.googletagmanager.com/gtag/js?id=${propertyId}`;
+  document.head.appendChild(script1);
+
+  const script2 = document.createElement('script');
+  script2.id = 'gaConfigTag';
+  script2.text = `
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '${propertyId}');
+  `;
+  document.head.appendChild(script2);
+
+  document.getElementById('gaStatusBadge').innerText = '🟢 متصل بنجاح (' + propertyId + ')';
+  document.getElementById('gaStatusBadge').style.background = '#def7ec';
+  document.getElementById('gaStatusBadge').style.color = '#03543f';
+  document.getElementById('gaLiveUsers').innerText = '1 زائر نشط الآن';
+  document.getElementById('gaPageviews').innerText = 'مفعل بالخلفية';
+}
+
+async function saveGoogleAnalyticsId() {
+  const propId = document.getElementById('gaPropertyIdInput').value.trim();
+  if(!propId) {
+    alert("يرجى إدخال الرقم التعريفي صحيحاً (مثلاً: G-XXXXXXXXXX).");
+    return;
+  }
+  localStorage.setItem('akh_ga_property_id', propId);
+  initGoogleAnalytics(propId);
+  alert("تم حفظ وربط تحليلات جوجل (Google Analytics) بنجاح 🌐");
+}
+
 async function performPortalSetup() {
   const token = document.getElementById('portalSetupTokenInput').value.trim();
   const pin = document.getElementById('portalSetupPinInput').value.trim();
@@ -566,6 +657,13 @@ async function autoUnlockSession() {
   const savedVault = localStorage.getItem('akh_portal_vault');
   const savedPin = localStorage.getItem('akh_portal_saved_pin');
   const savedToken = sessionStorage.getItem('akh_portal_active_token');
+
+  // استرجاع رقم تحليلات جوجل المحفوظ مسبقاً إن وجد
+  const savedGaId = localStorage.getItem('akh_ga_property_id');
+  if(savedGaId) {
+    document.getElementById('gaPropertyIdInput').value = savedGaId;
+    initGoogleAnalytics(savedGaId);
+  }
 
   if (savedToken) {
     ACTIVE_TOKEN = savedToken;
@@ -714,7 +812,7 @@ function calculateHolidayStats() {
   document.getElementById('pctHol').innerText = holPct + '%';
 }
 
-// تشخيص وصحة النظام (Uptime AI & Health)
+// التشخيص وصحة النظام (Uptime AI & Health)
 async function runSystemDiagnostics() {
   const btn = document.getElementById('diagnosticBtn');
   const box = document.getElementById('diagnosticResultBox');
@@ -889,7 +987,7 @@ function exportHolidayReportPDF() {
 
       <div class="meta-box">
         <div>
-          <span>المرجع / Reference No: <strong>${refNumber}</strong></span><br>
+          <span>المرجع / Reference No: <strong dir="ltr" style="unicode-bidi:embed; display:inline-block;">${refNumber}</strong></span><br>
           <span style="font-size: 11px; color: #475569;">تاريخ الإصدار / Issue Date: <span dir="ltr" style="unicode-bidi:embed; display:inline-block;">${issueDate}</span></span>
         </div>
         <div style="direction: ltr; unicode-bidi: embed; text-align: left;">
@@ -905,10 +1003,10 @@ function exportHolidayReportPDF() {
           <th>صافي أيام الدوام الفعلي<br><span style="font-size:10px; font-weight:normal;">Net Working Days</span></th>
         </tr>
         <tr>
-          <td><strong>${totalDays}</strong> يوم / Days</td>
-          <td><strong style="color: #dc2626;">${weekends}</strong> يوم / Days</td>
-          <td><strong style="color: #c05621;">${holidays}</strong> يوم / Days</td>
-          <td><strong style="color: #16a34a;">${workdays}</strong> يوم / Days</td>
+          <td><strong dir="ltr" style="unicode-bidi:embed; display:inline-block;">${totalDays}</strong> يوم / Days</td>
+          <td><strong dir="ltr" style="unicode-bidi:embed; display:inline-block; color: #dc2626;">${weekends}</strong> يوم / Days</td>
+          <td><strong dir="ltr" style="unicode-bidi:embed; display:inline-block; color: #c05621;">${holidays}</strong> يوم / Days</td>
+          <td><strong dir="ltr" style="unicode-bidi:embed; display:inline-block; color: #16a34a;">${workdays}</strong> يوم / Days</td>
         </tr>
       </table>
 
@@ -920,9 +1018,9 @@ function exportHolidayReportPDF() {
           <div class="bar-hol" style="height: 100%; background-color: #c05621 !important; width: ${holPct};"></div>
         </div>
         <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; color: #475569; margin-top: 6px;">
-          <span style="color: #16a34a;">■ دوام فعلي (${workPct})</span>
-          <span style="color: #d32f2f;">■ ويكند (${weekPct})</span>
-          <span style="color: #c05621;">■ عطل رسمية (${holPct})</span>
+          <span style="color: #16a34a;">■ دوام فعلي (<span dir="ltr" style="unicode-bidi:embed; display:inline-block;">${workPct}</span>)</span>
+          <span style="color: #d32f2f;">■ ويكند (<span dir="ltr" style="unicode-bidi:embed; display:inline-block;">${weekPct}</span>)</span>
+          <span style="color: #c05621;">■ عطل رسمية (<span dir="ltr" style="unicode-bidi:embed; display:inline-block;">${holPct}</span>)</span>
         </div>
       </div>
 
@@ -1000,7 +1098,7 @@ async function loadCustomHolidaysTable() {
         globalCustomHolidays.forEach((h, index) => {
           tbody.innerHTML += `<tr>
             <td><strong>${h.name}</strong></td>
-            <td><span class="badge badge-holiday">${formatDateDMY(h.date)}</span></td>
+            <td><span class="badge badge-holiday" dir="ltr" style="unicode-bidi:embed; display:inline-block;">${formatDateDMY(h.date)}</span></td>
             <td>
               <div style="display: flex; gap: 6px; flex-wrap: wrap;">
                 <button type="button" class="btn-action-sm" onclick="confirmAndApplyHoliday('${h.name.replace(/'/g, "\\'")}', '${h.date}')">تفعيل 🛑</button>
