@@ -439,18 +439,36 @@
       evaluateBaghdadSchedule();
     });
 
-    // المنطق التلقائي المرتبط بملف office_status.json وبتوقيت بغداد
+    // المنطق البرمجي المحدث: عطلة نهاية الأسبوع (الجمعة والسبت) لها الأولوية المطلقة
     async function evaluateBaghdadSchedule() {
       const lang = document.getElementById('languageSelect').value;
       const dot = document.getElementById('statusDot');
       const statusTitle = document.getElementById('statusHeaderTitle');
       const statusMsg = document.getElementById('statusMessageText');
 
+      // 1. حساب توقيت بغداد وأيام العطلة (الجمعة 5 والسبت 6) أولاً وقبل كل شيء
+      const nowBaghdad = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Baghdad" }));
+      const day = nowBaghdad.getDay(); // 0: الأحد ... 5: الجمعة, 6: السبت
+      const hour = nowBaghdad.getHours();
+      const minute = nowBaghdad.getMinutes();
+      const timeVal = hour * 60 + minute;
+
+      const startVal = 8 * 60;  // 08:00
+      const endVal = 16 * 60; // 16:00
+
+      // إذا كانت عطلة نهاية الأسبوع (الجمعة والسبت)
+      if (day === 5 || day === 6) {
+        dot.className = 'status-indicator-dot holiday';
+        statusTitle.innerText = translations[lang].weekendTitle || "عطلة نهاية الأسبوع";
+        statusMsg.innerText = translations[lang].weekendMsg || "المكتب مغلق حالياً لعطلة نهاية الأسبوع، نعود لاستقبال طلباتكم وحجوزاتكم يوم الأحد القادم عبر حجز موعد استشارة رسمية.";
+        return;
+      }
+
+      // 2. إذا لم تكن عطلة نهاية الأسبوع، نفحص ملف office_status.json (للحالات اليدوية أو العطل الطارئة)
       try {
         const res = await fetch('/office_status.json?t=' + new Date().getTime());
         if (res.ok) {
           const data = await res.json();
-          // التحقق إذا كان الوضع اليدوي مفعل أو حالة إجازة من البوابة
           if (data.status === 'holiday') {
             dot.className = 'status-indicator-dot holiday';
             statusTitle.innerText = lang === 'en' ? "Office Holiday / Leave" : "إجازة رسمية / عطلة المكتب";
@@ -461,33 +479,12 @@
             statusTitle.innerText = lang === 'en' ? "Outside Official Working Hours" : "خارج ساعات العمل الرسمية";
             statusMsg.innerText = data.note ? data.note : (lang === 'en' ? "Outside official hours. Requests via booking form." : "المكتب خارج ساعات العمل الرسمية حالياً، الاستقبال عبر استمارة الحجز.");
             return;
-          } else if (data.status === 'active' && data.mode === 'manual') {
-            dot.className = 'status-indicator-dot active';
-            statusTitle.innerText = lang === 'en' ? "Office is Open" : "المكتب متاح الآن";
-            statusMsg.innerText = data.note ? data.note : (lang === 'en' ? "Office is currently open for regular requests." : "المكتب متاح الآن لاستقبال الطلبات والمواعيد الرسمية.");
-            return;
           }
         }
       } catch(e) {}
 
-      // الجدول التلقائي بتوقيت بغداد (الجمعة 5 والسبت 6 عطلة نهاية الأسبوع)
-      const nowBaghdad = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Baghdad" }));
-      const day = nowBaghdad.getDay(); // 0: الأحد ... 5: الجمعة, 6: السبت
-      const hour = nowBaghdad.getHours();
-      const minute = nowBaghdad.getMinutes();
-      const timeVal = hour * 60 + minute;
-
-      const startVal = 8 * 60;  // 08:00
-      const endVal = 16 * 60; // 16:00
-
-      if (day === 5 || day === 6) {
-        dot.className = 'status-indicator-dot holiday';
-        statusTitle.innerText = lang === 'en' ? "Weekend Closure" : "عطلة نهاية الأسبوع";
-        statusMsg.innerText = lang === 'en' 
-          ? "Office is closed for the weekend. We will resume receiving requests next Sunday. Please submit via the booking form." 
-          : "المكتب مغلق حالياً لعطلة نهاية الأسبوع، نعود لاستقبال طلباتكم وحجوزاتكم يوم الأحد القادم عبر حجز موعد استشارة رسمية.";
-      } 
-      else if (timeVal < startVal || timeVal > endVal) {
+      // 3. فحص ساعات العمل خلال أيام الدوام (الأحد إلى الخميس)
+      if (timeVal < startVal || timeVal > endVal) {
         dot.className = 'status-indicator-dot off_hours';
         statusTitle.innerText = lang === 'en' ? "Outside Official Working Hours" : "خارج ساعات العمل الرسمية";
         statusMsg.innerText = lang === 'en' 
@@ -556,6 +553,8 @@
         btnBooking: "📅 حجز موعد استشارة رسمية",
         btnWhatsapp: "💬 تواصل عبر الواتساب مباشرة",
         btnBackHome: "🏠 العودة إلى الصفحة الرئيسية",
+        weekendTitle: "عطلة نهاية الأسبوع",
+        weekendMsg: "المكتب مغلق حالياً لعطلة نهاية الأسبوع، نعود لاستقبال طلباتكم وحجوزاتكم يوم الأحد القادم عبر حجز موعد استشارة رسمية.",
         privacyText: "سياسة الخصوصية", disclaimerText: "إخلاء المسؤولية", codeText: "قواعد السلوك المهني", rightsText: "جميع الحقوق محفوظة © 2026 مكتب المحامي علي كاظم الهاشمي"
       },
       en: {
@@ -570,6 +569,8 @@
         btnBooking: "📅 Book Official Consultation Appointment",
         btnWhatsapp: "💬 Contact via WhatsApp Directly",
         btnBackHome: "🏠 Back to Home Page",
+        weekendTitle: "Weekend Closure",
+        weekendMsg: "Office is closed for the weekend. We will resume receiving requests next Sunday via official consultation booking.",
         privacyText: "Privacy Policy", disclaimerText: "Disclaimer", codeText: "Code of Conduct", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       tr: {
@@ -584,6 +585,8 @@
         btnBooking: "📅 Resmi Danışmanlık Randevusu Alın",
         btnWhatsapp: "💬 Doğrudan WhatsApp ile İletişim",
         btnBackHome: "🏠 Ana Sayfaya Dön",
+        weekendTitle: "Hafta Sonu Tatili",
+        weekendMsg: "Ofis hafta sonu nedeniyle kapalıdır. Taleplerinizi önümüzdeki Pazar günü resmi danışmanlık randevusu ile almaya devam edeceğiz.",
         privacyText: "Gizlilik Politikası", disclaimerText: "Sorumluluk Reddi", codeText: "Mesleki Etik Kuralları", rightsText: "Tüm Hakları Saklıdır © 2026 AKH Hukuk Bürosu"
       },
       zh: {
@@ -598,6 +601,8 @@
         btnBooking: "📅 预约正式法律咨询",
         btnWhatsapp: "💬 直接通过 WhatsApp 联系",
         btnBackHome: "🏠 返回首页",
+        weekendTitle: "周末闭馆",
+        weekendMsg: "本所周末闭馆。我们将在下周日恢复接收预约请求。",
         privacyText: "隐私政策", disclaimerText: "免责声明", codeText: "行为准则", rightsText: "版权所有 © 2026 AKH 律师事务所"
       },
       fr: {
@@ -612,6 +617,8 @@
         btnBooking: "📅 Réserver un Rendez-vous de Consultation Officielle",
         btnWhatsapp: "💬 Contacter via WhatsApp Directement",
         btnBackHome: "🏠 Retour à la Page d'Accueil",
+        weekendTitle: "Fermeture du Weekend",
+        weekendMsg: "Le bureau est fermé pour le weekend. Nous reprendrons la réception des demandes dimanche prochain.",
         privacyText: "Politique de Confidentialité", disclaimerText: "Avertissement", codeText: "Code de Conduite", rightsText: "Tous Droits Réservés © 2026 Cabinet AKH"
       },
       es: {
@@ -626,7 +633,9 @@
         btnBooking: "📅 Reservar Cita de Consulta Oficial",
         btnWhatsapp: "💬 Contactar por WhatsApp Directemente",
         btnBackHome: "🏠 Volver a la Página Principal",
-        privacyText: "Política de Privacidad", disclaimerText: "Descargo de Responsabilidad", codeText: "Código de Conducta", rightsText: "Todos los Derechos Reservados © 2026 Bufete AKH"
+        weekendTitle: "Cierre de Fin de Semana",
+        weekendMsg: "La oficina está cerrada por el fin de semana. Reanudaremos la recepción de solicitudes el próximo domingo.",
+        privacyText: "Politique de Confidentialité", disclaimerText: "Descargo de Responsabilidad", codeCode: "Código de Conducta", rightsText: "Todos los Derechos Reservados © 2026 Bufete AKH"
       },
       de: {
         pageTitle: "Kontakt | Anwaltskanzlei Ali Kadhem Hashimi im Irak",
@@ -640,6 +649,8 @@
         btnBooking: "📅 Offiziellen Beratungstermin buchen",
         btnWhatsapp: "💬 Direkt über WhatsApp kontaktieren",
         btnBackHome: "🏠 Zurück zur Startseite",
+        weekendTitle: "Wochenendschließung",
+        weekendMsg: "Das Büro ist am Wochenende geschlossen. Wir werden ab nächsten Sonntag wieder Anfragen annehmen.",
         privacyText: "Datenschutzrichtlinie", disclaimerText: "Haftungsausschluss", codeText: "Verhaltenskodex", rightsText: "Alle Rechte vorbehalten © 2026 Kanzlei AKH"
       },
       ku: {
@@ -654,6 +665,8 @@
         btnBooking: "📅 دیاریکردنی کاتی ڕاوێژی فەرمی",
         btnWhatsapp: "💬 پەیوەندی لە ڕێگەی واتسأپەوە بە ڕاستەوخۆ",
         btnBackHome: "🏠 گەڕانەوە بۆ لاپەڕەی سەرەکی",
+        weekendTitle: "پشووی کۆتایی هەفتە",
+        weekendMsg: "نووسینگە لە پشووی کۆتایی هەفتەدا داخراوە. لە یەکشەممەی داهاتووەوە پێشوازی لە داواکارییەکانتان دەکەین.",
         privacyText: "سیاسەتی تایبەتمەندێتی", disclaimerText: "بەرپرسارێتی", codeText: "ڕەفتاری پیشەیی", rightsText: "هەموو مافەکان پارێزراون © 2026 نووسینگەی پارێزەر عەلی کاظم"
       }
     };
