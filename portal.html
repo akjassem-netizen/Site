@@ -18,7 +18,6 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #f7f9fc; c
 .sub-brand span { color: #d32f2f; margin-right: 4px; font-weight: 800; }
 .est { font-size: 10px; color: #777; letter-spacing: 2px; margin-top: 3px; direction: ltr; }
 .portal-title { font-size: 17.5px; font-weight: 800; color: #0b1a30; margin-top: 10px; }
-.portal-subtitle-en { font-size: 12px; color: #4a5568; font-weight: 600; margin-top: 2px; direction: ltr; }
 
 .screen-box { text-align: center; padding: 25px 10px; }
 .lock-desc { font-size: 14px; color: #4a5568; margin-bottom: 20px; line-height: 1.6; }
@@ -44,15 +43,13 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #f7f9fc; c
 .alert-success { background-color: #def7ec; color: #03543f; padding: 10px 14px; border-radius: 8px; margin-bottom: 16px; font-size: 13.5px; font-weight: 700; display: none; }
 .form-group { margin-bottom: 14px; }
 label { display: block; font-weight: 700; font-size: 13px; margin-bottom: 5px; color: #2d3748; }
-label span.en-label { font-size: 11px; color: #718096; font-weight: 600; float: left; direction: ltr; }
-select, input[type="text"], input[type="date"], input[type="password"] { width: 100%; padding: 10px 12px; border: 1.5px solid #cbd5e0; border-radius: 8px; font-family: inherit; font-size: 13.5px; background-color: #fff; }
+select, input[type="text"], input[type="date"], input[type="password"], input[type="time"] { width: 100%; padding: 10px 12px; border: 1.5px solid #cbd5e0; border-radius: 8px; font-family: inherit; font-size: 13.5px; background-color: #fff; }
 .btn-submit { background-color: #0b1a30; color: #ffffff; border: none; padding: 11px 20px; font-size: 14px; font-weight: 700; border-radius: 8px; cursor: pointer; font-family: inherit; width: 100%; }
 table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 13px; }
 th, td { padding: 10px; text-align: right; border-bottom: 1px solid #edf2f7; }
 th { background-color: #0b1a30; color: #ffffff; font-weight: 700; }
 tr:hover { background-color: #fafafa; }
 .badge { padding: 3px 7px; border-radius: 4px; font-size: 11px; font-weight: 700; }
-.badge-off { background: #fefcbf; color: #744210; }
 .badge-holiday { background: #fed7d7; color: #9b1c1c; }
 </style>
 </head>
@@ -64,7 +61,6 @@ tr:hover { background-color: #fafafa; }
 <div class="sub-brand"><span>/</span> LAW OFFICE</div>
 <div class="est">EST. 2014</div>
 <div class="portal-title">بوابة ديوان مكتب المحامي علي كاظم الهاشمي</div>
-<div class="portal-subtitle-en">AKH Law Office Chambers Portal</div>
 </div>
 
 <div id="portalAlertBox" class="alert-box alert-error"></div>
@@ -90,7 +86,7 @@ tr:hover { background-color: #fafafa; }
 
 <div id="portalMainContent" style="display: none;">
 <div class="top-nav-bar">
-<span style="font-size: 12.5px; font-weight: 700; color: #2d3748;">🟢 النظام متصل وخزنة الأمان مفعلة</span>
+<span style="font-size: 12.5px; font-weight: 700; color: #2d3748;">🟢 النظام متصل وجدولة توقيت بغداد مفعلة</span>
 <div style="display: flex; gap: 6px;">
 <button type="button" class="btn-lock-nav" onclick="lockPortalSession()">قفل 🔒</button>
 <a href="portal.html">🔄 تحديث</a>
@@ -119,21 +115,48 @@ tr:hover { background-color: #fafafa; }
 </div>
 
 <div class="card-section">
-<h2><span>🟢 التحكم الفوري بحالة المكتب</span><span class="en-title">Live Status</span></h2>
+<h2><span>🟢 حالة المكتب وتوقيت بغداد التلقائي</span><span class="en-title">Live Status & Auto-Schedule</span></h2>
 <form id="statusForm" onsubmit="saveOfficeStatus(event)">
 <div class="form-group">
-<label>حالة المكتب الظاهرة للزوار:</label>
+<label>طريقة التحديث:</label>
+<select id="updateModeSelect" onchange="toggleModeInputs()">
+<option value="auto">⚡ تلقائي حسب ساعات العمل الرسمية (توقيت بغداد)</option>
+<option value="manual">🛠️ تثبيت يدوي دائم (تجاوز الجدول التلقائي)</option>
+</select>
+</div>
+
+<div id="manualStatusBox" class="form-group" style="display:none;">
+<label>الحالة اليدوية المعروضة للزوار:</label>
 <select id="officeStatusSelect">
 <option value="active">🟢 متاح الآن لاستقبال الطلبات (أوقات العمل الرسمية)</option>
 <option value="off_hours">🟡 خارج ساعات العمل الرسمية (عبر الاستمارة فقط)</option>
 <option value="holiday">🔴 إجازة رسمية / عطلة (مفعل)</option>
 </select>
 </div>
+
 <div class="form-group">
-<label>سبب التعطيل أو ملاحظة مخصصة (اختياري):</label>
+<label>ملاحظة مخصصة (تظهر للزوار تحت الحالة):</label>
 <input type="text" id="officeNoteInput" placeholder="مثلاً: عطلة رسمية بقرار مجلس الوزراء...">
 </div>
 <button type="submit" class="btn-submit">حفظ وتحديث على غيت هب 💾</button>
+</form>
+</div>
+
+<div class="card-section">
+<h2><span>⚙️ تعديل ساعات العمل الرسمية (توقيت بغداد)</span><span class="en-title">Working Hours Settings</span></h2>
+<form id="settingsForm" onsubmit="saveWorkingHours(event)">
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+<div class="form-group">
+<label>ساعة بدء الدوام:</label>
+<input type="time" id="workStartInput" value="08:00" required>
+</div>
+<div class="form-group">
+<label>ساعة انتهاء الدوام:</label>
+<input type="time" id="workEndInput" value="16:00" required>
+</div>
+</div>
+<p style="font-size: 11.5px; color: #718096; margin-bottom: 12px;">ملاحظة: أيام الدوام الرسمية معتمدة من الأحد إلى الخميس. الجمعة والسبت تعتبر عطلة نهاية الأسبوع تلقائياً.</p>
+<button type="submit" class="btn-submit" style="background-color: #3182ce;">حفظ ساعات العمل الجديدة ⏰</button>
 </form>
 </div>
 
@@ -148,7 +171,7 @@ tr:hover { background-color: #fafafa; }
 <label>التاريخ:</label>
 <input type="date" id="holidayDateInput" required>
 </div>
-<button type="submit" class="btn-submit" style="background-color: #3182ce;">إضافة العطلة للجدول ➕</button>
+<button type="submit" class="btn-submit" style="background-color: #2b6cb0;">إضافة العطلة للجدول ➕</button>
 </form>
 
 <h3 style="font-size: 14px; margin-top: 18px; color: #0b1a30; margin-bottom: 8px;">العطل الاستثنائية المضافة حالياً:</h3>
@@ -204,6 +227,11 @@ icon.innerText = 'إخفاء الجدول 🔼';
 box.style.display = 'none';
 icon.innerText = 'إظهار الجدول 🔽';
 }
+}
+
+function toggleModeInputs() {
+const mode = document.getElementById('updateModeSelect').value;
+document.getElementById('manualStatusBox').style.display = (mode === 'manual') ? 'block' : 'none';
 }
 
 async function deriveKey(pin, salt) {
@@ -292,16 +320,32 @@ function utf8_to_b64(str) { return btoa(encodeURIComponent(str).replace(/%([0-9A
 function b64_to_utf8(b64) { return decodeURIComponent(atob(b64.replace(/\s/g, '')).split('').map(function(c) { return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2); }).join('')); }
 
 async function loadPortalData() {
+// 1. جلب إعدادات ساعات العمل
+try {
+const resSettings = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/office_settings.json?ref=${BRANCH}`, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
+if(resSettings.ok) {
+const data = await resSettings.json();
+const settings = JSON.parse(b64_to_utf8(data.content));
+if(settings.workStart) document.getElementById('workStartInput').value = settings.workStart;
+if(settings.workEnd) document.getElementById('workEndInput').value = settings.workEnd;
+}
+} catch(e) {}
+
+// 2. جلب حالة المكتب الحالية
 try {
 const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/office_status.json?ref=${BRANCH}`, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
 if(res.ok) {
 const data = await res.json();
 const statusObj = JSON.parse(b64_to_utf8(data.content));
+
+document.getElementById('updateModeSelect').value = statusObj.mode || 'auto';
 document.getElementById('officeStatusSelect').value = statusObj.status || 'active';
 document.getElementById('officeNoteInput').value = statusObj.note || '';
+toggleModeInputs();
 }
 } catch(e) {}
 
+// 3. جلب العطل الاستثنائية
 const tbody = document.querySelector('#customHolidaysTable tbody');
 try {
 const res2 = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/custom_holidays.json?ref=${BRANCH}`, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
@@ -324,11 +368,69 @@ tbody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:#718096;"
 }
 }
 
+// حساب الحالة التلقائية بناءً على توقيت بغداد وساعات العمل المخصصة
+function calculateAutoStatus(workStart, workEnd) {
+const nowBaghdad = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Baghdad" }));
+const day = nowBaghdad.getDay(); // 0: الأحد, 1: الإثنين, 2: الثلاثاء, 3: الأربعاء, 4: الخميس, 5: الجمعة, 6: السبت
+const currentHour = nowBaghdad.getHours();
+const currentMinute = nowBaghdad.getMinutes();
+const currentTimeVal = currentHour * 60 + currentMinute;
+
+// عطلة نهاية الأسبوع في العراق (الجمعة 5 والسبت 6)
+if (day === 5 || day === 6) {
+return { status: 'holiday', note: 'المكتب في عطلة نهاية الأسبوع، يرجى ترك طلبك وسنرد قريباً.' };
+}
+
+// أيام الدوام (الأحد 0 إلى الخميس 4)
+const [startH, startM] = workStart.split(':').map(Number);
+const [endH, endM] = workEnd.split(':').map(Number);
+const startTimeVal = startH * 60 + startM;
+const endTimeVal = endH * 60 + endM;
+
+if (currentTimeVal >= startTimeVal && currentTimeVal <= endTimeVal) {
+return { status: 'active', note: '' };
+} else {
+return { status: 'off_hours', note: 'خارج ساعات العمل الرسمية (الاستقبال عبر الاستمارة فقط)' };
+}
+}
+
+async function saveWorkingHours(e) {
+e.preventDefault();
+const workStart = document.getElementById('workStartInput').value;
+const workEnd = document.getElementById('workEndInput').value;
+const settingsObj = { workStart, workEnd };
+const contentStr = JSON.stringify(settingsObj, null, 2);
+
+try {
+let sha = '';
+const getRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/office_settings.json?ref=${BRANCH}`, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
+if(getRes.ok) { const d = await getRes.json(); sha = d.sha; }
+
+const putRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/office_settings.json`, {
+method: 'PUT',
+headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}`, 'Content-Type': 'application/json' },
+body: JSON.stringify({ message: 'Update office working hours', content: utf8_to_b64(contentStr), sha: sha, branch: BRANCH })
+});
+if(!putRes.ok) throw new Error('فشل الحفظ.');
+alert('تم تحديث ساعات العمل الرسمية بنجاح ⏰');
+} catch(err) { alert('خطأ: ' + err.message); }
+}
+
 async function saveOfficeStatus(e) {
 e.preventDefault();
-const status = document.getElementById('officeStatusSelect').value;
-const note = document.getElementById('officeNoteInput').value.trim();
-const statusObj = { status, note, updated_at: new Date().toISOString() };
+const mode = document.getElementById('updateModeSelect').value;
+let status = document.getElementById('officeStatusSelect').value;
+let note = document.getElementById('officeNoteInput').value.trim();
+
+if (mode === 'auto') {
+const workStart = document.getElementById('workStartInput').value;
+const workEnd = document.getElementById('workEndInput').value;
+const autoRes = calculateAutoStatus(workStart, workEnd);
+status = autoRes.status;
+if (!note) note = autoRes.note;
+}
+
+const statusObj = { mode, status, note, updated_at: new Date().toISOString() };
 const contentStr = JSON.stringify(statusObj, null, 2);
 
 try {
@@ -339,7 +441,7 @@ if(getRes.ok) { const d = await getRes.json(); sha = d.sha; }
 const putRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/office_status.json`, {
 method: 'PUT',
 headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}`, 'Content-Type': 'application/json' },
-body: JSON.stringify({ message: 'Update office status', content: utf8_to_b64(contentStr), sha: sha, branch: BRANCH })
+body: JSON.stringify({ message: 'Update office status mode', content: utf8_to_b64(contentStr), sha: sha, branch: BRANCH })
 });
 if(!putRes.ok) throw new Error('فشل الحفظ.');
 const alertEl = document.getElementById('statusAlert');
@@ -351,7 +453,7 @@ setTimeout(() => alertEl.style.display = 'none', 3000);
 async function saveCustomHoliday(e) {
 e.preventDefault();
 const name = document.getElementById('holidayNameInput').value.trim();
-const date = document.getElementById('holidayDateInput5'] || document.getElementById('holidayDateInput').value;
+const date = document.getElementById('holidayDateInput').value;
 if(!name || !date) return;
 
 try {
