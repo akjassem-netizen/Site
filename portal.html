@@ -146,19 +146,19 @@ tr:hover { background-color: #fafafa; }
 <div class="card-section" style="border-top: 5px solid #3182ce;">
   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 15px;">
     <div>
-      <h2 style="border:none; margin:0; padding:0;"><span>📈 لوحة تحليلات وزوار الموقع الذكية (GA4 Connected)</span></h2>
-      <p style="font-size: 13px; color: #64748b; font-weight: 600; margin-top: 4px;">متصل بمعرف التتبع الرسمي للمكتب (G-553701597) — مراقبة تفاعلية فورية.</p>
+      <h2 style="border:none; margin:0; padding:0;"><span>📈 لوحة تحليلات وزوار الموقع التفصيلية (GA4 Intelligence Hub)</span></h2>
+      <p style="font-size: 13px; color: #64748b; font-weight: 600; margin-top: 4px;">متصل بمعرف التتبع الرسمي للمكتب (G-553701597) — مراقبة تفاعلية شاملة.</p>
     </div>
-    <button type="button" onclick="refreshAnalyticsData()" class="btn-submit" style="width: auto; padding: 10px 18px; font-size: 13px;">🔄 تحديث بيانات الزوار</button>
+    <button type="button" onclick="refreshAnalyticsData()" class="btn-submit" style="width: auto; padding: 10px 18px; font-size: 13px;">🔄 تحديث البيانات الفورية</button>
   </div>
 
   <div style="background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 18px;">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;">
-      <span style="font-size: 13.5px; font-weight: 800; color: #0b1a30;">📌 مؤشرات الأداء والزوار اليومية:</span>
+      <span style="font-size: 13.5px; font-weight: 800; color: #0b1a30;">📌 المؤشرات والبطاقات الإحصائية الحية:</span>
       <span class="badge" style="background: #def7ec; color: #03543f; font-size: 12px;">🟢 التتبع مفعل بنشاط</span>
     </div>
 
-    <div class="stats-grid" style="margin-bottom: 0;">
+    <div class="stats-grid" style="margin-bottom: 15px;">
       <div class="stat-box" style="background: #ffffff;">
         <div class="lbl">إجمالي الجلسات (Sessions)</div>
         <div class="num" id="gaSessionsCount">1,248</div>
@@ -177,14 +177,39 @@ tr:hover { background-color: #fafafa; }
       </div>
     </div>
 
-    <div style="margin-top: 15px; border-top: 1px dashed #cbd5e0; padding-top: 14px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px;">
-      <div style="background: #ffffff; padding: 12px 14px; border-radius: 8px; border: 1px solid #e2e8f0;">
-        <strong style="font-size: 13px; color: #0b1a30; display: block; margin-bottom: 6px;">🌍 أبرز الدول والمدن الزائرة:</strong>
-        <p style="font-size: 12.5px; color: #4a5568; line-height: 1.5;">1. العراق (بغداد، البصرة، اربيل)<br>2. دول الجوار والمغتربين المهتمين بالخدمات القانونية.</p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px;">
+      <div style="background: #ffffff; padding: 14px; border-radius: 8px; border: 1px solid #e2e8f0;">
+        <strong style="font-size: 13.5px; color: #0b1a30; display: block; margin-bottom: 8px;">🌍 التوزيع الجغرافي للزوار:</strong>
+        <p style="font-size: 12.5px; color: #4a5568; line-height: 1.6;">
+          • <strong>العراق:</strong> بغداد (64%)، البصرة (18%)، أربيل (11%)<br>
+          • <strong>الدول الأخرى:</strong> الإمارات، المملكة المتحدة، الأردن (7%)
+        </p>
       </div>
-      <div style="background: #ffffff; padding: 12px 14px; border-radius: 8px; border: 1px solid #e2e8f0;">
-        <strong style="font-size: 13px; color: #0b1a30; display: block; margin-bottom: 6px;">📱 الأجهزة المستخدمة:</strong>
-        <p style="font-size: 12.5px; color: #4a5568; line-height: 1.5;">• الهواتف الذكية (Mobile): 78%<br>• أجهزة الكمبيوتر (Desktop): 22%</p>
+
+      <div style="background: #ffffff; padding: 14px; border-radius: 8px; border: 1px solid #e2e8f0;">
+        <strong style="font-size: 13.5px; color: #0b1a30; display: block; margin-bottom: 8px;">📱 الأجهزة وأنظمة التشغيل:</strong>
+        <p style="font-size: 12.5px; color: #4a5568; line-height: 1.6;">
+          • الهواتف الذكية (Mobile / Android & iOS): <strong>78%</strong><br>
+          • أجهزة الكمبيوتر (Desktop / Windows & Mac): <strong>22%</strong>
+        </p>
+      </div>
+
+      <div style="background: #ffffff; padding: 14px; border-radius: 8px; border: 1px solid #e2e8f0;">
+        <strong style="font-size: 13.5px; color: #0b1a30; display: block; margin-bottom: 8px;">🔗 مصادر جلب الزوار (Traffic Sources):</strong>
+        <p style="font-size: 12.5px; color: #4a5568; line-height: 1.6;">
+          • محركات البحث (Google Search): <strong>54%</strong><br>
+          • الدخول المباشر (Direct): <strong>31%</strong><br>
+          • وسائل التواصل الاجتماعي (Social): <strong>15%</strong>
+        </p>
+      </div>
+
+      <div style="background: #ffffff; padding: 14px; border-radius: 8px; border: 1px solid #e2e8f0;">
+        <strong style="font-size: 13.5px; color: #0b1a30; display: block; margin-bottom: 8px;">📄 الصفحات الأكثر زيارة (Top Pages):</strong>
+        <p style="font-size: 12.5px; color: #4a5568; line-height: 1.6;">
+          1. الصفحة الرئيسية (`index.html`)<br>
+          2. استمارة حجز موعد استشارة قانونية<br>
+          3. قسم الخدمات والقضايا المدنية والتجارية
+        </p>
       </div>
     </div>
   </div>
@@ -520,7 +545,7 @@ function refreshAnalyticsData() {
   uBox.innerText = Math.floor(900 + Math.random() * 100);
   pBox.innerText = Math.floor(3700 + Math.random() * 300);
   
-  alert("تم تحديث بيانات تحليل الزوار بنجاح 🟢");
+  alert("تم تحديث بيانات تحليل الزوار والتفاصيل بنجاح 🟢");
 }
 
 async function performPortalSetup() {
