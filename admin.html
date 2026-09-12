@@ -21,7 +21,7 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #f7f9fc; c
 
 .screen-box { text-align: center; padding: 35px 10px; }
 .lock-desc { font-size: 14.5px; color: #4a5568; margin-bottom: 20px; line-height: 1.6; }
-.pin-input { font-size: 20px; font-weight: 800; text-align: center; max-width: 260px; margin: 0 auto 16px; -webkit-text-security: disc; }
+.secret-input { font-size: 20px; font-weight: 800; text-align: center; max-width: 260px; margin: 0 auto 16px; -webkit-text-security: disc; padding: 11px 14px; border: 1.5px solid #cbd5e0; border-radius: 8px; font-family: inherit; background-color: #fff; }
 .btn-unlock { width: 100%; max-width: 260px; background-color: #0b1a30; color: #ffffff; padding: 13px; border: none; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; font-family: inherit; margin: 0 auto; display: block; transition: 0.3s; }
 .btn-unlock:hover { background-color: #c5a059; color: #0b1a30; }
 .alert-box { padding: 12px 15px; border-radius: 8px; margin-bottom: 18px; font-size: 13.5px; display: none; }
@@ -79,12 +79,12 @@ textarea { resize: vertical; min-height: 150px; line-height: 1.7; }
 <div id="statusAlert" class="alert-box alert-error"></div>
 
 <div id="setupScreen" class="screen-box" style="display: none;">
-<p class="lock-desc"><strong>إعداد خزنة الأمان الخاصة بالمكتب:</strong><br>أدخل مفتاح المرور الآمن (GitHub PAT) مع الرقم السري:</p>
+<p class="lock-desc"><strong>إعداد خزنة الأمان الخاصة بالمكتب:</strong><br>أدخل مفتاح المرور الآمن مع الرقم السري:</p>
 <div class="form-group" style="max-width: 400px; margin: 0 auto 12px;">
-<input type="password" id="setupTokenInput" placeholder="أدخل مفتاح المرور الآمن (ghp_...)" dir="ltr" style="-webkit-text-security: disc;">
+<input type="password" id="setupTokenInput" placeholder="أدخل مفتاح المرور الآمن..." dir="ltr" style="-webkit-text-security: disc;">
 </div>
 <div class="form-group" style="max-width: 260px; margin: 0 auto 16px;">
-<input type="password" id="setupPinInput" class="pin-input" placeholder="••••••••" style="-webkit-text-security: disc;">
+<input type="password" id="setupPinInput" class="secret-input" placeholder="••••••••">
 </div>
 <button type="button" class="btn-unlock" onclick="performSetup()">تشفير وحفظ الحماية 🔒</button>
 </div>
@@ -92,7 +92,7 @@ textarea { resize: vertical; min-height: 150px; line-height: 1.7; }
 <div id="lockScreen" class="screen-box" style="display: none;">
 <p class="lock-desc"><span>البوابة محمية بخزنة أمان مشفرة.</span><br>أدخل الرقم السري لفتح اللوحة:</p>
 <div class="form-group" style="max-width: 260px; margin: 0 auto 16px;">
-<input type="password" id="unlockPinInput" class="pin-input" placeholder="••••••••" autofocus style="-webkit-text-security: disc;">
+<input type="password" id="unlockPinInput" class="secret-input" placeholder="••••••••" autofocus>
 </div>
 <button type="button" class="btn-unlock" onclick="attemptPinUnlock()">دخول آمن ←</button>
 </div>
