@@ -204,7 +204,7 @@
       border-bottom: 1px solid #f1f5f9;
     }
 
-    /* بطاقة المعلومات */
+    /* بطاقة المعلومات مع تنسيق موحد ودقيق للمحاذاة */
     .info-card {
       background: #ffffff;
       border: 1.5px solid #e2e8f0;
@@ -214,12 +214,14 @@
     }
     .info-row {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
+      justify-content: space-between;
       margin-bottom: 18px;
       font-size: 14px;
       color: #334155;
       border-bottom: 1px solid #f8fafc;
       padding-bottom: 14px;
+      gap: 15px;
     }
     .info-row:last-child {
       border-bottom: none;
@@ -227,14 +229,25 @@
       padding-bottom: 0;
     }
     .info-row .label-title {
-      min-width: 120px;
       font-weight: 800;
       color: #0f172a;
+      white-space: nowrap;
+      text-align: right;
     }
     .info-row .value-content {
-      flex: 1;
       font-weight: 600;
       color: #475569;
+      text-align: left;
+      direction: ltr;
+      unicode-bidi: embed;
+    }
+    .info-row.address-row .value-content {
+      direction: rtl;
+      text-align: right;
+    }
+    .info-row.hours-row .value-content {
+      direction: rtl;
+      text-align: right;
     }
     .info-row .value-content a {
       color: #0284c7;
@@ -376,24 +389,24 @@
     <div class="page-title" id="pageMainTitle">اتصل بنا</div>
 
     <div class="info-card">
-      <div class="info-row">
+      <div class="info-row address-row">
         <div class="label-title" id="lblAddress">العنوان:</div>
         <div class="value-content" id="valAddress">بغداد - زيونة - قرب دار الأزياء العراقية</div>
       </div>
 
-      <div class="info-row">
+      <div class="info-row hours-row">
         <div class="label-title" id="lblHours">أوقات العمل:</div>
         <div class="value-content" id="valHours">الأحد إلى الخميس (08:00 صباحاً - 04:00 عصراً بتوقيت بغداد)</div>
       </div>
 
       <div class="info-row">
         <div class="label-title" id="lblPhone">هاتف المكتب:</div>
-        <div class="value-content" dir="ltr">+964 783 875 9047</div>
+        <div class="value-content">+964 783 875 9047</div>
       </div>
 
       <div class="info-row">
         <div class="label-title" id="lblEmail">البريد الإلكتروني:</div>
-        <div class="value-content"><a href="mailto:Info@akjassem.com" dir="ltr">Info@akjassem.com</a></div>
+        <div class="value-content"><a href="mailto:Info@akjassem.com">Info@akjassem.com</a></div>
       </div>
     </div>
 
@@ -593,7 +606,7 @@
         offHoursMsg: "Şu anda resmi çalışma saatleri dışındayız. Talebinizi rezervasyon formu aracılığıyla gönderebilirsiniz.",
         openTitle: "Ofis Açık",
         openMsg: "Ofisimiz şu anda normal sorularınız ve rezervasyonlarınız için açıktır.",
-        privacyText: "Gizlilik Politikası", disclaimerText: "Sorumluluk Reddi", codeText: "Mesleki Etik Kuralları", rightsText: "Tüm Hakları Saklıdır © 2026 AKH Hukuk Bürosu"
+        privacyText: "Privacy Policy", disclaimerText: "Disclaimer", codeText: "Code of Conduct", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       zh: {
         pageTitle: "联系我们 | 阿里·卡德姆·哈希米律所伊拉克",
@@ -608,12 +621,12 @@
         btnWhatsapp: "💬 直接通过 WhatsApp 联系",
         btnBackHome: "🏠 返回首页",
         weekendTitle: "周末公告（周五和周六）",
-        weekendMsg: "本所目前正值周末假期. 您可随时申请正式法律咨询预约，所有请求将在周日上午恢复官方工作时间后立即处理。",
+        weekendMsg: "本所目前正值周末假期。您可随时申请正式法律咨询预约，所有请求将在周日上午恢复官方工作时间后立即处理。",
         offHoursTitle: "非官方工作时间",
         offHoursMsg: "我们目前已过了官方工作时间。您可以通过预订表格提交您的需求。",
         openTitle: "办公室开放",
         openMsg: "本所目前开放接受常规咨询和预订。",
-        privacyText: "隐私政策", disclaimerText: "免责声明", codeText: "行为准则", rightsText: "版权所有 © 2026 AKH 律师事务所"
+        privacyText: "Privacy Policy", disclaimerText: "Disclaimer", codeText: "Code of Conduct", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       fr: {
         pageTitle: "Contactez-nous | Cabinet d'Avocats Ali Kadhem Hashimi en Iraq",
@@ -633,7 +646,7 @@
         offHoursMsg: "Nous sommes actuellement en dehors des heures de bureau. Vous pouvez soumettre votre demande via le formulaire.",
         openTitle: "Le Bureau est Ouvert",
         openMsg: "Le bureau est actuellement ouvert pour les demandes habituelles et les réservations.",
-        privacyText: "Politique de Confidentialité", disclaimerText: "Avertissement", codeText: "Code de Conduite", rightsText: "Tous Droits Réservés © 2026 Cabinet AKH"
+        privacyText: "Privacy Policy", disclaimerText: "Disclaimer", codeText: "Code of Conduct", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       es: {
         pageTitle: "Contacto | Bufete de Abogados Ali Kadhem Hashimi en Irak",
@@ -653,7 +666,7 @@
         offHoursMsg: "Actualmente estamos fuera del horario de oficina. Puede enviar su solicitud a través del formulario de reserva.",
         openTitle: "La Oficina Está Abierta",
         openMsg: "La oficina está abierta actualmente para consultas regulares y reservas.",
-        privacyText: "Política de Privacidad", disclaimerText: "Descargo de Responsabilidad", codeCode: "Código de Conducta", rightsText: "Todos los Derechos Reservados © 2026 Bufete AKH"
+        privacyText: "Privacy Policy", disclaimerText: "Disclaimer", codeText: "Code of Conduct", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       de: {
         pageTitle: "Kontakt | Anwaltskanzlei Ali Kadhem Hashimi im Irak",
@@ -673,7 +686,7 @@
         offHoursMsg: "Wir befinden uns derzeit außerhalb der Bürozeiten. Sie können Ihre Anfrage über das Buchungsformular senden.",
         openTitle: "Das Büro ist Geöffnet",
         openMsg: "Das Büro ist derzeit für reguläre Anfragen und Buchungen geöffnet.",
-        privacyText: "Datenschutzrichtlinie", disclaimerText: "Haftungsausschluss", codeCode: "Verhaltenskodex", rightsText: "Alle Rechte vorbehalten © 2026 Kanzlei AKH"
+        privacyText: "Privacy Policy", disclaimerText: "Disclaimer", codeText: "Code of Conduct", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       ku: {
         pageTitle: "پەیوەندی بە مەزنی پارێزەر عەلی کازمی هاشمی لە عێراق",
@@ -688,12 +701,12 @@
         btnWhatsapp: "💬 پەیوەندی لە ڕێگەی واتسأپەوە بە ڕاستەوخۆ",
         btnBackHome: "🏠 گەڕانەوە بۆ لاپەڕەی سەرەکی",
         weekendTitle: "پشووی کۆتایی هەفتە (هەینی و شەممە)",
-        weekendMsg: "نووسینگە لە پشووی کۆتایی هەفتەدایە. دەتوانیت لە هەر کاتێکدا داوای دیاریکردنی کاتی ڕاوێژی فەرمی بکەیت، و داواکارییەکەت لە بەیانی ڕۆژی یەکشەممە لەگەڵ دەستپێکردنەوەی کاردا وەڵام دەدرێتەوە.",
+        weekendMsg: "نووسینگە لە پشووی فەرمی کۆتایی هەفتەدایە. دەتوانیت لە هەر کاتێکدا داوای دیاریکردنی کاتی ڕاوێژی فەرمی بکەیت، و داواکارییەکەت لە بەیانی ڕۆژی یەکشەممە لەگەڵ دەستپێکردنەوەی کاردا وەڵام دەدرێتەوە.",
         offHoursTitle: "دەرەوەی کاتژمێرەکانی کارکردن",
         offHoursMsg: "ئێمە لە دەرەوەی کاتژمێرە فەرمییەکانداین. دەتوانیت داواکارییەکەت بنێریت.",
         openTitle: "نووسینگە کراوەیە",
         openMsg: "نووسینگە لە ئێستادا کراوەیە بۆ وەرگرتنی داواکارییەکان.",
-        privacyText: "سياسة الخصوصية", disclaimerText: "إخلاء المسؤولية", codeCode: "قواعد السلوك المهني", rightsText: "جميع الحقوق محفوظة © 2026 مكتب المحامي علي كاظم الهاشمي"
+        privacyText: "سياسة الخصوصية", disclaimerText: "إخلاء المسؤولية", codeText: "قواعد السلوك المهني", rightsText: "جميع الحقوق محفوظة © 2026 مكتب المحامي علي كاظم الهاشمي"
       }
     };
   </script>
