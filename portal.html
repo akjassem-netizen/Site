@@ -162,7 +162,7 @@ tr:hover { background-color: #fafafa; }
 
 <div class="card-section">
 <h2><span>📊 إحصائيات العطل وأيام العمل (شاملة الويكند)</span><span class="en-title">Holidays & Workdays Stats</span></h2>
-<div class="form-group" style="display: flex; gap: 10px; align-items: center; margin-bottom: 15px;">
+<div class="form-group" style="display: flex; gap: 10px; align-items: center; margin-bottom: 15px; flex-wrap: wrap;">
   <label style="margin:0; white-space: nowrap;">اختر الشهر:</label>
   <input type="month" id="statsMonthInput" onchange="calculateHolidayStats()" style="max-width: 200px;">
 </div>
@@ -184,6 +184,7 @@ tr:hover { background-color: #fafafa; }
     <div class="num" id="statWorkdays" style="color: #16a34a;">--</div>
   </div>
 </div>
+<button type="button" class="btn-submit" style="background-color: #0b1a30; color: #c5a059; border: 1.5px solid #c5a059; margin-top: 10px;" onclick="exportHolidayReportPDF()">📄 طباعة وسحب التقرير الرسمي (PDF)</button>
 </div>
 
 <div class="card-section">
@@ -368,7 +369,6 @@ async function submitPinModal() {
 window.onload = function() {
   applyLanguage(currentLang);
   
-  // تعيين شهر اليوم الحالي في حقل الإحصائيات افتراضياً
   const now = new Date();
   const year = now.getFullYear();
   const month = String(now.getMonth() + 1).padStart(2, '0');
@@ -495,29 +495,25 @@ async function loadCustomHolidaysTable() {
   calculateHolidayStats();
 }
 
-// حساب إحصائيات الشهر (أيام الشهر، عطل الويكند جمعة وسبت، العطل المضافة، وصافي أيام الدوام)
 function calculateHolidayStats() {
-  const monthVal = document.getElementById('statsMonthInput').value; // YYYY-MM
+  const monthVal = document.getElementById('statsMonthInput').value;
   if(!monthVal) return;
 
   const [yearStr, monthStr] = monthVal.split('-');
   const year = parseInt(yearStr);
-  const month = parseInt(monthStr); // 1-12
+  const month = parseInt(monthStr);
 
-  // عدد أيام الشهر
   const totalDays = new Date(year, month, 0).getDate();
 
-  // حساب أيام الجمعة والسبت في هذا الشهر
   let weekendCount = 0;
   for(let day = 1; day <= totalDays; day++) {
     const d = new Date(year, month - 1, day);
-    const dayOfWeek = d.getDay(); // 5: الجمعة, 6: السبت
+    const dayOfWeek = d.getDay();
     if(dayOfWeek === 5 || dayOfWeek === 6) {
       weekendCount++;
     }
   }
 
-  // حساب العطل الاستثنائية التي وقعت في نفس هذا الشهر
   let customHolidaysInMonth = 0;
   globalCustomHolidays.forEach(h => {
     if(h.date && h.date.startsWith(monthVal)) {
@@ -532,6 +528,127 @@ function calculateHolidayStats() {
   document.getElementById('statWeekends').innerText = weekendCount;
   document.getElementById('statHolidays').innerText = customHolidaysInMonth;
   document.getElementById('statWorkdays').innerText = netWorkdays;
+}
+
+// دالة تصدير وطباعة التقرير الرسمي (PDF) مع شعار المكتب والترويسة والجدول
+function exportHolidayReportPDF() {
+  const monthVal = document.getElementById('statsMonthInput').value;
+  if(!monthVal) {
+    alert("يرجى اختيار الشهر أولاً.");
+    return;
+  }
+
+  const [yearStr, monthStr] = monthVal.split('-');
+  const totalDays = document.getElementById('statTotalDays').innerText;
+  const weekends = document.getElementById('statWeekends').innerText;
+  const holidays = document.getElementById('statHolidays').innerText;
+  const workdays = document.getElementById('statWorkdays').innerText;
+
+  // جمع العطل التي تخص هذا الشهر لعرض تفاصيلها
+  let monthHolidaysHTML = "";
+  globalCustomHolidays.forEach(h => {
+    if(h.date && h.date.startsWith(monthVal)) {
+      monthHolidaysHTML += `<tr>
+        <td style="border: 1px solid #cbd5e0; padding: 8px; text-align: right;">${h.name}</td>
+        <td style="border: 1px solid #cbd5e0; padding: 8px; text-align: center;"><span style="color:#9b1c1c; font-weight: bold;">عطلة استثنائية / طارئة</span></td>
+        <td style="border: 1px solid #cbd5e0; padding: 8px; text-align: center;">${h.date}</td>
+      </tr>`;
+    }
+  });
+
+  if(monthHolidaysHTML === "") {
+    monthHolidaysHTML = `<tr><td colspan="3" style="border: 1px solid #cbd5e0; padding: 10px; text-align: center; color: #718096;">لا توجد عطل استثنائية مسجلة لهذا الشهر.</td></tr>`;
+  }
+
+  const printWindow = window.open('', '_blank');
+  printWindow.document.write(`
+    <!DOCTYPE html>
+    <html lang="ar" dir="rtl">
+    <head>
+      <meta charset="UTF-8">
+      <title>تقرير إحصائيات العطل وأيام الدوام - شهر ${monthVal}</title>
+      <style>
+        body { font-family: 'Cairo', Arial, sans-serif; color: #0f172a; padding: 30px; margin: 0; background: #fff; }
+        .print-header { text-align: center; border-bottom: 3px solid #c5a059; padding-bottom: 15px; margin-bottom: 25px; direction: ltr; }
+        .logo-text { font-size: 38px; font-weight: 900; letter-spacing: 3px; color: #0f172a; line-height: 1; }
+        .logo-text span { color: #dc2626; }
+        .sub-title { font-size: 11px; font-weight: 700; color: #0f172a; letter-spacing: 3px; margin-top: 5px; }
+        .sub-title span { color: #dc2626; margin-right: 3px; }
+        .est { font-size: 9.5px; color: #64748b; letter-spacing: 2px; margin-top: 3px; }
+        .report-title { text-align: center; font-size: 18px; font-weight: 800; color: #0f172a; margin-bottom: 20px; direction: rtl; }
+        .meta-info { display: flex; justify-content: space-between; font-size: 13px; font-weight: 700; margin-bottom: 20px; direction: rtl; background: #f8fafc; padding: 10px 15px; border-radius: 6px; border: 1px solid #e2e8f0; }
+        .stats-table { width: 100%; border-collapse: collapse; margin-bottom: 25px; direction: rtl; font-size: 13px; }
+        .stats-table th, .stats-table td { border: 1px solid #cbd5e0; padding: 10px; text-align: center; }
+        .stats-table th { background-color: #0f172a; color: #ffffff; font-weight: 700; }
+        .details-title { font-size: 15px; font-weight: 800; color: #0f172a; margin-bottom: 10px; direction: rtl; border-right: 4px solid #c5a059; padding-right: 8px; }
+        .footer-note { margin-top: 40px; text-align: left; font-size: 12px; font-weight: 700; direction: rtl; display: flex; justify-content: space-between; align-items: flex-end; border-top: 1px solid #cbd5e0; padding-top: 15px; }
+        @media print {
+          body { padding: 10px; }
+          .no-print { display: none; }
+        }
+      </style>
+    </head>
+    <body>
+      <div class="print-header">
+        <div class="logo-text">A<span>K</span>H</div>
+        <div class="sub-title"><span>/</span> LAW OFFICE</div>
+        <div class="est">EST. 2014</div>
+      </div>
+
+      <div class="report-title">تقرير إحصائيات العطل وأيام الدوام الرسمي</div>
+
+      <div class="meta-info">
+        <div>مكتب المحامي علي كاظم الهاشمي للاستشارات القانونية</div>
+        <div>الشهر المستهدف: ${monthVal}</div>
+      </div>
+
+      <table class="stats-table">
+        <tr>
+          <th>إجمالي أيام الشهر</th>
+          <th>عطل الويكند (جمعة وسبت)</th>
+          <th>العطل الرسمية/الاستثنائية</th>
+          <th>صافي أيام الدوام الفعلي</th>
+        </tr>
+        <tr>
+          <td><strong>${totalDays}</strong> يوم</td>
+          <td><strong style="color: #dc2626;">${weekends}</strong> يوم</td>
+          <td><strong style="color: #c05621;">${holidays}</strong> يوم</td>
+          <td><strong style="color: #16a34a;">${workdays}</strong> يوم</td>
+        </tr>
+      </table>
+
+      <div class="details-title">تفاصيل العطل المسجلة خلال شهر ${monthVal}:</div>
+      <table class="stats-table">
+        <thead>
+          <tr>
+            <th style="text-align: right;">اسم المناسبة أو العطلة</th>
+            <th style="text-align: center;">النوع</th>
+            <th style="text-align: center;">التاريخ</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${monthHolidaysHTML}
+        </tbody>
+      </table>
+
+      <div class="footer-note">
+        <div>
+          <span>العنوان: بغداد - زيونة - قرب دار الأزياء العراقية</span><br>
+          <span>هاتف المكتب: +964 783 875 9047</span>
+        </div>
+        <div style="text-align: center;">
+          <span>توقيع وختم المكتب</span><br><br><br>
+          <span>........................................</span>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 30px;" class="no-print">
+        <button onclick="window.print()" style="background: #0f172a; color: #c5a059; border: 2px solid #c5a059; padding: 10px 25px; font-size: 15px; font-weight: bold; border-radius: 6px; cursor: pointer;">🖨️ طباعة / حفظ كملف PDF</button>
+      </div>
+    </body>
+    </html>
+  `);
+  printWindow.document.close();
 }
 
 async function deleteCustomHoliday(index) {
