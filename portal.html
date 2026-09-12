@@ -75,9 +75,9 @@ tr:hover { background-color: #fafafa; }
 <div class="panel">
 <div class="brand-section">
 <div class="logo-text">A<span>K</span>H</div>
-<div class="sub-brand"><span>/</span> LAW OFFICE</div>
+<div class="sub-title"><span>/</span> LAW OFFICE</div>
 <div class="est">EST. 2014</div>
-<div class="portal-title" data-i18n="title">بوابة ديوان مكتب المحامي علي كاظم الهاشمي</div>
+<div class="portal-title">بوابة ديوان مكتب المحامي علي كاظم الهاشمي</div>
 </div>
 
 <div id="portalAlertBox" class="alert-box alert-error"></div>
@@ -156,7 +156,7 @@ tr:hover { background-color: #fafafa; }
 </div>
 </div>
 
-<!-- أ. التحكم بحالة المكتب (مع الوضع التلقائي والخيارات اليدوية الكاملة) -->
+<!-- أ. التحكم بحالة المكتب -->
 <div class="card-section">
 <h2><span>🟢 التحكم الفوري بحالة المكتب</span><span class="en-title">Live Status</span></h2>
 <form id="statusForm" onsubmit="saveOfficeStatus(event)">
@@ -254,11 +254,6 @@ let ACTIVE_TOKEN = '';
 let currentLang = localStorage.getItem('akh_portal_lang') || 'ar';
 let pendingActionCallback = null;
 
-const translations = {
-  ar: { title: "بوابة ديوان مكتب المحامي علي كاظم الهاشمي", successAlert: "تم الحفظ وتحديث البيانات بنجاح!" },
-  en: { title: "AKH Law Office Chambers Portal", successAlert: "Saved and updated successfully!" }
-};
-
 function applyLanguage(lang) {
   currentLang = lang;
   localStorage.setItem('akh_portal_lang', lang);
@@ -276,7 +271,7 @@ function toggleOfficialHolidays() {
   const icon = document.getElementById('toggleIcon');
   if(box.style.display === 'none') {
     box.style.display = 'block';
-    icon.innerText = currentLang === 'en' ? 'Hide Table 🔼' : 'إخفاء الجدول 🔼';
+    icon.innerText = currentLang === 'en' ? 'Hide Table 🔼' : 'إظهار الجدول 🔼';
   } else {
     box.style.display = 'none';
     icon.innerText = currentLang === 'en' ? 'Show Table 🔽' : 'إظهار الجدول 🔽';
@@ -319,6 +314,7 @@ function closePinModal() {
   pendingActionCallback = null;
 }
 
+// الإصلاح الجذري: تخزين التوكن في ACTIVE_TOKEN و sessionStorage عند فك التشفير الناجح بالـ PIN
 async function submitPinModal() {
   const pin = document.getElementById('modalPinInput').value.trim();
   if (pin.length !== 6) {
@@ -329,7 +325,12 @@ async function submitPinModal() {
     const savedVault = localStorage.getItem('akh_portal_vault');
     if (!savedVault) throw new Error('No vault');
     const vaultObj = JSON.parse(savedVault);
-    await decryptToken(vaultObj, pin);
+    const token = await decryptToken(vaultObj, pin);
+    
+    // تخزين التوكن المفكوك في الذاكرة والجلسة لكي تستخدمه دوال الحفظ مباشرة
+    ACTIVE_TOKEN = token;
+    sessionStorage.setItem('akh_portal_active_token', token);
+
     closePinModal();
     if (pendingActionCallback) await pendingActionCallback();
   } catch(e) {
@@ -526,11 +527,16 @@ async function triggerOfficeStatusSave(statusVal, noteVal) {
   const getRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/office_status.json?ref=${BRANCH}`, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
   if(getRes.ok) { const d = await getRes.json(); sha = d.sha; }
 
-  await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/office_status.json`, {
+  const putRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/office_status.json`, {
     method: 'PUT',
     headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}`, 'Content-Type': 'application/json' },
     body: JSON.stringify({ message: 'Update office status', content: utf8_to_b64(contentStr), sha: sha, branch: BRANCH })
   });
+
+  if (!putRes.ok) {
+    const errJson = await putRes.json().catch(() => ({}));
+    throw new Error('فشل التحديث في غيت هب: ' + (errJson.message || putRes.statusText));
+  }
 }
 
 async function saveOfficeStatus(e) {
@@ -539,11 +545,15 @@ async function saveOfficeStatus(e) {
   const note = document.getElementById('officeNoteInput').value.trim();
 
   verifyPinAndExecute(async () => {
-    await triggerOfficeStatusSave(status, note);
-    const alertEl = document.getElementById('statusAlert');
-    alertEl.style.display = 'block';
-    setTimeout(() => alertEl.style.display = 'none', 3000);
-    alert('تم حفظ وتعديل حالة المكتب بنجاح 💾');
+    try {
+      await triggerOfficeStatusSave(status, note);
+      const alertEl = document.getElementById('statusAlert');
+      alertEl.style.display = 'block';
+      setTimeout(() => alertEl.style.display = 'none', 3000);
+      alert('تم حفظ وتعديل حالة المكتب بنجاح وتحديث غيت هب 💾');
+    } catch (err) {
+      alert('❌ خطأ أثناء الحفظ: ' + err.message);
+    }
   });
 }
 
