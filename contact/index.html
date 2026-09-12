@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" id="htmlRoot">
 <head>
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WL4KNM0PG1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -104,7 +105,7 @@
     }
     .dropdown-menu a:hover { background: rgba(197,160,89,0.15); color: #c5a059; }
 
-    /* الحاوية الرئيسية الملكية */
+    /* الحاوية الرئيسية */
     .container {
       width: 100%;
       max-width: 650px;
@@ -150,7 +151,7 @@
       font-weight: 600;
     }
 
-    /* شريط الحالة الحي مع النبض الذهبي العالمي */
+    /* شريط الحالة الحي مع النبض الذهبي الفاخر */
     .status-card-box {
       background: #f8fafc;
       border: 1.5px solid #e2e8f0;
@@ -164,8 +165,8 @@
     }
     
     @keyframes goldPulse {
-      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.7); }
-      70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(197, 160, 89, 0); }
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.8); }
+      70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(197, 160, 89, 0); }
       100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(197, 160, 89, 0); }
     }
     .status-indicator-dot {
@@ -176,7 +177,7 @@
       animation: goldPulse 2s infinite;
     }
     .status-indicator-dot.active { background: #16a34a; }
-    .status-indicator-dot.off_hours { background: #d97706; }
+    .status-indicator-dot.off_hours { background: #d97706; animation: none; }
     .status-indicator-dot.holiday { background: #dc2626; animation: none; }
 
     .status-text-content strong {
@@ -203,7 +204,7 @@
       border-bottom: 1px solid #f1f5f9;
     }
 
-    /* بطاقة المعلومات التنفيذية */
+    /* بطاقة المعلومات */
     .info-card {
       background: #ffffff;
       border: 1.5px solid #e2e8f0;
@@ -242,7 +243,7 @@
     }
     .info-row .value-content a:hover { text-decoration: underline; }
 
-    /* أزرار الإجراءات الفخمة */
+    /* أزرار الإجراءات */
     .action-buttons {
       display: flex;
       flex-direction: column;
@@ -324,6 +325,7 @@
 </head>
 <body>
 
+  <!-- الهيدر -->
   <header class="icover-header">
     <div>
       <select id="languageSelect" class="lang-select-bar" onchange="changeLanguage(this.value)">
@@ -362,6 +364,7 @@
       <div class="est">EST. 2014</div>
     </div>
 
+    <!-- شريط الحالة الحي مع مؤشر النبض الذهبي الفاخر -->
     <div class="status-card-box">
       <div id="statusDot" class="status-indicator-dot active"></div>
       <div class="status-text-content">
@@ -396,7 +399,7 @@
 
     <div class="action-buttons">
       <a href="/booking" class="btn-action btn-booking" id="btnBookingText">
-        <span>📅 حجز موعد استشارة قانونية</span>
+        <span>📅 حجز موعد استشارة رسمية</span>
       </a>
       <a href="https://wa.me/9647838759047" target="_blank" class="btn-action btn-whatsapp" id="btnWhatsappText">
         <span>💬 تواصل عبر الواتساب مباشرة</span>
@@ -436,7 +439,7 @@
       evaluateBaghdadSchedule();
     });
 
-    // المنطق التلقائي الذكي لعطلة نهاية الأسبوع في العراق (الجمعة 5 والسبت 6) وتوقيت بغداد
+    // المنطق التلقائي المرتبط بملف office_status.json وبتوقيت بغداد
     async function evaluateBaghdadSchedule() {
       const lang = document.getElementById('languageSelect').value;
       const dot = document.getElementById('statusDot');
@@ -447,15 +450,27 @@
         const res = await fetch('/office_status.json?t=' + new Date().getTime());
         if (res.ok) {
           const data = await res.json();
+          // التحقق إذا كان الوضع اليدوي مفعل أو حالة إجازة من البوابة
           if (data.status === 'holiday') {
             dot.className = 'status-indicator-dot holiday';
             statusTitle.innerText = lang === 'en' ? "Office Holiday / Leave" : "إجازة رسمية / عطلة المكتب";
-            statusMsg.innerText = data.note ? data.note : (lang === 'en' ? "Office is currently on official leave." : "المكتب في إجازة رسمية حالياً، يرجى الحجز عبر الاستمارة.");
+            statusMsg.innerText = data.note ? data.note : (lang === 'en' ? "Office is currently on official leave." : "المكتب في إجازة رسمية حالياً، يرجى الحجز عبر استمارة الحجز الرسمية.");
+            return;
+          } else if (data.status === 'off_hours') {
+            dot.className = 'status-indicator-dot off_hours';
+            statusTitle.innerText = lang === 'en' ? "Outside Official Working Hours" : "خارج ساعات العمل الرسمية";
+            statusMsg.innerText = data.note ? data.note : (lang === 'en' ? "Outside official hours. Requests via booking form." : "المكتب خارج ساعات العمل الرسمية حالياً، الاستقبال عبر استمارة الحجز.");
+            return;
+          } else if (data.status === 'active' && data.mode === 'manual') {
+            dot.className = 'status-indicator-dot active';
+            statusTitle.innerText = lang === 'en' ? "Office is Open" : "المكتب متاح الآن";
+            statusMsg.innerText = data.note ? data.note : (lang === 'en' ? "Office is currently open for regular requests." : "المكتب متاح الآن لاستقبال الطلبات والمواعيد الرسمية.");
             return;
           }
         }
       } catch(e) {}
 
+      // الجدول التلقائي بتوقيت بغداد (الجمعة 5 والسبت 6 عطلة نهاية الأسبوع)
       const nowBaghdad = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Baghdad" }));
       const day = nowBaghdad.getDay(); // 0: الأحد ... 5: الجمعة, 6: السبت
       const hour = nowBaghdad.getHours();
@@ -465,13 +480,12 @@
       const startVal = 8 * 60;  // 08:00
       const endVal = 16 * 60; // 16:00
 
-      // عطلة نهاية الأسبوع في العراق (الجمعة 5 والسبت 6)
       if (day === 5 || day === 6) {
         dot.className = 'status-indicator-dot holiday';
         statusTitle.innerText = lang === 'en' ? "Weekend Closure" : "عطلة نهاية الأسبوع";
         statusMsg.innerText = lang === 'en' 
           ? "Office is closed for the weekend. We will resume receiving requests next Sunday. Please submit via the booking form." 
-          : "المكتب مغلق حالياً لعطلة نهاية الأسبوع، نعود لاستقبال طلباتكم وحجوزاتكم يوم الأحد القادم.";
+          : "المكتب مغلق حالياً لعطلة نهاية الأسبوع، نعود لاستقبال طلباتكم وحجوزاتكم يوم الأحد القادم عبر حجز موعد استشارة رسمية.";
       } 
       else if (timeVal < startVal || timeVal > endVal) {
         dot.className = 'status-indicator-dot off_hours';
@@ -539,105 +553,105 @@
         lblAddress: "العنوان:", valAddress: "بغداد - زيونة - قرب دار الأزياء العراقية",
         lblHours: "أوقات العمل:", valHours: "الأحد إلى الخميس (08:00 صباحاً - 04:00 عصراً بتوقيت بغداد)",
         lblPhone: "هاتف المكتب:", lblEmail: "البريد الإلكتروني:",
-        btnBooking: "📅 حجز موعد استشارة قانونية",
+        btnBooking: "📅 حجز موعد استشارة رسمية",
         btnWhatsapp: "💬 تواصل عبر الواتساب مباشرة",
         btnBackHome: "🏠 العودة إلى الصفحة الرئيسية",
         privacyText: "سياسة الخصوصية", disclaimerText: "إخلاء المسؤولية", codeText: "قواعد السلوك المهني", rightsText: "جميع الحقوق محفوظة © 2026 مكتب المحامي علي كاظم الهاشمي"
       },
       en: {
         pageTitle: "Contact Us | Law Office of Ali Kadhem Hashimi in Iraq",
-        metaDesc: "Contact the Law Office of Ali Kadhem Hashimi in Baghdad - Zayouna. Book your legal appointment or contact via booking form.",
+        metaDesc: "Contact the Law Office of Ali Kadhem Hashimi in Baghdad - Zayouna. Book your official consultation appointment.",
         metaKeywords: "Contact AKH Law Office, Baghdad lawyer contact, Iraq law firm",
         home: "Home", menuServices: "Legal Services Directory", menuConsultations: "Legal Consultations", menuInsights: "Iraq Legal Insights", about: "About Us", menuCodeOfConduct: "Code of Conduct", contact: "Contact Us",
         pageMainTitle: "Contact Us",
         lblAddress: "Address:", valAddress: "Baghdad - Zayouna - Near the Iraqi Fashion House",
         lblHours: "Working Hours:", valHours: "Sunday to Thursday (08:00 AM - 04:00 PM Baghdad Time)",
         lblPhone: "Office Phone:", lblEmail: "Email:",
-        btnBooking: "📅 Book Legal Consultation Appointment",
+        btnBooking: "📅 Book Official Consultation Appointment",
         btnWhatsapp: "💬 Contact via WhatsApp Directly",
         btnBackHome: "🏠 Back to Home Page",
         privacyText: "Privacy Policy", disclaimerText: "Disclaimer", codeText: "Code of Conduct", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       },
       tr: {
         pageTitle: "İletişim | Av. Ali Kazım Haşimi Hukuk Bürosu Irak",
-        metaDesc: "Bağdat'taki Av. Ali Kazım Haşimi Hukuk Bürosu ile iletişime geçin. Randevu alın veya form doldurun.",
+        metaDesc: "Bağdat'taki Av. Ali Kazım Haşimi Hukuk Bürosu ile iletişime geçin. Resmi danışmanlık randevusu alın.",
         metaKeywords: "Avukat Bağdat iletişim, Irak hukuk bürosu",
         home: "Ana Sayfa", menuServices: "Hizmetler", menuConsultations: "Hukuki Danışmanlık", menuInsights: "İçgörüler", about: "Hakkımızda", menuCodeOfConduct: "Mesleki Etik Kuralları", contact: "İletişim",
         pageMainTitle: "İletişim",
         lblAddress: "Adres:", valAddress: "Bağdat - Zeytuna - Irak Moda Evi Yakını",
         lblHours: "Çalışma Saatleri:", valHours: "Pazar - Perşembe (08:00 - 16:00 Bağdat Saati)",
         lblPhone: "Ofis Telefonu:", lblEmail: "E-posta:",
-        btnBooking: "📅 Yasal Danışmanlık Randevusu Alın",
+        btnBooking: "📅 Resmi Danışmanlık Randevusu Alın",
         btnWhatsapp: "💬 Doğrudan WhatsApp ile İletişim",
         btnBackHome: "🏠 Ana Sayfaya Dön",
         privacyText: "Gizlilik Politikası", disclaimerText: "Sorumluluk Reddi", codeText: "Mesleki Etik Kuralları", rightsText: "Tüm Hakları Saklıdır © 2026 AKH Hukuk Bürosu"
       },
       zh: {
         pageTitle: "联系我们 | 阿里·卡德姆·哈希米律所伊拉克",
-        metaDesc: "联系巴格达阿里·卡德姆·哈希米律所预约法律咨询。",
+        metaDesc: "联系巴格达阿里·卡德姆·哈希米律所预约正式法律咨询。",
         metaKeywords: "巴格达律师事务所联系方式",
         home: "首页", menuServices: "法律服务", menuConsultations: "法律咨询", menuInsights: "法律洞察", about: "关于我们", menuCodeOfConduct: "行为准则", contact: "联系我们",
         pageMainTitle: "联系我们",
         lblAddress: "地址：", valAddress: "巴格达 - 宰尤纳 - 伊拉克时装屋附近",
         lblHours: "工作时间：", valHours: "周日至周四（巴格达时间上午 08:00 - 下午 04:00）",
         lblPhone: "办公电话：", lblEmail: "电子邮箱：",
-        btnBooking: "📅 预约法律咨询",
+        btnBooking: "📅 预约正式法律咨询",
         btnWhatsapp: "💬 直接通过 WhatsApp 联系",
         btnBackHome: "🏠 返回首页",
         privacyText: "隐私政策", disclaimerText: "免责声明", codeText: "行为准则", rightsText: "版权所有 © 2026 AKH 律师事务所"
       },
       fr: {
         pageTitle: "Contactez-nous | Cabinet d'Avocats Ali Kadhem Hashimi en Iraq",
-        metaDesc: "Contactez le Cabinet d'Avocats Ali Kadhem Hashimi à Bagdad. Réservez votre consultation juridique.",
+        metaDesc: "Contactez le Cabinet d'Avocats Ali Kadhem Hashimi à Bagdad. Réservez votre rendez-vous de consultation officielle.",
         metaKeywords: "Contact Cabinet d'avocats Bagdad",
         home: "Accueil", menuServices: "Services", menuConsultations: "Consultations", menuInsights: "Aperçus", about: "À Propos", menuCodeOfConduct: "Code de Conduite", contact: "Contact",
         pageMainTitle: "Contactez-nous",
         lblAddress: "Adresse :", valAddress: "Baghdad - Zayouna - Près de la Maison de la Mode Irakienne",
         lblHours: "Horaires :", valHours: "Dimanche au Jeudi (08h00 - 16h00 heure de Bagdad)",
         lblPhone: "Téléphone :", lblEmail: "Email :",
-        btnBooking: "📅 Réserver une Consultation Juridique",
+        btnBooking: "📅 Réserver un Rendez-vous de Consultation Officielle",
         btnWhatsapp: "💬 Contacter via WhatsApp Directement",
         btnBackHome: "🏠 Retour à la Page d'Accueil",
         privacyText: "Politique de Confidentialité", disclaimerText: "Avertissement", codeText: "Code de Conduite", rightsText: "Tous Droits Réservés © 2026 Cabinet AKH"
       },
       es: {
         pageTitle: "Contacto | Bufete de Abogados Ali Kadhem Hashimi en Irak",
-        metaDesc: "Contacte al Bufete de Abogados Ali Kadhem Hashimi en Bagdad. Reserve su cita legal.",
+        metaDesc: "Contacte al Bufete de Abogados Ali Kadhem Hashimi en Bagdad. Reserve su cita de consulta oficial.",
         metaKeywords: "Contacto bufete Bagdad",
         home: "Inicio", menuServices: "Servicios", menuConsultations: "Consultas", menuInsights: "Perspectivas", about: "Sobre Nosotros", menuCodeOfConduct: "Código de Conducta", contact: "Contacto",
         pageMainTitle: "Contacto",
         lblAddress: "Dirección:", valAddress: "Bagdad - Zayouna - Cerca de la Casa de la Moda Iraquí",
         lblHours: "Horario:", valHours: "Domingo a Jueves (08:00 a.m. - 04:00 p.m. hora de Bagdad)",
         lblPhone: "Teléfono:", lblEmail: "Correo:",
-        btnBooking: "📅 Reservar Consulta Legal",
+        btnBooking: "📅 Reservar Cita de Consulta Oficial",
         btnWhatsapp: "💬 Contactar por WhatsApp Directemente",
         btnBackHome: "🏠 Volver a la Página Principal",
         privacyText: "Política de Privacidad", disclaimerText: "Descargo de Responsabilidad", codeText: "Código de Conducta", rightsText: "Todos los Derechos Reservados © 2026 Bufete AKH"
       },
       de: {
         pageTitle: "Kontakt | Anwaltskanzlei Ali Kadhem Hashimi im Irak",
-        metaDesc: "Kontaktieren Sie die Anwaltskanzlei Ali Kadhem Hashimi in Bagdad. Buchen Sie Ihre Rechtsberatung.",
+        metaDesc: "Kontaktieren Sie die Anwaltskanzlei Ali Kadhem Hashimi in Bagdad. Buchen Sie Ihren offiziellen Beratungstermin.",
         metaKeywords: "Kontakt Anwaltskanzlei Bagdad",
         home: "Startseite", menuServices: "Dienste", menuConsultations: "Beratung", menuInsights: "Einblicke", about: "Über uns", menuCodeOfConduct: "Verhaltenskodex", contact: "Kontakt",
         pageMainTitle: "Kontakt",
         lblAddress: "Adresse:", valAddress: "Bagdad - Zayouna - In der Nähe des irakischen Modehauses",
         lblHours: "Arbeitszeiten:", valHours: "Sonntag bis Donnerstag (08:00 Uhr - 16:00 Uhr Bagdader Zeit)",
         lblPhone: "Telefon:", lblEmail: "E-Mail:",
-        btnBooking: "📅 Rechtsberatung buchen",
+        btnBooking: "📅 Offiziellen Beratungstermin buchen",
         btnWhatsapp: "💬 Direkt über WhatsApp kontaktieren",
         btnBackHome: "🏠 Zurück zur Startseite",
         privacyText: "Datenschutzrichtlinie", disclaimerText: "Haftungsausschluss", codeText: "Verhaltenskodex", rightsText: "Alle Rechte vorbehalten © 2026 Kanzlei AKH"
       },
       ku: {
         pageTitle: "پەیوەندی بە مەزنی پارێزەر عەلی کازمی هاشمی لە عێراق",
-        metaDesc: "پەیوەندی بکە بە نووسینگەی پارێزەر عەلی کازمی هاشمی لە بەغداد. کاتژمێری یاسایی خۆت دیاری بکە.",
+        metaDesc: "پەیوەندی بکە بە نووسینگەی پارێزەر عەلی کازمی هاشمی لە بەغداد. کاتژمێری ڕاوێژی فەرمی خۆت دیاری بکە.",
         metaKeywords: "پەیوەندی بە پارێزەر لە بەغداد",
         home: "سەرەکی", menuServices: "خزمەتگوزارییەکان", menuConsultations: "ڕاوێژ", menuInsights: "تێڕوانینەکان", about: "دەرباره‌ی ئێمە", menuCodeOfConduct: "ڕەفتاری پیشەیی", contact: "پەیوەندی",
         pageMainTitle: "پەیوەندی بە ئێمە",
         lblAddress: "ناونیشان:", valAddress: "بەغداد - زەیونە - نزیک خانەی فاشنی عێراقی",
         lblHours: "کاتی کارکردن:", valHours: "یەکشەممە تا پێنجشەممە (٠٨:٠٠ بەیانی - ٠٤:٠٠ ئێوارە بە کاتی بەغداد)",
         lblPhone: "تەلەفۆن:", lblEmail: "ئیمەیڵ:",
-        btnBooking: "📅 دیاریکردنی کاتی ڕاوێژی یاسایی",
+        btnBooking: "📅 دیاریکردنی کاتی ڕاوێژی فەرمی",
         btnWhatsapp: "💬 پەیوەندی لە ڕێگەی واتسأپەوە بە ڕاستەوخۆ",
         btnBackHome: "🏠 گەڕانەوە بۆ لاپەڕەی سەرەکی",
         privacyText: "سیاسەتی تایبەتمەندێتی", disclaimerText: "بەرپرسارێتی", codeText: "ڕەفتاری پیشەیی", rightsText: "هەموو مافەکان پارێزراون © 2026 نووسینگەی پارێزەر عەلی کاظم"
