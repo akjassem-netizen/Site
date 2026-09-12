@@ -59,6 +59,12 @@ tr:hover { background-color: #fafafa; }
 .badge { padding: 3px 7px; border-radius: 4px; font-size: 11px; font-weight: 700; }
 .badge-holiday { background: #fed7d7; color: #9b1c1c; }
 
+/* بطاقات الإحصائيات المصغرة */
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 15px; }
+.stat-box { background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 8px; padding: 12px; text-align: center; }
+.stat-box .num { font-size: 20px; font-weight: 900; color: #0b1a30; margin-top: 4px; }
+.stat-box .lbl { font-size: 11.5px; font-weight: 700; color: #4a5568; }
+
 /* نافذة إدخال الـ PIN السرية المشفرة بالنقاط */
 .pin-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11, 26, 48, 0.7); display: none; justify-content: center; align-items: center; z-index: 9999; }
 .pin-modal-box { background: #ffffff; padding: 25px; border-radius: 12px; max-width: 320px; width: 90%; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border-top: 4px solid #c5a059; }
@@ -155,6 +161,32 @@ tr:hover { background-color: #fafafa; }
 </div>
 
 <div class="card-section">
+<h2><span>📊 إحصائيات العطل وأيام العمل (شاملة الويكند)</span><span class="en-title">Holidays & Workdays Stats</span></h2>
+<div class="form-group" style="display: flex; gap: 10px; align-items: center; margin-bottom: 15px;">
+  <label style="margin:0; white-space: nowrap;">اختر الشهر:</label>
+  <input type="month" id="statsMonthInput" onchange="calculateHolidayStats()" style="max-width: 200px;">
+</div>
+<div class="stats-grid">
+  <div class="stat-box">
+    <div class="lbl">إجمالي أيام الشهر</div>
+    <div class="num" id="statTotalDays">--</div>
+  </div>
+  <div class="stat-box">
+    <div class="lbl">عطل الويكند (جمعة وسبت)</div>
+    <div class="num" id="statWeekends" style="color: #d32f2f;">--</div>
+  </div>
+  <div class="stat-box">
+    <div class="lbl">عطل رسمية واستثنائية</div>
+    <div class="num" id="statHolidays" style="color: #c05621;">--</div>
+  </div>
+  <div class="stat-box">
+    <div class="lbl">صافي أيام الدوام الفعلي</div>
+    <div class="num" id="statWorkdays" style="color: #16a34a;">--</div>
+  </div>
+</div>
+</div>
+
+<div class="card-section">
 <h2><span>🟢 التحكم الفوري بحالة المكتب</span><span class="en-title">Live Status</span></h2>
 <form id="statusForm" onsubmit="saveOfficeStatus(event)">
 <div class="form-group">
@@ -229,6 +261,7 @@ tr:hover { background-color: #fafafa; }
 <tr><td><strong>عيد العمال العالمي (1 أيار)</strong></td><td>Workers' Day</td><td>2026-05-01</td><td><button type="button" class="btn-action-sm" onclick="confirmAndApplyHoliday('عيد العمال العالمي', '2026-05-01')">تفعيل كحالة 🛑</button></td></tr>
 <tr><td><strong>رأس السنة الهجرية (1 محرم)</strong></td><td>Islamic New Year</td><td>متغير / Variable</td><td><button type="button" class="btn-action-sm" onclick="confirmAndApplyHoliday('رأس السنة الهجرية', 'متغير')">تفعيل كحالة 🛑</button></td></tr>
 <tr><td><strong>يوم عاشوراء (10 محرم)</strong></td><td>Ashura Day</td><td>متغير / Variable</td><td><button type="button" class="btn-action-sm" onclick="confirmAndApplyHoliday('يوم عاشوراء', 'متغير')">تفعيل كحالة 🛑</button></td></tr>
+<tr><td><strong>المولد النبوي الشريف (12 ربيع الأول)</strong></td><td>Prophet's Birthday</td><td>متغير / Variable</td><td><button type="button" class="btn-action-sm" onclick="confirmAndApplyHoliday('المولد النبوي الشريف', 'متغير')">تفعيل كحالة 🛑</button></td></tr>
 <tr><td><strong>عيد الفطر المبارك (1-3 شوال)</strong></td><td>Eid al-Fitr</td><td>متغير / Variable</td><td><button type="button" class="btn-action-sm" onclick="confirmAndApplyHoliday('عيد الفطر المبارك', 'متغير')">تفعيل كحالة 🛑</button></td></tr>
 <tr><td><strong>عيد الأضحى المبارك (10-13 ذي الحجة)</strong></td><td>Eid al-Adha</td><td>متغير / Variable</td><td><button type="button" class="btn-action-sm" onclick="confirmAndApplyHoliday('عيد الأضحى المبارك', 'متغير')">تفعيل كحالة 🛑</button></td></tr>
 </tbody>
@@ -246,6 +279,7 @@ const BRANCH = 'main';
 let ACTIVE_TOKEN = '';
 let currentLang = localStorage.getItem('akh_portal_lang') || 'ar';
 let pendingActionCallback = null;
+let globalCustomHolidays = [];
 
 function applyLanguage(lang) {
   currentLang = lang;
@@ -333,6 +367,13 @@ async function submitPinModal() {
 
 window.onload = function() {
   applyLanguage(currentLang);
+  
+  // تعيين شهر اليوم الحالي في حقل الإحصائيات افتراضياً
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  document.getElementById('statsMonthInput').value = `${year}-${month}`;
+
   const savedVault = localStorage.getItem('akh_portal_vault');
   const savedToken = sessionStorage.getItem('akh_portal_active_token');
 
@@ -414,8 +455,9 @@ async function loadPortalData() {
     }
   } catch(e) {}
 
+  await loadCustomHolidaysTable();
   checkUpcomingHolidays();
-  loadCustomHolidaysTable();
+  calculateHolidayStats();
 }
 
 async function loadCustomHolidaysTable() {
@@ -424,12 +466,12 @@ async function loadCustomHolidaysTable() {
     const res2 = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/custom_holidays.json?ref=${BRANCH}`, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
     if(res2.ok) {
       const data2 = await res2.json();
-      const holidays = JSON.parse(b64_to_utf8(data2.content));
+      globalCustomHolidays = JSON.parse(b64_to_utf8(data2.content));
       tbody.innerHTML = '';
-      if(holidays.length === 0) {
+      if(globalCustomHolidays.length === 0) {
         tbody.innerHTML = '<tr><td colspan="3" style="text-align:center; color:#718096;">لا توجد عطل استثنائية مضافة بعد.</td></tr>';
       } else {
-        holidays.forEach((h, index) => {
+        globalCustomHolidays.forEach((h, index) => {
           tbody.innerHTML += `<tr>
             <td><strong>${h.name}</strong></td>
             <td><span class="badge badge-holiday">${h.date}</span></td>
@@ -443,11 +485,53 @@ async function loadCustomHolidaysTable() {
         });
       }
     } else {
+      globalCustomHolidays = [];
       tbody.innerHTML = '<tr><td colspan="3" style="text-align:center; color:#718096;">لا توجد عطل استثنائية مضافة بعد.</td></tr>';
     }
   } catch(e) {
+    globalCustomHolidays = [];
     tbody.innerHTML = '<tr><td colspan="3" style="text-align:center; color:#718096;">لا توجد عطل استثنائية مضافة بعد.</td></tr>';
   }
+  calculateHolidayStats();
+}
+
+// حساب إحصائيات الشهر (أيام الشهر، عطل الويكند جمعة وسبت، العطل المضافة، وصافي أيام الدوام)
+function calculateHolidayStats() {
+  const monthVal = document.getElementById('statsMonthInput').value; // YYYY-MM
+  if(!monthVal) return;
+
+  const [yearStr, monthStr] = monthVal.split('-');
+  const year = parseInt(yearStr);
+  const month = parseInt(monthStr); // 1-12
+
+  // عدد أيام الشهر
+  const totalDays = new Date(year, month, 0).getDate();
+
+  // حساب أيام الجمعة والسبت في هذا الشهر
+  let weekendCount = 0;
+  for(let day = 1; day <= totalDays; day++) {
+    const d = new Date(year, month - 1, day);
+    const dayOfWeek = d.getDay(); // 5: الجمعة, 6: السبت
+    if(dayOfWeek === 5 || dayOfWeek === 6) {
+      weekendCount++;
+    }
+  }
+
+  // حساب العطل الاستثنائية التي وقعت في نفس هذا الشهر
+  let customHolidaysInMonth = 0;
+  globalCustomHolidays.forEach(h => {
+    if(h.date && h.date.startsWith(monthVal)) {
+      customHolidaysInMonth++;
+    }
+  });
+
+  const totalHolidays = weekendCount + customHolidaysInMonth;
+  const netWorkdays = Math.max(0, totalDays - totalHolidays);
+
+  document.getElementById('statTotalDays').innerText = totalDays;
+  document.getElementById('statWeekends').innerText = weekendCount;
+  document.getElementById('statHolidays').innerText = customHolidaysInMonth;
+  document.getElementById('statWorkdays').innerText = netWorkdays;
 }
 
 async function deleteCustomHoliday(index) {
@@ -483,7 +567,6 @@ async function deleteCustomHoliday(index) {
 async function confirmAndApplyHoliday(holidayName, holidayDate) {
   if(!confirm(`تفعيل عطلة "${holidayName}" (${holidayDate}) كحالة للمكتب؟`)) return;
 
-  // تسجيل تجاهلها لكي لا تظهر كشاشة تنبيه مرة أخرى
   if(holidayDate) {
     localStorage.setItem(`akh_dismissed_holiday_${holidayDate}_${holidayName}`, 'true');
   }
@@ -499,14 +582,11 @@ async function confirmAndApplyHoliday(holidayName, holidayDate) {
 
 async function checkUpcomingHolidays() {
   try {
-    const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/custom_holidays.json?ref=${BRANCH}`, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
-    if(!res.ok) return;
-    const data = await res.json();
-    const holidays = JSON.parse(b64_to_utf8(data.content));
     const today = new Date();
     today.setHours(0,0,0,0);
 
-    for(let h of holidays) {
+    for(let h of globalCustomHolidays) {
+      if(!h.date) continue;
       const dismissedKey = `akh_dismissed_holiday_${h.date}_${h.name}`;
       if(localStorage.getItem(dismissedKey)) continue;
 
@@ -584,7 +664,7 @@ async function triggerOfficeStatusSave(statusVal, noteVal) {
 
   if (!putRes.ok) {
     const errJson = await putRes.json().catch(() => ({}));
-    throw new Error('فشل التحديث في غيت هب: ' + (errJson.message || putRes.statusText));
+    throw new Error('فشل التحديث: ' + (errJson.message || putRes.statusText));
   }
 }
 
