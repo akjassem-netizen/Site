@@ -82,7 +82,6 @@ tr:hover { background-color: #fafafa; }
 
 <div id="portalAlertBox" class="alert-box alert-error"></div>
 
-<!-- نافذة PIN السرية المشفرة بالنقاط -->
 <div id="pinModalOverlay" class="pin-modal-overlay">
   <div class="pin-modal-box">
     <h3>🔒 أدخل رمز الـ PIN السري (6 أرقام)</h3>
@@ -94,7 +93,6 @@ tr:hover { background-color: #fafafa; }
   </div>
 </div>
 
-<!-- 1. شاشة إعداد الحماية -->
 <div id="portalSetupScreen" class="screen-box" style="display: none;">
 <p class="lock-desc"><strong>إعداد حماية البوابة لأول مرة:</strong><br>أدخل الرمز التوكن مع رمز PIN سري (6 أرقام):</p>
 <div class="form-group" style="max-width: 400px; margin: 0 auto 12px;">
@@ -106,7 +104,6 @@ tr:hover { background-color: #fafafa; }
 <button type="button" class="btn-unlock" onclick="performPortalSetup()">تشفير وحفظ الحماية 🔒</button>
 </div>
 
-<!-- 2. شاشة القفل -->
 <div id="portalLockScreen" class="screen-box" style="display: none;">
 <p class="lock-desc"><span>البوابة محمية بخزنة مشفرة.</span><br>أدخل رمز الـ PIN السري (6 أرقام) لفك القفل:</p>
 <div class="form-group" style="max-width: 240px; margin: 0 auto 16px;">
@@ -115,7 +112,6 @@ tr:hover { background-color: #fafafa; }
 <button type="button" class="btn-unlock" onclick="attemptPortalPinUnlock()">دخول آمن ←</button>
 </div>
 
-<!-- 3. المحتوى الرئيسي -->
 <div id="portalMainContent" style="display: none;">
 <div class="top-nav-bar">
 <span id="systemStatusText" style="font-size: 12.5px; font-weight: 700; color: #2d3748;">🟢 النظام متصل وخزنة الأمان مفعلة</span>
@@ -132,7 +128,6 @@ tr:hover { background-color: #fafafa; }
 
 <div id="statusAlert" class="alert-success">تم الحفظ وتحديث البيانات بنجاح!</div>
 
-<!-- تنبيه العطلة القادمة -->
 <div id="holidayNoticeBox" class="alert-warning">
 <strong>⚠️ تنبيه اقتراب عطلة رسمية:</strong> <span id="holidayNoticeText"></span>
 <button type="button" class="btn-submit" style="margin-top: 10px; background-color: #c05621; padding: 8px;" onclick="confirmAndActivateHoliday()">تأكيد وتفعيل حالة العطلة الآن 🛑</button>
@@ -156,7 +151,6 @@ tr:hover { background-color: #fafafa; }
 </div>
 </div>
 
-<!-- أ. التحكم بحالة المكتب -->
 <div class="card-section">
 <h2><span>🟢 التحكم الفوري بحالة المكتب</span><span class="en-title">Live Status</span></h2>
 <form id="statusForm" onsubmit="saveOfficeStatus(event)">
@@ -178,7 +172,6 @@ tr:hover { background-color: #fafafa; }
 </form>
 </div>
 
-<!-- ب. إعدادات ساعات العمل -->
 <div class="card-section">
 <h2><span>⚙️ تعديل ساعات العمل الرسمية</span><span class="en-title">Working Hours Settings</span></h2>
 <form id="settingsForm" onsubmit="saveWorkingHours(event)">
@@ -196,7 +189,6 @@ tr:hover { background-color: #fafafa; }
 </form>
 </div>
 
-<!-- ج. إضافة عطلة طارئة -->
 <div class="card-section">
 <h2><span>⚡ إضافة عطلة استثنائية أو طارئة</span><span class="en-title">Custom Holiday</span></h2>
 <form id="holidayForm" onsubmit="saveCustomHoliday(event)">
@@ -218,7 +210,6 @@ tr:hover { background-color: #fafafa; }
 </table>
 </div>
 
-<!-- د. جدول العطل الرسمية الأساسية -->
 <div class="card-section">
 <div onclick="toggleOfficialHolidays()" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none;">
 <h2 style="border:none; margin:0; padding:0;"><span>📅 جدول العطل الرسمية الأساسية في العراق (13 عطلة)</span></h2>
@@ -314,7 +305,7 @@ function closePinModal() {
   pendingActionCallback = null;
 }
 
-// الإصلاح الجذري: تخزين التوكن في ACTIVE_TOKEN و sessionStorage عند فك التشفير الناجح بالـ PIN
+// الإصلاح النهائي: حفظ الـ callback محلياً قبل إغلاق النافذة لكي يتم تنفيذه بنجاح
 async function submitPinModal() {
   const pin = document.getElementById('modalPinInput').value.trim();
   if (pin.length !== 6) {
@@ -327,12 +318,12 @@ async function submitPinModal() {
     const vaultObj = JSON.parse(savedVault);
     const token = await decryptToken(vaultObj, pin);
     
-    // تخزين التوكن المفكوك في الذاكرة والجلسة لكي تستخدمه دوال الحفظ مباشرة
     ACTIVE_TOKEN = token;
     sessionStorage.setItem('akh_portal_active_token', token);
 
+    const cb = pendingActionCallback;
     closePinModal();
-    if (pendingActionCallback) await pendingActionCallback();
+    if (cb) await cb();
   } catch(e) {
     alert(currentLang === 'en' ? "Incorrect PIN!" : "❌ رمز الـ PIN غير صحيح!");
     document.getElementById('modalPinInput').value = '';
