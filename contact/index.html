@@ -7,17 +7,15 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-WL4KNM0PG1');
   </script>
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <!-- تحسين محركات البحث العالمي والمحلي (SEO) - 8 لغات لصفحة اتصل بنا -->
   <title id="pageTitle">اتصل بنا | مكتب المحامي علي كاظم الهاشمي للاستشارات والخدمات القانونية في العراق</title>
   <meta id="metaDesc" name="description" content="تواصل مع مكتب المحامي علي كاظم الهاشمي في بغداد - زيونة. عنوان المكتب، أوقات العمل، الهاتف، الواتساب، والبريد الإلكتروني. | AKH Law Office Iraq">
-  <meta id="metaKeywords" name="keywords" content="اتصل بمحامي في بغداد, عنوان مكتب المحامي علي كاظم الهاشمي, هاتف مكتب محاماة العراق, Contact AKH Law Office, Baghdad lawyer contact, Iraq law firm address, Avukat Bağdat iletişim, Irak hukuk bürosu telefon, Anwaltskanzlei Bagdad Kontakt, Bufete de abogados Bagdad teléfono, 巴格达律师事务所联系方式, 伊拉克律所地址, پەیوەندی بە پارێزەر لە بەغداد, ناونیشانی نووسینگەی یاسایی عێراق, Contact Cabinet d'avocats Bagdad">
+  <meta id="metaKeywords" name="keywords" content="اتصل بمحامي في بغداد, عنوان مكتب المحامي علي كاظم الهاشمي, هاتف مكتب محاماة العراق, Contact AKH Law Office, Baghdad lawyer contact, Iraq law firm address">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -121,7 +119,7 @@
     
     .brand-logo {
       text-align: center;
-      margin-bottom: 28px;
+      margin-bottom: 22px;
       direction: ltr;
     }
     .brand-logo .akh {
@@ -151,6 +149,26 @@
       margin-top: 4px;
       font-weight: 600;
     }
+
+    /* شريط حالة المكتب الحي الجديد */
+    .live-status-banner {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-bottom: 20px;
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-align: right;
+    }
+    [dir="ltr"] .live-status-banner { text-align: left; }
+    .status-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+    .status-dot.active { background: #16a34a; box-shadow: 0 0 8px rgba(22,163,74,0.5); }
+    .status-dot.off_hours { background: #d97706; }
+    .status-dot.holiday { background: #dc2626; }
 
     .page-title {
       text-align: center;
@@ -300,7 +318,6 @@
     }
     .btn-back-home:hover { background: #c5a059; color: #0f172a; }
 
-    /* تنسيق الفوتر الموحد بسطر أفقي واحد */
     .site-footer {
       text-align: center;
       padding: 22px 10px;
@@ -327,13 +344,8 @@
       font-weight: 700;
       font-size: 11.5px;
     }
-    .footer-legal-links a:hover {
-      color: #c5a059;
-    }
-    .footer-legal-links .separator {
-      color: #cbd5e1;
-      font-weight: 400;
-    }
+    .footer-legal-links a:hover { color: #c5a059; }
+    .footer-legal-links .separator { color: #cbd5e1; font-weight: 400; }
     .site-footer span.copy-text {
       color: #64748b;
       display: block;
@@ -381,6 +393,12 @@
         <span>LAW OFFICE</span>
       </div>
       <div class="est">EST. 2014</div>
+    </div>
+
+    <!-- شريط حالة المكتب الحي التلقائي -->
+    <div id="liveStatusBanner" class="live-status-banner">
+      <span id="statusDot" class="status-dot active"></span>
+      <span id="statusText">جاري التحقق من حالة المكتب...</span>
     </div>
 
     <div class="page-title" id="pageMainTitle">اتصل بنا</div>
@@ -444,7 +462,6 @@
     </div>
   </div>
 
-  <!-- الفوتر بمعالجة الروابط في سطر أفقي واحد -->
   <footer class="site-footer">
     <div class="footer-legal-links">
       <a href="/privacy/" id="footerPrivacy">سياسة الخصوصية</a>
@@ -471,7 +488,45 @@
       const savedLang = localStorage.getItem('preferredLang') || 'ar';
       document.getElementById('languageSelect').value = savedLang;
       changeLanguage(savedLang, false);
+      fetchOfficeStatus(); // جلب حالة المكتب الحية
     });
+
+    // دالة جلب حالة المكتب من ملف office_status.json الذي تحكمه من البوابة
+    async function fetchOfficeStatus() {
+      try {
+        const response = await fetch('/office_status.json?t=' + new Date().getTime());
+        if (response.ok) {
+          const data = await response.json();
+          updateStatusBanner(data.status, data.note);
+        } else {
+          updateStatusBanner('active', '');
+        }
+      } catch (e) {
+        updateStatusBanner('active', '');
+      }
+    }
+
+    function updateStatusBanner(status, note) {
+      const dot = document.getElementById('statusDot');
+      const text = document.getElementById('statusText');
+      const lang = document.getElementById('languageSelect').value;
+
+      dot.className = 'status-dot ' + status;
+
+      let msg = '';
+      if (status === 'active') {
+        msg = (lang === 'en') ? "Office is currently open for regular inquiries." : "المكتب متاح حالياً لاستقبال الطلبات والمراجعات.";
+      } else if (status === 'off_hours') {
+        msg = (lang === 'en') ? "Office is currently outside official working hours (Inquiries via form/WhatsApp)." : "المكتب خارج ساعات العمل الرسمية (الاستقبال عبر الاستمارة والواتساب).";
+      } else if (status === 'holiday') {
+        msg = (lang === 'en') ? "Office is currently on official holiday/leave." : "المكتب في إجازة رسمية / عطلة حالياً.";
+      }
+
+      if (note && note.trim() !== "") {
+        msg += " — " + note;
+      }
+      text.innerText = msg;
+    }
 
     function changeLanguage(lang, save = true) {
       if (save) {
@@ -512,6 +567,8 @@
       document.getElementById('footerDisclaimer').innerText = t.disclaimerText;
       document.getElementById('footerCode').innerText = t.codeText;
       document.getElementById('footerRights').innerText = t.rightsText;
+
+      fetchOfficeStatus(); // إعادة تحديث شريط الحالة باللغة الجديدة
     }
 
     const dictionary = {
