@@ -47,8 +47,8 @@ html[dir="ltr"] .module-card { text-align: left; }
 .form-group { margin-bottom: 14px; }
 label { display: block; font-weight: 700; font-size: 13px; margin-bottom: 5px; color: #2d3748; }
 select, input[type="text"], input[type="date"], input[type="password"], input[type="time"] { width: 100%; padding: 10px 12px; border: 1.5px solid #cbd5e0; border-radius: 8px; font-family: inherit; font-size: 13.5px; background-color: #fff; }
-.btn-submit { background-color: #0b1a30; color: #ffffff; border: none; padding: 11px 20px; font-size: 14px; font-weight: 700; border-radius: 8px; cursor: pointer; font-family: inherit; width: 100%; transition: 0.3s; }
-.btn-submit:hover { opacity: 0.9; }
+.btn-submit { background-color: #1a365d; color: #ffffff; border: 2px solid #2b6cb0; padding: 12px 22px; font-size: 15px; font-weight: 800; border-radius: 8px; cursor: pointer; font-family: inherit; width: 100%; box-shadow: 0 3px 10px rgba(0,0,0,0.1); transition: 0.3s; }
+.btn-submit:hover { background-color: #2b6cb0; }
 .btn-action-sm { background-color: #2b6cb0; color: #fff; border: none; padding: 5px 10px; border-radius: 5px; font-size: 11.5px; font-weight: 700; cursor: pointer; }
 .btn-action-sm:hover { background-color: #2c5282; }
 table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 13px; }
@@ -96,7 +96,7 @@ tr:hover { background-color: #fafafa; }
 <span id="systemStatusText" style="font-size: 12.5px; font-weight: 700; color: #2d3748;" data-i18n="connected">🟢 النظام متصل وخزنة الأمان مفعلة</span>
 <div style="display: flex; gap: 6px; flex-wrap: wrap; align-items: center;">
 <select id="langDropdown" class="lang-dropdown" onchange="onLanguageChange(this.value)">
-  <option value="ar">العربية 🇸🇦</option>
+  <option value="ar">العربية 🇮🇶</option>
   <option value="en">English 🇬🇧</option>
 </select>
 <button type="button" class="btn-nav-action btn-lock-nav" onclick="lockPortalSession()" data-i18n="lockBtn">قفل 🔒</button>
@@ -105,7 +105,7 @@ tr:hover { background-color: #fafafa; }
 </div>
 </div>
 
-<div id="statusAlert" class="alert-success" data-i18n="successAlert">تم الحفظ وتحديث البيانات على GitHub بنجاح!</div>
+<div id="statusAlert" class="alert-success" data-i18n="successAlert">تم الحفظ وتحديث البيانات بنجاح!</div>
 
 <div id="holidayNoticeBox" class="alert-warning">
 <strong data-i18n="holidayAlertTitle">⚠️ تنبيه اقتراب عطلة رسمية:</strong> <span id="holidayNoticeText"></span>
@@ -145,7 +145,7 @@ tr:hover { background-color: #fafafa; }
 <label data-i18n="noteLabel">سبب التعطيل أو ملاحظة مخصصة (اختياري):</label>
 <input type="text" id="officeNoteInput" data-i18n-placeholder="notePlaceholder" placeholder="مثلاً: عطلة رسمية بقرار مجلس الوزراء...">
 </div>
-<button type="submit" class="btn-submit" data-i18n="saveGithubBtn">حفظ وتحديث على غيت هب 💾</button>
+<button type="submit" class="btn-submit" data-i18n="saveEditBtn">حفظ وتعديل 💾</button>
 </form>
 </div>
 
@@ -162,7 +162,7 @@ tr:hover { background-color: #fafafa; }
 <input type="time" id="workEndInput" value="16:00" required>
 </div>
 </div>
-<button type="submit" class="btn-submit" style="background-color: #3182ce; margin-top: 10px;" data-i18n="saveHoursBtn">حفظ ساعات العمل الجديدة ⏰</button>
+<button type="submit" class="btn-submit" style="background-color: #2b6cb0; margin-top: 10px;" data-i18n="saveHoursBtn">حفظ وتعديل ساعات العمل ⏰</button>
 </form>
 </div>
 
@@ -192,23 +192,23 @@ tr:hover { background-color: #fafafa; }
 <h2 style="border:none; margin:0; padding:0;"><span data-i18n="officialHolidaysTitle">📅 جدول العطل الرسمية الأساسية في العراق (13 عطلة)</span></h2>
 <span id="toggleIcon" style="font-size: 14px; font-weight: 700; color: #3182ce;" data-i18n="showTable">إظهار الجدول 🔽</span>
 </div>
-<div id="officialHolidaysBox" style="display: none; margin-top: 15px; border-top: 1px dashed #cbd5e0; padding-top: 12px; max-height: 280px; overflow-y: auto;">
+<div id="officialHolidaysBox" style="display: none; margin-top: 15px; border-top: 1px dashed #cbd5e0; padding-top: 12px; max-height: 320px; overflow-y: auto;">
 <table>
-<thead><tr><th data-i18n="tableCol1">اسم العطلة محلياً (العراق)</th><th data-i18n="tableCol2">التسمية المعيارية</th><th data-i18n="tableCol3">التاريخ</th></tr></thead>
+<thead><tr><th data-i18n="tableCol1">اسم العطلة محلياً (العراق)</th><th data-i18n="tableCol2">التسمية المعيارية</th><th data-i18n="tableCol3">التاريخ</th><th data-i18n="tableColAction">الإجراء الفوري</th></tr></thead>
 <tbody>
-<tr><td><strong>رأس السنة الميلادية (1 كانون الثاني)</strong></td><td>New Year's Day</td><td>2026-01-01</td></tr>
-<tr><td><strong>عيد الجيش العراقي (6 كانون الثاني)</strong></td><td>Iraqi Army Day</td><td>2026-01-06</td></tr>
-<tr><td><strong>ذكرى جرائم النظام البائد (حلبجة والأنفال)</strong></td><td>Halabja & Anfal</td><td>2026-03-16</td></tr>
-<tr><td><strong>عيد نوروز (21 آذار)</strong></td><td>Newroz</td><td>2026-03-21</td></tr>
-<tr><td><strong>عيد العمال العالمي (1 أيار)</strong></td><td>Workers' Day</td><td>2026-05-01</td></tr>
-<tr><td><strong>رأس السنة الهجرية (1 محرم)</strong></td><td>Islamic New Year</td><td>متغير / Variable</td></tr>
-<tr><td><strong>يوم عاشوراء (10 محرم)</strong></td><td>Ashura Day</td><td>متغير / Variable</td></tr>
-<tr><td><strong>المولد النبوي الشريف (12 ربيع الأول)</strong></td><td>Prophet's Birthday</td><td>متغير / Variable</td></tr>
-<tr><td><strong>عيد الفطر المبارك (1-3 شوال)</strong></td><td>Eid al-Fitr</td><td>متغير / Variable</td></tr>
-<tr><td><strong>عيد الأضحى المبارك (10-13 ذي الحجة)</strong></td><td>Eid al-Adha</td><td>متغير / Variable</td></tr>
-<tr><td><strong>يوم الغدير (18 ذي الحجة)</strong></td><td>Al-Ghadir Day</td><td>متغير / Variable</td></tr>
-<tr><td><strong>ذكرى تأسيس الجمهورية (14 تموز)</strong></td><td>Republic Day</td><td>2026-07-14</td></tr>
-<tr><td><strong>العيد الوطني لجمهورية العراق</strong></td><td>National Day</td><td>2026-10-03</td></tr>
+<tr><td><strong>رأس السنة الميلادية (1 كانون الثاني)</strong></td><td>New Year's Day</td><td>2026-01-01</td><td><button type="button" class="btn-action-sm" onclick="confirmAndApplyHoliday('رأس السنة الميلادية', '2026-01-01')">تفعيل كحالة 🛑</button></td></tr>
+<tr><td><strong>عيد الجيش العراقي (6 كانون الثاني)</strong></td><td>Iraqi Army Day</td><td>2026-01-06</td><td><button type="button" class="btn-action-sm" onclick="confirmAndApplyHoliday('عيد الجيش العراقي', '2026-01-06')">تفعيل كحالة 🛑</button></td></tr>
+<tr><td><strong>ذكرى جرائم النظام البائد (حلبجة والأنفال)</strong></td><td>Halabja & Anfal</td><td>2026-03-16</td><td><button type="button" class="btn-action-sm" onclick="confirmAndApplyHoliday('ذكرى جرائم النظام البائد', '2026-03-16')">تفعيل كحالة 🛑</button></td></tr>
+<tr><td><strong>عيد نوروز (21 آذار)</strong></td><td>Newroz</td><td>2026-03-21</td><td><button type="button" class="btn-action-sm" onclick="confirmAndApplyHoliday('عيد نوروز', '2026-03-21')">تفعيل كحالة 🛑</button></td></tr>
+<tr><td><strong>عيد العمال العالمي (1 أيار)</strong></td><td>Workers' Day</td><td>2026-05-01</td><td><button type="button" class="btn-action-sm" onclick="confirmAndApplyHoliday('عيد العمال العالمي', '2026-05-01')">تفعيل كحالة 🛑</button></td></tr>
+<tr><td><strong>رأس السنة الهجرية (1 محرم)</strong></td><td>Islamic New Year</td><td>متغير / Variable</td><td><button type="button" class="btn-action-sm" onclick="confirmAndApplyHoliday('رأس السنة الهجرية', 'متغير')">تفعيل كحالة 🛑</button></td></tr>
+<tr><td><strong>يوم عاشوراء (10 محرم)</strong></td><td>Ashura Day</td><td>متغير / Variable</td><td><button type="button" class="btn-action-sm" onclick="confirmAndApplyHoliday('يوم عاشوراء', 'متغير')">تفعيل كحالة 🛑</button></td></tr>
+<tr><td><strong>المولد النبوي الشريف (12 ربيع الأول)</strong></td><td>Prophet's Birthday</td><td>متغير / Variable</td><td><button type="button" class="btn-action-sm" onclick="confirmAndApplyHoliday('المولد النبوي الشريف', 'متغير')">تفعيل كحالة 🛑</button></td></tr>
+<tr><td><strong>عيد الفطر المبارك (1-3 شوال)</strong></td><td>Eid al-Fitr</td><td>متغير / Variable</td><td><button type="button" class="btn-action-sm" onclick="confirmAndApplyHoliday('عيد الفطر المبارك', 'متغير')">تفعيل كحالة 🛑</button></td></tr>
+<tr><td><strong>عيد الأضحى المبارك (10-13 ذي الحجة)</strong></td><td>Eid al-Adha</td><td>متغير / Variable</td><td><button type="button" class="btn-action-sm" onclick="confirmAndApplyHoliday('عيد الأضحى المبارك', 'متغير')">تفعيل كحالة 🛑</button></td></tr>
+<tr><td><strong>يوم الغدير (18 ذي الحجة)</strong></td><td>Al-Ghadir Day</td><td>متغير / Variable</td><td><button type="button" class="btn-action-sm" onclick="confirmAndApplyHoliday('يوم الغدير', 'متغير')">تفعيل كحالة 🛑</button></td></tr>
+<tr><td><strong>ذكرى تأسيس الجمهورية (14 تموز)</strong></td><td>Republic Day</td><td>2026-07-14</td><td><button type="button" class="btn-action-sm" onclick="confirmAndApplyHoliday('ذكرى تأسيس الجمهورية', '2026-07-14')">تفعيل كحالة 🛑</button></td></tr>
+<tr><td><strong>العيد الوطني لجمهورية العراق</strong></td><td>National Day</td><td>2026-10-03</td><td><button type="button" class="btn-action-sm" onclick="confirmAndApplyHoliday('العيد الوطني لجمهورية العراق', '2026-10-03')">تفعيل كحالة 🛑</button></td></tr>
 </tbody>
 </table>
 </div>
@@ -246,11 +246,11 @@ const translations = {
     holidayOpt: "🔴 إجازة رسمية / عطلة (مفعل)",
     noteLabel: "سبب التعطيل أو ملاحظة مخصصة (اختياري):",
     notePlaceholder: "مثلاً: عطلة رسمية بقرار مجلس الوزراء...",
-    saveGithubBtn: "حفظ وتحديث على غيت هب 💾",
+    saveEditBtn: "حفظ وتعديل 💾",
     settingsTitle: "⚙️ تعديل ساعات العمل الرسمية",
     startLabel: "ساعة بدء الدوام:",
     endLabel: "ساعة انتهاء الدوام:",
-    saveHoursBtn: "حفظ ساعات العمل الجديدة ⏰",
+    saveHoursBtn: "حفظ وتعديل ساعات العمل ⏰",
     holidayAlertTitle: "⚠️ تنبيه اقتراب عطلة رسمية:",
     activateHolidayBtn: "تأكيد وتفعيل حالة العطلة الآن 🛑",
     customHolidayTitle: "⚡ إضافة عطلة استثنائية أو طارئة",
@@ -266,7 +266,7 @@ const translations = {
     tableCol2: "التسمية المعيارية",
     tableCol3: "التاريخ",
     tableColAction: "الإجراء الفوري",
-    applyBtnText: "تفعيل كحالة للمكتب 🛑",
+    applyBtnText: "تفعيل كحالة 🛑",
     setupTitle: "إعداد حماية البوابة لأول مرة:",
     setupDesc: "أدخل الرمز الطويل (التوكن) مع رمز PIN سري (6 أرقام):",
     tokenPlaceholder: "أدخل رمز GitHub (ghp_...)",
@@ -274,7 +274,7 @@ const translations = {
     unlockTitle: "البوابة محمية بخزنة مشفرة.",
     unlockDesc: "أدخل رمز الـ PIN السري (6 أرقام) لفك القفل:",
     unlockBtn: "دخول آمن ←",
-    successAlert: "تم الحفظ وتحديث البيانات على GitHub بنجاح!"
+    successAlert: "تم الحفظ وتحديث البيانات بنجاح!"
   },
   en: {
     title: "AKH Law Office Chambers Portal",
@@ -297,11 +297,11 @@ const translations = {
     holidayOpt: "🔴 Official Holiday / Vacation (Active)",
     noteLabel: "Custom Note or Reason (Optional):",
     notePlaceholder: "e.g., Official holiday by cabinet decree...",
-    saveGithubBtn: "Save & Update on GitHub 💾",
+    saveEditBtn: "Save & Edit 💾",
     settingsTitle: "⚙️ Edit Official Working Hours",
     startLabel: "Work Start Time:",
     endLabel: "Work End Time:",
-    saveHoursBtn: "Save New Working Hours ⏰",
+    saveHoursBtn: "Save & Edit Working Hours ⏰",
     holidayAlertTitle: "⚠️ Upcoming Holiday Notice:",
     activateHolidayBtn: "Confirm & Activate Holiday Status Now 🛑",
     customHolidayTitle: "⚡ Add Custom or Emergency Holiday",
@@ -317,7 +317,7 @@ const translations = {
     tableCol2: "Standard Name",
     tableCol3: "Date",
     tableColAction: "Quick Action",
-    applyBtnText: "Apply as Status 🛑",
+    applyBtnText: "Apply Status 🛑",
     setupTitle: "First-Time Portal Setup:",
     setupDesc: "Enter your GitHub Token along with a 6-digit Secret PIN:",
     tokenPlaceholder: "Enter GitHub Token (ghp_...)",
@@ -325,7 +325,7 @@ const translations = {
     unlockTitle: "Portal Protected by Encrypted Vault.",
     unlockDesc: "Enter your 6-digit Secret PIN to unlock:",
     unlockBtn: "Secure Login ←",
-    successAlert: "Saved and updated on GitHub successfully!"
+    successAlert: "Saved and updated successfully!"
   }
 };
 
@@ -352,7 +352,7 @@ function applyLanguage(lang) {
     }
   });
 
-  loadPortalData();
+  loadCustomHolidaysTable();
 }
 
 function onLanguageChange(lang) {
@@ -393,6 +393,21 @@ async function decryptToken(encryptedObj, pin) {
   const key = await deriveKey(pin, salt);
   const decrypted = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: iv }, key, data);
   return new TextDecoder().decode(decrypted);
+}
+
+// دالة التحقق الأمني عبر طلب رمز الـ PIN قبل أي تعديل
+async function verifyPinAndExecute(actionCallback) {
+  const pin = prompt(currentLang === 'en' ? "🔒 Enter your 6-digit Secret PIN to authorize and save changes:" : "🔒 أدخل رمز الـ PIN السري (6 أرقام) للتأكيد وحفظ التعديلات:");
+  if (!pin) return;
+  try {
+    const savedVault = localStorage.getItem('akh_portal_vault');
+    if (!savedVault) throw new Error('No vault');
+    const vaultObj = JSON.parse(savedVault);
+    await decryptToken(vaultObj, pin); // إذا كان الرمز خطأ سيحدث خطأ ويتوقف التنفيذ
+    await actionCallback();
+  } catch(e) {
+    alert(currentLang === 'en' ? "❌ Incorrect PIN! Action cancelled." : "❌ رمز الـ PIN غير صحيح! تم إلغاء العملية بأمان.");
+  }
 }
 
 window.onload = function() {
@@ -479,7 +494,10 @@ async function loadPortalData() {
   } catch(e) {}
 
   checkUpcomingHolidays();
+  loadCustomHolidaysTable();
+}
 
+async function loadCustomHolidaysTable() {
   const tbody = document.querySelector('#customHolidaysTable tbody');
   try {
     const res2 = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/custom_holidays.json?ref=${BRANCH}`, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
@@ -514,11 +532,13 @@ async function confirmAndApplyHoliday(holidayName, holidayDate) {
   
   if(!confirm(confirmMsg)) return;
 
-  document.getElementById('officeStatusSelect').value = 'holiday';
-  document.getElementById('officeNoteInput').value = `عطلة رسمية: ${holidayName}`;
-  await triggerOfficeStatusSave('holiday', `عطلة رسمية: ${holidayName}`);
-  
-  alert(currentLang === 'en' ? `Applied "${holidayName}" as active office holiday successfully!` : `تم تفعيل عطلة "${holidayName}" كحالة للمكتب بنجاح 🛑`);
+  // طلب الرمز السري قبل التطبيق الفعلي
+  await verifyPinAndExecute(async () => {
+    document.getElementById('officeStatusSelect').value = 'holiday';
+    document.getElementById('officeNoteInput').value = `عطلة رسمية: ${holidayName}`;
+    await triggerOfficeStatusSave('holiday', `عطلة رسمية: ${holidayName}`);
+    alert(currentLang === 'en' ? `Applied "${holidayName}" as active office holiday successfully!` : `تم تفعيل عطلة "${holidayName}" كحالة للمكتب بنجاح 🛑`);
+  });
 }
 
 async function checkUpcomingHolidays() {
@@ -560,10 +580,11 @@ async function saveWorkingHours(e) {
   e.preventDefault();
   const workStart = document.getElementById('workStartInput').value;
   const workEnd = document.getElementById('workEndInput').value;
-  const settingsObj = { workStart, workEnd };
-  const contentStr = JSON.stringify(settingsObj, null, 2);
 
-  try {
+  await verifyPinAndExecute(async () => {
+    const settingsObj = { workStart, workEnd };
+    const contentStr = JSON.stringify(settingsObj, null, 2);
+
     let sha = '';
     const getRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/office_settings.json?ref=${BRANCH}`, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
     if(getRes.ok) { const d = await getRes.json(); sha = d.sha; }
@@ -574,8 +595,8 @@ async function saveWorkingHours(e) {
       body: JSON.stringify({ message: 'Update working hours', content: utf8_to_b64(contentStr), sha: sha, branch: BRANCH })
     });
     if(!putRes.ok) throw new Error('فشل الحفظ.');
-    alert('تم تحديث ساعات العمل بنجاح ⏰');
-  } catch(err) { alert('خطأ: ' + err.message); }
+    alert('تم حفظ وتعديل ساعات العمل بنجاح ⏰');
+  });
 }
 
 async function triggerOfficeStatusSave(statusVal, noteVal) {
@@ -598,12 +619,13 @@ async function saveOfficeStatus(e) {
   const status = document.getElementById('officeStatusSelect').value;
   const note = document.getElementById('officeNoteInput').value.trim();
 
-  try {
+  await verifyPinAndExecute(async () => {
     await triggerOfficeStatusSave(status, note);
     const alertEl = document.getElementById('statusAlert');
     alertEl.style.display = 'block';
     setTimeout(() => alertEl.style.display = 'none', 3000);
-  } catch(err) { alert('خطأ: ' + err.message); }
+    alert('تم حفظ وتعديل حالة المكتب بنجاح 💾');
+  });
 }
 
 async function saveCustomHoliday(e) {
@@ -612,7 +634,7 @@ async function saveCustomHoliday(e) {
   const date = document.getElementById('holidayDateInput').value;
   if(!name || !date) return;
 
-  try {
+  await verifyPinAndExecute(async () => {
     let holidays = [];
     let sha = '';
     const getRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/custom_holidays.json?ref=${BRANCH}`, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
@@ -633,7 +655,7 @@ async function saveCustomHoliday(e) {
     document.getElementById('holidayForm').reset();
     loadPortalData();
     alert('تمت إضافة العطلة بنجاح ➕');
-  } catch(err) { alert('خطأ: ' + err.message); }
+  });
 }
 </script>
 </body>
