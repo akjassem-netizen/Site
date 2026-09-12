@@ -58,6 +58,16 @@ th { background-color: #0b1a30; color: #ffffff; font-weight: 700; }
 tr:hover { background-color: #fafafa; }
 .badge { padding: 3px 7px; border-radius: 4px; font-size: 11px; font-weight: 700; }
 .badge-holiday { background: #fed7d7; color: #9b1c1c; }
+
+/* نافذة إدخال الـ PIN السرية (مشفرة بالنقاط) */
+.pin-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11, 26, 48, 0.7); display: none; justify-content: center; align-items: center; z-index: 9999; }
+.pin-modal-box { background: #ffffff; padding: 25px; border-radius: 12px; max-width: 320px; width: 90%; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border-top: 4px solid #c5a059; }
+.pin-modal-box h3 { font-size: 15px; color: #0b1a30; margin-bottom: 12px; font-weight: 800; }
+.pin-modal-box input { width: 100%; letter-spacing: 8px; font-size: 22px; text-align: center; padding: 10px; margin-bottom: 15px; border: 1.5px solid #cbd5e0; border-radius: 8px; }
+.pin-modal-btns { display: flex; gap: 10px; }
+.pin-modal-btns button { flex: 1; padding: 10px; border-radius: 6px; font-weight: 700; border: none; cursor: pointer; font-family: inherit; }
+.btn-pin-confirm { background: #0b1a30; color: #fff; }
+.btn-pin-cancel { background: #e2e8f0; color: #4a5568; }
 </style>
 </head>
 <body>
@@ -65,13 +75,26 @@ tr:hover { background-color: #fafafa; }
 <div class="panel">
 <div class="brand-section">
 <div class="logo-text">A<span>K</span>H</div>
-<div class="sub-brand"><span>/</span> LAW OFFICE</div>
+<div class="sub-title"><span>/</span> LAW OFFICE</div>
 <div class="est">EST. 2014</div>
 <div class="portal-title" data-i18n="title">بوابة ديوان مكتب المحامي علي كاظم الهاشمي</div>
 </div>
 
 <div id="portalAlertBox" class="alert-box alert-error"></div>
 
+<!-- نافذة PIN السرية المشفرة -->
+<div id="pinModalOverlay" class="pin-modal-overlay">
+  <div class="pin-modal-box">
+    <h3 id="pinModalTitle">🔒 أدخل رمز الـ PIN السري (6 أرقام)</h3>
+    <input type="password" id="modalPinInput" maxlength="6" placeholder="••••••" autofocus>
+    <div class="pin-modal-btns">
+      <button type="button" class="btn-pin-confirm" onclick="submitPinModal()" id="pinConfirmBtn">تأكيد</button>
+      <button type="button" class="btn-pin-cancel" onclick="closePinModal()" id="pinCancelBtn">إلغاء</button>
+    </div>
+  </div>
+</div>
+
+<!-- 1. شاشة إعداد الحماية -->
 <div id="portalSetupScreen" class="screen-box" style="display: none;">
 <p class="lock-desc"><strong data-i18n="setupTitle">إعداد حماية البوابة لأول مرة:</strong><br><span data-i18n="setupDesc">أدخل الرمز الطويل (التوكن) مع رمز PIN سري (6 أرقام):</span></p>
 <div class="form-group" style="max-width: 400px; margin: 0 auto 12px;">
@@ -83,6 +106,7 @@ tr:hover { background-color: #fafafa; }
 <button type="button" class="btn-unlock" onclick="performPortalSetup()" data-i18n="setupBtn">تشفير وحفظ الحماية 🔒</button>
 </div>
 
+<!-- 2. شاشة القفل -->
 <div id="portalLockScreen" class="screen-box" style="display: none;">
 <p class="lock-desc"><span data-i18n="unlockTitle">البوابة محمية بخزنة مشفرة.</span><br><span data-i18n="unlockDesc">أدخل رمز الـ PIN السري (6 أرقام) لفك القفل:</span></p>
 <div class="form-group" style="max-width: 240px; margin: 0 auto 16px;">
@@ -91,6 +115,7 @@ tr:hover { background-color: #fafafa; }
 <button type="button" class="btn-unlock" onclick="attemptPortalPinUnlock()" data-i18n="unlockBtn">دخول آمن ←</button>
 </div>
 
+<!-- 3. المحتوى الرئيسي -->
 <div id="portalMainContent" style="display: none;">
 <div class="top-nav-bar">
 <span id="systemStatusText" style="font-size: 12.5px; font-weight: 700; color: #2d3748;" data-i18n="connected">🟢 النظام متصل وخزنة الأمان مفعلة</span>
@@ -107,6 +132,7 @@ tr:hover { background-color: #fafafa; }
 
 <div id="statusAlert" class="alert-success" data-i18n="successAlert">تم الحفظ وتحديث البيانات بنجاح!</div>
 
+<!-- تنبيه العطلة القادمة -->
 <div id="holidayNoticeBox" class="alert-warning">
 <strong data-i18n="holidayAlertTitle">⚠️ تنبيه اقتراب عطلة رسمية:</strong> <span id="holidayNoticeText"></span>
 <button type="button" class="btn-submit" style="margin-top: 10px; background-color: #c05621; padding: 8px;" onclick="confirmAndActivateHoliday()" data-i18n="activateHolidayBtn">تأكيد وتفعيل حالة العطلة الآن 🛑</button>
@@ -130,6 +156,7 @@ tr:hover { background-color: #fafafa; }
 </div>
 </div>
 
+<!-- أ. التحكم بحالة المكتب -->
 <div class="card-section">
 <h2><span data-i18n="statusTitle">🟢 التحكم الفوري بحالة المكتب</span><span class="en-title">Live Status</span></h2>
 <form id="statusForm" onsubmit="saveOfficeStatus(event)">
@@ -149,6 +176,7 @@ tr:hover { background-color: #fafafa; }
 </form>
 </div>
 
+<!-- ب. إعدادات ساعات العمل -->
 <div class="card-section">
 <h2><span data-i18n="settingsTitle">⚙️ تعديل ساعات العمل الرسمية</span><span class="en-title">Working Hours Settings</span></h2>
 <form id="settingsForm" onsubmit="saveWorkingHours(event)">
@@ -166,6 +194,7 @@ tr:hover { background-color: #fafafa; }
 </form>
 </div>
 
+<!-- ج. إضافة عطلة طارئة -->
 <div class="card-section">
 <h2><span data-i18n="customHolidayTitle">⚡ إضافة عطلة استثنائية أو طارئة</span><span class="en-title">Custom Holiday</span></h2>
 <form id="holidayForm" onsubmit="saveCustomHoliday(event)">
@@ -187,6 +216,7 @@ tr:hover { background-color: #fafafa; }
 </table>
 </div>
 
+<!-- د. جدول العطل الرسمية الأساسية -->
 <div class="card-section">
 <div onclick="toggleOfficialHolidays()" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none;">
 <h2 style="border:none; margin:0; padding:0;"><span data-i18n="officialHolidaysTitle">📅 جدول العطل الرسمية الأساسية في العراق (13 عطلة)</span></h2>
@@ -206,9 +236,7 @@ tr:hover { background-color: #fafafa; }
 <tr><td><strong>المولد النبوي الشريف (12 ربيع الأول)</strong></td><td>Prophet's Birthday</td><td>متغير / Variable</td><td><button type="button" class="btn-action-sm" onclick="confirmAndApplyHoliday('المولد النبوي الشريف', 'متغير')">تفعيل كحالة 🛑</button></td></tr>
 <tr><td><strong>عيد الفطر المبارك (1-3 شوال)</strong></td><td>Eid al-Fitr</td><td>متغير / Variable</td><td><button type="button" class="btn-action-sm" onclick="confirmAndApplyHoliday('عيد الفطر المبارك', 'متغير')">تفعيل كحالة 🛑</button></td></tr>
 <tr><td><strong>عيد الأضحى المبارك (10-13 ذي الحجة)</strong></td><td>Eid al-Adha</td><td>متغير / Variable</td><td><button type="button" class="btn-action-sm" onclick="confirmAndApplyHoliday('عيد الأضحى المبارك', 'متغير')">تفعيل كحالة 🛑</button></td></tr>
-<tr><td><strong>يوم الغدير (18 ذي الحجة)</strong></td><td>Al-Ghadir Day</td><td>متغير / Variable</td><td><button type="button" class="btn-action-sm" onclick="confirmAndApplyHoliday('يوم الغدير', 'متغير')">تفعيل كحالة 🛑</button></td></tr>
-<tr><td><strong>ذكرى تأسيس الجمهورية (14 تموز)</strong></td><td>Republic Day</td><td>2026-07-14</td><td><button type="button" class="btn-action-sm" onclick="confirmAndApplyHoliday('ذكرى تأسيس الجمهورية', '2026-07-14')">تفعيل كحالة 🛑</button></td></tr>
-<tr><td><strong>العيد الوطني لجمهورية العراق</strong></td><td>National Day</td><td>2026-10-03</td><td><button type="button" class="btn-action-sm" onclick="confirmAndApplyHoliday('العيد الوطني لجمهورية العراق', '2026-10-03')">تفعيل كحالة 🛑</button></td></tr>
+<tr><td><strong>عيد الديار أو غيرها...</strong></td><td>-</td><td>-</td><td>-</td></tr>
 </tbody>
 </table>
 </div>
@@ -223,6 +251,7 @@ const REPO_NAME = 'Site';
 const BRANCH = 'main';
 let ACTIVE_TOKEN = '';
 let currentLang = localStorage.getItem('akh_portal_lang') || 'ar';
+let pendingActionCallback = null;
 
 const translations = {
   ar: {
@@ -364,7 +393,7 @@ function toggleOfficialHolidays() {
   const icon = document.getElementById('toggleIcon');
   if(box.style.display === 'none') {
     box.style.display = 'block';
-    icon.innerText = currentLang === 'en' ? 'Hide Table 🔼' : 'إخفاء الجدول 🔼';
+    icon.innerText = currentLang === 'en' ? 'Hide Table 🔼' : 'إظهار الجدول 🔼';
   } else {
     box.style.display = 'none';
     icon.innerText = currentLang === 'en' ? 'Show Table 🔽' : 'إظهار الجدول 🔽';
@@ -395,18 +424,35 @@ async function decryptToken(encryptedObj, pin) {
   return new TextDecoder().decode(decrypted);
 }
 
-// دالة التحقق الأمني عبر طلب رمز الـ PIN قبل أي تعديل
-async function verifyPinAndExecute(actionCallback) {
-  const pin = prompt(currentLang === 'en' ? "🔒 Enter your 6-digit Secret PIN to authorize and save changes:" : "🔒 أدخل رمز الـ PIN السري (6 أرقام) للتأكيد وحفظ التعديلات:");
-  if (!pin) return;
+// نظام نافذة الـ PIN المشفرة الآمنة
+function verifyPinAndExecute(callback) {
+  pendingActionCallback = callback;
+  document.getElementById('modalPinInput').value = '';
+  document.getElementById('pinModalOverlay').style.display = 'flex';
+  setTimeout(() => { document.getElementById('modalPinInput').focus(); }, 100);
+}
+
+function closePinModal() {
+  document.getElementById('pinModalOverlay').style.display = 'none';
+  pendingActionCallback = null;
+}
+
+async function submitPinModal() {
+  const pin = document.getElementById('modalPinInput').value.trim();
+  if (pin.length !== 6) {
+    alert(currentLang === 'en' ? "PIN must be 6 digits." : "رمز الـ PIN يجب أن يكون 6 أرقام.");
+    return;
+  }
   try {
     const savedVault = localStorage.getItem('akh_portal_vault');
     if (!savedVault) throw new Error('No vault');
     const vaultObj = JSON.parse(savedVault);
-    await decryptToken(vaultObj, pin); // إذا كان الرمز خطأ سيحدث خطأ ويتوقف التنفيذ
-    await actionCallback();
+    await decryptToken(vaultObj, pin); // التحقق من صحة الرمز
+    closePinModal();
+    if (pendingActionCallback) await pendingActionCallback();
   } catch(e) {
-    alert(currentLang === 'en' ? "❌ Incorrect PIN! Action cancelled." : "❌ رمز الـ PIN غير صحيح! تم إلغاء العملية بأمان.");
+    alert(currentLang === 'en' ? "Incorrect PIN!" : "❌ رمز الـ PIN غير صحيح!");
+    document.getElementById('modalPinInput').value = '';
   }
 }
 
@@ -532,8 +578,7 @@ async function confirmAndApplyHoliday(holidayName, holidayDate) {
   
   if(!confirm(confirmMsg)) return;
 
-  // طلب الرمز السري قبل التطبيق الفعلي
-  await verifyPinAndExecute(async () => {
+  verifyPinAndExecute(async () => {
     document.getElementById('officeStatusSelect').value = 'holiday';
     document.getElementById('officeNoteInput').value = `عطلة رسمية: ${holidayName}`;
     await triggerOfficeStatusSave('holiday', `عطلة رسمية: ${holidayName}`);
@@ -571,7 +616,7 @@ async function checkUpcomingHolidays() {
 }
 
 async function confirmAndActivateHoliday() {
-  if(!window.pendingHolidayName) return;
+  @if(!window.pendingHolidayName) return;
   await confirmAndApplyHoliday(window.pendingHolidayName, window.pendingHolidayDate || '');
   document.getElementById('holidayNoticeBox').style.display = 'none';
 }
@@ -581,7 +626,7 @@ async function saveWorkingHours(e) {
   const workStart = document.getElementById('workStartInput').value;
   const workEnd = document.getElementById('workEndInput').value;
 
-  await verifyPinAndExecute(async () => {
+  verifyPinAndExecute(async () => {
     const settingsObj = { workStart, workEnd };
     const contentStr = JSON.stringify(settingsObj, null, 2);
 
@@ -619,7 +664,7 @@ async function saveOfficeStatus(e) {
   const status = document.getElementById('officeStatusSelect').value;
   const note = document.getElementById('officeNoteInput').value.trim();
 
-  await verifyPinAndExecute(async () => {
+  verifyPinAndExecute(async () => {
     await triggerOfficeStatusSave(status, note);
     const alertEl = document.getElementById('statusAlert');
     alertEl.style.display = 'block';
@@ -634,7 +679,7 @@ async function saveCustomHoliday(e) {
   const date = document.getElementById('holidayDateInput').value;
   if(!name || !date) return;
 
-  await verifyPinAndExecute(async () => {
+  verifyPinAndExecute(async () => {
     let holidays = [];
     let sha = '';
     const getRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/custom_holidays.json?ref=${BRANCH}`, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
