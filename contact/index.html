@@ -364,12 +364,12 @@
       <div class="est">EST. 2014</div>
     </div>
 
-    <!-- شريط الحالة الحي (عرض فوري بدون انتظار) -->
+    <!-- شريط الحالة الحي -->
     <div class="status-card-box">
       <div id="statusDot" class="status-indicator-dot holiday"></div>
       <div class="status-text-content">
-        <strong id="statusHeaderTitle">عطلة نهاية الأسبوع</strong>
-        <span id="statusMessageText">المكتب مغلق حالياً لعطلة نهاية الأسبوع، نعود لاستقبال طلباتكم وحجوزاتكم يوم الأحد القادم عبر حجز موعد استشارة رسمية.</span>
+        <strong id="statusHeaderTitle">عطلة نهاية الأسبوع (الجمعة والسبت)</strong>
+        <span id="statusMessageText">المكتب في عطلة نهاية الأسبوع الرسمية. يمكنك إرسال طلبك أو حجز موعد استشارة رسمية في أي وقت؛ سيتم مراجعة ومعالجة كافة الطلبات فور استئناف الدوام الرسمي صباح يوم الأحد.</span>
       </div>
     </div>
 
@@ -439,14 +439,13 @@
       evaluateBaghdadSchedule();
     });
 
-    // المنطق البرمجي الفوري والمضبوط حصرياً على توقيت بغداد المحلي (Asia/Baghdad)
+    // المنطق البرمجي المضبوط حصرياً على توقيت بغداد المحلي (Asia/Baghdad)
     function evaluateBaghdadSchedule() {
       const lang = document.getElementById('languageSelect').value;
       const dot = document.getElementById('statusDot');
       const statusTitle = document.getElementById('statusHeaderTitle');
       const statusMsg = document.getElementById('statusMessageText');
 
-      // حساب الوقت والتاريخ بدقة مطلقة وفق توقيت العاصمة بغداد حصرياً
       const nowBaghdad = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Baghdad" }));
       const day = nowBaghdad.getDay(); // 0: الأحد, 1: الإثنين, 2: الثلاثاء, 3: الأربعاء, 4: الخميس, 5: الجمعة, 6: السبت
       const hour = nowBaghdad.getHours();
@@ -456,15 +455,15 @@
       const startVal = 8 * 60;  // 08:00 صباحاً
       const endVal = 16 * 60; // 04:00 عصراً (16:00)
 
-      // 1. فحص عطلة نهاية الأسبوع في العراق (الجمعة 5 والسبت 6) كأولوية قصوى وبشكل فوري
+      // عطلة نهاية الأسبوع في العراق (الجمعة 5 والسبت 6)
       if (day === 5 || day === 6) {
         dot.className = 'status-indicator-dot holiday';
-        statusTitle.innerText = translations[lang].weekendTitle || "عطلة نهاية الأسبوع";
-        statusMsg.innerText = translations[lang].weekendMsg || "المكتب مغلق حالياً لعطلة نهاية الأسبوع، نعود لاستقبال طلباتكم وحجوزاتكم يوم الأحد القادم عبر حجز موعد استشارة رسمية.";
+        statusTitle.innerText = translations[lang].weekendTitle || "عطلة نهاية الأسبوع (الجمعة والسبت)";
+        statusMsg.innerText = translations[lang].weekendMsg || "المكتب في عطلة نهاية الأسبوع الرسمية. يمكنك إرسال طلبك أو حجز موعد استشارة رسمية في أي وقت؛ سيتم مراجعة ومعالجة كافة الطلبات فور استئناف الدوام الرسمي صباح يوم الأحد.";
         return;
       }
 
-      // 2. فحص ساعات العمل اليومية خلال أيام الدوام (الأحد إلى الخميس) بتوقيت بغداد
+      // ساعات العمل اليومية خلال أيام الدوام (الأحد إلى الخميس)
       if (timeVal < startVal || timeVal > endVal) {
         dot.className = 'status-indicator-dot off_hours';
         statusTitle.innerText = translations[lang].offHoursTitle || "خارج ساعات العمل الرسمية";
@@ -530,8 +529,8 @@
         btnBooking: "📅 حجز موعد استشارة رسمية",
         btnWhatsapp: "💬 تواصل عبر الواتساب مباشرة",
         btnBackHome: "🏠 العودة إلى الصفحة الرئيسية",
-        weekendTitle: "عطلة نهاية الأسبوع",
-        weekendMsg: "المكتب مغلق حالياً لعطلة نهاية الأسبوع، نعود لاستقبال طلباتكم وحجوزاتكم يوم الأحد القادم عبر حجز موعد استشارة رسمية.",
+        weekendTitle: "عطلة نهاية الأسبوع (الجمعة والسبت)",
+        weekendMsg: "المكتب في عطلة نهاية الأسبوع الرسمية. يمكنك إرسال طلبك أو حجز موعد استشارة رسمية في أي وقت؛ سيتم مراجعة ومعالجة كافة الطلبات فور استئناف الدوام الرسمي صباح يوم الأحد.",
         offHoursTitle: "خارج ساعات العمل الرسمية",
         offHoursMsg: "نحن خارج ساعات العمل الرسمية حالياً. يمكنك إرسال طلبك أو حجز موعدك عبر استمارة الحجز وسنتابعها فور افتتاح الدوام.",
         openTitle: "المكتب متاح الآن",
@@ -550,8 +549,8 @@
         btnBooking: "📅 Book Official Consultation Appointment",
         btnWhatsapp: "💬 Contact via WhatsApp Directly",
         btnBackHome: "🏠 Back to Home Page",
-        weekendTitle: "Weekend Closure",
-        weekendMsg: "Office is closed for the weekend. We will resume receiving requests next Sunday via official consultation booking.",
+        weekendTitle: "Weekend Notice (Friday & Saturday)",
+        weekendMsg: "The office is currently closed for the weekend (Friday & Saturday). You may submit your booking or inquiry at any time; all requests will be reviewed and processed promptly upon the resumption of official working hours on Sunday morning.",
         offHoursTitle: "Outside Official Working Hours",
         offHoursMsg: "We are currently outside official hours. You can submit your inquiry via the booking form.",
         openTitle: "Office is Open",
@@ -562,7 +561,7 @@
         pageTitle: "İletişim | Av. Ali Kazım Haşimi Hukuk Bürosu Irak",
         metaDesc: "Bağdat'taki Av. Ali Kazım Haşimi Hukuk Bürosu ile iletişime geçin. Resmi danışmanlık randevusu alın.",
         metaKeywords: "Avukat Bağdat iletişim, Irak hukuk bürosu",
-        home: "Ana Sayfa", menuServices: "Hizmetler", menuConsultations: "Hukuki Danışmanlık", menuInsights: "İçgörüler", about: "Hakkımızda", menuCodeOfConduct: "Mesleki Etik Kuralları", contact: "İletişim",
+        home: "Ana Sayfa", menuServices: "Hizmetler", menuConsultations: "Hukuki Danışمانlık", menuInsights: "İçgörüler", about: "Hakkımızda", menuCodeOfConduct: "Mesleki Etik Kuralları", contact: "İletişim",
         pageMainTitle: "İletişim",
         lblAddress: "Adres:", valAddress: "Bağdat - Zeytuna - Irak Moda Evi Yakını",
         lblHours: "Çalışma Saatleri:", valHours: "Pazar - Perşembe (08:00 - 16:00 Bağdat Saati)",
@@ -570,8 +569,8 @@
         btnBooking: "📅 Resmi Danışmanlık Randevusu Alın",
         btnWhatsapp: "💬 Doğrudan WhatsApp ile İletişim",
         btnBackHome: "🏠 Ana Sayfaya Dön",
-        weekendTitle: "Hafta Sonu Tatili",
-        weekendMsg: "Ofis hafta sonu nedeniyle kapalıdır. Taleplerimizi önümüzdeki Pazar günü resmi danışmanlık randevusu ile almaya devam edeceğiz.",
+        weekendTitle: "Hafta Sonu Tatili (Cuma ve Cumartesi)",
+        weekendMsg: "Ofis hafta sonu tatilindedir (Cuma ve Cumartesi). Rezervasyonunuzu veya talebinizi dilediğiniz zaman iletebilirsiniz; tüm talepler Pazar sabahı mesai saatinin başlamasıyla birlikte incelenip işleme alınacaktır.",
         offHoursTitle: "Mesai Saatleri Dışında",
         offHoursMsg: "Şu anda resmi çalışma saatleri dışındayız. Talebinizi rezervasyon formu aracılığıyla gönderebilirsiniz.",
         openTitle: "Ofis Açık",
@@ -590,12 +589,12 @@
         btnBooking: "📅 预约正式法律咨询",
         btnWhatsapp: "💬 直接通过 WhatsApp 联系",
         btnBackHome: "🏠 返回首页",
-        weekendTitle: "周末闭馆",
-        weekendMsg: "本所周末闭馆。我们将在下周日恢复接收预约请求。",
+        weekendTitle: "周末公告（周五和周六）",
+        weekendMsg: "本所目前正值周末假期（周五与周六）。您可随时提交预约或咨询，所有请求将在周日上午恢复官方工作时间后立即审核并处理。",
         offHoursTitle: "非官方工作时间",
-        offHoursMsg: "我们目前已过了官方工作时间。您可以通过预订表格提交您的 inquiries。",
+        offHoursMsg: "我们目前已过了官方工作时间。您可以通过预订表格提交您的需求。",
         openTitle: "办公室开放",
-        openMsg: "本所 now 开放接受常规咨询和预订。",
+        openMsg: "本所目前开放接受常规咨询和预订。",
         privacyText: "隐私政策", disclaimerText: "免责声明", codeText: "行为准则", rightsText: "版权所有 © 2026 AKH 律师事务所"
       },
       fr: {
@@ -610,8 +609,8 @@
         btnBooking: "📅 Réserver un Rendez-vous de Consultation Officielle",
         btnWhatsapp: "💬 Contacter via WhatsApp Directement",
         btnBackHome: "🏠 Retour à la Page d'Accueil",
-        weekendTitle: "Fermeture du Weekend",
-        weekendMsg: "Le bureau est fermé pour le weekend. Nous reprendrons la réception des demandes dimanche prochain.",
+        weekendTitle: "Avis de Weekend (Vendredi & Samedi)",
+        weekendMsg: "Le bureau est actuellement en congé de weekend (Vendredi & Samedi). Vous pouvez soumettre votre réservation ou demande à tout moment ; toutes les demandes seront examinées et traitées dès la reprise des heures de travail officielles dimanche matin.",
         offHoursTitle: "En Dehors des Heures de Travail",
         offHoursMsg: "Nous sommes actuellement en dehors des heures de bureau. Vous pouvez soumettre votre demande via le formulaire.",
         openTitle: "Le Bureau est Ouvert",
@@ -630,8 +629,8 @@
         btnBooking: "📅 Reservar Cita de Consulta Oficial",
         btnWhatsapp: "💬 Contactar por WhatsApp Directemente",
         btnBackHome: "🏠 Volver a la Página Principal",
-        weekendTitle: "Cierre de Fin de Semana",
-        weekendMsg: "La oficina está cerrada por el fin de semana. Reanudaremos la recepción de solicitudes el próximo domingo.",
+        weekendTitle: "Aviso de Fin de Semana (Viernes y Sábado)",
+        weekendMsg: "La oficina se encuentra actualmente cerrada por el fin de semana (Viernes y Sábado). Puede enviar su reserva o consulta en cualquier momento; todas las solicitudes serán revisadas y procesadas a primera hora del domingo al reanudar el horario oficial.",
         offHoursTitle: "Fuera de Horario Laboral",
         offHoursMsg: "Actualmente estamos fuera del horario de oficina. Puede enviar su solicitud a través del formulario de reserva.",
         openTitle: "La Oficina Está Abierta",
@@ -650,8 +649,8 @@
         btnBooking: "📅 Offiziellen Beratungstermin buchen",
         btnWhatsapp: "💬 Direkt über WhatsApp kontaktieren",
         btnBackHome: "🏠 Zurück zur Startseite",
-        weekendTitle: "Wochenendschließung",
-        weekendMsg: "Das Büro ist am Wochenende geschlossen. Wir werden ab nächsten Sonntag wieder Anfragen annehmen.",
+        weekendTitle: "Wochenendnotiz (Freitag & Samstag)",
+        weekendMsg: "Das Büro befindet sich derzeit im Wochenendurlaub (Freitag & Samstag). Sie können Ihre Buchung oder Anfrage jederzeit einreichen; alle Anfragen werden am Sonntagmorgen bei Wiederaufnahme der regulären Arbeitszeiten umgehend geprüft und bearbeitet.",
         offHoursTitle: "Außerhalb der Arbeitszeiten",
         offHoursMsg: "Wir befinden uns derzeit außerhalb der Bürozeiten. Sie können Ihre Anfrage über das Buchungsformular senden.",
         openTitle: "Das Büro ist Geöffnet",
@@ -664,14 +663,14 @@
         metaKeywords: "پەیوەندی بە پارێزەر لە بەغداد",
         home: "سەرەکی", menuServices: "خزمەتگوزارییەکان", menuConsultations: "ڕاوێژ", menuInsights: "تێڕوانینەکان", about: "دەرباره‌ی ئێمە", menuCodeOfConduct: "ڕەفتاری پیشەیی", contact: "پەیوەندی",
         pageMainTitle: "پەیوەندی بە ئێمە",
-        lblAddress: "ناونیشان:", valAddress: "بەغداد - زەیونە - نزیک خانەی فاشنی عێراقی",
+        lblAddress: "ناونیشان:", valAddress: "بغداد - زيونة - قرب دار الأزياء العراقية",
         lblHours: "کاتی کارکردن:", valHours: "یەکشەممە تا پێنجشەممە (٠٨:٠٠ بەیانی - ٠٤:٠٠ ئێوارە بە کاتی بەغداد)",
         lblPhone: "تەلەفۆن:", lblEmail: "ئیمەیڵ:",
         btnBooking: "📅 دیاریکردنی کاتی ڕاوێژی فەرمی",
         btnWhatsapp: "💬 پەیوەندی لە ڕێگەی واتسأپەوە بە ڕاستەوخۆ",
         btnBackHome: "🏠 گەڕانەوە بۆ لاپەڕەی سەرەکی",
-        weekendTitle: "پشووی کۆتایی هەفتە",
-        weekendMsg: "نووسینگە لە پشووی کۆتایی هەفتەدا داخراوە. لە یەکشەممەی داهاتووەوە پێشوازی لە داواکارییەکانتان دەکەین.",
+        weekendTitle: "پشووی کۆتایی هەفتە (هەینی و شەممە)",
+        weekendMsg: "نووسینگە لە پشووی فەرمی کۆتایی هەفتەدایە (هەینی و شەممە). دەتوانیت داواکاری یان دیاریکردنی کاتی ڕاوێژی فەرمی لە هەر کاتێکدا بنێریت؛ سەرجەم داواکارییەکان لە بەیانی ڕۆژی یەکشەممە لەگەڵ دەستپێکردنەوەی کاردا بە زوویی لێکۆڵینەوە و کاریان لەسەر دەکرێت.",
         offHoursTitle: "دەرەوەی کاتژمێرەکانی کارکردن",
         offHoursMsg: "ئێمە لە دەرەوەی کاتژمێرە فەرمییەکانداین. دەتوانیت داواکارییەکەت بنێریت.",
         openTitle: "نووسینگە کراوەیە",
