@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بوابة ديوان مكتب المحامي علي كاظم الهاشمي | AKH Law Office Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Cairo', system-ui, sans-serif; background-color: #f7f9fc; color: #1a1a1a; padding: 30px 16px; display: flex; justify-content: center; min-height: 100vh; align-items: flex-start; }
+.panel { max-width: 950px; width: 100%; background: #ffffff; border-radius: 14px; padding: 30px 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+.brand-section { text-align: center; margin-bottom: 25px; border-bottom: 1.5px solid #edf2f7; padding-bottom: 20px; }
+.logo-text { font-size: 46px; font-weight: 800; letter-spacing: 2px; color: #0b1a30; line-height: 1; }
+.logo-text span { color: #d32f2f; }
+.sub-brand { font-size: 13px; font-weight: 700; color: #111; letter-spacing: 3px; margin-top: 6px; direction: ltr; }
+.sub-brand span { color: #d32f2f; margin-right: 4px; font-weight: 800; }
+.est { font-size: 10.5px; color: #777; letter-spacing: 2px; margin-top: 3px; direction: ltr; }
+.portal-title { font-size: 19px; font-weight: 800; color: #0b1a30; margin-top: 12px; }
+.portal-subtitle-en { font-size: 13px; color: #4a5568; font-weight: 600; margin-top: 3px; direction: ltr; }
+
+.screen-box { text-align: center; padding: 25px 10px; }
+.lock-desc { font-size: 14.5px; color: #4a5568; margin-bottom: 20px; line-height: 1.6; }
+.pin-input { letter-spacing: 8px; font-size: 24px; font-weight: 800; text-align: center; max-width: 260px; margin: 0 auto 16px; }
+.btn-unlock { width: 100%; max-width: 260px; background-color: #0b1a30; color: #ffffff; padding: 13px; border: none; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; font-family: inherit; margin: 0 auto; display: block; }
+.alert-box { padding: 12px 15px; border-radius: 8px; margin-bottom: 18px; font-size: 14px; display: none; }
+.alert-error { background-color: #fde8e8; color: #9b1c1c; }
+
+.top-nav-bar { display: flex; justify-content: space-between; align-items: center; background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 12px 18px; border-radius: 10px; margin-bottom: 25px; flex-wrap: wrap; gap: 10px; }
+.top-nav-bar a, .btn-lock-nav { background-color: #0b1a30; color: #ffffff; text-decoration: none; padding: 7px 14px; border-radius: 6px; font-size: 13px; font-weight: 700; border: none; cursor: pointer; font-family: inherit; transition: 0.3s; }
+.btn-lock-nav { background-color: #e53e3e; }
+
+.grid-modules { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 30px; }
+.module-card { background: #fafafa; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 18px; text-align: right; }
+.module-card h3 { font-size: 15px; font-weight: 800; color: #0b1a30; margin-bottom: 6px; }
+.module-card p { font-size: 12.5px; color: #4a5568; margin-bottom: 12px; line-height: 1.6; }
+.module-link { display: inline-block; background-color: #3182ce; color: #ffffff; padding: 6px 14px; border-radius: 6px; text-decoration: none; font-size: 12px; font-weight: 700; }
+.module-link.disabled { background-color: #e2e8f0; color: #a0aec0; cursor: not-allowed; }
+
+.card-section { background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 22px; margin-bottom: 25px; }
+.card-section h2 { font-size: 16.5px; font-weight: 800; color: #0b1a30; margin-bottom: 16px; border-bottom: 1px dashed #cbd5e0; padding-bottom: 10px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+.card-section h2 span.en-title { font-size: 12.5px; color: #718096; font-weight: 600; direction: ltr; }
+.alert-success { background-color: #def7ec; color: #03543f; padding: 12px 15px; border-radius: 8px; margin-bottom: 20px; font-size: 14px; font-weight: 700; display: none; }
+.form-group { margin-bottom: 16px; }
+label { display: block; font-weight: 700; font-size: 13.5px; margin-bottom: 6px; color: #2d3748; }
+label span.en-label { font-size: 11.5px; color: #718096; font-weight: 600; float: left; direction: ltr; }
+select, input[type="text"], input[type="date"], input[type="password"] { width: 100%; padding: 11px 13px; border: 1.5px solid #cbd5e0; border-radius: 8px; font-family: inherit; font-size: 14px; background-color: #fff; }
+.btn-submit { background-color: #0b1a30; color: #ffffff; border: none; padding: 12px 22px; font-size: 14.5px; font-weight: 700; border-radius: 8px; cursor: pointer; font-family: inherit; }
+table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 13.5px; }
+th, td { padding: 11px; text-align: right; border-bottom: 1px solid #edf2f7; }
+th { background-color: #0b1a30; color: #ffffff; font-weight: 700; }
+tr:hover { background-color: #fafafa; }
+.badge { padding: 4px 8px; border-radius: 4px; font-size: 11.5px; font-weight: 700; }
+.badge-off { background: #fefcbf; color: #744210; }
+.badge-holiday { background: #fed7d7; color: #9b1c1c; }
+</style>
+</head>
+<body>
+
+<div class="panel">
+<div class="brand-section">
+<div class="logo-text">A<span>K</span>H</div>
+<div class="sub-brand"><span>/</span> LAW OFFICE</div>
+<div class="est">EST. 2014</div>
+<div class="portal-title">بوابة ديوان مكتب المحامي علي كاظم الهاشمي</div>
+<div class="portal-subtitle-en">AKH Law Office Chambers Portal</div>
+</div>
+
+<div id="portalAlertBox" class="alert-box alert-error"></div>
+
+<!-- 1. شاشة الإعداد لأول مرة -->
+<div id="portalSetupScreen" class="screen-box" style="display: none;">
+<p class="lock-desc"><strong>إعداد حماية البوابة لأول مرة:</strong><br>أدخل الرمز الطويل (التوكن) مع رمز PIN سري (6 أرقام):</p>
+<div class="form-group" style="max-width: 420px; margin: 0 auto 12px;">
+<input type="password" id="portalSetupTokenInput" placeholder="أدخل رمز GitHub (ghp_...)" dir="ltr">
+</div>
+<div class="form-group" style="max-width: 260px; margin: 0 auto 16px;">
+<input type="password" id="portalSetupPinInput" class="pin-input" maxlength="6" placeholder="******">
+</div>
+<button type="button" class="btn-unlock" onclick="performPortalSetup()">تشفير وحفظ الحماية 🔒</button>
+</div>
+
+<!-- 2. شاشة القفل -->
+<div id="portalLockScreen" class="screen-box" style="display: none;">
+<p class="lock-desc">البوابة محمية بخزنة مشفرة.<br>أدخل رمز الـ PIN السري (6 أرقام) لفك القفل:</p>
+<div class="form-group" style="max-width: 260px; margin: 0 auto 16px;">
+<input type="password" id="portalUnlockPinInput" class="pin-input" maxlength="6" placeholder="******" autofocus>
+</div>
+<button type="button" class="btn-unlock" onclick="attemptPortalPinUnlock()">دخول آمن ←</button>
+</div>
+
+<!-- 3. محتوى البوابة الرئيسي -->
+<div id="portalMainContent" style="display: none;">
+<div class="top-nav-bar">
+<span style="font-size: 13px; font-weight: 700; color: #2d3748;">🟢 النظام محمي ومتصل بـ GitHub API</span>
+<div style="display: flex; gap: 8px;">
+<button type="button" class="btn-lock-nav" onclick="lockPortalSession()">قفل البوابة 🔒</button>
+<a href="portal.html">🔄 تحديث</a>
+<a href="index.html" target="_blank">معاينة 🌐</a>
+</div>
+</div>
+
+<div id="statusAlert" class="alert-success">تم الحفظ وتحديث البيانات على GitHub بنجاح!</div>
+
+<div class="grid-modules">
+<div class="module-card">
+<h3>📚 إدارة التحليلات والآراء <span style="font-size:11px; color:#718096; display:block;">Legal Insights Manager</span></h3>
+<p>منصة نشر، تعديل، إخفاء ومتابعة مشاهدات المقالات.</p>
+<a href="admin.html" class="module-link">فتح المنصة | Open ←</a>
+</div>
+<div class="module-card">
+<h3>👥 إدارة الموكلين والوكالات <span style="font-size:11px; color:#718096; display:block;">Client & POA Management</span></h3>
+<p>أرشيف الموكلين وحفظ الوكالات القضائية.</p>
+<span class="module-link disabled">قريباً | Coming Soon 🔒</span>
+</div>
+<div class="module-card">
+<h3>⚖️ أرشيف المبادئ التمييزية <span style="font-size:11px; color:#718096; display:block;">Judicial Principles Archive</span></h3>
+<p>مكتبة القرارات والمطابقة الذكية.</p>
+<span class="module-link disabled">قريباً | Coming Soon 🔒</span>
+</div>
+</div>
+
+<!-- أ. التحكم بحالة المكتب -->
+<div class="card-section">
+<h2><span>🟢 التحكم الفوري بحالة المكتب</span><span class="en-title">Live Office Status Control</span></h2>
+<form id="statusForm" onsubmit="saveOfficeStatus(event)">
+<div class="form-group">
+<label>حالة المكتب الظاهرة للزوار: <span class="en-label">Office Status Display</span></label>
+<select id="officeStatusSelect">
+<option value="active">🟢 متاح الآن لاستقبال الطلبات (أوقات العمل الرسمية) | Active</option>
+<option value="off_hours">🟡 خارج ساعات العمل الرسمية (عبر الاستمارة فقط) | Off Hours</option>
+<option value="holiday">🔴 إجازة رسمية / عطلة (مفعل) | Holiday / Leave</option>
+</select>
+</div>
+<div class="form-group">
+<label>سبب التعطيل أو ملاحظة مخصصة: <span class="en-label">Custom Note</span></label>
+<input type="text" id="officeNoteInput" placeholder="مثلاً: عطلة رسمية بقرار مجلس الوزراء...">
+</div>
+<button type="submit" class="btn-submit">حفظ وتحديث على غيت هب 💾</button>
+</form>
+</div>
+
+<!-- ب. إضافة عطلة طارئة -->
+<div class="card-section">
+<h2><span>⚡ إضافة عطلة استثنائية أو طارئة</span><span class="en-title">Add Emergency Holiday</span></h2>
+<form id="holidayForm" onsubmit="saveCustomHoliday(event)">
+<div class="form-group">
+<label>اسم المناسبة أو العطلة الطارئة: <span class="en-label">Holiday Name</span></label>
+<input type="text" id="holidayNameInput" placeholder="مثلاً: عطلة رسمية بقرار مجلس الوزراء..." required>
+</div>
+<div class="form-group">
+<label>التاريخ: <span class="en-label">Date</span></label>
+<input type="date" id="holidayDateInput" required>
+</div>
+<button type="submit" class="btn-submit" style="background-color: #3182ce;">إضافة العطلة للجدول ➕</button>
+</form>
+
+<h3 style="font-size: 14.5px; margin-top: 22px; color: #0b1a30; margin-bottom: 10px;">العطل الاستثنائية المضافة حالياً:</h3>
+<table id="customHolidaysTable">
+<thead><tr><th>اسم المناسبة</th><th>التاريخ</th></tr></thead>
+<tbody><tr><td colspan="2" style="text-align:center; color:#718096;">جارٍ الجلب من غيت هب...</td></tr></tbody>
+</table>
+</div>
+
+<!-- ج. جدول العطل الرسمية الأساسية -->
+<div class="card-section">
+<h2><span>📅 جدول العطل الرسمية الأساسية في العراق</span><span class="en-title">Official Iraqi Holidays</span></h2>
+<table>
+<thead><tr><th>اسم العطلة محلياً (العراق)</th><th>التسمية المعيارية</th><th>التاريخ</th></tr></thead>
+<tbody>
+<tr><td><strong>رأس السنة الميلادية (1 كانون الثاني)</strong></td><td>New Year's Day</td><td>2026-01-01</td></tr>
+<tr><td><strong>عيد الجيش العراقي (6 كانون الثاني)</strong></td><td>Iraqi Army Day</td><td>2026-01-06</td></tr>
+<tr><td><strong>ذكرى جرائم النظام البائد (حلبجة والأنفال)</strong></td><td>Halabja & Anfal Memorial</td><td>2026-03-16</td></tr>
+<tr><td><strong>عيد نوروز (21 آذار)</strong></td><td>Newroz</td><td>2026-03-21</td></tr>
+<tr><td><strong>عيد العمال العالمي (1 أيار)</strong></td><td>International Workers' Day</td><td>2026-05-01</td></tr>
+<tr><td><strong>رأس السنة الهجرية (1 محرم)</strong></td><td>Islamic New Year</td><td>متغير / Variable</td></tr>
+<tr><td><strong>يوم عاشوراء (10 محرم)</strong></td><td>Ashura Day</td><td>متغير / Variable</td></tr>
+<tr><td><strong>المولد النبوي الشريف (12 ربيع الأول)</strong></td><td>The Prophet's Birthday</td><td>متغير / Variable</td></tr>
+<tr><td><strong>عيد الفطر المبارك (1-3 شوال)</strong></td><td>Eid al-Fitr</td><td>متغير / Variable</td></tr>
+<tr><td><strong>عيد الأضحى المبارك (10-13 ذي الحجة)</strong></td><td>Eid al-Adha</td><td>متغير / Variable</td></tr>
+<tr><td><strong>يوم الغدير (18 ذي الحجة)</strong></td><td>Al-Ghadir Day</td><td>متغير / Variable</td></tr>
+<tr><td><strong>ذكرى تأسيس الجمهورية (14 تموز)</strong></td><td>Republic Foundation Day</td><td>2026-07-14</td></tr>
+<tr><td><strong>العيد الوطني لجمهورية العراق</strong></td><td>National Day of Iraq</td><td>2026-10-03</td></tr>
+</tbody>
+</table>
+</div>
+
+</div>
+</div>
+
+<script>
+const REPO_OWNER = 'akjassem-netizen';
+const REPO_NAME = 'Site';
+const BRANCH = 'main';
+let ACTIVE_TOKEN = '';
+
+async function deriveKey(pin, salt) {
+const enc = new TextEncoder();
+const keyMaterial = await crypto.subtle.importKey('raw', enc.encode(pin), { name: 'PBKDF2' }, false, ['deriveKey']);
+return crypto.subtle.deriveKey({ name: 'PBKDF2', salt: salt, iterations: 100000, hash: 'SHA-256' }, keyMaterial, { name: 'AES-GCM', length: 256 }, false, ['encrypt', 'decrypt']);
+}
+
+async function encryptToken(token, pin) {
+const enc = new TextEncoder();
+const salt = crypto.getRandomValues(new Uint8Array(16));
+const iv = crypto.getRandomValues(new Uint8Array(12));
+const key = await deriveKey(pin, salt);
+const encrypted = await crypto.subtle.encrypt({ name: 'AES-GCM', iv: iv }, key, enc.encode(token));
+return { salt: Array.from(salt), iv: Array.from(iv), data: Array.from(new Uint8Array(encrypted)) };
+}
+
+async function decryptToken(encryptedObj, pin) {
+const salt = new Uint8Array(encryptedObj.salt);
+const iv = new Uint8Array(encryptedObj.iv);
+const data = new Uint8Array(encryptedObj.data);
+const key = await deriveKey(pin, salt);
+const decrypted = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: iv }, key, data);
+return new TextDecoder().decode(decrypted);
+}
+
+window.onload = function() {
+const savedVault = localStorage.getItem('akh_portal_vault');
+const savedToken = sessionStorage.getItem('akh_portal_active_token');
+
+if (savedToken) {
+ACTIVE_TOKEN = savedToken;
+document.getElementById('portalMainContent').style.display = 'block';
+loadPortalData();
+} else if (savedVault) {
+document.getElementById('portalLockScreen').style.display = 'block';
+} else {
+document.getElementById('portalSetupScreen').style.display = 'block';
+}
+};
+
+async function performPortalSetup() {
+const token = document.getElementById('portalSetupTokenInput').value.trim();
+const pin = document.getElementById('portalSetupPinInput').value.trim();
+if (!token) { showPortalAlert('يرجى إدخال التوكن.'); return; }
+if (pin.length !== 6) { showPortalAlert('رمز الـ PIN يجب أن يكون 6 أرقام.'); return; }
+try {
+const vaultObj = await encryptToken(token, pin);
+localStorage.setItem('akh_portal_vault', JSON.stringify(vaultObj));
+ACTIVE_TOKEN = token;
+sessionStorage.setItem('akh_portal_active_token', token);
+document.getElementById('portalSetupScreen').style.display = 'none';
+document.getElementById('portalMainContent').style.display = 'block';
+loadPortalData();
+} catch(e) { showPortalAlert('خطأ في التشفير.'); }
+}
+
+async function attemptPortalPinUnlock() {
+const pin = document.getElementById('portalUnlockPinInput').value.trim();
+try {
+const vaultObj = JSON.parse(localStorage.getItem('akh_portal_vault'));
+ACTIVE_TOKEN = await decryptToken(vaultObj, pin);
+sessionStorage.setItem('akh_portal_active_token', ACTIVE_TOKEN);
+document.getElementById('portalLockScreen').style.display = 'none';
+document.getElementById('portalMainContent').style.display = 'block';
+loadPortalData();
+} catch(e) {
+showPortalAlert('رمز الـ PIN غير صحيح.');
+document.getElementById('portalUnlockPinInput').value = '';
+}
+}
+
+function lockPortalSession() {
+sessionStorage.removeItem('akh_portal_active_token');
+location.reload();
+}
+
+function showPortalAlert(msg) {
+const box = document.getElementById('portalAlertBox');
+box.innerText = msg;
+box.style.display = 'block';
+setTimeout(() => { box.style.display = 'none'; }, 4000);
+}
+
+function utf8_to_b64(str) { return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(match, p1) { return String.fromCharCode('0x' + p1); })); }
+function b64_to_utf8(b64) { return decodeURIComponent(atob(b64.replace(/\s/g, '')).split('').map(function(c) { return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2); }).join('')); }
+
+async function loadPortalData() {
+try {
+const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/office_status.json?ref=${BRANCH}`, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
+if(res.ok) {
+const data = await res.json();
+const statusObj = JSON.parse(b64_to_utf8(data.content));
+document.getElementById('officeStatusSelect').value = statusObj.status || 'active';
+document.getElementById('officeNoteInput').value = statusObj.note || '';
+}
+} catch(e) {}
+
+try {
+const res2 = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/custom_holidays.json?ref=${BRANCH}`, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
+if(res2.ok) {
+const data2 = await res2.json();
+const holidays = JSON.parse(b64_to_utf8(data2.content));
+const tbody = document.querySelector('#customHolidaysTable tbody');
+tbody.innerHTML = '';
+if(holidays.length === 0) {
+tbody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:#718096;">لا توجد عطل استثنائية مضافة.</td></tr>';
+} else {
+holidays.forEach(h => {
+tbody.innerHTML += `<tr><td><strong>${h.name}</strong></td><td><span class="badge badge-holiday">${h.date}</span></td></tr>`;
+});
+}
+}
+} catch(e) {}
+}
+
+async function saveOfficeStatus(e) {
+e.preventDefault();
+const status = document.getElementById('officeStatusSelect').value;
+const note = document.getElementById('officeNoteInput').value.trim();
+const statusObj = { status, note, updated_at: new Date().toISOString() };
+const contentStr = JSON.stringify(statusObj, null, 2);
+
+try {
+let sha = '';
+const getRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/office_status.json?ref=${BRANCH}`, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
+if(getRes.ok) { const d = await getRes.json(); sha = d.sha; }
+
+const putRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/office_status.json`, {
+method: 'PUT',
+headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}`, 'Content-Type': 'application/json' },
+body: JSON.stringify({ message: 'Update office status', content: utf8_to_b64(contentStr), sha: sha, branch: BRANCH })
+});
+if(!putRes.ok) throw new Error('فشل الحفظ.');
+const alertEl = document.getElementById('statusAlert');
+alertEl.style.display = 'block';
+setTimeout(() => alertEl.style.display = 'none', 3000);
+} catch(err) { alert('خطأ: ' + err.message); }
+}
+
+async function saveCustomHoliday(e) {
+e.preventDefault();
+const name = document.getElementById('holidayNameInput').value.trim();
+const date = document.getElementById('holidayDateInput').value;
+if(!name || !date) return;
+
+try {
+let holidays = [];
+let sha = '';
+const getRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/custom_holidays.json?ref=${BRANCH}`, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
+if(getRes.ok) {
+const d = await getRes.json();
+sha = d.sha;
+holidays = JSON.parse(b64_to_utf8(d.content));
+}
+holidays.push({ name, date });
+const contentStr = JSON.stringify(holidays, null, 2);
+
+const putRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/custom_holidays.json`, {
+method: 'PUT',
+headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}`, 'Content-Type': 'application/json' },
+body: JSON.stringify({ message: 'Add custom holiday', content: utf8_to_b64(contentStr), sha: sha, branch: BRANCH })
+});
+if(!putRes.ok) throw new Error('فشل الحفظ.');
+document.getElementById('holidayForm').reset();
+loadPortalData();
+alert('تمت إضافة العطلة بنجاح ➕');
+} catch(err) { alert('خطأ: ' + err.message); }
+}
+</script>
+</body>
+</html>
