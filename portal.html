@@ -100,7 +100,7 @@ tr:hover { background-color: #fafafa; }
 </div>
 
 <div id="portalSetupScreen" class="screen-box" style="display: none;">
-<p class="lock-desc"><strong>إعداد حماية البوابة لأول مرة:</strong><br>أدخل الرمز التوكن مع رمز PIN سري (6 أرقام):</p>
+<p class="lock-desc"><strong>إعداد حماية البوابة لأول مرة:</strong><br>أدخل رمز التوكن مع رمز PIN سري (6 أرقام):</p>
 <div class="form-group" style="max-width: 400px; margin: 0 auto 12px;">
 <input type="password" id="portalSetupTokenInput" placeholder="أدخل رمز GitHub (ghp_...)" dir="ltr" style="-webkit-text-security: disc;">
 </div>
@@ -161,64 +161,63 @@ tr:hover { background-color: #fafafa; }
 </div>
 
 <div class="card-section">
-<h2><span>📊 نظام التقارير والإحصائيات المعياري</span><span class="en-title">Executive Reporting Suite</span></h2>
-
+<h2><span>📊 نظام التقارير والإحصائيات المعياري (عربي / إنجليزي)</span><span class="en-title">Executive Reporting Suite (AR / EN)</span></h2>
 
 <div class="form-group">
-  <label>اختر نوع التقرير المطلوب:</label>
+  <label>اختر نوع التقرير المطلوب / Select Report Type:</label>
   <select id="reportTypeSelect" onchange="toggleReportInputs()">
-    <option value="custom">📅 فترة زمنية مخصصة (من تاريخ إلى تاريخ)</option>
-    <option value="monthly">🗓️ تقرير شهري</option>
-    <option value="quarterly">📈 تقرير ربع سنوي (الربعي المالي/الإداري)</option>
-    <option value="annual">🏆 تقرير سنوي شامل</option>
+    <option value="custom">📅 فترة زمنية مخصصة | Custom Date Range</option>
+    <option value="monthly">🗓️ تقرير شهري | Monthly Report</option>
+    <option value="quarterly">📈 تقرير ربع سنوي | Quarterly Report (Q1-Q4)</option>
+    <option value="annual">🏆 تقرير سنوي شامل | Annual Comprehensive Report</option>
   </select>
 </div>
 
 <div id="customRangeBox" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
-  <div class="form-group" style="margin:0;"><label>من تاريخ:</label><input type="date" id="reportStartDate" onchange="calculateHolidayStats()"></div>
-  <div class="form-group" style="margin:0;"><label>إلى تاريخ:</label><input type="date" id="reportEndDate" onchange="calculateHolidayStats()"></div>
+  <div class="form-group" style="margin:0;"><label>من تاريخ | Start Date:</label><input type="date" id="reportStartDate" onchange="calculateHolidayStats()"></div>
+  <div class="form-group" style="margin:0;"><label>إلى تاريخ | End Date:</label><input type="date" id="reportEndDate" onchange="calculateHolidayStats()"></div>
 </div>
 
 <div id="monthlyBox" style="display: none; margin-bottom: 12px;">
-  <div class="form-group" style="margin:0;"><label>اختر الشهر:</label><input type="month" id="reportMonthInput" onchange="calculateHolidayStats()"></div>
+  <div class="form-group" style="margin:0;"><label>اختر الشهر | Select Month:</label><input type="month" id="reportMonthInput" onchange="calculateHolidayStats()"></div>
 </div>
 
 <div id="quarterlyBox" style="display: none; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
-  <div class="form-group" style="margin:0;"><label>اختر السنة:</label><input type="number" id="reportQYear" value="2026" onchange="calculateHolidayStats()"></div>
+  <div class="form-group" style="margin:0;"><label>اختر السنة | Year:</label><input type="number" id="reportQYear" value="2026" onchange="calculateHolidayStats()"></div>
   <div class="form-group" style="margin:0;">
-    <label>الربع السنوي:</label>
+    <label>الربع السنوي | Quarter:</label>
     <select id="reportQuarter" onchange="calculateHolidayStats()">
-      <option value="Q1">الربع الأول (1 كانون الثاني - 31 آذار)</option>
-      <option value="Q2">الربع الثاني (1 نيسان - 30 حزيران)</option>
-      <option value="Q3">الربع الثالث (1 تموز - 30 أيلول)</option>
-      <option value="Q4">الربع الرابع (1 تشرين الأول - 31 كانون الأول)</option>
+      <option value="Q1">الربع الأول (كانون الثاني - آذار) | Q1 (Jan - Mar)</option>
+      <option value="Q2">الربع الثاني (نيسان - حزيران) | Q2 (Apr - Jun)</option>
+      <option value="Q3">الربع الثالث (تموز - أيلول) | Q3 (Jul - Sep)</option>
+      <option value="Q4">الربع الرابع (تشرين الأول - كانون الأول) | Q4 (Oct - Dec)</option>
     </select>
   </div>
 </div>
 
 <div id="annualBox" style="display: none; margin-bottom: 12px;">
-  <div class="form-group" style="margin:0;"><label>اختر السنة:</label><input type="number" id="reportYearInput" value="2026" onchange="calculateHolidayStats()"></div>
+  <div class="form-group" style="margin:0;"><label>اختر السنة | Select Year:</label><input type="number" id="reportYearInput" value="2026" onchange="calculateHolidayStats()"></div>
 </div>
 
 <div class="stats-grid">
   <div class="stat-box">
-    <div class="lbl">إجمالي أيام الفترة</div>
+    <div class="lbl">إجمالي أيام الفترة / Total Days</div>
     <div class="num" id="statTotalDays">--</div>
   </div>
   <div class="stat-box">
-    <div class="lbl">عطل الويكند (جمعة وسبت)</div>
+    <div class="lbl">عطل الويكند / Weekends</div>
     <div class="num" id="statWeekends" style="color: #d32f2f;">--</div>
   </div>
   <div class="stat-box">
-    <div class="lbl">عطل رسمية واستثنائية</div>
+    <div class="lbl">عطل رسمية / Official Holidays</div>
     <div class="num" id="statHolidays" style="color: #c05621;">--</div>
   </div>
   <div class="stat-box">
-    <div class="lbl">صافي أيام الدوام الفعلي</div>
+    <div class="lbl">أيام الدوام الفعلي / Workdays</div>
     <div class="num" id="statWorkdays" style="color: #16a34a;">--</div>
   </div>
 </div>
-<button type="button" class="btn-submit" style="background-color: #0b1a30; color: #c5a059; border: 1.5px solid #c5a059; margin-top: 10px;" onclick="exportHolidayReportPDF()">📄 تصدار التقرير الرسمي بالمواصفات العالمية (PDF)</button>
+<button type="button" class="btn-submit" style="background-color: #0b1a30; color: #c5a059; border: 1.5px solid #c5a059; margin-top: 10px;" onclick="exportHolidayReportPDF()">🖨️ طباعة وتصدير التقرير الرسمي (PDF) | Print & Export Report</button>
 </div>
 
 <div class="card-section">
@@ -439,12 +438,13 @@ function toggleReportInputs() {
 
 function getActiveReportRange() {
   const type = document.getElementById('reportTypeSelect').value;
-  let startStr = "", endStr = "", label = "";
+  let startStr = "", endStr = "", labelAr = "", labelEn = "";
 
   if(type === 'custom') {
     startStr = document.getElementById('reportStartDate').value;
     endStr = document.getElementById('reportEndDate').value;
-    label = `فترة مخصصة (من ${startStr} إلى ${endStr})`;
+    labelAr = `تقرير فترة زمنية مخصصة (من ${startStr} إلى ${endStr})`;
+    labelEn = `Custom Period Report (${startStr} to ${endStr})`;
   } else if(type === 'monthly') {
     const monthVal = document.getElementById('reportMonthInput').value; // YYYY-MM
     if(!monthVal) return null;
@@ -452,25 +452,27 @@ function getActiveReportRange() {
     const lastD = new Date(parseInt(y), parseInt(m), 0).getDate();
     startStr = `${monthVal}-01`;
     endStr = `${monthVal}-${lastD}`;
-    label = `تقرير شهري (شهر ${monthVal})`;
+    labelAr = `التقرير الشهري الرسمي - شهر (${monthVal})`;
+    labelEn = `Official Monthly Report - (${monthVal})`;
   } else if(type === 'quarterly') {
     const qYear = document.getElementById('reportQYear').value;
     const quarter = document.getElementById('reportQuarter').value;
     if(!qYear) return null;
-    if(quarter === 'Q1') { startStr = `${qYear}-01-01`; endStr = `${qYear}-03-31`; label = `تقرير ربع سنوي - الربع الأول (${qYear})`; }
-    else if(quarter === 'Q2') { startStr = `${qYear}-04-01`; endStr = `${qYear}-06-30`; label = `تقرير ربع سنوي - الربع الثاني (${qYear})`; }
-    else if(quarter === 'Q3') { startStr = `${qYear}-07-01`; endStr = `${qYear}-09-30`; label = `تقرير ربع سنوي - الربع الثالث (${qYear})`; }
-    else if(quarter === 'Q4') { startStr = `${qYear}-10-01`; endStr = `${qYear}-12-31`; label = `تقرير ربع سنوي - الربع الرابع (${qYear})`; }
+    if(quarter === 'Q1') { startStr = `${qYear}-01-01`; endStr = `${qYear}-03-31`; labelAr = `التقرير الربع سنوي - الربع الأول (${qYear})`; labelEn = `Quarterly Report - Q1 (${qYear})`; }
+    else if(quarter === 'Q2') { startStr = `${qYear}-04-01`; endStr = `${qYear}-06-30`; labelAr = `التقرير الربع سنوي - الربع الثاني (${qYear})`; labelEn = `Quarterly Report - Q2 (${qYear})`; }
+    else if(quarter === 'Q3') { startStr = `${qYear}-07-01`; endStr = `${qYear}-09-30`; labelAr = `التقرير الربع سنوي - الربع الثالث (${qYear})`; labelEn = `Quarterly Report - Q3 (${qYear})`; }
+    else if(quarter === 'Q4') { startStr = `${qYear}-10-01`; endStr = `${qYear}-12-31`; labelAr = `التقرير الربع سنوي - الربع الرابع (${qYear})`; labelEn = `Quarterly Report - Q4 (${qYear})`; }
   } else if(type === 'annual') {
     const yearVal = document.getElementById('reportYearInput').value;
     if(!yearVal) return null;
     startStr = `${yearVal}-01-01`;
     endStr = `${yearVal}-12-31`;
-    label = `تقرير سنوي شامل لعام ${yearVal}`;
+    labelAr = `التقرير السنوي الشامل لعام (${yearVal})`;
+    labelEn = `Comprehensive Annual Report (${yearVal})`;
   }
 
   if(!startStr || !endStr) return null;
-  return { start: new Date(startStr), end: new Date(endStr), label, startStr, endStr };
+  return { start: new Date(startStr), end: new Date(endStr), labelAr, labelEn, startStr, endStr };
 }
 
 function calculateHolidayStats() {
@@ -521,7 +523,7 @@ function calculateHolidayStats() {
   document.getElementById('statWorkdays').innerText = netWorkdays;
 }
 
-// دالة تصدير التقرير الرسمي بالمواصفات والمعايير العالمية الراقية
+// دالة تصدير التقرير الرسمي بالمواصفات الثنائية (عربي / إنجليزي) لمكتب المحاماة
 function exportHolidayReportPDF() {
   const range = getActiveReportRange();
   if(!range) {
@@ -542,7 +544,7 @@ function exportHolidayReportPDF() {
       if(hDate >= range.start && hDate <= range.end) {
         rangeHolidaysHTML += `<tr>
           <td style="border: 1px solid #cbd5e0; padding: 10px; text-align: right;"><strong>${h.name}</strong></td>
-          <td style="border: 1px solid #cbd5e0; padding: 10px; text-align: center;"><span style="color:#9b1c1c; font-weight: bold;">عطلة رسمية / طارئة</span></td>
+          <td style="border: 1px solid #cbd5e0; padding: 10px; text-align: center;"><span style="color:#9b1c1c; font-weight: bold;">عطلة رسمية / Official Holiday</span></td>
           <td style="border: 1px solid #cbd5e0; padding: 10px; text-align: center; direction: ltr; unicode-bidi: embed;">${h.date}</td>
         </tr>`;
       }
@@ -550,10 +552,10 @@ function exportHolidayReportPDF() {
   });
 
   if(rangeHolidaysHTML === "") {
-    rangeHolidaysHTML = `<tr><td colspan="3" style="border: 1px solid #cbd5e0; padding: 12px; text-align: center; color: #718096;">لا توجد عطل استثنائية مسجلة خلال هذه الفترة المحددة.</td></tr>`;
+    rangeHolidaysHTML = `<tr><td colspan="3" style="border: 1px solid #cbd5e0; padding: 12px; text-align: center; color: #718096;">لا توجد عطل استثنائية مسجلة خلال هذه الفترة / No special holidays recorded during this period.</td></tr>`;
   }
 
-  const refNumber = "AKH-REP-" + Math.floor(100000 + Math.random() * 900000);
+  const refNumber = "AKH-LEG-REP-" + Math.floor(100000 + Math.random() * 900000);
   const issueDate = new Date().toISOString().split('T')[0];
 
   const printWindow = window.open('', '_blank');
@@ -562,24 +564,31 @@ function exportHolidayReportPDF() {
     <html lang="ar" dir="rtl">
     <head>
       <meta charset="UTF-8">
-      <title>${range.label} - ديوان المحامي علي كاظم الهاشمي</title>
+      <title>${range.labelAr} - مكتب المحامي علي كاظم الهاشمي</title>
       <style>
-        body { font-family: 'Cairo', Arial, sans-serif; color: #0f172a; padding: 40px; margin: 0; background: #fff; }
-        .print-header { text-align: center; border-bottom: 3.5px solid #c5a059; padding-bottom: 18px; margin-bottom: 30px; direction: ltr; }
-        .logo-text { font-size: 42px; font-weight: 900; letter-spacing: 3px; color: #0f172a; line-height: 1; }
+        body { font-family: 'Cairo', Arial, sans-serif; color: #0f172a; padding: 35px; margin: 0; background: #fff; }
+        .print-header { text-align: center; border-bottom: 3.5px solid #c5a059; padding-bottom: 18px; margin-bottom: 25px; }
+        .logo-text { font-size: 38px; font-weight: 900; letter-spacing: 3px; color: #0f172a; line-height: 1; direction: ltr; }
         .logo-text span { color: #dc2626; }
-        .sub-title { font-size: 11.5px; font-weight: 700; color: #0f172a; letter-spacing: 3px; margin-top: 6px; }
-        .sub-title span { color: #dc2626; margin-right: 3px; }
-        .est { font-size: 10px; color: #64748b; letter-spacing: 2px; margin-top: 4px; }
-        .report-title { text-align: center; font-size: 20px; font-weight: 900; color: #0f172a; margin-bottom: 25px; direction: rtl; letter-spacing: 0.5px; }
-        .meta-box { display: flex; justify-content: space-between; font-size: 13px; font-weight: 700; margin-bottom: 25px; direction: rtl; background: #f8fafc; padding: 14px 18px; border-radius: 8px; border: 1.5px solid #e2e8f0; }
-        .stats-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; direction: rtl; font-size: 13.5px; }
-        .stats-table th, .stats-table td { border: 1px solid #cbd5e0; padding: 12px; text-align: center; }
-        .stats-table th { background-color: #0f172a; color: #ffffff; font-weight: 700; }
-        .details-title { font-size: 16px; font-weight: 800; color: #0f172a; margin-bottom: 12px; direction: rtl; border-right: 5px solid #c5a059; padding-right: 10px; }
-        .footer-note { margin-top: 50px; font-size: 13px; font-weight: 700; direction: rtl; display: flex; justify-content: space-between; align-items: flex-end; border-top: 2px solid #e2e8f0; padding-top: 20px; }
+        .office-name-ar { font-size: 16px; font-weight: 800; color: #0f172a; margin-top: 8px; }
+        .office-name-en { font-size: 12.5px; font-weight: 700; color: #475569; letter-spacing: 1.5px; margin-top: 3px; direction: ltr; }
+        .est { font-size: 10px; color: #64748b; letter-spacing: 2px; margin-top: 3px; direction: ltr; }
+        
+        .report-title-box { text-align: center; margin-bottom: 20px; background: #f8fafc; border: 1.5px solid #e2e8f0; padding: 14px; border-radius: 8px; }
+        .report-title-ar { font-size: 17px; font-weight: 900; color: #0f172a; margin-bottom: 4px; }
+        .report-title-en { font-size: 13px; font-weight: 700; color: #475569; direction: ltr; }
+
+        .meta-box { display: flex; justify-content: space-between; font-size: 12.5px; font-weight: 700; margin-bottom: 22px; direction: rtl; background: #fff; padding: 10px 14px; border-radius: 8px; border: 1px solid #cbd5e0; }
+        
+        .stats-table { width: 100%; border-collapse: collapse; margin-bottom: 25px; direction: rtl; font-size: 13px; }
+        .stats-table th, .stats-table td { border: 1px solid #cbd5e0; padding: 10px; text-align: center; }
+        .stats-table th { background-color: #0f172a; color: #ffffff; font-weight: 700; font-size: 12.5px; }
+        
+        .details-title { font-size: 15px; font-weight: 800; color: #0f172a; margin-bottom: 10px; direction: rtl; border-right: 5px solid #c5a059; padding-right: 10px; }
+        
+        .footer-note { margin-top: 40px; font-size: 12.5px; font-weight: 700; direction: rtl; display: flex; justify-content: space-between; align-items: flex-end; border-top: 2px solid #e2e8f0; padding-top: 18px; }
         @media print {
-          body { padding: 15px; }
+          body { padding: 10px; }
           .no-print { display: none; }
         }
       </style>
@@ -587,44 +596,48 @@ function exportHolidayReportPDF() {
     <body>
       <div class="print-header">
         <div class="logo-text">A<span>K</span>H</div>
-        <div class="sub-title"><span>/</span> LAW OFFICE</div>
+        <div class="office-name-ar">مكتب المحامي علي كاظم الهاشمي للمحاماة والخدمات القانونية والاستشارات</div>
+        <div class="office-name-en">AKH LAW OFFICE — Advocacy, Legal Services & Consultancy</div>
         <div class="est">EST. 2014</div>
       </div>
 
-      <div class="report-title">${range.label}</div>
+      <div class="report-title-box">
+        <div class="report-title-ar">${range.labelAr}</div>
+        <div class="report-title-en">${range.labelEn}</div>
+      </div>
 
       <div class="meta-box">
         <div>
-          <span>المكتب: المحامي علي كاظم الهاشمي للاستشارات القانونية</span><br>
-          <span style="font-size: 11.5px; color: #64748b;">رقم التقرير المرجعي: ${refNumber} | تاريخ الإصدار: ${issueDate}</span>
+          <span>المرجع المرجعي / Reference No: <strong>${refNumber}</strong></span><br>
+          <span style="font-size: 11.5px; color: #475569;">تاريخ الإصدار / Issue Date: ${issueDate}</span>
         </div>
         <div style="direction: ltr; unicode-bidi: embed; text-align: left;">
-          <span>النطاق: ${range.startStr} ➔ ${range.endStr}</span>
+          <span>Period Range: <strong>${range.startStr}</strong> to <strong>${range.endStr}</strong></span>
         </div>
       </div>
 
       <table class="stats-table">
         <tr>
-          <th>إجمالي أيام الفترة</th>
-          <th>عطل الويكند (جمعة وسبت)</th>
-          <th>العطل الرسمية والطارئة</th>
-          <th>صافي أيام الدوام الفعلي</th>
+          <th>إجمالي أيام الفترة<br><span style="font-size:10.5px; font-weight:normal;">Total Days</span></th>
+          <th>عطل الويكند (جمعة وسبت)<br><span style="font-size:10.5px; font-weight:normal;">Weekends (Fri & Sat)</span></th>
+          <th>العطل الرسمية والطارئة<br><span style="font-size:10.5px; font-weight:normal;">Official & Custom Holidays</span></th>
+          <th>صافي أيام الدوام الفعلي<br><span style="font-size:10.5px; font-weight:normal;">Net Working Days</span></th>
         </tr>
         <tr>
-          <td><strong>${totalDays}</strong> يوم</td>
-          <td><strong style="color: #dc2626;">${weekends}</strong> يوم</td>
-          <td><strong style="color: #c05621;">${holidays}</strong> يوم</td>
-          <td><strong style="color: #16a34a;">${workdays}</strong> يوم</td>
+          <td><strong>${totalDays}</strong> يوم / Days</td>
+          <td><strong style="color: #dc2626;">${weekends}</strong> يوم / Days</td>
+          <td><strong style="color: #c05621;">${holidays}</strong> يوم / Days</td>
+          <td><strong style="color: #16a34a;">${workdays}</strong> يوم / Days</td>
         </tr>
       </table>
 
-      <div class="details-title">تفاصيل العطل والفعاليات خلال هذه الفترة المحددة:</div>
+      <div class="details-title">تفاصيل العطل الرسمية والاستثنائية خلال هذه الفترة / Holidays Details:</div>
       <table class="stats-table">
         <thead>
           <tr>
-            <th style="text-align: right;">اسم المناسبة أو العطلة</th>
-            <th style="text-align: center;">التصنيف</th>
-            <th style="text-align: center;">التاريخ</th>
+            <th style="text-align: right;">اسم المناسبة أو العطلة / Holiday Name</th>
+            <th style="text-align: center;">التصنيف / Category</th>
+            <th style="text-align: center;">التاريخ / Date</th>
           </tr>
         </thead>
         <tbody>
@@ -635,16 +648,16 @@ function exportHolidayReportPDF() {
       <div class="footer-note">
         <div>
           <span>العنوان: بغداد - زيونة - قرب دار الأزياء العراقية</span><br>
-          <span>هاتف المكتب: <span dir="ltr" style="unicode-bidi: embed; display: inline-block;">+964 783 875 9047</span></span>
+          <span>Baghdad - Zayouna, Iraq | Phone: <span dir="ltr" style="unicode-bidi: embed; display: inline-block;">+964 783 875 9047</span></span>
         </div>
         <div style="text-align: center;">
-          <span>توقيع وختم المحامي المعتمد</span><br><br><br>
+          <span>توقيع وختم المحامي المعتمد<br>Certified Legal Counsel Signature & Seal</span><br><br><br>
           <span>........................................</span>
         </div>
       </div>
 
-      <div style="text-align: center; margin-top: 40px;" class="no-print">
-        <button onclick="window.print()" style="background: #0f172a; color: #c5a059; border: 2.5px solid #c5a059; padding: 12px 30px; font-size: 16px; font-weight: bold; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">🖨️ طباعة التقرير أو حفظه كملف PDF رسمي</button>
+      <div style="text-align: center; margin-top: 35px;" class="no-print">
+        <button onclick="window.print()" style="background: #0f172a; color: #c5a059; border: 2.5px solid #c5a059; padding: 12px 28px; font-size: 15px; font-weight: bold; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">🖨️ طباعة وتصدير التقرير الرسمي (PDF) | Print & Export Official Report</button>
       </div>
     </body>
     </html>
