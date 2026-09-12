@@ -75,7 +75,7 @@ tr:hover { background-color: #fafafa; }
 <div class="panel">
 <div class="brand-section">
 <div class="logo-text">A<span>K</span>H</div>
-<div class="sub-title"><span>/</span> LAW OFFICE</div>
+<div class="sub-title"><span style="color: #d32f2f;">/</span> LAW OFFICE</div>
 <div class="est">EST. 2014</div>
 <div class="portal-title">بوابة ديوان مكتب المحامي علي كاظم الهاشمي</div>
 </div>
@@ -360,7 +360,6 @@ async function decryptToken(encryptedObj, pin) {
   return new TextDecoder().decode(decrypted);
 }
 
-// دوال إعداد وفك حماية الخزنة المشفرة
 async function performPortalSetup() {
   const token = document.getElementById('portalSetupTokenInput').value.trim();
   const pin = document.getElementById('portalSetupPinInput').value.trim();
@@ -571,6 +570,7 @@ function calculateHolidayStats() {
   document.getElementById('statWorkdays').innerText = netWorkdays;
 }
 
+// تصدير التقرير بالمعيار الدولي: شعار صافي ونظيف بالأعلى، واسم المكتب الرسمي فوق عنوان التقرير
 function exportHolidayReportPDF() {
   const range = getActiveReportRange();
   if(!range) {
@@ -614,16 +614,18 @@ function exportHolidayReportPDF() {
       <title>${range.labelAr} - مكتب المحامي علي كاظم الهاشمي</title>
       <style>
         body { font-family: 'Cairo', Arial, sans-serif; color: #0f172a; padding: 35px; margin: 0; background: #fff; }
-        .print-header { text-align: center; border-bottom: 3.5px solid #c5a059; padding-bottom: 18px; margin-bottom: 25px; }
-        .logo-text { font-size: 38px; font-weight: 900; letter-spacing: 3px; color: #0f172a; line-height: 1; direction: ltr; }
+        .print-header { text-align: center; border-bottom: 3.5px solid #c5a059; padding-bottom: 16px; margin-bottom: 22px; }
+        .logo-text { font-size: 40px; font-weight: 900; letter-spacing: 3px; color: #0f172a; line-height: 1; direction: ltr; }
         .logo-text span { color: #dc2626; }
-        .office-name-ar { font-size: 16px; font-weight: 800; color: #0f172a; margin-top: 8px; }
-        .office-name-en { font-size: 12.5px; font-weight: 700; color: #475569; letter-spacing: 1.5px; margin-top: 3px; direction: ltr; }
-        .est { font-size: 10px; color: #64748b; letter-spacing: 2px; margin-top: 3px; direction: ltr; }
+        .sub-title { font-size: 12px; font-weight: 700; color: #111; letter-spacing: 3px; margin-top: 5px; direction: ltr; }
+        .sub-title span { color: #dc2626; margin-right: 4px; font-weight: 800; }
+        .est { font-size: 9.5px; color: #64748b; letter-spacing: 2px; margin-top: 3px; direction: ltr; }
         
         .report-title-box { text-align: center; margin-bottom: 20px; background: #f8fafc; border: 1.5px solid #e2e8f0; padding: 14px; border-radius: 8px; }
-        .report-title-ar { font-size: 17px; font-weight: 900; color: #0f172a; margin-bottom: 4px; }
-        .report-title-en { font-size: 13px; font-weight: 700; color: #475569; direction: ltr; }
+        .office-name-ar { font-size: 14.5px; font-weight: 800; color: #0f172a; margin-bottom: 4px; }
+        .office-name-en { font-size: 11.5px; font-weight: 700; color: #475569; letter-spacing: 1px; margin-bottom: 10px; direction: ltr; }
+        .report-title-ar { font-size: 16px; font-weight: 900; color: #0f172a; margin-bottom: 4px; border-top: 1px dashed #cbd5e0; padding-top: 10px; }
+        .report-title-en { font-size: 12.5px; font-weight: 700; color: #475569; direction: ltr; }
 
         .meta-box { display: flex; justify-content: space-between; font-size: 12.5px; font-weight: 700; margin-bottom: 22px; direction: rtl; background: #fff; padding: 10px 14px; border-radius: 8px; border: 1px solid #cbd5e0; }
         
@@ -643,12 +645,13 @@ function exportHolidayReportPDF() {
     <body>
       <div class="print-header">
         <div class="logo-text">A<span>K</span>H</div>
-        <div class="office-name-ar">مكتب المحامي علي كاظم الهاشمي للمحاماة والخدمات القانونية</div>
-        <div class="office-name-en">AKH Law Office — Law Practice & Legal Services</div>
+        <div class="sub-title"><span style="color: #dc2626;">/</span> LAW OFFICE</div>
         <div class="est">EST. 2014</div>
       </div>
 
       <div class="report-title-box">
+        <div class="office-name-ar">مكتب المحامي علي كاظم الهاشمي للمحاماة والخدمات القانونية</div>
+        <div class="office-name-en">AKH Law Office — Law Practice & Legal Services</div>
         <div class="report-title-ar">${range.labelAr}</div>
         <div class="report-title-en">${range.labelEn}</div>
       </div>
