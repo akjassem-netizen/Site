@@ -12,65 +12,74 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Cairo', system-ui, sans-serif; background-color: #f7f9fc; color: #1a1a1a; padding: 20px 12px; display: flex; justify-content: center; min-height: 100vh; align-items: flex-start; }
-.panel { max-width: 980px; width: 100%; background: #ffffff; border-radius: 14px; padding: 24px 18px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
-.brand-section { text-align: center; margin-bottom: 20px; border-bottom: 1.5px solid #edf2f7; padding-bottom: 15px; }
+body { font-family: 'Cairo', system-ui, sans-serif; background-color: #f7f9fc; color: #1a1a1a; padding: 25px 12px; display: flex; justify-content: center; min-height: 100vh; align-items: flex-start; }
+.panel { max-width: 950px; width: 100%; background: #ffffff; border-radius: 16px; padding: 30px 24px; box-shadow: 0 4px 25px rgba(0,0,0,0.05); border-top: 6px solid #c5a059; }
+.brand-section { text-align: center; margin-bottom: 25px; border-bottom: 1.5px solid #edf2f7; padding-bottom: 18px; }
 .logo-text { font-size: 42px; font-weight: 800; letter-spacing: 2px; color: #0b1a30; line-height: 1; direction: ltr; }
 .logo-text span { color: #d32f2f; }
 .sub-title { font-size: 12.5px; font-weight: 700; color: #111; letter-spacing: 3px; margin-top: 6px; direction: ltr; }
 .sub-title span { color: #d32f2f; margin-right: 4px; font-weight: 800; }
 .est { font-size: 10px; color: #777; letter-spacing: 2px; margin-top: 3px; direction: ltr; }
-.portal-title { font-size: 17.5px; font-weight: 800; color: #0b1a30; margin-top: 10px; }
+.portal-title { font-size: 18px; font-weight: 800; color: #0b1a30; margin-top: 10px; }
 
-.screen-box { text-align: center; padding: 25px 10px; }
-.lock-desc { font-size: 14px; color: #4a5568; margin-bottom: 20px; line-height: 1.6; }
+.screen-box { text-align: center; padding: 35px 10px; }
+.lock-desc { font-size: 14.5px; color: #4a5568; margin-bottom: 20px; line-height: 1.6; }
 .pin-input { font-size: 20px; font-weight: 800; text-align: center; max-width: 260px; margin: 0 auto 16px; -webkit-text-security: disc; }
-.btn-unlock { width: 100%; max-width: 260px; background-color: #0b1a30; color: #ffffff; padding: 12px; border: none; border-radius: 8px; font-size: 14.5px; font-weight: 700; cursor: pointer; font-family: inherit; margin: 0 auto; display: block; }
+.btn-unlock { width: 100%; max-width: 260px; background-color: #0b1a30; color: #ffffff; padding: 13px; border: none; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; font-family: inherit; margin: 0 auto; display: block; transition: 0.3s; }
+.btn-unlock:hover { background-color: #c5a059; color: #0b1a30; }
 .alert-box { padding: 12px 15px; border-radius: 8px; margin-bottom: 18px; font-size: 13.5px; display: none; }
 .alert-error { background-color: #fde8e8; color: #9b1c1c; }
 
-.top-nav-bar { display: flex; justify-content: space-between; align-items: center; background-color: #f8fafc; border: 1.5px solid #e2e8f0; padding: 10px 14px; border-radius: 10px; margin-bottom: 22px; flex-wrap: wrap; gap: 8px; }
-.top-nav-bar a, .btn-nav-action { background-color: #0b1a30; color: #ffffff; text-decoration: none; padding: 6px 12px; border-radius: 6px; font-size: 12.5px; font-weight: 700; border: none; cursor: pointer; font-family: inherit; transition: 0.3s; }
+.top-nav-bar { display: flex; justify-content: space-between; align-items: center; background-color: #f8fafc; border: 1.5px solid #e2e8f0; padding: 12px 18px; border-radius: 10px; margin-bottom: 25px; flex-wrap: wrap; gap: 10px; }
+.top-nav-bar a, .btn-nav-action { background-color: #0b1a30; color: #ffffff; text-decoration: none; padding: 7px 14px; border-radius: 6px; font-size: 13px; font-weight: 700; border: none; cursor: pointer; font-family: inherit; transition: 0.3s; }
+.top-nav-bar a:hover, .btn-nav-action:hover { background-color: #c5a059; color: #0b1a30; }
 .btn-lock-nav { background-color: #e53e3e; }
+.btn-lock-nav:hover { background-color: #c53030 !important; color: #fff !important; }
 
-.grid-modules { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; margin-bottom: 25px; }
-.module-card { background: #fafafa; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 16px; text-align: right; }
-.module-card h3 { font-size: 14.5px; font-weight: 800; color: #0b1a30; margin-bottom: 6px; }
-.module-card p { font-size: 12px; color: #4a5568; margin-bottom: 12px; line-height: 1.5; }
-.module-link { display: inline-block; background-color: #3182ce; color: #ffffff; padding: 6px 12px; border-radius: 6px; text-decoration: none; font-size: 11.5px; font-weight: 700; }
-.module-link.disabled { background-color: #e2e8f0; color: #a0aec0; cursor: not-allowed; }
-
-.card-section { background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 18px; margin-bottom: 20px; }
-.card-section h2 { font-size: 15.5px; font-weight: 800; color: #0b1a30; margin-bottom: 14px; border-bottom: 1px dashed #cbd5e0; padding-bottom: 10px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 5px; }
-.alert-success { background-color: #def7ec; color: #03543f; padding: 10px 14px; border-radius: 8px; margin-bottom: 16px; font-size: 13.5px; font-weight: 700; display: none; }
-.alert-warning { background-color: #fffaf0; border: 1px solid #feebc8; color: #c05621; padding: 12px 15px; border-radius: 8px; margin-bottom: 18px; font-size: 13.5px; display: none; }
-.form-group { margin-bottom: 14px; }
-label { display: block; font-weight: 700; font-size: 13px; margin-bottom: 5px; color: #2d3748; }
-select, input[type="text"], input[type="date"], input[type="password"], input[type="time"], input[type="number"] { width: 100%; padding: 10px 12px; border: 1.5px solid #cbd5e0; border-radius: 8px; font-family: inherit; font-size: 13.5px; background-color: #fff; }
-.btn-submit { background-color: #1a365d; color: #ffffff; border: 2px solid #2b6cb0; padding: 12px 22px; font-size: 15px; font-weight: 800; border-radius: 8px; cursor: pointer; font-family: inherit; width: 100%; box-shadow: 0 3px 10px rgba(0,0,0,0.1); transition: 0.3s; }
-.btn-submit:hover { background-color: #2b6cb0; }
-.btn-action-sm { background-color: #2b6cb0; color: #fff; border: none; padding: 5px 10px; border-radius: 5px; font-size: 11.5px; font-weight: 700; cursor: pointer; }
+.card-section { background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 20px; margin-bottom: 22px; }
+.card-section h2 { font-size: 16px; font-weight: 800; color: #0b1a30; margin-bottom: 15px; border-bottom: 1px dashed #cbd5e0; padding-bottom: 10px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 5px; }
+.alert-success { background-color: #def7ec; color: #03543f; padding: 12px 16px; border-radius: 8px; margin-bottom: 18px; font-size: 14px; font-weight: 700; display: none; }
+.alert-warning { background-color: #fffaf0; border: 1px solid #feebc8; color: #c05621; padding: 14px 18px; border-radius: 8px; margin-bottom: 20px; font-size: 14px; display: none; }
+.form-group { margin-bottom: 15px; }
+label { display: block; font-weight: 700; font-size: 13.5px; margin-bottom: 6px; color: #2d3748; }
+select, input[type="text"], input[type="date"], input[type="password"], input[type="time"], input[type="number"] { width: 100%; padding: 11px 14px; border: 1.5px solid #cbd5e0; border-radius: 8px; font-family: inherit; font-size: 14px; background-color: #fff; }
+.btn-submit { background-color: #0b1a30; color: #ffffff; border: 2px solid #0b1a30; padding: 13px 22px; font-size: 15px; font-weight: 800; border-radius: 8px; cursor: pointer; font-family: inherit; width: 100%; box-shadow: 0 3px 10px rgba(0,0,0,0.08); transition: 0.3s; }
+.btn-submit:hover { background-color: #c5a059; border-color: #c5a059; color: #0b1a30; }
+.btn-action-sm { background-color: #2b6cb0; color: #fff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; transition: 0.2s; }
 .btn-action-sm:hover { background-color: #2c5282; }
-table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 13px; }
-th, td { padding: 10px; text-align: right; border-bottom: 1px solid #edf2f7; }
+table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 13.5px; }
+th, td { padding: 11px; text-align: right; border-bottom: 1px solid #edf2f7; }
 th { background-color: #0b1a30; color: #ffffff; font-weight: 700; }
 tr:hover { background-color: #fafafa; }
-.badge { padding: 3px 7px; border-radius: 4px; font-size: 11px; font-weight: 700; }
+.badge { padding: 3px 8px; border-radius: 4px; font-size: 11.5px; font-weight: 700; }
 .badge-holiday { background: #fed7d7; color: #9b1c1c; }
 
-.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 15px; }
-.stat-box { background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 8px; padding: 12px; text-align: center; }
-.stat-box .num { font-size: 20px; font-weight: 900; color: #0b1a30; margin-top: 4px; direction: ltr; unicode-bidi: embed; }
-.stat-box .lbl { font-size: 11.5px; font-weight: 700; color: #4a5568; }
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-bottom: 15px; }
+.stat-box { background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 14px; text-align: center; }
+.stat-box .num { font-size: 22px; font-weight: 900; color: #0b1a30; margin-top: 4px; direction: ltr; unicode-bidi: embed; }
+.stat-box .lbl { font-size: 12px; font-weight: 700; color: #4a5568; }
 
-.pin-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11, 26, 48, 0.7); display: none; justify-content: center; align-items: center; z-index: 9999; }
-.pin-modal-box { background: #ffffff; padding: 25px; border-radius: 12px; max-width: 320px; width: 90%; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border-top: 4px solid #c5a059; }
-.pin-modal-box h3 { font-size: 15px; color: #0b1a30; margin-bottom: 12px; font-weight: 800; }
-.pin-modal-box input { width: 100%; font-size: 20px; text-align: center; padding: 10px; margin-bottom: 15px; border: 1.5px solid #cbd5e0; border-radius: 8px; -webkit-text-security: disc; }
+.pin-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11, 26, 48, 0.75); display: none; justify-content: center; align-items: center; z-index: 9999; }
+.pin-modal-box { background: #ffffff; padding: 28px; border-radius: 14px; max-width: 340px; width: 90%; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border-top: 5px solid #c5a059; }
+.pin-modal-box h3 { font-size: 16px; color: #0b1a30; margin-bottom: 14px; font-weight: 800; }
+.pin-modal-box input { width: 100%; font-size: 20px; text-align: center; padding: 11px; margin-bottom: 18px; border: 1.5px solid #cbd5e0; border-radius: 8px; -webkit-text-security: disc; }
 .pin-modal-btns { display: flex; gap: 10px; }
-.pin-modal-btns button { flex: 1; padding: 10px; border-radius: 6px; font-weight: 700; border: none; cursor: pointer; font-family: inherit; }
+.pin-modal-btns button { flex: 1; padding: 11px; border-radius: 6px; font-weight: 700; border: none; cursor: pointer; font-family: inherit; }
 .btn-pin-confirm { background: #0b1a30; color: #fff; }
+.btn-pin-confirm:hover { background: #c5a059; color: #0b1a30; }
 .btn-pin-cancel { background: #e2e8f0; color: #4a5568; }
+
+/* تذييب الديوان التنفيذي */
+.portal-footer {
+  text-align: center;
+  padding: 20px 10px 5px 10px;
+  font-size: 12px;
+  color: #64748b;
+  border-top: 1.5px solid #edf2f7;
+  margin-top: 30px;
+  font-weight: 600;
+}
+.portal-footer span { display: block; margin-top: 4px; font-size: 11px; color: #94a3b8; }
 </style>
 </head>
 <body>
@@ -117,11 +126,11 @@ tr:hover { background-color: #fafafa; }
 
 <div id="portalMainContent" style="display: none;">
 <div class="top-nav-bar">
-<span id="systemStatusText" style="font-size: 12.5px; font-weight: 700; color: #2d3748;">🟢 النظام متصل وخزنة الأمان مفعلة</span>
-<div style="display: flex; gap: 6px; flex-wrap: wrap; align-items: center;">
+<span id="systemStatusText" style="font-size: 13px; font-weight: 700; color: #2d3748;">🟢 النظام متصل وخزنة الأمان مفعلة</span>
+<div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
 <button type="button" class="btn-nav-action btn-lock-nav" onclick="lockPortalSession()">قفل الجلسة 🔒</button>
 <a href="portal.html">🔄 تحديث</a>
-<a href="index.html" target="_blank">معاينة 🌐</a>
+<a href="index.html" target="_blank">معاينة الموقع 🌐</a>
 </div>
 </div>
 
@@ -129,27 +138,9 @@ tr:hover { background-color: #fafafa; }
 
 <div id="holidayNoticeBox" class="alert-warning">
 <strong>⚠️ تنبيه اقتراب عطلة رسمية:</strong> <span id="holidayNoticeText"></span>
-<div style="display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap;">
-<button type="button" class="btn-submit" style="flex: 1; background-color: #c05621; padding: 8px;" onclick="confirmAndActivateHoliday()">تأكيد وتفعيل حالة العطلة الآن 🛑</button>
-<button type="button" class="btn-submit" style="flex: 1; background-color: #718096; padding: 8px;" onclick="dismissHolidayNotice()">تجاهل ✖️</button>
-</div>
-</div>
-
-<div class="grid-modules">
-<div class="module-card">
-<h3>📚 إدارة التحليلات والآراء</h3>
-<p>منصة نشر، تعديل، إخفاء ومتابعة مشاهدات المقالات.</p>
-<a href="admin.html" class="module-link">فتح المنصة ←</a>
-</div>
-<div class="module-card">
-<h3>👥 إدارة الموكلين والوكالات</h3>
-<p>أرشيف الموكلين وحفظ الوكالات القضائية.</p>
-<span class="module-link disabled">قريباً 🔒</span>
-</div>
-<div class="module-card">
-<h3>⚖️ أرشيف المبادئ التمييزية</h3>
-<p>مكتبة القرارات والمطابقة الذكية.</p>
-<span class="module-link disabled">قريباً 🔒</span>
+<div style="display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap;">
+<button type="button" class="btn-submit" style="flex: 1; background-color: #c05621; border-color: #c05621; padding: 9px;" onclick="confirmAndActivateHoliday()">تأكيد وتفعيل حالة العطلة الآن 🛑</button>
+<button type="button" class="btn-submit" style="flex: 1; background-color: #718096; border-color: #718096; padding: 9px;" onclick="dismissHolidayNotice()">تجاهل ✖️</button>
 </div>
 </div>
 
@@ -157,44 +148,44 @@ tr:hover { background-color: #fafafa; }
   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 15px;">
     <div>
       <h2 style="border:none; margin:0; padding:0;"><span>📈 منصة تحليلات الزيارات وربط Google Analytics</span></h2>
-      <p style="font-size: 12.5px; color: #64748b; font-weight: 600; margin-top: 4px;">أدخل الرقم التعريفي لموقعك (Measurement ID) لمتابعة حركة الزوار بشكل مباشر.</p>
+      <p style="font-size: 13px; color: #64748b; font-weight: 600; margin-top: 4px;">أدخل الرقم التعريفي لموقعك لمتابعة حركة الزوار بشكل مباشر.</p>
     </div>
   </div>
 
   <div class="form-group">
     <label>الرقم التعريفي لتحليلات جوجل (Google Analytics Measurement ID):</label>
     <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-      <input type="text" id="gaPropertyIdInput" placeholder="مثلاً: G-ABC123XYZ4" dir="ltr" style="flex: 1; font-weight: 800; font-family: monospace;">
-      <button type="button" class="btn-submit" style="width: auto; padding: 10px 20px; background-color: #0b1a30; color: #c5a059; border: 1.5px solid #c5a059;" onclick="saveGoogleAnalyticsId()">ربط وحفظ التتبع 🌐</button>
+      <input type="text" id="gaPropertyIdInput" placeholder="مثلاً: G-WL4KNM0PG1" dir="ltr" style="flex: 1; font-weight: 800; font-family: monospace;">
+      <button type="button" class="btn-submit" style="width: auto; padding: 11px 20px;" onclick="saveGoogleAnalyticsId()">ربط وحفظ التتبع 🌐</button>
     </div>
   </div>
 
   <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 12px; padding: 18px; margin-top: 15px;">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
-      <strong style="font-size: 14.5px; font-weight: 800; color: #0b1a30;">🗺️ خريطة ومؤشرات حركة زوار الموقع (Traffic & Map Analytics)</strong>
-      <span id="gaStatusBadge" class="badge" style="background: #e2e8f0; color: #475569; font-size: 11.5px;">غير متصل حالياً</span>
+      <strong style="font-size: 15px; font-weight: 800; color: #0b1a30;">🗺️ مؤشرات وحركة زوار الموقع (Traffic Analytics)</strong>
+      <span id="gaStatusBadge" class="badge" style="background: #e2e8f0; color: #475569; font-size: 12px;">غير متصل حالياً</span>
     </div>
 
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 15px;">
       <div style="background: #ffffff; padding: 12px 14px; border-radius: 8px; border: 1px solid #e2e8f0;">
-        <span style="font-size: 11px; color: #64748b; font-weight: 700; display: block;">الزيارات النشطة حالياً (Real-time)</span>
+        <span style="font-size: 11.5px; color: #64748b; font-weight: 700; display: block;">الزيارات النشطة حالياً (Real-time)</span>
         <strong id="gaLiveUsers" style="font-size: 18px; color: #16a34a; font-weight: 900; direction: ltr; unicode-bidi: embed; display: inline-block;">0 زائر</strong>
       </div>
       <div style="background: #ffffff; padding: 12px 14px; border-radius: 8px; border: 1px solid #e2e8f0;">
-        <span style="font-size: 11px; color: #64748b; font-weight: 700; display: block;">مشاهدات الصفحات (Pageviews)</span>
+        <span style="font-size: 11.5px; color: #64748b; font-weight: 700; display: block;">متابعة الجلسات (Sessions)</span>
         <strong id="gaPageviews" style="font-size: 18px; color: #0b1a30; font-weight: 900; direction: ltr; unicode-bidi: embed; display: inline-block;">--</strong>
       </div>
       <div style="background: #ffffff; padding: 12px 14px; border-radius: 8px; border: 1px solid #e2e8f0;">
-        <span style="font-size: 11px; color: #64748b; font-weight: 700; display: block;">المصدر الأبرز للزيارات (Top Traffic)</span>
+        <span style="font-size: 11.5px; color: #64748b; font-weight: 700; display: block;">المصدر الرئيسي (Top Traffic)</span>
         <strong id="gaTopSource" style="font-size: 15px; color: #2b6cb0; font-weight: 800;">محركات البحث / مباشر</strong>
       </div>
     </div>
 
     <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; text-align: center;">
-      <p style="font-size: 12.5px; color: #4a5568; line-height: 1.6; font-weight: 600; margin-bottom: 10px;">
-        💡 <strong>توضيح للمحامي:</strong> بمجرد ربط الرقم التعريفي أعلاه، سيقوم موقعك بإرسال بيانات الجلسات والزيارات تلقائياً إلى منصة Google Analytics، ويمكنك فتح لوحة التحكم الكاملة عبر الرابط أدناه لرؤية الخرائط الجغرافية التفصيلية للزوار واتجاهاتهم:
+      <p style="font-size: 13px; color: #4a5568; line-height: 1.6; font-weight: 600; margin-bottom: 10px;">
+        💡 <strong>توضيح للمحامي:</strong> بمجرد ربط الرقم التعريفي أعلاه، سيرسل موقعك بيانات الجلسات والزيارات تلقائياً إلى منصة Google Analytics، ويمكنك فتح لوحة التحكم الرئيسية لرؤية الخرائط الجغرافية الكاملة عبر الرابط:
       </p>
-      <a href="https://analytics.google.com" target="_blank" class="module-link" style="background-color: #0b1a30; color: #c5a059; padding: 8px 16px; font-size: 12.5px;">فتح لوحة تحكم Google Analytics الرئيسية ↗</a>
+      <a href="https://analytics.google.com" target="_blank" class="module-link" style="padding: 9px 18px; font-size: 13px;">فتح لوحة تحكم Google Analytics ↗</a>
     </div>
   </div>
 </div>
@@ -203,38 +194,38 @@ tr:hover { background-color: #fafafa; }
   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 15px;">
     <div>
       <h2 style="border:none; margin:0; padding:0;"><span>📊 التشخيص الذكي وصحة النظام (Uptime AI & Health)</span></h2>
-      <p style="font-size: 12.5px; color: #64748b; font-weight: 600; margin-top: 4px;">فحص فوري لحالة البوابة، سرعة الاستجابة، والتنبيهات التشغيلية للمكتب.</p>
+      <p style="font-size: 13px; color: #64748b; font-weight: 600; margin-top: 4px;">فحص فوري لحالة البوابة، سرعة الاستجابة، والتنبيهات التشغيلية للمكتب.</p>
     </div>
-    <button type="button" onclick="runSystemDiagnostics()" id="diagnosticBtn" class="btn-submit" style="width: auto; padding: 8px 16px; font-size: 13px; background-color: #0b1a30; color: #c5a059; border: 1.5px solid #c5a059;">⚡ فحص وتشخيص النظام</button>
+    <button type="button" onclick="runSystemDiagnostics()" id="diagnosticBtn" class="btn-submit" style="width: auto; padding: 10px 18px; font-size: 13.5px;">⚡ فحص وتشخيص النظام</button>
   </div>
 
   <div id="diagnosticResultBox" style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 12px; padding: 18px; display: none;">
     <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
       <div id="diagStatusDot" style="width: 12px; height: 12px; border-radius: 50%; background: #16a34a;"></div>
-      <strong id="diagStatusHeading" style="font-size: 14.5px; font-weight: 800; color: #0b1a30;">جاري الفحص...</strong>
+      <strong id="diagStatusHeading" style="font-size: 15px; font-weight: 800; color: #0b1a30;">جاري الفحص...</strong>
     </div>
     
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 15px;">
-      <div style="background: #ffffff; padding: 10px 14px; border-radius: 8px; border: 1px solid #e2e8f0;">
-        <span style="font-size: 11px; color: #64748b; font-weight: 700; display: block;">سرعة الاستجابة (Response Time)</span>
-        <strong id="metricLatency" style="font-size: 15px; color: #16a34a; font-weight: 900; direction: ltr; unicode-bidi: embed; display: inline-block;">-- ms</strong>
+      <div style="background: #ffffff; padding: 12px 14px; border-radius: 8px; border: 1px solid #e2e8f0;">
+        <span style="font-size: 11.5px; color: #64748b; font-weight: 700; display: block;">سرعة الاستجابة (Response Time)</span>
+        <strong id="metricLatency" style="font-size: 16px; color: #16a34a; font-weight: 900; direction: ltr; unicode-bidi: embed; display: inline-block;">-- ms</strong>
       </div>
-      <div style="background: #ffffff; padding: 10px 14px; border-radius: 8px; border: 1px solid #e2e8f0;">
-        <span style="font-size: 11px; color: #64748b; font-weight: 700; display: block;">حالة ملف الحالة (Office Status JSON)</span>
-        <strong id="metricJsonStatus" style="font-size: 14px; color: #0b1a30; font-weight: 800;">قيد التحقق...</strong>
+      <div style="background: #ffffff; padding: 12px 14px; border-radius: 8px; border: 1px solid #e2e8f0;">
+        <span style="font-size: 11.5px; color: #64748b; font-weight: 700; display: block;">حالة ملف الحالة (Office Status JSON)</span>
+        <strong id="metricJsonStatus" style="font-size: 14.5px; color: #0b1a30; font-weight: 800;">قيد التحقق...</strong>
       </div>
-      <div style="background: #ffffff; padding: 10px 14px; border-radius: 8px; border: 1px solid #e2e8f0;">
-        <span style="font-size: 11px; color: #64748b; font-weight: 700; display: block;">الشهادة الأمنية SSL</span>
-        <strong style="font-size: 14px; color: #16a34a; font-weight: 800;">مفعلة وآمنة (Valid)</strong>
+      <div style="background: #ffffff; padding: 12px 14px; border-radius: 8px; border: 1px solid #e2e8f0;">
+        <span style="font-size: 11.5px; color: #64748b; font-weight: 700; display: block;">الشهادة الأمنية SSL</span>
+        <strong style="font-size: 14.5px; color: #16a34a; font-weight: 800;">مفعلة وآمنة (Valid)</strong>
       </div>
     </div>
 
-    <div style="border-top: 1px solid #e2e8f0; padding-top: 12px;">
-      <strong style="font-size: 13px; color: #0b1a30; display: block; margin-bottom: 5px;">📌 التنبيهات وما يجب الانتباه إليه:</strong>
-      <p id="diagWarningsText" style="font-size: 12.5px; color: #4a5568; line-height: 1.6; font-weight: 600; margin-bottom: 10px;">لا توجد أي تحذيرات حرجة.</p>
+    <div style="border-top: 1px solid #e2e8f0; padding-top: 14px;">
+      <strong style="font-size: 13.5px; color: #0b1a30; display: block; margin-bottom: 6px;">📌 التنبيهات وما يجب الانتباه إليه:</strong>
+      <p id="diagWarningsText" style="font-size: 13px; color: #4a5568; line-height: 1.6; font-weight: 600; margin-bottom: 12px;">لا توجد أي تحذيرات حرجة.</p>
       
-      <strong style="font-size: 13px; color: #0b1a30; display: block; margin-bottom: 5px;">📝 الملخص التنفيذي للإدارة:</strong>
-      <p id="diagSummaryText" style="font-size: 12.5px; color: #0b1a30; line-height: 1.6; font-weight: 700; background: #fef3c7; padding: 10px 14px; border-radius: 6px; border-right: 4px solid #d97706; margin-bottom: 0;">النظام مستقر تماماً.</p>
+      <strong style="font-size: 13.5px; color: #0b1a30; display: block; margin-bottom: 6px;">📝 الملخص التنفيذي للإدارة:</strong>
+      <p id="diagSummaryText" style="font-size: 13px; color: #0b1a30; line-height: 1.6; font-weight: 700; background: #fef3c7; padding: 11px 15px; border-radius: 6px; border-right: 4px solid #d97706; margin-bottom: 0;">النظام مستقر تماماً.</p>
     </div>
   </div>
 </div>
@@ -252,16 +243,16 @@ tr:hover { background-color: #fafafa; }
   </select>
 </div>
 
-<div id="customRangeBox" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
+<div id="customRangeBox" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 15px;">
   <div class="form-group" style="margin:0;"><label>من تاريخ:</label><input type="date" id="reportStartDate" onchange="calculateHolidayStats()"></div>
   <div class="form-group" style="margin:0;"><label>إلى تاريخ:</label><input type="date" id="reportEndDate" onchange="calculateHolidayStats()"></div>
 </div>
 
-<div id="monthlyBox" style="display: none; margin-bottom: 12px;">
+<div id="monthlyBox" style="display: none; margin-bottom: 15px;">
   <div class="form-group" style="margin:0;"><label>اختر الشهر:</label><input type="month" id="reportMonthInput" onchange="calculateHolidayStats()"></div>
 </div>
 
-<div id="quarterlyBox" style="display: none; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
+<div id="quarterlyBox" style="display: none; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 15px;">
   <div class="form-group" style="margin:0;"><label>اختر السنة:</label><input type="number" id="reportQYear" value="2026" onchange="calculateHolidayStats()"></div>
   <div class="form-group" style="margin:0;">
     <label>الربع السنوي:</label>
@@ -274,7 +265,7 @@ tr:hover { background-color: #fafafa; }
   </div>
 </div>
 
-<div id="annualBox" style="display: none; margin-bottom: 12px;">
+<div id="annualBox" style="display: none; margin-bottom: 15px;">
   <div class="form-group" style="margin:0;"><label>اختر السنة:</label><input type="number" id="reportYearInput" value="2026" onchange="calculateHolidayStats()"></div>
 </div>
 
@@ -297,23 +288,23 @@ tr:hover { background-color: #fafafa; }
   </div>
 </div>
 
-<div style="margin-top: 15px; background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 15px;">
-  <div style="font-size: 13px; font-weight: 800; color: #0b1a30; margin-bottom: 8px; display: flex; justify-content: space-between;">
+<div style="margin-top: 18px; background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 16px;">
+  <div style="font-size: 13.5px; font-weight: 800; color: #0b1a30; margin-bottom: 10px; display: flex; justify-content: space-between;">
     <span>نسبة توزيع أيام الفترة (الدوام مقابل العطل):</span>
   </div>
-  <div style="height: 18px; width: 100%; background: #e2e8f0; border-radius: 9px; overflow: hidden; display: flex; box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);">
+  <div style="height: 20px; width: 100%; background: #e2e8f0; border-radius: 10px; overflow: hidden; display: flex; box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);">
     <div id="barWorkdays" style="height: 100%; background: #16a34a; width: 0%; transition: width 0.4s;" title="أيام الدوام"></div>
     <div id="barWeekends" style="height: 100%; background: #d32f2f; width: 0%; transition: width 0.4s;" title="عطل الويكند"></div>
     <div id="barHolidays" style="height: 100%; background: #c05621; width: 0%; transition: width 0.4s;" title="عطل رسمية"></div>
   </div>
-  <div style="display: flex; justify-content: space-between; font-size: 11.5px; font-weight: 700; color: #64748b; margin-top: 6px;">
+  <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; color: #64748b; margin-top: 8px;">
     <span style="color: #16a34a;">■ دوام فعلي (<span id="pctWork" dir="ltr" style="unicode-bidi:embed;">0%</span>)</span>
     <span style="color: #d32f2f;">■ ويكند (<span id="pctWeek" dir="ltr" style="unicode-bidi:embed;">0%</span>)</span>
     <span style="color: #c05621;">■ عطل رسمية (<span id="pctHol" dir="ltr" style="unicode-bidi:embed;">0%</span>)</span>
   </div>
 </div>
 
-<button type="button" class="btn-submit" style="background-color: #0b1a30; color: #c5a059; border: 1.5px solid #c5a059; margin-top: 15px;" onclick="exportHolidayReportPDF()">🖨️ طباعة وتصدير التقرير الرسمي (PDF)</button>
+<button type="button" class="btn-submit" style="margin-top: 18px;" onclick="exportHolidayReportPDF()">🖨️ طباعة وتصدير التقرير الرسمي (PDF)</button>
 </div>
 
 <div class="card-section">
@@ -340,7 +331,7 @@ tr:hover { background-color: #fafafa; }
 <div class="card-section">
 <h2><span>⚙️ تعديل ساعات العمل الرسمية</span></h2>
 <form id="settingsForm" onsubmit="saveWorkingHours(event)">
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
 <div class="form-group">
 <label>ساعة بدء الدوام:</label>
 <input type="time" id="workStartInput" value="08:00" required>
@@ -350,7 +341,7 @@ tr:hover { background-color: #fafafa; }
 <input type="time" id="workEndInput" value="16:00" required>
 </div>
 </div>
-<button type="submit" class="btn-submit" style="background-color: #2b6cb0; margin-top: 10px;">حفظ وتعديل ساعات العمل ⏰</button>
+<button type="submit" class="btn-submit" style="background-color: #2b6cb0; border-color: #2b6cb0; margin-top: 10px;">حفظ وتعديل ساعات العمل ⏰</button>
 </form>
 </div>
 
@@ -384,10 +375,10 @@ tr:hover { background-color: #fafafa; }
 <label>التاريخ:</label>
 <input type="date" id="holidayDateInput" required>
 </div>
-<button type="submit" class="btn-submit" style="background-color: #2b6cb0;">إضافة العطلة للجدول ➕</button>
+<button type="submit" class="btn-submit" style="background-color: #2b6cb0; border-color: #2b6cb0;">إضافة العطلة للجدول ➕</button>
 </form>
 
-<h3 style="font-size: 14px; margin-top: 18px; color: #0b1a30; margin-bottom: 8px;">العطل الاستثنائية المضافة حالياً:</h3>
+<h3 style="font-size: 14.5px; margin-top: 20px; color: #0b1a30; margin-bottom: 10px;">العطل الاستثنائية المضافة حالياً:</h3>
 <table id="customHolidaysTable">
 <thead><tr><th>اسم المناسبة</th><th>التاريخ</th><th>الإجراء الفوري</th></tr></thead>
 <tbody><tr><td colspan="3" style="text-align:center; color:#718096;">جارٍ التحقق من السجل...</td></tr></tbody>
@@ -418,6 +409,11 @@ tr:hover { background-color: #fafafa; }
 </div>
 </div>
 
+<footer class="portal-footer">
+  بوابة الديوان التنفيذي الرسمي — مكتب المحامي علي كاظم الهاشمي
+  <span>جميع الحقوق محفوظة © 2026 | Secure Vault & Analytics Engine</span>
+</footer>
+
 </div>
 </div>
 
@@ -441,7 +437,6 @@ function b64_to_utf8(str) {
   }).join(''));
 }
 
-// دالة لتنسيق التاريخ بشكل نظامي (DD/MM/YYYY) ومنع انعكاسه برمجياً
 function formatDateDMY(dateStr) {
   if (!dateStr || dateStr.includes('متغير')) return dateStr;
   const parts = dateStr.split('-');
@@ -487,11 +482,10 @@ async function decryptToken(encryptedObj, pin) {
   return new TextDecoder().decode(decrypted);
 }
 
-// تفعيل وتحميل تحليلات جوجل ديناميكياً
+// تفعيل وتثبيت تحليلات جوجل ديناميكياً
 function initGoogleAnalytics(propertyId) {
   if (!propertyId || !propertyId.startsWith('G-')) return;
   
-  // حقن سكريبت جوجل العالمي
   const existingScript = document.getElementById('gaScriptTag');
   if (existingScript) existingScript.remove();
 
@@ -521,7 +515,7 @@ function initGoogleAnalytics(propertyId) {
 async function saveGoogleAnalyticsId() {
   const propId = document.getElementById('gaPropertyIdInput').value.trim();
   if(!propId) {
-    alert("يرجى إدخال الرقم التعريفي صحيحاً (مثلاً: G-XXXXXXXXXX).");
+    alert("يرجى إدخال الرقم التعريفي صحيحاً (مثلاً: G-WL4KNM0PG1).");
     return;
   }
   localStorage.setItem('akh_ga_property_id', propId);
@@ -658,7 +652,6 @@ async function autoUnlockSession() {
   const savedPin = localStorage.getItem('akh_portal_saved_pin');
   const savedToken = sessionStorage.getItem('akh_portal_active_token');
 
-  // استرجاع رقم تحليلات جوجل المحفوظ مسبقاً إن وجد
   const savedGaId = localStorage.getItem('akh_ga_property_id');
   if(savedGaId) {
     document.getElementById('gaPropertyIdInput').value = savedGaId;
@@ -812,7 +805,6 @@ function calculateHolidayStats() {
   document.getElementById('pctHol').innerText = holPct + '%';
 }
 
-// التشخيص وصحة النظام (Uptime AI & Health)
 async function runSystemDiagnostics() {
   const btn = document.getElementById('diagnosticBtn');
   const box = document.getElementById('diagnosticResultBox');
@@ -868,7 +860,6 @@ async function runSystemDiagnostics() {
   }, 500);
 }
 
-// تصدير التقرير بتنسيق عربي معيار متناسق وثبات ألوان الطباعة وشريط النسب وتصحيح التواريخ
 function exportHolidayReportPDF() {
   const range = getActiveReportRange();
   if(!range) {
@@ -1236,7 +1227,7 @@ async function triggerOfficeStatusSave(statusVal, noteVal) {
 
   let sha = null;
   const getRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/office_status.json?ref=${BRANCH}`, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
-  if(getRes.ok) { const d = await getRes.json(); sha = d.sha; }
+  if(res.ok) { const d = await getRes.json(); sha = d.sha; }
 
   const bodyObj = { message: 'Update office status', content: utf8_to_b64(contentStr), branch: BRANCH };
   if(sha) bodyObj.sha = sha;
@@ -1265,7 +1256,7 @@ async function saveOfficeStatus(e) {
       let statusTextArabic = "";
       if(status === 'auto') statusTextArabic = "الوضع التلقائي الذكي";
       else if(status === 'active') statusTextArabic = "متاح الآن لاستقبال الطلبات";
-      else if(status === 'off_hours') statusTextArabic = "خارج ساعات العمل الرسمية";
+      else if(status === 'off_hours') statusTextArabic,statusTextArabic = "خارج ساعات العمل الرسمية";
       else if(status === 'holiday') statusTextArabic = "إجازة رسمية / طارئة";
       else if(status === 'weekend') statusTextArabic = "عطلة نهاية الأسبوع";
 
