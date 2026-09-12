@@ -9,49 +9,49 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Cairo', system-ui, sans-serif; background-color: #f7f9fc; color: #1a1a1a; padding: 30px 16px; display: flex; justify-content: center; min-height: 100vh; align-items: flex-start; }
-.panel { max-width: 950px; width: 100%; background: #ffffff; border-radius: 14px; padding: 30px 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
-.brand-section { text-align: center; margin-bottom: 25px; border-bottom: 1.5px solid #edf2f7; padding-bottom: 20px; }
-.logo-text { font-size: 46px; font-weight: 800; letter-spacing: 2px; color: #0b1a30; line-height: 1; }
+body { font-family: 'Cairo', system-ui, sans-serif; background-color: #f7f9fc; color: #1a1a1a; padding: 20px 12px; display: flex; justify-content: center; min-height: 100vh; align-items: flex-start; }
+.panel { max-width: 950px; width: 100%; background: #ffffff; border-radius: 14px; padding: 24px 18px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+.brand-section { text-align: center; margin-bottom: 20px; border-bottom: 1.5px solid #edf2f7; padding-bottom: 15px; }
+.logo-text { font-size: 42px; font-weight: 800; letter-spacing: 2px; color: #0b1a30; line-height: 1; }
 .logo-text span { color: #d32f2f; }
-.sub-brand { font-size: 13px; font-weight: 700; color: #111; letter-spacing: 3px; margin-top: 6px; direction: ltr; }
+.sub-brand { font-size: 12.5px; font-weight: 700; color: #111; letter-spacing: 3px; margin-top: 6px; direction: ltr; }
 .sub-brand span { color: #d32f2f; margin-right: 4px; font-weight: 800; }
-.est { font-size: 10.5px; color: #777; letter-spacing: 2px; margin-top: 3px; direction: ltr; }
-.portal-title { font-size: 19px; font-weight: 800; color: #0b1a30; margin-top: 12px; }
-.portal-subtitle-en { font-size: 13px; color: #4a5568; font-weight: 600; margin-top: 3px; direction: ltr; }
+.est { font-size: 10px; color: #777; letter-spacing: 2px; margin-top: 3px; direction: ltr; }
+.portal-title { font-size: 17.5px; font-weight: 800; color: #0b1a30; margin-top: 10px; }
+.portal-subtitle-en { font-size: 12px; color: #4a5568; font-weight: 600; margin-top: 2px; direction: ltr; }
 
 .screen-box { text-align: center; padding: 25px 10px; }
-.lock-desc { font-size: 14.5px; color: #4a5568; margin-bottom: 20px; line-height: 1.6; }
-.pin-input { letter-spacing: 8px; font-size: 24px; font-weight: 800; text-align: center; max-width: 260px; margin: 0 auto 16px; }
-.btn-unlock { width: 100%; max-width: 260px; background-color: #0b1a30; color: #ffffff; padding: 13px; border: none; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; font-family: inherit; margin: 0 auto; display: block; }
-.alert-box { padding: 12px 15px; border-radius: 8px; margin-bottom: 18px; font-size: 14px; display: none; }
+.lock-desc { font-size: 14px; color: #4a5568; margin-bottom: 20px; line-height: 1.6; }
+.pin-input { letter-spacing: 8px; font-size: 22px; font-weight: 800; text-align: center; max-width: 240px; margin: 0 auto 16px; }
+.btn-unlock { width: 100%; max-width: 240px; background-color: #0b1a30; color: #ffffff; padding: 12px; border: none; border-radius: 8px; font-size: 14.5px; font-weight: 700; cursor: pointer; font-family: inherit; margin: 0 auto; display: block; }
+.alert-box { padding: 12px 15px; border-radius: 8px; margin-bottom: 18px; font-size: 13.5px; display: none; }
 .alert-error { background-color: #fde8e8; color: #9b1c1c; }
 
-.top-nav-bar { display: flex; justify-content: space-between; align-items: center; background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 12px 18px; border-radius: 10px; margin-bottom: 25px; flex-wrap: wrap; gap: 10px; }
-.top-nav-bar a, .btn-lock-nav { background-color: #0b1a30; color: #ffffff; text-decoration: none; padding: 7px 14px; border-radius: 6px; font-size: 13px; font-weight: 700; border: none; cursor: pointer; font-family: inherit; transition: 0.3s; }
+.top-nav-bar { display: flex; justify-content: space-between; align-items: center; background-color: #f8fafc; border: 1.5px solid #e2e8f0; padding: 10px 14px; border-radius: 10px; margin-bottom: 22px; flex-wrap: wrap; gap: 8px; }
+.top-nav-bar a, .btn-lock-nav { background-color: #0b1a30; color: #ffffff; text-decoration: none; padding: 6px 12px; border-radius: 6px; font-size: 12.5px; font-weight: 700; border: none; cursor: pointer; font-family: inherit; transition: 0.3s; }
 .btn-lock-nav { background-color: #e53e3e; }
 
-.grid-modules { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 30px; }
-.module-card { background: #fafafa; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 18px; text-align: right; }
-.module-card h3 { font-size: 15px; font-weight: 800; color: #0b1a30; margin-bottom: 6px; }
-.module-card p { font-size: 12.5px; color: #4a5568; margin-bottom: 12px; line-height: 1.6; }
-.module-link { display: inline-block; background-color: #3182ce; color: #ffffff; padding: 6px 14px; border-radius: 6px; text-decoration: none; font-size: 12px; font-weight: 700; }
+.grid-modules { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; margin-bottom: 25px; }
+.module-card { background: #fafafa; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 16px; text-align: right; }
+.module-card h3 { font-size: 14.5px; font-weight: 800; color: #0b1a30; margin-bottom: 6px; }
+.module-card p { font-size: 12px; color: #4a5568; margin-bottom: 12px; line-height: 1.5; }
+.module-link { display: inline-block; background-color: #3182ce; color: #ffffff; padding: 6px 12px; border-radius: 6px; text-decoration: none; font-size: 11.5px; font-weight: 700; }
 .module-link.disabled { background-color: #e2e8f0; color: #a0aec0; cursor: not-allowed; }
 
-.card-section { background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 22px; margin-bottom: 25px; }
-.card-section h2 { font-size: 16.5px; font-weight: 800; color: #0b1a30; margin-bottom: 16px; border-bottom: 1px dashed #cbd5e0; padding-bottom: 10px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
-.card-section h2 span.en-title { font-size: 12.5px; color: #718096; font-weight: 600; direction: ltr; }
-.alert-success { background-color: #def7ec; color: #03543f; padding: 12px 15px; border-radius: 8px; margin-bottom: 20px; font-size: 14px; font-weight: 700; display: none; }
-.form-group { margin-bottom: 16px; }
-label { display: block; font-weight: 700; font-size: 13.5px; margin-bottom: 6px; color: #2d3748; }
-label span.en-label { font-size: 11.5px; color: #718096; font-weight: 600; float: left; direction: ltr; }
-select, input[type="text"], input[type="date"], input[type="password"] { width: 100%; padding: 11px 13px; border: 1.5px solid #cbd5e0; border-radius: 8px; font-family: inherit; font-size: 14px; background-color: #fff; }
-.btn-submit { background-color: #0b1a30; color: #ffffff; border: none; padding: 12px 22px; font-size: 14.5px; font-weight: 700; border-radius: 8px; cursor: pointer; font-family: inherit; }
-table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 13.5px; }
-th, td { padding: 11px; text-align: right; border-bottom: 1px solid #edf2f7; }
+.card-section { background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 18px; margin-bottom: 20px; }
+.card-section h2 { font-size: 15.5px; font-weight: 800; color: #0b1a30; margin-bottom: 14px; border-bottom: 1px dashed #cbd5e0; padding-bottom: 10px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 5px; }
+.card-section h2 span.en-title { font-size: 11.5px; color: #718096; font-weight: 600; direction: ltr; }
+.alert-success { background-color: #def7ec; color: #03543f; padding: 10px 14px; border-radius: 8px; margin-bottom: 16px; font-size: 13.5px; font-weight: 700; display: none; }
+.form-group { margin-bottom: 14px; }
+label { display: block; font-weight: 700; font-size: 13px; margin-bottom: 5px; color: #2d3748; }
+label span.en-label { font-size: 11px; color: #718096; font-weight: 600; float: left; direction: ltr; }
+select, input[type="text"], input[type="date"], input[type="password"] { width: 100%; padding: 10px 12px; border: 1.5px solid #cbd5e0; border-radius: 8px; font-family: inherit; font-size: 13.5px; background-color: #fff; }
+.btn-submit { background-color: #0b1a30; color: #ffffff; border: none; padding: 11px 20px; font-size: 14px; font-weight: 700; border-radius: 8px; cursor: pointer; font-family: inherit; width: 100%; }
+table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 13px; }
+th, td { padding: 10px; text-align: right; border-bottom: 1px solid #edf2f7; }
 th { background-color: #0b1a30; color: #ffffff; font-weight: 700; }
 tr:hover { background-color: #fafafa; }
-.badge { padding: 4px 8px; border-radius: 4px; font-size: 11.5px; font-weight: 700; }
+.badge { padding: 3px 7px; border-radius: 4px; font-size: 11px; font-weight: 700; }
 .badge-off { background: #fefcbf; color: #744210; }
 .badge-holiday { background: #fed7d7; color: #9b1c1c; }
 </style>
@@ -69,33 +69,30 @@ tr:hover { background-color: #fafafa; }
 
 <div id="portalAlertBox" class="alert-box alert-error"></div>
 
-<!-- 1. شاشة الإعداد لأول مرة -->
 <div id="portalSetupScreen" class="screen-box" style="display: none;">
 <p class="lock-desc"><strong>إعداد حماية البوابة لأول مرة:</strong><br>أدخل الرمز الطويل (التوكن) مع رمز PIN سري (6 أرقام):</p>
-<div class="form-group" style="max-width: 420px; margin: 0 auto 12px;">
+<div class="form-group" style="max-width: 400px; margin: 0 auto 12px;">
 <input type="password" id="portalSetupTokenInput" placeholder="أدخل رمز GitHub (ghp_...)" dir="ltr">
 </div>
-<div class="form-group" style="max-width: 260px; margin: 0 auto 16px;">
+<div class="form-group" style="max-width: 240px; margin: 0 auto 16px;">
 <input type="password" id="portalSetupPinInput" class="pin-input" maxlength="6" placeholder="******">
 </div>
 <button type="button" class="btn-unlock" onclick="performPortalSetup()">تشفير وحفظ الحماية 🔒</button>
 </div>
 
-<!-- 2. شاشة القفل -->
 <div id="portalLockScreen" class="screen-box" style="display: none;">
 <p class="lock-desc">البوابة محمية بخزنة مشفرة.<br>أدخل رمز الـ PIN السري (6 أرقام) لفك القفل:</p>
-<div class="form-group" style="max-width: 260px; margin: 0 auto 16px;">
+<div class="form-group" style="max-width: 240px; margin: 0 auto 16px;">
 <input type="password" id="portalUnlockPinInput" class="pin-input" maxlength="6" placeholder="******" autofocus>
 </div>
 <button type="button" class="btn-unlock" onclick="attemptPortalPinUnlock()">دخول آمن ←</button>
 </div>
 
-<!-- 3. محتوى البوابة الرئيسي -->
 <div id="portalMainContent" style="display: none;">
 <div class="top-nav-bar">
-<span style="font-size: 13px; font-weight: 700; color: #2d3748;">🟢 النظام محمي ومتصل بـ GitHub API</span>
-<div style="display: flex; gap: 8px;">
-<button type="button" class="btn-lock-nav" onclick="lockPortalSession()">قفل البوابة 🔒</button>
+<span style="font-size: 12.5px; font-weight: 700; color: #2d3748;">🟢 النظام متصل وخزنة الأمان مفعلة</span>
+<div style="display: flex; gap: 6px;">
+<button type="button" class="btn-lock-nav" onclick="lockPortalSession()">قفل 🔒</button>
 <a href="portal.html">🔄 تحديث</a>
 <a href="index.html" target="_blank">معاينة 🌐</a>
 </div>
@@ -105,85 +102,87 @@ tr:hover { background-color: #fafafa; }
 
 <div class="grid-modules">
 <div class="module-card">
-<h3>📚 إدارة التحليلات والآراء <span style="font-size:11px; color:#718096; display:block;">Legal Insights Manager</span></h3>
+<h3>📚 إدارة التحليلات والآراء</h3>
 <p>منصة نشر، تعديل، إخفاء ومتابعة مشاهدات المقالات.</p>
 <a href="admin.html" class="module-link">فتح المنصة | Open ←</a>
 </div>
 <div class="module-card">
-<h3>👥 إدارة الموكلين والوكالات <span style="font-size:11px; color:#718096; display:block;">Client & POA Management</span></h3>
+<h3>👥 إدارة الموكلين والوكالات</h3>
 <p>أرشيف الموكلين وحفظ الوكالات القضائية.</p>
-<span class="module-link disabled">قريباً | Coming Soon 🔒</span>
+<span class="module-link disabled">قريباً 🔒</span>
 </div>
 <div class="module-card">
-<h3>⚖️ أرشيف المبادئ التمييزية <span style="font-size:11px; color:#718096; display:block;">Judicial Principles Archive</span></h3>
+<h3>⚖️ أرشيف المبادئ التمييزية</h3>
 <p>مكتبة القرارات والمطابقة الذكية.</p>
-<span class="module-link disabled">قريباً | Coming Soon 🔒</span>
+<span class="module-link disabled">قريباً 🔒</span>
 </div>
 </div>
 
-<!-- أ. التحكم بحالة المكتب -->
 <div class="card-section">
-<h2><span>🟢 التحكم الفوري بحالة المكتب</span><span class="en-title">Live Office Status Control</span></h2>
+<h2><span>🟢 التحكم الفوري بحالة المكتب</span><span class="en-title">Live Status</span></h2>
 <form id="statusForm" onsubmit="saveOfficeStatus(event)">
 <div class="form-group">
-<label>حالة المكتب الظاهرة للزوار: <span class="en-label">Office Status Display</span></label>
+<label>حالة المكتب الظاهرة للزوار:</label>
 <select id="officeStatusSelect">
-<option value="active">🟢 متاح الآن لاستقبال الطلبات (أوقات العمل الرسمية) | Active</option>
-<option value="off_hours">🟡 خارج ساعات العمل الرسمية (عبر الاستمارة فقط) | Off Hours</option>
-<option value="holiday">🔴 إجازة رسمية / عطلة (مفعل) | Holiday / Leave</option>
+<option value="active">🟢 متاح الآن لاستقبال الطلبات (أوقات العمل الرسمية)</option>
+<option value="off_hours">🟡 خارج ساعات العمل الرسمية (عبر الاستمارة فقط)</option>
+<option value="holiday">🔴 إجازة رسمية / عطلة (مفعل)</option>
 </select>
 </div>
 <div class="form-group">
-<label>سبب التعطيل أو ملاحظة مخصصة: <span class="en-label">Custom Note</span></label>
+<label>سبب التعطيل أو ملاحظة مخصصة (اختياري):</label>
 <input type="text" id="officeNoteInput" placeholder="مثلاً: عطلة رسمية بقرار مجلس الوزراء...">
 </div>
 <button type="submit" class="btn-submit">حفظ وتحديث على غيت هب 💾</button>
 </form>
 </div>
 
-<!-- ب. إضافة عطلة طارئة -->
 <div class="card-section">
-<h2><span>⚡ إضافة عطلة استثنائية أو طارئة</span><span class="en-title">Add Emergency Holiday</span></h2>
+<h2><span>⚡ إضافة عطلة استثنائية أو طارئة</span><span class="en-title">Custom Holiday</span></h2>
 <form id="holidayForm" onsubmit="saveCustomHoliday(event)">
 <div class="form-group">
-<label>اسم المناسبة أو العطلة الطارئة: <span class="en-label">Holiday Name</span></label>
+<label>اسم المناسبة أو العطلة الطارئة:</label>
 <input type="text" id="holidayNameInput" placeholder="مثلاً: عطلة رسمية بقرار مجلس الوزراء..." required>
 </div>
 <div class="form-group">
-<label>التاريخ: <span class="en-label">Date</span></label>
+<label>التاريخ:</label>
 <input type="date" id="holidayDateInput" required>
 </div>
 <button type="submit" class="btn-submit" style="background-color: #3182ce;">إضافة العطلة للجدول ➕</button>
 </form>
 
-<h3 style="font-size: 14.5px; margin-top: 22px; color: #0b1a30; margin-bottom: 10px;">العطل الاستثنائية المضافة حالياً:</h3>
+<h3 style="font-size: 14px; margin-top: 18px; color: #0b1a30; margin-bottom: 8px;">العطل الاستثنائية المضافة حالياً:</h3>
 <table id="customHolidaysTable">
 <thead><tr><th>اسم المناسبة</th><th>التاريخ</th></tr></thead>
-<tbody><tr><td colspan="2" style="text-align:center; color:#718096;">جارٍ الجلب من غيت هب...</td></tr></tbody>
+<tbody><tr><td colspan="2" style="text-align:center; color:#718096;">جارٍ التحقق من السجل...</td></tr></tbody>
 </table>
 </div>
 
-<!-- ج. جدول العطل الرسمية الأساسية -->
 <div class="card-section">
-<h2><span>📅 جدول العطل الرسمية الأساسية في العراق</span><span class="en-title">Official Iraqi Holidays</span></h2>
+<div onclick="toggleOfficialHolidays()" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none;">
+<h2 style="border:none; margin:0; padding:0;"><span>📅 جدول العطل الرسمية الأساسية في العراق (13 عطلة)</span></h2>
+<span id="toggleIcon" style="font-size: 14px; font-weight: 700; color: #3182ce;">إظهار الجدول 🔽</span>
+</div>
+<div id="officialHolidaysBox" style="display: none; margin-top: 15px; border-top: 1px dashed #cbd5e0; padding-top: 12px; max-height: 280px; overflow-y: auto;">
 <table>
 <thead><tr><th>اسم العطلة محلياً (العراق)</th><th>التسمية المعيارية</th><th>التاريخ</th></tr></thead>
 <tbody>
 <tr><td><strong>رأس السنة الميلادية (1 كانون الثاني)</strong></td><td>New Year's Day</td><td>2026-01-01</td></tr>
 <tr><td><strong>عيد الجيش العراقي (6 كانون الثاني)</strong></td><td>Iraqi Army Day</td><td>2026-01-06</td></tr>
-<tr><td><strong>ذكرى جرائم النظام البائد (حلبجة والأنفال)</strong></td><td>Halabja & Anfal Memorial</td><td>2026-03-16</td></tr>
+<tr><td><strong>ذكرى جرائم النظام البائد (حلبجة والأنفال)</strong></td><td>Halabja & Anfal</td><td>2026-03-16</td></tr>
 <tr><td><strong>عيد نوروز (21 آذار)</strong></td><td>Newroz</td><td>2026-03-21</td></tr>
-<tr><td><strong>عيد العمال العالمي (1 أيار)</strong></td><td>International Workers' Day</td><td>2026-05-01</td></tr>
+<tr><td><strong>عيد العمال العالمي (1 أيار)</strong></td><td>Workers' Day</td><td>2026-05-01</td></tr>
 <tr><td><strong>رأس السنة الهجرية (1 محرم)</strong></td><td>Islamic New Year</td><td>متغير / Variable</td></tr>
 <tr><td><strong>يوم عاشوراء (10 محرم)</strong></td><td>Ashura Day</td><td>متغير / Variable</td></tr>
-<tr><td><strong>المولد النبوي الشريف (12 ربيع الأول)</strong></td><td>The Prophet's Birthday</td><td>متغير / Variable</td></tr>
+<tr><td><strong>المولد النبوي الشريف (12 ربيع الأول)</strong></td><td>Prophet's Birthday</td><td>متغير / Variable</td></tr>
 <tr><td><strong>عيد الفطر المبارك (1-3 شوال)</strong></td><td>Eid al-Fitr</td><td>متغير / Variable</td></tr>
 <tr><td><strong>عيد الأضحى المبارك (10-13 ذي الحجة)</strong></td><td>Eid al-Adha</td><td>متغير / Variable</td></tr>
 <tr><td><strong>يوم الغدير (18 ذي الحجة)</strong></td><td>Al-Ghadir Day</td><td>متغير / Variable</td></tr>
-<tr><td><strong>ذكرى تأسيس الجمهورية (14 تموز)</strong></td><td>Republic Foundation Day</td><td>2026-07-14</td></tr>
-<tr><td><strong>العيد الوطني لجمهورية العراق</strong></td><td>National Day of Iraq</td><td>2026-10-03</td></tr>
+<tr><td><strong>ذكرى تأسيس الجمهورية (14 تموز)</strong></td><td>Republic Day</td><td>2026-07-14</td></tr>
+<tr><td><strong>العيد الوطني لجمهورية العراق</strong></td><td>National Day</td><td>2026-10-03</td></tr>
 </tbody>
 </table>
+</div>
 </div>
 
 </div>
@@ -194,6 +193,18 @@ const REPO_OWNER = 'akjassem-netizen';
 const REPO_NAME = 'Site';
 const BRANCH = 'main';
 let ACTIVE_TOKEN = '';
+
+function toggleOfficialHolidays() {
+const box = document.getElementById('officialHolidaysBox');
+const icon = document.getElementById('toggleIcon');
+if(box.style.display === 'none') {
+box.style.display = 'block';
+icon.innerText = 'إخفاء الجدول 🔼';
+} else {
+box.style.display = 'none';
+icon.innerText = 'إظهار الجدول 🔽';
+}
+}
 
 async function deriveKey(pin, salt) {
 const enc = new TextEncoder();
@@ -291,22 +302,26 @@ document.getElementById('officeNoteInput').value = statusObj.note || '';
 }
 } catch(e) {}
 
+const tbody = document.querySelector('#customHolidaysTable tbody');
 try {
 const res2 = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/custom_holidays.json?ref=${BRANCH}`, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
 if(res2.ok) {
 const data2 = await res2.json();
 const holidays = JSON.parse(b64_to_utf8(data2.content));
-const tbody = document.querySelector('#customHolidaysTable tbody');
 tbody.innerHTML = '';
 if(holidays.length === 0) {
-tbody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:#718096;">لا توجد عطل استثنائية مضافة.</td></tr>';
+tbody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:#718096;">لا توجد عطل استثنائية مضافة بعد.</td></tr>';
 } else {
 holidays.forEach(h => {
 tbody.innerHTML += `<tr><td><strong>${h.name}</strong></td><td><span class="badge badge-holiday">${h.date}</span></td></tr>`;
 });
 }
+} else {
+tbody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:#718096;">لا توجد عطل استثنائية مضافة بعد.</td></tr>';
 }
-} catch(e) {}
+} catch(e) {
+tbody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:#718096;">لا توجد عطل استثنائية مضافة بعد.</td></tr>';
+}
 }
 
 async function saveOfficeStatus(e) {
@@ -336,7 +351,7 @@ setTimeout(() => alertEl.style.display = 'none', 3000);
 async function saveCustomHoliday(e) {
 e.preventDefault();
 const name = document.getElementById('holidayNameInput').value.trim();
-const date = document.getElementById('holidayDateInput').value;
+const date = document.getElementById('holidayDateInput5'] || document.getElementById('holidayDateInput').value;
 if(!name || !date) return;
 
 try {
