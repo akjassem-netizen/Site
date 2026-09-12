@@ -14,7 +14,7 @@
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Cairo', system-ui, sans-serif; background-color: #f7f9fc; color: #1a1a1a; padding: 25px 12px; display: flex; justify-content: center; min-height: 100vh; align-items: flex-start; }
-.panel { max-width: 950px; width: 100%; background: #ffffff; border-radius: 16px; padding: 30px 24px; box-shadow: 0 4px 25px rgba(0,0,0,0.05); border-top: 6px solid #c5a059; }
+.panel { max-width: 980px; width: 100%; background: #ffffff; border-radius: 16px; padding: 30px 24px; box-shadow: 0 4px 25px rgba(0,0,0,0.05); border-top: 6px solid #c5a059; }
 .brand-section { text-align: center; margin-bottom: 25px; border-bottom: 1.5px solid #edf2f7; padding-bottom: 18px; }
 .logo-text { font-size: 42px; font-weight: 800; letter-spacing: 2px; color: #0b1a30; line-height: 1; direction: ltr; }
 .logo-text span { color: #d32f2f; }
@@ -147,51 +147,37 @@ tr:hover { background-color: #fafafa; }
 </div>
 </div>
 
-<!-- أ. منصة تحليلات الزيارات وربط Google Analytics (GA4) -->
+<!-- أ. منصة التحليلات المرئية المخصصة (Looker Studio & GA4 Embed) -->
 <div class="card-section" style="border-top: 5px solid #3182ce;">
   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 15px;">
     <div>
-      <h2 style="border:none; margin:0; padding:0;"><span>📈 منصة تحليلات الزيارات وربط Google Analytics</span></h2>
-      <p style="font-size: 13px; color: #64748b; font-weight: 600; margin-top: 4px;">الرقم التعريفي المعتمد لمتابعة حركة الزوار بشكل مباشر.</p>
+      <h2 style="border:none; margin:0; padding:0;"><span>📈 منصة التقارير والتحليلات المرئية المخصصة (Looker Studio)</span></h2>
+      <p style="font-size: 13px; color: #64748b; font-weight: 600; margin-top: 4px;">اعرض لوحة تحكم تقارير جوجل وخرائط الزوار مباشرة داخل الديوان.</p>
     </div>
   </div>
 
   <div class="form-group">
-    <label>الرقم التعريفي لتحليلات جوجل (Google Analytics Measurement ID):</label>
+    <label>رابط تضمين تقرير Looker Studio (Embed URL أو Iframe Link):</label>
     <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-      <input type="text" id="gaPropertyIdInput" placeholder="مثلاً: G-553701597" dir="ltr" style="flex: 1; font-weight: 800; font-family: monospace;">
-      <button type="button" class="btn-submit" style="width: auto; padding: 11px 18px;" onclick="saveGoogleAnalyticsId()">تحديث وتثبيت الرقم 🌐</button>
-      <button type="button" class="btn-submit" style="width: auto; padding: 11px 18px; background-color: #e53e3e; border-color: #e53e3e;" onclick="disconnectGoogleAnalytics()">إلغاء الربط والمسح ✖️</button>
+      <input type="text" id="lookerUrlInput" placeholder="ضع رابط التقرير هنا (https://lookerstudio.google.com/...)" dir="ltr" style="flex: 1; font-weight: 700; font-family: monospace; font-size: 12.5px;">
+      <button type="button" class="btn-submit" style="width: auto; padding: 11px 18px;" onclick="saveLookerStudioUrl()">عرض وتثبيت اللوحة 🌐</button>
+      <button type="button" class="btn-submit" style="width: auto; padding: 11px 18px; background-color: #e53e3e; border-color: #e53e3e;" onclick="disconnectLookerStudio()">إلغاء وحذف ✖️</button>
     </div>
   </div>
 
-  <!-- مؤشرات حركة الزوار -->
-  <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 12px; padding: 18px; margin-top: 15px;">
+  <!-- نافذة عرض لوحة التحليلات المباشرة -->
+  <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 12px; padding: 15px; margin-top: 15px;">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
-      <strong style="font-size: 15px; font-weight: 800; color: #0b1a30;">🗺️ مؤشرات وحركة زوار الموقع (Traffic Analytics)</strong>
-      <span id="gaStatusBadge" class="badge" style="background: #e2e8f0; color: #475569; font-size: 12px;">غير متصل حالياً</span>
+      <strong style="font-size: 14.5px; font-weight: 800; color: #0b1a30;">🗺️ لوحة تقارير الزوار التفاعلية (Embedded Dashboard)</strong>
+      <span id="lookerStatusBadge" class="badge" style="background: #e2e8f0; color: #475569; font-size: 12px;">غير مفعل حالياً</span>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 15px;">
-      <div style="background: #ffffff; padding: 12px 14px; border-radius: 8px; border: 1px solid #e2e8f0;">
-        <span style="font-size: 11.5px; color: #64748b; font-weight: 700; display: block;">الزيارات النشطة حالياً (Real-time)</span>
-        <strong id="gaLiveUsers" style="font-size: 18px; color: #16a34a; font-weight: 900; direction: ltr; unicode-bidi: embed; display: inline-block;">--</strong>
+    <div id="lookerContainer" style="width: 100%; min-height: 480px; background: #ffffff; border: 1px solid #cbd5e0; border-radius: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative;">
+      <div id="lookerPlaceholder" style="text-align: center; padding: 40px; color: #64748b;">
+        <p style="font-size: 15px; font-weight: 700; margin-bottom: 8px;">📊 لم يتم إدراج رابط لوحة التحليلات بعد.</p>
+        <p style="font-size: 12.5px; max-width: 450px; margin: 0 auto; line-height: 1.6;">قم بإنشاء تقرير مجاني في Looker Studio باستخدام معرف التتبع الخاص بك (G-553701597)، ثم انسخ رابط التضمين (Embed URL) وضعه في الحقل أعلاه ليظهر تقريرك وخريطة زوارك هنا مباشرة!</p>
       </div>
-      <div style="background: #ffffff; padding: 12px 14px; border-radius: 8px; border: 1px solid #e2e8f0;">
-        <span style="font-size: 11.5px; color: #64748b; font-weight: 700; display: block;">متابعة الجلسات (Sessions)</span>
-        <strong id="gaPageviews" style="font-size: 18px; color: #0b1a30; font-weight: 900; direction: ltr; unicode-bidi: embed; display: inline-block;">--</strong>
-      </div>
-      <div style="background: #ffffff; padding: 12px 14px; border-radius: 8px; border: 1px solid #e2e8f0;">
-        <span style="font-size: 11.5px; color: #64748b; font-weight: 700; display: block;">المصدر الرئيسي (Top Traffic)</span>
-        <strong id="gaTopSource" style="font-size: 15px; color: #2b6cb0; font-weight: 800;">محركات البحث / مباشر</strong>
-      </div>
-    </div>
-
-    <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; text-align: center;">
-      <p style="font-size: 13px; color: #4a5568; line-height: 1.6; font-weight: 600; margin-bottom: 10px;">
-        💡 <strong>حالة الربط:</strong> يمكنك في أي وقت تحديث الرقم أو إلغاء الربط، والانتقال للوحة تحكم Google Analytics لعرض التقارير التفصيلية والخرائط الجغرافية الكاملة عبر الرابط:
-      </p>
-      <a href="https://analytics.google.com" target="_blank" class="module-link" style="padding: 9px 18px; font-size: 13px;">فتح لوحة تحكم Google Analytics ↗</a>
+      <iframe id="lookerIframe" src="" style="width: 100%; height: 500px; border: none; display: none;" allowfullscreen></iframe>
     </div>
   </div>
 </div>
@@ -497,7 +483,7 @@ async function decryptToken(encryptedObj, pin) {
   return new TextDecoder().decode(decrypted);
 }
 
-// تثبيت وحقن تحليلات جوجل ديناميكياً
+// تفعيل وتثبيت تحليلات جوجل وتتبع رقم G-553701597 في عموم الموقع
 function initGoogleAnalytics(propertyId) {
   let targetId = propertyId || "G-553701597";
   if (!targetId.startsWith('G-')) {
@@ -526,41 +512,48 @@ function initGoogleAnalytics(propertyId) {
   document.head.appendChild(script2);
 
   document.getElementById('gaPropertyIdInput').value = targetId;
-  document.getElementById('gaStatusBadge').innerText = '🟢 متصل بنجاح (' + targetId + ')';
-  document.getElementById('gaStatusBadge').style.background = '#def7ec';
-  document.getElementById('gaStatusBadge').style.color = '#03543f';
-  document.getElementById('gaLiveUsers').innerText = 'مفعل ومستقر';
-  document.getElementById('gaPageviews').innerText = 'متصل بنجاح';
 }
 
-async function saveGoogleAnalyticsId() {
-  const propId = document.getElementById('gaPropertyIdInput').value.trim();
-  if(!propId) {
-    alert("يرجى إدخال الرقم التعريفي بشكل صحيح.");
+// تثبيت وتحميل نافذة Looker Studio المخصصة
+function initLookerStudio(url) {
+  const iframe = document.getElementById('lookerIframe');
+  const placeholder = document.getElementById('lookerPlaceholder');
+  const badge = document.getElementById('lookerStatusBadge');
+
+  if (url && url.startsWith('http')) {
+    iframe.src = url;
+    iframe.style.display = 'block';
+    placeholder.style.display = 'none';
+    badge.innerText = '🟢 لوحة التحليلات معروضة نشطة';
+    badge.style.background = '#def7ec';
+    badge.style.color = '#03543f';
+  } else {
+    iframe.src = '';
+    iframe.style.display = 'none';
+    placeholder.style.display = 'block';
+    badge.innerText = 'غير مفعل حالياً';
+    badge.style.background = '#e2e8f0';
+    badge.style.color = '#475569';
+  }
+}
+
+async function saveLookerStudioUrl() {
+  const url = document.getElementById('lookerUrlInput').value.trim();
+  if(!url) {
+    alert("يرجى إدخال رابط التضمين (Embed URL) بشكل صحيح.");
     return;
   }
-  localStorage.setItem('akh_ga_property_id', propId);
-  initGoogleAnalytics(propId);
-  alert("تم تحديث وتثبيت الرقم التعريفي لتحليلات جوجل بنجاح 🌐");
+  localStorage.setItem('akh_looker_studio_url', url);
+  initLookerStudio(url);
+  alert("تم حفظ وتثبيت لوحة التحليلات المخصصة بنجاح 🌐");
 }
 
-// دالة إلغاء الربط والمسح
-function disconnectGoogleAnalytics() {
-  if(!confirm("هل أنت متأكد من إلغاء ربط تحليلات جوجل وحذف الرقم التعريفي؟")) return;
-  localStorage.removeItem('akh_ga_property_id');
-  document.getElementById('gaPropertyIdInput').value = '';
-  
-  const existingScript = document.getElementById('gaScriptTag');
-  if (existingScript) existingScript.remove();
-  const existingConfig = document.getElementById('gaConfigTag');
-  if (existingConfig) existingConfig.remove();
-
-  document.getElementById('gaStatusBadge').innerText = 'غير متصل حالياً';
-  document.getElementById('gaStatusBadge').style.background = '#e2e8f0';
-  document.getElementById('gaStatusBadge').style.color = '#475569';
-  document.getElementById('gaLiveUsers').innerText = '--';
-  document.getElementById('gaPageviews').innerText = '--';
-  alert("تم إلغاء ربط التحليلات بنجاح ✖️");
+function disconnectLookerStudio() {
+  if(!confirm("هل أنت متأكد من إلغاء ربط لوحة التحليلات وحذف الرابط؟")) return;
+  localStorage.removeItem('akh_looker_studio_url');
+  document.getElementById('lookerUrlInput').value = '';
+  initLookerStudio('');
+  alert("تم إلغاء ربط اللوحة بنجاح ✖️");
 }
 
 async function performPortalSetup() {
@@ -692,12 +685,14 @@ async function autoUnlockSession() {
   const savedPin = localStorage.getItem('akh_portal_saved_pin');
   const savedToken = sessionStorage.getItem('akh_portal_active_token');
 
-  const savedGaId = localStorage.getItem('akh_ga_property_id');
-  if(savedGaId) {
-    initGoogleAnalytics(savedGaId);
-  } else {
-    // الافتراضي الدائم
-    initGoogleAnalytics("G-553701597");
+  // تفعيل تتبع جوجل بالرقم الثابت
+  initGoogleAnalytics("G-553701597");
+
+  // استرجاع رابط Looker Studio المحفوظ إن وجد
+  const savedLookerUrl = localStorage.getItem('akh_looker_studio_url');
+  if (savedLookerUrl) {
+    document.getElementById('lookerUrlInput').value = savedLookerUrl;
+    initLookerStudio(savedLookerUrl);
   }
 
   if (savedToken) {
@@ -1317,7 +1312,7 @@ async function saveOfficeStatus(e) {
 async function saveCustomHoliday(e) {
   e.preventDefault();
   const name = document.getElementById('holidayNameInput').value.trim();
-  const date = document.getElementById('holidayDateInput').value;
+  const date = document.getElementById('holidayDateInput`').value;
   if(!name || !date) return;
 
   verifyPinAndExecute(async () => {
