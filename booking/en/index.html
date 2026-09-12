@@ -156,6 +156,48 @@
       margin-top: 2px;
     }
 
+    /* شريط الحالة الحي */
+    .status-card-box {
+      background: #f8fafc;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    @keyframes goldPulse {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.8); }
+      70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(197, 160, 89, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(197, 160, 89, 0); }
+    }
+    .status-indicator-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      animation: goldPulse 2s infinite;
+    }
+    .status-indicator-dot.active { background: #16a34a; }
+    .status-indicator-dot.off_hours { background: #d97706; animation: none; }
+    .status-indicator-dot.holiday { background: #dc2626; animation: none; }
+
+    .status-text-content strong {
+      display: block;
+      font-size: 13.5px;
+      font-weight: 800;
+      color: #070f1e;
+      margin-bottom: 2px;
+    }
+    .status-text-content span {
+      font-size: 12.5px;
+      color: #475569;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
     h1 { font-size: 22px; font-weight: 900; color: #070f1e; margin-bottom: 10px; text-align: start; }
     p.instructions { font-size: 14px; color: #475569; line-height: 1.7; margin-bottom: 25px; text-align: start; }
 
@@ -287,6 +329,15 @@
       <div class="b-akh">A<span class="red-k">K</span>H</div>
       <div class="b-sub"><span class="red-slash">/</span> LAW OFFICE</div>
       <div class="b-est">EST. 2014</div>
+    </div>
+
+    <!-- شريط الحالة الحي التفاعلي -->
+    <div class="status-card-box">
+      <div id="statusDot" class="status-indicator-dot holiday"></div>
+      <div class="status-text-content">
+        <strong id="statusHeaderTitle">Weekend Notice (Friday & Saturday)</strong>
+        <span id="statusMessageText">The office is currently closed for the weekend. You may request a formal consultation appointment at any time, and your request will be processed promptly upon the resumption of official working hours on Sunday morning.</span>
+      </div>
     </div>
 
     <h1 id="formMainTitle">Legal Consultation Request Form</h1>
@@ -463,7 +514,64 @@
       } else {
         changeLanguage('en');
       }
+      evaluateBaghdadSchedule();
     });
+
+    async function evaluateBaghdadSchedule() {
+      const lang = document.getElementById('languageSelect').value;
+      const dot = document.getElementById('statusDot');
+      const statusTitle = document.getElementById('statusHeaderTitle');
+      const statusMsg = document.getElementById('statusMessageText');
+      const t = bookingDict[lang] || bookingDict['en'];
+
+      try {
+        const res = await fetch('/office_status.json?t=' + new Date().getTime(), { cache: 'no-store' });
+        if (res.ok) {
+          const data = await res.json();
+          if (data.status === 'holiday') {
+            dot.className = 'status-indicator-dot holiday';
+            statusTitle.innerText = t.holidayTitle || "Office Holiday";
+            statusMsg.innerText = data.note ? data.note : t.holidayMsg;
+            return;
+          } else if (data.status === 'off_hours') {
+            dot.className = 'status-indicator-dot off_hours';
+            statusTitle.innerText = t.offHoursTitle;
+            statusMsg.innerText = data.note ? data.note : t.offHoursMsg;
+            return;
+          } else if (data.status === 'active') {
+            dot.className = 'status-indicator-dot active';
+            statusTitle.innerText = t.openTitle;
+            statusMsg.innerText = data.note ? data.note : t.openMsg;
+            return;
+          }
+        }
+      } catch(e) {}
+
+      const nowBaghdad = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Baghdad" }));
+      const day = nowBaghdad.getDay(); 
+      const hour = nowBaghdad.getHours();
+      const minute = nowBaghdad.getMinutes();
+      const timeVal = hour * 60 + minute;
+
+      const startVal = 8 * 60;  
+      const endVal = 16 * 60; 
+
+      if (day === 5 || day === 6) {
+        dot.className = 'status-indicator-dot holiday';
+        statusTitle.innerText = t.weekendTitle;
+        statusMsg.innerText = t.weekendMsg;
+      } 
+      else if (timeVal < startVal || timeVal > endVal) {
+        dot.className = 'status-indicator-dot off_hours';
+        statusTitle.innerText = t.offHoursTitle;
+        statusMsg.innerText = t.offHoursMsg;
+      } 
+      else {
+        dot.className = 'status-indicator-dot active';
+        statusTitle.innerText = t.openTitle;
+        statusMsg.innerText = t.openMsg;
+      }
+    }
 
     function changeLanguage(lang) {
       if (lang === 'ar') {
@@ -573,6 +681,7 @@
 
       document.getElementById('languageSelect').value = lang;
 
+      evaluateBaghdadSchedule();
       updateFormDisplay();
     }
 
@@ -693,6 +802,14 @@
         phCountry: "e.g., Iraq / UAE / UK",
         phRegNo: "Certificate or Registration Number",
         phDetails: "Briefly explain the facts of your case or legal consultation topic...",
+        weekendTitle: "Weekend Notice (Friday & Saturday)",
+        weekendMsg: "The office is currently closed for the weekend. You may request a formal consultation appointment at any time, and your request will be processed promptly upon the resumption of official working hours on Sunday morning.",
+        offHoursTitle: "Outside Official Working Hours",
+        offHoursMsg: "We are currently outside official hours. You can submit your inquiry via the booking form.",
+        openTitle: "Office is Open",
+        openMsg: "Office is currently open for regular inquiries and booking.",
+        holidayTitle: "Office Holiday / Leave",
+        holidayMsg: "The office is currently on official leave. You may submit your request and it will be reviewed upon resumption.",
         privacyText: "Privacy Policy",
         disclaimerText: "Disclaimer",
         codeText: "Code of Conduct",
@@ -765,6 +882,14 @@
         phCountry: "örn. Irak / BAE / İngiltere",
         phRegNo: "Kayıt veya Sertifika Numarası",
         phDetails: "Davanızın detaylarını kısaca açıklayın...",
+        weekendTitle: "Hafta Sonu Tatili",
+        weekendMsg: "Ofis hafta sonu tatilindedir. Dilediğiniz zaman randevu talep edebilirsiniz; talebiniz Pazar sabahı mesai saatinin başlamasıyla işleme alınacaktır.",
+        offHoursTitle: "Mesai Saatleri Dışında",
+        offHoursMsg: "Şu anda resmi çalışma saatleri dışındayız. Talebinizi form aracılığıyla gönderebilirsiniz.",
+        openTitle: "Ofis Açık",
+        openMsg: "Ofisimiz şu anda normal sorularınız ve rezervasyonlarınız için açıktır.",
+        holidayTitle: "Resmi Tatil",
+        holidayMsg: "Ofis resmi tatildedir. Talebiniz mesai başlangıcında incelenecektir.",
         privacyText: "Gizlilik Politikası",
         disclaimerText: "Yasal Uyarı",
         codeText: "Mesleki Etik Kuralları",
@@ -837,10 +962,18 @@
         phCountry: "例如：伊拉克 / 阿联酋",
         phRegNo: "注册或证书编号",
         phDetails: "请简要说明您的案件或咨询主题...",
+        weekendTitle: "周末公告",
+        weekendMsg: "本所目前正值周末假期。您可随时申请正式法律咨询预约，请求将在周日上午恢复工作时间后处理。",
+        offHoursTitle: "非官方工作时间",
+        offHoursMsg: "我们目前已过了官方工作时间。您可以通过表单提交需求。",
+        openTitle: "办公室开放",
+        openMsg: "本所目前开放接受常规咨询和预订。",
+        holidayTitle: "官方假期",
+        holidayMsg: "本所目前正值官方假期，您的请求将在恢复工作后处理。",
         privacyText: "隐私政策",
         disclaimerText: "免责声明",
         codeText: "行为准则",
-        rightsText: "版权所有 © 2026 AKH Law Office"
+        rightsText: "版权所有 © 2026 AKH 律师事务所"
       },
       fr: {
         title: "Réserver une Consultation | Cabinet Ali Kadhem Hashimi - Bagdad",
@@ -908,7 +1041,15 @@
         phNat: "ex: Britannique / Américain",
         phCountry: "ex: Irak / EAU / R-U",
         phRegNo: "Numéro d'enregistrement",
-        phDetails: "Veuillez expliquer brièvement les faits de votre affaire...",
+        phDetails: "Veuillez expliquer brièvement les faits...",
+        weekendTitle: "Avis de Weekend",
+        weekendMsg: "Le bureau est actuellement fermé pour le weekend. Vous pouvez demander un rendez-vous à tout moment, et votre demande sera traitée dès la reprise dimanche matin.",
+        offHoursTitle: "En Dehors des Heures de Travail",
+        offHoursMsg: "Nous sommes actuellement en dehors des heures de bureau. Vous pouvez soumettre votre demande via le formulaire.",
+        openTitle: "Le Bureau est Ouvert",
+        openMsg: "Le bureau est actuellement ouvert pour les demandes habituelles.",
+        holidayTitle: "Congé Officiel",
+        holidayMsg: "Le bureau est en congé officiel. Votre demande sera traitée à la reprise.",
         privacyText: "Politique de Confidentialité",
         disclaimerText: "Avertissement",
         codeText: "Code de Conduite",
@@ -967,7 +1108,7 @@
         typeOther: "Otro / General",
         details: "Detalles de su caso o tema de consulta *",
         submit: "Enviar Solicitud para Revisión Legal &larr;",
-        successMsg: "Su solicitud ha sido recibida con éxito (será revisada y respondida dentro de las 24 horas).",
+        successMsg: "Su solicitud ha sido recibida con éxito (será respondida dentro de las 24 horas).",
         phName: "Ingrese el nombre completo",
         phCompRep: "Nombre del representante",
         phEmail: "name@example.com",
@@ -981,6 +1122,14 @@
         phCountry: "ej: Irak / EAU / RU",
         phRegNo: "Número de registro",
         phDetails: "Explique brevemente los hechos de su caso...",
+        weekendTitle: "Aviso de Fin de Semana",
+        weekendMsg: "La oficina está cerrada por el fin de semana. Puede solicitar una cita en cualquier momento y será procesada el domingo.",
+        offHoursTitle: "Fuera de Horario Laboral",
+        offHoursMsg: "Actualmente estamos fuera del horario de oficina. Puede enviar su solicitud mediante el formulario.",
+        openTitle: "La Oficina Está Abierta",
+        openMsg: "La oficina está abierta actualmente para consultas regulares.",
+        holidayTitle: "Vacaciones Oficiales",
+        holidayMsg: "La oficina se encuentra en licencia oficial. Su solicitud será revisada al reanudar.",
         privacyText: "Política de Privacidad",
         disclaimerText: "Aviso Legal",
         codeText: "Código de Conducta",
@@ -1039,7 +1188,7 @@
         typeOther: "Sonstige / Allgemeine Beratung",
         details: "Details Ihres Falles *",
         submit: "Anfrage zur rechtlichen Prüfung absenden &larr;",
-        successMsg: "Ihre Anfrage wurde erfolgreich empfangen (wird innerhalb von 24 Stunden geprüft und beantwortet).",
+        successMsg: "Ihre Anfrage wurde erfolgreich empfangen (wird innerhalb von 24 Stunden beantwortet).",
         phName: "Vollständigen Namen eingeben",
         phCompRep: "Name des Vertreters",
         phEmail: "name@example.com",
@@ -1053,6 +1202,14 @@
         phCountry: "z.B. Irak / VAE / GB",
         phRegNo: "Registriernummer",
         phDetails: "Erläutern Sie kurz die Fakten Ihres Falles...",
+        weekendTitle: "Wochenendnotiz",
+        weekendMsg: "Das Büro ist am Wochenende geschlossen. Sie können jederzeit einen Termin anfordern, welcher am Sonntagmorgen bearbeitet wird.",
+        offHoursTitle: "Außerhalb der Arbeitszeiten",
+        offHoursMsg: "Wir befinden uns außerhalb der Bürozeiten. Sie können Ihre Anfrage über das Formular senden.",
+        openTitle: "Das Büro ist Geöffnet",
+        openMsg: "Das Büro ist derzeit für reguläre Anfragen geöffnet.",
+        holidayTitle: "Offizieller Feiertag",
+        holidayMsg: "Das Büro befindet sich im Urlaub. Ihre Anfrage wird bei Wiederaufnahme bearbeitet.",
         privacyText: "Datenschutz",
         disclaimerText: "Haftungsausschluss",
         codeText: "Verhaltenskodex",
@@ -1111,7 +1268,7 @@
         typeOther: "هی تر / ڕاوێژی گشتی",
         details: "وردەکاری دۆسیە یاخود بابەتی راوێژەکەت *",
         submit: "ناردنی داواکاری بۆ پێداچوونەوەی یاسایی ←",
-        successMsg: "داواکارییەکەت بە سەرکەوتوویی وەرگیرا (لە ماوەی ٢٤ کاتژمێردا پێداچوونەوە و وەڵام دەدرێتەوە).",
+        successMsg: "داواکارییەکەت بە سەرکەوتوویی وەرگیرا (لە ماوەی ٢٤ کاتژمێردا وەڵام دەدرێتەوە).",
         phName: "ناوی تەواو بنووسە",
         phCompRep: "ناوی کەسی بەرپرس",
         phEmail: "name@example.com",
@@ -1125,6 +1282,14 @@
         phCountry: "نموونە: عێراق / ئێمارات",
         phRegNo: "ژمارەی تۆمارکردن",
         phDetails: "بە کورتەیەک وردەکاری دۆسیەکەت بنووسە...",
+        weekendTitle: "پشووی کۆتایی هەفتە",
+        weekendMsg: "نووسینگە لە پشووی کۆتایی هەفتەدایە. دەتوانیت داوای حجز بکەیت و لە بەیانی یەکشەممە وەڵام دەدرێتەوە.",
+        offHoursTitle: "دەرەوەی کاتژمێرەکانی کارکردن",
+        offHoursMsg: "ئێمە لە دەرەوەی کاتژمێرە فەرمییەکانداین. دەتوانیت داواکارییەکەت بنێریت.",
+        openTitle: "نووسینگە کراوەیە",
+        openMsg: "نووسینگە لە ئێستادا کراوەیە بۆ وەرگرتنی داواکارییەکان.",
+        holidayTitle: "پشووی فەرمی",
+        holidayMsg: "نووسینگە لە پشووی فەریدایە. داواکارییەکەت لە کاتی دەستپێکردنەوە وەڵام دەدرێتەوە.",
         privacyText: "سیاسەتی تایبەتمەندی",
         disclaimerText: "بەرپرسیارێتی",
         codeText: "ڕەفتاری پیشەیی",
