@@ -302,47 +302,48 @@
       font-weight: 900;
     }
 
+    /* أزرار الإجراءات المتكاملة */
     .action-buttons {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin-top: 20px;
+      gap: 14px;
+      margin-top: 25px;
     }
-    .btn-whatsapp {
+    .btn-action {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
       width: 100%;
-      background: #25d366;
-      color: white;
       padding: 15px;
       border-radius: 10px;
       text-decoration: none;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 15px;
-      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);
-      transition: background 0.3s;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    }
+    .btn-booking {
+      background: #0f172a;
+      color: #c5a059;
+      border: 1.5px solid #c5a059;
+    }
+    .btn-booking:hover {
+      background: #c5a059;
+      color: #0f172a;
+    }
+    .btn-whatsapp {
+      background: #25d366;
+      color: white;
     }
     .btn-whatsapp:hover { background: #1ebe5d; }
 
     .btn-back-home {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      width: 100%;
-      background: #0f172a;
-      color: white;
-      padding: 13px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 14.5px;
-      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
-      transition: background 0.3s;
+      background: #f1f5f9;
+      color: #0f172a;
+      border: 1px solid #cbd5e1;
     }
-    .btn-back-home:hover { background: #c5a059; color: #0f172a; }
+    .btn-back-home:hover { background: #e2e8f0; }
 
     .site-footer {
       text-align: center;
@@ -486,10 +487,13 @@
     </div>
 
     <div class="action-buttons">
-      <a href="https://wa.me/9647838759047" target="_blank" class="btn-whatsapp" id="btnWhatsappText">
+      <a href="/booking/en/" class="btn-action btn-booking" id="btnBookingText">
+        <span>📅 Book Official Consultation Appointment</span>
+      </a>
+      <a href="https://wa.me/9647838759047" target="_blank" class="btn-action btn-whatsapp" id="btnWhatsappText">
         <span>💬 Contact via WhatsApp Directly</span>
       </a>
-      <a href="https://akjassem.com/en/" class="btn-back-home" id="btnBackHomeText">
+      <a href="https://akjassem.com/en/" class="btn-action btn-back-home" id="btnBackHomeText">
         <span>🏠 Back to Home Page</span>
       </a>
     </div>
@@ -620,6 +624,14 @@
       document.getElementById('lblEmail').innerText = t.lblEmail;
       document.getElementById('mapBoxTitle').innerText = t.mapBoxTitle;
       document.getElementById('mapBoxSub').innerText = t.mapBoxSub;
+      
+      // تحديث رابط وزر الحجز ديناميكياً حسب اللغة
+      const bookingBtn = document.getElementById('btnBookingText');
+      if (bookingBtn) {
+        bookingBtn.href = (lang === 'ar') ? '/booking/' : '/booking/en/';
+        bookingBtn.innerHTML = `<span>${t.btnBooking}</span>`;
+      }
+
       document.getElementById('btnWhatsappText').innerHTML = `<span>${t.btnWhatsapp}</span>`;
       document.getElementById('btnBackHomeText').innerHTML = `<span>${t.btnBackHome}</span>`;
 
@@ -645,6 +657,7 @@
         lblHours: "Working Hours", valHours: "Sunday to Thursday (08:00 AM - 04:00 PM Baghdad Time)",
         lblPhone: "Office Phone & WhatsApp", lblEmail: "Email",
         mapBoxTitle: "View Office Location on Google Maps", mapBoxSub: "Click here to navigate and track the route to the office",
+        btnBooking: "📅 Book Official Consultation Appointment",
         btnWhatsapp: "💬 Contact via WhatsApp Directly", btnBackHome: "🏠 Back to Home Page",
         weekendTitle: "Weekend Notice (Friday & Saturday)",
         weekendMsg: "The office is currently closed for the weekend. You may request a formal consultation appointment at any time, and your request will be processed promptly upon the resumption of official working hours on Sunday morning.",
@@ -664,6 +677,7 @@
         lblHours: "Çalışma Saatleri", valHours: "Pazar - Perşembe (08:00 - 16:00 Bağdat Saati)",
         lblPhone: "Ofis Telefon ve WhatsApp", lblEmail: "E-posta",
         mapBoxTitle: "Ofis Konumunu Google Haritalar'da Görüntüle", mapBoxSub: "Ofise rota oluşturmak ve gitmek için buraya tıklayın",
+        btnBooking: "📅 Resmi Danışmanlık Randevusu Alın",
         btnWhatsapp: "💬 Doğrudan WhatsApp ile İletişim", btnBackHome: "🏠 Ana Sayfaya Dön",
         weekendTitle: "Hafta Sonu Tatili (Cuma ve Cumartesi)",
         weekendMsg: "Ofis hafta sonu tatilindedir. Dilediğiniz zaman resmi danışmanlık randevusu talep edebilirsiniz; talebiniz Pazar sabahı mesai saatinin başlamasıyla birlikte işleme alınacaktır.",
@@ -683,9 +697,10 @@
         lblHours: "工作时间", valHours: "周日至周四（巴格达时间上午 08:00 - 下午 04:00）",
         lblPhone: "办公室电话与 WhatsApp", lblEmail: "电子邮箱",
         mapBoxTitle: "在谷歌地图上查看办公室位置", mapBoxSub: "点击此处导航并追踪前往办公室的路线",
+        btnBooking: "📅 预约正式法律咨询",
         btnWhatsapp: "💬 直接通过 WhatsApp 联系", btnBackHome: "🏠 返回首页",
         weekendTitle: "周末公告（周五和周六）",
-        weekendMsg: "本所目前正值周末假期。您可随时申请正式法律咨询预约，所有请求将在周日上午恢复官方工作时间后立即处理。",
+        weekendMsg: "本所目前正值周末假期。您可随时提交预约或咨询，所有请求将在周日上午恢复官方工作时间后立即审核并处理。",
         offHoursTitle: "非官方工作时间",
         offHoursMsg: "我们目前已过了官方工作时间。您可以通过预订表格提交您的需求。",
         openTitle: "办公室开放",
@@ -702,9 +717,10 @@
         lblHours: "Horaires de Travail", valHours: "Dimanche au Jeudi (08h00 - 16h00 heure de Bagdad)",
         lblPhone: "Téléphone & WhatsApp du Bureau", lblEmail: "Email",
         mapBoxTitle: "Voir l'emplacement sur Google Maps", mapBoxSub: "Cliquez ici pour naviguer et suivre l'itinéraire vers le bureau",
+        btnBooking: "📅 Réserver un Rendez-vous de Consultation Officielle",
         btnWhatsapp: "💬 Contacter via WhatsApp Directement", btnBackHome: "🏠 Retour à la Page d'Accueil",
         weekendTitle: "Avis de Weekend (Vendredi & Samedi)",
-        weekendMsg: "Le bureau est actuellement en congé de weekend. Vous pouvez demander un rendez-vous de consultation officielle à tout moment, et votre demande sera traitée dès la reprise des heures de travail officielles dimanche matin.",
+        weekendMsg: "Le bureau est actuellement en congé de weekend. Vous pouvez soumettre votre réservation ou demande à tout moment ; toutes les demandes seront examinées et traitées dès la reprise des heures de travail officielles dimanche matin.",
         offHoursTitle: "En Dehors des Heures de Travail",
         offHoursMsg: "Nous sommes actuellement en dehors des heures de bureau. Vous pouvez soumettre votre demande via le formulaire.",
         openTitle: "Le Bureau est Ouvert",
@@ -721,9 +737,10 @@
         lblHours: "Horario de Trabajo", valHours: "Domingo a Jueves (08:00 a.m. - 04:00 p.m. hora de Bagdad)",
         lblPhone: "Teléfono y WhatsApp de la Oficina", lblEmail: "Correo Electrónico",
         mapBoxTitle: "Ver ubicación en Google Maps", mapBoxSub: "Haga clic aquí para navegar y seguir la ruta a la oficina",
+        btnBooking: "📅 Reservar Cita de Consulta Oficial",
         btnWhatsapp: "💬 Contactar por WhatsApp Directamente", btnBackHome: "🏠 Volver a la Página Principal",
         weekendTitle: "Aviso de Fin de Semana (Viernes y Sábado)",
-        weekendMsg: "La oficina se encuentra actualmente cerrada por el fin de semana. Puede solicitar una cita de consulta oficial en cualquier momento, y su solicitud será atendida a primera hora del domingo al reanudar el horario oficial.",
+        weekendMsg: "La oficina se encuentra actualmente cerrada por el fin de semana. Puede enviar su reserva o consulta en cualquier momento; todas las solicitudes serán revisadas y procesadas a primera hora del domingo al reanudar el horario oficial.",
         offHoursTitle: "Fuera de Horario Laboral",
         offHoursMsg: "Actualmente estamos fuera del horario de oficina. Puede enviar su solicitud a través del formulario de reserva.",
         openTitle: "La Oficina Está Abierta",
@@ -740,9 +757,10 @@
         lblHours: "Arbeitszeiten", valHours: "Sonntag bis Donnerstag (08:00 Uhr - 16:00 Uhr Bagdader Zeit)",
         lblPhone: "Büro Telefon & WhatsApp", lblEmail: "E-Mail",
         mapBoxTitle: "Bürostandort auf Google Maps anzeigen", mapBoxSub: "Klicken Sie hier, um den Weg zum Büro zu finden",
+        btnBooking: "📅 Offiziellen Beratungstermin buchen",
         btnWhatsapp: "💬 Direkt über WhatsApp kontaktieren", btnBackHome: "🏠 Zurück zur Startseite",
         weekendTitle: "Wochenendnotiz (Freitag & Samstag)",
-        weekendMsg: "Das Büro befindet sich derzeit im Wochenendurlaub. Sie können jederzeit einen offiziellen Beratungstermin anfordern, und Ihre Anfrage wird am Sonntagmorgen bei Wiederaufnahme der regulären Arbeitszeiten bearbeitet.",
+        weekendMsg: "Das Büro befindet sich derzeit im Wochenendurlaub. Sie können Ihre Buchung oder Anfrage jederzeit einreichen; alle Anfragen werden am Sonntagmorgen bei Wiederaufnahme der regulären Arbeitszeiten umgehend geprüft und bearbeitet.",
         offHoursTitle: "Außerhalb der Arbeitszeiten",
         offHoursMsg: "Wir befinden uns derzeit außerhalb der Bürozeiten. Sie können Ihre Anfrage über das Buchungsformular senden.",
         openTitle: "Das Büro ist Geöffnet",
@@ -759,9 +777,10 @@
         lblHours: "کاتی کارکردن", valHours: "یەکشەممە تا پێنجشەممە (٠٨:٠٠ بەیانی - ٠٤:٠٠ ئێوارە بە کاتی بەغداد)",
         lblPhone: "مۆبایل و واتسأپی نووسینگە", lblEmail: "ئیمەیڵ",
         mapBoxTitle: "پیشاندانی شوێنی نووسینگە لە نەخشەی گۆگڵ", mapBoxSub: "کلیک لێرە بکە بۆ چوون و شوێنکەوتنی ڕێگا بۆ نووسینگە",
+        btnBooking: "📅 دیاریکردنی کاتی ڕاوێژی فەرمی",
         btnWhatsapp: "💬 پەیوەندی لە ڕێگەی واتسأپەوە بە ڕاستەوخۆ", btnBackHome: "🏠 گەڕانەوە بۆ لاپەڕەی سەرەکی",
         weekendTitle: "پشووی کۆتایی هەفتە (هەینی و شەممە)",
-        weekendMsg: "نووسینگە لە پشووی کۆتایی هەفتەدایە. دەتوانیت لە هەر کاتێکدا داوای دیاریکردنی کاتی ڕاوێژی فەرمی بکەیت، و داواکارییەکەت لە بەیانی ڕۆژی یەکشەممە لەگەڵ دەستپێکردنەوەی کاردا وەڵام دەدرێتەوە.",
+        weekendMsg: "نووسینگە لە پشووی فەرمی کۆتایی هەفتەدایە. دەتوانیت داواکاری یان دیاریکردنی کاتی ڕاوێژی فەرمی لە هەر کاتێکدا بنێریت؛ سەرجەم داواکارییەکان لە بەیانی ڕۆژی یەکشەممە لەگەڵ دەستپێکردنەوەی کاردا بە زوویی لێکۆڵینەوە و کاریان لەسەر دەکرێت.",
         offHoursTitle: "دەرەوەی کاتژمێرەکانی کارکردن",
         offHoursMsg: "ئێمە لە دەرەوەی کاتژمێرە فەرمییەکانداین. دەتوانیت داواکارییەکەت بنێریت.",
         openTitle: "نووسینگە کراوەیە",
