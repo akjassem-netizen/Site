@@ -364,7 +364,7 @@ async function performPortalSetup() {
   const token = document.getElementById('portalSetupTokenInput').value.trim();
   const pin = document.getElementById('portalSetupPinInput').value.trim();
   if (!token || !pin) {
-    alert("يرجى إدخال مفتاح المرور الآمن والرمز السري بدقة.");
+    alert("يرجى إدخال مفتاح المرور الآمن والرقم السري بدقة.");
     return;
   }
   try {
@@ -590,7 +590,7 @@ function calculateHolidayStats() {
   document.getElementById('statWorkdays').innerText = netWorkdays;
 }
 
-// تصدير التقرير مع تثبيت الألوان تماماً أثناء الطباعة
+// تصدير التقرير مع إجبار محرك الطباعة في الأندرويد والهواتف على إظهار الألوان والخلفيات بدقة 100%
 function exportHolidayReportPDF() {
   const range = getActiveReportRange();
   if(!range) {
@@ -633,6 +633,11 @@ function exportHolidayReportPDF() {
       <meta charset="UTF-8">
       <title>${range.labelAr} - مكتب المحامي علي كاظم الهاشمي</title>
       <style>
+        @media print {
+          body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; background: #fff !important; }
+          th { background-color: #0b1a30 !important; color: #ffffff !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+          .report-title-box { background: #f8fafc !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        }
         * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
         body { font-family: 'Cairo', Arial, sans-serif; color: #0f172a; padding: 35px; margin: 0; background: #fff !important; }
         .print-header { text-align: center; border-bottom: 3.5px solid #c5a059; padding-bottom: 16px; margin-bottom: 22px; }
@@ -652,7 +657,7 @@ function exportHolidayReportPDF() {
         
         .stats-table { width: 100%; border-collapse: collapse; margin-bottom: 25px; direction: rtl; font-size: 13px; }
         .stats-table th, .stats-table td { border: 1px solid #cbd5e0; padding: 10px; text-align: center; }
-        .stats-table th { background-color: #0f172a !important; color: #ffffff !important; font-weight: 700; font-size: 12.5px; }
+        .stats-table th { background-color: #0b1a30 !important; color: #ffffff !important; font-weight: 700; font-size: 12.5px; }
         
         .details-title { font-size: 15px; font-weight: 800; color: #0f172a; margin-bottom: 10px; direction: rtl; border-right: 5px solid #c5a059; padding-right: 10px; }
         
