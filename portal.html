@@ -14,8 +14,8 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #f7f9fc; c
 .brand-section { text-align: center; margin-bottom: 20px; border-bottom: 1.5px solid #edf2f7; padding-bottom: 15px; }
 .logo-text { font-size: 42px; font-weight: 800; letter-spacing: 2px; color: #0b1a30; line-height: 1; }
 .logo-text span { color: #d32f2f; }
-.sub-brand { font-size: 12.5px; font-weight: 700; color: #111; letter-spacing: 3px; margin-top: 6px; direction: ltr; }
-.sub-brand span { color: #d32f2f; margin-right: 4px; font-weight: 800; }
+.sub-title { font-size: 12.5px; font-weight: 700; color: #111; letter-spacing: 3px; margin-top: 6px; direction: ltr; }
+.sub-title span { color: #d32f2f; margin-right: 4px; font-weight: 800; }
 .est { font-size: 10px; color: #777; letter-spacing: 2px; margin-top: 3px; direction: ltr; }
 .portal-title { font-size: 17.5px; font-weight: 800; color: #0b1a30; margin-top: 10px; }
 
@@ -59,7 +59,7 @@ tr:hover { background-color: #fafafa; }
 .badge { padding: 3px 7px; border-radius: 4px; font-size: 11px; font-weight: 700; }
 .badge-holiday { background: #fed7d7; color: #9b1c1c; }
 
-/* نافذة إدخال الـ PIN السرية والمشفرة بالنقاط تماماً */
+/* نافذة إدخال الـ PIN السرية المشفرة بالنقاط */
 .pin-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11, 26, 48, 0.7); display: none; justify-content: center; align-items: center; z-index: 9999; }
 .pin-modal-box { background: #ffffff; padding: 25px; border-radius: 12px; max-width: 320px; width: 90%; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border-top: 4px solid #c5a059; }
 .pin-modal-box h3 { font-size: 15px; color: #0b1a30; margin-bottom: 12px; font-weight: 800; }
@@ -226,7 +226,6 @@ tr:hover { background-color: #fafafa; }
 <tr><td><strong>عيد العمال العالمي (1 أيار)</strong></td><td>Workers' Day</td><td>2026-05-01</td><td><button type="button" class="btn-action-sm" onclick="confirmAndApplyHoliday('عيد العمال العالمي', '2026-05-01')">تفعيل كحالة 🛑</button></td></tr>
 <tr><td><strong>رأس السنة الهجرية (1 محرم)</strong></td><td>Islamic New Year</td><td>متغير / Variable</td><td><button type="button" class="btn-action-sm" onclick="confirmAndApplyHoliday('رأس السنة الهجرية', 'متغير')">تفعيل كحالة 🛑</button></td></tr>
 <tr><td><strong>يوم عاشوراء (10 محرم)</strong></td><td>Ashura Day</td><td>متغير / Variable</td><td><button type="button" class="btn-action-sm" onclick="confirmAndApplyHoliday('يوم عاشوراء', 'متغير')">تفعيل كحالة 🛑</button></td></tr>
-<tr><td><strong>المولد النبوي الشريف (12 ربيع الأول)</strong></td><td>Prophet's Birthday</td><td>متغير / Variable</td><td><button type="button" class="btn-action-sm" onclick="confirmAndApplyHoliday('المولد النبوي الشريف', 'متغير')">تفعيل كحالة 🛑</button></td></tr>
 <tr><td><strong>عيد الفطر المبارك (1-3 شوال)</strong></td><td>Eid al-Fitr</td><td>متغير / Variable</td><td><button type="button" class="btn-action-sm" onclick="confirmAndApplyHoliday('عيد الفطر المبارك', 'متغير')">تفعيل كحالة 🛑</button></td></tr>
 <tr><td><strong>عيد الأضحى المبارك (10-13 ذي الحجة)</strong></td><td>Eid al-Adha</td><td>متغير / Variable</td><td><button type="button" class="btn-action-sm" onclick="confirmAndApplyHoliday('عيد الأضحى المبارك', 'متغير')">تفعيل كحالة 🛑</button></td></tr>
 </tbody>
@@ -305,7 +304,6 @@ function closePinModal() {
   pendingActionCallback = null;
 }
 
-// الإصلاح النهائي: حفظ الـ callback محلياً قبل إغلاق النافذة لكي يتم تنفيذه بنجاح
 async function submitPinModal() {
   const pin = document.getElementById('modalPinInput').value.trim();
   if (pin.length !== 6) {
@@ -496,14 +494,17 @@ async function saveWorkingHours(e) {
     const settingsObj = { workStart, workEnd };
     const contentStr = JSON.stringify(settingsObj, null, 2);
 
-    let sha = '';
+    let sha = null;
     const getRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/office_settings.json?ref=${BRANCH}`, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
     if(getRes.ok) { const d = await getRes.json(); sha = d.sha; }
+
+    const bodyObj = { message: 'Update working hours', content: utf8_to_b64(contentStr), branch: BRANCH };
+    if(sha) bodyObj.sha = sha;
 
     const putRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/office_settings.json`, {
       method: 'PUT',
       headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: 'Update working hours', content: utf8_to_b64(contentStr), sha: sha, branch: BRANCH })
+      body: JSON.stringify(bodyObj)
     });
     if(!putRes.ok) throw new Error('فشل الحفظ.');
     alert('تم حفظ وتعديل ساعات العمل بنجاح ⏰');
@@ -514,14 +515,17 @@ async function triggerOfficeStatusSave(statusVal, noteVal) {
   const statusObj = { status: statusVal, note: noteVal, updated_at: new Date().toISOString() };
   const contentStr = JSON.stringify(statusObj, null, 2);
 
-  let sha = '';
+  let sha = null;
   const getRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/office_status.json?ref=${BRANCH}`, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
   if(getRes.ok) { const d = await getRes.json(); sha = d.sha; }
+
+  const bodyObj = { message: 'Update office status', content: utf8_to_b64(contentStr), branch: BRANCH };
+  if(sha) bodyObj.sha = sha;
 
   const putRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/office_status.json`, {
     method: 'PUT',
     headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ message: 'Update office status', content: utf8_to_b64(contentStr), sha: sha, branch: BRANCH })
+    body: JSON.stringify(bodyObj)
   });
 
   if (!putRes.ok) {
@@ -556,7 +560,7 @@ async function saveCustomHoliday(e) {
 
   verifyPinAndExecute(async () => {
     let holidays = [];
-    let sha = '';
+    let sha = null;
     const getRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/custom_holidays.json?ref=${BRANCH}`, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
     if(getRes.ok) {
       const d = await getRes.json();
@@ -566,10 +570,13 @@ async function saveCustomHoliday(e) {
     holidays.push({ name, date });
     const contentStr = JSON.stringify(holidays, null, 2);
 
+    const bodyObj = { message: 'Add custom holiday', content: utf8_to_b64(contentStr), branch: BRANCH };
+    if(sha) bodyObj.sha = sha;
+
     const putRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/custom_holidays.json`, {
       method: 'PUT',
       headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: 'Add custom holiday', content: utf8_to_b64(contentStr), sha: sha, branch: BRANCH })
+      body: JSON.stringify(bodyObj)
     });
     if(!putRes.ok) throw new Error('فشل الحفظ.');
     document.getElementById('holidayForm').reset();
