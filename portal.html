@@ -159,9 +159,9 @@ tr:hover { background-color: #fafafa; }
   <div class="form-group">
     <label>رابط تضمين تقرير Looker Studio (Embed URL أو Iframe Link):</label>
     <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-      <input type="text" id="lookerUrlInput" placeholder="ضع رابط التقرير هنا (https://lookerstudio.google.com/...)" dir="ltr" style="flex: 1; font-weight: 700; font-family: monospace; font-size: 12.5px;">
+      <input type="text" id="lookerUrlInput" placeholder="ضع رابط التقرير هنا..." dir="ltr" style="flex: 1; font-weight: 700; font-family: monospace; font-size: 12.5px;">
       <button type="button" class="btn-submit" style="width: auto; padding: 11px 18px;" onclick="saveLookerStudioUrl()">عرض وتثبيت اللوحة 🌐</button>
-      <button type="button" class="btn-submit" style="width: auto; padding: 11px 18px; background-color: #e53e3e; border-color: #e53e3e;" onclick="disconnectLookerStudio()">إلغاء وحذف ✖️</button>
+      <button type="button" class="btn-submit" style="width: auto; padding: 11px 18px; background-color: #e53e3e; border-color: #e53e3e;" onclick="disconnectLookerStudioWithPin()">إلغاء وحذف ✖️</button>
     </div>
   </div>
 
@@ -175,7 +175,7 @@ tr:hover { background-color: #fafafa; }
     <div id="lookerContainer" style="width: 100%; min-height: 480px; background: #ffffff; border: 1px solid #cbd5e0; border-radius: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative;">
       <div id="lookerPlaceholder" style="text-align: center; padding: 40px; color: #64748b;">
         <p style="font-size: 15px; font-weight: 700; margin-bottom: 8px;">📊 لم يتم إدراج رابط لوحة التحليلات بعد.</p>
-        <p style="font-size: 12.5px; max-width: 450px; margin: 0 auto; line-height: 1.6;">قم بإنشاء تقرير مجاني في Looker Studio باستخدام معرف التتبع الخاص بك (G-553701597)، ثم انسخ رابط التضمين (Embed URL) وضعه في الحقل أعلاه ليظهر تقريرك وخريطة زوارك هنا مباشرة!</p>
+        <p style="font-size: 12.5px; max-width: 450px; margin: 0 auto; line-height: 1.6;">تم ربط معرف التتبع (G-553701597) بنجاح.</p>
       </div>
       <iframe id="lookerIframe" src="" style="width: 100%; height: 500px; border: none; display: none;" allowfullscreen></iframe>
     </div>
@@ -483,7 +483,7 @@ async function decryptToken(encryptedObj, pin) {
   return new TextDecoder().decode(decrypted);
 }
 
-// تفعيل وتثبيت تحليلات جوجل وتتبع رقم G-553701597 في عموم الموقع
+// تفعيل وتثبيت تحليلات جوجل برقمك الثابت (G-553701597)
 function initGoogleAnalytics(propertyId) {
   let targetId = propertyId || "G-553701597";
   if (!targetId.startsWith('G-')) {
@@ -510,18 +510,17 @@ function initGoogleAnalytics(propertyId) {
     gtag('config', '${targetId}');
   `;
   document.head.appendChild(script2);
-
-  document.getElementById('gaPropertyIdInput').value = targetId;
 }
 
-// تثبيت وتحميل نافذة Looker Studio المخصصة
+// تثبيت وتحميل نافذة Looker Studio مع الرابط الافتراضي الذي أرسلته
 function initLookerStudio(url) {
+  const targetUrl = url || "https://datastudio.google.com/s/nwFArGKIpWc";
   const iframe = document.getElementById('lookerIframe');
   const placeholder = document.getElementById('lookerPlaceholder');
   const badge = document.getElementById('lookerStatusBadge');
 
-  if (url && url.startsWith('http')) {
-    iframe.src = url;
+  if (targetUrl && targetUrl.startsWith('http')) {
+    iframe.src = targetUrl;
     iframe.style.display = 'block';
     placeholder.style.display = 'none';
     badge.innerText = '🟢 لوحة التحليلات معروضة نشطة';
@@ -538,22 +537,20 @@ function initLookerStudio(url) {
 }
 
 async function saveLookerStudioUrl() {
-  const url = document.getElementById('lookerUrlInput').value.trim();
-  if(!url) {
-    alert("يرجى إدخال رابط التضمين (Embed URL) بشكل صحيح.");
-    return;
-  }
+  const url = document.getElementById('lookerUrlInput').value.trim() || "https://datastudio.google.com/s/nwFArGKIpWc";
   localStorage.setItem('akh_looker_studio_url', url);
   initLookerStudio(url);
   alert("تم حفظ وتثبيت لوحة التحليلات المخصصة بنجاح 🌐");
 }
 
-function disconnectLookerStudio() {
-  if(!confirm("هل أنت متأكد من إلغاء ربط لوحة التحليلات وحذف الرابط؟")) return;
-  localStorage.removeItem('akh_looker_studio_url');
-  document.getElementById('lookerUrlInput').value = '';
-  initLookerStudio('');
-  alert("تم إلغاء ربط اللوحة بنجاح ✖️");
+// إلغاء الربط محمية بالرقم السري (PIN Verification)
+function disconnectLookerStudioWithPin() {
+  verifyPinAndExecute(async () => {
+    localStorage.removeItem('akh_looker_studio_url');
+    document.getElementById('lookerUrlInput').value = '';
+    initLookerStudio('');
+    alert("تم إلغاء ربط اللوحة وحذف الرابط بنجاح ✖️");
+  });
 }
 
 async function performPortalSetup() {
@@ -685,15 +682,11 @@ async function autoUnlockSession() {
   const savedPin = localStorage.getItem('akh_portal_saved_pin');
   const savedToken = sessionStorage.getItem('akh_portal_active_token');
 
-  // تفعيل تتبع جوجل بالرقم الثابت
   initGoogleAnalytics("G-553701597");
 
-  // استرجاع رابط Looker Studio المحفوظ إن وجد
-  const savedLookerUrl = localStorage.getItem('akh_looker_studio_url');
-  if (savedLookerUrl) {
-    document.getElementById('lookerUrlInput').value = savedLookerUrl;
-    initLookerStudio(savedLookerUrl);
-  }
+  const savedLookerUrl = localStorage.getItem('akh_looker_studio_url') || "https://datastudio.google.com/s/nwFArGKIpWc";
+  document.getElementById('lookerUrlInput').value = savedLookerUrl;
+  initLookerStudio(savedLookerUrl);
 
   if (savedToken) {
     ACTIVE_TOKEN = savedToken;
@@ -1272,7 +1265,7 @@ async function triggerOfficeStatusSave(statusVal, noteVal) {
 
   const putRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/office_status.json`, {
     method: 'PUT',
-    headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}`, 'Content-Type': 'application/json' },
+    headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}`, 'Content-Type5': 'application/json' },
     body: JSON.stringify(bodyObj)
   });
 
@@ -1295,7 +1288,7 @@ async function saveOfficeStatus(e) {
       if(status === 'auto') statusTextArabic = "الوضع التلقائي الذكي";
       else if(status === 'active') statusTextArabic = "متاح الآن لاستقبال الطلبات";
       else if(status === 'off_hours') statusTextArabic = "خارج ساعات العمل الرسمية";
-      else if(status === 'holiday') statusTextArabic = "إجازة رسمية / طارئة";
+      else if(status === 'holiday') statusTestArabic = "إجازة رسمية / طارئة";
       else if(status === 'weekend') statusTextArabic = "عطلة نهاية الأسبوع";
 
       const alertEl = document.getElementById('statusAlert');
@@ -1312,7 +1305,7 @@ async function saveOfficeStatus(e) {
 async function saveCustomHoliday(e) {
   e.preventDefault();
   const name = document.getElementById('holidayNameInput').value.trim();
-  const date = document.getElementById('holidayDateInput`').value;
+  const date = document.getElementById('holidayDateInput').value;
   if(!name || !date) return;
 
   verifyPinAndExecute(async () => {
@@ -1330,7 +1323,7 @@ async function saveCustomHoliday(e) {
     const bodyObj = { message: 'Add custom holiday', content: utf8_to_b64(contentStr), branch: BRANCH };
     if(sha) bodyObj.sha = sha;
 
-    const putRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/custom_holidays.json`, {
+    const putRes = await fetch(`https://api.github.com/repos/` + REPO_OWNER + `/${REPO_NAME}/contents/custom_holidays.json`, {
       method: 'PUT',
       headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}`, 'Content-Type': 'application/json' },
       body: JSON.stringify(bodyObj)
