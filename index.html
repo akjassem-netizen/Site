@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" id="htmlRoot">
 <head>
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WL4KNM0PG1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -349,6 +350,12 @@
       document.getElementById('menuConsultations').href = isArabic ? '/consultations/' : '/consultations/en/';
       document.getElementById('menuInsights').href = isArabic ? '/insights/' : '/insights/en/';
 
+      // ربط ديناميكي لزر الحجز الرئيسي (يتحول تلقائياً للنسخة الإنجليزية /booking/en/)
+      const heroCtaBtn = document.getElementById('heroCta');
+      if (heroCtaBtn) {
+        heroCtaBtn.href = isArabic ? '/booking/' : '/booking/en/';
+      }
+
       // ربط دقيق لمسارات الفولدرات الفرعية الظاهرة في السيرفر لديك (/services/corporate/en/)
       document.getElementById('cardS1').href = isArabic ? '/services/corporate/' : '/services/corporate/en/';
       document.getElementById('cardS2').href = isArabic ? '/services/litigation/' : '/services/litigation/en/';
@@ -480,7 +487,7 @@
         s2Title: "Representación Judicial y Litigios", s2Desc: "Representación legal y defensa en todos los tribunales de Irak.", s2Link: "Detalles y Reserva →",
         s3Title: "Derechos Financieros y Recuperación", s3Desc: "Cobro de deudas, avisos formales y acuerdos comerciales.", s3Link: "Detalles y Reserva →",
         s4Title: "Licencias de Inversión Extranjera", s4Desc: "Apoyo y obtención de licencias para proyectos de inversión.", s4Link: "Detalles y Reserva →",
-        s5Title: "Marcas y Propiedad Intelectual", s5Desc: "Protección de derechos de propiedad intelectual e innovaciones.", s5Link: "Detalles y Reserva →",
+        s5Title: "Marcas y Propiedad Intelectual", s5Desc: "Protección de derechos de propiedad intelectual e innovaciones.", s4Link: "Detalles y Reserva →",
         s6Title: "Redacción y Revisión de Contratos", s6Desc: "Redacción y auditoría de contratos comerciales y civiles.", s6Link: "Detalles y Reserva →",
         s7Title: "Estatus Personal y Ejecución", s7Desc: "Disputas familiares, herencias, pensión alimenticia y custodia.", s7Link: "Detalles y Reserva →",
         s8Title: "Asesoría Fiscal y Cumplimiento", s8Desc: "Estructuración fiscal, registro y cumplimiento financiero.", s8Link: "Detalles y Reserva →",
@@ -520,10 +527,10 @@
         s2Title: "نوێنەرایەتی دادوەری", s2Desc: "بریوکاری و بەدواداچوونی یاسایی لە هەموو دادگاکانی عێراقدا.", s2Link: "وردەکاری و حجز ←",
         s3Title: "وەرگرتن و ڕێکخستنی مافە مالییەکان", s3Desc: "کۆکردنەوەی قەرز، ناردنی ئاگاداری فەرمی و ڕێککەوتنی تجاری.", s3Link: "وردەکاری و حجز ←",
         s4Title: "مۆڵەتی وەبەرهێنانی بیانی", s4Desc: "پاڵپشتی و بەدەستهێنانی مۆڵەتی فەرمی بۆ پروژەکانی وەبەرهێنان.", s4Link: "وردەکاری و حجز ←",
-        s5Title: "براند و مافی مڵکی فکری", s5Desc: "پاراستنی مافی خاوەندارێتی فکری و داهێنانی تجاری.", s5Link: "وردەکاری و حجز ←",
+        s5Title: "براند و مافی مڵکی فکری", s5Desc: "پاراستنی مافی خاوەندارێتی فکری و داهێنانی تجاری.", s4Link: "وردەکاری و حجز ←",
         s6Title: "ئامادەکردن و داڕشتنی گرێبەستەکان", s6Desc: "داڕشتن و وردبینی گرێبەستە تجاری و مدنییەکان بەپێی یاسا.", s6Link: "وردەکاری و حجز ←",
         s7Title: "بارودۆخی کەسی و جێبەجێکردن", s7Desc: "کێشەی خێزانی، قەسامی شرعی، نفقة، حضانة و بەدواداچوونی جێبەجێکردن.", s7Link: "وردەکاری و حجز ←",
-        s8Title: "ڕاوێژی باج و پابەندبوون", s8Desc: "ڕێکخستنی باج، تۆمارکردن لە دەستە باجییەکان و دڵنیابوون لە پابەندبوونی مالی.", s8Link: "وردەکاری و حجز ←",
+        s8Title: "ڕاوێژی باج و پابەندبوون", s8Desc: "ڕێکخستنی باج، تۆمارکردن لە دەستە باجییەکان و دڵنیابوون لە پابەندبوونی مالی.", s7Link: "وردەکاری و حجز ←",
         s9Title: "خزمەتگوزارییە یاسایی و عقارییەکان", s9Desc: "باوەڕپێکردنی گرێبەستە عقارییەکان، سندات و چارەسەرکردنی کێشەکان.", s9Link: "وردەکاری و حجز ←",
         privacyText: "Privacy Policy", disclaimerText: "Disclaimer", codeText: "Code of Conduct", rightsText: "All Rights Reserved © 2026 AKH Law Office"
       }
