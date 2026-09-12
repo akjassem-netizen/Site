@@ -156,7 +156,7 @@ tr:hover { background-color: #fafafa; }
       <h2 style="border:none; margin:0; padding:0;"><span>📊 التشخيص الذكي وصحة النظام (Uptime AI & Health)</span></h2>
       <p style="font-size: 12.5px; color: #64748b; font-weight: 600; margin-top: 4px;">فحص فوري لحالة البوابة، سرعة الاستجابة، والتنبيهات التشغيلية للمكتب.</p>
     </div>
-    <button type="button" onclick="runSystemDiagnostics()" id="diagnosticBtn" class="btn-submit" style="width: auto; padding: 8px 16px; font-size: 13px; background-color: #0b1a30; color: #c5a059; border: 1.5px solid #c5a059;">⚡ تشخيص وفحص النظام</button>
+    <button type="button" onclick="runSystemDiagnostics()" id="diagnosticBtn" class="btn-submit" style="width: auto; padding: 8px 16px; font-size: 13px; background-color: #0b1a30; color: #c5a059; border: 1.5px solid #c5a059;">⚡ فحص وتشخيص النظام</button>
   </div>
 
   <div id="diagnosticResultBox" style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 12px; padding: 18px; display: none;">
@@ -392,6 +392,16 @@ function b64_to_utf8(str) {
   }).join(''));
 }
 
+// دالة لتنسيق التاريخ بشكل نظامي (DD/MM/YYYY) ومنع انعكاسه برمجياً
+function formatDateDMY(dateStr) {
+  if (!dateStr || dateStr.includes('متغير')) return dateStr;
+  const parts = dateStr.split('-');
+  if (parts.length === 3) {
+    return `${parts[2]}/${parts[1]}/${parts[0]}`;
+  }
+  return dateStr;
+}
+
 function toggleOfficialHolidays() {
   const box = document.getElementById('officialHolidaysBox');
   const icon = document.getElementById('toggleIcon');
@@ -611,8 +621,10 @@ function getActiveReportRange() {
   if(type === 'custom') {
     startStr = document.getElementById('reportStartDate').value;
     endStr = document.getElementById('reportEndDate').value;
-    labelAr = `تقرير فترة زمنية مخصصة للفترة (من التاريخ ${startStr} ولغاية التاريخ ${endStr})`;
-    labelEn = `Custom Period Report (${startStr} to ${endStr})`;
+    const fmtS = formatDateDMY(startStr);
+    const fmtE = formatDateDMY(endStr);
+    labelAr = `تقرير فترة زمنية مخصصة للفترة (من التاريخ <span dir="ltr" style="unicode-bidi:embed; display:inline-block;">${fmtS}</span> ولغاية التاريخ <span dir="ltr" style="unicode-bidi:embed; display:inline-block;">${fmtE}</span>)`;
+    labelEn = `Custom Period Report (${fmtS} to ${fmtE})`;
   } else if(type === 'monthly') {
     const monthVal = document.getElementById('reportMonthInput').value;
     if(!monthVal) return null;
@@ -620,49 +632,48 @@ function getActiveReportRange() {
     const lastD = new Date(parseInt(y), parseInt(m), 0).getDate();
     startStr = `${monthVal}-01`;
     endStr = `${monthVal}-${lastD}`;
-    labelAr = `التقرير الشهري الرسمي - شهر (${monthVal})`;
+    const fmtS = formatDateDMY(startStr);
+    const fmtE = formatDateDMY(endStr);
+    labelAr = `التقرير الشهري الرسمي - شهر <span dir="ltr" style="unicode-bidi:embed; display:inline-block;">${monthVal}</span> (${fmtS} إلى ${fmtE})`;
     labelEn = `Official Monthly Report - (${monthVal})`;
   } else if(type === 'quarterly') {
     const qYear = document.getElementById('reportQYear').value;
     const quarter = document.getElementById('reportQuarter').value;
     if(!qYear) return null;
-    if(quarter === 'Q1') { startStr = `${qYear}-01-01`; endStr = `${qYear}-03-31`; labelAr = `التقرير الربع سنوي - الربع الأول (${qYear})`; labelEn = `Quarterly Report - Q1 (${qYear})`; }
-    else if(quarter === 'Q2') { startStr = `${qYear}-04-01`; endStr = `${qYear}-06-30`; labelAr = `التقرير الربع سنوي - الربع الثاني (${qYear})`; labelEn = `Quarterly Report - Q2 (${qYear})`; }
-    else if(quarter === 'Q3') { startStr = `${qYear}-07-01`; endStr = `${qYear}-09-30`; labelAr = `التقرير الربع سنوي - الربع الثالث (${qYear})`; labelEn = `Quarterly Report - Q3 (${qYear})`; }
-    else if(quarter === 'Q4') { startStr = `${qYear}-10-01`; endStr = `${qYear}-12-31`; labelAr = `التقرير الربع سنوي - الربع الرابع (${qYear})`; labelEn = `Quarterly Report - Q4 (${qYear})`; }
+    if(quarter === 'Q1') { startStr = `${qYear}-01-01`; endStr = `${qYear}-03-31`; labelAr = `التقرير الربع سنوي - الربع الأول <span dir="ltr" style="unicode-bidi:embed; display:inline-block;">(${qYear})</span>`; labelEn = `Quarterly Report - Q1 (${qYear})`; }
+    else if(quarter === 'Q2') { startStr = `${qYear}-04-01`; endStr = `${qYear}-06-30`; labelAr = `التقرير الربع سنوي - الربع الثاني <span dir="ltr" style="unicode-bidi:embed; display:inline-block;">(${qYear})</span>`; labelEn = `Quarterly Report - Q2 (${qYear})`; }
+    else if(quarter === 'Q3') { startStr = `${qYear}-07-01`; endStr = `${qYear}-09-30`; labelAr = `التقرير الربع سنوي - الربع الثالث <span dir="ltr" style="unicode-bidi:embed; display:inline-block;">(${qYear})</span>`; labelEn = `Quarterly Report - Q3 (${qYear})`; }
+    else if(quarter === 'Q4') { startStr = `${qYear}-10-01`; endStr = `${qYear}-12-31`; labelAr = `التقرير الربع سنوي - الربع الرابع <span dir="ltr" style="unicode-bidi:embed; display:inline-block;">(${qYear})</span>`; labelEn = `Quarterly Report - Q4 (${qYear})`; }
   } else if(type === 'annual') {
     const yearVal = document.getElementById('reportYearInput').value;
     if(!yearVal) return null;
     startStr = `${yearVal}-01-01`;
     endStr = `${yearVal}-12-31`;
-    labelAr = `التقرير السنوي الشامل لعام (${yearVal})`;
+    labelAr = `التقرير السنوي الشامل لعام <span dir="ltr" style="unicode-bidi:embed; display:inline-block;">(${yearVal})</span>`;
     labelEn = `Comprehensive Annual Report (${yearVal})`;
   }
 
   if(!startStr || !endStr) return null;
-  return { start: new Date(startStr), end: new Date(endStr), labelAr, labelEn, startStr, endStr };
+  return { start: new Date(startStr), end: new Date(endStr), labelAr, labelEn, startStr: formatDateDMY(startStr), endStr: formatDateDMY(endStr) };
 }
 
 function calculateHolidayStats() {
-  const range = getActiveReportRange();
-  if(!range) {
-    document.getElementById('statTotalDays').innerText = "خطأ";
-    return;
-  }
+  const type = document.getElementById('reportTypeSelect').value;
+  let startStr = "", endStr = "";
+  if(type === 'custom') { startStr = document.getElementById('reportStartDate').value; endStr = document.getElementById('reportEndDate').value; }
+  else if(type === 'monthly') { const m = document.getElementById('reportMonthInput').value; if(m) { const [y, mo] = m.split('-'); const ld = new Date(parseInt(y), parseInt(mo), 0).getDate(); startStr = `${m}-01`; endStr = `${m}-${ld}`; } }
+  else if(type === 'quarterly') { const qy = document.getElementById('reportQYear').value; const q = document.getElementById('reportQuarter').value; if(q==='Q1'){startStr=`${qy}-01-01`;endStr=`${qy}-03-31`;}else if(q==='Q2'){startStr=`${qy}-04-01`;endStr=`${qy}-06-30`;}else if(q==='Q3'){startStr=`${qy}-07-01`;endStr=`${qy}-09-30`;}else if(q==='Q4'){startStr=`${qy}-10-01`;endStr=`${qy}-12-31`;} }
+  else if(type === 'annual') { const y = document.getElementById('reportYearInput').value; if(y){startStr=`${y}-01-01`;endStr=`${y}-12-31`;} }
+
+  if(!startStr || !endStr) return;
+  const startDate = new Date(startStr); startDate.setHours(0,0,0,0);
+  const endDate = new Date(endStr); endDate.setHours(0,0,0,0);
 
   let totalDays = 0;
   let weekendCount = 0;
-  let curr = new Date(range.start);
-  curr.setHours(0,0,0,0);
-  const endD = new Date(range.end);
-  endD.setHours(0,0,0,0);
+  let curr = new Date(startDate);
 
-  if(curr > endD) {
-    document.getElementById('statTotalDays').innerText = "خطأ بالتواريخ";
-    return;
-  }
-
-  while(curr <= endD) {
+  while(curr <= endDate) {
     totalDays++;
     const dayOfWeek = curr.getDay();
     if(dayOfWeek === 5 || dayOfWeek === 6) {
@@ -676,7 +687,7 @@ function calculateHolidayStats() {
     if(h.date) {
       const hDate = new Date(h.date);
       hDate.setHours(0,0,0,0);
-      if(hDate >= range.start && hDate <= range.end) {
+      if(hDate >= startDate && hDate <= endDate) {
         customHolidaysInRange++;
       }
     }
@@ -690,7 +701,6 @@ function calculateHolidayStats() {
   document.getElementById('statHolidays').innerText = customHolidaysInRange;
   document.getElementById('statWorkdays').innerText = netWorkdays;
 
-  // حساب نسب الشريط المرئي
   const workPct = totalDays > 0 ? Math.round((netWorkdays / totalDays) * 100) : 0;
   const weekPct = totalDays > 0 ? Math.round((weekendCount / totalDays) * 100) : 0;
   const holPct = totalDays > 0 ? Math.round((customHolidaysInRange / totalDays) * 100) : 0;
@@ -741,7 +751,7 @@ async function runSystemDiagnostics() {
   setTimeout(() => {
     btn.disabled = false;
     btn.style.opacity = '1';
-    btn.innerText = '⚡ تشخيص وفحص النظام';
+    btn.innerText = '⚡ فحص وتشخيص النظام';
 
     latencyEl.innerText = latency + ' ms';
     jsonEl.innerText = jsonState;
@@ -760,7 +770,7 @@ async function runSystemDiagnostics() {
   }, 500);
 }
 
-// تصدير التقرير بتنسيق عربي معيار متناسق وثبات ألوان الطباعة وشريط النسب
+// تصدير التقرير بتنسيق عربي معيار متناسق وثبات ألوان الطباعة وشريط النسب وتصحيح التواريخ
 function exportHolidayReportPDF() {
   const range = getActiveReportRange();
   if(!range) {
@@ -778,15 +788,33 @@ function exportHolidayReportPDF() {
   const holPct = document.getElementById('pctHol').innerText;
 
   let rangeHolidaysHTML = "";
+  let rawStart = new Date(document.getElementById('reportStartDate').value);
+  let rawEnd = new Date(document.getElementById('reportEndDate').value);
+  
+  const type = document.getElementById('reportTypeSelect').value;
+  if(type === 'monthly') {
+    const m = document.getElementById('reportMonthInput').value;
+    if(m) { const [y, mo] = m.split('-'); rawStart = new Date(`${m}-01`); rawEnd = new Date(parseInt(y), parseInt(mo), 0); }
+  } else if(type === 'quarterly') {
+    const qy = document.getElementById('reportQYear').value; const q = document.getElementById('reportQuarter').value;
+    if(q==='Q1'){rawStart=new Date(`${qy}-01-01`);rawEnd=new Date(`${qy}-03-31`);}
+    else if(q==='Q2'){rawStart=new Date(`${qy}-04-01`);rawEnd=new Date(`${qy}-06-30`);}
+    else if(q==='Q3'){rawStart=new Date(`${qy}-07-01`);rawEnd=new Date(`${qy}-09-30`);}
+    else if(q==='Q4'){rawStart=new Date(`${qy}-10-01`);rawEnd=new Date(`${qy}-12-31`);}
+  } else if(type === 'annual') {
+    const y = document.getElementById('reportYearInput').value;
+    if(y){rawStart=new Date(`${y}-01-01`);rawEnd=new Date(`${y}-12-31`);}
+  }
+
   globalCustomHolidays.forEach(h => {
     if(h.date) {
       const hDate = new Date(h.date);
       hDate.setHours(0,0,0,0);
-      if(hDate >= range.start && hDate <= range.end) {
+      if(hDate >= rawStart && hDate <= rawEnd) {
         rangeHolidaysHTML += `<tr>
           <td style="border: 1px solid #cbd5e0; padding: 10px; text-align: right;"><strong>${h.name}</strong></td>
           <td style="border: 1px solid #cbd5e0; padding: 10px; text-align: center;"><span style="color:#9b1c1c; font-weight: bold;">عطلة رسمية / Official Holiday</span></td>
-          <td style="border: 1px solid #cbd5e0; padding: 10px; text-align: center; direction: ltr; unicode-bidi: embed;">${h.date}</td>
+          <td style="border: 1px solid #cbd5e0; padding: 10px; text-align: center; direction: ltr; unicode-bidi: embed;">${formatDateDMY(h.date)}</td>
         </tr>`;
       }
     }
@@ -797,7 +825,7 @@ function exportHolidayReportPDF() {
   }
 
   const refNumber = "AKH-LEG-REP-" + Math.floor(100000 + Math.random() * 900000);
-  const issueDate = new Date().toISOString().split('T')[0];
+  const issueDate = formatDateDMY(new Date().toISOString().split('T')[0]);
 
   const printWindow = window.open('', '_blank');
   printWindow.document.write(`
@@ -827,18 +855,18 @@ function exportHolidayReportPDF() {
         .report-title-box { text-align: center; margin-bottom: 20px; background: #f8fafc !important; border: 1.5px solid #e2e8f0; padding: 14px; border-radius: 8px; }
         .office-name-ar { font-size: 14.5px; font-weight: 800; color: #0f172a; margin-bottom: 4px; }
         .office-name-en { font-size: 11.5px; font-weight: 700; color: #475569; letter-spacing: 1px; margin-bottom: 10px; direction: ltr; }
-        .report-title-ar { font-size: 16px; font-weight: 900; color: #0f172a; margin-bottom: 4px; border-top: 1px dashed #cbd5e0; padding-top: 10px; }
-        .report-title-en { font-size: 12.5px; font-weight: 700; color: #475569; direction: ltr; }
+        .report-title-ar { font-size: 15px; font-weight: 900; color: #0f172a; margin-bottom: 4px; border-top: 1px dashed #cbd5e0; padding-top: 10px; }
+        .report-title-en { font-size: 12px; font-weight: 700; color: #475569; direction: ltr; }
 
-        .meta-box { display: flex; justify-content: space-between; font-size: 12.5px; font-weight: 700; margin-bottom: 22px; direction: rtl; background: #fff !important; padding: 10px 14px; border-radius: 8px; border: 1px solid #cbd5e0; }
+        .meta-box { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; margin-bottom: 22px; direction: rtl; background: #fff !important; padding: 10px 14px; border-radius: 8px; border: 1px solid #cbd5e0; }
         
         .stats-table { width: 100%; border-collapse: collapse; margin-bottom: 25px; direction: rtl; font-size: 13px; }
         .stats-table th, .stats-table td { border: 1px solid #cbd5e0; padding: 10px; text-align: center; }
-        .stats-table th { background-color: #0b1a30 !important; color: #ffffff !important; font-weight: 700; font-size: 12.5px; }
+        .stats-table th { background-color: #0b1a30 !important; color: #ffffff !important; font-weight: 700; font-size: 12px; }
         
-        .details-title { font-size: 15px; font-weight: 800; color: #0f172a; margin-bottom: 10px; direction: rtl; border-right: 5px solid #c5a059; padding-right: 10px; }
+        .details-title { font-size: 14.5px; font-weight: 800; color: #0f172a; margin-bottom: 10px; direction: rtl; border-right: 5px solid #c5a059; padding-right: 10px; }
         
-        .footer-note { margin-top: 40px; font-size: 12.5px; font-weight: 700; direction: rtl; display: flex; justify-content: space-between; align-items: flex-end; border-top: 2px solid #e2e8f0; padding-top: 18px; }
+        .footer-note { margin-top: 40px; font-size: 12px; font-weight: 700; direction: rtl; display: flex; justify-content: space-between; align-items: flex-end; border-top: 2px solid #e2e8f0; padding-top: 18px; }
         @media print {
           body { padding: 10px; }
           .no-print { display: none; }
@@ -862,7 +890,7 @@ function exportHolidayReportPDF() {
       <div class="meta-box">
         <div>
           <span>المرجع / Reference No: <strong>${refNumber}</strong></span><br>
-          <span style="font-size: 11.5px; color: #475569;">تاريخ الإصدار / Issue Date: ${issueDate}</span>
+          <span style="font-size: 11px; color: #475569;">تاريخ الإصدار / Issue Date: <span dir="ltr" style="unicode-bidi:embed; display:inline-block;">${issueDate}</span></span>
         </div>
         <div style="direction: ltr; unicode-bidi: embed; text-align: left;">
           <span>Period Range: <strong>${range.startStr}</strong> to <strong>${range.endStr}</strong></span>
@@ -871,10 +899,10 @@ function exportHolidayReportPDF() {
 
       <table class="stats-table">
         <tr>
-          <th>إجمالي أيام الفترة<br><span style="font-size:10.5px; font-weight:normal;">Total Days</span></th>
-          <th>عطل الويكند (جمعة وسبت)<br><span style="font-size:10.5px; font-weight:normal;">Weekends (Fri & Sat)</span></th>
-          <th>العطل الرسمية والطارئة<br><span style="font-size:10.5px; font-weight:normal;">Official & Custom Holidays</span></th>
-          <th>صافي أيام الدوام الفعلي<br><span style="font-size:10.5px; font-weight:normal;">Net Working Days</span></th>
+          <th>إجمالي أيام الفترة<br><span style="font-size:10px; font-weight:normal;">Total Days</span></th>
+          <th>عطل الويكند (جمعة وسبت)<br><span style="font-size:10px; font-weight:normal;">Weekends (Fri & Sat)</span></th>
+          <th>العطل الرسمية والطارئة<br><span style="font-size:10px; font-weight:normal;">Official & Custom Holidays</span></th>
+          <th>صافي أيام الدوام الفعلي<br><span style="font-size:10px; font-weight:normal;">Net Working Days</span></th>
         </tr>
         <tr>
           <td><strong>${totalDays}</strong> يوم / Days</td>
@@ -884,14 +912,14 @@ function exportHolidayReportPDF() {
         </tr>
       </table>
 
-      <div style="margin-bottom: 25px; background: #f8fafc !important; border: 1.5px solid #cbd5e0; border-radius: 10px; padding: 15px;">
-        <div style="font-size: 13px; font-weight: 800; color: #0b1a30; margin-bottom: 8px;">نسبة توزيع أيام الفترة (الدوام مقابل العطل / Ratio Distribution):</div>
-        <div style="height: 18px; width: 100%; background: #e2e8f0 !important; border-radius: 9px; overflow: hidden; display: flex;">
+      <div style="margin-bottom: 25px; background: #f8fafc !important; border: 1.5px solid #cbd5e0; border-radius: 10px; padding: 14px;">
+        <div style="font-size: 12.5px; font-weight: 800; color: #0b1a30; margin-bottom: 8px;">نسبة توزيع أيام الفترة (الدوام مقابل العطل / Ratio Distribution):</div>
+        <div style="height: 16px; width: 100%; background: #e2e8f0 !important; border-radius: 8px; overflow: hidden; display: flex;">
           <div class="bar-work" style="height: 100%; background-color: #16a34a !important; width: ${workPct};"></div>
           <div class="bar-week" style="height: 100%; background-color: #d32f2f !important; width: ${weekPct};"></div>
           <div class="bar-hol" style="height: 100%; background-color: #c05621 !important; width: ${holPct};"></div>
         </div>
-        <div style="display: flex; justify-content: space-between; font-size: 11.5px; font-weight: 700; color: #475569; margin-top: 6px;">
+        <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; color: #475569; margin-top: 6px;">
           <span style="color: #16a34a;">■ دوام فعلي (${workPct})</span>
           <span style="color: #d32f2f;">■ ويكند (${weekPct})</span>
           <span style="color: #c05621;">■ عطل رسمية (${holPct})</span>
@@ -972,7 +1000,7 @@ async function loadCustomHolidaysTable() {
         globalCustomHolidays.forEach((h, index) => {
           tbody.innerHTML += `<tr>
             <td><strong>${h.name}</strong></td>
-            <td><span class="badge badge-holiday">${h.date}</span></td>
+            <td><span class="badge badge-holiday">${formatDateDMY(h.date)}</span></td>
             <td>
               <div style="display: flex; gap: 6px; flex-wrap: wrap;">
                 <button type="button" class="btn-action-sm" onclick="confirmAndApplyHoliday('${h.name.replace(/'/g, "\\'")}', '${h.date}')">تفعيل 🛑</button>
@@ -1024,7 +1052,7 @@ async function deleteCustomHoliday(index) {
 }
 
 async function confirmAndApplyHoliday(holidayName, holidayDate) {
-  if(!confirm(`تفعيل عطلة "${holidayName}" (${holidayDate}) كحالة للمكتب؟`)) return;
+  if(!confirm(`تفعيل عطلة "${holidayName}" (${formatDateDMY(holidayDate)}) كحالة للمكتب؟`)) return;
 
   if(holidayDate) {
     localStorage.setItem(`akh_dismissed_holiday_${holidayDate}_${holidayName}`, 'true');
@@ -1056,7 +1084,7 @@ async function checkUpcomingHolidays() {
 
       if(diffDays >= 0 && diffDays <= 3) {
         document.getElementById('holidayNoticeBox').style.display = 'block';
-        document.getElementById('holidayNoticeText').innerText = `${h.name} (${h.date}) - متبقي ${diffDays} أيام.`;
+        document.getElementById('holidayNoticeText').innerText = `${h.name} (${formatDateDMY(h.date)}) - متبقي ${diffDays} أيام.`;
         window.pendingHolidayName = h.name;
         window.pendingHolidayDate = h.date;
         break;
