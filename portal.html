@@ -49,6 +49,8 @@ label { display: block; font-weight: 700; font-size: 13px; margin-bottom: 5px; c
 select, input[type="text"], input[type="date"], input[type="password"], input[type="time"] { width: 100%; padding: 10px 12px; border: 1.5px solid #cbd5e0; border-radius: 8px; font-family: inherit; font-size: 13.5px; background-color: #fff; }
 .btn-submit { background-color: #0b1a30; color: #ffffff; border: none; padding: 11px 20px; font-size: 14px; font-weight: 700; border-radius: 8px; cursor: pointer; font-family: inherit; width: 100%; transition: 0.3s; }
 .btn-submit:hover { opacity: 0.9; }
+.btn-action-sm { background-color: #2b6cb0; color: #fff; border: none; padding: 5px 10px; border-radius: 5px; font-size: 11.5px; font-weight: 700; cursor: pointer; }
+.btn-action-sm:hover { background-color: #2c5282; }
 table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 13px; }
 th, td { padding: 10px; text-align: right; border-bottom: 1px solid #edf2f7; }
 html[dir="ltr"] th, html[dir="ltr"] td { text-align: left; }
@@ -177,8 +179,8 @@ tr:hover { background-color: #fafafa; }
 
 <h3 style="font-size: 14px; margin-top: 18px; color: #0b1a30; margin-bottom: 8px;" data-i18n="addedHolidaysTitle">العطل الاستثنائية المضافة حالياً:</h3>
 <table id="customHolidaysTable">
-<thead><tr><th data-i18n="tableCol1">اسم المناسبة</th><th data-i18n="tableCol3">التاريخ</th></tr></thead>
-<tbody><tr><td colspan="2" style="text-align:center; color:#718096;">جارٍ التحقق من السجل...</td></tr></tbody>
+<thead><tr><th data-i18n="tableCol1">اسم المناسبة</th><th data-i18n="tableCol3">التاريخ</th><th data-i18n="tableColAction">الإجراء الفوري</th></tr></thead>
+<tbody><tr><td colspan="3" style="text-align:center; color:#718096;">جارٍ التحقق من السجل...</td></tr></tbody>
 </table>
 </div>
 
@@ -260,6 +262,8 @@ const translations = {
     tableCol1: "اسم العطلة محلياً (العراق)",
     tableCol2: "التسمية المعيارية",
     tableCol3: "التاريخ",
+    tableColAction: "الإجراء الفوري",
+    applyBtnText: "تفعيل كحالة للمكتب 🛑",
     setupTitle: "إعداد حماية البوابة لأول مرة:",
     setupDesc: "أدخل الرمز الطويل (التوكن) مع رمز PIN سري (6 أرقام):",
     tokenPlaceholder: "أدخل رمز GitHub (ghp_...)",
@@ -309,6 +313,8 @@ const translations = {
     tableCol1: "Local Holiday Name (Iraq)",
     tableCol2: "Standard Name",
     tableCol3: "Date",
+    tableColAction: "Quick Action",
+    applyBtnText: "Apply as Status 🛑",
     setupTitle: "First-Time Portal Setup:",
     setupDesc: "Enter your GitHub Token along with a 6-digit Secret PIN:",
     tokenPlaceholder: "Enter GitHub Token (ghp_...)",
@@ -340,6 +346,8 @@ function applyLanguage(lang) {
       el.setAttribute('placeholder', translations[lang][key]);
     }
   });
+
+  loadPortalData(); // لتحديث أزرار الجدول باللغة الحالية
 }
 
 function toggleLanguage() {
@@ -445,7 +453,6 @@ function utf8_to_b64(str) { return btoa(encodeURIComponent(str).replace(/%([0-9A
 function b64_to_utf8(b64) { return decodeURIComponent(atob(b64.replace(/\s/g, '')).split('').map(function(c) { return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2); }).join('')); }
 
 async function loadPortalData() {
-  // 1. جلب إعدادات ساعات العمل
   try {
     const resSettings = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/office_settings.json?ref=${BRANCH}`, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
     if(resSettings.ok) {
@@ -456,7 +463,6 @@ async function loadPortalData() {
     }
   } catch(e) {}
 
-  // 2. جلب حالة المكتب
   try {
     const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/office_status.json?ref=${BRANCH}`, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
     if(res.ok) {
@@ -467,10 +473,8 @@ async function loadPortalData() {
     }
   } catch(e) {}
 
-  // 3. التحقق من العطل القادمة خلال 3 أيام للتنبيه اليدوي
   checkUpcomingHolidays();
 
-  // 4. جلب العطل الاستثنائية
   const tbody = document.querySelector('#customHolidaysTable tbody');
   try {
     const res2 = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/custom_holidays.json?ref=${BRANCH}`, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
@@ -479,21 +483,32 @@ async function loadPortalData() {
       const holidays = JSON.parse(b64_to_utf8(data2.content));
       tbody.innerHTML = '';
       if(holidays.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:#718096;">لا توجد عطل استثنائية مضافة بعد.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="3" style="text-align:center; color:#718096;">لا توجد عطل استثنائية مضافة بعد.</td></tr>';
       } else {
-        holidays.forEach(h => {
-          tbody.innerHTML += `<tr><td><strong>${h.name}</strong></td><td><span class="badge badge-holiday">${h.date}</span></td></tr>`;
+        holidays.forEach((h, index) => {
+          const btnText = translations[currentLang].applyBtnText;
+          tbody.innerHTML += `<tr>
+            <td><strong>${h.name}</strong></td>
+            <td><span class="badge badge-holiday">${h.date}</span></td>
+            <td><button type="button" class="btn-action-sm" onclick="applyHolidayAsStatus('${h.name.replace(/'/g, "\\'")}')">${btnText}</button></td>
+          </tr>`;
         });
       }
     } else {
-      tbody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:#718096;">لا توجد عطل استثنائية مضافة بعد.</td></tr>';
+      tbody.innerHTML = '<tr><td colspan="3" style="text-align:center; color:#718096;">لا توجد عطل استثنائية مضافة بعد.</td></tr>';
     }
   } catch(e) {
-    tbody.innerHTML = '<tr><td colspan="2" style="text-align:center; color:#718096;">لا توجد عطل استثنائية مضافة بعد.</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="3" style="text-align:center; color:#718096;">لا توجد عطل استثنائية مضافة بعد.</td></tr>';
   }
 }
 
-// فحص العطل القادمة خلال 3 أيام لتنبيه المحامي يدويًا
+async function applyHolidayAsStatus(holidayName) {
+  document.getElementById('officeStatusSelect').value = 'holiday';
+  document.getElementById('officeNoteInput').value = `عطلة رسمية: ${holidayName}`;
+  await triggerOfficeStatusSave('holiday', `عطلة رسمية: ${holidayName}`);
+  alert(currentLang === 'en' ? `Applied "${holidayName}" as active office holiday successfully!` : `تم تفعيل عطلة "${holidayName}" كحالة للمكتب بنجاح 🛑`);
+}
+
 async function checkUpcomingHolidays() {
   try {
     const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/custom_holidays.json?ref=${BRANCH}`, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
@@ -510,7 +525,6 @@ async function checkUpcomingHolidays() {
       const diffTime = hDate - today;
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-      // إذا كانت العطلة قادمة خلال 0 إلى 3 أيام
       if(diffDays >= 0 && diffDays <= 3) {
         const noticeBox = document.getElementById('holidayNoticeBox');
         const noticeText = document.getElementById('holidayNoticeText');
@@ -525,13 +539,8 @@ async function checkUpcomingHolidays() {
 
 async function confirmAndActivateHoliday() {
   if(!window.pendingHolidayName) return;
-  document.getElementById('officeStatusSelect').value = 'holiday';
-  document.getElementById('officeNoteInput').value = `عطلة رسمية: ${window.pendingHolidayName}`;
-  
-  // حفظ الحالة تلقائياً على غيت هب
-  await triggerOfficeStatusSave('holiday', `عطلة رسمية: ${window.pendingHolidayName}`);
+  await applyHolidayAsStatus(window.pendingHolidayName);
   document.getElementById('holidayNoticeBox').style.display = 'none';
-  alert('تم تفعيل حالة العطلة بنجاح وتحديث البوابة 🛑');
 }
 
 async function saveWorkingHours(e) {
