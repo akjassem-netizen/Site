@@ -13,8 +13,8 @@
         .lang-switch button:hover { background: #1d4ed8; }
         h3 { margin-top: 0; font-size: 18px; color: #0f172a; }
         label { display: block; margin-top: 12px; margin-bottom: 6px; font-weight: bold; font-size: 14px; color: #475569; }
-        select, input[type="text"] { width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; margin-bottom: 10px; font-size: 14px; background: #fff; }
-        select:focus, input[type="text"]:focus { outline: none; border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+        select, input[type="text"], input[type="time"] { width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; margin-bottom: 10px; font-size: 14px; background: #fff; }
+        select:focus, input:focus { outline: none; border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
         .sync-btn { background-color: #0f172a; color: white; border: none; width: 100%; padding: 12px; border-radius: 8px; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: bold; margin-top: 15px; transition: background 0.2s; }
         .sync-btn:hover { background-color: #1e293b; }
         .sub-text { font-size: 13px; color: #64748b; margin-bottom: 15px; }
@@ -28,7 +28,7 @@
         <button onclick="toggleLanguage()" id="langBtn">English</button>
     </div>
 
-    <!-- بطاقة حالة المكتب -->
+    <!-- البطاقة الأولى: حالة المكتب -->
     <div class="card">
         <h3 data-i18n="officeStatus">🟢 حالة المكتب وتوقيت بغداد التلقائي</h3>
         <div class="sub-text" data-i18n="subStatus">Live Status & Auto-Schedule</div>
@@ -43,22 +43,28 @@
         <label data-i18n="customNoteLabel">ملاحظة مخصصة (تظهر للزوار تحت الحالة):</label>
         <input type="text" id="customNote" placeholder="مثلاً: عطلة رسمية بقرار مجلس الوزراء..." data-i18n-placeholder="customNotePlaceholder">
 
-        <!-- الزر المعدل والمحسن -->
-        <button class="sync-btn" id="syncBtn" onclick="alert('تمت المزامنة بنجاح!')">
+        <!-- زر المزامنة مع الحفاظ على ترتيب الكلمات الصحيح -->
+        <button class="sync-btn" onclick="alert('تمت المزامنة بنجاح!')">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
-            <span data-i18n="syncButtonText">مزامنة مع GitHub</span>
+            <span dir="auto" data-i18n="syncButtonText">مزامنة مع GitHub</span>
         </button>
     </div>
 
-    <!-- بطاقة ساعات العمل -->
+    <!-- البطاقة الثانية: ساعات العمل (تمت إضافة الحقول المفقودة هنا) -->
     <div class="card">
         <h3 data-i18n="workingHoursTitle">⚙️ تعديل ساعات العمل الرسمية (توقيت بغداد)</h3>
         <div class="sub-text" data-i18n="workingHoursSub">Working Hours Settings</div>
+        <hr style="border: 0; border-top: 1px dashed #e2e8f0; margin: 12px 0;">
+
+        <label data-i18n="startTime">ساعة بدء الدوام:</label>
+        <input type="time" id="startTimeInput">
+
+        <label data-i18n="endTime">ساعة انتهاء الدوام:</label>
+        <input type="time" id="endTimeInput">
     </div>
 </div>
 
 <script>
-    // قاموس الترجمات الشامل لكل عناصر الصفحة والخيارات
     const translations = {
         ar: {
             langBtnText: "English",
@@ -71,7 +77,9 @@
             customNotePlaceholder: "مثلاً: عطلة رسمية بقرار مجلس الوزراء...",
             syncButtonText: "مزامنة مع GitHub",
             workingHoursTitle: "⚙️ تعديل ساعات العمل الرسمية (توقيت بغداد)",
-            workingHoursSub: "Working Hours Settings"
+            workingHoursSub: "Working Hours Settings",
+            startTime: "ساعة بدء الدوام:",
+            endTime: "ساعة انتهاء الدوام:"
         },
         en: {
             langBtnText: "العربية",
@@ -84,7 +92,9 @@
             customNotePlaceholder: "e.g., Official holiday by Cabinet decree...",
             syncButtonText: "Sync with GitHub",
             workingHoursTitle: "⚙️ Edit Official Working Hours (Baghdad Time)",
-            workingHoursSub: "Working Hours Settings"
+            workingHoursSub: "Working Hours Settings",
+            startTime: "Start Time:",
+            endTime: "End Time:"
         }
     };
 
@@ -94,11 +104,9 @@
         currentLang = lang;
         localStorage.setItem('appLang', lang);
         
-        // ضبط اتجاه الصفحة ولغتها تلقائياً
         document.documentElement.lang = lang;
         document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
 
-        // تحديث جميع العناوين والنصوص
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
             if (translations[lang][key]) {
@@ -106,7 +114,6 @@
             }
         });
 
-        // تحديث النصوص الوهمية داخل حقول الإدخال (Placeholders)
         document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
             const key = el.getAttribute('data-i18n-placeholder');
             if (translations[lang][key]) {
@@ -114,7 +121,6 @@
             }
         });
 
-        // تغيير نص زر اللغة نفسه
         document.getElementById('langBtn').textContent = translations[lang].langBtnText;
     }
 
@@ -123,7 +129,6 @@
         applyLanguage(newLang);
     }
 
-    // تطبيق اللغة المحفوظة تلقائياً عند فتح الصفحة
     window.addEventListener('DOMContentLoaded', () => {
         applyLanguage(currentLang);
     });
