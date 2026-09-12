@@ -439,32 +439,53 @@
       evaluateBaghdadSchedule();
     });
 
-    // المنطق البرمجي المضبوط حصرياً على توقيت بغداد المحلي (Asia/Baghdad)
-    function evaluateBaghdadSchedule() {
+    // المنطق البرمجي: جعل ملف office_status.json اليدوي هو المسيطر الأول، وإلا فالجدول التلقائي بتوقيت بغداد
+    async function evaluateBaghdadSchedule() {
       const lang = document.getElementById('languageSelect').value;
       const dot = document.getElementById('statusDot');
       const statusTitle = document.getElementById('statusHeaderTitle');
       const statusMsg = document.getElementById('statusMessageText');
 
+      // 1. محاولة قراءة الحالة اليدوية من البوابة أولاً (office_status.json) مع منع التخزين المؤقت (cache: no-store)
+      try {
+        const res = await fetch('/office_status.json?t=' + new Date().getTime(), { cache: 'no-store' });
+        if (res.ok) {
+          const data = await res.json();
+          if (data.status === 'holiday') {
+            dot.className = 'status-indicator-dot holiday';
+            statusTitle.innerText = lang === 'en' ? "Office Holiday / Leave" : "إجازة رسمية / عطلة المكتب";
+            statusMsg.innerText = data.note ? data.note : (lang === 'en' ? "Office is currently on official leave." : "المكتب في إجازة رسمية حالياً، يرجى الحجز عبر استمارة الحجز الرسمية.");
+            return;
+          } else if (data.status === 'off_hours') {
+            dot.className = 'status-indicator-dot off_hours';
+            statusTitle.innerText = lang === 'en' ? "Outside Official Working Hours" : "خارج ساعات العمل الرسمية";
+            statusMsg.innerText = data.note ? data.note : (lang === 'en' ? "Outside official hours. Requests via booking form." : "المكتب خارج ساعات العمل الرسمية حالياً، الاستقبال عبر استمارة الحجز.");
+            return;
+          } else if (data.status === 'active') {
+            dot.className = 'status-indicator-dot active';
+            statusTitle.innerText = lang === 'en' ? "Office is Open" : "المكتب متاح الآن";
+            statusMsg.innerText = data.note ? data.note : (lang === 'en' ? "Office is currently open for regular inquiries." : "المكتب متاح الآن لاستقبال الطلبات والمواعيد الرسمية.");
+            return;
+          }
+        }
+      } catch(e) {}
+
+      // 2. إذا لم يكن هناك ملف حالة يدوي مفعل، نعتمد الحساب التلقائي لتوقيت بغداد وعطلة نهاية الأسبوع (الجمعة والسبت)
       const nowBaghdad = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Baghdad" }));
-      const day = nowBaghdad.getDay(); // 0: الأحد, 1: الإثنين, 2: الثلاثاء, 3: الأربعاء, 4: الخميس, 5: الجمعة, 6: السبت
+      const day = nowBaghdad.getDay(); // 0: الأحد ... 5: الجمعة, 6: السبت
       const hour = nowBaghdad.getHours();
       const minute = nowBaghdad.getMinutes();
       const timeVal = hour * 60 + minute;
 
       const startVal = 8 * 60;  // 08:00 صباحاً
-      const endVal = 16 * 60; // 04:00 عصراً (16:00)
+      const endVal = 16 * 60; // 16:00 عصراً
 
-      // عطلة نهاية الأسبوع في العراق (الجمعة 5 والسبت 6)
       if (day === 5 || day === 6) {
         dot.className = 'status-indicator-dot holiday';
         statusTitle.innerText = translations[lang].weekendTitle || "عطلة نهاية الأسبوع (الجمعة والسبت)";
         statusMsg.innerText = translations[lang].weekendMsg || "المكتب في عطلة نهاية الأسبوع الرسمية. يمكنك إرسال طلبك أو حجز موعد استشارة رسمية في أي وقت؛ سيتم مراجعة ومعالجة كافة الطلبات فور استئناف الدوام الرسمي صباح يوم الأحد.";
-        return;
-      }
-
-      // ساعات العمل اليومية خلال أيام الدوام (الأحد إلى الخميس)
-      if (timeVal < startVal || timeVal > endVal) {
+      } 
+      else if (timeVal < startVal || timeVal > endVal) {
         dot.className = 'status-indicator-dot off_hours';
         statusTitle.innerText = translations[lang].offHoursTitle || "خارج ساعات العمل الرسمية";
         statusMsg.innerText = translations[lang].offHoursMsg || "نحن خارج ساعات العمل الرسمية حالياً. يمكنك إرسال طلبك أو حجز موعدك عبر استمارة الحجز وسنتابعها فور افتتاح الدوام.";
@@ -561,7 +582,7 @@
         pageTitle: "İletişim | Av. Ali Kazım Haşimi Hukuk Bürosu Irak",
         metaDesc: "Bağdat'taki Av. Ali Kazım Haşimi Hukuk Bürosu ile iletişime geçin. Resmi danışmanlık randevusu alın.",
         metaKeywords: "Avukat Bağdat iletişim, Irak hukuk bürosu",
-        home: "Ana Sayfa", menuServices: "Hizmetler", menuConsultations: "Hukuki Danışمانlık", menuInsights: "İçgörüler", about: "Hakkımızda", menuCodeOfConduct: "Mesleki Etik Kuralları", contact: "İletişim",
+        home: "Ana Sayfa", menuServices: "Hizmetler", menuConsultations: "Hukuki Danışmanlık", menuInsights: "İçgörüler", about: "Hakkımızda", menuCodeOfConduct: "Mesleki Etik Kuralları", contact: "İletişim",
         pageMainTitle: "İletişim",
         lblAddress: "Adres:", valAddress: "Bağdat - Zeytuna - Irak Moda Evi Yakını",
         lblHours: "Çalışma Saatleri:", valHours: "Pazar - Perşembe (08:00 - 16:00 Bağdat Saati)",
@@ -643,7 +664,7 @@
         metaKeywords: "Kontakt Anwaltskanzlei Bagdad",
         home: "Startseite", menuServices: "Dienste", menuConsultations: "Beratung", menuInsights: "Einblicke", about: "Über uns", menuCodeOfConduct: "Verhaltenskodex", contact: "Kontakt",
         pageMainTitle: "Kontakt",
-        lblAddress: "Adresse:", valAddress: "Bagdad - Zayouna - In der Nähe des irakischen Modehauses",
+        lblAddress: "Adresse:", valAddress: "Baghdad - Zayouna - In der Nähe des irakischen Modehauses",
         lblHours: "Arbeitszeiten:", valHours: "Sonntag bis Donnerstag (08:00 Uhr - 16:00 Uhr Bagdader Zeit)",
         lblPhone: "Telefon:", lblEmail: "E-Mail:",
         btnBooking: "📅 Offiziellen Beratungstermin buchen",
@@ -664,7 +685,7 @@
         home: "سەرەکی", menuServices: "خزمەتگوزارییەکان", menuConsultations: "ڕاوێژ", menuInsights: "تێڕوانینەکان", about: "دەرباره‌ی ئێمە", menuCodeOfConduct: "ڕەفتاری پیشەیی", contact: "پەیوەندی",
         pageMainTitle: "پەیوەندی بە ئێمە",
         lblAddress: "ناونیشان:", valAddress: "بغداد - زيونة - قرب دار الأزياء العراقية",
-        lblHours: "کاتی کارکردن:", valHours: "یەکشەممە تا پێنجشەممە (٠٨:٠٠ بەیانی - ٠٤:٠٠ ئێوارە بە کاتی بەغداد)",
+        lblHours: "کاتی کارکردن:", valHours: "یەکشەممە تا پێنجشەممە (٠٨:٠٠ بەیانی - ٠۴:٠٠ ئێوارە بە کاتی بەغداد)",
         lblPhone: "تەلەفۆن:", lblEmail: "ئیمەیڵ:",
         btnBooking: "📅 دیاریکردنی کاتی ڕاوێژی فەرمی",
         btnWhatsapp: "💬 پەیوەندی لە ڕێگەی واتسأپەوە بە ڕاستەوخۆ",
