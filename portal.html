@@ -3,98 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لوحة التحكم - إدارة الحالة</title>
+    <title>لوحة التحكم الشاملة - مكتب المحامي علي كاظم الهاشمي</title>
     <style>
-        body { font-family: Tahoma, sans-serif; background-color: #f8fafc; margin: 0; padding: 20px; color: #1e293b; }
+        :root {
+            --primary: #0f172a;
+            --primary-hover: #1e293b;
+            --accent: #2563eb;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+        }
+        body { font-family: Tahoma, sans-serif; background-color: var(--bg); margin: 0; padding: 16px; color: var(--text); }
         .container { max-width: 600px; margin: 0 auto; }
-        .card { background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.04); border: 1px solid #e2e8f0; }
-        .lang-switch { text-align: left; margin-bottom: 15px; }
-        .lang-switch button { background: #2563eb; color: #fff; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 14px; transition: background 0.2s; }
+        
+        /* شريط العلوي وزر اللغة */
+        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .brand-title { font-size: 15px; font-weight: bold; color: var(--primary); }
+        .lang-switch button { background: var(--accent); color: #fff; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 14px; transition: background 0.2s; }
         .lang-switch button:hover { background: #1d4ed8; }
-        h3 { margin-top: 0; font-size: 18px; color: #0f172a; }
-        label { display: block; margin-top: 12px; margin-bottom: 6px; font-weight: bold; font-size: 14px; color: #475569; }
-        select, input[type="text"], input[type="time"] { width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; margin-bottom: 10px; font-size: 14px; background: #fff; }
-        select:focus, input:focus { outline: none; border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
-        .sync-btn { background-color: #0f172a; color: white; border: none; width: 100%; padding: 12px; border-radius: 8px; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: bold; margin-top: 15px; transition: background 0.2s; }
-        .sync-btn:hover { background-color: #1e293b; }
-        .sub-text { font-size: 13px; color: #64748b; margin-bottom: 15px; }
+
+        /* البطاقات */
+        .card { background: var(--card-bg); border-radius: 14px; padding: 20px; margin-bottom: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.03); border: 1px solid var(--border); transition: transform 0.2s; }
+        .card:hover { box-shadow: 0 6px 12px rgba(0,0,0,0.06); }
+        
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        h3 { margin: 0; font-size: 17px; color: var(--primary); display: flex; align-items: center; gap: 8px; }
+        .sub-text { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
+        
+        .badge-soon { background: #fef3c7; color: #d97706; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: bold; border: 1px solid #fde68a; }
+        
+        hr { border: 0; border-top: 1px dashed var(--border); margin: 14px 0; }
+
+        label { display: block; margin-top: 12px; margin-bottom: 6px; font-weight: bold; font-size: 13px; color: #475569; }
+        select, input[type="text"], input[type="time"] { width: 100%; padding: 11px 14px; border: 1px solid #cbd5e1; border-radius: 10px; box-sizing: border-box; margin-bottom: 8px; font-size: 14px; background: #fff; color: var(--text); }
+        select:focus, input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+
+        /* الأزرار التفاعلية */
+        .btn-primary { background-color: var(--primary); color: white; border: none; width: 100%; padding: 13px; border-radius: 10px; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: bold; margin-top: 15px; transition: background 0.2s; }
+        .btn-primary:hover { background-color: var(--primary-hover); }
+
+        .btn-secondary { background-color: #f1f5f9; color: var(--primary); border: 1px solid var(--border); width: 100%; padding: 11px; border-radius: 10px; font-size: 14px; cursor: pointer; font-weight: bold; margin-top: 10px; transition: background 0.2s; text-align: center; text-decoration: none; display: inline-block; box-sizing: border-box;}
+        .btn-secondary:hover { background-color: #e2e8f0; }
+
+        .grid-links { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- زر تبديل اللغة -->
-    <div class="lang-switch">
-        <button onclick="toggleLanguage()" id="langBtn">English</button>
+    <!-- الشريط العلوي -->
+    <div class="top-bar">
+        <div class="brand-title" data-i18n="brandTitle">⚖️ مكتب المحامي علي كاظم الهاشمي</div>
+        <div class="lang-switch">
+            <button onclick="toggleLanguage()" id="langBtn">English</button>
+        </div>
     </div>
 
-    <!-- البطاقة الأولى: حالة المكتب -->
+    <!-- 1. بطاقة أرشيف المبادئ التمييزية -->
     <div class="card">
-        <h3 data-i18n="officeStatus">🟢 حالة المكتب وتوقيت بغداد التلقائي</h3>
-        <div class="sub-text" data-i18n="subStatus">Live Status & Auto-Schedule</div>
-        <hr style="border: 0; border-top: 1px dashed #e2e8f0; margin: 12px 0;">
+        <div class="card-header">
+            <h3 data-i18n="archiveTitle">⚖️ أرشيف المبادئ التمييزية</h3>
+            <span class="badge-soon" data-i18n="soonBadge">قريباً 🔒</span>
+        </div>
+        <div class="sub-text" data-i18n="archiveSub">مكتبة القرارات والمطابقة الذكية | Judicial Principles Library</div>
+    </div>
 
-        <label data-i18n="updateMethod">طريقة التحديث:</label>
+    <!-- 2. بطاقة حالة المكتب وتوقيت بغداد التلقائي -->
+    <div class="card">
+        <h3 data-i18n="officeStatusTitle">🟢 حالة المكتب وتوقيت بغداد التلقائي</h3>
+        <div class="sub-text" data-i18n="officeStatusSub">Live Status & Auto-Schedule</div>
+        <hr>
+
+        <label data-i18n="updateMethodLabel">طريقة التحديث:</label>
         <select id="updateMethodSelect">
             <option value="auto" data-i18n="optAuto">⚡ تلقائي حسب ساعات العمل الرسمية (توقيت بغداد)</option>
-            <option value="manual" data-i18n="optManual">يدوي (دائم أو مغلق)</option>
+            <option value="manual" data-i18n="optManual">يدوي (مفتوح أو مغلق دائماً)</option>
         </select>
 
         <label data-i18n="customNoteLabel">ملاحظة مخصصة (تظهر للزوار تحت الحالة):</label>
         <input type="text" id="customNote" placeholder="مثلاً: عطلة رسمية بقرار مجلس الوزراء..." data-i18n-placeholder="customNotePlaceholder">
 
-        <!-- زر المزامنة مع الحفاظ على ترتيب الكلمات الصحيح -->
-        <button class="sync-btn" onclick="alert('تمت المزامنة بنجاح!')">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
-            <span dir="auto" data-i18n="syncButtonText">مزامنة مع GitHub</span>
+        <!-- زر الحفظ والتحديث المحدث (بدلاً من غيت هب) -->
+        <button class="btn-primary" onclick="alert('تم حفظ وتحديث التغييرات بنجاح!')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+            <span dir="auto" data-i18n="saveButtonText">حفظ وتحديث التغييرات</span>
         </button>
     </div>
 
-    <!-- البطاقة الثانية: ساعات العمل (تمت إضافة الحقول المفقودة هنا) -->
+    <!-- 3. بطاقة تعديل ساعات العمل الرسمية -->
     <div class="card">
         <h3 data-i18n="workingHoursTitle">⚙️ تعديل ساعات العمل الرسمية (توقيت بغداد)</h3>
         <div class="sub-text" data-i18n="workingHoursSub">Working Hours Settings</div>
-        <hr style="border: 0; border-top: 1px dashed #e2e8f0; margin: 12px 0;">
+        <hr>
 
-        <label data-i18n="startTime">ساعة بدء الدوام:</label>
-        <input type="time" id="startTimeInput">
+        <label data-i18n="startTimeLabel">ساعة بدء الدوام:</label>
+        <input type="time" id="startTimeInput" value="09:00">
 
-        <label data-i18n="endTime">ساعة انتهاء الدوام:</label>
-        <input type="time" id="endTimeInput">
+        <label data-i18n="endTimeLabel">ساعة انتهاء الدوام:</label>
+        <input type="time" id="endTimeInput" value="16:00">
+    </div>
+
+    <!-- 4. بطاقة الإدارة السريعة (الموكلين، الآراء، المعاينة، والعطل) -->
+    <div class="card">
+        <h3 data-i18n="managementTitle">📁 إدارة المنصة والخدمات</h3>
+        <div class="sub-text" data-i18n="managementSub">Clients, Reviews & Portal Controls</div>
+        <hr>
+
+        <div class="grid-links">
+            <button class="btn-secondary" onclick="alert('جاري فتح إدارة الموكلين...')" data-i18n="clientsBtn">👥 إدارة الموكلين</button>
+            <button class="btn-secondary" onclick="alert('جاري فتح إدارة الآراء والتقييمات...')" data-i18n="reviewsBtn">⭐ إدارة الآراء</button>
+        </div>
+        <div class="grid-links">
+            <button class="btn-secondary" onclick="alert('جاري فتح جدول العطل الرسمية...')" data-i18n="holidaysBtn">📅 جدول العطل</button>
+            <button class="btn-secondary" onclick="window.open('#', '_blank')" data-i18n="previewBtn">👁️ معاينة المنصة</button>
+        </div>
     </div>
 </div>
 
 <script>
+    // قاموس الترجمات الشامل والدقيق لكل حرف في المنصة
     const translations = {
         ar: {
+            brandTitle: "⚖️ مكتب المحامي علي كاظم الهاشمي",
             langBtnText: "English",
-            officeStatus: "🟢 حالة المكتب وتوقيت بغداد التلقائي",
-            subStatus: "Live Status & Auto-Schedule",
-            updateMethod: "طريقة التحديث:",
+            archiveTitle: "⚖️ أرشيف المبادئ التمييزية",
+            soonBadge: "قريباً 🔒",
+            archiveSub: "مكتبة القرارات والمطابقة الذكية | Judicial Principles Library",
+            officeStatusTitle: "🟢 حالة المكتب وتوقيت بغداد التلقائي",
+            officeStatusSub: "Live Status & Auto-Schedule",
+            updateMethodLabel: "طريقة التحديث:",
             optAuto: "⚡ تلقائي حسب ساعات العمل الرسمية (توقيت بغداد)",
-            optManual: "يدوي (دائم أو مغلق)",
+            optManual: "يدوي (مفتوح أو مغلق دائماً)",
             customNoteLabel: "ملاحظة مخصصة (تظهر للزوار تحت الحالة):",
             customNotePlaceholder: "مثلاً: عطلة رسمية بقرار مجلس الوزراء...",
-            syncButtonText: "مزامنة مع GitHub",
+            saveButtonText: "حفظ وتحديث التغييرات",
             workingHoursTitle: "⚙️ تعديل ساعات العمل الرسمية (توقيت بغداد)",
             workingHoursSub: "Working Hours Settings",
-            startTime: "ساعة بدء الدوام:",
-            endTime: "ساعة انتهاء الدوام:"
+            startTimeLabel: "ساعة بدء الدوام:",
+            endTimeLabel: "ساعة انتهاء الدوام:",
+            managementTitle: "📁 إدارة المنصة والخدمات",
+            managementSub: "Clients, Reviews & Portal Controls",
+            clientsBtn: "👥 إدارة الموكلين",
+            reviewsBtn: "⭐ إدارة الآراء",
+            holidaysBtn: "📅 جدول العطل",
+            previewBtn: "👁️ معاينة المنصة"
         },
         en: {
+            brandTitle: "⚖️ Law Office of Ali Kadhem Hashimi",
             langBtnText: "العربية",
-            officeStatus: "🟢 Office Status & Auto Baghdad Schedule",
-            subStatus: "Live Status & Auto-Schedule",
-            updateMethod: "Update Method:",
+            archiveTitle: "⚖️ Judicial Principles Archive",
+            soonBadge: "Soon 🔒",
+            archiveSub: "Library of Decisions & Smart Matching",
+            officeStatusTitle: "🟢 Office Status & Auto Baghdad Schedule",
+            officeStatusSub: "Live Status & Auto-Schedule",
+            updateMethodLabel: "Update Method:",
             optAuto: "⚡ Automatic according to official working hours (Baghdad Time)",
             optManual: "Manual (Always Open or Closed)",
             customNoteLabel: "Custom Note (Displayed to visitors under status):",
             customNotePlaceholder: "e.g., Official holiday by Cabinet decree...",
-            syncButtonText: "Sync with GitHub",
+            saveButtonText: "Save & Sync Changes",
             workingHoursTitle: "⚙️ Edit Official Working Hours (Baghdad Time)",
             workingHoursSub: "Working Hours Settings",
-            startTime: "Start Time:",
-            endTime: "End Time:"
+            startTimeLabel: "Start Time:",
+            endTimeLabel: "End Time:",
+            managementTitle: "📁 Platform & Services Management",
+            managementSub: "Clients, Reviews & Portal Controls",
+            clientsBtn: "👥 Client Management",
+            reviewsBtn: "⭐ Reviews Management",
+            holidaysBtn: "📅 Holidays Schedule",
+            previewBtn: "👁️ Platform Preview"
         }
     };
 
@@ -104,9 +183,11 @@
         currentLang = lang;
         localStorage.setItem('appLang', lang);
         
+        // ضبط اتجاه الصفحة (RTL للعربية و LTR للإنجليزية) وزر اللغة
         document.documentElement.lang = lang;
         document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
 
+        // تحديث كل النصوص والعناوين
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
             if (translations[lang][key]) {
@@ -114,6 +195,7 @@
             }
         });
 
+        // تحديث النصوص المؤقتة (Placeholders)
         document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
             const key = el.getAttribute('data-i18n-placeholder');
             if (translations[lang][key]) {
@@ -121,6 +203,7 @@
             }
         });
 
+        // تغيير نص زر تبديل اللغة
         document.getElementById('langBtn').textContent = translations[lang].langBtnText;
     }
 
@@ -129,6 +212,7 @@
         applyLanguage(newLang);
     }
 
+    // تطبيق اللغة المحفوظة تلقائياً عند فتح الصفحة
     window.addEventListener('DOMContentLoaded', () => {
         applyLanguage(currentLang);
     });
