@@ -100,7 +100,7 @@ tr:hover { background-color: #fafafa; }
 </div>
 
 <div id="portalSetupScreen" class="screen-box" style="display: none;">
-<p class="lock-desc"><strong>إعداد حماية البوابة لأول مرة:</strong><br>أدخل رمز التوكن مع رمز PIN سري (6 أرقام):</p>
+<p class="lock-desc"><strong>إعداد حماية البوابة لأول مرة:</strong><br>أدخل الرمز التوكن مع رمز PIN سري (6 أرقام):</p>
 <div class="form-group" style="max-width: 400px; margin: 0 auto 12px;">
 <input type="password" id="portalSetupTokenInput" placeholder="أدخل رمز GitHub (ghp_...)" dir="ltr" style="-webkit-text-security: disc;">
 </div>
@@ -523,7 +523,7 @@ function calculateHolidayStats() {
   document.getElementById('statWorkdays').innerText = netWorkdays;
 }
 
-// دالة تصدير التقرير الرسمي بالمواصفات الثنائية (عربي / إنجليزي) لمكتب المحاماة
+// دالة تصدير التقرير الرسمي بالمواصفات الثنائية والمعايير العالمية الراقية
 function exportHolidayReportPDF() {
   const range = getActiveReportRange();
   if(!range) {
@@ -596,8 +596,8 @@ function exportHolidayReportPDF() {
     <body>
       <div class="print-header">
         <div class="logo-text">A<span>K</span>H</div>
-        <div class="office-name-ar">مكتب المحامي علي كاظم الهاشمي للمحاماة والخدمات القانونية والاستشارات</div>
-        <div class="office-name-en">AKH LAW OFFICE — Advocacy, Legal Services & Consultancy</div>
+        <div class="office-name-ar">مكتب المحامي علي كاظم الهاشمي للمحاماة والخدمات القانونية</div>
+        <div class="office-name-en">AKH Law Office — Law Practice & Legal Services</div>
         <div class="est">EST. 2014</div>
       </div>
 
@@ -608,7 +608,7 @@ function exportHolidayReportPDF() {
 
       <div class="meta-box">
         <div>
-          <span>المرجع المرجعي / Reference No: <strong>${refNumber}</strong></span><br>
+          <span>المرجع / Reference No: <strong>${refNumber}</strong></span><br>
           <span style="font-size: 11.5px; color: #475569;">تاريخ الإصدار / Issue Date: ${issueDate}</span>
         </div>
         <div style="direction: ltr; unicode-bidi: embed; text-align: left;">
@@ -651,7 +651,7 @@ function exportHolidayReportPDF() {
           <span>Baghdad - Zayouna, Iraq | Phone: <span dir="ltr" style="unicode-bidi: embed; display: inline-block;">+964 783 875 9047</span></span>
         </div>
         <div style="text-align: center;">
-          <span>توقيع وختم المحامي المعتمد<br>Certified Legal Counsel Signature & Seal</span><br><br><br>
+          <span>توقيع وختم المحامي الرئيس والمدير<br>Principal & Managing Attorney</span><br><br><br>
           <span>........................................</span>
         </div>
       </div>
