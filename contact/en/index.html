@@ -154,7 +154,6 @@
       font-weight: 600;
     }
 
-    /* شريط الحالة الحي مع مؤشر النبض الذهبي الفاخر */
     .status-card-box {
       background: #f8fafc;
       border: 1.5px solid #e2e8f0;
@@ -431,7 +430,7 @@
       <div id="statusDot" class="status-indicator-dot holiday"></div>
       <div class="status-text-content">
         <strong id="statusHeaderTitle">Weekend Notice (Friday & Saturday)</strong>
-        <span id="statusMessageText">The office is currently closed for the weekend (Friday & Saturday). You may submit your booking or inquiry at any time; all requests will be reviewed and processed promptly upon the resumption of official working hours on Sunday morning.</span>
+        <span id="statusMessageText">The office is currently closed for the weekend. You may request a formal consultation appointment at any time, and your request will be processed promptly upon the resumption of official working hours on Sunday morning.</span>
       </div>
     </div>
 
@@ -529,7 +528,6 @@
       evaluateBaghdadSchedule();
     });
 
-    // المنطق البرمجي لقراءة الحالة اليدوية (office_status.json) أو الحساب التلقائي لتوقيت بغداد
     async function evaluateBaghdadSchedule() {
       const lang = document.getElementById('languageSelect').value;
       const dot = document.getElementById('statusDot');
@@ -543,8 +541,8 @@
           const data = await res.json();
           if (data.status === 'holiday') {
             dot.className = 'status-indicator-dot holiday';
-            statusTitle.innerText = t.holidayTitle || (lang === 'en' ? "Office Holiday / Leave" : "Office Holiday");
-            statusMsg.innerText = data.note ? data.note : (t.holidayMsg || "The office is currently on official leave.");
+            statusTitle.innerText = t.holidayTitle || "Office Holiday";
+            statusMsg.innerText = data.note ? data.note : t.holidayMsg;
             return;
           } else if (data.status === 'off_hours') {
             dot.className = 'status-indicator-dot off_hours';
@@ -649,7 +647,7 @@
         mapBoxTitle: "View Office Location on Google Maps", mapBoxSub: "Click here to navigate and track the route to the office",
         btnWhatsapp: "💬 Contact via WhatsApp Directly", btnBackHome: "🏠 Back to Home Page",
         weekendTitle: "Weekend Notice (Friday & Saturday)",
-        weekendMsg: "The office is currently closed for the weekend (Friday & Saturday). You may submit your booking or inquiry at any time; all requests will be reviewed and processed promptly upon the resumption of official working hours on Sunday morning.",
+        weekendMsg: "The office is currently closed for the weekend. You may request a formal consultation appointment at any time, and your request will be processed promptly upon the resumption of official working hours on Sunday morning.",
         offHoursTitle: "Outside Official Working Hours",
         offHoursMsg: "We are currently outside official hours. You can submit your inquiry via the booking form.",
         openTitle: "Office is Open",
@@ -668,7 +666,7 @@
         mapBoxTitle: "Ofis Konumunu Google Haritalar'da Görüntüle", mapBoxSub: "Ofise rota oluşturmak ve gitmek için buraya tıklayın",
         btnWhatsapp: "💬 Doğrudan WhatsApp ile İletişim", btnBackHome: "🏠 Ana Sayfaya Dön",
         weekendTitle: "Hafta Sonu Tatili (Cuma ve Cumartesi)",
-        weekendMsg: "Ofis hafta sonu tatilindedir (Cuma و Cumartesi). Rezervasyonunuzu veya talebinizi dilediğiniz zaman iletebilirsiniz; tüm talepler Pazar sabahı mesai saatinin başlamasıyla birlikte incelenip işleme alınacaktır.",
+        weekendMsg: "Ofis hafta sonu tatilindedir. Dilediğiniz zaman resmi danışmanlık randevusu talep edebilirsiniz; talebiniz Pazar sabahı mesai saatinin başlamasıyla birlikte işleme alınacaktır.",
         offHoursTitle: "Mesai Saatleri Dışında",
         offHoursMsg: "Şu anda resmi çalışma saatleri dışındayız. Talebinizi rezervasyon formu aracılığıyla gönderebilirsiniz.",
         openTitle: "Ofis Açık",
@@ -687,7 +685,7 @@
         mapBoxTitle: "在谷歌地图上查看办公室位置", mapBoxSub: "点击此处导航并追踪前往办公室的路线",
         btnWhatsapp: "💬 直接通过 WhatsApp 联系", btnBackHome: "🏠 返回首页",
         weekendTitle: "周末公告（周五和周六）",
-        weekendMsg: "本所目前正值周末假期（周五与周六）。您可随时提交预约或咨询，所有请求将在周日上午恢复官方工作时间后立即审核并处理。",
+        weekendMsg: "本所目前正值周末假期。您可随时申请正式法律咨询预约，所有请求将在周日上午恢复官方工作时间后立即处理。",
         offHoursTitle: "非官方工作时间",
         offHoursMsg: "我们目前已过了官方工作时间。您可以通过预订表格提交您的需求。",
         openTitle: "办公室开放",
@@ -706,7 +704,7 @@
         mapBoxTitle: "Voir l'emplacement sur Google Maps", mapBoxSub: "Cliquez ici pour naviguer et suivre l'itinéraire vers le bureau",
         btnWhatsapp: "💬 Contacter via WhatsApp Directement", btnBackHome: "🏠 Retour à la Page d'Accueil",
         weekendTitle: "Avis de Weekend (Vendredi & Samedi)",
-        weekendMsg: "Le bureau est actuellement en congé de weekend (Vendredi & Samedi). Vous pouvez soumettre votre réservation ou demande à tout moment ; toutes les demandes seront examinées et traitées dès la reprise des heures de travail officielles dimanche matin.",
+        weekendMsg: "Le bureau est actuellement en congé de weekend. Vous pouvez demander un rendez-vous de consultation officielle à tout moment, et votre demande sera traitée dès la reprise des heures de travail officielles dimanche matin.",
         offHoursTitle: "En Dehors des Heures de Travail",
         offHoursMsg: "Nous sommes actuellement en dehors des heures de bureau. Vous pouvez soumettre votre demande via le formulaire.",
         openTitle: "Le Bureau est Ouvert",
@@ -725,7 +723,7 @@
         mapBoxTitle: "Ver ubicación en Google Maps", mapBoxSub: "Haga clic aquí para navegar y seguir la ruta a la oficina",
         btnWhatsapp: "💬 Contactar por WhatsApp Directamente", btnBackHome: "🏠 Volver a la Página Principal",
         weekendTitle: "Aviso de Fin de Semana (Viernes y Sábado)",
-        weekendMsg: "La oficina se encuentra actualmente cerrada por el fin de semana (Viernes y Sábado). Puede enviar su reserva o consulta en cualquier momento; todas las solicitudes serán revisadas y procesadas a primera hora del domingo al reanudar el horario oficial.",
+        weekendMsg: "La oficina se encuentra actualmente cerrada por el fin de semana. Puede solicitar una cita de consulta oficial en cualquier momento, y su solicitud será atendida a primera hora del domingo al reanudar el horario oficial.",
         offHoursTitle: "Fuera de Horario Laboral",
         offHoursMsg: "Actualmente estamos fuera del horario de oficina. Puede enviar su solicitud a través del formulario de reserva.",
         openTitle: "La Oficina Está Abierta",
@@ -744,7 +742,7 @@
         mapBoxTitle: "Bürostandort auf Google Maps anzeigen", mapBoxSub: "Klicken Sie hier, um den Weg zum Büro zu finden",
         btnWhatsapp: "💬 Direkt über WhatsApp kontaktieren", btnBackHome: "🏠 Zurück zur Startseite",
         weekendTitle: "Wochenendnotiz (Freitag & Samstag)",
-        weekendMsg: "Das Büro befindet sich derzeit im Wochenendurlaub (Freitag & Samstag). Sie können Ihre Buchung oder Anfrage jederzeit einreichen; alle Anfragen werden am Sonntagmorgen bei Wiederaufnahme der regulären Arbeitszeiten umgehend geprüft und bearbeitet.",
+        weekendMsg: "Das Büro befindet sich derzeit im Wochenendurlaub. Sie können jederzeit einen offiziellen Beratungstermin anfordern, und Ihre Anfrage wird am Sonntagmorgen bei Wiederaufnahme der regulären Arbeitszeiten bearbeitet.",
         offHoursTitle: "Außerhalb der Arbeitszeiten",
         offHoursMsg: "Wir befinden uns derzeit außerhalb der Bürozeiten. Sie können Ihre Anfrage über das Buchungsformular senden.",
         openTitle: "Das Büro ist Geöffnet",
@@ -763,7 +761,7 @@
         mapBoxTitle: "پیشاندانی شوێنی نووسینگە لە نەخشەی گۆگڵ", mapBoxSub: "کلیک لێرە بکە بۆ چوون و شوێنکەوتنی ڕێگا بۆ نووسینگە",
         btnWhatsapp: "💬 پەیوەندی لە ڕێگەی واتسأپەوە بە ڕاستەوخۆ", btnBackHome: "🏠 گەڕانەوە بۆ لاپەڕەی سەرەکی",
         weekendTitle: "پشووی کۆتایی هەفتە (هەینی و شەممە)",
-        weekendMsg: "نووسینگە لە پشووی فەرمی کۆتایی هەفتەدایە (هەینی و شەممە). دەتوانیت داواکاری یان دیاریکردنی کاتی ڕاوێژی فەرمی لە هەر کاتێکدا بنێریت؛ سەرجەم داواکارییەکان لە بەیانی ڕۆژی یەکشەممە لەگەڵ دەستپێکردنەوەی کاردا بە زوویی لێکۆڵینەوە و کاریان لەسەر دەکرێت.",
+        weekendMsg: "نووسینگە لە پشووی کۆتایی هەفتەدایە. دەتوانیت لە هەر کاتێکدا داوای دیاریکردنی کاتی ڕاوێژی فەرمی بکەیت، و داواکارییەکەت لە بەیانی ڕۆژی یەکشەممە لەگەڵ دەستپێکردنەوەی کاردا وەڵام دەدرێتەوە.",
         offHoursTitle: "دەرەوەی کاتژمێرەکانی کارکردن",
         offHoursMsg: "ئێمە لە دەرەوەی کاتژمێرە فەرمییەکانداین. دەتوانیت داواکارییەکەت بنێریت.",
         openTitle: "نووسینگە کراوەیە",
