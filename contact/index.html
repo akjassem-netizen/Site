@@ -31,7 +31,7 @@
       align-items: center;
     }
 
-    /* الهيدر التنفيذي */
+    /* الهيدر التنفيذي الفخم */
     .icover-header {
       width: 100%;
       background: #0f172a;
@@ -104,7 +104,7 @@
     }
     .dropdown-menu a:hover { background: rgba(197,160,89,0.15); color: #c5a059; }
 
-    /* الحاوية الرئيسية الفخمة */
+    /* الحاوية الرئيسية الملكية */
     .container {
       width: 100%;
       max-width: 650px;
@@ -150,7 +150,7 @@
       font-weight: 600;
     }
 
-    /* شريط الحالة الحي (تصميم ملكي نظيف) */
+    /* شريط الحالة الحي مع النبض الذهبي العالمي */
     .status-card-box {
       background: #f8fafc;
       border: 1.5px solid #e2e8f0;
@@ -162,15 +162,22 @@
       gap: 14px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.02);
     }
+    
+    @keyframes goldPulse {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(197, 160, 89, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(197, 160, 89, 0); }
+    }
     .status-indicator-dot {
       width: 14px;
       height: 14px;
       border-radius: 50%;
       flex-shrink: 0;
+      animation: goldPulse 2s infinite;
     }
-    .status-indicator-dot.active { background: #16a34a; box-shadow: 0 0 10px rgba(22,163,74,0.4); }
+    .status-indicator-dot.active { background: #16a34a; }
     .status-indicator-dot.off_hours { background: #d97706; }
-    .status-indicator-dot.holiday { background: #dc2626; }
+    .status-indicator-dot.holiday { background: #dc2626; animation: none; }
 
     .status-text-content strong {
       display: block;
@@ -389,7 +396,7 @@
 
     <div class="action-buttons">
       <a href="/booking" class="btn-action btn-booking" id="btnBookingText">
-        <span>📅 حجز موعد قانوني أو استشارة (Booking)</span>
+        <span>📅 حجز موعد استشارة قانونية</span>
       </a>
       <a href="https://wa.me/9647838759047" target="_blank" class="btn-action btn-whatsapp" id="btnWhatsappText">
         <span>💬 تواصل عبر الواتساب مباشرة</span>
@@ -429,7 +436,7 @@
       evaluateBaghdadSchedule();
     });
 
-    // المنطق التلقائي الذكي لتوقيت بغداد وعطلة نهاية الأسبوع (الجمعة والسبت)
+    // المنطق التلقائي الذكي لعطلة نهاية الأسبوع في العراق (الجمعة 5 والسبت 6) وتوقيت بغداد
     async function evaluateBaghdadSchedule() {
       const lang = document.getElementById('languageSelect').value;
       const dot = document.getElementById('statusDot');
@@ -437,7 +444,6 @@
       const statusMsg = document.getElementById('statusMessageText');
 
       try {
-        // محاولة جلب الحالة من البوابة أولاً (office_status.json)
         const res = await fetch('/office_status.json?t=' + new Date().getTime());
         if (res.ok) {
           const data = await res.json();
@@ -450,7 +456,6 @@
         }
       } catch(e) {}
 
-      // الحساب التلقائي لتوقيت بغداد
       const nowBaghdad = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Baghdad" }));
       const day = nowBaghdad.getDay(); // 0: الأحد ... 5: الجمعة, 6: السبت
       const hour = nowBaghdad.getHours();
@@ -534,7 +539,7 @@
         lblAddress: "العنوان:", valAddress: "بغداد - زيونة - قرب دار الأزياء العراقية",
         lblHours: "أوقات العمل:", valHours: "الأحد إلى الخميس (08:00 صباحاً - 04:00 عصراً بتوقيت بغداد)",
         lblPhone: "هاتف المكتب:", lblEmail: "البريد الإلكتروني:",
-        btnBooking: "📅 حجز موعد قانوني أو استشارة (Booking)",
+        btnBooking: "📅 حجز موعد استشارة قانونية",
         btnWhatsapp: "💬 تواصل عبر الواتساب مباشرة",
         btnBackHome: "🏠 العودة إلى الصفحة الرئيسية",
         privacyText: "سياسة الخصوصية", disclaimerText: "إخلاء المسؤولية", codeText: "قواعد السلوك المهني", rightsText: "جميع الحقوق محفوظة © 2026 مكتب المحامي علي كاظم الهاشمي"
@@ -548,7 +553,7 @@
         lblAddress: "Address:", valAddress: "Baghdad - Zayouna - Near the Iraqi Fashion House",
         lblHours: "Working Hours:", valHours: "Sunday to Thursday (08:00 AM - 04:00 PM Baghdad Time)",
         lblPhone: "Office Phone:", lblEmail: "Email:",
-        btnBooking: "📅 Book Legal Appointment or Consultation",
+        btnBooking: "📅 Book Legal Consultation Appointment",
         btnWhatsapp: "💬 Contact via WhatsApp Directly",
         btnBackHome: "🏠 Back to Home Page",
         privacyText: "Privacy Policy", disclaimerText: "Disclaimer", codeText: "Code of Conduct", rightsText: "All Rights Reserved © 2026 AKH Law Office"
@@ -562,7 +567,7 @@
         lblAddress: "Adres:", valAddress: "Bağdat - Zeytuna - Irak Moda Evi Yakını",
         lblHours: "Çalışma Saatleri:", valHours: "Pazar - Perşembe (08:00 - 16:00 Bağdat Saati)",
         lblPhone: "Ofis Telefonu:", lblEmail: "E-posta:",
-        btnBooking: "📅 Yasal Randevu veya Danışmanlık Alın",
+        btnBooking: "📅 Yasal Danışmanlık Randevusu Alın",
         btnWhatsapp: "💬 Doğrudan WhatsApp ile İletişim",
         btnBackHome: "🏠 Ana Sayfaya Dön",
         privacyText: "Gizlilik Politikası", disclaimerText: "Sorumluluk Reddi", codeText: "Mesleki Etik Kuralları", rightsText: "Tüm Hakları Saklıdır © 2026 AKH Hukuk Bürosu"
@@ -576,7 +581,7 @@
         lblAddress: "地址：", valAddress: "巴格达 - 宰尤纳 - 伊拉克时装屋附近",
         lblHours: "工作时间：", valHours: "周日至周四（巴格达时间上午 08:00 - 下午 04:00）",
         lblPhone: "办公电话：", lblEmail: "电子邮箱：",
-        btnBooking: "📅 预约法律咨询或会议",
+        btnBooking: "📅 预约法律咨询",
         btnWhatsapp: "💬 直接通过 WhatsApp 联系",
         btnBackHome: "🏠 返回首页",
         privacyText: "隐私政策", disclaimerText: "免责声明", codeText: "行为准则", rightsText: "版权所有 © 2026 AKH 律师事务所"
@@ -590,7 +595,7 @@
         lblAddress: "Adresse :", valAddress: "Baghdad - Zayouna - Près de la Maison de la Mode Irakienne",
         lblHours: "Horaires :", valHours: "Dimanche au Jeudi (08h00 - 16h00 heure de Bagdad)",
         lblPhone: "Téléphone :", lblEmail: "Email :",
-        btnBooking: "📅 Réserver un Rendez-vous ou Consultation",
+        btnBooking: "📅 Réserver une Consultation Juridique",
         btnWhatsapp: "💬 Contacter via WhatsApp Directement",
         btnBackHome: "🏠 Retour à la Page d'Accueil",
         privacyText: "Politique de Confidentialité", disclaimerText: "Avertissement", codeText: "Code de Conduite", rightsText: "Tous Droits Réservés © 2026 Cabinet AKH"
@@ -604,7 +609,7 @@
         lblAddress: "Dirección:", valAddress: "Bagdad - Zayouna - Cerca de la Casa de la Moda Iraquí",
         lblHours: "Horario:", valHours: "Domingo a Jueves (08:00 a.m. - 04:00 p.m. hora de Bagdad)",
         lblPhone: "Teléfono:", lblEmail: "Correo:",
-        btnBooking: "📅 Reservar Cita o Consulta Legal",
+        btnBooking: "📅 Reservar Consulta Legal",
         btnWhatsapp: "💬 Contactar por WhatsApp Directemente",
         btnBackHome: "🏠 Volver a la Página Principal",
         privacyText: "Política de Privacidad", disclaimerText: "Descargo de Responsabilidad", codeText: "Código de Conducta", rightsText: "Todos los Derechos Reservados © 2026 Bufete AKH"
@@ -618,7 +623,7 @@
         lblAddress: "Adresse:", valAddress: "Bagdad - Zayouna - In der Nähe des irakischen Modehauses",
         lblHours: "Arbeitszeiten:", valHours: "Sonntag bis Donnerstag (08:00 Uhr - 16:00 Uhr Bagdader Zeit)",
         lblPhone: "Telefon:", lblEmail: "E-Mail:",
-        btnBooking: "📅 Rechtsberatung oder Termin buchen",
+        btnBooking: "📅 Rechtsberatung buchen",
         btnWhatsapp: "💬 Direkt über WhatsApp kontaktieren",
         btnBackHome: "🏠 Zurück zur Startseite",
         privacyText: "Datenschutzrichtlinie", disclaimerText: "Haftungsausschluss", codeText: "Verhaltenskodex", rightsText: "Alle Rechte vorbehalten © 2026 Kanzlei AKH"
@@ -632,7 +637,7 @@
         lblAddress: "ناونیشان:", valAddress: "بەغداد - زەیونە - نزیک خانەی فاشنی عێراقی",
         lblHours: "کاتی کارکردن:", valHours: "یەکشەممە تا پێنجشەممە (٠٨:٠٠ بەیانی - ٠٤:٠٠ ئێوارە بە کاتی بەغداد)",
         lblPhone: "تەلەفۆن:", lblEmail: "ئیمەیڵ:",
-        btnBooking: "📅 دیاریکردنی کاتی چاوپێکەوتن یان ڕاوێژی یاسایی",
+        btnBooking: "📅 دیاریکردنی کاتی ڕاوێژی یاسایی",
         btnWhatsapp: "💬 پەیوەندی لە ڕێگەی واتسأپەوە بە ڕاستەوخۆ",
         btnBackHome: "🏠 گەڕانەوە بۆ لاپەڕەی سەرەکی",
         privacyText: "سیاسەتی تایبەتمەندێتی", disclaimerText: "بەرپرسارێتی", codeText: "ڕەفتاری پیشەیی", rightsText: "هەموو مافەکان پارێزراون © 2026 نووسینگەی پارێزەر عەلی کاظم"
