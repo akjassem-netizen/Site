@@ -126,11 +126,14 @@ tr:hover { background-color: #fafafa; }
 </div>
 </div>
 
-<div id="statusAlert" class="alert-success">تم الحفظ وتحديث البيانات بنجاح!</div>
+<div id="statusAlert" class="alert-success">تم تغيير حالة المكتب بنجاح!</div>
 
 <div id="holidayNoticeBox" class="alert-warning">
 <strong>⚠️ تنبيه اقتراب عطلة رسمية:</strong> <span id="holidayNoticeText"></span>
-<button type="button" class="btn-submit" style="margin-top: 10px; background-color: #c05621; padding: 8px;" onclick="confirmAndActivateHoliday()">تأكيد وتفعيل حالة العطلة الآن 🛑</button>
+<div style="display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap;">
+<button type="button" class="btn-submit" style="flex: 1; background-color: #c05621; padding: 8px;" onclick="confirmAndActivateHoliday()">تأكيد وتفعيل حالة العطلة الآن 🛑</button>
+<button type="button" class="btn-submit" style="flex: 1; background-color: #718096; padding: 8px;" onclick="dismissHolidayNotice()">تجاهل ✖️</button>
+</div>
 </div>
 
 <div class="grid-modules">
@@ -426,11 +429,16 @@ async function loadCustomHolidaysTable() {
       if(holidays.length === 0) {
         tbody.innerHTML = '<tr><td colspan="3" style="text-align:center; color:#718096;">لا توجد عطل استثنائية مضافة بعد.</td></tr>';
       } else {
-        holidays.forEach((h) => {
+        holidays.forEach((h, index) => {
           tbody.innerHTML += `<tr>
             <td><strong>${h.name}</strong></td>
             <td><span class="badge badge-holiday">${h.date}</span></td>
-            <td><button type="button" class="btn-action-sm" onclick="confirmAndApplyHoliday('${h.name.replace(/'/g, "\\'")}', '${h.date}')">تفعيل 🛑</button></td>
+            <td>
+              <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                <button type="button" class="btn-action-sm" onclick="confirmAndApplyHoliday('${h.name.replace(/'/g, "\\'")}', '${h.date}')">تفعيل 🛑</button>
+                <button type="button" class="btn-action-sm" style="background-color: #e53e3e;" onclick="deleteCustomHoliday(${index})">حذف 🗑️</button>
+              </div>
+            </td>
           </tr>`;
         });
       }
@@ -442,14 +450,50 @@ async function loadCustomHolidaysTable() {
   }
 }
 
+async function deleteCustomHoliday(index) {
+  if(!confirm("هل أنت متأكد من حذف هذه العطلة من السجل؟")) return;
+
+  verifyPinAndExecute(async () => {
+    let holidays = [];
+    let sha = null;
+    const getRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/custom_holidays.json?ref=${BRANCH}`, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
+    if(getRes.ok) {
+      const d = await getRes.json();
+      sha = d.sha;
+      holidays = JSON.parse(b64_to_utf8(d.content));
+    }
+
+    holidays.splice(index, 1);
+    const contentStr = JSON.stringify(holidays, null, 2);
+
+    const bodyObj = { message: 'Delete custom holiday', content: utf8_to_b64(contentStr), branch: BRANCH };
+    if(sha) bodyObj.sha = sha;
+
+    const putRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/custom_holidays.json`, {
+      method: 'PUT',
+      headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify(bodyObj)
+    });
+    if(!putRes.ok) throw new Error('فشل الحذف.');
+    loadCustomHolidaysTable();
+    alert('تم حذف العطلة بنجاح 🗑️');
+  });
+}
+
 async function confirmAndApplyHoliday(holidayName, holidayDate) {
   if(!confirm(`تفعيل عطلة "${holidayName}" (${holidayDate}) كحالة للمكتب؟`)) return;
+
+  // تسجيل تجاهلها لكي لا تظهر كشاشة تنبيه مرة أخرى
+  if(holidayDate) {
+    localStorage.setItem(`akh_dismissed_holiday_${holidayDate}_${holidayName}`, 'true');
+  }
 
   verifyPinAndExecute(async () => {
     document.getElementById('officeStatusSelect').value = 'holiday';
     document.getElementById('officeNoteInput').value = `عطلة رسمية: ${holidayName}`;
     await triggerOfficeStatusSave('holiday', `عطلة رسمية: ${holidayName}`);
-    alert(`تم تفعيل عطلة "${holidayName}" بنجاح 🛑`);
+    document.getElementById('holidayNoticeBox').style.display = 'none';
+    alert(`تم تفعيل عطلة "${holidayName}" كحالة للمكتب بنجاح 🛑`);
   });
 }
 
@@ -463,6 +507,9 @@ async function checkUpcomingHolidays() {
     today.setHours(0,0,0,0);
 
     for(let h of holidays) {
+      const dismissedKey = `akh_dismissed_holiday_${h.date}_${h.name}`;
+      if(localStorage.getItem(dismissedKey)) continue;
+
       const hDate = new Date(h.date);
       hDate.setHours(0,0,0,0);
       const diffTime = hDate - today;
@@ -479,10 +526,17 @@ async function checkUpcomingHolidays() {
   } catch(e) {}
 }
 
+function dismissHolidayNotice() {
+  if(window.pendingHolidayName && window.pendingHolidayDate) {
+    const dismissedKey = `akh_dismissed_holiday_${window.pendingHolidayDate}_${window.pendingHolidayName}`;
+    localStorage.setItem(dismissedKey, 'true');
+  }
+  document.getElementById('holidayNoticeBox').style.display = 'none';
+}
+
 async function confirmAndActivateHoliday() {
   if(!window.pendingHolidayName) return;
   await confirmAndApplyHoliday(window.pendingHolidayName, window.pendingHolidayDate || '');
-  document.getElementById('holidayNoticeBox').style.display = 'none';
 }
 
 async function saveWorkingHours(e) {
@@ -542,10 +596,19 @@ async function saveOfficeStatus(e) {
   verifyPinAndExecute(async () => {
     try {
       await triggerOfficeStatusSave(status, note);
+      
+      let statusTextArabic = "";
+      if(status === 'auto') statusTextArabic = "الوضع التلقائي الذكي";
+      else if(status === 'active') statusTextArabic = "متاح الآن لاستقبال الطلبات";
+      else if(status === 'off_hours') statusTextArabic = "خارج ساعات العمل الرسمية";
+      else if(status === 'holiday') statusTextArabic = "إجازة رسمية / طارئة";
+      else if(status === 'weekend') statusTextArabic = "عطلة نهاية الأسبوع";
+
       const alertEl = document.getElementById('statusAlert');
       alertEl.style.display = 'block';
-      setTimeout(() => alertEl.style.display = 'none', 3000);
-      alert('تم حفظ وتعديل حالة المكتب بنجاح وتحديث غيت هب 💾');
+      setTimeout(() => alertEl.style.display = 'none', 4000);
+      
+      alert(`تم تغيير حالة المكتب بنجاح إلى: "${statusTextArabic}"${note ? ' (' + note + ')' : ''}`);
     } catch (err) {
       alert('❌ خطأ أثناء الحفظ: ' + err.message);
     }
