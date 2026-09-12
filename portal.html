@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>بوابة ديوان مكتب المحامي علي كاظم الهاشمي</title>
 
+<!-- Google Analytics Dynamic Integration -->
 <script id="gaDynamicScript"></script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -104,6 +105,7 @@ tr:hover { background-color: #fafafa; }
   </div>
 </div>
 
+<!-- 1. شاشة إعداد الحماية لأول مرة -->
 <div id="portalSetupScreen" class="screen-box" style="display: none;">
 <p class="lock-desc"><strong>إعداد خزنة الأمان الخاصة بالمكتب:</strong><br>أدخل مفتاح المرور الآمن مع الرقم السري:</p>
 <div class="form-group" style="max-width: 400px; margin: 0 auto 12px;">
@@ -115,6 +117,7 @@ tr:hover { background-color: #fafafa; }
 <button type="button" class="btn-unlock" onclick="performPortalSetup()">تشفير وحفظ الحماية 🔒</button>
 </div>
 
+<!-- 2. شاشة القفل -->
 <div id="portalLockScreen" class="screen-box" style="display: none;">
 <p class="lock-desc"><span>البوابة محمية بخزنة أمان مشفرة.</span><br>أدخل الرقم السري لفتح البوابة:</p>
 <div class="form-group" style="max-width: 260px; margin: 0 auto 16px;">
@@ -123,6 +126,7 @@ tr:hover { background-color: #fafafa; }
 <button type="button" class="btn-unlock" onclick="attemptPortalPinUnlock()">دخول آمن ←</button>
 </div>
 
+<!-- 3. المحتوى الرئيسي -->
 <div id="portalMainContent" style="display: none;">
 <div class="top-nav-bar">
 <span id="systemStatusText" style="font-size: 13px; font-weight: 700; color: #2d3748;">🟢 النظام متصل وخزنة الأمان مفعلة</span>
@@ -143,6 +147,7 @@ tr:hover { background-color: #fafafa; }
 </div>
 </div>
 
+<!-- أ. منصة تحليلات الزيارات وربط Google Analytics (GA4) -->
 <div class="card-section" style="border-top: 5px solid #3182ce;">
   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 15px;">
     <div>
@@ -154,25 +159,27 @@ tr:hover { background-color: #fafafa; }
   <div class="form-group">
     <label>الرقم التعريفي لتحليلات جوجل (Google Analytics Measurement ID):</label>
     <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-      <input type="text" id="gaPropertyIdInput" value="G-553701597" placeholder="مثلاً: G-553701597" dir="ltr" style="flex: 1; font-weight: 800; font-family: monospace;">
-      <button type="button" class="btn-submit" style="width: auto; padding: 11px 20px;" onclick="saveGoogleAnalyticsId()">تحديث وتثبيت الرقم 🌐</button>
+      <input type="text" id="gaPropertyIdInput" placeholder="مثلاً: G-553701597" dir="ltr" style="flex: 1; font-weight: 800; font-family: monospace;">
+      <button type="button" class="btn-submit" style="width: auto; padding: 11px 18px;" onclick="saveGoogleAnalyticsId()">تحديث وتثبيت الرقم 🌐</button>
+      <button type="button" class="btn-submit" style="width: auto; padding: 11px 18px; background-color: #e53e3e; border-color: #e53e3e;" onclick="disconnectGoogleAnalytics()">إلغاء الربط والمسح ✖️</button>
     </div>
   </div>
 
+  <!-- مؤشرات حركة الزوار -->
   <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 12px; padding: 18px; margin-top: 15px;">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
       <strong style="font-size: 15px; font-weight: 800; color: #0b1a30;">🗺️ مؤشرات وحركة زوار الموقع (Traffic Analytics)</strong>
-      <span id="gaStatusBadge" class="badge" style="background: #def7ec; color: #03543f; font-size: 12px;">🟢 متصل بنجاح (G-553701597)</span>
+      <span id="gaStatusBadge" class="badge" style="background: #e2e8f0; color: #475569; font-size: 12px;">غير متصل حالياً</span>
     </div>
 
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 15px;">
       <div style="background: #ffffff; padding: 12px 14px; border-radius: 8px; border: 1px solid #e2e8f0;">
         <span style="font-size: 11.5px; color: #64748b; font-weight: 700; display: block;">الزيارات النشطة حالياً (Real-time)</span>
-        <strong id="gaLiveUsers" style="font-size: 18px; color: #16a34a; font-weight: 900; direction: ltr; unicode-bidi: embed; display: inline-block;">1 زائر نشط</strong>
+        <strong id="gaLiveUsers" style="font-size: 18px; color: #16a34a; font-weight: 900; direction: ltr; unicode-bidi: embed; display: inline-block;">--</strong>
       </div>
       <div style="background: #ffffff; padding: 12px 14px; border-radius: 8px; border: 1px solid #e2e8f0;">
         <span style="font-size: 11.5px; color: #64748b; font-weight: 700; display: block;">متابعة الجلسات (Sessions)</span>
-        <strong id="gaPageviews" style="font-size: 18px; color: #0b1a30; font-weight: 900; direction: ltr; unicode-bidi: embed; display: inline-block;">مفعل بالخلفية</strong>
+        <strong id="gaPageviews" style="font-size: 18px; color: #0b1a30; font-weight: 900; direction: ltr; unicode-bidi: embed; display: inline-block;">--</strong>
       </div>
       <div style="background: #ffffff; padding: 12px 14px; border-radius: 8px; border: 1px solid #e2e8f0;">
         <span style="font-size: 11.5px; color: #64748b; font-weight: 700; display: block;">المصدر الرئيسي (Top Traffic)</span>
@@ -182,13 +189,14 @@ tr:hover { background-color: #fafafa; }
 
     <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; text-align: center;">
       <p style="font-size: 13px; color: #4a5568; line-height: 1.6; font-weight: 600; margin-bottom: 10px;">
-        💡 <strong>حالة الربط:</strong> النظام الآن يثبت الرقم (G-553701597) بشكل دائم. يمكنك في أي وقت الانتقال للوحة تحكم Google Analytics لعرض التقارير التفصيلية والخرائط الجغرافية الكاملة:
+        💡 <strong>حالة الربط:</strong> يمكنك في أي وقت تحديث الرقم أو إلغاء الربط، والانتقال للوحة تحكم Google Analytics لعرض التقارير التفصيلية والخرائط الجغرافية الكاملة عبر الرابط:
       </p>
       <a href="https://analytics.google.com" target="_blank" class="module-link" style="padding: 9px 18px; font-size: 13px;">فتح لوحة تحكم Google Analytics ↗</a>
     </div>
   </div>
 </div>
 
+<!-- ب. لوحة التشخيص الذكي وصحة النظام (Uptime AI & Health) -->
 <div class="card-section" style="border-top: 5px solid #16a34a;">
   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 15px;">
     <div>
@@ -229,6 +237,7 @@ tr:hover { background-color: #fafafa; }
   </div>
 </div>
 
+<!-- ج. لوحة إحصائيات العطل وأيام الدوام -->
 <div class="card-section">
 <h2><span>📊 نظام التقارير والإحصائيات الرسمي</span></h2>
 
@@ -287,6 +296,7 @@ tr:hover { background-color: #fafafa; }
   </div>
 </div>
 
+<!-- شريط النسب المرئي المتعدد الألوان -->
 <div style="margin-top: 18px; background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 16px;">
   <div style="font-size: 13.5px; font-weight: 800; color: #0b1a30; margin-bottom: 10px; display: flex; justify-content: space-between;">
     <span>نسبة توزيع أيام الفترة (الدوام مقابل العطل):</span>
@@ -306,6 +316,7 @@ tr:hover { background-color: #fafafa; }
 <button type="button" class="btn-submit" style="margin-top: 18px;" onclick="exportHolidayReportPDF()">🖨️ طباعة وتصدير التقرير الرسمي (PDF)</button>
 </div>
 
+<!-- د. التحكم بحالة المكتب -->
 <div class="card-section">
 <h2><span>🟢 التحكم الفوري بحالة المكتب</span></h2>
 <form id="statusForm" onsubmit="saveOfficeStatus(event)">
@@ -327,6 +338,7 @@ tr:hover { background-color: #fafafa; }
 </form>
 </div>
 
+<!-- هـ. إعدادات ساعات العمل -->
 <div class="card-section">
 <h2><span>⚙️ تعديل ساعات العمل الرسمية</span></h2>
 <form id="settingsForm" onsubmit="saveWorkingHours(event)">
@@ -344,6 +356,7 @@ tr:hover { background-color: #fafafa; }
 </form>
 </div>
 
+<!-- و. إعدادات الأمان وتغيير الرقم السري ومفتاح الخزنة -->
 <div class="card-section">
 <h2><span>🔐 إعدادات الأمان وتغيير مفتاح الخزنة والرقم السري</span></h2>
 <form id="securityForm" onsubmit="updateSecurityVault(event)">
@@ -363,6 +376,7 @@ tr:hover { background-color: #fafafa; }
 </form>
 </div>
 
+<!-- ز. إضافة عطلة طارئة -->
 <div class="card-section">
 <h2><span>⚡ إضافة عطلة استثنائية أو طارئة</span></h2>
 <form id="holidayForm" onsubmit="saveCustomHoliday(event)">
@@ -384,6 +398,7 @@ tr:hover { background-color: #fafafa; }
 </table>
 </div>
 
+<!-- ح. جدول العطل الرسمية الأساسية -->
 <div class="card-section">
 <div onclick="toggleOfficialHolidays()" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none;">
 <h2 style="border:none; margin:0; padding:0;"><span>📅 جدول العطل الرسمية الأساسية في العراق (13 عطلة)</span></h2>
@@ -408,6 +423,7 @@ tr:hover { background-color: #fafafa; }
 </div>
 </div>
 
+<!-- التذييب التنفيذي للديوان -->
 <footer class="portal-footer">
   بوابة الديوان التنفيذي الرسمي — مكتب المحامي علي كاظم الهاشمي
   <span>جميع الحقوق محفوظة © 2026 | Secure Vault & Analytics Engine</span>
@@ -481,7 +497,7 @@ async function decryptToken(encryptedObj, pin) {
   return new TextDecoder().decode(decrypted);
 }
 
-// تثبيت وتحميل تحليلات جوجل برقمك الثابت (G-553701597)
+// تثبيت وحقن تحليلات جوجل ديناميكياً
 function initGoogleAnalytics(propertyId) {
   let targetId = propertyId || "G-553701597";
   if (!targetId.startsWith('G-')) {
@@ -490,6 +506,8 @@ function initGoogleAnalytics(propertyId) {
   
   const existingScript = document.getElementById('gaScriptTag');
   if (existingScript) existingScript.remove();
+  const existingConfig = document.getElementById('gaConfigTag');
+  if (existingConfig) existingConfig.remove();
 
   const script1 = document.createElement('script');
   script1.id = 'gaScriptTag';
@@ -523,7 +541,26 @@ async function saveGoogleAnalyticsId() {
   }
   localStorage.setItem('akh_ga_property_id', propId);
   initGoogleAnalytics(propId);
-  alert("تم تثبيت وحفظ الرقم التعريفي لتحليلات جوجل بنجاح 🌐");
+  alert("تم تحديث وتثبيت الرقم التعريفي لتحليلات جوجل بنجاح 🌐");
+}
+
+// دالة إلغاء الربط والمسح
+function disconnectGoogleAnalytics() {
+  if(!confirm("هل أنت متأكد من إلغاء ربط تحليلات جوجل وحذف الرقم التعريفي؟")) return;
+  localStorage.removeItem('akh_ga_property_id');
+  document.getElementById('gaPropertyIdInput').value = '';
+  
+  const existingScript = document.getElementById('gaScriptTag');
+  if (existingScript) existingScript.remove();
+  const existingConfig = document.getElementById('gaConfigTag');
+  if (existingConfig) existingConfig.remove();
+
+  document.getElementById('gaStatusBadge').innerText = 'غير متصل حالياً';
+  document.getElementById('gaStatusBadge').style.background = '#e2e8f0';
+  document.getElementById('gaStatusBadge').style.color = '#475569';
+  document.getElementById('gaLiveUsers').innerText = '--';
+  document.getElementById('gaPageviews').innerText = '--';
+  alert("تم إلغاء ربط التحليلات بنجاح ✖️");
 }
 
 async function performPortalSetup() {
@@ -655,9 +692,13 @@ async function autoUnlockSession() {
   const savedPin = localStorage.getItem('akh_portal_saved_pin');
   const savedToken = sessionStorage.getItem('akh_portal_active_token');
 
-  // تعيين وتحميل الرقم الافتراضي أو المخزون فوراً
-  const savedGaId = localStorage.getItem('akh_ga_property_id') || 'G-553701597';
-  initGoogleAnalytics(savedGaId);
+  const savedGaId = localStorage.getItem('akh_ga_property_id');
+  if(savedGaId) {
+    initGoogleAnalytics(savedGaId);
+  } else {
+    // الافتراضي الدائم
+    initGoogleAnalytics("G-553701597");
+  }
 
   if (savedToken) {
     ACTIVE_TOKEN = savedToken;
@@ -1002,6 +1043,7 @@ function exportHolidayReportPDF() {
         </tr>
       </table>
 
+      <!-- شريط النسب المرئي المتعدد الألوان في الطباعة -->
       <div style="margin-bottom: 25px; background: #f8fafc !important; border: 1.5px solid #cbd5e0; border-radius: 10px; padding: 14px;">
         <div style="font-size: 12.5px; font-weight: 800; color: #0b1a30; margin-bottom: 8px;">نسبة توزيع أيام الفترة (الدوام مقابل العطل / Ratio Distribution):</div>
         <div style="height: 16px; width: 100%; background: #e2e8f0 !important; border-radius: 8px; overflow: hidden; display: flex;">
@@ -1228,7 +1270,7 @@ async function triggerOfficeStatusSave(statusVal, noteVal) {
 
   let sha = null;
   const getRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/office_status.json?ref=${BRANCH}`, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
-  if(getRes.ok) { const d = await getRes.json(); sha = d.sha; }
+  if(res.ok) { const d = await getRes.json(); sha = d.sha; }
 
   const bodyObj = { message: 'Update office status', content: utf8_to_b64(contentStr), branch: BRANCH };
   if(sha) bodyObj.sha = sha;
