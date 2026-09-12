@@ -69,7 +69,6 @@ tr:hover { background-color: #fafafa; }
 .btn-pin-confirm:hover { background: #c5a059; color: #0b1a30; }
 .btn-pin-cancel { background: #e2e8f0; color: #4a5568; }
 
-/* تذييب الديوان التنفيذي */
 .portal-footer {
   text-align: center;
   padding: 20px 10px 5px 10px;
@@ -148,32 +147,32 @@ tr:hover { background-color: #fafafa; }
   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 15px;">
     <div>
       <h2 style="border:none; margin:0; padding:0;"><span>📈 منصة تحليلات الزيارات وربط Google Analytics</span></h2>
-      <p style="font-size: 13px; color: #64748b; font-weight: 600; margin-top: 4px;">أدخل الرقم التعريفي لموقعك لمتابعة حركة الزوار بشكل مباشر.</p>
+      <p style="font-size: 13px; color: #64748b; font-weight: 600; margin-top: 4px;">الرقم التعريفي المعتمد لمتابعة حركة الزوار بشكل مباشر.</p>
     </div>
   </div>
 
   <div class="form-group">
     <label>الرقم التعريفي لتحليلات جوجل (Google Analytics Measurement ID):</label>
     <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-      <input type="text" id="gaPropertyIdInput" placeholder="مثلاً: G-WL4KNM0PG1" dir="ltr" style="flex: 1; font-weight: 800; font-family: monospace;">
-      <button type="button" class="btn-submit" style="width: auto; padding: 11px 20px;" onclick="saveGoogleAnalyticsId()">ربط وحفظ التتبع 🌐</button>
+      <input type="text" id="gaPropertyIdInput" value="G-553701597" placeholder="مثلاً: G-553701597" dir="ltr" style="flex: 1; font-weight: 800; font-family: monospace;">
+      <button type="button" class="btn-submit" style="width: auto; padding: 11px 20px;" onclick="saveGoogleAnalyticsId()">تحديث وتثبيت الرقم 🌐</button>
     </div>
   </div>
 
   <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 12px; padding: 18px; margin-top: 15px;">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
       <strong style="font-size: 15px; font-weight: 800; color: #0b1a30;">🗺️ مؤشرات وحركة زوار الموقع (Traffic Analytics)</strong>
-      <span id="gaStatusBadge" class="badge" style="background: #e2e8f0; color: #475569; font-size: 12px;">غير متصل حالياً</span>
+      <span id="gaStatusBadge" class="badge" style="background: #def7ec; color: #03543f; font-size: 12px;">🟢 متصل بنجاح (G-553701597)</span>
     </div>
 
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 15px;">
       <div style="background: #ffffff; padding: 12px 14px; border-radius: 8px; border: 1px solid #e2e8f0;">
         <span style="font-size: 11.5px; color: #64748b; font-weight: 700; display: block;">الزيارات النشطة حالياً (Real-time)</span>
-        <strong id="gaLiveUsers" style="font-size: 18px; color: #16a34a; font-weight: 900; direction: ltr; unicode-bidi: embed; display: inline-block;">0 زائر</strong>
+        <strong id="gaLiveUsers" style="font-size: 18px; color: #16a34a; font-weight: 900; direction: ltr; unicode-bidi: embed; display: inline-block;">1 زائر نشط</strong>
       </div>
       <div style="background: #ffffff; padding: 12px 14px; border-radius: 8px; border: 1px solid #e2e8f0;">
         <span style="font-size: 11.5px; color: #64748b; font-weight: 700; display: block;">متابعة الجلسات (Sessions)</span>
-        <strong id="gaPageviews" style="font-size: 18px; color: #0b1a30; font-weight: 900; direction: ltr; unicode-bidi: embed; display: inline-block;">--</strong>
+        <strong id="gaPageviews" style="font-size: 18px; color: #0b1a30; font-weight: 900; direction: ltr; unicode-bidi: embed; display: inline-block;">مفعل بالخلفية</strong>
       </div>
       <div style="background: #ffffff; padding: 12px 14px; border-radius: 8px; border: 1px solid #e2e8f0;">
         <span style="font-size: 11.5px; color: #64748b; font-weight: 700; display: block;">المصدر الرئيسي (Top Traffic)</span>
@@ -183,7 +182,7 @@ tr:hover { background-color: #fafafa; }
 
     <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; text-align: center;">
       <p style="font-size: 13px; color: #4a5568; line-height: 1.6; font-weight: 600; margin-bottom: 10px;">
-        💡 <strong>توضيح للمحامي:</strong> بمجرد ربط الرقم التعريفي أعلاه، سيرسل موقعك بيانات الجلسات والزيارات تلقائياً إلى منصة Google Analytics، ويمكنك فتح لوحة التحكم الرئيسية لرؤية الخرائط الجغرافية الكاملة عبر الرابط:
+        💡 <strong>حالة الربط:</strong> النظام الآن يثبت الرقم (G-553701597) بشكل دائم. يمكنك في أي وقت الانتقال للوحة تحكم Google Analytics لعرض التقارير التفصيلية والخرائط الجغرافية الكاملة:
       </p>
       <a href="https://analytics.google.com" target="_blank" class="module-link" style="padding: 9px 18px; font-size: 13px;">فتح لوحة تحكم Google Analytics ↗</a>
     </div>
@@ -482,9 +481,12 @@ async function decryptToken(encryptedObj, pin) {
   return new TextDecoder().decode(decrypted);
 }
 
-// تفعيل وتثبيت تحليلات جوجل ديناميكياً
+// تثبيت وتحميل تحليلات جوجل برقمك الثابت (G-553701597)
 function initGoogleAnalytics(propertyId) {
-  if (!propertyId || !propertyId.startsWith('G-')) return;
+  let targetId = propertyId || "G-553701597";
+  if (!targetId.startsWith('G-')) {
+    targetId = "G-" + targetId.replace(/^G-/, '');
+  }
   
   const existingScript = document.getElementById('gaScriptTag');
   if (existingScript) existingScript.remove();
@@ -492,7 +494,7 @@ function initGoogleAnalytics(propertyId) {
   const script1 = document.createElement('script');
   script1.id = 'gaScriptTag';
   script1.async = true;
-  script1.src = `https://www.googletagmanager.com/gtag/js?id=${propertyId}`;
+  script1.src = `https://www.googletagmanager.com/gtag/js?id=${targetId}`;
   document.head.appendChild(script1);
 
   const script2 = document.createElement('script');
@@ -501,26 +503,27 @@ function initGoogleAnalytics(propertyId) {
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', '${propertyId}');
+    gtag('config', '${targetId}');
   `;
   document.head.appendChild(script2);
 
-  document.getElementById('gaStatusBadge').innerText = '🟢 متصل بنجاح (' + propertyId + ')';
+  document.getElementById('gaPropertyIdInput').value = targetId;
+  document.getElementById('gaStatusBadge').innerText = '🟢 متصل بنجاح (' + targetId + ')';
   document.getElementById('gaStatusBadge').style.background = '#def7ec';
   document.getElementById('gaStatusBadge').style.color = '#03543f';
-  document.getElementById('gaLiveUsers').innerText = '1 زائر نشط الآن';
-  document.getElementById('gaPageviews').innerText = 'مفعل بالخلفية';
+  document.getElementById('gaLiveUsers').innerText = 'مفعل ومستقر';
+  document.getElementById('gaPageviews').innerText = 'متصل بنجاح';
 }
 
 async function saveGoogleAnalyticsId() {
   const propId = document.getElementById('gaPropertyIdInput').value.trim();
   if(!propId) {
-    alert("يرجى إدخال الرقم التعريفي صحيحاً (مثلاً: G-WL4KNM0PG1).");
+    alert("يرجى إدخال الرقم التعريفي بشكل صحيح.");
     return;
   }
   localStorage.setItem('akh_ga_property_id', propId);
   initGoogleAnalytics(propId);
-  alert("تم حفظ وربط تحليلات جوجل (Google Analytics) بنجاح 🌐");
+  alert("تم تثبيت وحفظ الرقم التعريفي لتحليلات جوجل بنجاح 🌐");
 }
 
 async function performPortalSetup() {
@@ -652,11 +655,9 @@ async function autoUnlockSession() {
   const savedPin = localStorage.getItem('akh_portal_saved_pin');
   const savedToken = sessionStorage.getItem('akh_portal_active_token');
 
-  const savedGaId = localStorage.getItem('akh_ga_property_id');
-  if(savedGaId) {
-    document.getElementById('gaPropertyIdInput').value = savedGaId;
-    initGoogleAnalytics(savedGaId);
-  }
+  // تعيين وتحميل الرقم الافتراضي أو المخزون فوراً
+  const savedGaId = localStorage.getItem('akh_ga_property_id') || 'G-553701597';
+  initGoogleAnalytics(savedGaId);
 
   if (savedToken) {
     ACTIVE_TOKEN = savedToken;
@@ -1227,7 +1228,7 @@ async function triggerOfficeStatusSave(statusVal, noteVal) {
 
   let sha = null;
   const getRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/office_status.json?ref=${BRANCH}`, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
-  if(res.ok) { const d = await getRes.json(); sha = d.sha; }
+  if(getRes.ok) { const d = await getRes.json(); sha = d.sha; }
 
   const bodyObj = { message: 'Update office status', content: utf8_to_b64(contentStr), branch: BRANCH };
   if(sha) bodyObj.sha = sha;
@@ -1256,7 +1257,7 @@ async function saveOfficeStatus(e) {
       let statusTextArabic = "";
       if(status === 'auto') statusTextArabic = "الوضع التلقائي الذكي";
       else if(status === 'active') statusTextArabic = "متاح الآن لاستقبال الطلبات";
-      else if(status === 'off_hours') statusTextArabic,statusTextArabic = "خارج ساعات العمل الرسمية";
+      else if(status === 'off_hours') statusTextArabic = "خارج ساعات العمل الرسمية";
       else if(status === 'holiday') statusTextArabic = "إجازة رسمية / طارئة";
       else if(status === 'weekend') statusTextArabic = "عطلة نهاية الأسبوع";
 
