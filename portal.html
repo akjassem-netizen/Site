@@ -21,8 +21,8 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #f7f9fc; c
 
 .screen-box { text-align: center; padding: 25px 10px; }
 .lock-desc { font-size: 14px; color: #4a5568; margin-bottom: 20px; line-height: 1.6; }
-.pin-input { letter-spacing: 8px; font-size: 22px; font-weight: 800; text-align: center; max-width: 240px; margin: 0 auto 16px; -webkit-text-security: disc; }
-.btn-unlock { width: 100%; max-width: 240px; background-color: #0b1a30; color: #ffffff; padding: 12px; border: none; border-radius: 8px; font-size: 14.5px; font-weight: 700; cursor: pointer; font-family: inherit; margin: 0 auto; display: block; }
+.pin-input { letter-spacing: 6px; font-size: 20px; font-weight: 800; text-align: center; max-width: 260px; margin: 0 auto 16px; -webkit-text-security: disc; }
+.btn-unlock { width: 100%; max-width: 260px; background-color: #0b1a30; color: #ffffff; padding: 12px; border: none; border-radius: 8px; font-size: 14.5px; font-weight: 700; cursor: pointer; font-family: inherit; margin: 0 auto; display: block; }
 .alert-box { padding: 12px 15px; border-radius: 8px; margin-bottom: 18px; font-size: 13.5px; display: none; }
 .alert-error { background-color: #fde8e8; color: #9b1c1c; }
 
@@ -63,7 +63,7 @@ tr:hover { background-color: #fafafa; }
 .pin-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11, 26, 48, 0.7); display: none; justify-content: center; align-items: center; z-index: 9999; }
 .pin-modal-box { background: #ffffff; padding: 25px; border-radius: 12px; max-width: 320px; width: 90%; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border-top: 4px solid #c5a059; }
 .pin-modal-box h3 { font-size: 15px; color: #0b1a30; margin-bottom: 12px; font-weight: 800; }
-.pin-modal-box input { width: 100%; letter-spacing: 8px; font-size: 22px; text-align: center; padding: 10px; margin-bottom: 15px; border: 1.5px solid #cbd5e0; border-radius: 8px; -webkit-text-security: disc; }
+.pin-modal-box input { width: 100%; letter-spacing: 6px; font-size: 20px; text-align: center; padding: 10px; margin-bottom: 15px; border: 1.5px solid #cbd5e0; border-radius: 8px; -webkit-text-security: disc; }
 .pin-modal-btns { display: flex; gap: 10px; }
 .pin-modal-btns button { flex: 1; padding: 10px; border-radius: 6px; font-weight: 700; border: none; cursor: pointer; font-family: inherit; }
 .btn-pin-confirm { background: #0b1a30; color: #fff; }
@@ -85,7 +85,7 @@ tr:hover { background-color: #fafafa; }
 <div id="pinModalOverlay" class="pin-modal-overlay">
   <div class="pin-modal-box">
     <h3>🔒 أدخل الرقم السري</h3>
-    <input type="password" id="modalPinInput" inputmode="numeric" maxlength="6" placeholder="••••••" autofocus style="-webkit-text-security: disc;">
+    <input type="password" id="modalPinInput" placeholder="••••••••" autofocus style="-webkit-text-security: disc;">
     <div class="pin-modal-btns">
       <button type="button" class="btn-pin-confirm" onclick="submitPinModal()">تأكيد</button>
       <button type="button" class="btn-pin-cancel" onclick="closePinModal()">إلغاء</button>
@@ -99,8 +99,8 @@ tr:hover { background-color: #fafafa; }
 <div class="form-group" style="max-width: 400px; margin: 0 auto 12px;">
 <input type="password" id="portalSetupTokenInput" placeholder="أدخل مفتاح المرور الآمن..." dir="ltr" style="-webkit-text-security: disc;">
 </div>
-<div class="form-group" style="max-width: 240px; margin: 0 auto 16px;">
-<input type="password" id="portalSetupPinInput" class="pin-input" maxlength="6" placeholder="******" inputmode="numeric">
+<div class="form-group" style="max-width: 260px; margin: 0 auto 16px;">
+<input type="password" id="portalSetupPinInput" class="pin-input" placeholder="••••••••">
 </div>
 <button type="button" class="btn-unlock" onclick="performPortalSetup()">تشفير وحفظ الحماية 🔒</button>
 </div>
@@ -108,8 +108,8 @@ tr:hover { background-color: #fafafa; }
 <!-- 2. شاشة القفل -->
 <div id="portalLockScreen" class="screen-box" style="display: none;">
 <p class="lock-desc"><span>البوابة محمية بخزنة أمان مشفرة.</span><br>أدخل الرقم السري لفتح البوابة:</p>
-<div class="form-group" style="max-width: 240px; margin: 0 auto 16px;">
-<input type="password" id="portalUnlockPinInput" class="pin-input" maxlength="6" placeholder="******" autofocus inputmode="numeric" style="-webkit-text-security: disc;">
+<div class="form-group" style="max-width: 260px; margin: 0 auto 16px;">
+<input type="password" id="portalUnlockPinInput" class="pin-input" placeholder="••••••••" autofocus style="-webkit-text-security: disc;">
 </div>
 <button type="button" class="btn-unlock" onclick="attemptPortalPinUnlock()">دخول آمن ←</button>
 </div>
@@ -510,7 +510,7 @@ function getActiveReportRange() {
   if(type === 'custom') {
     startStr = document.getElementById('reportStartDate').value;
     endStr = document.getElementById('reportEndDate').value;
-    labelAr = `تقرير فترة زمنية مخصصة (من ${startStr} إلى ${endStr})`;
+    labelAr = `تقرير فترة زمنية مخصصة للفترة (من ${startStr} ولغاية ${endStr})`;
     labelEn = `Custom Period Report (${startStr} to ${endStr})`;
   } else if(type === 'monthly') {
     const monthVal = document.getElementById('reportMonthInput').value;
@@ -590,7 +590,7 @@ function calculateHolidayStats() {
   document.getElementById('statWorkdays').innerText = netWorkdays;
 }
 
-// تصدير التقرير مع إجبار محرك الطباعة في الأندرويد والهواتف على إظهار الألوان والخلفيات بدقة 100%
+// تصدير التقرير بتنسيق عربي متناسق ودقيق مع تثبيت الألوان بالطباعة
 function exportHolidayReportPDF() {
   const range = getActiveReportRange();
   if(!range) {
@@ -678,7 +678,7 @@ function exportHolidayReportPDF() {
       <div class="report-title-box">
         <div class="office-name-ar">مكتب المحامي علي كاظم الهاشمي للمحاماة والخدمات القانونية</div>
         <div class="office-name-en">AKH Law Office — Law Practice & Legal Services</div>
-        <div class="report-title-ar">${range.labelAr}</div>
+        <div class="report-title-ar"><span dir="rtl">تقرير فترة زمنية مخصصة (من <span dir="ltr" style="display:inline-block;">${range.startStr}</span> إلى <span dir="ltr" style="display:inline-block;">${range.endStr}</span>)</span></div>
         <div class="report-title-en">${range.labelEn}</div>
       </div>
 
