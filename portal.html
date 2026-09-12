@@ -84,7 +84,7 @@ tr:hover { background-color: #fafafa; }
 
 <div id="pinModalOverlay" class="pin-modal-overlay">
   <div class="pin-modal-box">
-    <h3>🔒 أدخل رمز الـ PIN السري (6 أرقام)</h3>
+    <h3>🔒 أدخل الرقم السري</h3>
     <input type="password" id="modalPinInput" inputmode="numeric" maxlength="6" placeholder="••••••" autofocus style="-webkit-text-security: disc;">
     <div class="pin-modal-btns">
       <button type="button" class="btn-pin-confirm" onclick="submitPinModal()">تأكيد</button>
@@ -95,9 +95,9 @@ tr:hover { background-color: #fafafa; }
 
 <!-- 1. شاشة إعداد الحماية لأول مرة -->
 <div id="portalSetupScreen" class="screen-box" style="display: none;">
-<p class="lock-desc"><strong>إعداد حماية البوابة لأول مرة:</strong><br>أدخل رمز التوكن (GitHub Token) مع رمز PIN سري (6 أرقام):</p>
+<p class="lock-desc"><strong>إعداد خزنة الأمان الخاصة بالمكتب:</strong><br>أدخل مفتاح المرور الآمن مع الرقم السري:</p>
 <div class="form-group" style="max-width: 400px; margin: 0 auto 12px;">
-<input type="password" id="portalSetupTokenInput" placeholder="أدخل رمز GitHub (ghp_...)" dir="ltr" style="-webkit-text-security: disc;">
+<input type="password" id="portalSetupTokenInput" placeholder="أدخل مفتاح المرور الآمن..." dir="ltr" style="-webkit-text-security: disc;">
 </div>
 <div class="form-group" style="max-width: 240px; margin: 0 auto 16px;">
 <input type="password" id="portalSetupPinInput" class="pin-input" maxlength="6" placeholder="******" inputmode="numeric">
@@ -107,7 +107,7 @@ tr:hover { background-color: #fafafa; }
 
 <!-- 2. شاشة القفل -->
 <div id="portalLockScreen" class="screen-box" style="display: none;">
-<p class="lock-desc"><span>البوابة محمية بخزنة مشفرة.</span><br>أدخل رمز الـ PIN السري (6 أرقام) لفك القفل:</p>
+<p class="lock-desc"><span>البوابة محمية بخزنة أمان مشفرة.</span><br>أدخل الرقم السري لفتح البوابة:</p>
 <div class="form-group" style="max-width: 240px; margin: 0 auto 16px;">
 <input type="password" id="portalUnlockPinInput" class="pin-input" maxlength="6" placeholder="******" autofocus inputmode="numeric" style="-webkit-text-security: disc;">
 </div>
@@ -119,7 +119,7 @@ tr:hover { background-color: #fafafa; }
 <div class="top-nav-bar">
 <span id="systemStatusText" style="font-size: 12.5px; font-weight: 700; color: #2d3748;">🟢 النظام متصل وخزنة الأمان مفعلة</span>
 <div style="display: flex; gap: 6px; flex-wrap: wrap; align-items: center;">
-<button type="button" class="btn-nav-action btn-lock-nav" onclick="lockPortalSession()">قفل 🔒</button>
+<button type="button" class="btn-nav-action btn-lock-nav" onclick="lockPortalSession()">قفل الجلسة 🔒</button>
 <a href="portal.html">🔄 تحديث</a>
 <a href="index.html" target="_blank">معاينة 🌐</a>
 </div>
@@ -363,13 +363,14 @@ async function decryptToken(encryptedObj, pin) {
 async function performPortalSetup() {
   const token = document.getElementById('portalSetupTokenInput').value.trim();
   const pin = document.getElementById('portalSetupPinInput').value.trim();
-  if (!token || pin.length !== 6) {
-    alert("يرجى إدخال رمز التوكن الصحيح ورمز PIN مكون من 6 أرقام بدقة.");
+  if (!token || !pin) {
+    alert("يرجى إدخال مفتاح المرور الآمن والرمز السري بدقة.");
     return;
   }
   try {
     const encrypted = await encryptToken(token, pin);
     localStorage.setItem('akh_portal_vault', JSON.stringify(encrypted));
+    localStorage.setItem('akh_portal_saved_pin', pin);
     ACTIVE_TOKEN = token;
     sessionStorage.setItem('akh_portal_active_token', token);
     
@@ -384,8 +385,8 @@ async function performPortalSetup() {
 
 async function attemptPortalPinUnlock() {
   const pin = document.getElementById('portalUnlockPinInput').value.trim();
-  if (pin.length !== 6) {
-    alert("رمز الـ PIN يجب أن يكون 6 أرقام.");
+  if (!pin) {
+    alert("يرجى إدخال الرقم السري.");
     return;
   }
   try {
@@ -394,6 +395,7 @@ async function attemptPortalPinUnlock() {
     const vaultObj = JSON.parse(savedVault);
     const token = await decryptToken(vaultObj, pin);
     
+    localStorage.setItem('akh_portal_saved_pin', pin);
     ACTIVE_TOKEN = token;
     sessionStorage.setItem('akh_portal_active_token', token);
 
@@ -401,13 +403,14 @@ async function attemptPortalPinUnlock() {
     document.getElementById('portalMainContent').style.display = 'block';
     loadPortalData();
   } catch(e) {
-    alert("❌ رمز الـ PIN غير صحيح!");
+    alert("❌ الرقم السري غير صحيح!");
     document.getElementById('portalUnlockPinInput').value = '';
   }
 }
 
 function lockPortalSession() {
   sessionStorage.removeItem('akh_portal_active_token');
+  localStorage.removeItem('akh_portal_saved_pin');
   ACTIVE_TOKEN = '';
   location.reload();
 }
@@ -426,8 +429,8 @@ function closePinModal() {
 
 async function submitPinModal() {
   const pin = document.getElementById('modalPinInput').value.trim();
-  if (pin.length !== 6) {
-    alert("رمز الـ PIN يجب أن يكون 6 أرقام.");
+  if (!pin) {
+    alert("يرجى إدخال الرقم السري.");
     return;
   }
   try {
@@ -443,8 +446,36 @@ async function submitPinModal() {
     closePinModal();
     if (cb) await cb();
   } catch(e) {
-    alert("❌ رمز الـ PIN غير صحيح!");
+    alert("❌ الرقم السري غير صحيح!");
     document.getElementById('modalPinInput').value = '';
+  }
+}
+
+async function autoUnlockSession() {
+  const savedVault = localStorage.getItem('akh_portal_vault');
+  const savedPin = localStorage.getItem('akh_portal_saved_pin');
+  const savedToken = sessionStorage.getItem('akh_portal_active_token');
+
+  if (savedToken) {
+    ACTIVE_TOKEN = savedToken;
+    document.getElementById('portalMainContent').style.display = 'block';
+    loadPortalData();
+  } else if (savedVault && savedPin) {
+    try {
+      const vaultObj = JSON.parse(savedVault);
+      const token = await decryptToken(vaultObj, savedPin);
+      ACTIVE_TOKEN = token;
+      sessionStorage.setItem('akh_portal_active_token', token);
+      document.getElementById('portalMainContent').style.display = 'block';
+      loadPortalData();
+    } catch(e) {
+      localStorage.removeItem('akh_portal_saved_pin');
+      document.getElementById('portalLockScreen').style.display = 'block';
+    }
+  } else if (savedVault) {
+    document.getElementById('portalLockScreen').style.display = 'block';
+  } else {
+    document.getElementById('portalSetupScreen').style.display = 'block';
   }
 }
 
@@ -460,18 +491,7 @@ window.onload = function() {
   document.getElementById('reportQYear').value = year;
   document.getElementById('reportYearInput').value = year;
 
-  const savedVault = localStorage.getItem('akh_portal_vault');
-  const savedToken = sessionStorage.getItem('akh_portal_active_token');
-
-  if (savedToken) {
-    ACTIVE_TOKEN = savedToken;
-    document.getElementById('portalMainContent').style.display = 'block';
-    loadPortalData();
-  } else if (savedVault) {
-    document.getElementById('portalLockScreen').style.display = 'block';
-  } else {
-    document.getElementById('portalSetupScreen').style.display = 'block';
-  }
+  autoUnlockSession();
 };
 
 function toggleReportInputs() {
@@ -570,7 +590,7 @@ function calculateHolidayStats() {
   document.getElementById('statWorkdays').innerText = netWorkdays;
 }
 
-// تصدير التقرير بالمعيار الدولي: شعار صافي ونظيف بالأعلى، واسم المكتب الرسمي فوق عنوان التقرير
+// تصدير التقرير مع تثبيت الألوان تماماً أثناء الطباعة
 function exportHolidayReportPDF() {
   const range = getActiveReportRange();
   if(!range) {
@@ -613,25 +633,26 @@ function exportHolidayReportPDF() {
       <meta charset="UTF-8">
       <title>${range.labelAr} - مكتب المحامي علي كاظم الهاشمي</title>
       <style>
-        body { font-family: 'Cairo', Arial, sans-serif; color: #0f172a; padding: 35px; margin: 0; background: #fff; }
+        * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
+        body { font-family: 'Cairo', Arial, sans-serif; color: #0f172a; padding: 35px; margin: 0; background: #fff !important; }
         .print-header { text-align: center; border-bottom: 3.5px solid #c5a059; padding-bottom: 16px; margin-bottom: 22px; }
         .logo-text { font-size: 40px; font-weight: 900; letter-spacing: 3px; color: #0f172a; line-height: 1; direction: ltr; }
-        .logo-text span { color: #dc2626; }
+        .logo-text span { color: #dc2626 !important; }
         .sub-title { font-size: 12px; font-weight: 700; color: #111; letter-spacing: 3px; margin-top: 5px; direction: ltr; }
-        .sub-title span { color: #dc2626; margin-right: 4px; font-weight: 800; }
+        .sub-title span { color: #dc2626 !important; margin-right: 4px; font-weight: 800; }
         .est { font-size: 9.5px; color: #64748b; letter-spacing: 2px; margin-top: 3px; direction: ltr; }
         
-        .report-title-box { text-align: center; margin-bottom: 20px; background: #f8fafc; border: 1.5px solid #e2e8f0; padding: 14px; border-radius: 8px; }
+        .report-title-box { text-align: center; margin-bottom: 20px; background: #f8fafc !important; border: 1.5px solid #e2e8f0; padding: 14px; border-radius: 8px; }
         .office-name-ar { font-size: 14.5px; font-weight: 800; color: #0f172a; margin-bottom: 4px; }
         .office-name-en { font-size: 11.5px; font-weight: 700; color: #475569; letter-spacing: 1px; margin-bottom: 10px; direction: ltr; }
         .report-title-ar { font-size: 16px; font-weight: 900; color: #0f172a; margin-bottom: 4px; border-top: 1px dashed #cbd5e0; padding-top: 10px; }
         .report-title-en { font-size: 12.5px; font-weight: 700; color: #475569; direction: ltr; }
 
-        .meta-box { display: flex; justify-content: space-between; font-size: 12.5px; font-weight: 700; margin-bottom: 22px; direction: rtl; background: #fff; padding: 10px 14px; border-radius: 8px; border: 1px solid #cbd5e0; }
+        .meta-box { display: flex; justify-content: space-between; font-size: 12.5px; font-weight: 700; margin-bottom: 22px; direction: rtl; background: #fff !important; padding: 10px 14px; border-radius: 8px; border: 1px solid #cbd5e0; }
         
         .stats-table { width: 100%; border-collapse: collapse; margin-bottom: 25px; direction: rtl; font-size: 13px; }
         .stats-table th, .stats-table td { border: 1px solid #cbd5e0; padding: 10px; text-align: center; }
-        .stats-table th { background-color: #0f172a; color: #ffffff; font-weight: 700; font-size: 12.5px; }
+        .stats-table th { background-color: #0f172a !important; color: #ffffff !important; font-weight: 700; font-size: 12.5px; }
         
         .details-title { font-size: 15px; font-weight: 800; color: #0f172a; margin-bottom: 10px; direction: rtl; border-right: 5px solid #c5a059; padding-right: 10px; }
         
