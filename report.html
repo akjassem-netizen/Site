@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة إدارة التقارير القانونية - مكتب المحامي علي كاظم الهاشمي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #111827;
+            --accent-red: #dc2626;
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+            --border-color: #e5e7eb;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--primary-color);
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        /* شاشة تسجيل الدخول */
+        #loginOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(17, 24, 39, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .login-box {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .login-box h2 {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+        .login-box input {
+            letter-spacing: 8px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 2px solid var(--accent-red);
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+            position: relative;
+        }
+        .settings-btn {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: none;
+            border: none;
+            color: #6b7280;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        .settings-btn:hover {
+            color: var(--accent-red);
+        }
+        .logo-mark {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        .logo-mark span.slash {
+            color: var(--accent-red);
+        }
+        .logo-mark span.red-letter {
+            color: var(--accent-red);
+        }
+        .office-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        .office-info {
+            font-size: 0.85rem;
+            color: #4b5563;
+        }
+        .confidentiality-box {
+            background: #fef2f2;
+            border: 1px dashed var(--accent-red);
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            color: #991b1b;
+            margin-bottom: 25px;
+            text-align: justify;
+        }
+        .form-group {
+            margin-bottom: 18px;
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--accent-red);
+        }
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .btn-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+        }
+        button.action-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .btn-generate {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+        .btn-whatsapp {
+            background-color: #25d366;
+            color: #fff;
+        }
+        button.action-btn:hover {
+            opacity: 0.9;
+        }
+        .preview-box {
+            margin-top: 30px;
+            background: #f9fafb;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 0.9rem;
+            display: none;
+        }
+        /* نافذة تغيير الرقم السري */
+        #settingsModal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center; align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: #fff; padding: 25px; border-radius: 12px; width: 90%; max-width: 350px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="loginOverlay">
+    <div class="login-box">
+        <div class="logo-mark"><span class="slash">╱</span> [ A | <span class="red-letter">K</span> | <span class="red-letter">H</span> ]</div>
+        <h2>أدخل رقم المرور السري (6 أرقام)</h2>
+        <input type="password" id="pinInput" maxlength="6" placeholder="******">
+        <button class="action-btn btn-generate" onclick="verifyPin()">دخول للنظام</button>
+        <p id="loginError" style="color: red; font-size: 0.85rem; margin-top: 10px; display: none;">رقم المرور غير صحيح!</p>
+    </div>
+</div>
+
+<div class="container" id="mainContent" style="display: none;">
+    <div class="header">
+        <button class="settings-btn" onclick="openSettings()">⚙️ تغيير الرقم السري</button>
+        <div class="logo-mark"><span class="slash">╱</span> [ A | <span class="red-letter">K</span> | <span class="red-letter">H</span> ] Law Office</div>
+        <div class="office-title">مكتب المحامي علي كاظم الهاشمي للمحاماة والخدمات القانونية</div>
+        <div class="office-info">akjassem.com | info@akjassem.com | 📞 +9647702956021</div>
+    </div>
+
+    <div class="confidentiality-box">
+        <strong>⚠️ تنبيه قانوني وسرية تامة:</strong> هذا التقرير والمستندات المرفقة به سرية ومخصصة حصراً للشخص ذي العلاقة (الموكل). يحظر منعاً باتاً نسخ أو تداول هذا المحتوى خارج نطاق المعنيين، ويجب على أي شخص يتلقى المستند بالخطأ المبادرة إلى حذفه فوراً. جميع الحقوق محفوظة لـ [ A | K | H ] Law Office.
+    </div>
+
+    <form id="reportForm">
+        <div class="row">
+            <div class="form-group">
+                <label>اسم الموكل الكريم:</label>
+                <input type="text" id="clientName" placeholder="أدخل اسم الموكل الكامل" required>
+            </div>
+            <div class="form-group">
+                <label>رقم هاتف الموكل (واتساب):</label>
+                <input type="text" id="clientPhone" placeholder="مثال: 9647702956021+" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>اختر المسار الرئيسي:</label>
+            <select id="mainTrack" onchange="updateSubTracks()" required>
+                <option value="">-- اختر المسار --</option>
+                <option value="judicial">1. المسار القضائي (مجلس القضاء الأعلى)</option>
+                <option value="administrative">2. المسار الإداري ودوائر الدولة (التنفيذ وغيرها)</option>
+            </select>
+        </div>
+
+        <div id="judicialFields" style="display: none;">
+            <div class="row">
+                <div class="form-group">
+                    <label>رئاسة الاستئناف:</label>
+                    <select id="appealCourt">
+                        <option value="">-- اختر الاستئناف --</option>
+                        <option value="استئناف الكرخ الاتحادية">استئناف الكرخ الاتحادية</option>
+                        <option value="استئناف الرصافة الاتحادية">استئناف الرصافة الاتحادية</option>
+                        <option value="استئناف ميسان / العمارة">استئناف ميسان / العمارة</option>
+                        <option value="استئناف أربيل">استئناف أربيل</option>
+                        <option value="أخرى">أخرى (كتابة يدوية)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>المحكمة المختصة:</label>
+                    <select id="specificCourt">
+                        <option value="">-- اختر نوع المحكمة --</option>
+                        <option value="محكمة البداءة">محكمة البداءة</option>
+                        <option value="محكمة الأحوال الشخصية">محكمة الأحوال الشخصية</option>
+                        <option value="محكمة التحقيق">محكمة التحقيق</option>
+                        <option value="محكمة الجزاء / الجنح">محكمة الجزاء / الجنح</option>
+                        <option value="محكمة الاستئناف بصفتها التمييزية">محكمة الاستئناف بصفتها التمييزية</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div id="administrativeFields" style="display: none;">
+            <div class="row">
+                <div class="form-group">
+                    <label>الوزارة أو الجهة الرسمية:</label>
+                    <select id="ministry">
+                        <option value="">-- اختر الجهة الرسمية --</option>
+                        <option value="وزارة العدل">وزارة العدل</option>
+                        <option value="وزارة الداخلية">وزارة الداخلية</option>
+                        <option value="أمانة بغداد">أمانة بغداد</option>
+                        <option value="الهيئة العامة للضرائب">الهيئة العامة للضرائب</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>المديرية أو الدائرة الفرعية:</label>
+                    <select id="subDepartment">
+                        <option value="">-- اختر الدائرة --</option>
+                        <option value="دائرة التنفيذ - مديرية تنفيذ البياع">دائرة التنفيذ - مديرية تنفيذ البياع</option>
+                        <option value="دائرة التنفيذ - مديرية تنفيذ الكرخ">دائرة التنفيذ - مديرية تنفيذ الكرخ</option>
+                        <option value="دائرة التنفيذ - مديرية تنفيذ الرصافة">دائرة التنفيذ - مديرية تنفيذ الرصافة</option>
+                        <option value="دائرة التسجيل العقاري">دائرة التسجيل العقاري</option>
+                        <option value="دائرة الكاتب العدل">دائرة الكاتب العدل</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <label>رقم الدعوى أو الإضبارة:</label>
+                <input type="text" id="caseNumber" placeholder="مثال: 1245 / ب / 2026" required>
+            </div>
+            <div class="form-group">
+                <label>رابط الأرشيف السحابي (Google Drive):</label>
+                <input type="text" id="driveLink" placeholder="ضع رابط مجلد الموكل هنا">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>ملخص الإجراء الحالي:</label>
+            <textarea id="currentAction" rows="3" placeholder="اكتب تفاصيل الإجراء الذي تم إنجازه اليوم..." required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>الإجراء أو الموعد القادم:</label>
+            <input type="text" id="nextAction" placeholder="مثال: موعد المرافعة القادمة أو مراجعة الدائرة خلال 5 أيام">
+        </div>
+
+        <div class="btn-container">
+            <button type="button" class="action-btn btn-generate" onclick="generateReport()">📋 توليد التقرير الرسمي</button>
+            <button type="button" class="action-btn btn-whatsapp" id="waBtn" onclick="sendWhatsApp()" style="display:none;">📱 إرسال عبر واتساب</button>
+        </div>
+    </form>
+
+    <div class="preview-box" id="previewBox"></div>
+</div>
+
+<div id="settingsModal">
+    <div class="modal-content">
+        <h3>تغيير الرقم السري</h3>
+        <div class="form-group" style="margin-top: 15px;">
+            <label>الرقم السري الجديد (6 أرقام):</label>
+            <input type="password" id="newPinInput" maxlength="6" placeholder="******">
+        </div>
+        <div class="btn-container">
+            <button class="action-btn btn-generate" onclick="saveNewPin()">حفظ</button>
+            <button class="action-btn" style="background:#e5e7eb; color:#374151;" onclick="closeSettings()">إلغاء</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // تعيين الرقم الافتراضي إذا لم يكن محفوظاً (مثلاً 123456)
+    if (!localStorage.getItem('officePin')) {
+        localStorage.setItem('officePin', '123456');
+    }
+
+    function verifyPin() {
+        let enteredPin = document.getElementById("pinInput").value;
+        let storedPin = localStorage.getItem('officePin');
+        if (enteredPin === storedPin) {
+            document.getElementById("loginOverlay").style.display = "none";
+            document.getElementById("mainContent").style.display = "block";
+        } else {
+            document.getElementById("loginError").style.display = "block";
+        }
+    }
+
+    function openSettings() {
+        document.getElementById("settingsModal").style.display = "flex";
+    }
+
+    function closeSettings() {
+        document.getElementById("settingsModal").style.display = "none";
+        document.getElementById("newPinInput").value = "";
+    }
+
+    function saveNewPin() {
+        let newPin = document.getElementById("newPinInput").value;
+        if (newPin.length !== 6) {
+            alert("الرجاء إدخال رقم سري مكون من 6 أرقام بالضبط.");
+            return;
+        }
+        localStorage.setItem('officePin', newPin);
+        alert("تم تغيير الرقم السري بنجاح!");
+        closeSettings();
+    }
+
+    function updateSubTracks() {
+        var track = document.getElementById("mainTrack").value;
+        document.getElementById("judicialFields").style.display = (track === "judicial") ? "block" : "none";
+        document.getElementById("administrativeFields").style.display = (track === "administrative") ? "block" : "none";
+    }
+
+    let generatedText = "";
+
+    function generateReport() {
+        let clientName = document.getElementById("clientName").value;
+        let mainTrack = document.getElementById("mainTrack").value;
+        let caseNumber = document.getElementById("caseNumber").value;
+        let driveLink = document.getElementById("driveLink").value || "مرفق في الأرشيف الخاص";
+        let currentAction = document.getElementById("currentAction").value;
+        let nextAction = document.getElementById("nextAction").value;
+
+        if (!clientName || !mainTrack || !caseNumber || !currentAction) {
+            alert("الرجاء ملء الحقول الأساسية المطلوبة.");
+            return;
+        }
+
+        let locationDetails = "";
+        if (mainTrack === "judicial") {
+            let appeal = document.getElementById("appealCourt").value;
+            let court = document.getElementById("specificCourt").value;
+            locationDetails = `${court} / ${appeal}`;
+        } else {
+            let min = document.getElementById("ministry").value;
+            let sub = document.getElementById("subDepartment").value;
+            locationDetails = `${min} - ${sub}`;
+        }
+
+        let refId = "AKH-" + Math.floor(100000 + Math.random() * 900000);
+        let today = new Date().toLocaleDateString('ar-IQ');
+
+        generatedText = `⚖️ *مكتب المحامي علي كاظم الهاشمي للمحاماة والخدمات القانونية*
+╱ [ A | K🔴 | H🔴 ] Law Office
+🌐 akjassem.com | 📧 info@akjassem.com
+📞 +9647702956021
+--------------------------------------------------
+📋 *ملخص تقرير قانوني رسمي*
+📌 *الرقم المرجعي:* ${refId}
+📅 *تاريخ الإصدار:* ${today}
+
+👤 *الموكل الكريم / المحترم:* ${clientName}
+🏛️ *جهة المراجعة:* ${locationDetails}
+📁 *رقم الدعوى / الإضبارة:* ${caseNumber}
+
+🔍 *ملخص الإجراء الحالي:*
+${currentAction}
+
+⏳ *الإجراء / الموعد القادم:*
+${nextAction || 'سيتم إشعاركم بأي مستجدات فوراً.'}
+
+📎 *المرفقات والأرشيف السحابي:*
+${driveLink}
+
+⚠️ *تنبيه سرية:* هذا التقرير سري ومخصص حصراً للشخص ذي العلاقة ولا يجوز تداوله خارج هذا النطاق.
+_شكراً لتشريفكم مكتبنا بثقتكم الغالية._`;
+
+        let preview = document.getElementById("previewBox");
+        preview.style.display = "block";
+        preview.innerText = generatedText;
+        document.getElementById("waBtn").style.display = "block";
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
+
+    function sendWhatsApp() {
+        let phone = document.getElementById("clientPhone.value") || document.getElementById("clientPhone").value;
+        if (!phone) {
+            alert("الرجاء إدخال رقم هاتف الموكل.");
+            return;
+        }
+        let encodedText = encodeURIComponent(generatedText);
+        window.open(`https://wa.me/${phone}?text=${encodedText}`, '_blank');
+    }
+</script>
+
+</body>
+</html>
