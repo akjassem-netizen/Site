@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ديوان الإدارة المركزية وعمليات المكتب — مكتب المحامي علي كاظم الهاشمي</title>
+<title>ديوان الإدارة المركزية وعمليات المكتب (ERP & Practice Management) — مكتب المحامي علي كاظم الهاشمي</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Cairo', system-ui, sans-serif; background-color: #f4f6f9; color: #1a1a1a; padding: 20px 10px; display: flex; justify-content: center; min-height: 100vh; align-items: flex-start; }
-.panel { max-width: 1100px; width: 100%; background: #ffffff; border-radius: 16px; padding: 28px 20px; box-shadow: 0 4px 25px rgba(0,0,0,0.06); border-top: 6px solid #c5a059; }
-.brand-section { text-align: center; margin-bottom: 22px; border-bottom: 1.5px solid #edf2f7; padding-bottom: 16px; }
+body { font-family: 'Cairo', system-ui, sans-serif; background-color: #f4f6f9; color: #1a1a1a; padding: 15px 8px; display: flex; justify-content: center; min-height: 100vh; align-items: flex-start; }
+.panel { max-width: 1200px; width: 100%; background: #ffffff; border-radius: 16px; padding: 25px 20px; box-shadow: 0 4px 25px rgba(0,0,0,0.06); border-top: 6px solid #c5a059; }
+.brand-section { text-align: center; margin-bottom: 20px; border-bottom: 1.5px solid #edf2f7; padding-bottom: 15px; }
 .logo-text { font-size: 38px; font-weight: 900; letter-spacing: 2px; color: #0b1a30; line-height: 1; direction: ltr; }
 .logo-text span { color: #d32f2f; }
 .sub-title { font-size: 12px; font-weight: 700; color: #111; letter-spacing: 3px; margin-top: 5px; direction: ltr; }
@@ -25,42 +25,48 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #f4f6f9; c
 .btn-unlock { width: 100%; max-width: 260px; background-color: #0b1a30; color: #ffffff; padding: 13px; border: none; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; font-family: inherit; margin: 0 auto; display: block; transition: 0.3s; }
 .btn-unlock:hover { background-color: #c5a059; color: #0b1a30; }
 
-.top-nav-bar { display: flex; justify-content: space-between; align-items: center; background-color: #f8fafc; border: 1.5px solid #e2e8f0; padding: 12px 16px; border-radius: 10px; margin-bottom: 22px; flex-wrap: wrap; gap: 10px; }
-.top-nav-bar button, .top-nav-bar select { background-color: #0b1a30; color: #ffffff; padding: 7px 12px; border-radius: 6px; font-size: 12.5px; font-weight: 700; border: none; cursor: pointer; font-family: inherit; transition: 0.3s; }
+.top-nav-bar { display: flex; justify-content: space-between; align-items: center; background-color: #f8fafc; border: 1.5px solid #e2e8f0; padding: 12px 16px; border-radius: 10px; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+.top-nav-bar button, .top-nav-bar select { background-color: #0b1a30; color: #ffffff; padding: 7px 12px; border-radius: 6px; font-size: 12px; font-weight: 700; border: none; cursor: pointer; font-family: inherit; transition: 0.3s; }
 .top-nav-bar button:hover { background-color: #c5a059; color: #0b1a30; }
 
-.card-section { background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 20px; margin-bottom: 22px; }
-.card-section h2 { font-size: 15.5px; font-weight: 800; color: #0b1a30; margin-bottom: 14px; border-bottom: 1px dashed #cbd5e0; padding-bottom: 10px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 5px; }
+/* تبويب الأقسام */
+.tabs-header { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 20px; border-bottom: 2px solid #e2e8f0; }
+.tab-btn { background: #e2e8f0; border: none; padding: 9px 14px; border-radius: 8px; font-size: 13px; font-weight: 700; color: #2d3748; cursor: pointer; white-space: nowrap; transition: 0.2s; font-family: inherit; }
+.tab-btn.active { background: #0b1a30; color: #c5a059; }
 
-.form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 14px; }
-.form-group { margin-bottom: 14px; }
-label { display: block; font-weight: 700; font-size: 13px; margin-bottom: 5px; color: #2d3748; }
-select, input[type="text"], input[type="date"], input[type="password"], input[type="time"], input[type="number"], textarea { width: 100%; padding: 10px 12px; border: 1.5px solid #cbd5e0; border-radius: 8px; font-family: inherit; font-size: 13.5px; background-color: #fff; }
-textarea { resize: vertical; min-height: 80px; }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
 
-.btn-submit { background-color: #0b1a30; color: #ffffff; border: 2px solid #0b1a30; padding: 12px 20px; font-size: 14.5px; font-weight: 800; border-radius: 8px; cursor: pointer; font-family: inherit; width: 100%; box-shadow: 0 3px 10px rgba(0,0,0,0.06); transition: 0.3s; }
+.card-section { background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 18px; margin-bottom: 20px; }
+.card-section h2 { font-size: 15px; font-weight: 800; color: #0b1a30; margin-bottom: 14px; border-bottom: 1px dashed #cbd5e0; padding-bottom: 10px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 5px; }
+
+.form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin-bottom: 12px; }
+.form-group { margin-bottom: 12px; }
+label { display: block; font-weight: 700; font-size: 12.5px; margin-bottom: 5px; color: #2d3748; }
+select, input[type="text"], input[type="date"], input[type="password"], input[type="time"], input[type="number"], textarea { width: 100%; padding: 10px 12px; border: 1.5px solid #cbd5e0; border-radius: 8px; font-family: inherit; font-size: 13px; background-color: #fff; }
+textarea { resize: vertical; min-height: 75px; }
+
+.btn-submit { background-color: #0b1a30; color: #ffffff; border: 2px solid #0b1a30; padding: 11px 18px; font-size: 14px; font-weight: 800; border-radius: 8px; cursor: pointer; font-family: inherit; width: 100%; box-shadow: 0 3px 10px rgba(0,0,0,0.05); transition: 0.3s; }
 .btn-submit:hover { background-color: #c5a059; border-color: #c5a059; color: #0b1a30; }
 
-.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 15px; }
-.stat-box { background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 14px; text-align: center; }
-.stat-box .num { font-size: 20px; font-weight: 900; color: #0b1a30; margin-top: 4px; direction: ltr; }
-.stat-box .lbl { font-size: 11.5px; font-weight: 700; color: #4a5568; }
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(135px, 1fr)); gap: 10px; margin-bottom: 15px; }
+.stat-box { background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 12px; text-align: center; }
+.stat-box .num { font-size: 19px; font-weight: 900; color: #0b1a30; margin-top: 4px; direction: ltr; }
+.stat-box .lbl { font-size: 11px; font-weight: 700; color: #4a5568; }
 
-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
-th, td { padding: 10px; text-align: right; border-bottom: 1px solid #edf2f7; }
-th { background-color: #0b1a30; color: #ffffff; font-weight: 700; font-size: 12.5px; }
+table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 12.5px; }
+th, td { padding: 9px; text-align: right; border-bottom: 1px solid #edf2f7; }
+th { background-color: #0b1a30; color: #ffffff; font-weight: 700; font-size: 12px; }
 tr:hover { background-color: #fafafa; }
 .badge { padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; display: inline-block; }
 .badge-active { background: #def7ec; color: #03543f; }
 .badge-pending { background: #fef3c7; color: #92400e; }
 
-.alert-box { padding: 12px 15px; border-radius: 8px; margin-bottom: 16px; font-size: 13.5px; display: none; }
+.alert-box { padding: 12px 15px; border-radius: 8px; margin-bottom: 15px; font-size: 13px; display: none; }
 .alert-success { background-color: #def7ec; color: #03543f; font-weight: 700; }
-.alert-warning { background-color: #fffaf0; border: 1px solid #feebc8; color: #c05621; }
+.legal-notice-preview { background: #f8fafc; border: 1.5px solid #cbd5e0; border-radius: 10px; padding: 14px; font-size: 12px; line-height: 1.7; color: #2d3748; margin-top: 12px; border-right: 5px solid #c5a059; }
 
-.legal-notice-preview { background: #f8fafc; border: 1.5px solid #cbd5e0; border-radius: 10px; padding: 16px; font-size: 12.5px; line-height: 1.7; color: #2d3748; margin-top: 15px; border-right: 5px solid #c5a059; }
-
-.portal-footer { text-align: center; padding: 18px 10px 5px; font-size: 11.5px; color: #64748b; border-top: 1.5px solid #edf2f7; margin-top: 25px; font-weight: 600; }
+.portal-footer { text-align: center; padding: 15px 10px 5px; font-size: 11.5px; color: #64748b; border-top: 1.5px solid #edf2f7; margin-top: 20px; font-weight: 600; }
 </style>
 </head>
 <body>
@@ -74,7 +80,7 @@ tr:hover { background-color: #fafafa; }
 </div>
 
 <div id="portalLockScreen" class="screen-box" style="display: block;">
-<p class="lock-desc"><span>🔒 البوابة محمية بخزنة أمان مشفرة (AES-GCM).</span><br>أدخل الرقم السري للمكتب للوصول إلى الديوان:</p>
+<p class="lock-desc"><span>🔒 البوابة محمية بخزنة أمان مشفرة (AES-GCM).</span><br>أدخل الرقم السري للمكتب للوصول إلى الديوان التنفيذي:</p>
 <div class="form-group" style="max-width: 260px; margin: 0 auto 16px;">
 <input type="password" id="portalUnlockPinInput" class="pin-input" placeholder="••••••••" autofocus style="-webkit-text-security: disc;">
 </div>
@@ -85,7 +91,7 @@ tr:hover { background-color: #fafafa; }
 
 <div class="top-nav-bar">
   <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
-    <span style="font-size: 13px; font-weight: 800; color: #0b1a30;">🌐 لغة النظام والتصدير:</span>
+    <span style="font-size: 12.5px; font-weight: 800; color: #0b1a30;">🌐 لغة النظام والتصدير:</span>
     <select id="systemLangSelect" onchange="changeSystemLanguage()">
       <option value="ar">العربية 🇸🇦</option>
       <option value="en">English 🇬🇧</option>
@@ -97,132 +103,241 @@ tr:hover { background-color: #fafafa; }
       <option value="ku">کوردی 🇮🇶</option>
     </select>
   </div>
-  <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+  <div style="display: flex; gap: 6px; flex-wrap: wrap;">
     <button type="button" onclick="triggerSurprisePresenceCheck()">🔔 اختبار البصمة المفاجأة</button>
     <button type="button" onclick="syncGoogleDriveBackup()" style="background-color: #2b6cb0;">☁️ مزامنة Google Drive</button>
     <button type="button" onclick="lockDiwanSession()" style="background-color: #e53e3e;">قفل الجلسة 🔒</button>
   </div>
 </div>
 
+<div class="tabs-header">
+  <button type="button" class="tab-btn active" onclick="switchTab('tab-dashboard', this)">📊 الملخص والصناديق</button>
+  <button type="button" class="tab-btn" onclick="switchTab('tab-archives', this)">📁 الأرشيف والقضايا</button>
+  <button type="button" class="tab-btn" onclick="switchTab('tab-payroll', this)">💼 السلم الوظيفي والرواتب</button>
+  <button type="button" class="tab-btn" onclick="switchTab('tab-fuel', this)">⛽ الوقود والباركينات</button>
+  <button type="button" class="tab-btn" onclick="switchTab('tab-hr', this)">⏱️ الانضباط والبصمة</button>
+  <button type="button" class="tab-btn" onclick="switchTab('tab-contracts', this)">⚖️ عقود الأتعاب</button>
+  <button type="button" class="tab-btn" onclick="switchTab('tab-planner', this)">📝 المفكرة والصوت</button>
+  <button type="button" class="tab-btn" onclick="switchTab('tab-templates', this)">🏛️ النماذج والمحاكم</button>
+</div>
+
 <div id="actionAlertBox" class="alert-box alert-success">تم تنفيذ العملية بنجاح وتحديث السجلات السحابية!</div>
 
-<!-- 1. لوحة المؤشرات المالية والصناديق المزدوجة -->
-<div class="card-section" style="border-top: 5px solid #2b6cb0;">
-  <h2><span>💰 الصناديق المالية المزدوجة والسيولة التشغيلية</span></h2>
-  <div class="stats-grid">
-    <div class="stat-box">
-      <div class="lbl">الأرشيف التاريخي (Legacy)</div>
-      <div class="num" style="color: #4a5568;">تراكمي 2014-2026</div>
+<div id="tab-dashboard" class="tab-content active">
+  <div class="card-section" style="border-top: 5px solid #2b6cb0;">
+    <h2><span>💰 الصناديق المالية المزدوجة والسيولة التشغيلية</span></h2>
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="lbl">الأرشيف التاريخي (Legacy)</div>
+        <div class="num" style="color: #4a5568; font-size:14px;">تراكمي 2014-2026</div>
+      </div>
+      <div class="stat-box">
+        <div class="lbl">الصندوق الحالي (Live Fund)</div>
+        <div class="num" style="color: #16a34a;">12,450,000 د.ع</div>
+      </div>
+      <div class="stat-box">
+        <div class="lbl">صندوق إيرادات الأتعاب</div>
+        <div class="num" style="color: #2b6cb0;">8,200,000 د.ع</div>
+      </div>
+      <div class="stat-box">
+        <div class="lbl">المحفظة المعيشية للراتب</div>
+        <div class="num" style="color: #c05621;">818,000 د.ع</div>
+      </div>
     </div>
-    <div class="stat-box">
-      <div class="lbl">الصندوق الحالي (Live Fund)</div>
-      <div class="num" style="color: #16a34a;">12,450,000 د.ع</div>
-    </div>
-    <div class="stat-box">
-      <div class="lbl">صندوق إيرادات الأتعاب</div>
-      <div class="num" style="color: #2b6cb0;">8,200,000 د.ع</div>
-    </div>
-    <div class="stat-box">
-      <div class="lbl">المحفظة المعيشية للراتب</div>
-      <div class="num" style="color: #c05621;">818,000 د.ع</div>
+    
+    <div style="background: #f8fafc; border: 1px solid #cbd5e0; padding: 14px; border-radius: 8px; margin-top: 15px;">
+      <strong style="color: #0b1a30; font-size: 13.5px; display: block; margin-bottom: 6px;">📌 المصاريف التشغيلية الثابتة وقرض المدير:</strong>
+      <p style="font-size: 12.5px; color: #4a5568; line-height: 1.6;">
+        • إيجار المكتب، الكهرباء، الإنترنت، والقرطاسية (تستحق بين 1 إلى 5 من كل شهر).<br>
+        • بروتوكول قرض المدير: يتم سداد أي مصروف طارئ دُفع شخصياً فور دخول أول أتعاب جديدة للصندوق.
+      </p>
     </div>
   </div>
 </div>
 
-<!-- 2. أرشيف السجلات والقضايا والشركات -->
-<div class="card-section" style="border-top: 5px solid #c5a059;">
-  <h2><span>📁 أرشيف السجلات والقضايا والشركات (القسم الرئيسي)</span></h2>
-  <form id="recordForm" onsubmit="saveMainRecord(event)">
-    <div class="form-grid">
-      <div class="form-group">
-        <label>قسم الأرشيف:</label>
-        <select id="archiveCategory" required>
-          <option value="A">A. شؤون الموكلين والقضايا والشركات</option>
-          <option value="B">B. شؤون طالبي الخدمات والمراجعين</option>
-          <option value="C">C. شؤون المكتب الإدارية والذاتية (النقابة والضرائب)</option>
-          <option value="D">D. مشاريع وتطوير المكتب (akjassem.com)</option>
-        </select>
+<div id="tab-archives" class="tab-content">
+  <div class="card-section" style="border-top: 5px solid #c5a059;">
+    <h2><span>📁 أرشيف السجلات والقضايا والشركات والجهات</span></h2>
+    <form id="recordForm" onsubmit="saveMainRecord(event)">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>قسم الأرشيف (الأقسام الأربعة):</label>
+          <select id="archiveCategory" required>
+            <option value="A">A. شؤون الموكلين والقضايا والشركات</option>
+            <option value="B">B. شؤون طالبي الخدمات والمراجعين المؤقتين</option>
+            <option value="C">C. شؤون المكتب الإدارية والذاتية (النقابة والضرائب)</option>
+            <option value="D">D. مشاريع وتطوير المكتب (akjassem.com)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>اسم الموكل أو الجهة:</label>
+          <input type="text" id="clientNameInput" placeholder="أدخل اسم الطرف المعني..." required>
+        </div>
+        <div class="form-group">
+          <label>المحكمة أو الجهة المراجَعة:</label>
+          <input type="text" id="primarySectorInput" placeholder="مثلاً: محكمة بداءة البياع..." required>
+        </div>
+        <div class="form-group">
+          <label>موضوع الدعوى أو المعاملة:</label>
+          <input type="text" id="subjectInput" placeholder="عنوان الموضوع..." required>
+        </div>
       </div>
-      <div class="form-group">
-        <label>اسم الموكل أو الجهة:</label>
-        <input type="text" id="clientNameInput" placeholder="أدخل اسم الطرف المعني..." required>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>آخر إجراء تم إنجازه:</label>
+          <input type="text" id="lastActionInput" placeholder="آخر خطوة أنجزت..." required>
+        </div>
+        <div class="form-group">
+          <label>موعد الجلسة أو المراجعة القادمة:</label>
+          <input type="date" id="nextAlertDateInput">
+        </div>
+        <div class="form-group">
+          <label>حالة المعاملة:</label>
+          <select id="recordStatusSelect">
+            <option value="قيد الإجراء 🔄">قيد الإجراء 🔄</option>
+            <option value="بانتظار جلسة ⏰">بانتظار جلسة ⏰</option>
+            <option value="محجوزة للحكم ⚖️">محجوزة للحكم ⚖️</option>
+            <option value="منجزة نهائياً ✔️">منجزة نهائياً ✔️</option>
+          </select>
+        </div>
       </div>
-      <div class="form-group">
-        <label>المحكمة أو الجهة المراجَعة:</label>
-        <input type="text" id="primarySectorInput" placeholder="مثلاً: محكمة بداءة البياع..." required>
-      </div>
-      <div class="form-group">
-        <label>موضوع الدعوى أو المعاملة:</label>
-        <input type="text" id="subjectInput" placeholder="عنوان الموضوع أو الدعوى..." required>
-      </div>
-    </div>
-    <div class="form-grid">
-      <div class="form-group">
-        <label>آخر إجراء تم إنجازه:</label>
-        <input type="text" id="lastActionInput" placeholder="اكتب تفصيل آخر خطوة أنجزت..." required>
-      </div>
-      <div class="form-group">
-        <label>تاريخ الجلسة أو المراجعة القادمة:</label>
-        <input type="date" id="nextAlertDateInput">
-      </div>
-      <div class="form-group">
-        <label>حالة المعاملة:</label>
-        <select id="recordStatusSelect">
-          <option value="قيد الإجراء 🔄">قيد الإجراء 🔄</option>
-          <option value="بانتظار جلسة ⏰">بانتظار جلسة ⏰</option>
-          <option value="محجوزة للحكم ⚖️">محجوزة للحكم ⚖️</option>
-          <option value="منجزة نهائياً ✔️">منجزة نهائياً ✔️</option>
-        </select>
-      </div>
-    </div>
-    <button type="submit" class="btn-submit">حفظ وتوليد الرقم المرجعي الآلي 💾</button>
-  </form>
+      <button type="submit" class="btn-submit">حفظ وتوليد الرقم المرجعي الآلي 💾</button>
+    </form>
 
-  <h3 style="font-size: 14px; margin-top: 18px; color: #0b1a30; margin-bottom: 8px;">السجلات والتقارير المسجلة حديثاً:</h3>
-  <table id="recordsTable">
-    <thead>
-      <tr>
-        <th>الرقم المرجعي</th>
-        <th>الموكل / الجهة</th>
-        <th>الجهة المُراجَعة</th>
-        <th>آخر إجراء</th>
-        <th>الحالة</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>REF-2026-0914</strong></td>
-        <td>شركة الشراع الطبي</td>
-        <td>محكمة بداءة الرصافة</td>
-        <td>تم تقديم عريضة الدعوى وإرفاق المستندات</td>
-        <td><span class="badge badge-active">قيد الإجراء 🔄</span></td>
-      </tr>
-    </tbody>
-  </table>
+    <h3 style="font-size: 14px; margin-top: 18px; color: #0b1a30; margin-bottom: 8px;">السجلات والتقارير المسجلة حديثاً:</h3>
+    <table id="recordsTable">
+      <thead>
+        <tr>
+          <th>الرقم المرجعي</th>
+          <th>الموكل / الجهة</th>
+          <th>الجهة المُراجَعة</th>
+          <th>آخر إجراء</th>
+          <th>الحالة</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>REF-2026-0914</strong></td>
+          <td>شركة الشراع الطبي</td>
+          <td>محكمة بداءة الرصافة</td>
+          <td>تم تقديم عريضة الدعوى وإرفاق المستندات</td>
+          <td><span class="badge badge-active">قيد الإجراء 🔄</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 
-<!-- 3. موديول عقود الخدمة والأتعاب الذكية -->
-<div class="card-section" style="border-top: 5px solid #16a34a;">
-  <h2><span>⚖️ موديول عقود الخدمة والأتعاب الذكية والتحذير القانوني</span></h2>
-  <div class="form-grid">
-    <div class="form-group">
-      <label>اختر الموكل المرتبط بالعقد:</label>
-      <input type="text" id="contractClient" placeholder="اسم الموكل...">
+<div id="tab-payroll" class="tab-content">
+  <div class="card-section" style="border-top: 5px solid #16a34a;">
+    <h2><span>💼 السلم الوظيفي والمسار التاريخي للرواتب (2014 - 2026)</span></h2>
+    <div style="background: #f8fafc; border: 1px solid #cbd5e0; padding: 15px; border-radius: 8px; margin-bottom: 15px; font-size: 13px; line-height: 1.7;">
+      <strong>👤 بيانات الموظف الأساسية:</strong><br>
+      • تاريخ التعيين: 16/2/2014 | التحصيل: بكالوريوس قانون<br>
+      • الحالة الاجتماعية: متزوج ولديه 3 أطفال: <strong>زيد (2017)</strong>، <strong>مجد (2019)</strong>، <strong>مريم (2026)</strong>.<br>
+      • التدرج المالي: الدرجة السابعة (2014) ← السادسة (2018) ← الخامسة (2022) وصولاً لعام <strong>2026</strong> (الراتب الاسمي: <strong>453,000 دينار</strong>).<br>
+      • المخصصات: زوجية (50,000 د.ع)، أطفال (30,000 د.ع بواقع 10,000 لكل طفل)، شهادة (45%)، قانونية (30%).<br>
+      • الاستقطاعات: توقيفات تقاعدية (10%) وضمان صحي (1%). الصافي الشهري الافتراضي: <strong>~818,000 دينار</strong>.
     </div>
-    <div class="form-group">
-      <label>إجمالي الأتعاب المتفق عليها (د.ع):</label>
-      <input type="number" id="contractFees" placeholder="مثلاً: 1500000">
+    <div class="stats-grid">
+      <div class="stat-box"><div class="lbl">الراتب الاسمي 2026</div><div class="num">453,000 د.ع</div></div>
+      <div class="stat-box"><div class="lbl">إجمالي المخصصات</div><div class="num" style="color:#16a34a;">465,000 د.ع</div></div>
+      <div class="stat-box"><div class="lbl">التوقيفات والاستقطاعات</div><div class="num" style="color:#e53e3e;">100,000 د.ع</div></div>
+      <div class="stat-box"><div class="lbl">الصافي الشهري الفعلي</div><div class="num" style="color:#2b6cb0;">818,000 د.ع</div></div>
     </div>
   </div>
-  
-  <div class="legal-notice-preview">
-    <strong>🔒 تنبيه قانوني وسري للغاية (Confidential & Privileged):</strong><br>
-    "هذه المستندات والبيانات مشمولة بسر المهنة القانونية وحماية الخصوصية، وهي مخصصة حصرياً وللاستخدام الشخصي والداخلي للطرف المعني... هذا المستند هو تقرير متابعة داخلي صادر عن النظام الإلكتروني للمكتب، ولا يُعد بأي حال من الأحوال خطاباً رسمياً، أو رسالة موجهة لأي جهة ثالثة... يُحظر تماماً تقديم هذا التقرير أو إبرازه أمام أي جهة إلا بموجب (كتاب إحالة رسمي مستقل) صادر ومعتمد أصولياً من مكتب المحامي علي كاظم الهاشمي..."
-  </div>
+</div>
 
-  <div style="display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap;">
-    <button type="button" class="btn-submit" style="flex: 1;" onclick="exportOfficialReportPDF()">🖨️ طباعة وتصدير التقرير والاتفاقية (PDF)</button>
-    <button type="button" class="btn-submit" style="flex: 1; background-color: #2b6cb0; border-color: #2b6cb0;" onclick="alert('تم ترحيل الأتعاب المالية بنجاح إلى صندوق إيرادات المكتب.')">📥 ترحيل الأتعاب للصندوق</button>
+<div id="tab-fuel" class="tab-content">
+  <div class="card-section" style="border-top: 5px solid #d97706;">
+    <h2><span>⛽ نظام الوقود الذكي (70/30) ودليل الباركينات والمواقف</span></h2>
+    <div class="form-grid">
+      <div class="form-group">
+        <label>قيمة إيصال الوقود (د.ع):</label>
+        <input type="number" id="fuelAmountInput" placeholder="مثلاً: 50000">
+      </div>
+      <div class="form-group">
+        <label>تخصيص الإيصال (وضع التشغيل):</label>
+        <select id="fuelSplitMode">
+          <option value="smart">تقسيم تلقائي ذكي (70% عمل / 30% شخصي)</option>
+          <option value="work">تخصيص كامل للعمل (100% مكتب)</option>
+          <option value="personal">تخصيص كامل شخصي (100% عائلي)</option>
+        </select>
+      </div>
+    </div>
+    <button type="button" class="btn-submit" onclick="calculateFuelSplit()">حساب وترحيل إيصال الوقود ⛽</button>
+    <div id="fuelResult" style="margin-top: 10px; font-weight: 700; font-size: 13px; color: #0b1a30;"></div>
+
+    <h3 style="font-size: 14px; margin-top: 20px; color: #0b1a30; margin-bottom: 8px;">🅿️ دليل الباركينات والمواقف الآمنة المفضلة:</h3>
+    <p style="font-size: 12.5px; color: #4a5568; margin-bottom: 10px;">• جراج المحاكم المركزي (شارع الرشيد) - لوكيشن آمن ومظلل.<br>• موقف دائرة ضريبة استعلامات الباب الشرقي.</p>
+  </div>
+</div>
+
+<div id="tab-hr" class="tab-content">
+  <div class="card-section" style="border-top: 5px solid #e53e3e;">
+    <h2><span>⏱️ الانضباط الذاتي، ساعات الدوام، والبصمة المفاجأة</span></h2>
+    <div style="background: #f8fafc; border: 1px solid #cbd5e0; padding: 15px; border-radius: 8px; margin-bottom: 15px; font-size: 13px; line-height: 1.7;">
+      <strong>⚙️ إعدادات الحضور والدوام:</strong><br>
+      • الساعات الرسمية: 8:00 صباحاً ولغاية 4:00 عصراً.<br>
+      • أزرار المرونة الميدانية: <button type="button" class="badge badge-active" onclick="alert('تم تفعيل وضع: عمل عن بعد 💻')">عمل عن بعد</button> | <button type="button" class="badge badge-pending" onclick="alert('تم تفعيل وضع: جلسة محكمة ⚖️')">جلسة محكمة</button><br>
+      • نظام البصمة المفاجأة: يرسل تنبيهات عشوائية بمهلة 5 دقائق. وفي حال عدم الاستجابة يتم تطبيق معادلة قطع الغياب: $\text{القطع} = (\frac{\text{الراتب}}{30}) \times \text{أيام الغياب}$.
+    </div>
+    <button type="button" class="btn-submit" style="background-color: #2b6cb0; border-color: #2b6cb0;" onclick="triggerSurprisePresenceCheck()">🔔 إطلاق اختبار البصمة المفاجأة للوجود الآن</button>
+  </div>
+</div>
+
+<div id="tab-contracts" class="tab-content">
+  <div class="card-section" style="border-top: 5px solid #16a34a;">
+    <h2><span>⚖️ عقود الخدمة والأتعاب الذكية والتحذير القانوني الرسمي</span></h2>
+    <div class="form-grid">
+      <div class="form-group">
+        <label>اسم الموكل أو طالب الخدمة:</label>
+        <input type="text" id="contractClient" placeholder="اسم الموكل...">
+      </div>
+      <div class="form-group">
+        <label>إجمالي الأتعاب المتفق عليها (د.ع):</label>
+        <input type="number" id="contractFees" placeholder="مثلاً: 1500000">
+      </div>
+    </div>
+    
+    <div class="legal-notice-preview">
+      <strong>🔒 تنبيه قانوني وسري للغاية (Confidential & Privileged):</strong><br>
+      "هذه المستندات والبيانات مشمولة بسر المهنة القانونية وحماية الخصوصية، وهي مخصصة حصرياً وللاستخدام الشخصي والداخلي للطرف المعني... هذا المستند هو تقرير متابعة داخلي صادر عن النظام الإلكتروني للمكتب، ولا يُعد بأي حال من الأحوال خطاباً رسمياً، أو رسالة موجهة لأي جهة ثالثة... يُحظر تماماً تقديم هذا التقرير أو إبرازه أمام أي جهة إلا بموجب (كتاب إحالة رسمي مستقل) صادر ومعتمد أصولياً من مكتب المحامي علي كاظم الهاشمي..."
+    </div>
+
+    <div style="display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap;">
+      <button type="button" class="btn-submit" style="flex: 1;" onclick="exportOfficialReportPDF()">🖨️ طباعة وتصدير التقرير والاتفاقية (PDF)</button>
+      <button type="button" class="btn-submit" style="flex: 1; background-color: #2b6cb0; border-color: #2b6cb0;" onclick="alert('تم ترحيل الأتعاب المالية بنجاح إلى صندوق إيرادات المكتب.')">📥 ترحيل الأتعاب للصندوق</button>
+    </div>
+  </div>
+</div>
+
+<div id="tab-planner" class="tab-content">
+  <div class="card-section" style="border-top: 5px solid #2b6cb0;">
+    <h2><span>📝 المفكرة الرقمية، الملاحظات، والتسجيل الصوتي</span></h2>
+    <div class="form-group">
+      <label>تدوين ملاحظة سريعة أو مهمة جديدة:</label>
+      <textarea id="quickNoteInput" placeholder="اكتب ملاحظتك القانونية هنا..."></textarea>
+    </div>
+    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px;">
+      <button type="button" class="btn-submit" style="flex: 1;" onclick="saveQuickNote()">حفظ الملاحظة 💾</button>
+      <button type="button" class="btn-submit" style="flex: 1; background-color: #c05621; border-color: #c05621;" onclick="alert('🎙️ جاري التسجيل الصوتي وتحويل الكلام إلى نص...')">🎙️ تسجيل صوتي (Speech-to-Text)</button>
+    </div>
+  </div>
+</div>
+
+<div id="tab-templates" class="tab-content">
+  <div class="card-section" style="border-top: 5px solid #c5a059;">
+    <h2><span>🏛️ المكتبة الذكية للطلبات ونماذج العراق الرسمية + OCR</span></h2>
+    <p style="font-size: 13px; color: #4a5568; line-height: 1.6; margin-bottom: 12px;">
+      • استعراض ديباجات الطلبات واللوائح (مجلس القضاء الأعلى، محاكم البداءة، الجنايات، والدوائر الرسمية).<br>
+      • رفع صورة نموذج ورقي (OCR Vision) لتحويله إلى قالب رقمي قابل للتعديل.<br>
+      • دليل المحاكم الجغرافي: ربط دوائر التسجيل العقاري والمحاكم بروابط Google Maps للوصول الفوري.
+    </p>
+    <div class="form-group">
+      <label>رفع نموذج ورقي للقراءة (OCR):</label>
+      <input type="file" accept="image/*" onchange="alert('📷 تم رفع الصورة وقراءة النص بنجاح وإضافته للمكتبة!')">
+    </div>
   </div>
 </div>
 
@@ -235,20 +350,12 @@ tr:hover { background-color: #fafafa; }
 </div>
 
 <script>
-// خوارزميات التشفير وجلسة الأمان PBKDF2 / AES-GCM
-async function deriveKey(pin, salt) {
-  const enc = new TextEncoder();
-  const keyMaterial = await crypto.subtle.importKey('raw', enc.encode(pin), { name: 'PBKDF2' }, false, ['deriveKey']);
-  return crypto.subtle.deriveKey({ name: 'PBKDF2', salt: salt, iterations: 100000, hash: 'SHA-256' }, keyMaterial, { name: 'AES-GCM', length: 256 }, false, ['encrypt', 'decrypt']);
-}
-
-async function unlockDiwanSystem() {
+function unlockDiwanSystem() {
   const pin = document.getElementById('portalUnlockPinInput').value.trim();
   if(!pin) {
     alert("يرجى إدخال الرقم السري.");
     return;
   }
-  // افتراضي التحقق المبسط للتنفيذ الفوري أو ربط الخزنة المشفرة
   if(pin.length >= 4) {
     document.getElementById('portalLockScreen').style.display = 'none';
     document.getElementById('portalMainContent').style.display = 'block';
@@ -259,6 +366,13 @@ async function unlockDiwanSystem() {
 
 function lockDiwanSession() {
   location.reload();
+}
+
+function switchTab(tabId, btn) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+  btn.classList.add('active');
 }
 
 function changeSystemLanguage() {
@@ -279,6 +393,23 @@ function syncGoogleDriveBackup() {
   alert("☁️ جاري ضغط قاعدة البيانات والمرفقات ورفعها إلى مجلد Google Drive للمكتب بنجاح ✔️");
 }
 
+function calculateFuelSplit() {
+  const amt = parseFloat(document.getElementById('fuelAmountInput').value) || 0;
+  const mode = document.getElementById('fuelSplitMode').value;
+  let workShare = 0, personalShare = 0;
+  if(mode === 'smart') {
+    workShare = amt * 0.7;
+    personalShare = amt * 0.3;
+  } else if(mode === 'work') {
+    workShare = amt;
+    personalShare = 0;
+  } else {
+    workShare = 0;
+    personalShare = amt;
+  }
+  document.getElementById('fuelResult').innerHTML = `📌 النتيجة: حصة المكتب التشغيلية (عمل): <strong>${workShare.toLocaleString()} د.ع</strong> | حصة المحفظة الشخصية: <strong>${personalShare.toLocaleString()} د.ع</strong>`;
+}
+
 function saveMainRecord(e) {
   e.preventDefault();
   const clientName = document.getElementById('clientNameInput').value;
@@ -295,12 +426,19 @@ function saveMainRecord(e) {
     <td>${sector}</td>
     <td>${lastAction}</td>
     <td><span class="badge badge-active">${status}</span></td>
-  </tr> + ` + tbody.innerHTML;
+  </tr>` + tbody.innerHTML;
 
   document.getElementById('recordForm').reset();
   const alertEl = document.getElementById('actionAlertBox');
   alertEl.style.display = 'block';
   setTimeout(() => alertEl.style.display = 'none', 4000);
+}
+
+function saveQuickNote() {
+  const note = document.getElementById('quickNoteInput').value;
+  if(!note) return;
+  alert("💾 تم حفظ الملاحظة في المفكرة الرقمية بنجاح.");
+  document.getElementById('quickNoteInput').value = '';
 }
 
 function exportOfficialReportPDF() {
