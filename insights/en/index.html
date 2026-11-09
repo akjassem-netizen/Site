@@ -224,12 +224,6 @@
     }
   </style>
 
-
-
-
-
-
-
 <meta property="og:title" content="Why Due Diligence and Compliance Are Your Business’s Lifeline in Iraq Today | AKH Law Office" data-dynamic-seo="true">
 <meta property="og:description" content="Legal analysis on why rigorous due diligence and corporate compliance are essential for foreign enterprises navigating Iraq's evolving regulatory landscape." data-dynamic-seo="true">
 <meta property="og:url" content="https://akjassem.com/insights/en/?p=due-diligence-compliance-business-iraq" data-dynamic-seo="true">
@@ -290,7 +284,7 @@
 
     <!-- حاوية عرض المقالات الإنجليزية -->
     <div id="english-feed"><article class="legal-card" data-category="Corporate &amp; Commercial Law" data-slug="due-diligence-compliance-business-iraq" data-keywords="Due Diligence in Iraq, Corporate Compliance Iraq, Iraqi Investment Law, Foreign Investment Iraq, Companies Law Iraq, Legal Counsel Baghdad" data-changelog="Date: 09/11/2026 | Time: 20:11:05 | Action: Publish" data-status="active" dir="ltr" style="border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; margin-bottom: 24px; text-align: left; direction: ltr; background: #ffffff; ">
-<div style="font-size: 13px; color: #d32f2f; font-weight: 700; margin-bottom: 8px;">Corporate &amp; Commercial Law • 9 November 2026</div>
+<div class="article-category-header" style="font-size: 13px; color: #d32f2f; font-weight: 700; margin-bottom: 8px;">Corporate &amp; Commercial Law • 9 November 2026</div>
 <h2 style="font-size: 19px; font-weight: 800; color: #0b1a30; margin-bottom: 12px;">Why Due Diligence and Compliance Are Your Business’s Lifeline in Iraq Today</h2>
 <p style="font-size: 15px; color: #4a5568; line-height: 1.8; margin-bottom: 12px;">Legal analysis on why rigorous due diligence and corporate compliance are essential for foreign enterprises navigating Iraq's evolving regulatory landscape.</p>
 <div class="article-expanded" style="display: none; border-top: 1px dashed #cbd5e0; padding-top: 16px; margin-top: 12px; font-size: 15px; color: #2d3748; line-height: 1.9; direction: ltr; text-align: left;">
@@ -330,7 +324,7 @@ Engaging seasoned legal counsel to conduct thorough due diligence before executi
 <p style="margin-top:12px;">© All rights reserved to Ali Kadhem Al-Hashimi Law Office.</p>
 </div>
 </div>
-<button type="button" onclick="const b = this.previousElementSibling; const open = b.style.display==='block'; b.style.display = open?'none':'block'; this.innerText = open ? 'Read More →' : 'Show Less ↑';" style="background: none; border: 1.5px solid #0b1a30; color: #0b1a30; padding: 8px 18px; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 10px;">Read More →</button>
+<button type="button" class="read-more-btn" onclick="const b = this.previousElementSibling; const open = b.style.display==='block'; b.style.display = open?'none':'block'; this.innerText = open ? 'Show Less ↑' : 'Read More →'; if(!open) registerArticleView('due-diligence-compliance-business-iraq');" style="background: none; border: 1.5px solid #0b1a30; color: #0b1a30; padding: 8px 18px; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 10px;">Read More →</button>
 </article>
       <!-- المقالات المنشورة بالإنجليزية ستظهر هنا -->
     </div>
@@ -410,6 +404,14 @@ Engaging seasoned legal counsel to conduct thorough due diligence before executi
       changeSystemLanguage(lang);
     }
 
+    // Direct View Counter Tracking
+    const viewedSlugsSet = new Set();
+    function registerArticleView(slug) {
+      if (!slug || viewedSlugsSet.has(slug)) return;
+      viewedSlugsSet.add(slug);
+      fetch(`https://api.counterapi.dev/v1/akjassem-insights/${slug}/up`).catch(() => {});
+    }
+
     // Category Filtering Logic for English Insights Feed
     let activeSiteCategory = 'ALL';
 
@@ -471,10 +473,13 @@ Engaging seasoned legal counsel to conduct thorough due diligence before executi
       const urlParams = new URLSearchParams(window.location.search);
       const slug = urlParams.get('p');
       if (slug) {
+        // Track view immediately on direct article navigation
+        registerArticleView(slug);
+
         const targetArticle = document.querySelector(`article[data-slug="${slug}"]`);
         if (targetArticle) {
           const expandedDiv = targetArticle.querySelector('.article-expanded');
-          const btn = targetArticle.querySelector('button[onclick*="style.display"]');
+          const btn = targetArticle.querySelector('.read-more-btn');
           if (expandedDiv) {
             expandedDiv.style.display = 'block';
             if (btn) btn.innerText = 'Show Less ↑';
@@ -486,6 +491,5 @@ Engaging seasoned legal counsel to conduct thorough due diligence before executi
       }
     });
   </script>
-
 
 </body></html>
