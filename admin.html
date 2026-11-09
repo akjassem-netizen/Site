@@ -58,6 +58,7 @@ textarea { resize: vertical; min-height: 150px; line-height: 1.7; }
 .article-info .item-meta { font-size: 12px; color: #64748b; margin-top: 5px; display: flex; gap: 15px; align-items: center; flex-wrap: wrap; }
 .category-pill { background: #e2e8f0; color: #0b1a30; padding: 2px 8px; border-radius: 6px; font-weight: 700; }
 .views-badge { background: #e6fffa; color: #234e52; border: 1px solid #b2f5ea; padding: 2px 8px; border-radius: 6px; font-weight: 700; }
+.country-badge { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; padding: 2px 8px; border-radius: 6px; font-size: 11.5px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; }
 .status-hidden-badge { background: #fed7d7; color: #9b1c1c; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 11px; }
 .item-actions { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; border-top: 1px dashed #edf2f7; padding-top: 10px; }
 .btn-action { border: none; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; font-family: inherit; }
@@ -110,7 +111,7 @@ textarea { resize: vertical; min-height: 150px; line-height: 1.7; }
 
 <div id="dashboardScreen" style="display: none;">
 <div class="top-nav-bar">
-<span id="uiStatusBadge" style="font-size: 13px; font-weight: 700; color: #2d3748;">🟢 النظام متصل وخزنة الأمان مفعلة</span>
+<span id="uiStatusBadge" style="font-size: 13px; font-weight: 700; color: #2d3748;">🟢 النظام متصل واستثناء أجهزتك مفعل 🛡️</span>
 <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
 <button type="button" class="btn-nav-action" style="background-color: #4a5568;" onclick="openTrashModal()">🗑️ سلة المهملات</button>
 <button type="button" class="btn-nav-action btn-lock-nav" onclick="lockPortal()">قفل الجلسة 🔒</button>
@@ -120,7 +121,7 @@ textarea { resize: vertical; min-height: 150px; line-height: 1.7; }
 
 <div id="editBanner" class="alert-box alert-success" style="display: none; justify-content: space-between; align-items: center; margin-bottom: 20px;">
 <span id="editBannerText">✏️ تعديل التحليل القانوني...</span>
-<button type="button" onclick="cancelEdit()" style="background: #e53e3e; color white; border: none; padding: 5px 12px; border-radius: 6px; cursor: pointer; font-weight: 700;">إلغاء ✕</button>
+<button type="button" onclick="cancelEdit()" style="background: #e53e3e; color: white; border: none; padding: 5px 12px; border-radius: 6px; cursor: pointer; font-weight: 700;">إلغاء ✕</button>
 </div>
 
 <div class="card-section">
@@ -287,6 +288,13 @@ const EN_CATEGORIES = [
 "Personal Status & Family Law"
 ];
 
+// قاموس الأعلام
+const COUNTRY_FLAGS = {
+  'IQ': '🇮🇶 العراق', 'AE': '🇦🇪 الإمارات', 'SA': '🇸🇦 السعودية', 'GB': '🇬🇧 بريطانيا',
+  'US': '🇺🇸 أمريكا', 'TR': '🇹🇷 تركيا', 'JO': '🇯🇴 الأردن', 'EG': '🇪🇬 مصر',
+  'DE': '🇩🇪 ألمانيا', 'QA': '🇶🇦 قطر', 'KW': '🇰🇼 الكويت', 'LB': '🇱🇧 لبنان'
+};
+
 let ACTIVE_TOKEN = '';
 let EDITING_SLUG = null;
 let SWITCHING_SLUG = null;
@@ -320,6 +328,12 @@ const decrypted = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: iv }, key, 
 return new TextDecoder().decode(decrypted);
 }
 
+// تثبيت بصمة حظر احتساب أجهزة المشرف
+function tagCurrentDeviceAsAdmin() {
+  localStorage.setItem('akh_ignore_stats', 'true');
+  sessionStorage.setItem('akh_ignore_stats', 'true');
+}
+
 window.onload = function() {
 applyLanguageUI();
 const savedSessionToken = sessionStorage.getItem('akh_admin_active_token');
@@ -327,6 +341,7 @@ const savedVault = localStorage.getItem('akh_admin_vault');
 
 if (savedSessionToken) {
 ACTIVE_TOKEN = savedSessionToken;
+tagCurrentDeviceAsAdmin();
 document.getElementById('setupScreen').style.display = 'none';
 document.getElementById('lockScreen').style.display = 'none';
 document.getElementById('dashboardScreen').style.display = 'block';
@@ -467,6 +482,7 @@ const vaultObj = await encryptToken(token, pin);
 localStorage.setItem('akh_admin_vault', JSON.stringify(vaultObj));
 ACTIVE_TOKEN = token;
 sessionStorage.setItem('akh_admin_active_token', token);
+tagCurrentDeviceAsAdmin();
 document.getElementById('setupScreen').style.display = 'none';
 document.getElementById('dashboardScreen').style.display = 'block';
 loadArticles();
@@ -479,6 +495,7 @@ try {
 const vaultObj = JSON.parse(localStorage.getItem('akh_admin_vault'));
 ACTIVE_TOKEN = await decryptToken(vaultObj, pin);
 sessionStorage.setItem('akh_admin_active_token', ACTIVE_TOKEN);
+tagCurrentDeviceAsAdmin();
 document.getElementById('lockScreen').style.display = 'none';
 document.getElementById('dashboardScreen').style.display = 'block';
 loadArticles();
@@ -785,6 +802,7 @@ item.innerHTML = `
   <span class="category-pill">📂 ${art.category}</span>
   <span>Slug: ?p=${art.slug}</span>
   <span class="views-badge">👁️ ${isEn ? 'Views:' : 'المشاهدات:'} <span id="views-${art.slug}">...</span></span>
+  <span class="country-badge" id="countries-${art.slug}">🌍 جلب الدول...</span>
 </div>
 </div>
 <div class="item-actions">
@@ -797,9 +815,10 @@ item.innerHTML = `
 </div>`;
 container.appendChild(item);
 
-// قراءة المشاهدات بالسيرفر المستقر
+// قراءة المشاهدات الكلية
 const cleanKey = 'akh_views_' + art.slug.replace(/[^a-zA-Z0-9]/g, '_').substring(0, 45);
 const viewsEl = document.getElementById(`views-${art.slug}`);
+const countriesEl = document.getElementById(`countries-${art.slug}`);
 
 fetch(`https://countapi.mileshilliard.com/api/v1/get/${cleanKey}?t=${Date.now()}`)
   .then(res => res.json())
@@ -811,6 +830,28 @@ fetch(`https://countapi.mileshilliard.com/api/v1/get/${cleanKey}?t=${Date.now()}
   .catch(() => {
     if (viewsEl) viewsEl.innerText = '0';
   });
+
+// قراءة وعرض تفصيل الدول الأكثر قراءة
+const popularCountryCodes = ['IQ', 'AE', 'SA', 'GB', 'US', 'TR', 'EG', 'JO'];
+const countryPromises = popularCountryCodes.map(code => {
+  const cKey = `${cleanKey}_${code}`;
+  return fetch(`https://countapi.mileshilliard.com/api/v1/get/${cKey}?t=${Date.now()}`)
+    .then(r => r.json())
+    .then(d => ({ code, count: (d && d.value) ? parseInt(d.value) : 0 }))
+    .catch(() => ({ code, count: 0 }));
+});
+
+Promise.all(countryPromises).then(results => {
+  const activeCountries = results.filter(r => r.count > 0).sort((a,b) => b.count - a.count);
+  if (countriesEl) {
+    if (activeCountries.length === 0) {
+      countriesEl.innerText = '🌍 بانتظار قراءات جديدة';
+    } else {
+      countriesEl.innerHTML = '🌍 ' + activeCountries.map(c => `${COUNTRY_FLAGS[c.code] || c.code}: ${c.count}`).join(' • ');
+    }
+  }
+});
+
 });
 }
 
