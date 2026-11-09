@@ -47,25 +47,28 @@ textarea { resize: vertical; min-height: 150px; line-height: 1.7; }
 
 /* Filter Tabs */
 .filter-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px dashed #e2e8f0; }
-.tab-btn { background: #edf2f7; color: #2d3748; border: 1px solid #cbd5e0; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; cursor: pointer; font-family: inherit; transition: 0.2s; }
-.tab-btn:hover { background: #e2e8f0; }
-.tab-btn.active { background: #0b1a30; color: #ffffff; border-color: #0b1a30; }
-.tab-badge { background: #c5a059; color: #0b1a30; border-radius: 10px; padding: 1px 6px; font-size: 11px; margin-inline-start: 4px; }
+.tab-btn { background: #edf2f7; color: #2d3748; border: 1.5px solid #cbd5e0; padding: 7px 14px; border-radius: 20px; font-size: 12.5px; font-weight: 700; cursor: pointer; font-family: inherit; transition: 0.2s; display: inline-flex; align-items: center; gap: 6px; user-select: none; }
+.tab-btn:hover { background: #e2e8f0; border-color: #c5a059; }
+.tab-btn.active { background: #0b1a30 !important; color: #ffffff !important; border-color: #0b1a30 !important; box-shadow: 0 3px 8px rgba(11,26,48,0.2); }
+.tab-badge { background: #c5a059; color: #0b1a30; border-radius: 10px; padding: 1px 7px; font-size: 11px; font-weight: 800; }
+.tab-btn.active .tab-badge { background: #ffffff; color: #0b1a30; }
 
 .article-item { background: #fafafa; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 15px; margin-bottom: 14px; display: flex; flex-direction: column; gap: 10px; }
 .article-info .item-title { font-size: 15px; font-weight: 800; color: #0b1a30; line-height: 1.4; }
 .article-info .item-meta { font-size: 12px; color: #64748b; margin-top: 5px; display: flex; gap: 15px; align-items: center; flex-wrap: wrap; }
 .category-pill { background: #e2e8f0; color: #0b1a30; padding: 2px 8px; border-radius: 6px; font-weight: 700; }
+.views-badge { background: #e6fffa; color: #234e52; border: 1px solid #b2f5ea; padding: 2px 8px; border-radius: 6px; font-weight: 700; }
 .status-hidden-badge { background: #fed7d7; color: #9b1c1c; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 11px; }
 .item-actions { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; border-top: 1px dashed #edf2f7; padding-top: 10px; }
 .btn-action { border: none; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; font-family: inherit; }
 .btn-edit { background-color: #3182ce; color: #ffffff; }
+.btn-switch-cat { background-color: #805ad5; color: #ffffff; }
 .btn-view { background-color: #16a34a; color: #ffffff; text-decoration: none; }
 .btn-delete { background-color: #e53e3e; color: #ffffff; }
 .btn-logs { background-color: #d69e2e; color: #ffffff; }
 .btn-hide { background-color: #4a5568; color: #ffffff; }
 
-#logModal, #trashModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11,26,48,0.75); z-index: 2000; justify-content: center; align-items: center; padding: 15px; }
+#logModal, #trashModal, #catSwitchModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11,26,48,0.75); z-index: 2000; justify-content: center; align-items: center; padding: 15px; }
 .modal-content { background: #fff; width: 100%; max-width: 520px; border-radius: 14px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border-top: 5px solid #c5a059; text-align: right; max-height: 80vh; overflow-y: auto; }
 .log-box-item { background: #f8fafc; border: 1px solid #cbd5e0; border-radius: 8px; padding: 11px 14px; margin-bottom: 10px; font-size: 13px; color: #2d3748; line-height: 1.6; }
 .log-time { font-weight: 700; color: #d32f2f; margin-bottom: 3px; font-size: 12px; }
@@ -136,7 +139,6 @@ textarea { resize: vertical; min-height: 150px; line-height: 1.7; }
 <select id="categorySelect" onchange="checkCustomCategory()"></select>
 </div>
 
-<!-- حقل التخصص المخصص عند اختيار "تخصص آخر" -->
 <div class="form-group" id="customCategoryGroup" style="display: none;">
 <label id="uiLblCustomCategory">اكتب اسم التخصص القانوني الجديد:</label>
 <input type="text" id="customCategoryInput" placeholder="مثال: قانون المصارف والتأمين أو Banking & Finance Law">
@@ -219,6 +221,22 @@ textarea { resize: vertical; min-height: 150px; line-height: 1.7; }
 
 </div>
 
+<!-- نافذة تحويل ونقل التخصص السريع -->
+<div id="catSwitchModal">
+<div class="modal-content">
+<div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px; margin-bottom: 15px;">
+<h3 style="margin:0; font-size:16px; color:#0b1a30;">🔄 تغيير ونقل التخصص القانوني للمقال</h3>
+<button onclick="closeCatSwitchModal()" style="background:#e53e3e; color:#fff; border:none; padding:5px 12px; border-radius:6px; cursor:pointer; font-weight:700;">إلغاء ✕</button>
+</div>
+<p id="catSwitchArticleTitle" style="font-size:13.5px; font-weight:700; color:#2b6cb0; margin-bottom:15px;"></p>
+<div class="form-group">
+<label>اختر التخصص الجديد المراد نقل المقال إليه:</label>
+<select id="modalCategorySelect"></select>
+</div>
+<button type="button" id="btnSaveSwitchCat" class="btn-submit" onclick="confirmCategorySwitch()">تحديث التخصص ونقله فوراً 🚀</button>
+</div>
+</div>
+
 <div id="logModal">
 <div class="modal-content">
 <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px; margin-bottom: 15px;">
@@ -257,8 +275,7 @@ const AR_CATEGORIES = [
 "القانون العقاري والمعاملات العقارية",
 "الدعاوى المدنية والتعويضات",
 "القضايا الجزائية والدفاع الجنائي",
-"التحكيم ومنازعات العقود",
-"CUSTOM"
+"التحكيم ومنازعات العقود"
 ];
 
 const EN_CATEGORIES = [
@@ -269,12 +286,12 @@ const EN_CATEGORIES = [
 "Dispute Resolution & Arbitration",
 "Civil Claims & Compensation",
 "Criminal Defense & Regulatory Enforcement",
-"Personal Status & Family Law",
-"CUSTOM"
+"Personal Status & Family Law"
 ];
 
 let ACTIVE_TOKEN = '';
 let EDITING_SLUG = null;
+let SWITCHING_SLUG = null;
 let LOADED_ARTICLES_CACHE = [];
 let ACTIVE_FILTER_CATEGORY = 'ALL';
 
@@ -355,9 +372,14 @@ select.innerHTML = '';
 categories.forEach(cat => {
 const opt = document.createElement('option');
 opt.value = cat;
-opt.innerText = cat === 'CUSTOM' ? (isEn ? '✍️ Other Practice Area...' : '✍️ تخصص آخر...') : cat;
+opt.innerText = cat;
 select.appendChild(opt);
 });
+
+const customOpt = document.createElement('option');
+customOpt.value = 'CUSTOM';
+customOpt.innerText = isEn ? '✍️ Other Practice Area...' : '✍️ تخصص آخر...';
+select.appendChild(customOpt);
 
 checkCustomCategory();
 
@@ -613,7 +635,7 @@ const dirAttr = isEn ? 'ltr' : 'rtl';
 const textAlignAttr = isEn ? 'left' : 'right';
 
 const articleHtml = `<article class="legal-card" data-category="${category}" data-slug="${slug}" data-keywords="${keywords}" data-changelog="${finalLogs}" data-status="${existingStatus}" dir="${dirAttr}" style="border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; margin-bottom: 24px; text-align: ${textAlignAttr}; direction: ${dirAttr}; background: #ffffff; ${existingStatus==='hidden'?'display:none;':''}">
-<div style="font-size: 13px; color: #d32f2f; font-weight: 700; margin-bottom: 8px;">${category} • ${displayDate}</div>
+<div class="article-category-header" style="font-size: 13px; color: #d32f2f; font-weight: 700; margin-bottom: 8px;">${category} • ${displayDate}</div>
 <h2 style="font-size: 19px; font-weight: 800; color: #0b1a30; margin-bottom: 12px;">${title}</h2>
 <p style="font-size: 15px; color: #4a5568; line-height: 1.8; margin-bottom: 12px;">${summary}</p>
 <div class="article-expanded" style="display: none; border-top: 1px dashed #cbd5e0; padding-top: 16px; margin-top: 12px; font-size: 15px; color: #2d3748; line-height: 1.9; direction: ${dirAttr}; text-align: ${textAlignAttr};">
@@ -674,14 +696,14 @@ const seenSlugs = new Set();
 const categoryCounts = {};
 
 articles.forEach((art) => {
-const title = art.querySelector('h2') ? art.querySelector('h2').innerText : (isEn ? 'Article' : 'مقال');
+const title = art.querySelector('h2') ? art.querySelector('h2').innerText.trim() : (isEn ? 'Article' : 'مقال');
 const slug = art.getAttribute('data-slug') || 'article';
 if (seenSlugs.has(slug)) return;
 seenSlugs.add(slug);
 
-const summary = art.querySelector('p') ? art.querySelector('p').innerText : '';
+const summary = art.querySelector('p') ? art.querySelector('p').innerText.trim() : '';
 const keywords = art.getAttribute('data-keywords') || '';
-const category = art.getAttribute('data-category') || (isEn ? 'General' : 'عام');
+const category = (art.getAttribute('data-category') || (isEn ? 'General' : 'عام')).trim();
 const status = art.getAttribute('data-status') || 'active';
 const changelog = art.getAttribute('data-changelog') || (isEn ? 'No edit history' : 'لا توجد تعديلات');
 
@@ -693,10 +715,10 @@ LOADED_ARTICLES_CACHE.push({ slug, title, summary, keywords, content, category, 
 categoryCounts[category] = (categoryCounts[category] || 0) + 1;
 });
 
-// بناء أزرار التصفية والتجميع حسب التخصص
+// بناء أزرار التصفية
 buildCategoryTabs(categoryCounts, isEn);
 
-// عرض المقالات بناءً على التصفية النشطة
+// عرض المقالات
 renderFilteredArticles();
 
 } catch(e) {
@@ -711,32 +733,33 @@ tabsContainer.innerHTML = '';
 const allBtn = document.createElement('button');
 allBtn.type = 'button';
 allBtn.className = `tab-btn ${ACTIVE_FILTER_CATEGORY === 'ALL' ? 'active' : ''}`;
+allBtn.setAttribute('data-category', 'ALL');
 allBtn.innerHTML = `${isEn ? 'All Insights' : 'كافة التحليلات'} <span class="tab-badge">${LOADED_ARTICLES_CACHE.length}</span>`;
-allBtn.onclick = () => { ACTIVE_FILTER_CATEGORY = 'ALL'; updateActiveTab(); renderFilteredArticles(); };
+allBtn.onclick = function() { setCategoryFilter('ALL'); };
 tabsContainer.appendChild(allBtn);
 
 Object.keys(counts).forEach(cat => {
 const btn = document.createElement('button');
 btn.type = 'button';
 btn.className = `tab-btn ${ACTIVE_FILTER_CATEGORY === cat ? 'active' : ''}`;
+btn.setAttribute('data-category', cat);
 btn.innerHTML = `${cat} <span class="tab-badge">${counts[cat]}</span>`;
-btn.onclick = () => { ACTIVE_FILTER_CATEGORY = cat; updateActiveTab(); renderFilteredArticles(); };
+btn.onclick = function() { setCategoryFilter(cat); };
 tabsContainer.appendChild(btn);
 });
 }
 
-function updateActiveTab() {
+function setCategoryFilter(cat) {
+ACTIVE_FILTER_CATEGORY = cat;
 const tabs = document.querySelectorAll('#categoryTabsContainer .tab-btn');
 tabs.forEach(tab => {
-const isAll = tab.innerText.includes('All Insights') || tab.innerText.includes('كافة التحليلات');
-if (ACTIVE_FILTER_CATEGORY === 'ALL' && isAll) {
-tab.classList.add('active');
-} else if (tab.innerText.startsWith(ACTIVE_FILTER_CATEGORY)) {
+if (tab.getAttribute('data-category') === cat) {
 tab.classList.add('active');
 } else {
 tab.classList.remove('active');
 }
 });
+renderFilteredArticles();
 }
 
 function renderFilteredArticles() {
@@ -766,23 +789,113 @@ item.innerHTML = `
 <div class="item-meta">
   <span class="category-pill">📂 ${art.category}</span>
   <span>Slug: ?p=${art.slug}</span>
-  <span class="views-badge">👁️ ${isEn ? 'Views:' : 'المشاهدات:'} <span id="views-${art.slug}">0</span></span>
+  <span class="views-badge">👁️ ${isEn ? 'Views:' : 'المشاهدات:'} <span id="views-${art.slug}">...</span></span>
 </div>
 </div>
 <div class="item-actions">
 <a class="btn-action btn-view" href="https://akjassem.com/insights/${isEn?'en/':''}?p=${art.slug}" target="_blank">${isEn ? 'View 👁️' : 'معاينة 👁️'}</a>
 <button class="btn-action btn-edit" onclick="startEdit('${art.slug}')">${isEn ? 'Edit ✏️' : 'تعديل ✏️'}</button>
+<button class="btn-action btn-switch-cat" onclick="openCatSwitchModal('${art.slug}')">نقل التخصص 🔄</button>
 <button class="btn-action btn-logs" onclick="openLogModal('${art.changelog.replace(/'/g, "\\'")}')">${isEn ? 'History 🕒' : 'السجل 🕒'}</button>
 <button class="btn-action btn-hide" onclick="toggleHide('${art.slug}')">${hideText}</button>
 <button class="btn-action btn-delete" onclick="moveToTrash('${art.slug}')">${isEn ? 'Delete 🗑️' : 'حذف 🗑️'}</button>
 </div>`;
 container.appendChild(item);
 
-fetch(`https://api.countapi.xyz/get/akjassem-site/${art.slug}`)
+// قراءة المشاهدات الحقيقية عبر مزود العداد المباشر
+fetch(`https://api.counterapi.dev/v1/akjassem-insights/${art.slug}/`)
 .then(r => r.json())
-.then(d => { if(d && typeof d.value === 'number') { const el = document.getElementById(`views-${art.slug}`); if(el) el.innerText = d.value; } })
-.catch(() => {});
+.then(d => { 
+  const el = document.getElementById(`views-${art.slug}`);
+  if(el) el.innerText = (d && typeof d.count === 'number') ? d.count : '0';
+})
+.catch(() => {
+  const el = document.getElementById(`views-${art.slug}`);
+  if(el) el.innerText = '0';
 });
+});
+}
+
+function openCatSwitchModal(slug) {
+SWITCHING_SLUG = slug;
+const art = LOADED_ARTICLES_CACHE.find(a => a.slug === slug);
+if (!art) return;
+
+const isEn = document.getElementById('articleLang').value === 'en';
+const categories = isEn ? EN_CATEGORIES : AR_CATEGORIES;
+const select = document.getElementById('modalCategorySelect');
+select.innerHTML = '';
+
+categories.forEach(cat => {
+const opt = document.createElement('option');
+opt.value = cat;
+opt.innerText = cat;
+if (cat === art.category) opt.selected = true;
+select.appendChild(opt);
+});
+
+document.getElementById('catSwitchArticleTitle').innerText = `المقال: "${art.title}" (التخصص الحالي: ${art.category})`;
+document.getElementById('catSwitchModal').style.display = 'flex';
+}
+
+function closeCatSwitchModal() {
+SWITCHING_SLUG = null;
+document.getElementById('catSwitchModal').style.display = 'none';
+}
+
+async function confirmCategorySwitch() {
+if (!SWITCHING_SLUG) return;
+const newCat = document.getElementById('modalCategorySelect').value;
+const btn = document.getElementById('btnSaveSwitchCat');
+btn.innerText = 'جارٍ نقل التخصص...';
+btn.disabled = true;
+
+try {
+const lang = document.getElementById('articleLang').value;
+const isEn = lang === 'en';
+const targetFilePath = isEn ? 'insights/en/index.html' : 'insights/index.html';
+const getUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${targetFilePath}?ref=${BRANCH}`;
+const res = await fetch(getUrl, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
+if (!res.ok) throw new Error('فشل جلب الملف.');
+const fileData = await res.json();
+const doc = new DOMParser().parseFromString(b64_to_utf8(fileData.content), 'text/html');
+
+const art = doc.querySelector(`article[data-slug="${SWITCHING_SLUG}"]`);
+if (!art) throw new Error('المقال غير موجود داخل الملف.');
+
+// تحديث وسم data-category
+art.setAttribute('data-category', newCat);
+
+// تحديث سطر العنوان الملون الظاهر فوق المقال
+const catHeader = art.querySelector('.article-category-header') || art.firstElementChild;
+if (catHeader) {
+  const parts = catHeader.innerText.split('•');
+  const datePart = parts.length > 1 ? parts[1].trim() : '';
+  catHeader.innerText = `${newCat} • ${datePart}`;
+}
+
+// تحديث سجل التعديلات
+const nowObj = new Date();
+const logMsg = `تغيير التخصص إلى (${newCat}) في ${nowObj.toLocaleDateString('ar-IQ')} ${nowObj.toLocaleTimeString('ar-IQ')}`;
+const curLogs = art.getAttribute('data-changelog') || '';
+art.setAttribute('data-changelog', curLogs ? `${curLogs}///${logMsg}` : logMsg);
+
+const putRes = await fetch(getUrl.split('?')[0], {
+method: 'PUT',
+headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}`, 'Content-Type': 'application/json' },
+body: JSON.stringify({ message: `Switch practice area: ${SWITCHING_SLUG} to ${newCat}`, content: utf8_to_b64('<!DOCTYPE html>\n' + doc.documentElement.outerHTML), sha: fileData.sha, branch: BRANCH })
+});
+
+if (!putRes.ok) throw new Error('فشل الحفظ في غيت هب.');
+alert(`تم نقل المقال بنجاح إلى تخصص: "${newCat}" 🚀`);
+closeCatSwitchModal();
+loadArticles();
+} catch(err) {
+alert('❌ خطأ: ' + err.message);
+} finally {
+btn.innerText = 'تحديث التخصص ونقله فوراً 🚀';
+btn.disabled = false;
+}
 }
 
 function startEdit(slug) {
