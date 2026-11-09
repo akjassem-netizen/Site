@@ -124,7 +124,6 @@
     
     #arabic-feed { width: 100%; }
 
-    /* أزرار تصفية التخصصات */
     .filter-wrapper {
       display: flex;
       gap: 8px;
@@ -185,7 +184,6 @@
     .btn-share-x { background-color: #000000; color: #ffffff; }
     #copyToast { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); background-color: #0b1a30; color: #ffffff; padding: 10px 22px; border-radius: 30px; font-size: 13px; font-weight: 700; box-shadow: 0 4px 15px rgba(0,0,0,0.2); display: none; z-index: 99999; }
 
-    /* تنسيق الفوتر المحدث (سطر أفقي واحد متناسق) */
     .site-footer {
       text-align: center;
       padding: 22px 10px;
@@ -281,10 +279,8 @@
       نافذة متخصصة تُعنى بنشر الدراسات والإيضاحات الإجرائية في فروع القانون العراقي: قانون العمل والإقامة والضمان الاجتماعي، تأسيس وتسجيل الشركات، العلامات التجارية، وقضايا الأحوال الشخصية والدعاوى المدنية والتجارية.
     </div>
 
-    <!-- شريط تجميع وتصفية المقالات حسب التخصص -->
     <div id="categoryFilterBar" class="filter-wrapper"></div>
 
-    <!-- حاوية عرض المقالات -->
     <div id="arabic-feed"><article class="legal-card" data-category="قانون الشركات والتجارة" data-slug="fsc-ruling-foreign-investment-iraq" data-keywords="الاستثمار الأجنبي في العراق, المحكمة الاتحادية العليا, قرارات مجلس قيادة الثورة المنحل, تملك غير العراقيين, قانون الاستثمار, المعاملة بالمثل" data-changelog="التاريخ: ٧‏/١١‏/٢٠٢٦ | الوقت: ٤:٣٨:٠٠ م | الإجراء: نشر جديد///التاريخ: ٧‏/١١‏/٢٠٢٦ | الوقت: ٤:٤٢:٥١ م | الإجراء: تعديل وتحديث" data-status="active" style="border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; margin-bottom: 24px; text-align: right; direction: rtl; background: #ffffff; ">
 <div class="article-category-header" style="font-size: 13px; color: #d32f2f; font-weight: 700; margin-bottom: 8px;">قانون الشركات والتجارة • ٧ تشرين الثاني ٢٠٢٦</div>
 <h2 style="font-size: 19px; font-weight: 800; color: #0b1a30; margin-bottom: 12px;">سقوط القيود التاريخية: رؤية قانونية في حكم المحكمة الاتحادية العليا بإلغاء حظر استثمار وتملك غير العراقيين</h2>
@@ -432,7 +428,6 @@
 
   </div>
 
-  <!-- الفوتر بمعالجة الروابط القانونية في سطر أفقي واحد متناسق -->
   <footer class="site-footer">
     <div class="footer-legal-links">
       <a href="/privacy/">سياسة الخصوصية</a>
@@ -458,7 +453,7 @@
     const langDict = {
       ar: { title: "الآراء والتحليلات القانونية | Law Office Of Ali Kadhem Hashimi", intro: "نافذة متخصصة تُعنى بنشر الدراسات والإيضاحات الإجرائية في فروع القانون العراقي: قانون العمل والإقامة والضمان الاجتماعي، تأسيس وتسجيل الشركات، العلامات التجارية، وقضايا الأحوال الشخصية والدعاوى المدنية والتجارية.", home: "الرئيسية", services: "دليل الخدمات القانونية", consultations: "الاستشارات القانونية", insights: "الآراء والرؤى القانونية", about: "من نحن", contact: "اتصل بنا", backHome: "🏠 العودة إلى الموقع الرئيسي الكامل ←" },
       en: { title: "Legal Insights & Analyses | Law Office Of Ali Kadhem Hashimi", intro: "A specialized legal portal dedicated to publishing studies and procedural clarifications across branches of Iraqi law: labor, residency and social security, company formation and registration, trademarks, personal status, and civil/commercial litigation.", home: "Home", services: "Legal Services Directory", consultations: "Legal Consultations", insights: "Iraq Legal Insights", about: "About Us", contact: "Contact Us", backHome: "🏠 Back to Main Home Page ←" },
-      tr: { title: "Hukuki İçgörüler ve Analizler | Av. Ali Kazım Haşimi", intro: "Irak hukuku dallarında çalışmalar ve usuli açıklamalar yayınlamaya adanmış özel bir hukuk portalı.", home: "Ana Sayfa", services: "Hizmetler", consultations: "Hukuki Danışمانlık", insights: "İçgörüler", about: "Hakkımızda", contact: "İletişim", backHome: "🏠 Ana Sayfaya Dön ←" },
+      tr: { title: "Hukuki İçgörüler ve Analizler | Av. Ali Kazım Haşimi", intro: "Irak hukuku dallarında çalışmalar ve usuli açıklamalar yayınlamaya adanmış özel bir hukuk portalı.", home: "Ana Sayfa", services: "Hizmetler", consultations: "Hukuki Danışmanlık", insights: "İçgörüler", about: "Hakkımızda", contact: "İletişim", backHome: "🏠 Ana Sayfaya Dön ←" },
       zh: { title: "法律洞察与分析 | 阿里·卡德姆·哈希米律所", intro: "专注于伊拉克法律分支研究与 procedural 澄清的专业法律门户。", home: "首页", services: "法律服务", consultations: "法律咨询", insights: "法律洞察", about: "关于我们", contact: "联系我们", backHome: "🏠 返回首页 ←" },
       fr: { title: "Aperçus et Analyses Juridiques | Cabinet AKH", intro: "Un portail juridique spécialisé dédié à la publication d'études et de clarifications procédurales en droit irakien.", home: "Accueil", services: "Services", consultations: "Consultations", insights: "Aperçus", about: "À propos", contact: "Contact", backHome: "🏠 Retour à l'accueil ←" },
       es: { title: "Perspectivas y Análisis Legales | Bufete AKH", intro: "Un portal legal especializado dedicado a publicar estudios y aclaraciones procedimentales en el derecho iraquí.", home: "Inicio", services: "Servicios", consultations: "Consultas", insights: "Perspectivas", about: "Sobre nosotros", contact: "Contacto", backHome: "🏠 Volver al inicio ←" },
@@ -496,18 +491,17 @@
       changeSystemLanguage(lang);
     }
 
-    // دالة موحدة لتسجيل المشاهدة لكل مقال ظاهر أو مفتوح بدون قيود المتصفحات
+    // دالة موحدة لتسجيل المشاهدة لكل مقال ظاهر أو مفتوح عبر السيرفر المستقر
     const trackedSlugsSet = new Set();
     function trackArticleView(slug) {
       if (!slug || trackedSlugsSet.has(slug)) return;
       trackedSlugsSet.add(slug);
       
-      const cleanKey = slug.replace(/[^a-zA-Z0-9]/g, '_').substring(0, 40);
+      const cleanKey = 'akh_views_' + slug.replace(/[^a-zA-Z0-9]/g, '_').substring(0, 45);
       const img = new Image();
-      img.src = `https://api.counterapi.dev/v1/akh_views/${cleanKey}/up?t=${Date.now()}`;
+      img.src = `https://countapi.mileshilliard.com/api/v1/hit/${cleanKey}?t=${Date.now()}`;
     }
 
-    // منطق تصفية وتجميع المقالات حسب التخصص
     let activeSiteCategory = 'ALL';
 
     function initCategoryFilters() {
@@ -555,10 +549,8 @@
       const savedLang = localStorage.getItem('preferredSystemLang') || 'ar';
       changeSystemLanguage(savedLang);
 
-      // بناء أزرار التخصصات تلقائياً
       initCategoryFilters();
 
-      // 1. تسجيل المشاهدة فوراً عند دخول الزائر عبر رابط مباشر لمقال محدد (?p=slug)
       const urlParams = new URLSearchParams(window.location.search);
       const slug = urlParams.get('p');
       if (slug) {
@@ -579,7 +571,6 @@
       }
     });
 
-    // 2. تسجيل المشاهدة أيضاً عند النقر على زر "قراءة المزيد" لأي مقال
     document.addEventListener('click', function(e) {
       const btn = e.target.closest('button');
       if (btn && (btn.innerText.includes('قراءة المزيد') || btn.classList.contains('read-more-btn'))) {
