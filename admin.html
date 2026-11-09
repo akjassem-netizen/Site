@@ -45,9 +45,17 @@ textarea { resize: vertical; min-height: 150px; line-height: 1.7; }
 .btn-action-sm { background-color: #2b6cb0; color: #fff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; transition: 0.2s; }
 .btn-action-sm:hover { background-color: #2c5282; }
 
+/* Filter Tabs */
+.filter-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px dashed #e2e8f0; }
+.tab-btn { background: #edf2f7; color: #2d3748; border: 1px solid #cbd5e0; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; cursor: pointer; font-family: inherit; transition: 0.2s; }
+.tab-btn:hover { background: #e2e8f0; }
+.tab-btn.active { background: #0b1a30; color: #ffffff; border-color: #0b1a30; }
+.tab-badge { background: #c5a059; color: #0b1a30; border-radius: 10px; padding: 1px 6px; font-size: 11px; margin-inline-start: 4px; }
+
 .article-item { background: #fafafa; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 15px; margin-bottom: 14px; display: flex; flex-direction: column; gap: 10px; }
 .article-info .item-title { font-size: 15px; font-weight: 800; color: #0b1a30; line-height: 1.4; }
 .article-info .item-meta { font-size: 12px; color: #64748b; margin-top: 5px; display: flex; gap: 15px; align-items: center; flex-wrap: wrap; }
+.category-pill { background: #e2e8f0; color: #0b1a30; padding: 2px 8px; border-radius: 6px; font-weight: 700; }
 .status-hidden-badge { background: #fed7d7; color: #9b1c1c; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 11px; }
 .item-actions { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; border-top: 1px dashed #edf2f7; padding-top: 10px; }
 .btn-action { border: none; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; font-family: inherit; }
@@ -101,8 +109,8 @@ textarea { resize: vertical; min-height: 150px; line-height: 1.7; }
 <div class="top-nav-bar">
 <span id="uiStatusBadge" style="font-size: 13px; font-weight: 700; color: #2d3748;">🟢 النظام متصل وخزنة الأمان مفعلة</span>
 <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
-<button type="button" id="uiBtnTrash" class="btn-nav-action" style="background-color: #4a5568;" onclick="openTrashModal()">🗑️ سلة المهملات</button>
-<button type="button" id="uiBtnLock" class="btn-nav-action btn-lock-nav" onclick="lockPortal()">قفل الجلسة 🔒</button>
+<button type="button" class="btn-nav-action" style="background-color: #4a5568;" onclick="openTrashModal()">🗑️ سلة المهملات</button>
+<button type="button" class="btn-nav-action btn-lock-nav" onclick="lockPortal()">قفل الجلسة 🔒</button>
 <a href="https://akjassem.com" id="uiBtnSitePreview" target="_blank">معاينة الموقع 🌐</a>
 </div>
 </div>
@@ -125,7 +133,13 @@ textarea { resize: vertical; min-height: 150px; line-height: 1.7; }
 
 <div class="form-group">
 <label id="uiLblCategory">التخصص أو الفرع القانوني:</label>
-<select id="categorySelect"></select>
+<select id="categorySelect" onchange="checkCustomCategory()"></select>
+</div>
+
+<!-- حقل التخصص المخصص عند اختيار "تخصص آخر" -->
+<div class="form-group" id="customCategoryGroup" style="display: none;">
+<label id="uiLblCustomCategory">اكتب اسم التخصص القانوني الجديد:</label>
+<input type="text" id="customCategoryInput" placeholder="مثال: قانون المصارف والتأمين أو Banking & Finance Law">
 </div>
 
 <div class="form-group">
@@ -170,6 +184,10 @@ textarea { resize: vertical; min-height: 150px; line-height: 1.7; }
 <h2 style="border:none; margin:0; padding:0;"><span id="uiListHeader">📚 التحليلات والإضاءات السابقة ومتابعة المشاهدات</span></h2>
 <button type="button" id="uiBtnRefreshList" class="btn-action-sm" onclick="loadArticles()">تحديث القائمة 🔄</button>
 </div>
+
+<!-- تبويبات تجميع المقالات حسب التخصص -->
+<div id="categoryTabsContainer" class="filter-tabs"></div>
+
 <div id="articlesListContainer">
 <p style="font-size: 13.5px; color: #718096; text-align: center; padding: 20px;">جارٍ جلب البيانات...</p>
 </div>
@@ -258,6 +276,7 @@ const EN_CATEGORIES = [
 let ACTIVE_TOKEN = '';
 let EDITING_SLUG = null;
 let LOADED_ARTICLES_CACHE = [];
+let ACTIVE_FILTER_CATEGORY = 'ALL';
 
 function utf8_to_b64(str) { return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(match, p1) { return String.fromCharCode('0x' + p1); })); }
 function b64_to_utf8(str) { return decodeURIComponent(atob(str).split('').map(function(c) { return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2); }).join('')); }
@@ -307,8 +326,22 @@ document.getElementById('setupScreen').style.display = 'block';
 
 function handleLangChange() {
 applyLanguageUI();
+ACTIVE_FILTER_CATEGORY = 'ALL';
 if (ACTIVE_TOKEN) {
 loadArticles();
+}
+}
+
+function checkCustomCategory() {
+const select = document.getElementById('categorySelect');
+const customGroup = document.getElementById('customCategoryGroup');
+const customInput = document.getElementById('customCategoryInput');
+if (select.value === 'CUSTOM') {
+customGroup.style.display = 'block';
+customInput.focus();
+} else {
+customGroup.style.display = 'none';
+customInput.value = '';
 }
 }
 
@@ -326,14 +359,18 @@ opt.innerText = cat === 'CUSTOM' ? (isEn ? '✍️ Other Practice Area...' : '�
 select.appendChild(opt);
 });
 
+checkCustomCategory();
+
 const titleInput = document.getElementById('title');
 const summaryInput = document.getElementById('summary');
 const keywordsInput = document.getElementById('keywords');
 const contentInput = document.getElementById('content');
+const customCatInput = document.getElementById('customCategoryInput');
 
 if (isEn) {
 document.getElementById('uiFormHeader').innerText = '✍️ Compose & Publish Legal Insight / Brief';
 document.getElementById('uiLblCategory').innerText = 'Practice Area / Legal Field:';
+document.getElementById('uiLblCustomCategory').innerText = 'Specify New Legal Field / Practice Area:';
 document.getElementById('uiLblSlug').innerText = 'Short URL Slug:';
 document.getElementById('uiLblTitle').innerText = 'Insight Title:';
 document.getElementById('uiLblSummary').innerText = 'SEO Meta Summary (Search Snippet):';
@@ -342,6 +379,7 @@ document.getElementById('uiLblCta').innerText = 'Custom Call-To-Action Code (Opt
 document.getElementById('uiLblContent').innerText = 'Full Legal Insight & Analysis:';
 
 document.getElementById('articleSlug').placeholder = 'e.g. corporate-due-diligence-iraq';
+customCatInput.placeholder = 'e.g. Banking & Financial Law';
 titleInput.placeholder = 'Enter the legal article or insight title...';
 summaryInput.placeholder = 'Concise analytical summary for search engine snippets...';
 keywordsInput.placeholder = 'Baghdad lawyer, corporate compliance, Iraqi law';
@@ -351,6 +389,7 @@ titleInput.dir = 'ltr'; titleInput.style.textAlign = 'left';
 summaryInput.dir = 'ltr'; summaryInput.style.textAlign = 'left';
 keywordsInput.dir = 'ltr'; keywordsInput.style.textAlign = 'left';
 contentInput.dir = 'ltr'; contentInput.style.textAlign = 'left';
+customCatInput.dir = 'ltr'; customCatInput.style.textAlign = 'left';
 
 document.getElementById('uiBtnPreview').innerText = 'Preview Insight 👁️';
 if (!EDITING_SLUG) document.getElementById('submitBtn').innerText = 'Publish Now 🚀';
@@ -359,6 +398,7 @@ document.getElementById('uiBtnRefreshList').innerText = 'Refresh 🔄';
 } else {
 document.getElementById('uiFormHeader').innerText = '✍️ كتابة ونشر تحليل أو رأي قانوني جديد';
 document.getElementById('uiLblCategory').innerText = 'التخصص أو الفرع القانوني:';
+document.getElementById('uiLblCustomCategory').innerText = 'اكتب اسم التخصص القانوني الجديد:';
 document.getElementById('uiLblSlug').innerText = 'رابط التحليل أو الإضاءة المختصر (URL Slug):';
 document.getElementById('uiLblTitle').innerText = 'عنوان التحليل أو الرأي القانوني:';
 document.getElementById('uiLblSummary').innerText = 'الموجز التسويقي لمحركات البحث (SEO Snippet):';
@@ -367,6 +407,7 @@ document.getElementById('uiLblCta').innerText = 'زر تفاعل مخصص بنه
 document.getElementById('uiLblContent').innerText = 'نص التحليل أو الرأي القانوني الكامل:';
 
 document.getElementById('articleSlug').placeholder = 'مثال: labor-social-security-iraq';
+customCatInput.placeholder = 'مثال: قانون المصارف والتأمين';
 titleInput.placeholder = 'عنوان الدراسة أو التحليل القانوني';
 summaryInput.placeholder = 'تحليل موجز وشامل لأبرز الأحكام القانونية...';
 keywordsInput.placeholder = 'محامي في بغداد, قانون العمل, استشارات قانونية';
@@ -376,6 +417,7 @@ titleInput.dir = 'rtl'; titleInput.style.textAlign = 'right';
 summaryInput.dir = 'rtl'; summaryInput.style.textAlign = 'right';
 keywordsInput.dir = 'rtl'; keywordsInput.style.textAlign = 'right';
 contentInput.dir = 'rtl'; contentInput.style.textAlign = 'right';
+customCatInput.dir = 'rtl'; customCatInput.style.textAlign = 'right';
 
 document.getElementById('uiBtnPreview').innerText = 'معاينة النص 👁️';
 if (!EDITING_SLUG) document.getElementById('submitBtn').innerText = 'نـشـر الآن 🚀';
@@ -470,8 +512,18 @@ const isEn = lang === 'en';
 const targetFilePath = isEn ? 'insights/en/index.html' : 'insights/index.html';
 const targetFeedId = isEn ? 'english-feed' : 'arabic-feed';
 
+let category = document.getElementById('categorySelect').value;
+if (category === 'CUSTOM') {
+const customVal = document.getElementById('customCategoryInput').value.trim();
+if (!customVal) {
+alert(isEn ? 'Please specify the practice area name.' : 'يرجى كتابة اسم التخصص القانوني الجديد أولاً.');
+document.getElementById('customCategoryInput').focus();
+return;
+}
+category = customVal;
+}
+
 const title = document.getElementById('title').value.trim();
-const category = document.getElementById('categorySelect').value;
 const slug = document.getElementById('articleSlug').value.trim().toLowerCase().replace(/\s+/g, '-');
 const summary = document.getElementById('summary').value.trim();
 const keywords = document.getElementById('keywords').value.trim();
@@ -598,6 +650,7 @@ btn.disabled = false;
 
 async function loadArticles() {
 const container = document.getElementById('articlesListContainer');
+const tabsContainer = document.getElementById('categoryTabsContainer');
 const lang = document.getElementById('articleLang').value;
 const isEn = lang === 'en';
 const targetFilePath = isEn ? 'insights/en/index.html' : 'insights/index.html';
@@ -612,12 +665,14 @@ const articles = doc.querySelectorAll('article');
 LOADED_ARTICLES_CACHE = [];
 
 if (articles.length === 0) {
+tabsContainer.innerHTML = '';
 container.innerHTML = `<p style="font-size: 13.5px; color: #718096; text-align: center; padding: 20px;">${isEn ? 'No articles published yet.' : 'لا توجد تحليلات منشورة حالياً.'}</p>`;
 return;
 }
-container.innerHTML = '';
 
 const seenSlugs = new Set();
+const categoryCounts = {};
+
 articles.forEach((art) => {
 const title = art.querySelector('h2') ? art.querySelector('h2').innerText : (isEn ? 'Article' : 'مقال');
 const slug = art.getAttribute('data-slug') || 'article';
@@ -626,7 +681,7 @@ seenSlugs.add(slug);
 
 const summary = art.querySelector('p') ? art.querySelector('p').innerText : '';
 const keywords = art.getAttribute('data-keywords') || '';
-const category = art.getAttribute('data-category') || '';
+const category = art.getAttribute('data-category') || (isEn ? 'General' : 'عام');
 const status = art.getAttribute('data-status') || 'active';
 const changelog = art.getAttribute('data-changelog') || (isEn ? 'No edit history' : 'لا توجد تعديلات');
 
@@ -635,33 +690,99 @@ const content = contentBody ? contentBody.textContent.trim() : '';
 
 LOADED_ARTICLES_CACHE.push({ slug, title, summary, keywords, content, category, changelog, status });
 
-const item = document.createElement('div');
-item.className = 'article-item';
-const statusBadge = status === 'hidden' ? `<span class="status-hidden-badge">${isEn ? '🙈 Hidden' : '🙈 مخفي'}</span>` : '';
-const hideText = status === 'hidden' ? (isEn ? 'Unhide 👁️' : 'إظهار 👁️') : (isEn ? 'Hide 🙈' : 'إخفاء 🙈');
-
-item.innerHTML = `
-<div class="article-info">
-<div class="item-title">${title} ${statusBadge}</div>
-<div class="item-meta"><span>Slug: ?p=${slug}</span><span class="views-badge">👁️ ${isEn ? 'Views:' : 'المشاهدات:'} <span id="views-${slug}">0</span></span></div>
-</div>
-<div class="item-actions">
-<a class="btn-action btn-view" href="https://akjassem.com/insights/${isEn?'en/':''}?p=${slug}" target="_blank">${isEn ? 'View 👁️' : 'معاينة 👁️'}</a>
-<button class="btn-action btn-edit" onclick="startEdit('${slug}')">${isEn ? 'Edit ✏️' : 'تعديل ✏️'}</button>
-<button class="btn-action btn-logs" onclick="openLogModal('${changelog.replace(/'/g, "\\'")}')">${isEn ? 'History 🕒' : 'السجل 🕒'}</button>
-<button class="btn-action btn-hide" onclick="toggleHide('${slug}')">${hideText}</button>
-<button class="btn-action btn-delete" onclick="moveToTrash('${slug}')">${isEn ? 'Delete 🗑️' : 'حذف 🗑️'}</button>
-</div>`;
-container.appendChild(item);
-
-fetch(`https://api.countapi.xyz/get/akjassem-site/${slug}`)
-.then(r => r.json())
-.then(d => { if(d && typeof d.value === 'number') { const el = document.getElementById(`views-${slug}`); if(el) el.innerText = d.value; } })
-.catch(() => {});
+categoryCounts[category] = (categoryCounts[category] || 0) + 1;
 });
+
+// بناء أزرار التصفية والتجميع حسب التخصص
+buildCategoryTabs(categoryCounts, isEn);
+
+// عرض المقالات بناءً على التصفية النشطة
+renderFilteredArticles();
+
 } catch(e) {
 container.innerHTML = `<p style="font-size: 13.5px; color: #e53e3e; text-align: center; padding: 20px;">خطأ: ${e.message}</p>`;
 }
+}
+
+function buildCategoryTabs(counts, isEn) {
+const tabsContainer = document.getElementById('categoryTabsContainer');
+tabsContainer.innerHTML = '';
+
+const allBtn = document.createElement('button');
+allBtn.type = 'button';
+allBtn.className = `tab-btn ${ACTIVE_FILTER_CATEGORY === 'ALL' ? 'active' : ''}`;
+allBtn.innerHTML = `${isEn ? 'All Insights' : 'كافة التحليلات'} <span class="tab-badge">${LOADED_ARTICLES_CACHE.length}</span>`;
+allBtn.onclick = () => { ACTIVE_FILTER_CATEGORY = 'ALL'; updateActiveTab(); renderFilteredArticles(); };
+tabsContainer.appendChild(allBtn);
+
+Object.keys(counts).forEach(cat => {
+const btn = document.createElement('button');
+btn.type = 'button';
+btn.className = `tab-btn ${ACTIVE_FILTER_CATEGORY === cat ? 'active' : ''}`;
+btn.innerHTML = `${cat} <span class="tab-badge">${counts[cat]}</span>`;
+btn.onclick = () => { ACTIVE_FILTER_CATEGORY = cat; updateActiveTab(); renderFilteredArticles(); };
+tabsContainer.appendChild(btn);
+});
+}
+
+function updateActiveTab() {
+const tabs = document.querySelectorAll('#categoryTabsContainer .tab-btn');
+tabs.forEach(tab => {
+const isAll = tab.innerText.includes('All Insights') || tab.innerText.includes('كافة التحليلات');
+if (ACTIVE_FILTER_CATEGORY === 'ALL' && isAll) {
+tab.classList.add('active');
+} else if (tab.innerText.startsWith(ACTIVE_FILTER_CATEGORY)) {
+tab.classList.add('active');
+} else {
+tab.classList.remove('active');
+}
+});
+}
+
+function renderFilteredArticles() {
+const container = document.getElementById('articlesListContainer');
+const lang = document.getElementById('articleLang').value;
+const isEn = lang === 'en';
+container.innerHTML = '';
+
+const filtered = ACTIVE_FILTER_CATEGORY === 'ALL' 
+  ? LOADED_ARTICLES_CACHE 
+  : LOADED_ARTICLES_CACHE.filter(a => a.category === ACTIVE_FILTER_CATEGORY);
+
+if (filtered.length === 0) {
+container.innerHTML = `<p style="font-size: 13.5px; color: #718096; text-align: center; padding: 20px;">${isEn ? 'No articles found under this practice area.' : 'لا توجد تحليلات منشورة تحت هذا التخصص حالياً.'}</p>`;
+return;
+}
+
+filtered.forEach(art => {
+const item = document.createElement('div');
+item.className = 'article-item';
+const statusBadge = art.status === 'hidden' ? `<span class="status-hidden-badge">${isEn ? '🙈 Hidden' : '🙈 مخفي'}</span>` : '';
+const hideText = art.status === 'hidden' ? (isEn ? 'Unhide 👁️' : 'إظهار 👁️') : (isEn ? 'Hide 🙈' : 'إخفاء 🙈');
+
+item.innerHTML = `
+<div class="article-info">
+<div class="item-title">${art.title} ${statusBadge}</div>
+<div class="item-meta">
+  <span class="category-pill">📂 ${art.category}</span>
+  <span>Slug: ?p=${art.slug}</span>
+  <span class="views-badge">👁️ ${isEn ? 'Views:' : 'المشاهدات:'} <span id="views-${art.slug}">0</span></span>
+</div>
+</div>
+<div class="item-actions">
+<a class="btn-action btn-view" href="https://akjassem.com/insights/${isEn?'en/':''}?p=${art.slug}" target="_blank">${isEn ? 'View 👁️' : 'معاينة 👁️'}</a>
+<button class="btn-action btn-edit" onclick="startEdit('${art.slug}')">${isEn ? 'Edit ✏️' : 'تعديل ✏️'}</button>
+<button class="btn-action btn-logs" onclick="openLogModal('${art.changelog.replace(/'/g, "\\'")}')">${isEn ? 'History 🕒' : 'السجل 🕒'}</button>
+<button class="btn-action btn-hide" onclick="toggleHide('${art.slug}')">${hideText}</button>
+<button class="btn-action btn-delete" onclick="moveToTrash('${art.slug}')">${isEn ? 'Delete 🗑️' : 'حذف 🗑️'}</button>
+</div>`;
+container.appendChild(item);
+
+fetch(`https://api.countapi.xyz/get/akjassem-site/${art.slug}`)
+.then(r => r.json())
+.then(d => { if(d && typeof d.value === 'number') { const el = document.getElementById(`views-${art.slug}`); if(el) el.innerText = d.value; } })
+.catch(() => {});
+});
 }
 
 function startEdit(slug) {
@@ -673,7 +794,28 @@ document.getElementById('summary').value = art.summary;
 document.getElementById('articleSlug').value = art.slug;
 document.getElementById('keywords').value = art.keywords;
 document.getElementById('content').value = art.content;
-document.getElementById('categorySelect').value = art.category;
+
+const select = document.getElementById('categorySelect');
+const customGroup = document.getElementById('customCategoryGroup');
+const customInput = document.getElementById('customCategoryInput');
+
+let optionExists = false;
+for (let i = 0; i < select.options.length; i++) {
+if (select.options[i].value === art.category) {
+select.selectedIndex = i;
+optionExists = true;
+break;
+}
+}
+
+if (!optionExists) {
+select.value = 'CUSTOM';
+customGroup.style.display = 'block';
+customInput.value = art.category;
+} else {
+customGroup.style.display = 'none';
+customInput.value = '';
+}
 
 const isEn = document.getElementById('articleLang').value === 'en';
 document.getElementById('editBanner').style.display = 'flex';
