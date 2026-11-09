@@ -715,10 +715,7 @@ LOADED_ARTICLES_CACHE.push({ slug, title, summary, keywords, content, category, 
 categoryCounts[category] = (categoryCounts[category] || 0) + 1;
 });
 
-// بناء أزرار التصفية
 buildCategoryTabs(categoryCounts, isEn);
-
-// عرض المقالات
 renderFilteredArticles();
 
 } catch(e) {
@@ -802,17 +799,20 @@ item.innerHTML = `
 </div>`;
 container.appendChild(item);
 
-// قراءة المشاهدات الحقيقية عبر مزود العداد المباشر
-fetch(`https://api.counterapi.dev/v1/akjassem-insights/${art.slug}/`)
-.then(r => r.json())
-.then(d => { 
-  const el = document.getElementById(`views-${art.slug}`);
-  if(el) el.innerText = (d && typeof d.count === 'number') ? d.count : '0';
-})
-.catch(() => {
-  const el = document.getElementById(`views-${art.slug}`);
-  if(el) el.innerText = '0';
-});
+// قراءة المشاهدات الحقيقية بالمفتاح النظيف المتوافق مع صفحات العرض
+const cleanKey = art.slug.replace(/[^a-zA-Z0-9]/g, '_').substring(0, 40);
+const viewsEl = document.getElementById(`views-${art.slug}`);
+
+fetch(`https://api.counterapi.dev/v1/akh_views/${cleanKey}/?t=${Date.now()}`)
+  .then(res => res.json())
+  .then(data => {
+    if (viewsEl) {
+      viewsEl.innerText = (data && typeof data.count === 'number') ? data.count : '0';
+    }
+  })
+  .catch(() => {
+    if (viewsEl) viewsEl.innerText = '0';
+  });
 });
 }
 
@@ -863,10 +863,8 @@ const doc = new DOMParser().parseFromString(b64_to_utf8(fileData.content), 'text
 const art = doc.querySelector(`article[data-slug="${SWITCHING_SLUG}"]`);
 if (!art) throw new Error('المقال غير موجود داخل الملف.');
 
-// تحديث وسم data-category
 art.setAttribute('data-category', newCat);
 
-// تحديث سطر العنوان الملون الظاهر فوق المقال
 const catHeader = art.querySelector('.article-category-header') || art.firstElementChild;
 if (catHeader) {
   const parts = catHeader.innerText.split('•');
@@ -874,7 +872,6 @@ if (catHeader) {
   catHeader.innerText = `${newCat} • ${datePart}`;
 }
 
-// تحديث سجل التعديلات
 const nowObj = new Date();
 const logMsg = `تغيير التخصص إلى (${newCat}) في ${nowObj.toLocaleDateString('ar-IQ')} ${nowObj.toLocaleTimeString('ar-IQ')}`;
 const curLogs = art.getAttribute('data-changelog') || '';
