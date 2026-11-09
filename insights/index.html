@@ -343,7 +343,7 @@
 <div class="article-expanded" style="display: none; border-top: 1px dashed #cbd5e0; padding-top: 16px; margin-top: 12px; font-size: 15px; color: #2d3748; line-height: 1.9;">
 <div class="article-content-body" style="white-space: pre-line;">أفرز إلزام الشركات والأنشطة التجارية في العراق باعتماد نقاط البيع الإلكترونية (POS) واقعاً إجرائياً جديداً أمام الهيئة العامة للضرائب. فالكشوفات الناتجة عن هذه العمليات لم تعد مجرد تسويات مصرفية، بل أصبحت تُعامل لدى لجان الفحص والتدقيق كبيانات رسمية ملزمة تثبت حركة التداول المالي وحجم المبيعات الفعلي للنشاط.
 
-من واقع النزاعات الإدارية والملفات الضريبية  للشركات المحلية وفروع الشركات الأجنبية، نلحظ وقوع العديد من الإدارات التنفيذية في أخطاء إجرائية جوهرية تؤدي عملياً إلى نقض ميزانياتهم المعتمدة ومضاعفة مبالغ التقدير الضريبي المفروضة عليهم.
+من واقع النزاعات الإدارية والملفات الضريبية للشركات المحلية وفروع الشركات الأجنبية، نلحظ وقوع العديد من الإدارات التنفيذية في أخطاء إجرائية جوهرية تؤدي عملياً إلى نقض ميزانياتهم المعتمدة ومضاعفة مبالغ التقدير الضريبي المفروضة عليهم.
 
 أولاً: حجية كشف الحساب المصرفي (POS) أمام لجان التدقيق
 تنظر السلطة المالية في العراق لأي قيد دائن يرد عبر جهاز الـ POS بوصفه إيراداً تشغيلياً خاضعاً لأحكام قانون ضريبة الدخل رقم (113) لسنة 1982 (المعدل). ويترتب على ذلك افتراض قانوني مباشر بأن كافة المبالغ الداخلة تمثل عمليات بيع سارية، بصرف النظر عما إذا كانت تلك القيود تتعلق بتسويات داخلية بين الشركاء، أو مبالغ شخصية، أو استرداد لحسابات غير تجارية.
@@ -491,15 +491,36 @@
       changeSystemLanguage(lang);
     }
 
-    // دالة موحدة لتسجيل المشاهدة لكل مقال ظاهر أو مفتوح عبر السيرفر المستقر
+    // دالة موحدة لتسجيل المشاهدة والدولة مع استثناء أجهزة المشرف
     const trackedSlugsSet = new Set();
-    function trackArticleView(slug) {
+    async function trackArticleView(slug) {
       if (!slug || trackedSlugsSet.has(slug)) return;
-      trackedSlugsSet.add(slug);
       
+      // فحص بصمة المشرف: إذا كان الجهاز مسجلاً كأدمن لا يُحسب إطلاقاً
+      if (localStorage.getItem('akh_ignore_stats') === 'true' || sessionStorage.getItem('akh_ignore_stats') === 'true') {
+        return;
+      }
+      
+      trackedSlugsSet.add(slug);
       const cleanKey = 'akh_views_' + slug.replace(/[^a-zA-Z0-9]/g, '_').substring(0, 45);
+      
+      // 1. زيادة العداد العام
       const img = new Image();
       img.src = `https://countapi.mileshilliard.com/api/v1/hit/${cleanKey}?t=${Date.now()}`;
+
+      // 2. كشف الدولة وزيادة عداد الدولة فوراً
+      try {
+        const geoRes = await fetch('https://ipapi.co/json/');
+        if (geoRes.ok) {
+          const geoData = await geoRes.json();
+          const countryCode = geoData.country_code;
+          if (countryCode && countryCode.length === 2) {
+            const countryKey = `${cleanKey}_${countryCode.toUpperCase()}`;
+            const cImg = new Image();
+            cImg.src = `https://countapi.mileshilliard.com/api/v1/hit/${countryKey}?t=${Date.now()}`;
+          }
+        }
+      } catch (e) {}
     }
 
     let activeSiteCategory = 'ALL';
