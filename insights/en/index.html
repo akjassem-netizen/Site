@@ -324,7 +324,7 @@ Engaging seasoned legal counsel to conduct thorough due diligence before executi
 <p style="margin-top:12px;">© All rights reserved to Ali Kadhem Al-Hashimi Law Office.</p>
 </div>
 </div>
-<button type="button" class="read-more-btn" onclick="const b = this.previousElementSibling; const open = b.style.display==='block'; b.style.display = open?'none':'block'; this.innerText = open ? 'Show Less ↑' : 'Read More →'; if(!open) registerArticleView('due-diligence-compliance-business-iraq');" style="background: none; border: 1.5px solid #0b1a30; color: #0b1a30; padding: 8px 18px; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 10px;">Read More →</button>
+<button type="button" class="read-more-btn" onclick="const b = this.previousElementSibling; const open = b.style.display==='block'; b.style.display = open?'none':'block'; this.innerText = open ? 'Show Less ↑' : 'Read More →'; if(!open) trackArticleView('due-diligence-compliance-business-iraq');" style="background: none; border: 1.5px solid #0b1a30; color: #0b1a30; padding: 8px 18px; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 10px;">Read More →</button>
 </article>
       <!-- المقالات المنشورة بالإنجليزية ستظهر هنا -->
     </div>
@@ -404,12 +404,15 @@ Engaging seasoned legal counsel to conduct thorough due diligence before executi
       changeSystemLanguage(lang);
     }
 
-    // Direct View Counter Tracking
-    const viewedSlugsSet = new Set();
-    function registerArticleView(slug) {
-      if (!slug || viewedSlugsSet.has(slug)) return;
-      viewedSlugsSet.add(slug);
-      fetch(`https://api.counterapi.dev/v1/akjassem-insights/${slug}/up`).catch(() => {});
+    // Direct View Counter Tracking using non-blocking Image Beacon
+    const trackedSlugsSet = new Set();
+    function trackArticleView(slug) {
+      if (!slug || trackedSlugsSet.has(slug)) return;
+      trackedSlugsSet.add(slug);
+      
+      const cleanKey = slug.replace(/[^a-zA-Z0-9]/g, '_').substring(0, 40);
+      const img = new Image();
+      img.src = `https://api.counterapi.dev/v1/akh_views/${cleanKey}/up?t=${Date.now()}`;
     }
 
     // Category Filtering Logic for English Insights Feed
@@ -467,14 +470,13 @@ Engaging seasoned legal counsel to conduct thorough due diligence before executi
       }
       changeSystemLanguage(savedLang);
 
-      // Initialize practice area filter buttons
       initCategoryFilters();
 
+      // 1. Direct Link Tracking (?p=slug)
       const urlParams = new URLSearchParams(window.location.search);
       const slug = urlParams.get('p');
       if (slug) {
-        // Track view immediately on direct article navigation
-        registerArticleView(slug);
+        trackArticleView(slug);
 
         const targetArticle = document.querySelector(`article[data-slug="${slug}"]`);
         if (targetArticle) {
@@ -487,6 +489,18 @@ Engaging seasoned legal counsel to conduct thorough due diligence before executi
               targetArticle.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }, 300);
           }
+        }
+      }
+    });
+
+    // 2. Track view when clicking Read More
+    document.addEventListener('click', function(e) {
+      const btn = e.target.closest('button');
+      if (btn && (btn.innerText.includes('Read More') || btn.classList.contains('read-more-btn'))) {
+        const article = btn.closest('article.legal-card');
+        if (article) {
+          const slug = article.getAttribute('data-slug');
+          if (slug) trackArticleView(slug);
         }
       }
     });
