@@ -121,7 +121,6 @@
     
     #english-feed { width: 100%; }
 
-    /* English Category Filter Tabs */
     .filter-wrapper {
       display: flex;
       gap: 8px;
@@ -182,7 +181,6 @@
     .btn-share-x { background-color: #000000; color: #ffffff; }
     #copyToast { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); background-color: #0b1a30; color: #ffffff; padding: 10px 22px; border-radius: 30px; font-size: 13px; font-weight: 700; box-shadow: 0 4px 15px rgba(0,0,0,0.2); display: none; z-index: 99999; }
 
-    /* تنسيق الفوتر (سطر أفقي واحد متناسق) */
     .site-footer {
       text-align: center;
       padding: 22px 10px;
@@ -279,10 +277,8 @@
       A specialized legal portal dedicated to publishing studies and procedural clarifications across branches of Iraqi law: labor, residency and social security, company formation and registration, trademarks, personal status, and civil/commercial litigation.
     </div>
 
-    <!-- English Practice Area Filter Tabs -->
     <div id="categoryFilterBar" class="filter-wrapper"></div>
 
-    <!-- حاوية عرض المقالات الإنجليزية -->
     <div id="english-feed"><article class="legal-card" data-category="Corporate &amp; Commercial Law" data-slug="due-diligence-compliance-business-iraq" data-keywords="Due Diligence in Iraq, Corporate Compliance Iraq, Iraqi Investment Law, Foreign Investment Iraq, Companies Law Iraq, Legal Counsel Baghdad" data-changelog="Date: 09/11/2026 | Time: 20:11:05 | Action: Publish" data-status="active" dir="ltr" style="border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; margin-bottom: 24px; text-align: left; direction: ltr; background: #ffffff; ">
 <div class="article-category-header" style="font-size: 13px; color: #d32f2f; font-weight: 700; margin-bottom: 8px;">Corporate &amp; Commercial Law • 9 November 2026</div>
 <h2 style="font-size: 19px; font-weight: 800; color: #0b1a30; margin-bottom: 12px;">Why Due Diligence and Compliance Are Your Business’s Lifeline in Iraq Today</h2>
@@ -326,7 +322,6 @@ Engaging seasoned legal counsel to conduct thorough due diligence before executi
 </div>
 <button type="button" class="read-more-btn" onclick="const b = this.previousElementSibling; const open = b.style.display==='block'; b.style.display = open?'none':'block'; this.innerText = open ? 'Show Less ↑' : 'Read More →'; if(!open) trackArticleView('due-diligence-compliance-business-iraq');" style="background: none; border: 1.5px solid #0b1a30; color: #0b1a30; padding: 8px 18px; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 10px;">Read More →</button>
 </article>
-      <!-- المقالات المنشورة بالإنجليزية ستظهر هنا -->
     </div>
 
     <div style="text-align: center; margin-top: 30px; margin-bottom: 20px;">
@@ -335,7 +330,6 @@ Engaging seasoned legal counsel to conduct thorough due diligence before executi
 
   </div>
 
-  <!-- الفوتر المتكامل للنسخة الإنجليزية -->
   <footer class="site-footer">
     <div class="footer-legal-links">
       <a href="/privacy/en/" id="footerPrivacy">Privacy Policy</a>
@@ -410,12 +404,11 @@ Engaging seasoned legal counsel to conduct thorough due diligence before executi
       if (!slug || trackedSlugsSet.has(slug)) return;
       trackedSlugsSet.add(slug);
       
-      const cleanKey = slug.replace(/[^a-zA-Z0-9]/g, '_').substring(0, 40);
+      const cleanKey = 'akh_views_' + slug.replace(/[^a-zA-Z0-9]/g, '_').substring(0, 45);
       const img = new Image();
-      img.src = `https://api.counterapi.dev/v1/akh_views/${cleanKey}/up?t=${Date.now()}`;
+      img.src = `https://countapi.mileshilliard.com/api/v1/hit/${cleanKey}?t=${Date.now()}`;
     }
 
-    // Category Filtering Logic for English Insights Feed
     let activeSiteCategory = 'ALL';
 
     function initCategoryFilters() {
@@ -472,7 +465,6 @@ Engaging seasoned legal counsel to conduct thorough due diligence before executi
 
       initCategoryFilters();
 
-      // 1. Direct Link Tracking (?p=slug)
       const urlParams = new URLSearchParams(window.location.search);
       const slug = urlParams.get('p');
       if (slug) {
@@ -493,7 +485,6 @@ Engaging seasoned legal counsel to conduct thorough due diligence before executi
       }
     });
 
-    // 2. Track view when clicking Read More
     document.addEventListener('click', function(e) {
       const btn = e.target.closest('button');
       if (btn && (btn.innerText.includes('Read More') || btn.classList.contains('read-more-btn'))) {
