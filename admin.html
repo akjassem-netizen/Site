@@ -120,7 +120,7 @@ textarea { resize: vertical; min-height: 150px; line-height: 1.7; }
 
 <div id="editBanner" class="alert-box alert-success" style="display: none; justify-content: space-between; align-items: center; margin-bottom: 20px;">
 <span id="editBannerText">✏️ تعديل التحليل القانوني...</span>
-<button type="button" onclick="cancelEdit()" style="background: #e53e3e; color: white; border: none; padding: 5px 12px; border-radius: 6px; cursor: pointer; font-weight: 700;">إلغاء ✕</button>
+<button type="button" onclick="cancelEdit()" style="background: #e53e3e; color white; border: none; padding: 5px 12px; border-radius: 6px; cursor: pointer; font-weight: 700;">إلغاء ✕</button>
 </div>
 
 <div class="card-section">
@@ -187,7 +187,6 @@ textarea { resize: vertical; min-height: 150px; line-height: 1.7; }
 <button type="button" id="uiBtnRefreshList" class="btn-action-sm" onclick="loadArticles()">تحديث القائمة 🔄</button>
 </div>
 
-<!-- تبويبات تجميع المقالات حسب التخصص -->
 <div id="categoryTabsContainer" class="filter-tabs"></div>
 
 <div id="articlesListContainer">
@@ -221,7 +220,6 @@ textarea { resize: vertical; min-height: 150px; line-height: 1.7; }
 
 </div>
 
-<!-- نافذة تحويل ونقل التخصص السريع -->
 <div id="catSwitchModal">
 <div class="modal-content">
 <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px; margin-bottom: 15px;">
@@ -799,15 +797,15 @@ item.innerHTML = `
 </div>`;
 container.appendChild(item);
 
-// قراءة المشاهدات الحقيقية بالمفتاح النظيف المتوافق مع صفحات العرض
-const cleanKey = art.slug.replace(/[^a-zA-Z0-9]/g, '_').substring(0, 40);
+// قراءة المشاهدات بالسيرفر المستقر
+const cleanKey = 'akh_views_' + art.slug.replace(/[^a-zA-Z0-9]/g, '_').substring(0, 45);
 const viewsEl = document.getElementById(`views-${art.slug}`);
 
-fetch(`https://api.counterapi.dev/v1/akh_views/${cleanKey}/?t=${Date.now()}`)
+fetch(`https://countapi.mileshilliard.com/api/v1/get/${cleanKey}?t=${Date.now()}`)
   .then(res => res.json())
   .then(data => {
     if (viewsEl) {
-      viewsEl.innerText = (data && typeof data.count === 'number') ? data.count : '0';
+      viewsEl.innerText = (data && data.value) ? data.value : '0';
     }
   })
   .catch(() => {
