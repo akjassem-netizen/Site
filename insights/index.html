@@ -124,6 +124,55 @@
     
     #arabic-feed { width: 100%; }
 
+    /* أزرار تصفية التخصصات */
+    .filter-wrapper {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 15px 0 28px;
+      justify-content: center;
+      direction: rtl;
+    }
+    .filter-btn {
+      background-color: #ffffff;
+      color: #2d3748;
+      border: 1.5px solid #cbd5e0;
+      padding: 7px 15px;
+      border-radius: 20px;
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+    }
+    .filter-btn:hover {
+      border-color: #c5a059;
+      color: #0b1a30;
+      transform: translateY(-1px);
+    }
+    .filter-btn.active {
+      background-color: #0b1a30;
+      color: #ffffff;
+      border-color: #0b1a30;
+      box-shadow: 0 3px 8px rgba(11,26,48,0.18);
+    }
+    .filter-count {
+      background: #c5a059;
+      color: #0b1a30;
+      border-radius: 10px;
+      padding: 1px 7px;
+      font-size: 11px;
+      font-weight: 800;
+    }
+    .filter-btn.active .filter-count {
+      background: #ffffff;
+      color: #0b1a30;
+    }
+
     .legal-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); position: relative; overflow: hidden; }
     .legal-card::after { content: "AKH LAW OFFICE - ALI KADHEM HASHIMI"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-25deg); font-size: 38px; font-weight: 900; color: rgba(11, 26, 48, 0.035); pointer-events: none; z-index: 0; letter-spacing: 3px; white-space: nowrap; }
     .legal-card > * { position: relative; z-index: 1; }
@@ -178,36 +227,6 @@
     }
   </style>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <meta property="og:title" content="سقوط القيود التاريخية: رؤية قانونية في حكم المحكمة الاتحادية العليا بإلغاء حظر استثمار وتملك غير العراقيين | AKH Law Office" data-dynamic-seo="true">
 <meta property="og:description" content="تحليل قانوني لقرار المحكمة الاتحادية العليا بعدم دستورية حظر تملك واستثمار غير العراقيين، وآثار ذلك على بيئة الاستثمار الأجنبي والمحلي في العراق." data-dynamic-seo="true">
 <meta property="og:url" content="https://akjassem.com/insights/?p=fsc-ruling-foreign-investment-iraq" data-dynamic-seo="true">
@@ -261,6 +280,9 @@
     <div class="intro-box" id="siteIntroText">
       نافذة متخصصة تُعنى بنشر الدراسات والإيضاحات الإجرائية في فروع القانون العراقي: قانون العمل والإقامة والضمان الاجتماعي، تأسيس وتسجيل الشركات، العلامات التجارية، وقضايا الأحوال الشخصية والدعاوى المدنية والتجارية.
     </div>
+
+    <!-- شريط تجميع وتصفية المقالات حسب التخصص -->
+    <div id="categoryFilterBar" class="filter-wrapper"></div>
 
     <!-- حاوية عرض المقالات -->
     <div id="arabic-feed"><article class="legal-card" data-category="قانون الشركات والتجارة" data-slug="fsc-ruling-foreign-investment-iraq" data-keywords="الاستثمار الأجنبي في العراق, المحكمة الاتحادية العليا, قرارات مجلس قيادة الثورة المنحل, تملك غير العراقيين, قانون الاستثمار, المعاملة بالمثل" data-changelog="التاريخ: ٧‏/١١‏/٢٠٢٦ | الوقت: ٤:٣٨:٠٠ م | الإجراء: نشر جديد///التاريخ: ٧‏/١١‏/٢٠٢٦ | الوقت: ٤:٤٢:٥١ م | الإجراء: تعديل وتحديث" data-status="active" style="border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; margin-bottom: 24px; text-align: right; direction: rtl; background: #ffffff; ">
@@ -474,9 +496,56 @@
       changeSystemLanguage(lang);
     }
 
+    // منطق تصفية وتجميع المقالات حسب التخصص
+    let activeSiteCategory = 'ALL';
+
+    function initCategoryFilters() {
+      const articles = document.querySelectorAll('article.legal-card');
+      const bar = document.getElementById('categoryFilterBar');
+      if (!articles.length || !bar) return;
+
+      const counts = {};
+      articles.forEach(art => {
+        const cat = art.getAttribute('data-category') || 'عام';
+        counts[cat] = (counts[cat] || 0) + 1;
+      });
+
+      let html = `<button type="button" class="filter-btn active" onclick="filterArticles('ALL', this)">كافة التحليلات <span class="filter-count">${articles.length}</span></button>`;
+      
+      Object.keys(counts).forEach(cat => {
+        html += `<button type="button" class="filter-btn" onclick="filterArticles('${cat}', this)">${cat} <span class="filter-count">${counts[cat]}</span></button>`;
+      });
+
+      bar.innerHTML = html;
+    }
+
+    function filterArticles(category, btn) {
+      activeSiteCategory = category;
+      const articles = document.querySelectorAll('article.legal-card');
+      
+      articles.forEach(art => {
+        const cat = art.getAttribute('data-category');
+        if (category === 'ALL' || cat === category) {
+          if (art.getAttribute('data-status') !== 'hidden') {
+            art.style.display = 'block';
+          }
+        } else {
+          art.style.display = 'none';
+        }
+      });
+
+      document.querySelectorAll('#categoryFilterBar .filter-btn').forEach(b => {
+        b.classList.remove('active');
+      });
+      if (btn) btn.classList.add('active');
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
       const savedLang = localStorage.getItem('preferredSystemLang') || 'ar';
       changeSystemLanguage(savedLang);
+
+      // بناء أزرار التخصصات تلقائياً
+      initCategoryFilters();
 
       const urlParams = new URLSearchParams(window.location.search);
       const slug = urlParams.get('p');
@@ -496,6 +565,5 @@
       }
     });
   </script>
-
 
 </body></html>
