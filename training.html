@@ -11,7 +11,7 @@
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; color: #1a1a1a; padding: 20px 12px; display: flex; justify-content: center; min-height: 100vh; align-items: flex-start; }
-.panel { max-width: 1100px; width: 100%; background: #ffffff; border-radius: 18px; padding: 28px 22px; box-shadow: 0 10px 40px rgba(11,26,48,0.09); border-top: 6px solid #0b1a30; }
+.panel { max-width: 1120px; width: 100%; background: #ffffff; border-radius: 18px; padding: 28px 22px; box-shadow: 0 10px 40px rgba(11,26,48,0.09); border-top: 6px solid #0b1a30; }
 
 /* الهوية البصرية الرسمية للمكتب AKH / LAW OFFICE */
 .brand-section { text-align: center; margin-bottom: 22px; border-bottom: 1.5px solid #edf2f7; padding-bottom: 16px; }
@@ -33,28 +33,42 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
 .pin-mask { -webkit-text-security: disc; }
 .btn-unlock { width: 100%; max-width: 280px; background-color: #0b1a30; color: #ffffff; padding: 13px; border: none; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; font-family: inherit; margin: 0 auto; display: block; transition: 0.3s; }
 .btn-unlock:hover { background-color: #d32f2f; }
-.alert-box { padding: 12px 15px; border-radius: 8px; margin-bottom: 18px; font-size: 13.5px; display: none; font-weight: 700; }
+.alert-box { padding: 12px 15px; border-radius: 8px; margin-bottom: 18px; font-size: 13.5px; display: none; font-weight: 700; line-height: 1.6; }
 .alert-error { background-color: #fde8e8; color: #9b1c1c; border: 1px solid #f8b4b4; }
 .alert-success { background-color: #def7ec; color: #03543f; border: 1px solid #84e1bc; }
+
+/* شاشة اختيار وضع الدخول (تطوير vs دراسة) */
+.mode-selector-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; max-width: 680px; margin: 20px auto; }
+.mode-card { border: 2px solid #cbd5e0; border-radius: 14px; padding: 22px 18px; cursor: pointer; transition: 0.2s; background: #f8fafc; text-align: center; }
+.mode-card:hover { border-color: #0b1a30; transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
+.mode-card.study { border-color: #16a34a; background: #f0fdf4; }
+.mode-card.dev { border-color: #2b6cb0; background: #eff6ff; }
+.mode-icon { font-size: 34px; margin-bottom: 8px; }
+.mode-title { font-size: 16px; font-weight: 900; color: #0b1a30; margin-bottom: 6px; }
+.mode-desc { font-size: 12.5px; color: #475569; line-height: 1.6; }
 
 /* شريط التنقل العلوي */
 .top-nav-bar { display: flex; justify-content: space-between; align-items: center; background-color: #f8fafc; border: 1.5px solid #e2e8f0; padding: 12px 16px; border-radius: 12px; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
 .role-badge { background: #0b1a30; color: #f6e05e; padding: 5px 12px; border-radius: 6px; font-size: 12px; font-weight: 800; }
+.mode-pill { padding: 5px 12px; border-radius: 6px; font-size: 12px; font-weight: 800; }
+.mode-pill.study { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
+.mode-pill.dev { background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; }
 .accent-switch { display: inline-flex; align-items: center; gap: 6px; background: #fff; border: 1.5px solid #cbd5e0; padding: 6px 12px; border-radius: 8px; font-size: 12.5px; font-weight: 700; }
 .accent-switch select { border: none; font-family: inherit; font-weight: 800; color: #0b1a30; outline: none; cursor: pointer; background: transparent; }
 .btn-nav { background-color: #0b1a30; color: #ffffff; text-decoration: none; padding: 7px 13px; border-radius: 7px; font-size: 12.5px; font-weight: 700; border: none; cursor: pointer; font-family: inherit; transition: 0.2s; display: inline-flex; align-items: center; gap: 5px; }
 .btn-nav:hover { opacity: 0.9; }
 .btn-cert { background-color: #c5a059; color: #0b1a30; font-weight: 800; }
 .btn-cal { background-color: #2b6cb0; }
-.btn-notif { background-color: #d69e2e; color: #000; }
 .btn-lock { background-color: #d32f2f; }
 
-/* بطاقات الإحصائيات */
+/* بطاقات الإحصائيات والوقت */
 .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; margin-bottom: 22px; }
 .stat-card { background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 14px; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.02); }
 .stat-card.highlight { border-color: #d32f2f; background: #fff5f5; }
+.stat-card.time-card { border-color: #2b6cb0; background: #eff6ff; }
 .stat-num { font-size: 21px; font-weight: 900; color: #0b1a30; margin: 3px 0; }
 .stat-card.highlight .stat-num { color: #d32f2f; }
+.stat-card.time-card .stat-num { color: #1d4ed8; font-family: monospace; }
 .stat-label { font-size: 12px; font-weight: 700; color: #4a5568; }
 .stat-sub { font-size: 11px; color: #718096; margin-top: 2px; }
 
@@ -68,7 +82,7 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
 
 /* تبويبات المختبرات والبرامج */
 .lab-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; border-bottom: 2px solid #e2e8f0; padding-bottom: 12px; }
-.lab-tab { background: #f1f5f9; color: #1e293b; border: 1.5px solid #cbd5e0; padding: 9px 14px; border-radius: 10px; font-size: 13px; font-weight: 800; cursor: pointer; font-family: inherit; transition: 0.2s; }
+.lab-tab { background: #f1f5f9; color: #1e293b; border: 1.5px solid #cbd5e0; padding: 9px 13px; border-radius: 10px; font-size: 12.5px; font-weight: 800; cursor: pointer; font-family: inherit; transition: 0.2s; }
 .lab-tab:hover { border-color: #0b1a30; }
 .lab-tab.active { background: #0b1a30; color: #ffffff; border-color: #0b1a30; box-shadow: 0 4px 10px rgba(11,26,48,0.2); }
 .lab-tab.admin-tab { background: #fffbeb; border-color: #f59e0b; color: #92400e; }
@@ -83,13 +97,21 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
 .locked-overlay { text-align: center; padding: 30px 15px; background: #f8fafc; border-radius: 10px; border: 1.5px dashed #cbd5e0; color: #4a5568; }
 .locked-overlay h4 { font-size: 15.5px; color: #d32f2f; margin-bottom: 6px; }
 
-/* بطاقات الدروس التوعوية (مثل المقبلين على الزواج) */
+/* مختبر ترديد المصطلحات المتسلسل (Shadowing) */
+.shadowing-box { background: #f8fafc; border: 2px solid #0b1a30; border-radius: 14px; padding: 22px; text-align: center; margin-bottom: 20px; }
+.shadow-progress { font-size: 12.5px; font-weight: 800; color: #2b6cb0; margin-bottom: 8px; }
+.shadow-term { font-size: 28px; font-weight: 900; color: #0b1a30; direction: ltr; margin: 8px 0; }
+.shadow-phonetic { font-size: 13px; color: #64748b; font-family: monospace; margin-bottom: 8px; direction: ltr; }
+.shadow-meaning { font-size: 15px; font-weight: 700; color: #1e293b; background: #e2e8f0; display: inline-block; padding: 5px 16px; border-radius: 8px; margin-bottom: 14px; }
+.shadow-sentence { font-size: 14px; color: #334155; font-style: italic; direction: ltr; margin-bottom: 16px; }
+
+/* بطاقات الدروس التوعوية (المقبلين على الزواج) */
 .lesson-card { background: #ffffff; border: 1.5px solid #cbd5e0; border-right: 5px solid #0b1a30; border-radius: 12px; padding: 18px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
 .lesson-title { font-size: 16px; font-weight: 800; color: #0b1a30; margin-bottom: 8px; }
 .lesson-body { font-size: 14.5px; color: #334155; line-height: 1.85; white-space: pre-line; }
 .legal-tip-box { background: #fffbeb; border: 1px solid #fcd34d; padding: 12px 15px; border-radius: 8px; margin-top: 12px; font-size: 13.5px; color: #92400e; font-weight: 700; }
 
-/* لوحة إدارة المشتركين والبرامج (Super Admin) */
+/* لوحة إدارة المشتركين */
 .admin-form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 14px; }
 .admin-input { width: 100%; padding: 10px 12px; border: 1.5px solid #cbd5e0; border-radius: 8px; font-family: inherit; font-size: 13.5px; }
 .trainee-card { background: #f8fafc; border: 1.5px solid #cbd5e0; border-radius: 10px; padding: 14px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
@@ -124,15 +146,15 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
 .fc-ar { font-size: 13.5px; font-weight: 700; color: #1e293b; direction: rtl; text-align: right; background: #f1f5f9; padding: 6px 10px; border-radius: 6px; margin-bottom: 8px; }
 .fc-example { font-size: 13px; color: #475569; line-height: 1.6; font-style: italic; margin-bottom: 12px; }
 
-/* 5. محاكي كتابة المقالات القانونية والتقارير */
+/* 5. محاكي كتابة التقارير والمذكرات */
 .ielts-textarea { width: 100%; min-height: 220px; padding: 15px; border: 1.5px solid #cbd5e0; border-radius: 10px; direction: ltr; text-align: left; font-family: Georgia, serif; font-size: 15px; line-height: 1.8; margin: 12px 0; }
 .word-counter-bar { display: flex; justify-content: space-between; align-items: center; background: #f8fafc; padding: 8px 14px; border-radius: 8px; border: 1px solid #cbd5e0; font-size: 13px; font-weight: 800; margin-bottom: 12px; }
 
 /* أزرار الصوت والميكروفون */
-.audio-controls { display: flex; gap: 6px; flex-wrap: wrap; margin-top: auto; padding-top: 10px; border-top: 1px dashed #e2e8f0; }
-.btn-speak { background: #0b1a30; color: #fff; border: none; padding: 6px 11px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; font-family: 'Cairo', sans-serif; display: inline-flex; align-items: center; gap: 4px; }
+.audio-controls { display: flex; gap: 6px; flex-wrap: wrap; margin-top: auto; padding-top: 10px; border-top: 1px dashed #e2e8f0; justify-content: center; }
+.btn-speak { background: #0b1a30; color: #fff; border: none; padding: 7px 13px; border-radius: 6px; font-size: 12.5px; font-weight: 700; cursor: pointer; font-family: 'Cairo', sans-serif; display: inline-flex; align-items: center; gap: 4px; }
 .btn-speak.slow { background: #475569; }
-.btn-mic { background: #d32f2f; color: #fff; border: none; padding: 6px 11px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; font-family: 'Cairo', sans-serif; display: inline-flex; align-items: center; gap: 4px; }
+.btn-mic { background: #d32f2f; color: #fff; border: none; padding: 7px 13px; border-radius: 6px; font-size: 12.5px; font-weight: 700; cursor: pointer; font-family: 'Cairo', sans-serif; display: inline-flex; align-items: center; gap: 4px; }
 .btn-mic.listening { background: #16a34a; animation: pulse 1s infinite; }
 .pronounce-result { margin-top: 10px; padding: 8px 10px; border-radius: 6px; font-size: 12.5px; font-weight: 700; display: none; direction: rtl; text-align: right; line-height: 1.6; }
 
@@ -149,6 +171,13 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
 
 .btn-primary { background-color: #0b1a30; color: #ffffff; border: none; padding: 12px 24px; border-radius: 8px; font-size: 15px; font-weight: 800; cursor: pointer; font-family: inherit; width: 100%; transition: 0.2s; }
 .btn-primary:hover { background-color: #d32f2f; }
+
+/* صندوق إتمام المرحلة والانتقال الصارم */
+.progression-box { background: #f8fafc; border: 2px solid #0b1a30; border-radius: 14px; padding: 20px; margin-top: 25px; text-align: center; }
+.progression-box h3 { font-size: 16px; color: #0b1a30; margin-bottom: 8px; }
+.progression-box p { font-size: 13px; color: #475569; margin-bottom: 14px; }
+.btn-advance { background: #16a34a; color: #ffffff; border: none; padding: 13px 28px; border-radius: 10px; font-size: 15px; font-weight: 800; cursor: pointer; font-family: inherit; box-shadow: 0 4px 12px rgba(22,163,74,0.25); }
+.btn-advance:hover { background: #15803d; }
 
 /* نافذة معاينة وطباعة الشهادة الرسمية */
 #certificateModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11,26,48,0.85); z-index: 5000; justify-content: center; align-items: center; padding: 15px; overflow-y: auto; }
@@ -225,7 +254,7 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
     <button type="button" class="btn-unlock" onclick="performSetup()">تشفير وفتح المنصة 🔒</button>
   </div>
 
-  <!-- شاشة تسجيل الدخول المزدوجة (المالك / المشتركين والمتدربين) -->
+  <!-- شاشة تسجيل الدخول المزدوجة -->
   <div id="authScreen" class="screen-box" style="display: none;">
     <div class="login-tabs">
       <button type="button" class="login-tab-btn active" onclick="switchLoginMode('owner', this)">👑 دخول المالك (Super Admin)</button>
@@ -233,9 +262,9 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
     </div>
 
     <div id="ownerLoginBox">
-      <p class="lock-desc">مرحباً أستاذ علي. أدخل الرقم السري للمالك لفتح لوحة الإدارة والتدريب:</p>
+      <p class="lock-desc">مرحباً أستاذ علي. أدخل الرقم السري للمالك للمتابعة:</p>
       <input type="password" id="unlockPinInput" class="secret-input pin-mask" placeholder="••••••••" autofocus>
-      <button type="button" class="btn-unlock" onclick="attemptOwnerUnlock()">دخول المالك ←</button>
+      <button type="button" class="btn-unlock" onclick="verifyOwnerPinAndAskMode()">تحقق من الرمز ←</button>
     </div>
 
     <div id="traineeLoginBox" style="display: none;">
@@ -245,11 +274,30 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
     </div>
   </div>
 
+  <!-- شاشة اختيار الغرض من الدخول للمالك (تطوير vs دراسة) -->
+  <div id="modeSelectScreen" class="screen-box" style="display: none;">
+    <h3 style="font-size:18px; color:#0b1a30; margin-bottom:8px;">اختر وضع الجلسة الحالية (Session Mode):</h3>
+    <p style="font-size:13.5px; color:#64748b; margin-bottom:15px;">هذا الخيار يضمن دقة إحصائياتك التدريبية وعدم احتساب وقت التصفح أو الإدارة ضمن ساعات تدريبك:</p>
+    <div class="mode-selector-grid">
+      <div class="mode-card study" onclick="startOwnerSession('study')">
+        <div class="mode-icon">🎓</div>
+        <div class="mode-title">جلسة تدريب وتطوير فعلي</div>
+        <div class="mode-desc">يُشغّل العداد الزمني (هدف 90 دقيقة يومياً: 45 صباحاً + 30 مساءً + 15 مراجعة)، ويسجل حضورك وتقدمك الصارم.</div>
+      </div>
+      <div class="mode-card dev" onclick="startOwnerSession('dev')">
+        <div class="mode-icon">🛠️</div>
+        <div class="mode-title">تصفح وإدارة وتطوير المنصة</div>
+        <div class="mode-desc">يفتح كافة الأقسام فوراً للمعاينة وإضافة الدروس وإدارة المشتركين <strong>دون احتساب أي وقت أو تسجيل حضور</strong>.</div>
+      </div>
+    </div>
+  </div>
+
   <!-- لوحة التحكم التدريبية المتكاملة -->
   <div id="academyDashboard" style="display: none;">
     <div class="top-nav-bar">
       <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
         <span class="role-badge" id="userRoleBadge">👑 المالك والمشرف العام</span>
+        <span class="mode-pill study" id="sessionModeBadge">🎓 وضع التدريب</span>
         <div class="accent-switch" id="accentControlWrapper">
           <span>🗣️ النطق:</span>
           <select id="accentSelect">
@@ -261,27 +309,26 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
       <div style="display: flex; gap: 8px; flex-wrap: wrap;">
         <button type="button" class="btn-nav btn-cert" id="btnPreviewCert" onclick="openCertificateModal()">📜 معاينة / إصدار الشهادة</button>
         <button type="button" class="btn-nav btn-cal" onclick="addToGoogleCalendar()">📅 تقويم Google</button>
-        <button type="button" class="btn-nav btn-notif" onclick="enableNotifications()">🔔 التنبيهات</button>
         <button type="button" class="btn-nav btn-lock" onclick="lockPortal()">خروج 🔒</button>
       </div>
     </div>
 
-    <!-- مؤشرات التقدم -->
+    <!-- مؤشرات التقدم والوقت اليومي -->
     <div class="stats-grid">
+      <div class="stat-card time-card">
+        <div class="stat-label">ملخص وقت التدريب اليوم</div>
+        <div class="stat-num" id="statDailyTime">00:00</div>
+        <div class="stat-sub" id="statTimeTarget">الهدف اليومي: 90 دقيقة</div>
+      </div>
       <div class="stat-card">
         <div class="stat-label">أيام الالتزام المتتالية</div>
         <div class="stat-num" id="statStreak">0</div>
         <div class="stat-sub">يوم حضور منضبط</div>
       </div>
       <div class="stat-card highlight">
-        <div class="stat-label">التقييم الحالي</div>
-        <div class="stat-num" id="statLevel">غير محدد</div>
+        <div class="stat-label">المستوى والمرحلة</div>
+        <div class="stat-num" id="statLevel">المرحلة 1</div>
         <div class="stat-sub" id="statScoreSub">أتمم الاختبار التقييمي</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">المسار / البرنامج</div>
-        <div class="stat-num" style="font-size:14px; padding-top:6px;" id="statTrackName">شامل</div>
-        <div class="stat-sub">مخصص لصاحب الكود</div>
       </div>
       <div class="stat-card">
         <div class="stat-label">شهادة المشاركة والإتمام</div>
@@ -294,27 +341,37 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
     <div class="attendance-banner" id="attendanceBanner">
       <div class="att-info">
         <h3 id="attTitle">⚠️ الحضور اليومي غير مثبت بعد</h3>
-        <p id="attDesc">المحتوى التدريبي والتوعوي مقفل بنظام الانضباط الصارم. ثبّت حضورك الآن للبدء.</p>
+        <p id="attDesc">المحتوى التدريبي مقفل. ثبّت حضورك الآن لبدء عداد الـ 90 دقيقة (45 صباحاً + 30 مساءً + 15 مراجعة).</p>
       </div>
       <div class="att-actions" id="attButtons">
-        <button type="button" class="btn-checkin" onclick="confirmDailyAttendance()">✅ تثبيت الحضور وفتح المحتوى</button>
+        <button type="button" class="btn-checkin" onclick="confirmDailyAttendance()">✅ تثبيت الحضور وبدء العداد</button>
         <button type="button" class="btn-reschedule" id="btnEmergencyReschedule" onclick="requestEmergencyReschedule()">⏳ تأجيل لظرف طارئ</button>
       </div>
     </div>
 
     <!-- أزرار التنقل بين البرامج والمختبرات -->
     <div class="lab-tabs" id="mainLabTabs">
-      <button type="button" class="lab-tab active" data-track="executive" onclick="switchLab('tabDiag', this)">📝 1. تحديد المستوى</button>
-      <button type="button" class="lab-tab" data-track="executive" onclick="switchLab('tabRoleplay', this)">🎙️ 2. محاكي الموكلين الأجانب</button>
-      <button type="button" class="lab-tab" data-track="executive" onclick="switchLab('tabDrafting', this)">⚖️ 3. صياغة العقود</button>
-      <button type="button" class="lab-tab" data-track="executive" onclick="switchLab('tabMedia', this)">🎬 4. الفيديو والمصطلحات</button>
-      <button type="button" class="lab-tab" data-track="executive" onclick="switchLab('tabIelts', this)">✍️ 5. الصياغة التحليلية</button>
+      <button type="button" class="lab-tab active" data-track="executive" onclick="switchLab('tabShadow', this)">🗣️ 1. ترديد المصطلحات</button>
+      <button type="button" class="lab-tab" data-track="executive" onclick="switchLab('tabDiag', this)">📝 2. تحديد المستوى</button>
+      <button type="button" class="lab-tab" data-track="executive" onclick="switchLab('tabRoleplay', this)">🎙️ 3. محاكي الموكلين</button>
+      <button type="button" class="lab-tab" data-track="executive" onclick="switchLab('tabDrafting', this)">⚖️ 4. صياغة العقود</button>
+      <button type="button" class="lab-tab" data-track="executive" onclick="switchLab('tabMedia', this)">🎬 5. الفيديو والمحاكمات</button>
+      <button type="button" class="lab-tab" data-track="executive" onclick="switchLab('tabIelts', this)">✍️ 6. الصياغة التحليلية</button>
       <button type="button" class="lab-tab marriage-tab" data-track="marriage" onclick="switchLab('tabMarriage', this)">💍 برنامج المقبلين على الزواج</button>
       <button type="button" class="lab-tab admin-tab" id="adminManageTabBtn" style="display:none;" onclick="switchLab('tabAdminUsers', this)">👥 إدارة المشتركين والبرامج</button>
     </div>
 
-    <!-- 1. قسم اختبار تحديد المستوى -->
-    <div class="card-section active" id="tabDiag">
+    <!-- 1. قسم ترديد المصطلحات المتسلسل -->
+    <div class="card-section active" id="tabShadow">
+      <h2>
+        <span>🗣️ مختبر ترديد المصطلحات القانونية والتجارية المتسلسل</span>
+        <span style="font-size: 12px; color: #d32f2f;">استمع • ردد بصوتك • انتقل للمصطلح التالي</span>
+      </h2>
+      <div id="shadowingContent"></div>
+    </div>
+
+    <!-- 2. قسم اختبار تحديد المستوى -->
+    <div class="card-section" id="tabDiag">
       <h2>
         <span>📝 اختبار تحديد المستوى وقياس التحسن (40 دقيقة)</span>
         <span style="font-size: 12px; color: #d32f2f;">مراسلات عملاء + عقود + لغة قانونية</span>
@@ -322,7 +379,7 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
       <div id="diagnosticContent"></div>
     </div>
 
-    <!-- 2. قسم محاكي الاجتماعات والتفاوض الحي -->
+    <!-- 3. قسم محاكي الاجتماعات والتفاوض الحي -->
     <div class="card-section" id="tabRoleplay">
       <h2>
         <span>🎙️ محاكي الاجتماعات والتفاوض الحي مع الموكلين الأجانب</span>
@@ -331,7 +388,7 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
       <div id="roleplayContent"></div>
     </div>
 
-    <!-- 3. قسم صياغة وتدقيق العقود -->
+    <!-- 4. قسم صياغة وتدقيق العقود -->
     <div class="card-section" id="tabDrafting">
       <h2>
         <span>⚖️ مختبر صياغة وتدقيق العقود التجارية (Contract Redlining)</span>
@@ -340,25 +397,25 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
       <div id="draftingContent"></div>
     </div>
 
-    <!-- 4. قسم الفيديو والبطاقات البصرية -->
+    <!-- 5. قسم الفيديو الحقيقي والبطاقات البصرية -->
     <div class="card-section" id="tabMedia">
       <h2>
-        <span>🎬 مختبر الفيديو الحي والبطاقات البصرية (مع تصحيح النطق)</span>
-        <span style="font-size: 12px; color: #16a34a;">Subtitles + صور + نطق بريطاني/أمريكي</span>
+        <span>🎬 مختبر الفيديو القانوني الحي والبطاقات البصرية</span>
+        <span style="font-size: 12px; color: #16a34a;">مشاهد محاكم وأخبار حقيقية مطابقة للنص</span>
       </h2>
       <div id="mediaContent"></div>
     </div>
 
-    <!-- 5. قسم محاكي الكتابة التحليلية -->
+    <!-- 6. قسم محاكي الكتابة التحليلية -->
     <div class="card-section" id="tabIelts">
       <h2>
-        <span>✍️ مختبر الكتابة التحليلية والتقارير القانونية</span>
+        <span>✍️ مختبر الصياغة التحليلية والمذكرات القانونية</span>
         <span style="font-size: 12px; color: #0b1a30;">مؤقت 40 دقيقة + عداد كلمات</span>
       </h2>
       <div id="ieltsContent"></div>
     </div>
 
-    <!-- 6. برنامج التوعية القانونية للمقبلين على الزواج في العراق -->
+    <!-- 7. برنامج التوعية القانونية للمقبلين على الزواج في العراق -->
     <div class="card-section" id="tabMarriage">
       <h2>
         <span>💍 برنامج التوعية القانونية الوقائية للمقبلين على الزواج في العراق</span>
@@ -367,33 +424,31 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
       <div id="marriageContent"></div>
     </div>
 
-    <!-- 7. قسم إدارة المشتركين والبرامج (خاص بالمالك فقط) -->
+    <!-- 8. قسم إدارة المشتركين والبرامج (خاص بالمالك فقط) -->
     <div class="card-section" id="tabAdminUsers">
       <h2>
         <span>👥 إدارة المشتركين، قفل الأجهزة، وتوليد أكواد البرامج</span>
         <span style="font-size: 12px; color: #b45309;">صلاحية المالك والمشرف العام فقط</span>
       </h2>
       
-      <!-- إضافة مشترك وتوليد كود -->
       <div style="background:#fffbeb; border:1px solid #fcd34d; padding:16px; border-radius:10px; margin-bottom:18px;">
         <h3 style="font-size:14.5px; color:#92400e; margin-bottom:10px;">➕ إصدار كود اشتراك شخصي (يُقفل تلقائياً على أول جهاز يفتحه):</h3>
         <div class="admin-form-row">
           <input type="text" id="newTraineeName" class="admin-input" placeholder="الاسم الكامل للمشترك (كما سيظهر في الشهادة)">
           <select id="newTraineeTrack" class="admin-input">
             <option value="marriage">💍 برنامج التوعية القانونية للمقبلين على الزواج</option>
-            <option value="executive">⚖️ برنامج صياغة العقود التجارية واللغة القانونية</option>
+            <option value="executive">⚖️ مسار الصياغة القانونية واللغة الإنجليزية المهنية</option>
             <option value="all">🌟 الصلاحية الشاملة (كافة البرامج والمختبرات)</option>
           </select>
         </div>
         <button type="button" class="btn-primary" style="background:#b45309;" onclick="createNewTrainee()">توليد كود الاشتراك المخصص 🔑</button>
       </div>
 
-      <!-- إضافة درس جديد لبرنامج المقبلين على الزواج أو البرامج التوعوية -->
       <div style="background:#f8fafc; border:1.5px solid #cbd5e0; padding:16px; border-radius:10px; margin-bottom:18px;">
         <h3 style="font-size:14.5px; color:#0b1a30; margin-bottom:10px;">✍️ إضافة محور / درس توعوي جديد لبرنامج المقبلين على الزواج:</h3>
-        <input type="text" id="newLessonTitle" class="admin-input" style="margin-bottom:10px;" placeholder="عنوان المحور (مثال: أحكام الأثاث الزوجي والذهب في القانون العراقي)">
+        <input type="text" id="newLessonTitle" class="admin-input" style="margin-bottom:10px;" placeholder="عنوان المحور">
         <textarea id="newLessonBody" class="admin-input" style="min-height:90px; margin-bottom:10px;" placeholder="اكتب الشرح القانوني المبسط والوقائي للمشتركين..."></textarea>
-        <input type="text" id="newLessonTip" class="admin-input" style="margin-bottom:10px;" placeholder="القاعدة الذهبية / التنبيه الوقائي للمحامي (اختياري)">
+        <input type="text" id="newLessonTip" class="admin-input" style="margin-bottom:10px;" placeholder="القاعدة الذهبية / التنبيه الوقائي للمحامي">
         <button type="button" class="btn-primary" onclick="addCustomMarriageLesson()">إضافة المحور إلى البرنامج فوراً ➕</button>
       </div>
 
@@ -401,9 +456,16 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
       <div id="traineesListContainer"></div>
     </div>
 
+    <!-- صندوق طلب التقدم للمرحلة التالية (صارم ويرفض التقدم غير المستحق) -->
+    <div class="progression-box" id="progressionGateBox">
+      <h3>🚀 بوابة التقدم للمرحلة التالية (Stage Progression Gate)</h3>
+      <p>اضغط أدناه لاعتماد إنجازك اليومي والانتقال للمرحلة التالية. (يرفض النظام الانتقال تلقائياً ما لم تُتم 30 دقيقة تدريب على الأقل وتجتز التقييم).</p>
+      <button type="button" class="btn-advance" onclick="attemptAdvanceStage()">✅ إنهاء متطلبات اليوم والانتقال للمرحلة التالية</button>
+    </div>
+
     <!-- سجل التقييمات والدرجات -->
-    <div class="card-section active" style="margin-top: 10px;">
-      <h2><span>📊 سجل التقييمات وقياس الإنجاز</span></h2>
+    <div class="card-section active" style="margin-top: 20px;">
+      <h2><span>📊 سجل التقييمات وساعات التدريب اليومية</span></h2>
       <div id="historyContainer">
         <p style="font-size: 13.5px; color: #718096; text-align: center;">لم يتم تسجيل أي اختبارات تقييمية بعد.</p>
       </div>
@@ -431,24 +493,24 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
       <div class="cert-header-logo">A<span>K</span>H</div>
       <div class="cert-header-sub"><span>/</span> LAW OFFICE • EST. 2014</div>
       
-      <div class="cert-title">Certificate of Completion & Legal Awareness</div>
+      <div class="cert-title">Certificate of Completion & Practical Training</div>
       <div class="cert-subtitle">Issued by the Law Office of Ali Kadhem Al-Hashimi — Baghdad, Iraq</div>
 
       <p class="cert-body-text">This is to certify that</p>
       <div class="cert-recipient" id="certRecipientName">Ali Kadhem Al-Hashimi</div>
       <p class="cert-body-text">
-        has actively participated in and successfully completed the practical legal training & awareness program in:
+        has actively participated in and successfully completed the practical legal training & awareness workshop in:
       </p>
-      <div class="cert-course" id="certCourseTitle">Pre-Marital Legal Awareness & Family Protection in Iraqi Law</div>
+      <div class="cert-course" id="certCourseTitle">Commercial Contract Drafting, Legal Due Diligence & Executive Legal English</div>
       <p class="cert-body-text" style="font-size:13.5px;">
-        Achieving an assessment score of <strong id="certScoreText">95%</strong>, demonstrating clear understanding of statutory rights, contractual stipulations, and preventive legal safeguards.
+        Achieving an assessment score of <strong id="certScoreText">95%</strong>, demonstrating high proficiency in statutory rights, contractual stipulations, and preventive legal safeguards.
       </p>
 
       <div class="cert-footer-grid">
         <div>
           <div style="font-size:11.5px; color:#475569; font-weight:700;">Date of Issue: <span id="certIssueDate" style="color:#0b1a30;">14 November 2026</span></div>
           <div style="font-size:11.5px; color:#475569; font-weight:700; margin-top:4px;">Verification ID: <span id="certVerifyId" style="color:#d32f2f; font-family:monospace;">AKH-CERT-2026-8941</span></div>
-          <div style="font-size:10px; color:#64748b; margin-top:4px;">Verify authenticity at: akjassem.com/academy</div>
+          <div style="font-size:10px; color:#64748b; margin-top:4px;">Verify authenticity at: akjassem.com/training</div>
         </div>
 
         <div class="cert-seal">
@@ -469,13 +531,100 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
 <script>
 const REPO_OWNER = 'akjassem-netizen';
 const REPO_NAME = 'Site';
-const ACADEMY_DB_FILE = 'academy-database.json';
+const TRAINING_DB_FILE = 'training-database.json';
 
 let ACTIVE_TOKEN = '';
-let CURRENT_MODE = 'owner';
+let CURRENT_MODE = 'owner'; // 'owner' or 'trainee'
+let SESSION_PURPOSE = 'study'; // 'study' or 'dev'
 let CURRENT_TRAINEE_CODE = null;
+let STUDY_TIMER_INTERVAL = null;
+let CURRENT_SHADOW_INDEX = 0;
 
-// الدروس الافتراضية لبرنامج المقبلين على الزواج في العراق
+const SHADOWING_TERMS = [
+  {
+    term: "Jurisdiction",
+    phonetic: "/ˌdʒʊərɪsˈdɪkʃn/",
+    ar: "الاختصاص القضائي / الولاية القضائية",
+    ex: "The commercial court in Baghdad holds exclusive jurisdiction over this dispute."
+  },
+  {
+    term: "Indemnification",
+    phonetic: "/ɪnˌdemnɪfɪˈkeɪʃn/",
+    ar: "التعويض عن الأضرار والمسؤوليات",
+    ex: "The agreement includes a strict indemnification clause protecting the investor."
+  },
+  {
+    term: "Legal Due Diligence",
+    phonetic: "/ˈliːɡl djuː ˈdɪlɪdʒəns/",
+    ar: "الفحص القانوني النافي للجهالة",
+    ex: "We completed the legal due diligence prior to signing the share purchase agreement."
+  },
+  {
+    term: "Fiduciary Duty",
+    phonetic: "/fɪˈdjuːʃəri ˈdjuːti/",
+    ar: "الواجب الائتماني (التزام المدير بالأمانة وحسن النية)",
+    ex: "The managing director breached his fiduciary duty toward the shareholders."
+  },
+  {
+    term: "Arbitration Clause",
+    phonetic: "/ˌɑːbɪˈtreɪʃn klɔːz/",
+    ar: "شرط التحكيم التجاري",
+    ex: "Any dispute arising out of this contract shall be settled under the arbitration clause."
+  },
+  {
+    term: "Force Majeure",
+    phonetic: "/ˌfɔːs mæˈʒɜː(r)/",
+    ar: "القوة القاهرة",
+    ex: "Neither party shall be liable for delays caused by an event of force majeure."
+  }
+];
+
+const VIDEO_CLIPS = [
+  {
+    title: "UK Supreme Court | مرافعة وقرار قضائي حقيقي",
+    embedUrl: "https://www.youtube.com/embed/P9tKTxbgdkk?start=15&end=75",
+    subtitleEn: "The court must determine whether the executive action complied with statutory authority.",
+    subtitleAr: "يجب على المحكمة أن تقرر ما إذا كان الإجراء التنفيذي متوافقاً مع السلطة التشريعية."
+  },
+  {
+    title: "BBC News | تحليل قانوني واقتصادي حول التشريعات والاستثمار",
+    embedUrl: "https://www.youtube.com/embed/9Auq9mYxFEE?start=0&end=60",
+    subtitleEn: "Strict corporate governance and regulatory compliance remain essential for international investors.",
+    subtitleAr: "تظل الحوكمة الرشيدة والامتثال التنظيمي الصارم ضروريين للمستثمرين الدوليين."
+  }
+];
+
+const VISUAL_FLASHCARDS = [
+  {
+    term: "Legal Due Diligence",
+    cat: "Corporate & Investment Law",
+    img: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=600&q=80",
+    ar: "الفحص القانوني النافي للجهالة (تدقيق عقود وسجلات الشركة قبل الشراكة)",
+    ex: "We conduct comprehensive legal due diligence prior to signing any joint venture agreement."
+  },
+  {
+    term: "Retainer Agreement",
+    cat: "Client Engagement & Fees",
+    img: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=600&q=80",
+    ar: "عقد أتعاب استشاري مسبق (مقابل التمثيل القانوني المستمر)",
+    ex: "Our initial consultation fee is fully credited toward your corporate retainer agreement."
+  },
+  {
+    term: "Arbitration Clause",
+    cat: "Commercial Dispute Resolution",
+    img: "https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=600&q=80",
+    ar: "شرط التحكيم التجاري (لتسوية النزاعات خارج المحاكم التقليدية)",
+    ex: "The parties agreed to resolve any contractual dispute through international arbitration."
+  },
+  {
+    term: "Beneficial Ownership",
+    cat: "Banking & AML Compliance",
+    img: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=600&q=80",
+    ar: "الملكية المستفيدة الحقيقية (الكشف عن المالك الفعلي للشركة)",
+    ex: "Central Bank directives require full transparency regarding ultimate beneficial ownership."
+  }
+];
+
 const DEFAULT_MARRIAGE_LESSONS = [
   {
     title: "المحور الأول: عقد الزواج الرسمي مقابل العقد الخارجي (مخاطر ضياع الحقوق)",
@@ -524,25 +673,6 @@ const MARRIAGE_QUIZ = [
   }
 ];
 
-// قاعدة البيانات المركزية في GitHub
-let ACADEMY_DB = {
-  ownerData: {
-    name: 'Ali Kadhem Al-Hashimi',
-    streak: 0,
-    lastCheckInDate: '',
-    reschedulesLeft: 2,
-    diagnosticCompleted: false,
-    initialScore: 0,
-    latestScore: 0,
-    levelLabel: 'غير محدد',
-    track: 'all',
-    examHistory: []
-  },
-  customMarriageLessons: [],
-  trainees: {}
-};
-
-// بيانات المختبر التنفيذي
 const CLIENT_SCENARIOS = [
   {
     title: "السيناريو الأول: استفسار شركة بريطانية عن سياسة الاستشارة والأتعاب",
@@ -579,52 +709,6 @@ const CONTRACT_CLAUSES = [
   }
 ];
 
-const VIDEO_CLIPS = [
-  {
-    title: "BBC News | التحليل القانوني والتشريعي",
-    embedUrl: "https://www.youtube.com/embed/6v2L2UGZJAM?start=15&end=75",
-    subtitleEn: "The Supreme Court ruled that the statutory restrictions violated constitutional property rights.",
-    subtitleAr: "قضت المحكمة العليا بأن القيود التشريعية انتهكت حقوق الملكية الدستورية."
-  },
-  {
-    title: "Financial Times | الامتثال المالي ومكافحة غسل الأموال",
-    embedUrl: "https://www.youtube.com/embed/aqz-KE-bpKQ?start=10&end=60",
-    subtitleEn: "International investors must conduct rigorous due diligence before entering emerging markets.",
-    subtitleAr: "يجب على المستثمرين الدوليين إجراء فحص نافٍ للجهالة صارم قبل دخول الأسواق الناشئة."
-  }
-];
-
-const VISUAL_FLASHCARDS = [
-  {
-    term: "Legal Due Diligence",
-    cat: "Corporate & Investment Law",
-    img: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=600&q=80",
-    ar: "الفحص القانوني النافي للجهالة (تدقيق عقود وسجلات الشركة قبل الشراكة)",
-    ex: "We conduct comprehensive legal due diligence prior to signing any joint venture agreement."
-  },
-  {
-    term: "Retainer Agreement",
-    cat: "Client Engagement & Fees",
-    img: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=600&q=80",
-    ar: "عقد أتعاب استشاري مسبق (مقابل التمثيل القانوني المستمر)",
-    ex: "Our initial consultation fee is fully credited toward your corporate retainer agreement."
-  },
-  {
-    term: "Arbitration Clause",
-    cat: "Commercial Dispute Resolution",
-    img: "https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=600&q=80",
-    ar: "شرط التحكيم التجاري (لتسوية النزاعات خارج المحاكم التقليدية)",
-    ex: "The parties agreed to resolve any contractual dispute through international arbitration."
-  },
-  {
-    term: "Beneficial Ownership",
-    cat: "Banking & AML Compliance",
-    img: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=600&q=80",
-    ar: "الملكية المستفيدة الحقيقية (الكشف عن المالك الفعلي للشركة)",
-    ex: "Central Bank directives require full transparency regarding ultimate beneficial ownership."
-  }
-];
-
 const DIAGNOSTIC_QUESTIONS = [
   {
     cat: "Client Communication (مكالمة موكل أجنبي)",
@@ -637,7 +721,7 @@ const DIAGNOSTIC_QUESTIONS = [
     ans: 1
   },
   {
-    cat: "Commercial Law & LL.M. (صياغة العقود)",
+    cat: "Commercial Law (صياغة العقود)",
     q: "In commercial contracts, what is the exact legal meaning of 'Indemnification'?",
     options: [
       "Canceling a contract without notice.",
@@ -647,7 +731,7 @@ const DIAGNOSTIC_QUESTIONS = [
     ans: 1
   },
   {
-    cat: "Commercial Law & LL.M. (الفحص النافي للجهالة)",
+    cat: "Commercial Law (الفحص النافي للجهالة)",
     q: "Before an international company acquires shares in a local Iraqi enterprise, conducting 'Legal Due Diligence' primarily aims to:",
     options: [
       "Design the company's new marketing logo.",
@@ -678,7 +762,26 @@ const DIAGNOSTIC_QUESTIONS = [
   }
 ];
 
-// توليد بصمة الجهاز الفريدة لقفل الكود على شخص واحد
+let TRAINING_DB = {
+  ownerData: {
+    name: 'Ali Kadhem Al-Hashimi',
+    streak: 0,
+    lastCheckInDate: '',
+    reschedulesLeft: 2,
+    diagnosticCompleted: false,
+    initialScore: 0,
+    latestScore: 0,
+    levelLabel: 'المرحلة 1',
+    currentStage: 1,
+    dailySecondsLog: {},
+    shadowingCompletedCount: 0,
+    track: 'all',
+    examHistory: []
+  },
+  customMarriageLessons: [],
+  trainees: {}
+};
+
 function getDeviceFingerprint() {
   let fp = localStorage.getItem('akh_device_unique_id');
   if (!fp) {
@@ -717,13 +820,13 @@ async function decryptToken(encryptedObj, pin) {
 
 window.onload = function() {
   if ('speechSynthesis' in window) window.speechSynthesis.getVoices();
-  const savedSessionToken = sessionStorage.getItem('akh_academy_token');
-  const savedVault = localStorage.getItem('akh_admin_vault') || localStorage.getItem('akh_academy_vault');
+  const savedSessionToken = sessionStorage.getItem('akh_training_token');
+  const savedVault = localStorage.getItem('akh_admin_vault') || localStorage.getItem('akh_training_vault');
 
   if (savedSessionToken) {
     ACTIVE_TOKEN = savedSessionToken;
     CURRENT_MODE = 'owner';
-    openDashboard();
+    document.getElementById('modeSelectScreen').style.display = 'block';
   } else if (savedVault) {
     document.getElementById('authScreen').style.display = 'block';
   } else {
@@ -750,120 +853,125 @@ async function performSetup() {
   if (!pin) { showAlert('يرجى إدخال الرقم السري.', false); return; }
   try {
     const vaultObj = await encryptToken(token, pin);
-    localStorage.setItem('akh_academy_vault', JSON.stringify(vaultObj));
+    localStorage.setItem('akh_training_vault', JSON.stringify(vaultObj));
     localStorage.setItem('akh_admin_vault', JSON.stringify(vaultObj));
     ACTIVE_TOKEN = token;
-    sessionStorage.setItem('akh_academy_token', token);
+    sessionStorage.setItem('akh_training_token', token);
     CURRENT_MODE = 'owner';
-    openDashboard();
+    document.getElementById('setupScreen').style.display = 'none';
+    document.getElementById('modeSelectScreen').style.display = 'block';
   } catch(e) { showAlert('خطأ في التشفير: ' + e.message, false); }
 }
 
-async function attemptOwnerUnlock() {
+async function verifyOwnerPinAndAskMode() {
   const pin = document.getElementById('unlockPinInput').value.trim();
   try {
-    const savedVault = localStorage.getItem('akh_admin_vault') || localStorage.getItem('akh_academy_vault');
+    const savedVault = localStorage.getItem('akh_admin_vault') || localStorage.getItem('akh_training_vault');
     const vaultObj = JSON.parse(savedVault);
     ACTIVE_TOKEN = await decryptToken(vaultObj, pin);
-    sessionStorage.setItem('akh_academy_token', ACTIVE_TOKEN);
+    sessionStorage.setItem('akh_training_token', ACTIVE_TOKEN);
     CURRENT_MODE = 'owner';
-    openDashboard();
+    document.getElementById('authScreen').style.display = 'none';
+    document.getElementById('modeSelectScreen').style.display = 'block';
   } catch(e) {
     showAlert('❌ الرقم السري للمالك غير صحيح!', false);
     document.getElementById('unlockPinInput').value = '';
   }
 }
 
+function startOwnerSession(purpose) {
+  SESSION_PURPOSE = purpose;
+  document.getElementById('modeSelectScreen').style.display = 'none';
+  openDashboard();
+}
+
 async function attemptTraineeLogin() {
   const code = document.getElementById('traineeCodeInput').value.trim().toUpperCase();
   if (!code) { showAlert('يرجى إدخال كود الاشتراك الخاص بك.', false); return; }
 
-  await loadAcademyDBFromPublicOrLocal();
-  const trainee = ACADEMY_DB.trainees[code];
+  await loadTrainingDBFromPublicOrLocal();
+  const trainee = TRAINING_DB.trainees[code];
 
-  if (!trainee) {
-    showAlert('⛔ كود الاشتراك غير موجود! تأكد من الكود الصادر لك من المكتب.', false);
-    return;
-  }
-  if (trainee.active === false) {
-    showAlert('⛔ تم إيقاف هذا الاشتراك من قبل إدارة المكتب.', false);
-    return;
-  }
+  if (!trainee) { showAlert('⛔ كود الاشتراك غير موجود!', false); return; }
+  if (trainee.active === false) { showAlert('⛔ تم إيقاف هذا الاشتراك من قبل إدارة المكتب.', false); return; }
 
-  // التحقق من قفل الكود على جهاز واحد فقط
   const currentDevice = getDeviceFingerprint();
   if (trainee.lockedDevice && trainee.lockedDevice !== currentDevice) {
-    showAlert('⛔ مرفوض! هذا الكود مخصص لشخص وجهاز واحد فقط، وهو مفعّل حالياً على جهاز آخر. تواصل مع إدارة المكتب لإعادة الضبط.', false);
+    showAlert('⛔ مرفوض! هذا الكود مخصص لشخص وجهاز واحد فقط، وهو مفعّل حالياً على جهاز آخر.', false);
     return;
   }
   if (!trainee.lockedDevice) {
     trainee.lockedDevice = currentDevice;
-    localStorage.setItem('akh_academy_central_db', JSON.stringify(ACADEMY_DB));
+    localStorage.setItem('akh_training_central_db', JSON.stringify(TRAINING_DB));
   }
 
   CURRENT_MODE = 'trainee';
+  SESSION_PURPOSE = 'study';
   CURRENT_TRAINEE_CODE = code;
   openDashboard();
 }
 
 function lockPortal() {
-  sessionStorage.removeItem('akh_academy_token');
+  clearInterval(STUDY_TIMER_INTERVAL);
+  sessionStorage.removeItem('akh_training_token');
   location.reload();
 }
 
 async function openDashboard() {
   document.getElementById('setupScreen').style.display = 'none';
   document.getElementById('authScreen').style.display = 'none';
-  document.getElementById('academyDashboard').style.display = 'block';
+  document.getElementById('modeSelectScreen').style.display = 'none';
+  document.getElementById('trainingDashboard').style.display = 'block';
 
-  await loadAcademyDB();
-  renderAcademyUI();
+  await loadTrainingDB();
+  renderTrainingUI();
+  startDailyStudyTimer();
 }
 
 let CURRENT_DB_SHA = null;
-async function loadAcademyDB() {
-  const localDB = localStorage.getItem('akh_academy_central_db');
-  if (localDB) ACADEMY_DB = { ...ACADEMY_DB, ...JSON.parse(localDB) };
+async function loadTrainingDB() {
+  const localDB = localStorage.getItem('akh_training_central_db');
+  if (localDB) TRAINING_DB = { ...TRAINING_DB, ...JSON.parse(localDB) };
 
   if (ACTIVE_TOKEN) {
     try {
-      const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${ACADEMY_DB_FILE}?ref=main`;
+      const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${TRAINING_DB_FILE}?ref=main`;
       const res = await fetch(url, { headers: { 'Authorization': `Bearer ${ACTIVE_TOKEN}` } });
       if (res.ok) {
         const data = await res.json();
         CURRENT_DB_SHA = data.sha;
         const parsed = JSON.parse(b64_to_utf8(data.content));
-        ACADEMY_DB = { ...ACADEMY_DB, ...parsed };
-        localStorage.setItem('akh_academy_central_db', JSON.stringify(ACADEMY_DB));
+        TRAINING_DB = { ...TRAINING_DB, ...parsed };
+        localStorage.setItem('akh_training_central_db', JSON.stringify(TRAINING_DB));
       }
     } catch (e) {}
   } else {
-    await loadAcademyDBFromPublicOrLocal();
+    await loadTrainingDBFromPublicOrLocal();
   }
 }
 
-async function loadAcademyDBFromPublicOrLocal() {
-  const localDB = localStorage.getItem('akh_academy_central_db');
-  if (localDB) ACADEMY_DB = { ...ACADEMY_DB, ...JSON.parse(localDB) };
+async function loadTrainingDBFromPublicOrLocal() {
+  const localDB = localStorage.getItem('akh_training_central_db');
+  if (localDB) TRAINING_DB = { ...TRAINING_DB, ...JSON.parse(localDB) };
   try {
-    const res = await fetch(`https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/${ACADEMY_DB_FILE}?t=${Date.now()}`);
+    const res = await fetch(`https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main/${TRAINING_DB_FILE}?t=${Date.now()}`);
     if (res.ok) {
       const parsed = await res.json();
-      ACADEMY_DB = { ...ACADEMY_DB, ...parsed };
-      localStorage.setItem('akh_academy_central_db', JSON.stringify(ACADEMY_DB));
+      TRAINING_DB = { ...TRAINING_DB, ...parsed };
+      localStorage.setItem('akh_training_central_db', JSON.stringify(TRAINING_DB));
     }
   } catch (e) {}
 }
 
-async function saveAcademyDB() {
-  localStorage.setItem('akh_academy_central_db', JSON.stringify(ACADEMY_DB));
+async function saveTrainingDB() {
+  localStorage.setItem('akh_training_central_db', JSON.stringify(TRAINING_DB));
   if (!ACTIVE_TOKEN) return;
 
   try {
-    const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${ACADEMY_DB_FILE}`;
+    const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${TRAINING_DB_FILE}`;
     const bodyObj = {
       message: `Update Training Hub Database - ${new Date().toISOString()}`,
-      content: utf8_to_b64(JSON.stringify(ACADEMY_DB, null, 2)),
+      content: utf8_to_b64(JSON.stringify(TRAINING_DB, null, 2)),
       branch: 'main'
     };
     if (CURRENT_DB_SHA) bodyObj.sha = CURRENT_DB_SHA;
@@ -881,20 +989,58 @@ async function saveAcademyDB() {
 }
 
 function getActiveUserProfile() {
-  if (CURRENT_MODE === 'owner') return ACADEMY_DB.ownerData;
-  return ACADEMY_DB.trainees[CURRENT_TRAINEE_CODE];
+  if (CURRENT_MODE === 'owner') return TRAINING_DB.ownerData;
+  return TRAINING_DB.trainees[CURRENT_TRAINEE_CODE];
 }
 
 function getTodayStr() {
   return new Date().toISOString().split('T')[0];
 }
 
-function renderAcademyUI() {
+function startDailyStudyTimer() {
+  clearInterval(STUDY_TIMER_INTERVAL);
   const profile = getActiveUserProfile();
   const today = getTodayStr();
-  const isCheckedInToday = (profile.lastCheckInDate === today);
+  profile.dailySecondsLog = profile.dailySecondsLog || {};
 
-  // إظهار أو إخفاء التبويبات حسب مسار المشترك
+  STUDY_TIMER_INTERVAL = setInterval(() => {
+    const isCheckedIn = (profile.lastCheckInDate === today);
+    if (SESSION_PURPOSE === 'study' && isCheckedIn) {
+      profile.dailySecondsLog[today] = (profile.dailySecondsLog[today] || 0) + 1;
+      updateTimeDisplay(profile.dailySecondsLog[today]);
+      if (profile.dailySecondsLog[today] % 30 === 0) {
+        saveTrainingDB();
+      }
+    }
+  }, 1000);
+}
+
+function updateTimeDisplay(totalSeconds) {
+  const mins = Math.floor(totalSeconds / 60);
+  const secs = totalSeconds % 60;
+  const el = document.getElementById('statDailyTime');
+  if (el) {
+    el.innerText = `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
+  }
+}
+
+function renderTrainingUI() {
+  const profile = getActiveUserProfile();
+  const today = getTodayStr();
+  const isUnlocked = (SESSION_PURPOSE === 'dev') || (profile.lastCheckInDate === today);
+
+  const modePill = document.getElementById('sessionModeBadge');
+  if (SESSION_PURPOSE === 'dev') {
+    modePill.className = 'mode-pill dev';
+    modePill.innerText = '🛠️ وضع التطوير والمعاينة (الوقت غير محسوب)';
+  } else {
+    modePill.className = 'mode-pill study';
+    modePill.innerText = '🎓 وضع التدريب الفعلي (الوقت محسوب)';
+  }
+
+  profile.dailySecondsLog = profile.dailySecondsLog || {};
+  updateTimeDisplay(profile.dailySecondsLog[today] || 0);
+
   const userTrack = profile.track || 'all';
   document.querySelectorAll('#mainLabTabs .lab-tab').forEach(btn => {
     const btnTrack = btn.getAttribute('data-track');
@@ -907,271 +1053,160 @@ function renderAcademyUI() {
   });
 
   if (CURRENT_MODE === 'owner') {
-    document.getElementById('userRoleBadge').innerText = '👑 المالك والمشرف العام (Super Admin)';
+    document.getElementById('userRoleBadge').innerText = '👑 المالك والمشرف العام';
     document.getElementById('adminManageTabBtn').style.display = 'inline-block';
     document.getElementById('btnPreviewCert').style.display = 'inline-flex';
     document.getElementById('btnPreviewCert').innerText = '📜 معاينة الشهادة الرسمية 👁️';
-    document.getElementById('statTrackName').innerText = 'كافة البرامج والمختبرات';
     renderTraineesList();
   } else {
     document.getElementById('userRoleBadge').innerText = `🎓 المشترك: ${profile.name}`;
     document.getElementById('adminManageTabBtn').style.display = 'none';
-    document.getElementById('statTrackName').innerText = userTrack === 'marriage' ? 'المقبلين على الزواج' : 'العقود واللغة القانونية';
-    
-    // إذا كان مشتركاً في برنامج المقبلين على الزواج، نفتح له تبويب البرنامج تلقائياً
     if (userTrack === 'marriage') {
       document.getElementById('accentControlWrapper').style.display = 'none';
       const marriageBtn = document.querySelector('.marriage-tab');
       if (marriageBtn) switchLab('tabMarriage', marriageBtn);
     }
-
-    if (profile.latestScore >= 80) {
-      document.getElementById('btnPreviewCert').style.display = 'inline-flex';
-      document.getElementById('btnPreviewCert').innerText = '📜 إصدار شهادة الإتمام';
-    } else {
-      document.getElementById('btnPreviewCert').style.display = 'none';
-    }
+    document.getElementById('btnPreviewCert').style.display = profile.latestScore >= 80 ? 'inline-flex' : 'none';
   }
 
   document.getElementById('statStreak').innerText = profile.streak || 0;
-  document.getElementById('statLevel').innerText = profile.levelLabel || 'غير محدد';
-  document.getElementById('statScoreSub').innerText = profile.diagnosticCompleted ? `الدرجة الحالية: ${profile.latestScore}%` : 'أتمم الاختبار التقييمي';
+  document.getElementById('statLevel').innerText = `المرحلة ${profile.currentStage || 1} (${profile.levelLabel || 'غير محدد'})`;
+  document.getElementById('statScoreSub').innerText = profile.diagnosticCompleted ? `الدرجة: ${profile.latestScore}%` : 'أتمم الاختبار التقييمي';
   document.getElementById('statCertStatus').innerText = (profile.latestScore >= 80 || CURRENT_MODE === 'owner') ? 'متاحة للطباعة ✅' : 'تتطلب 80%+';
 
   const attBanner = document.getElementById('attendanceBanner');
-  if (isCheckedInToday) {
+  if (SESSION_PURPOSE === 'dev') {
+    attBanner.style.background = '#1e3a8a';
+    attBanner.style.borderRightColor = '#60a5fa';
+    document.getElementById('attTitle').innerText = '🛠️ أنت الآن في وضع الإدارة والتطوير والمعاينة';
+    document.getElementById('attDesc').innerText = 'جميع المختبرات والبرامج مفتوحة لك دون قيود، ولن يتم احتساب هذا الوقت في سجل تدريبك.';
+    document.getElementById('attButtons').innerHTML = `<button type="button" class="btn-checkin" onclick="startOwnerSession('study')">التبديل لوضع التدريب الفعلي 🎓</button>`;
+  } else if (profile.lastCheckInDate === today) {
     attBanner.style.background = '#064e3b';
     attBanner.style.borderRightColor = '#10b981';
-    document.getElementById('attTitle').innerText = '✅ تم تثبيت حضورك اليومي بنجاح';
-    document.getElementById('attDesc').innerText = 'جميع محتويات البرنامج المخصص لك مفتوحة الآن.';
+    document.getElementById('attTitle').innerText = '✅ تم تثبيت حضورك اليومي — عداد التدريب نشط الآن';
+    document.getElementById('attDesc').innerText = 'الهدف اليومي: 90 دقيقة (45 صباحاً + 30 مساءً + 15 مراجعة).';
     document.getElementById('attButtons').innerHTML = `<span style="background:#10b981; color:#fff; padding:8px 14px; border-radius:6px; font-weight:800; font-size:13px;">حضور مؤكد (${today})</span>`;
   }
 
-  renderDiagnosticSection(isCheckedInToday, profile);
-  renderRoleplayLab(isCheckedInToday);
-  renderDraftingLab(isCheckedInToday);
-  renderMediaLab(isCheckedInToday);
-  renderIeltsLab(isCheckedInToday, profile);
-  renderMarriageProgram(isCheckedInToday, profile);
+  renderShadowingLab(isUnlocked);
+  renderDiagnosticSection(isUnlocked, profile);
+  renderRoleplayLab(isUnlocked);
+  renderDraftingLab(isUnlocked);
+  renderMediaLab(isUnlocked);
+  renderIeltsLab(isUnlocked, profile);
+  renderMarriageProgram(isUnlocked, profile);
   renderHistorySection(profile);
 }
 
-// عرض برنامج المقبلين على الزواج
-function renderMarriageProgram(isCheckedIn, profile) {
-  const container = document.getElementById('marriageContent');
-  if (!isCheckedIn) {
-    container.innerHTML = `<div class="locked-overlay"><h4>🔒 محتوى البرنامج مقفل</h4><p>يرجى الضغط على زر <strong>تثبيت الحضور</strong> أعلاه لفتح محاور برنامج التوعية القانونية للمقبلين على الزواج.</p></div>`;
+function renderShadowingLab(isUnlocked) {
+  const container = document.getElementById('shadowingContent');
+  if (!isUnlocked) {
+    container.innerHTML = `<div class="locked-overlay"><h4>🔒 مختبر النطق والترديد مقفل</h4><p>ثبّت حضورك اليومي أعلاه لبدء ترديد المصطلحات القانونية والتجارية.</p></div>`;
     return;
   }
 
-  const allLessons = [...DEFAULT_MARRIAGE_LESSONS, ...(ACADEMY_DB.customMarriageLessons || [])];
-  let html = `<p style="font-size:14px; color:#334155; margin-bottom:16px; line-height:1.7;">برنامج توعوي عملي مصمم لحماية الأسرة وتوضيح الحقوق والالتزامات التعاقدية في عقد الزواج وفق القانون العراقي النافذ:</p>`;
+  const item = SHADOWING_TERMS[CURRENT_SHADOW_INDEX % SHADOWING_TERMS.length];
+  const safeTerm = item.term.replace(/'/g, "\\'");
+  const safeEx = item.ex.replace(/'/g, "\\'");
 
-  allLessons.forEach((ls, idx) => {
-    html += `
-      <div class="lesson-card">
-        <div class="lesson-title">📌 ${ls.title}</div>
-        <div class="lesson-body">${ls.body}</div>
-        ${ls.tip ? `<div class="legal-tip-box">⚖️ ${ls.tip}</div>` : ''}
-      </div>`;
-  });
+  container.innerHTML = `
+    <div class="shadowing-box">
+      <div class="shadow-progress">المصطلح رقم (${(CURRENT_SHADOW_INDEX % SHADOWING_TERMS.length) + 1} من ${SHADOWING_TERMS.length})</div>
+      <div class="shadow-term">${item.term}</div>
+      <div class="shadow-phonetic">${item.phonetic}</div>
+      <div class="shadow-meaning">${item.ar}</div>
+      <div class="shadow-sentence">"${item.ex}"</div>
 
-  // اختبار إتمام البرنامج لإصدار الشهادة
-  html += `
-    <div style="background:#fdf2f8; border:1.5px solid #f472b6; border-radius:12px; padding:18px; margin-top:22px;">
-      <h3 style="font-size:16px; color:#9d174d; margin-bottom:10px;">📝 التقييم النهائي لبرنامج المقبلين على الزواج (شرط إصدار الشهادة: 80%+)</h3>
-      <form id="marriageQuizForm" onsubmit="submitMarriageQuiz(event)">`;
+      <div class="audio-controls" style="margin-bottom:14px;">
+        <button type="button" class="btn-speak" onclick="speakText('${safeTerm}', 0.9)">🔊 استمع للمصطلح</button>
+        <button type="button" class="btn-speak slow" onclick="speakText('${safeTerm}', 0.65)">🐢 نطق بطيء</button>
+        <button type="button" class="btn-speak" style="background:#2b6cb0;" onclick="speakText('${safeEx}', 0.95)">🔊 استمع للجملة</button>
+        <button type="button" class="btn-mic" onclick="shadowingVoiceTest('${safeTerm}')">🎙️ ردد المصطلح بصوتك</button>
+      </div>
 
-  MARRIAGE_QUIZ.forEach((item, qIdx) => {
-    html += `<div class="question-box"><div class="q-text">${qIdx + 1}. ${item.q}</div>`;
-    item.options.forEach((opt, oIdx) => {
-      html += `<label class="option-label"><input type="radio" name="mq_${qIdx}" value="${oIdx}" required> ${opt}</label>`;
-    });
-    html += `</div>`;
-  });
+      <div id="shadowResultBox" class="pronounce-result" style="max-width:500px; margin:10px auto;"></div>
 
-  html += `<button type="submit" class="btn-primary" style="background:#be185d;">اعتماد الإجابات وإصدار شهادة إتمام البرنامج 🎓</button></form></div>`;
-  container.innerHTML = html;
+      <div style="margin-top:16px; display:flex; justify-content:center; gap:10px;">
+        <button type="button" class="btn-nav" style="background:#475569;" onclick="CURRENT_SHADOW_INDEX = Math.max(0, CURRENT_SHADOW_INDEX - 1); renderShadowingLab(true);">→ السابق</button>
+        <button type="button" class="btn-nav" onclick="CURRENT_SHADOW_INDEX++; renderShadowingLab(true);">المصطلح التالي ←</button>
+      </div>
+    </div>
+  `;
 }
 
-function submitMarriageQuiz(e) {
-  e.preventDefault();
+function shadowingVoiceTest(targetTerm) {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) { alert('يرجى استخدام متصفح Google Chrome لتشغيل الميكروفون.'); return; }
+
+  const resBox = document.getElementById('shadowResultBox');
+  const recognition = new SpeechRecognition();
+  recognition.lang = document.getElementById('accentSelect').value;
+  recognition.interimResults = false;
+
+  resBox.style.display = 'block';
+  resBox.style.background = '#fefcbf';
+  resBox.style.color = '#744210';
+  resBox.innerText = '🎙️ انطق المصطلح الآن بصوت واضح...';
+
+  recognition.start();
+  recognition.onresult = function(event) {
+    const spoken = event.results[0][0].transcript;
+    const cleanT = targetTerm.toLowerCase().replace(/[^a-z0-9\s]/g, '').trim();
+    const cleanS = spoken.toLowerCase().replace(/[^a-z0-9\s]/g, '').trim();
+
+    if (cleanS.includes(cleanT) || cleanT.includes(cleanS)) {
+      const profile = getActiveUserProfile();
+      profile.shadowingCompletedCount = (profile.shadowingCompletedCount || 0) + 1;
+      resBox.style.background = '#def7ec';
+      resBox.style.color = '#03543f';
+      resBox.innerHTML = `✅ <strong>نطق متقن 100%!</strong> سمع النظام: <em dir="ltr">"${spoken}"</em> — انتقل للمصطلح التالي.`;
+    } else {
+      resBox.style.background = '#fde8e8';
+      resBox.style.color = '#9b1c1c';
+      resBox.innerHTML = `⚠️ <strong>حاول مرة أخرى!</strong> المطلوب: <em dir="ltr">"${targetTerm}"</em> بينما سمع النظام: <em dir="ltr">"${spoken}"</em>.`;
+    }
+  };
+}
+
+function attemptAdvanceStage() {
   const profile = getActiveUserProfile();
-  let correct = 0;
-  MARRIAGE_QUIZ.forEach((item, idx) => {
-    const selected = document.querySelector(`input[name="mq_${idx}"]:checked`);
-    if (selected && parseInt(selected.value) === item.ans) correct++;
-  });
+  const today = getTodayStr();
+  const secondsToday = (profile.dailySecondsLog && profile.dailySecondsLog[today]) || 0;
+  const minsToday = Math.floor(secondsToday / 60);
 
-  const scorePct = Math.round((correct / MARRIAGE_QUIZ.length) * 100);
-  profile.latestScore = scorePct;
-  profile.levelLabel = scorePct >= 80 ? 'مجتاز بنجاح ✅' : 'يحتاج إعادة';
-  profile.diagnosticCompleted = true;
+  if (SESSION_PURPOSE === 'dev') {
+    alert('🛠️ أنت حالياً في وضع التطوير والمعاينة. للتقدم الفعلي في المراحل، ادخل بوضع (جلسة تدريب وتطوير فعلي).');
+    return;
+  }
 
-  profile.examHistory = profile.examHistory || [];
+  let missing = [];
+  if (minsToday < 30) {
+    missing.push(`• إتمام الحد الأدنى لوقت التدريب اليومي (أتممت ${minsToday} دقيقة فقط من أصل 30 دقيقة كحد أدنى للجلسة).`);
+  }
+  if (!profile.diagnosticCompleted || profile.latestScore < 70) {
+    missing.push(`• اجتياز اختبار تحديد المستوى أو التقييم بنسبة 70% فأكثر (درجتك الحالية: ${profile.latestScore}%).`);
+  }
+  if ((profile.shadowingCompletedCount || 0) < 3) {
+    missing.push(`• إتقان ترديد 3 مصطلحات قانونية بالصوت على الأقل في مختبر الترديد (أتممت ${profile.shadowingCompletedCount || 0}).`);
+  }
+
+  if (missing.length > 0) {
+    showAlert(`⛔ تم رفض الانتقال للمرحلة التالية! يجب إكمال النواقص التالية أولاً:\n${missing.join('\n')}`, false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    return;
+  }
+
+  profile.currentStage = (profile.currentStage || 1) + 1;
   profile.examHistory.unshift({
     date: new Date().toLocaleDateString('ar-IQ'),
-    type: 'اختبار برنامج التوعية القانونية للمقبلين على الزواج',
-    score: `${scorePct}% (${correct}/${MARRIAGE_QUIZ.length})`,
-    level: profile.levelLabel
+    type: `اجتياز متطلبات المرحلة ${profile.currentStage - 1} والترقية للمرحلة ${profile.currentStage}`,
+    score: `${minsToday} دقيقة تدريب | تقييم ${profile.latestScore}%`,
+    level: `المرحلة ${profile.currentStage}`
   });
-
-  saveAcademyDB();
-  if (scorePct >= 80) {
-    showAlert(`🎉 مبارك! اجتزت البرنامج بنسبة ${scorePct}% وأصبحت شهادة الإتمام متاحة للطباعة في الأعلى.`, true);
-  } else {
-    showAlert(`⚠️ حصلت على ${scorePct}%. يشترط تحقيق 80% فأكثر لإصدار الشهادة. راجع المحاور وأعد المحاولة.`, false);
-  }
-  renderAcademyUI();
-}
-
-function addCustomMarriageLesson() {
-  const title = document.getElementById('newLessonTitle').value.trim();
-  const body = document.getElementById('newLessonBody').value.trim();
-  const tip = document.getElementById('newLessonTip').value.trim();
-
-  if (!title || !body) { alert('يرجى كتابة عنوان المحور ومحتواه القانوني.'); return; }
-
-  ACADEMY_DB.customMarriageLessons = ACADEMY_DB.customMarriageLessons || [];
-  ACADEMY_DB.customMarriageLessons.push({ title, body, tip });
-
-  document.getElementById('newLessonTitle').value = '';
-  document.getElementById('newLessonBody').value = '';
-  document.getElementById('newLessonTip').value = '';
-
-  saveAcademyDB();
-  renderMarriageProgram(true, getActiveUserProfile());
-  alert('✅ تمت إضافة المحور الجديد إلى برنامج المقبلين على الزواج بنجاح!');
-}
-
-// إدارة المشتركين وقفل الأجهزة
-function createNewTrainee() {
-  const name = document.getElementById('newTraineeName').value.trim();
-  const track = document.getElementById('newTraineeTrack').value;
-  if (!name) { alert('يرجى إدخال الاسم الكامل للمشترك.'); return; }
-
-  const randomNum = Math.floor(1000 + Math.random() * 9000);
-  const newCode = `AKH-2026-${randomNum}`;
-
-  ACADEMY_DB.trainees[newCode] = {
-    name: name,
-    track: track,
-    active: true,
-    lockedDevice: null, // يُقفل تلقائياً على أول جهاز يفتح الكود
-    streak: 0,
-    lastCheckInDate: '',
-    reschedulesLeft: 2,
-    diagnosticCompleted: false,
-    initialScore: 0,
-    latestScore: 0,
-    levelLabel: 'غير محدد',
-    examHistory: []
-  };
-
-  document.getElementById('newTraineeName').value = '';
-  saveAcademyDB();
-  renderTraineesList();
-  alert(`✅ تم إصدار كود الاشتراك المخصص!\n\nالمشترك: ${name}\nكود الدخول: ${newCode}\n\nملاحظة: الكود سيُقفل تلقائياً على أول جهاز يستخدمه المشترك لمنع المشاركة.`);
-}
-
-function resetTraineeCode(oldCode) {
-  const trainee = ACADEMY_DB.trainees[oldCode];
-  if (!trainee) return;
-  if (!confirm(`هل تريد إلغاء الكود القديم (${oldCode}) وتوليد كود جديد للمشترك "${trainee.name}" وفك قفل الجهاز؟`)) return;
-
-  const randomNum = Math.floor(1000 + Math.random() * 9000);
-  const newCode = `AKH-2026-${randomNum}`;
-
-  ACADEMY_DB.trainees[newCode] = { ...trainee, lockedDevice: null };
-  delete ACADEMY_DB.trainees[oldCode];
-
-  saveAcademyDB();
-  renderTraineesList();
-  alert(`🔄 تم إعادة ضبط الكود وفك قفل الجهاز بنجاح!\n\nالكود الجديد للمشترك (${trainee.name}):\n${newCode}`);
-}
-
-function unlockTraineeDevice(code) {
-  const trainee = ACADEMY_DB.trainees[code];
-  if (!trainee) return;
-  trainee.lockedDevice = null;
-  saveAcademyDB();
-  renderTraineesList();
-  alert(`🔓 تم فك ارتباط الجهاز للكود (${code}). يمكن للمشترك الآن الدخول من جهازه الجديد.`);
-}
-
-function toggleTraineeStatus(code) {
-  const trainee = ACADEMY_DB.trainees[code];
-  if (!trainee) return;
-  trainee.active = !trainee.active;
-  saveAcademyDB();
-  renderTraineesList();
-}
-
-function renderTraineesList() {
-  const container = document.getElementById('traineesListContainer');
-  const codes = Object.keys(ACADEMY_DB.trainees);
-  if (codes.length === 0) {
-    container.innerHTML = `<p style="font-size:13.5px; color:#64748b; text-align:center; padding:15px;">لا يوجد مشتركون مسجلون حالياً.</p>`;
-    return;
-  }
-
-  let html = '';
-  codes.forEach(code => {
-    const t = ACADEMY_DB.trainees[code];
-    const statusText = t.active ? '<span style="color:#16a34a; font-weight:800;">🟢 نشط</span>' : '<span style="color:#d32f2f; font-weight:800;">🔴 موقوف</span>';
-    const trackLabel = t.track === 'marriage' ? '💍 المقبلين على الزواج' : (t.track === 'executive' ? '⚖️ العقود واللغة القانونية' : '🌟 شامل');
-    const deviceStatus = t.lockedDevice ? `<span class="device-badge">🔒 مقفل على جهاز واحد</span>` : `<span class="device-badge" style="background:#f1f5f9; color:#475569;">بانتظار التفعيل</span>`;
-
-    html += `
-      <div class="trainee-card">
-        <div>
-          <strong style="font-size:15px; color:#0b1a30;">${t.name}</strong> (${statusText}) ${deviceStatus}
-          <div style="font-size:12px; color:#475569; margin-top:3px;">البرنامج: ${trackLabel} | التقييم: <strong>${t.latestScore}%</strong></div>
-          <div style="margin-top:6px;">كود الدخول: <span class="code-pill">${code}</span></div>
-        </div>
-        <div style="display:flex; gap:6px; flex-wrap:wrap;">
-          <button type="button" class="btn-nav" onclick="navigator.clipboard.writeText('${code}'); alert('تم نسخ الكود: ${code}');">📋 نسخ</button>
-          <button type="button" class="btn-nav btn-cal" onclick="resetTraineeCode('${code}')">🔄 كود جديد</button>
-          ${t.lockedDevice ? `<button type="button" class="btn-nav btn-notif" onclick="unlockTraineeDevice('${code}')">🔓 فك قفل الجهاز</button>` : ''}
-          <button type="button" class="btn-nav btn-lock" onclick="toggleTraineeStatus('${code}')">${t.active ? 'إيقاف' : 'تفعيل'}</button>
-        </div>
-      </div>`;
-  });
-  container.innerHTML = html;
-}
-
-// نافذة معاينة وطباعة الشهادة الرسمية
-function openCertificateModal() {
-  const profile = getActiveUserProfile();
-  document.getElementById('certRecipientName').innerText = profile.name || 'Ali Kadhem Al-Hashimi';
-  
-  let courseTitle = 'Commercial Contract Drafting, Legal Due Diligence & Executive Legal English';
-  if (profile.track === 'marriage') {
-    courseTitle = 'Pre-Marital Legal Awareness & Family Protection Workshop (Iraqi Personal Status Law)';
-  }
-  document.getElementById('certCourseTitle').innerText = courseTitle;
-  
-  const scoreDisplay = (CURRENT_MODE === 'owner' && profile.latestScore === 0) ? '95% (Distinction - Preview Mode)' : `${profile.latestScore}%`;
-  document.getElementById('certScoreText').innerText = scoreDisplay;
-  
-  const todayFormatted = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-  document.getElementById('certIssueDate').innerText = todayFormatted;
-  
-  const randomId = Math.floor(1000 + Math.random() * 9000);
-  document.getElementById('certVerifyId').innerText = `AKH-CERT-2026-${randomId}`;
-
-  document.getElementById('certificateModal').style.display = 'flex';
-}
-
-function closeCertificateModal() {
-  document.getElementById('certificateModal').style.display = 'none';
-}
-
-function switchLab(tabId, btn) {
-  document.querySelectorAll('.card-section').forEach(sec => { if (sec.id) sec.classList.remove('active'); });
-  document.querySelectorAll('.lab-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById(tabId).classList.add('active');
-  if (btn) btn.classList.add('active');
+  saveTrainingDB();
+  showAlert(`🏆 مبارك! تم قبول إنجازك وترقيتك رسمياً إلى المرحلة ${profile.currentStage}.`, true);
+  renderTrainingUI();
 }
 
 function confirmDailyAttendance() {
@@ -1180,9 +1215,9 @@ function confirmDailyAttendance() {
   if (profile.lastCheckInDate !== today) {
     profile.streak = (profile.streak || 0) + 1;
     profile.lastCheckInDate = today;
-    saveAcademyDB();
-    showAlert('✅ تم تسجيل حضورك وفتح محتوى البرنامج بنجاح!', true);
-    renderAcademyUI();
+    saveTrainingDB();
+    showAlert('✅ تم تسجيل حضورك وبدء احتساب وقت التدريب اليومي!', true);
+    renderTrainingUI();
   }
 }
 
@@ -1196,8 +1231,8 @@ function requestEmergencyReschedule() {
   if (reason && reason.trim().length > 2) {
     profile.reschedulesLeft = (profile.reschedulesLeft ?? 2) - 1;
     profile.lastCheckInDate = getTodayStr();
-    saveAcademyDB();
-    renderAcademyUI();
+    saveTrainingDB();
+    renderTrainingUI();
   }
 }
 
@@ -1268,17 +1303,65 @@ function startPronunciationCheck(targetText, resultBoxId, btnElement, isFreeRepl
   };
 }
 
+function renderMediaLab(isUnlocked) {
+  const container = document.getElementById('mediaContent');
+  if (!isUnlocked) { container.innerHTML = `<div class="locked-overlay"><h4>🔒 المختبر المرئي مقفل</h4><p>ثبّت حضورك اليومي أعلاه.</p></div>`; return; }
+
+  let html = `<div class="video-lab-grid">`;
+  VIDEO_CLIPS.forEach((clip, idx) => {
+    const safeEn = clip.subtitleEn.replace(/'/g, "\\'");
+    html += `
+      <div class="video-card">
+        <div class="video-wrapper"><iframe src="${clip.embedUrl}" allowfullscreen></iframe></div>
+        <div class="video-body">
+          <div>
+            <div style="font-size:12px; font-weight:800; color:#d32f2f; margin-bottom:6px;">${clip.title}</div>
+            <div class="sub-en">${clip.subtitleEn}</div>
+            <div class="sub-ar">${clip.subtitleAr}</div>
+          </div>
+          <div>
+            <div class="audio-controls">
+              <button type="button" class="btn-speak" onclick="speakText('${safeEn}', 0.95)">🔊 استمع للجملة</button>
+              <button type="button" class="btn-mic" onclick="startPronunciationCheck('${safeEn}', 'vid_res_${idx}', this)">🎙️ اختبر نطقك</button>
+            </div>
+            <div id="vid_res_${idx}" class="pronounce-result"></div>
+          </div>
+        </div>
+      </div>`;
+  });
+
+  html += `</div><div class="flashcard-container" style="margin-top:20px;">`;
+  VISUAL_FLASHCARDS.forEach((fc, idx) => {
+    const safeTerm = fc.term.replace(/'/g, "\\'");
+    const safeEx = fc.ex.replace(/'/g, "\\'");
+    html += `
+      <div class="flashcard">
+        <img src="${fc.img}" alt="${fc.term}" class="fc-img">
+        <div class="fc-content">
+          <div class="fc-cat">${fc.cat}</div>
+          <div class="fc-term">${fc.term}</div>
+          <div class="fc-ar">${fc.ar}</div>
+          <div class="fc-example">"${fc.ex}"</div>
+          <div class="audio-controls">
+            <button type="button" class="btn-speak" onclick="speakText('${safeTerm}', 0.9)">🔊 المصطلح</button>
+            <button type="button" class="btn-mic" onclick="startPronunciationCheck('${safeEx}', 'fc_res_${idx}', this)">🎙️ انطق الجملة</button>
+          </div>
+          <div id="fc_res_${idx}" class="pronounce-result"></div>
+        </div>
+      </div>`;
+  });
+  html += `</div>`;
+  container.innerHTML = html;
+}
+
 let diagTimerInterval = null;
-function renderDiagnosticSection(isCheckedIn, profile) {
+function renderDiagnosticSection(isUnlocked, profile) {
   const container = document.getElementById('diagnosticContent');
-  if (!isCheckedIn) {
-    container.innerHTML = `<div class="locked-overlay"><h4>🔒 الاختبار مقفل</h4><p>ثبّت حضورك اليومي أعلاه لبدء اختبار تحديد المستوى.</p></div>`;
-    return;
-  }
+  if (!isUnlocked) { container.innerHTML = `<div class="locked-overlay"><h4>🔒 الاختبار مقفل</h4><p>ثبّت حضورك اليومي أعلاه لبدء اختبار تحديد المستوى.</p></div>`; return; }
   if (profile.diagnosticCompleted) {
     container.innerHTML = `
       <div style="background:#f0fdf4; border:1.5px solid #86efac; padding:18px; border-radius:10px; text-align:center;">
-        <h3 style="color:#166534; font-size:16px; margin-bottom:6px;">✅ مستواك الحالي مسجل: ${profile.levelLabel} (${profile.latestScore}%)</h3>
+        <h3 style="color:#166534; font-size:16px; margin-bottom:6px;">✅ درجتك الحالية مسجلة: ${profile.latestScore}% (${profile.levelLabel})</h3>
         <button type="button" class="btn-nav" style="margin-top:8px;" onclick="startDiagnosticTest()">🔄 إعادة الاختبار لقياس التحسن</button>
       </div>`;
   } else {
@@ -1340,14 +1423,14 @@ function submitDiagnosticTest(e) {
     score: `${scorePct}% (${correct}/${DIAGNOSTIC_QUESTIONS.length})`,
     level: level
   });
-  saveAcademyDB();
+  saveTrainingDB();
   showAlert(`🎉 تم تسجيل نتيجتك: ${scorePct}% (${level})`, true);
-  renderAcademyUI();
+  renderTrainingUI();
 }
 
-function renderRoleplayLab(isCheckedIn) {
+function renderRoleplayLab(isUnlocked) {
   const container = document.getElementById('roleplayContent');
-  if (!isCheckedIn) { container.innerHTML = `<div class="locked-overlay"><h4>🔒 المحاكي مقفل</h4><p>ثبّت حضورك اليومي أعلاه لبدء جلسات التفاوض.</p></div>`; return; }
+  if (!isUnlocked) { container.innerHTML = `<div class="locked-overlay"><h4>🔒 المحاكي مقفل</h4><p>ثبّت حضورك اليومي أعلاه لبدء جلسات التفاوض.</p></div>`; return; }
 
   let html = '';
   CLIENT_SCENARIOS.forEach((sc, idx) => {
@@ -1374,9 +1457,9 @@ function renderRoleplayLab(isCheckedIn) {
   container.innerHTML = html;
 }
 
-function renderDraftingLab(isCheckedIn) {
+function renderDraftingLab(isUnlocked) {
   const container = document.getElementById('draftingContent');
-  if (!isCheckedIn) { container.innerHTML = `<div class="locked-overlay"><h4>🔒 مختبر العقود مقفل</h4><p>ثبّت حضورك اليومي أعلاه للدخول.</p></div>`; return; }
+  if (!isUnlocked) { container.innerHTML = `<div class="locked-overlay"><h4>🔒 مختبر العقود مقفل</h4><p>ثبّت حضورك اليومي أعلاه للدخول.</p></div>`; return; }
 
   let html = '';
   CONTRACT_CLAUSES.forEach((cl, idx) => {
@@ -1408,60 +1491,9 @@ function evaluateContractDraft(idx, reqTerms) {
   resBox.innerHTML = pct >= 75 ? `✅ <strong>صياغة رصينة (${pct}%)!</strong>` : `⚠️ <strong>ينقصها بعض المصطلحات (${reqTerms.join(', ')}).</strong>`;
 }
 
-function renderMediaLab(isCheckedIn) {
-  const container = document.getElementById('mediaContent');
-  if (!isCheckedIn) { container.innerHTML = `<div class="locked-overlay"><h4>🔒 المختبر المرئي مقفل</h4><p>ثبّت حضورك اليومي أعلاه.</p></div>`; return; }
-
-  let html = `<div class="video-lab-grid">`;
-  VIDEO_CLIPS.forEach((clip, idx) => {
-    const safeEn = clip.subtitleEn.replace(/'/g, "\\'");
-    html += `
-      <div class="video-card">
-        <div class="video-wrapper"><iframe src="${clip.embedUrl}" allowfullscreen></iframe></div>
-        <div class="video-body">
-          <div>
-            <div style="font-size:12px; font-weight:800; color:#d32f2f; margin-bottom:6px;">${clip.title}</div>
-            <div class="sub-en">${clip.subtitleEn}</div>
-            <div class="sub-ar">${clip.subtitleAr}</div>
-          </div>
-          <div>
-            <div class="audio-controls">
-              <button type="button" class="btn-speak" onclick="speakText('${safeEn}', 0.95)">🔊 استمع</button>
-              <button type="button" class="btn-mic" onclick="startPronunciationCheck('${safeEn}', 'vid_res_${idx}', this)">🎙️ اختبر نطقك</button>
-            </div>
-            <div id="vid_res_${idx}" class="pronounce-result"></div>
-          </div>
-        </div>
-      </div>`;
-  });
-
-  html += `</div><div class="flashcard-container" style="margin-top:20px;">`;
-  VISUAL_FLASHCARDS.forEach((fc, idx) => {
-    const safeTerm = fc.term.replace(/'/g, "\\'");
-    const safeEx = fc.ex.replace(/'/g, "\\'");
-    html += `
-      <div class="flashcard">
-        <img src="${fc.img}" alt="${fc.term}" class="fc-img">
-        <div class="fc-content">
-          <div class="fc-cat">${fc.cat}</div>
-          <div class="fc-term">${fc.term}</div>
-          <div class="fc-ar">${fc.ar}</div>
-          <div class="fc-example">"${fc.ex}"</div>
-          <div class="audio-controls">
-            <button type="button" class="btn-speak" onclick="speakText('${safeTerm}', 0.9)">🔊 المصطلح</button>
-            <button type="button" class="btn-mic" onclick="startPronunciationCheck('${safeEx}', 'fc_res_${idx}', this)">🎙️ انطق الجملة</button>
-          </div>
-          <div id="fc_res_${idx}" class="pronounce-result"></div>
-        </div>
-      </div>`;
-  });
-  html += `</div>`;
-  container.innerHTML = html;
-}
-
-function renderIeltsLab(isCheckedIn, profile) {
+function renderIeltsLab(isUnlocked, profile) {
   const container = document.getElementById('ieltsContent');
-  if (!isCheckedIn) { container.innerHTML = `<div class="locked-overlay"><h4>🔒 مختبر الكتابة مقفل</h4><p>ثبّت حضورك اليومي أعلاه.</p></div>`; return; }
+  if (!isUnlocked) { container.innerHTML = `<div class="locked-overlay"><h4>🔒 مختبر الكتابة مقفل</h4><p>ثبّت حضورك اليومي أعلاه.</p></div>`; return; }
 
   container.innerHTML = `
     <div style="background:#f8fafc; border:1px solid #cbd5e0; padding:14px; border-radius:8px; direction:ltr; text-align:left; margin-bottom:12px;">
@@ -1492,13 +1524,173 @@ function submitIeltsEssay() {
   profile.examHistory = profile.examHistory || [];
   profile.examHistory.unshift({
     date: new Date().toLocaleDateString('ar-IQ'),
-    type: 'مقال تحليلي (Analytical Writing Task 2)',
+    type: 'مذكرة تحليلية (Analytical Writing Task 2)',
     score: `مكتمل (${count} كلمة)`,
     level: 'مستوفٍ للشرط'
   });
-  saveAcademyDB();
-  showAlert('🏆 تم قبول مقالك وتسجيله في سجل الإنجازات!', true);
+  saveTrainingDB();
+  showAlert('🏆 تم قبول مذكرتك وتسجيلها في سجل الإنجازات!', true);
   renderHistorySection(profile);
+}
+
+function renderMarriageProgram(isUnlocked, profile) {
+  const container = document.getElementById('marriageContent');
+  if (!isUnlocked) { container.innerHTML = `<div class="locked-overlay"><h4>🔒 محتوى البرنامج مقفل</h4><p>ثبّت حضورك اليومي أعلاه لفتح المحاور.</p></div>`; return; }
+
+  const allLessons = [...DEFAULT_MARRIAGE_LESSONS, ...(TRAINING_DB.customMarriageLessons || [])];
+  let html = '';
+  allLessons.forEach(ls => {
+    html += `
+      <div class="lesson-card">
+        <div class="lesson-title">📌 ${ls.title}</div>
+        <div class="lesson-body">${ls.body}</div>
+        ${ls.tip ? `<div class="legal-tip-box">⚖️ ${ls.tip}</div>` : ''}
+      </div>`;
+  });
+
+  html += `
+    <div style="background:#fdf2f8; border:1.5px solid #f472b6; border-radius:12px; padding:18px; margin-top:22px;">
+      <h3 style="font-size:16px; color:#9d174d; margin-bottom:10px;">📝 التقييم النهائي لبرنامج المقبلين على الزواج (شرط إصدار الشهادة: 80%+)</h3>
+      <form id="marriageQuizForm" onsubmit="submitMarriageQuiz(event)">`;
+  MARRIAGE_QUIZ.forEach((item, qIdx) => {
+    html += `<div class="question-box"><div class="q-text">${qIdx + 1}. ${item.q}</div>`;
+    item.options.forEach((opt, oIdx) => {
+      html += `<label class="option-label"><input type="radio" name="mq_${qIdx}" value="${oIdx}" required> ${opt}</label>`;
+    });
+    html += `</div>`;
+  });
+  html += `<button type="submit" class="btn-primary" style="background:#be185d;">اعتماد الإجابات وإصدار شهادة إتمام البرنامج 🎓</button></form></div>`;
+  container.innerHTML = html;
+}
+
+function submitMarriageQuiz(e) {
+  e.preventDefault();
+  const profile = getActiveUserProfile();
+  let correct = 0;
+  MARRIAGE_QUIZ.forEach((item, idx) => {
+    const selected = document.querySelector(`input[name="mq_${idx}"]:checked`);
+    if (selected && parseInt(selected.value) === item.ans) correct++;
+  });
+  const scorePct = Math.round((correct / MARRIAGE_QUIZ.length) * 100);
+  profile.latestScore = scorePct;
+  profile.levelLabel = scorePct >= 80 ? 'مجتاز بنجاح ✅' : 'يحتاج إعادة';
+  profile.diagnosticCompleted = true;
+
+  profile.examHistory = profile.examHistory || [];
+  profile.examHistory.unshift({
+    date: new Date().toLocaleDateString('ar-IQ'),
+    type: 'اختبار برنامج التوعية القانونية للمقبلين على الزواج',
+    score: `${scorePct}% (${correct}/${MARRIAGE_QUIZ.length})`,
+    level: profile.levelLabel
+  });
+  saveTrainingDB();
+  showAlert(scorePct >= 80 ? `🎉 مبارك! اجتزت البرنامج بنسبة ${scorePct}% وأصبحت الشهادة متاحة للطباعة.` : `⚠️ حصلت على ${scorePct}%. يشترط 80%+ لإصدار الشهادة.`, scorePct >= 80);
+  renderTrainingUI();
+}
+
+function addCustomMarriageLesson() {
+  const title = document.getElementById('newLessonTitle').value.trim();
+  const body = document.getElementById('newLessonBody').value.trim();
+  const tip = document.getElementById('newLessonTip').value.trim();
+  if (!title || !body) { alert('يرجى كتابة عنوان المحور ومحتواه.'); return; }
+  TRAINING_DB.customMarriageLessons = TRAINING_DB.customMarriageLessons || [];
+  TRAINING_DB.customMarriageLessons.push({ title, body, tip });
+  document.getElementById('newLessonTitle').value = '';
+  document.getElementById('newLessonBody').value = '';
+  document.getElementById('newLessonTip').value = '';
+  saveTrainingDB();
+  renderMarriageProgram(true, getActiveUserProfile());
+  alert('✅ تمت إضافة المحور الجديد بنجاح!');
+}
+
+function createNewTrainee() {
+  const name = document.getElementById('newTraineeName').value.trim();
+  const track = document.getElementById('newTraineeTrack').value;
+  if (!name) { alert('يرجى إدخال اسم المشترك.'); return; }
+  const randomNum = Math.floor(1000 + Math.random() * 9000);
+  const newCode = `AKH-2026-${randomNum}`;
+  TRAINING_DB.trainees[newCode] = {
+    name: name, track: track, active: true, lockedDevice: null,
+    streak: 0, lastCheckInDate: '', reschedulesLeft: 2,
+    diagnosticCompleted: false, initialScore: 0, latestScore: 0, levelLabel: 'غير محدد', examHistory: []
+  };
+  document.getElementById('newTraineeName').value = '';
+  saveTrainingDB();
+  renderTraineesList();
+  alert(`✅ تم إصدار كود الاشتراك:\n\nالمشترك: ${name}\nالكود: ${newCode}`);
+}
+
+function resetTraineeCode(oldCode) {
+  const trainee = TRAINING_DB.trainees[oldCode];
+  if (!trainee || !confirm(`إعادة ضبط الكود للمشترك "${trainee.name}"؟`)) return;
+  const newCode = `AKH-2026-${Math.floor(1000 + Math.random() * 9000)}`;
+  TRAINING_DB.trainees[newCode] = { ...trainee, lockedDevice: null };
+  delete TRAINING_DB.trainees[oldCode];
+  saveTrainingDB();
+  renderTraineesList();
+  alert(`🔄 الكود الجديد: ${newCode}`);
+}
+
+function unlockTraineeDevice(code) {
+  const trainee = TRAINING_DB.trainees[code];
+  if (!trainee) return;
+  trainee.lockedDevice = null;
+  saveTrainingDB();
+  renderTraineesList();
+  alert(`🔓 تم فك ارتباط الجهاز للكود (${code}).`);
+}
+
+function toggleTraineeStatus(code) {
+  const trainee = TRAINING_DB.trainees[code];
+  if (!trainee) return;
+  trainee.active = !trainee.active;
+  saveTrainingDB();
+  renderTraineesList();
+}
+
+function renderTraineesList() {
+  const container = document.getElementById('traineesListContainer');
+  const codes = Object.keys(TRAINING_DB.trainees);
+  if (codes.length === 0) { container.innerHTML = `<p style="font-size:13.5px; color:#64748b; text-align:center;">لا يوجد مشتركون مسجلون حالياً.</p>`; return; }
+  let html = '';
+  codes.forEach(code => {
+    const t = TRAINING_DB.trainees[code];
+    const statusText = t.active ? '<span style="color:#16a34a; font-weight:800;">🟢 نشط</span>' : '<span style="color:#d32f2f; font-weight:800;">🔴 موقوف</span>';
+    const deviceStatus = t.lockedDevice ? `<span class="device-badge">🔒 مقفل على جهاز</span>` : `<span class="device-badge" style="background:#f1f5f9; color:#475569;">بانتظار التفعيل</span>`;
+    html += `
+      <div class="trainee-card">
+        <div>
+          <strong style="font-size:15px; color:#0b1a30;">${t.name}</strong> (${statusText}) ${deviceStatus}
+          <div style="margin-top:6px;">كود الدخول: <span class="code-pill">${code}</span></div>
+        </div>
+        <div style="display:flex; gap:6px; flex-wrap:wrap;">
+          <button type="button" class="btn-nav" onclick="navigator.clipboard.writeText('${code}'); alert('تم النسخ');">📋 نسخ</button>
+          <button type="button" class="btn-nav btn-cal" onclick="resetTraineeCode('${code}')">🔄 كود جديد</button>
+          ${t.lockedDevice ? `<button type="button" class="btn-nav btn-notif" onclick="unlockTraineeDevice('${code}')">🔓 فك الجهاز</button>` : ''}
+          <button type="button" class="btn-nav btn-lock" onclick="toggleTraineeStatus('${code}')">${t.active ? 'إيقاف' : 'تفعيل'}</button>
+        </div>
+      </div>`;
+  });
+  container.innerHTML = html;
+}
+
+function openCertificateModal() {
+  const profile = getActiveUserProfile();
+  document.getElementById('certRecipientName').innerText = profile.name || 'Ali Kadhem Al-Hashimi';
+  document.getElementById('certCourseTitle').innerText = profile.track === 'marriage' ? 'Pre-Marital Legal Awareness & Family Protection Workshop' : 'Commercial Contract Drafting, Legal Due Diligence & Professional Legal English';
+  document.getElementById('certScoreText').innerText = (CURRENT_MODE === 'owner' && profile.latestScore === 0) ? '95% (Distinction - Preview Mode)' : `${profile.latestScore}%`;
+  document.getElementById('certIssueDate').innerText = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  document.getElementById('certVerifyId').innerText = `AKH-CERT-2026-${Math.floor(1000 + Math.random() * 9000)}`;
+  document.getElementById('certificateModal').style.display = 'flex';
+}
+
+function closeCertificateModal() { document.getElementById('certificateModal').style.display = 'none'; }
+
+function switchLab(tabId, btn) {
+  document.querySelectorAll('.card-section').forEach(sec => { if (sec.id) sec.classList.remove('active'); });
+  document.querySelectorAll('.lab-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+  if (btn) btn.classList.add('active');
 }
 
 function renderHistorySection(profile) {
@@ -1517,13 +1709,8 @@ function renderHistorySection(profile) {
 
 function addToGoogleCalendar() {
   const title = encodeURIComponent("AKH Practical Legal Training Hub | الجلسة التدريبية اليومية");
-  const details = encodeURIComponent("موعد الدراسة والالتزام اليومي: https://akjassem.com/academy");
+  const details = encodeURIComponent("موعد التدريب والالتزام اليومي: https://akjassem.com/training");
   window.open(`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&details=${details}&recur=RRULE:FREQ=DAILY`, '_blank');
-}
-
-function enableNotifications() {
-  if (!("Notification" in window)) return;
-  Notification.requestPermission().then(p => { if (p === "granted") new Notification("AKH Practical Legal Training Hub", { body: "تم تفعيل التنبيهات!" }); });
 }
 
 function showAlert(msg, isSuccess) {
@@ -1531,7 +1718,7 @@ function showAlert(msg, isSuccess) {
   el.className = 'alert-box ' + (isSuccess ? 'alert-success' : 'alert-error');
   el.innerText = msg;
   el.style.display = 'block';
-  setTimeout(() => { el.style.display = 'none'; }, 7000);
+  setTimeout(() => { el.style.display = 'none'; }, 9000);
 }
 </script>
 </body>
