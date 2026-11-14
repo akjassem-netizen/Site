@@ -8,7 +8,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
-<!-- محرك قراءة النصوص من الصور (OCR) لقراءة صور القرارات التمييزية -->
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -55,10 +54,12 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
 .mode-pill { padding: 5px 12px; border-radius: 6px; font-size: 12px; font-weight: 800; }
 .mode-pill.study { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
 .mode-pill.dev { background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; }
-.btn-nav { background-color: #0b1a30; color: #ffffff; text-decoration: none; padding: 7px 13px; border-radius: 7px; font-size: 12.5px; font-weight: 700; border: none; cursor: pointer; font-family: inherit; transition: 0.2s; display: inline-flex; align-items: center; gap: 5px; }
+.btn-nav { background-color: #0b1a30; color: #ffffff; text-decoration: none; padding: 7px 12px; border-radius: 7px; font-size: 12px; font-weight: 700; border: none; cursor: pointer; font-family: inherit; transition: 0.2s; display: inline-flex; align-items: center; gap: 5px; }
 .btn-nav:hover { opacity: 0.9; }
 .btn-cert { background-color: #c5a059; color: #0b1a30; font-weight: 800; }
 .btn-cal { background-color: #2b6cb0; }
+.btn-notif { background-color: #d69e2e; color: #000; }
+.btn-office { background-color: #1e293b; color: #f8fafc; border: 1px solid #475569; }
 .btn-lock { background-color: #d32f2f; }
 
 /* بطاقات الإحصائيات والـ 90 دقيقة */
@@ -94,9 +95,9 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
 .back-bar { background: #f1f5f9; border: 1.5px solid #cbd5e0; padding: 10px 16px; border-radius: 10px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
 .btn-back { background: #0b1a30; color: #fff; border: none; padding: 7px 15px; border-radius: 8px; font-weight: 800; font-size: 13px; cursor: pointer; font-family: inherit; }
 
-/* تبويبات مسار اللغة الإنجليزية (الآيلتس + الماجستير + العمل) */
+/* تبويبات مسار اللغة الإنجليزية الشامل */
 .inner-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; }
-.inner-tab { background: #f8fafc; border: 1.5px solid #cbd5e0; padding: 8px 13px; border-radius: 8px; font-size: 12.5px; font-weight: 800; cursor: pointer; font-family: inherit; }
+.inner-tab { background: #f8fafc; border: 1.5px solid #cbd5e0; padding: 8px 12px; border-radius: 8px; font-size: 12.5px; font-weight: 800; cursor: pointer; font-family: inherit; }
 .inner-tab.active { background: #0b1a30; color: #fff; border-color: #0b1a30; }
 
 /* 1. مختبر الترديد والنطق البطيء */
@@ -105,7 +106,7 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
 .shadow-phonetic { font-size: 13px; color: #64748b; font-family: monospace; margin-bottom: 8px; direction: ltr; }
 .shadow-meaning { font-size: 15px; font-weight: 700; color: #1e293b; background: #e2e8f0; display: inline-block; padding: 5px 16px; border-radius: 8px; margin-bottom: 12px; }
 
-/* 2. محاكي الموكلين الأجانب */
+/* 2. محاكي اليوميات والروتين + الموكلين الأجانب */
 .scenario-box { background: #f8fafc; border: 1.5px solid #cbd5e0; border-radius: 12px; padding: 18px; margin-bottom: 18px; }
 .client-msg { background: #0b1a30; color: #fff; padding: 14px 16px; border-radius: 10px; direction: ltr; text-align: left; font-size: 14.5px; line-height: 1.7; margin: 10px 0; border-left: 5px solid #d32f2f; }
 .model-reply { background: #f0fdf4; border: 1.5px solid #86efac; color: #14532d; padding: 12px 15px; border-radius: 8px; direction: ltr; text-align: left; font-size: 13.5px; line-height: 1.6; margin-top: 10px; display: none; }
@@ -114,7 +115,7 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
 .clause-bad { background: #fff5f5; border: 1.5px solid #feb2b2; padding: 14px; border-radius: 8px; direction: ltr; text-align: left; font-family: monospace; font-size: 13.5px; color: #9b1c1c; margin-bottom: 12px; line-height: 1.6; }
 .clause-good { background: #f0fdf4; border: 1.5px solid #86efac; padding: 14px; border-radius: 8px; direction: ltr; text-align: left; font-family: Georgia, serif; font-size: 14px; color: #166534; margin-top: 12px; display: none; line-height: 1.7; }
 
-/* 4. مختبر الفيديو والبطاقات البصرية (Flashcards) */
+/* 4. مختبر الفيديو والبطاقات البصرية */
 .video-lab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; margin-bottom: 20px; }
 .video-card { background: #f8fafc; border: 1.5px solid #cbd5e0; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
 .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; background: #000; }
@@ -138,9 +139,10 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
 .linker-pill { display: inline-block; background: #e2e8f0; color: #0b1a30; padding: 3px 9px; border-radius: 5px; font-size: 12px; font-weight: 700; margin: 3px; cursor: pointer; direction: ltr; }
 .linker-pill:hover { background: #0b1a30; color: #fff; }
 
-/* مختبر المتون القانونية وقراءة الصور والملفات */
+/* مختبر المتون القانونية وربط Google Drive */
 .statute-form { background: #f8fafc; border: 1.5px solid #cbd5e0; border-radius: 12px; padding: 18px; margin-bottom: 20px; }
 .ocr-upload-box { background: #eff6ff; border: 2px dashed #2b6cb0; border-radius: 10px; padding: 14px; margin-bottom: 14px; text-align: center; }
+.drive-badge { display: inline-flex; align-items: center; gap: 5px; background: #e0f2fe; color: #0369a1; border: 1px solid #7dd3fc; padding: 5px 12px; border-radius: 7px; font-size: 12.5px; font-weight: 800; text-decoration: none; margin-top: 8px; }
 .form-grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 12px; }
 .admin-input { width: 100%; padding: 10px 12px; border: 1.5px solid #cbd5e0; border-radius: 8px; font-family: inherit; font-size: 13.5px; background: #fff; }
 .statute-item { background: #ffffff; border: 1.5px solid #cbd5e0; border-right: 5px solid #1e3a8a; border-radius: 12px; padding: 18px; margin-bottom: 14px; }
@@ -265,9 +267,11 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
         <span class="role-badge" id="userRoleBadge">👑 المالك والمشرف العام</span>
         <span class="mode-pill study" id="sessionModeBadge">🎓 وضع التدريب (90 دقيقة)</span>
       </div>
-      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-        <button type="button" class="btn-nav btn-cert" id="btnPreviewCert" onclick="openCertificateModal()">📜 معاينة الشهادة</button>
-        <button type="button" class="btn-nav btn-cal" onclick="addToGoogleCalendar()">📅 تقويم Google</button>
+      <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+        <a href="https://akjassem.com" class="btn-nav btn-office" title="العودة لموقع المكتب الرئيسي">🏢 منصة المكتب</a>
+        <button type="button" class="btn-nav btn-cert" id="btnPreviewCert" onclick="openCertificateModal()">📜 الشهادة</button>
+        <button type="button" class="btn-nav btn-notif" onclick="enableBrowserNotifications()">🔔 التنبيهات</button>
+        <button type="button" class="btn-nav btn-cal" onclick="addToGoogleCalendar()">📅 الجدول</button>
         <button type="button" class="btn-nav btn-lock" onclick="lockPortal()">خروج 🔒</button>
       </div>
     </div>
@@ -290,9 +294,9 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
         <div class="stat-sub" id="statScoreSub">أتمم الاختبار التقييمي</div>
       </div>
       <div class="stat-card">
-        <div class="stat-label">شهادة الإتمام والمشاركة</div>
-        <div class="stat-num" id="statCertStatus">متاحة ✅</div>
-        <div class="stat-sub">تُمنح عند تحقيق 80%+</div>
+        <div class="stat-label">التخزين السحابي</div>
+        <div class="stat-num" style="font-size:15px; padding-top:5px;">Drive + GitHub</div>
+        <div class="stat-sub">مرتبط بسحابة Google Drive</div>
       </div>
     </div>
 
@@ -315,6 +319,7 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
       <div class="directory-header">
         <h2 style="font-size:18px; color:#0b1a30;">📚 الكورسات والبرامج المستقلة ومختبر المتون القانونية</h2>
         <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <a href="https://drive.google.com" target="_blank" class="btn-nav" style="background:#0369a1;">☁️ فتح Google Drive</a>
           <button type="button" class="btn-nav" id="btnOpenCourseCreator" style="display:none; background:#16a34a;" onclick="openView('courseManagerView')">➕ إنشاء / تعديل / حذف الكورسات</button>
           <button type="button" class="btn-nav" id="btnOpenTraineeManager" style="display:none; background:#b45309;" onclick="openView('traineeManagerView')">👥 إدارة المشتركين والأكواد</button>
         </div>
@@ -331,28 +336,30 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
     </div>
 
     <!-- ===================================================================== -->
-    <!-- العرض 2: داخل مسار اللغة الإنجليزية (الآيلتس + الماجستير + العمل المهني) -->
+    <!-- العرض 2: داخل مسار اللغة الإنجليزية الشامل (يوميات + آيلتس + ماجستير + محاماة) -->
     <!-- ===================================================================== -->
     <div id="executiveCourseView" style="display:none;">
       <div class="back-bar">
         <button type="button" class="btn-back" id="btnBackFromExec" onclick="backToDirectory()">→ العودة لقائمة الكورسات</button>
-        <strong style="color:#0b1a30;">⚖️ مسار التحضير للآيلتس والماجستير وصياغة العقود</strong>
+        <strong style="color:#0b1a30;">🇬🇧 المسار الشامل: اليوميات والروتين + الآيلتس + الماجستير + المحاماة</strong>
         <select id="accentSelect" style="padding:5px 10px; border-radius:6px; border:1px solid #cbd5e0; font-weight:700;">
-          <option value="en-GB" selected>🇬🇧 البريطانية (IELTS & UK LL.M)</option>
+          <option value="en-GB" selected>🇬🇧 البريطانية (UK Routine & LL.M)</option>
           <option value="en-US">🇺🇸 الأمريكية (US Business)</option>
         </select>
       </div>
 
       <div class="inner-tabs">
         <button type="button" class="inner-tab active" onclick="switchExecTab('execShadow', this)">🗣️ 1. ترديد المصطلحات (نطق بطيء)</button>
-        <button type="button" class="inner-tab" onclick="switchExecTab('execRoleplay', this)">🎙️ 2. محاكي الموكلين الأجانب</button>
-        <button type="button" class="inner-tab" onclick="switchExecTab('execDraft', this)">⚖️ 3. صياغة وتدقيق العقود</button>
-        <button type="button" class="inner-tab" onclick="switchExecTab('execMedia', this)">🎬 4. الفيديو والكارتات البصرية</button>
-        <button type="button" class="inner-tab" onclick="switchExecTab('execIelts', this)">✍️ 5. كتابة الآيلتس والماجستير</button>
-        <button type="button" class="inner-tab" onclick="switchExecTab('execDiag', this)">📝 6. تحديد المستوى</button>
+        <button type="button" class="inner-tab" onclick="switchExecTab('execRoutine', this)">☕ 2. اليوميات والروتين في بريطانيا</button>
+        <button type="button" class="inner-tab" onclick="switchExecTab('execRoleplay', this)">🎙️ 3. محاكي الموكلين الأجانب</button>
+        <button type="button" class="inner-tab" onclick="switchExecTab('execDraft', this)">⚖️ 4. صياغة العقود</button>
+        <button type="button" class="inner-tab" onclick="switchExecTab('execMedia', this)">🎬 5. الفيديو والكارتات البصرية</button>
+        <button type="button" class="inner-tab" onclick="switchExecTab('execIelts', this)">🎓 6. الآيلتس والماجستير</button>
+        <button type="button" class="inner-tab" onclick="switchExecTab('execDiag', this)">📝 7. تحديد المستوى</button>
       </div>
 
       <div id="execShadow" class="exec-sub-panel"></div>
+      <div id="execRoutine" class="exec-sub-panel" style="display:none;"></div>
       <div id="execRoleplay" class="exec-sub-panel" style="display:none;"></div>
       <div id="execDraft" class="exec-sub-panel" style="display:none;"></div>
       <div id="execMedia" class="exec-sub-panel" style="display:none;"></div>
@@ -373,16 +380,16 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
     </div>
 
     <!-- ===================================================================== -->
-    <!-- العرض 4: مختبر المتون القانونية والفهرسة الذكية (صور + ملفات + بحث) -->
+    <!-- العرض 4: مختبر المتون القانونية والفهرسة الذكية + ربط Google Drive -->
     <!-- ===================================================================== -->
     <div id="statuteIndexerView" style="display:none;">
       <div class="back-bar">
         <button type="button" class="btn-back" onclick="backToDirectory()">→ العودة لقائمة الكورسات</button>
-        <strong style="color:#1e3a8a;">📖 مختبر المتون القانونية والفهرسة التمييزية الذكية</strong>
+        <strong style="color:#1e3a8a;">📖 مختبر المتون القانونية والفهرسة التمييزية (مرتبط بـ Google Drive)</strong>
       </div>
 
       <div class="statute-form">
-        <h3 style="font-size:15.5px; color:#0b1a30; margin-bottom:10px;">🤖 الاستيراد الذكي (ارفع صورة قرار تمييزي أو ملف نصي ليتم تحليله تلقائياً):</h3>
+        <h3 style="font-size:15.5px; color:#0b1a30; margin-bottom:10px;">🤖 الاستيراد الذكي (ارفع صورة قرار تمييزي أو ملف نصي أو اربط ملف Google Drive):</h3>
         <div class="ocr-upload-box">
           <p style="font-size:13px; color:#1e40af; font-weight:700; margin-bottom:8px;">اختر صورة قرار محكمة التمييز (JPG/PNG) أو ملف نصي (TXT) لاستخراج النص واقتراح العنوان تلقائياً:</p>
           <input type="file" id="smartFileInput" accept="image/*,.txt" onchange="processUploadedLegalFile(event)" style="font-family:inherit; font-size:13px;">
@@ -402,6 +409,7 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
         </div>
         <textarea id="statuteText" class="admin-input" style="min-height:85px; margin-bottom:10px;" placeholder="نص المادة القانونية أو نص القرار المستخرج..."></textarea>
         <textarea id="statuteCassation" class="admin-input" style="min-height:70px; margin-bottom:10px;" placeholder="المبدأ القانوني والقرار التمييزي المرتبط بالمادة..."></textarea>
+        <input type="url" id="statuteDriveUrl" class="admin-input" style="margin-bottom:10px;" dir="ltr" placeholder="☁️ رابط الكتاب أو القرار الأصلي في Google Drive (اختياري): https://drive.google.com/...">
         <textarea id="statuteEnglishSim" class="admin-input" style="min-height:65px; margin-bottom:10px;" dir="ltr" placeholder="English Legal Translation / Courtroom Simulation..."></textarea>
         <button type="button" class="btn-primary" style="background:#1e3a8a;" onclick="saveStatuteEntry()">فهرسة وحفظ في قاعدة المتون والقرارات 📚</button>
       </div>
@@ -423,7 +431,7 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
     </div>
 
     <!-- ===================================================================== -->
-    <!-- العرض 5: إدارة الكورسات (إنشاء / تعديل / مسح) -->
+    <!-- العرض 5: إدارة الكورسات (إنشاء / تعديل / مسح + ربط Drive) -->
     <!-- ===================================================================== -->
     <div id="courseManagerView" style="display:none;">
       <div class="back-bar">
@@ -437,6 +445,7 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
         <input type="text" id="courseTitleInput" class="admin-input" style="margin-bottom:10px;" placeholder="عنوان الكورس">
         <textarea id="courseDescInput" class="admin-input" style="min-height:70px; margin-bottom:10px;" placeholder="وصف مختصر للكورس..."></textarea>
         <textarea id="courseContentInput" class="admin-input" style="min-height:140px; margin-bottom:10px;" placeholder="محتوى الدروس والمحاور التفصيلية للكورس..."></textarea>
+        <input type="url" id="courseDriveUrlInput" class="admin-input" style="margin-bottom:10px;" dir="ltr" placeholder="☁️ رابط حقيبة الملفات / الفيديوهات على Google Drive (اختياري)">
         <input type="text" id="courseQuizQInput" class="admin-input" style="margin-bottom:10px;" placeholder="سؤال التقييم النهائي للكورس">
         <div class="form-grid-2">
           <input type="text" id="courseQuizOpt1" class="admin-input" placeholder="الخيار الأول (الإجابة الصحيحة)">
@@ -492,7 +501,7 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
       <p style="font-size:15px; color:#334155;">This is to certify that</p>
       <div class="cert-recipient" id="certRecipientName">Ali Kadhem Al-Hashimi</div>
       <p style="font-size:15px; color:#334155;">has actively participated in and successfully completed the practical program in:</p>
-      <div class="cert-course" id="certCourseTitle">Commercial Contract Drafting & Executive Legal English</div>
+      <div class="cert-course" id="certCourseTitle">IELTS Preparation, LL.M. Studies & Executive Legal English</div>
       <p style="font-size:13.5px; color:#334155;">Achieving an assessment score of <strong id="certScoreText">95%</strong>.</p>
       <div class="cert-footer-grid">
         <div>
@@ -526,21 +535,48 @@ const DEFAULT_COURSES = [
     title: '💍 برنامج التوعية القانونية للمقبلين على الزواج في العراق',
     desc: 'برنامج توعوي وقائي مستقل يشرح عقد الزواج الرسمي ومخاطر العقد الخارجي، صياغة المهر المعجل والمؤجل، الشروط التعاقدية في حجة الزواج، وتوثيق الأثاث الزوجي وفق قانون الأحوال الشخصية العراقي رقم 188 لسنة 1959.',
     content: `📌 المحور الأول: عقد الزواج الرسمي مقابل العقد الخارجي\nيُعد تسجيل عقد الزواج أمام محكمة الأحوال الشخصية المختصة الضمانة الأولى لحفظ حقوق الزوجين والأبناء مستقبلاً. الزواج الخارجي يعرّض الزوجة لخطر إنكار الزوجية أو النسب، ويعرّض الزوج للمساءلة الجزائية.\n\n📌 المحور الثاني: الصياغة القانونية للمهر والشروط التعاقدية\nيجيز القانون العراقي للزوجة اشتراط شروط مشروعة في صلب العقد (مثل إكمال الدراسة، أو العمل، أو السكن المستقل، أو التفويض بالطلاق عند الإخلال بشرط جوهري)، وتكون ملزمة قانوناً متى ما دُوّنت في حجة الزواج.\n\n📌 المحور الثالث: توثيق الأثاث الزوجي والمنقولات\nتنظيم قائمة جرد مفصلة بالأثاث والذهب مع فواتير الشراء ومصادقة الشهود عند التأسيس يمنع النزاعات القضائية الطويلة مستقبلاً.`,
+    driveUrl: '',
     quizQ: 'ما هو الأثر القانوني لتسجيل الشروط المشروعة (مثل السكن المستقل أو إكمال الدراسة) في صلب حجة الزواج أمام المحكمة؟',
     quizCorrect: 'تكون شروطاً ملزمة قانوناً ويترتب على الإخلال بها آثار قانونية تحمي الطرف المشترِط.',
     quizWrong: 'تكون شروطاً أدبية غير ملزمة أمام القضاء.'
   }
 ];
 
-// بيانات مسار اللغة الإنجليزية (الآيلتس + الماجستير + العمل المهني)
+// 1. مصطلحات الترديد (تجمع بين القانون والآيلتس والحياة في بريطانيا)
 const SHADOWING_TERMS = [
   { term: "Jurisdiction", phonetic: "/ˌdʒʊərɪsˈdɪkʃn/", ar: "الاختصاص القضائي / الولاية القضائية", ex: "The commercial court in Baghdad holds exclusive jurisdiction over this dispute." },
   { term: "Indemnification", phonetic: "/ɪnˌdemnɪfɪˈkeɪʃn/", ar: "التعويض عن الأضرار والمسؤوليات", ex: "The agreement includes a strict indemnification clause protecting the investor." },
   { term: "Legal Due Diligence", phonetic: "/ˈliːɡl djuː ˈdɪlɪdʒəns/", ar: "الفحص القانوني النافي للجهالة", ex: "We completed the legal due diligence prior to signing the share purchase agreement." },
-  { term: "Fiduciary Duty", phonetic: "/fɪˈdjuːʃəri ˈdjuːti/", ar: "الواجب الائتماني للمدير المفوض", ex: "The managing director breached his fiduciary duty toward the shareholders." },
-  { term: "Arbitration Clause", phonetic: "/ˌɑːbɪˈtreɪʃn klɔːz/", ar: "شرط التحكيم التجاري", ex: "Any dispute arising out of this contract shall be settled under the arbitration clause." }
+  { term: "Tenancy Agreement", phonetic: "/ˈtenənsi əˈɡriːmənt/", ar: "عقد إيجار السكن في بريطانيا", ex: "I need to review the tenancy agreement before paying the security deposit in Brighton." },
+  { term: "Dissertation Proposal", phonetic: "/ˌdɪsəˈteɪʃn prəˈpəʊzl/", ar: "مقترح أطروحة الماجستير", ex: "I am submitting my LL.M. dissertation proposal on international commercial arbitration." }
 ];
 
+// 2. محادثات اليوميات والروتين في بريطانيا (Daily Life & Routine in the UK)
+const DAILY_ROUTINE_SCENARIOS = [
+  {
+    title: "موقف يومي 1: فتح حساب بنكي بريطاني للطالب والمقيم (Opening a UK Bank Account)",
+    context: "Barclays / Lloyds Bank Branch - Brighton & Hove",
+    speech: "Good morning. I am a postgraduate LL.M. student and practicing lawyer from Iraq. I would like to open a UK current account. I have my passport, BRP visa card, and university enrollment letter.",
+    ar: "صباح الخير. أنا طالب دراسات عليا (ماجستير قانون) ومحامٍ ممارس من العراق. أرغب بفتح حساب جارٍ بريطاني، ولدي جواز سفري وبطاقة الإقامة وكتاب القبول الجامعي.",
+    replyTip: "Could you please confirm if there are any monthly maintenance fees or international transfer charges on this account?"
+  },
+  {
+    title: "موقف يومي 2: الاستفسار عن سكن طلابي وعقد الإيجار (Renting a Flat near University)",
+    context: "Letting Agency - Hove, United Kingdom",
+    speech: "Hello, I saw your listing for the one-bedroom flat near Brighton station. Could you clarify whether council tax and utility bills are included in the monthly rent?",
+    ar: "مرحباً، شاهدت إعلانكم عن الشقة ذات الغرفة الواحدة قرب محطة برايتون. هل يمكنكم توضيح ما إذا كانت ضريبة البلدية وفواتير الخدمات مشمولة في الإيجار الشهري؟",
+    replyTip: "I would also like to arrange a viewing this Thursday afternoon if the property is still available."
+  },
+  {
+    title: "موقف يومي 3: النقاش مع المشرف الأكاديمي في الماجستير (Meeting your LL.M. Supervisor)",
+    context: "Law School Faculty Office - UK University",
+    speech: "Thank you for meeting with me, Professor. Based on my ten years of commercial litigation experience, I intend to compare Iraqi corporate liability rules with UK company law.",
+    ar: "شكراً للقائي يا بروفيسور. بناءً على خبرتي الممتدة لعشر سنوات في التقاضي التجاري، أعتزم مقارنة قواعد مسؤولية الشركات في العراق مع قانون الشركات البريطاني.",
+    replyTip: "Would you recommend focusing primarily on statutory remedies or judicial precedents for my first chapter?"
+  }
+];
+
+// 3. مواقف الموكلين الأجانب للمحامي
 const CLIENT_SCENARIOS = [
   {
     title: "السيناريو الأول: استفسار شركة بريطانية عن سياسة الاستشارة والأتعاب",
@@ -670,6 +706,7 @@ let TRAINING_DB = {
       article: 'المادة 218 - المسؤولية الجزائية للمدير المفوض',
       text: 'يعاقب بالحبس أو الغرامة كل مدير مفوض أو عضو مجلس إدارة تعمد تقديم بيانات غير صحيحة في الميزانية أو الحسابات الختامية أو أخفى وقائع جوهرية بقصد إخفاء حقيقة وضع الشركة.',
       cassation: 'قرار محكمة التمييز الاتحادية (الهيئة الجزائية): تتحقق المسؤولية الجزائية للمدير المفوض متى ما ثبت علمه بالبيانات غير الصحيحة وتعمده تضليل المساهمين أو الجهات الرقابية.',
+      driveUrl: '',
       englishSim: 'Under Article 218 of the Iraqi Companies Law, the Managing Director bears direct criminal liability for intentional misrepresentation in corporate financial statements.'
     }
   ],
@@ -887,9 +924,41 @@ function startDailyStudyTimer() {
       const mins = Math.floor(profile.dailySecondsLog[today] / 60);
       const secs = profile.dailySecondsLog[today] % 60;
       document.getElementById('statDailyTime').innerText = `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
+      
+      // تنبيه ذكي عند إتمام الـ 45 دقيقة (الصباحية) أو الـ 90 دقيقة (اليومية الكاملة)
+      if (profile.dailySecondsLog[today] === 45 * 60) {
+        triggerSmartAlert("🎉 أتممت 45 دقيقة (نصاب الجلسة الصباحية بنجاح)!");
+      } else if (profile.dailySecondsLog[today] === 90 * 60) {
+        triggerSmartAlert("🏆 أتممت 90 دقيقة كاملة (الهدف اليومي الكامل بنجاح)!");
+      }
+
       if (profile.dailySecondsLog[today] % 30 === 0) saveTrainingDB();
     }
   }, 1000);
+}
+
+function triggerSmartAlert(msg) {
+  showAlert(msg, true);
+  if ("Notification" in window && Notification.permission === "granted") {
+    new Notification("AKH Practical Legal Training Hub", { body: msg });
+  }
+}
+
+function enableBrowserNotifications() {
+  if (!("Notification" in window)) {
+    alert("متصفحك لا يدعم التنبيهات المباشرة. يمكنك استخدام زر الجدول لربطها بتقويم Google.");
+    return;
+  }
+  Notification.requestPermission().then(permission => {
+    if (permission === "granted") {
+      new Notification("AKH Practical Legal Training Hub", {
+        body: "✅ تم تفعيل التنبيهات الذكية! سنذكرك عند إتمام نصاب الـ 45 والـ 90 دقيقة."
+      });
+      showAlert("✅ تم تفعيل إشعارات المتصفح بنجاح!", true);
+    } else {
+      alert("⚠️ يرجى السماح بالإشعارات من إعدادات المتصفح.");
+    }
+  });
 }
 
 function renderDashboardState() {
@@ -913,7 +982,7 @@ function renderDashboardState() {
   if (SESSION_PURPOSE === 'dev') {
     attBanner.style.background = '#1e3a8a';
     document.getElementById('attTitle').innerText = '🛠️ وضع الإدارة وتطوير الكورسات والمتون';
-    document.getElementById('attDesc').innerText = 'يمكنك فتح وتعديل وحذف أي كورس أو فهرسة القوانين والقرارات التمييزية دون احتساب وقت.';
+    document.getElementById('attDesc').innerText = 'يمكنك فتح وتعديل وحذف أي كورس أو ربط ملفات Google Drive دون احتساب وقت.';
     document.getElementById('attButtons').innerHTML = `<button type="button" class="btn-checkin" onclick="startOwnerSession('study')">التبديل لوضع التدريب 🎓</button>`;
   } else if (profile.lastCheckInDate === today) {
     attBanner.style.background = '#064e3b';
@@ -996,9 +1065,9 @@ function renderDirectoryCards(isUnlocked) {
   let html = `
     <div class="course-card">
       <div>
-        <span class="course-badge" style="background:#dbeafe; color:#1e40af;">مسار اللغة الإنجليزية (آيلتس + ماجستير + عمل)</span>
-        <div class="course-title">⚖️ مسار التحضير للآيلتس والماجستير وصياغة العقود</div>
-        <div class="course-desc">يضم 6 مختبرات متكاملة: ترديد المصطلحات بالنطق البطيء، محاكي الموكلين الأجانب، صياغة العقود، الفيديو والكارتات البصرية، كتابة الآيلتس، وتحديد المستوى.</div>
+        <span class="course-badge" style="background:#dbeafe; color:#1e40af;">شامل: يوميات + آيلتس + ماجستير + محاماة</span>
+        <div class="course-title">🇬🇧 مسار اللغة الإنجليزية الشامل (حياة يومية + LL.M. + عمل)</div>
+        <div class="course-desc">يضم 7 مختبرات متكاملة: ترديد المصطلحات بالنطق البطيء، اليوميات والروتين في بريطانيا، محاكي الموكلين الأجانب، صياغة العقود، الفيديو والكارتات البصرية، كتابة الآيلتس والماجستير، وتحديد المستوى.</div>
       </div>
       <div class="course-actions">
         <button type="button" class="btn-nav" onclick="openExecutiveCourse(${isUnlocked}, false)">دخول المسار ←</button>
@@ -1007,9 +1076,9 @@ function renderDirectoryCards(isUnlocked) {
 
     <div class="course-card statute-card">
       <div>
-        <span class="course-badge" style="background:#e0e7ff; color:#3730a3;">أداة بحث وتدريب قانوني ذكية</span>
+        <span class="course-badge" style="background:#e0e7ff; color:#3730a3;">أداة بحث وتدريب قانوني + Google Drive</span>
         <div class="course-title">📖 مختبر المتون القانونية والفهرسة التمييزية</div>
-        <div class="course-desc">ارفع صورة قرار تمييزي أو ملف نصي ليتم تحليله تلقائياً، أو اكتب أي كلمة ليظهر لك القرار التمييزي والمادة القانونية المنطبقة مع محاكاة إنجليزية.</div>
+        <div class="course-desc">ارفع صورة قرار تمييزي أو ملف نصي ليتم تحليله، اربطه بملفك على Google Drive، أو ابحث بأي كلمة ليظهر لك القرار التمييزي والمادة المنطبقة.</div>
       </div>
       <div class="course-actions">
         <button type="button" class="btn-nav" style="background:#1e3a8a;" onclick="openStatuteIndexer()">فتح المختبر القانوني ←</button>
@@ -1061,6 +1130,7 @@ function openView(viewId) {
     document.getElementById('courseTitleInput').value = '';
     document.getElementById('courseDescInput').value = '';
     document.getElementById('courseContentInput').value = '';
+    document.getElementById('courseDriveUrlInput').value = '';
     document.getElementById('courseQuizQInput').value = '';
     document.getElementById('courseQuizOpt1').value = '';
     document.getElementById('courseQuizOpt2').value = '';
@@ -1068,7 +1138,7 @@ function openView(viewId) {
 }
 
 // =========================================================================
-// 2. مسار اللغة الإنجليزية الكامل (6 مختبرات)
+// 2. مسار اللغة الإنجليزية الشامل (7 مختبرات)
 // =========================================================================
 function openExecutiveCourse(isUnlocked, isSingleTraineeMode) {
   hideAllViews();
@@ -1076,6 +1146,7 @@ function openExecutiveCourse(isUnlocked, isSingleTraineeMode) {
   document.getElementById('btnBackFromExec').style.display = isSingleTraineeMode ? 'none' : 'inline-block';
 
   renderExecShadow(isUnlocked);
+  renderExecRoutine(isUnlocked);
   renderExecRoleplay(isUnlocked);
   renderExecDraft(isUnlocked);
   renderExecMedia(isUnlocked);
@@ -1134,7 +1205,36 @@ function testShadowVoice(target) {
   };
 }
 
-// 2.2 محاكي الموكلين الأجانب
+// 2.2 مختبر اليوميات والروتين في بريطانيا (Daily Life & Routine)
+function renderExecRoutine(isUnlocked) {
+  const el = document.getElementById('execRoutine');
+  if (!isUnlocked) { el.innerHTML = `<div class="locked-overlay"><h4>🔒 مقفل</h4><p>ثبّت حضورك اليومي أعلاه.</p></div>`; return; }
+  let html = '';
+  DAILY_ROUTINE_SCENARIOS.forEach((rt, idx) => {
+    const safeSpeech = rt.speech.replace(/'/g, "\\'");
+    const safeTip = rt.replyTip.replace(/'/g, "\\'");
+    html += `
+      <div class="scenario-box">
+        <div style="font-size:14.5px; font-weight:800; color:#1e40af;">${rt.title}</div>
+        <div style="font-size:12px; color:#475569; margin-bottom:6px;">المكان: ${rt.context}</div>
+        <div class="client-msg" style="border-left-color:#2b6cb0;">"${rt.speech}"</div>
+        <p style="font-size:13px; margin-bottom:10px;"><strong>المعنى:</strong> ${rt.ar}</p>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <button type="button" class="btn-speak" onclick="speakText('${safeSpeech}', 0.95)">🔊 استمع للحوار البريطاني</button>
+          <button type="button" class="btn-speak slow" onclick="speakText('${safeSpeech}', 0.65)">🐢 نطق بطيء</button>
+          <button type="button" class="btn-nav" onclick="document.getElementById('rt_tip_${idx}').style.display='block'">💡 جملة متابعة احترافية</button>
+        </div>
+        <div id="rt_tip_${idx}" class="model-reply">
+          <strong>Follow-up Phrase:</strong><br>"${rt.replyTip}"
+          <div style="margin-top:6px;"><button type="button" class="btn-speak" onclick="speakText('${safeTip}', 0.9)">🔊 استمع</button></div>
+        </div>
+      </div>
+    `;
+  });
+  el.innerHTML = html;
+}
+
+// 2.3 محاكي الموكلين الأجانب
 function renderExecRoleplay(isUnlocked) {
   const el = document.getElementById('execRoleplay');
   if (!isUnlocked) { el.innerHTML = `<div class="locked-overlay"><h4>🔒 مقفل</h4><p>ثبّت حضورك اليومي أعلاه.</p></div>`; return; }
@@ -1181,7 +1281,7 @@ function testRoleplayVoice(idx) {
   };
 }
 
-// 2.3 مختبر صياغة وتدقيق العقود
+// 2.4 مختبر صياغة وتدقيق العقود
 function renderExecDraft(isUnlocked) {
   const el = document.getElementById('execDraft');
   if (!isUnlocked) { el.innerHTML = `<div class="locked-overlay"><h4>🔒 مقفل</h4><p>ثبّت حضورك اليومي أعلاه.</p></div>`; return; }
@@ -1215,7 +1315,7 @@ function evalContract(idx, req) {
   box.innerHTML = pct >= 75 ? `✅ <strong>صياغة رصينة (${pct}%)!</strong>` : `⚠️ <strong>ينقصها بعض المصطلحات الجوهرية (${req.join(', ')}).</strong>`;
 }
 
-// 2.4 مختبر الفيديو والكارتات البصرية
+// 2.5 مختبر الفيديو والكارتات البصرية
 function renderExecMedia(isUnlocked) {
   const el = document.getElementById('execMedia');
   if (!isUnlocked) { el.innerHTML = `<div class="locked-overlay"><h4>🔒 مقفل</h4><p>ثبّت حضورك اليومي أعلاه.</p></div>`; return; }
@@ -1266,7 +1366,7 @@ function renderExecMedia(isUnlocked) {
   el.innerHTML = html;
 }
 
-// 2.5 مختبر كتابة الآيلتس والماجستير
+// 2.6 مختبر كتابة الآيلتس والماجستير
 function renderExecIelts(isUnlocked) {
   const el = document.getElementById('execIelts');
   if (!isUnlocked) { el.innerHTML = `<div class="locked-overlay"><h4>🔒 مقفل</h4><p>ثبّت حضورك اليومي أعلاه.</p></div>`; return; }
@@ -1312,7 +1412,7 @@ function submitIeltsEssay() {
   showAlert(`🏆 ممتاز! تم قبول مقالك (${c} كلمة) وتسجيله بنجاح.`, true);
 }
 
-// 2.6 تحديد المستوى
+// 2.7 تحديد المستوى
 function renderExecDiag(isUnlocked) {
   const el = document.getElementById('execDiag');
   if (!isUnlocked) { el.innerHTML = `<div class="locked-overlay"><h4>🔒 مقفل</h4><p>ثبّت حضورك اليومي أعلاه.</p></div>`; return; }
@@ -1345,7 +1445,7 @@ function submitExecDiag(e) {
 }
 
 // =========================================================================
-// 3. مختبر المتون القانونية وقراءة الصور والملفات (OCR) والبحث الفوري
+// 3. مختبر المتون القانونية وقراءة الصور والملفات + ربط Google Drive
 // =========================================================================
 function openStatuteIndexer() {
   hideAllViews();
@@ -1388,21 +1488,23 @@ function saveStatuteEntry() {
   const article = document.getElementById('statuteArticleNum').value.trim();
   const text = document.getElementById('statuteText').value.trim();
   const cassation = document.getElementById('statuteCassation').value.trim();
+  const driveUrl = document.getElementById('statuteDriveUrl').value.trim();
   const englishSim = document.getElementById('statuteEnglishSim').value.trim();
 
   if (!article || !text) { alert('يرجى إدخال عنوان المتن ونصه.'); return; }
 
   TRAINING_DB.statutes = TRAINING_DB.statutes || [];
-  TRAINING_DB.statutes.unshift({ id: 'stat_' + Date.now(), law, article, text, cassation, englishSim });
+  TRAINING_DB.statutes.unshift({ id: 'stat_' + Date.now(), law, article, text, cassation, driveUrl, englishSim });
 
   document.getElementById('statuteArticleNum').value = '';
   document.getElementById('statuteText').value = '';
   document.getElementById('statuteCassation').value = '';
+  document.getElementById('statuteDriveUrl').value = '';
   document.getElementById('statuteEnglishSim').value = '';
   document.getElementById('ocrStatusMsg').innerText = '';
 
   saveTrainingDB();
-  showAlert('✅ تمت فهرسة النص والقرار التمييزي بنجاح!', true);
+  showAlert('✅ تمت فهرسة النص والقرار التمييزي وربطه بسحابة Drive بنجاح!', true);
   renderStatuteList();
 }
 
@@ -1445,6 +1547,7 @@ function renderStatuteList() {
         <div style="font-size:16px; font-weight:900; color:#0b1a30; margin-bottom:6px;">📜 ${s.article}</div>
         <div style="font-size:14px; color:#1e293b; line-height:1.8; background:#f8fafc; padding:12px; border-radius:8px; border:1px solid #e2e8f0; white-space:pre-line;">${s.text}</div>
         ${s.cassation ? `<div class="cassation-box"><strong>⚖️ القرار التمييزي / المبدأ القضائي:</strong><br>${s.cassation}</div>` : ''}
+        ${s.driveUrl ? `<a href="${s.driveUrl}" target="_blank" class="drive-badge">☁️ فتح الملف الأصلي في Google Drive ↗</a>` : ''}
         ${s.englishSim ? `
           <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
             <button type="button" class="btn-speak" onclick="document.getElementById('en_sim_${idx}').style.display='block'">🇬🇧 عرض المحاكاة بالإنجليزية</button>
@@ -1467,6 +1570,7 @@ function saveCourseData() {
   const title = document.getElementById('courseTitleInput').value.trim();
   const desc = document.getElementById('courseDescInput').value.trim();
   const content = document.getElementById('courseContentInput').value.trim();
+  const driveUrl = document.getElementById('courseDriveUrlInput').value.trim();
   const quizQ = document.getElementById('courseQuizQInput').value.trim();
   const opt1 = document.getElementById('courseQuizOpt1').value.trim();
   const opt2 = document.getElementById('courseQuizOpt2').value.trim();
@@ -1476,9 +1580,9 @@ function saveCourseData() {
   TRAINING_DB.courses = TRAINING_DB.courses || [];
   if (editId) {
     const idx = TRAINING_DB.courses.findIndex(c => c.id === editId);
-    if (idx !== -1) TRAINING_DB.courses[idx] = { id: editId, title, desc, content, quizQ, quizCorrect: opt1, quizWrong: opt2 };
+    if (idx !== -1) TRAINING_DB.courses[idx] = { id: editId, title, desc, content, driveUrl, quizQ, quizCorrect: opt1, quizWrong: opt2 };
   } else {
-    TRAINING_DB.courses.push({ id: 'course_' + Date.now(), title, desc, content, quizQ, quizCorrect: opt1, quizWrong: opt2 });
+    TRAINING_DB.courses.push({ id: 'course_' + Date.now(), title, desc, content, driveUrl, quizQ, quizCorrect: opt1, quizWrong: opt2 });
   }
 
   saveTrainingDB();
@@ -1495,6 +1599,7 @@ function startEditCourse(courseId) {
   document.getElementById('courseTitleInput').value = course.title;
   document.getElementById('courseDescInput').value = course.desc;
   document.getElementById('courseContentInput').value = course.content;
+  document.getElementById('courseDriveUrlInput').value = course.driveUrl || '';
   document.getElementById('courseQuizQInput').value = course.quizQ || '';
   document.getElementById('courseQuizOpt1').value = course.quizCorrect || '';
   document.getElementById('courseQuizOpt2').value = course.quizWrong || '';
@@ -1534,6 +1639,7 @@ function openCustomCourse(courseId, isUnlocked, isSingleTraineeMode) {
     <div class="lesson-card">
       <div class="lesson-title">📚 المحاور التدريبية والتوعوية للكورس</div>
       <div class="lesson-body">${course.content}</div>
+      ${course.driveUrl ? `<a href="${course.driveUrl}" target="_blank" class="drive-badge" style="margin-top:14px;">☁️ تحميل حقيبة الملفات والمرفقات من Google Drive ↗</a>` : ''}
     </div>
   `;
 
@@ -1567,7 +1673,7 @@ function submitCustomCourseQuiz(courseTitle) {
 
 function renderTraineeManager() {
   const select = document.getElementById('newTraineeCourseSelect');
-  let opts = `<option value="executive">⚖️ مسار التحضير للآيلتس والماجستير وصياغة العقود</option>`;
+  let opts = `<option value="executive">🇬🇧 مسار اللغة الإنجليزية الشامل (يوميات + آيلتس + ماجستير + محاماة)</option>`;
   (TRAINING_DB.courses || []).forEach(c => {
     opts += `<option value="${c.id}">${c.title}</option>`;
   });
@@ -1584,7 +1690,7 @@ function renderTraineeManager() {
   codes.forEach(code => {
     const t = TRAINING_DB.trainees[code];
     const courseObj = (TRAINING_DB.courses || []).find(c => c.id === t.courseId);
-    const courseName = t.courseId === 'executive' ? 'مسار اللغة الإنجليزية والعقود' : (courseObj ? courseObj.title : 'كورس مخصص');
+    const courseName = t.courseId === 'executive' ? 'مسار اللغة الإنجليزية الشامل' : (courseObj ? courseObj.title : 'كورس مخصص');
     html += `
       <div class="trainee-card">
         <div>
@@ -1646,7 +1752,7 @@ function speakText(text, rate = 0.95) {
 function openCertificateModal() {
   const profile = getActiveUserProfile();
   document.getElementById('certRecipientName').innerText = profile.name || 'Ali Kadhem Al-Hashimi';
-  document.getElementById('certCourseTitle').innerText = profile.activeCertCourse || 'IELTS Preparation, Commercial Contract Drafting & Executive Legal English';
+  document.getElementById('certCourseTitle').innerText = profile.activeCertCourse || 'IELTS Preparation, LL.M. Studies & Executive Legal English';
   document.getElementById('certScoreText').innerText = profile.latestScore ? `${profile.latestScore}%` : '95%';
   document.getElementById('certIssueDate').innerText = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
   document.getElementById('certVerifyId').innerText = `AKH-CERT-2026-${Math.floor(1000 + Math.random() * 9000)}`;
