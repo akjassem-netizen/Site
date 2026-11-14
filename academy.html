@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>AKH Executive Legal Academy | أكاديمية AKH للتأهيل القانوني والأكاديمي</title>
+<title>AKH Practical Legal Training Hub | منصة AKH للتدريب والتطوير المهني القانوني</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
@@ -21,11 +21,11 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
 .sub-title span { color: #d32f2f; margin-right: 4px; font-weight: 900; }
 .est { font-size: 10px; color: #777777; letter-spacing: 2px; margin-top: 3px; direction: ltr; }
 .portal-title { font-size: 17px; font-weight: 800; color: #0b1a30; margin-top: 10px; display: inline-block; background: #f8fafc; padding: 6px 20px; border-radius: 25px; border: 1.5px solid #cbd5e0; }
-.portal-sub { font-size: 12px; color: #64748b; margin-top: 5px; font-weight: 700; }
+.portal-sub { font-size: 12.5px; color: #64748b; margin-top: 6px; font-weight: 700; }
 
 /* شاشات الدخول */
-.login-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
-.login-tab-btn { padding: 9px 20px; border-radius: 8px; border: 1.5px solid #cbd5e0; background: #f8fafc; font-family: inherit; font-weight: 800; font-size: 13.5px; cursor: pointer; color: #334155; }
+.login-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+.login-tab-btn { padding: 10px 20px; border-radius: 8px; border: 1.5px solid #cbd5e0; background: #f8fafc; font-family: inherit; font-weight: 800; font-size: 13.5px; cursor: pointer; color: #334155; }
 .login-tab-btn.active { background: #0b1a30; color: #ffffff; border-color: #0b1a30; }
 .screen-box { text-align: center; padding: 25px 10px; }
 .lock-desc { font-size: 14.5px; color: #4a5568; margin-bottom: 18px; line-height: 1.7; }
@@ -53,7 +53,7 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
 .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; margin-bottom: 22px; }
 .stat-card { background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 14px; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.02); }
 .stat-card.highlight { border-color: #d32f2f; background: #fff5f5; }
-.stat-num { font-size: 22px; font-weight: 900; color: #0b1a30; margin: 3px 0; }
+.stat-num { font-size: 21px; font-weight: 900; color: #0b1a30; margin: 3px 0; }
 .stat-card.highlight .stat-num { color: #d32f2f; }
 .stat-label { font-size: 12px; font-weight: 700; color: #4a5568; }
 .stat-sub { font-size: 11px; color: #718096; margin-top: 2px; }
@@ -66,13 +66,15 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
 .btn-checkin { background: #16a34a; color: #ffffff; border: none; padding: 10px 18px; border-radius: 8px; font-weight: 800; font-size: 13.5px; cursor: pointer; font-family: inherit; }
 .btn-reschedule { background: transparent; color: #f6e05e; border: 1.5px solid #f6e05e; padding: 10px 14px; border-radius: 8px; font-weight: 700; font-size: 12.5px; cursor: pointer; font-family: inherit; }
 
-/* تبويبات المختبرات التنفيذية */
+/* تبويبات المختبرات والبرامج */
 .lab-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; border-bottom: 2px solid #e2e8f0; padding-bottom: 12px; }
 .lab-tab { background: #f1f5f9; color: #1e293b; border: 1.5px solid #cbd5e0; padding: 9px 14px; border-radius: 10px; font-size: 13px; font-weight: 800; cursor: pointer; font-family: inherit; transition: 0.2s; }
 .lab-tab:hover { border-color: #0b1a30; }
 .lab-tab.active { background: #0b1a30; color: #ffffff; border-color: #0b1a30; box-shadow: 0 4px 10px rgba(11,26,48,0.2); }
 .lab-tab.admin-tab { background: #fffbeb; border-color: #f59e0b; color: #92400e; }
 .lab-tab.admin-tab.active { background: #b45309; color: #ffffff; border-color: #b45309; }
+.lab-tab.marriage-tab { background: #fdf2f8; border-color: #db2777; color: #9d174d; }
+.lab-tab.marriage-tab.active { background: #be185d; color: #ffffff; border-color: #be185d; }
 
 /* الأقسام التفاعلية */
 .card-section { background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 14px; padding: 22px; margin-bottom: 24px; display: none; }
@@ -81,11 +83,18 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
 .locked-overlay { text-align: center; padding: 30px 15px; background: #f8fafc; border-radius: 10px; border: 1.5px dashed #cbd5e0; color: #4a5568; }
 .locked-overlay h4 { font-size: 15.5px; color: #d32f2f; margin-bottom: 6px; }
 
-/* لوحة إدارة المتدربين (Super Admin) */
+/* بطاقات الدروس التوعوية (مثل المقبلين على الزواج) */
+.lesson-card { background: #ffffff; border: 1.5px solid #cbd5e0; border-right: 5px solid #0b1a30; border-radius: 12px; padding: 18px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+.lesson-title { font-size: 16px; font-weight: 800; color: #0b1a30; margin-bottom: 8px; }
+.lesson-body { font-size: 14.5px; color: #334155; line-height: 1.85; white-space: pre-line; }
+.legal-tip-box { background: #fffbeb; border: 1px solid #fcd34d; padding: 12px 15px; border-radius: 8px; margin-top: 12px; font-size: 13.5px; color: #92400e; font-weight: 700; }
+
+/* لوحة إدارة المشتركين والبرامج (Super Admin) */
 .admin-form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 14px; }
 .admin-input { width: 100%; padding: 10px 12px; border: 1.5px solid #cbd5e0; border-radius: 8px; font-family: inherit; font-size: 13.5px; }
 .trainee-card { background: #f8fafc; border: 1.5px solid #cbd5e0; border-radius: 10px; padding: 14px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
 .code-pill { background: #0b1a30; color: #f6e05e; padding: 3px 10px; border-radius: 6px; font-family: monospace; font-size: 13px; font-weight: 800; letter-spacing: 1px; }
+.device-badge { background: #e0f2fe; color: #0369a1; padding: 2px 8px; border-radius: 5px; font-size: 11px; font-weight: 800; }
 
 /* 1. محاكي التفاوض والاجتماعات الحية */
 .scenario-box { background: #f8fafc; border: 1.5px solid #cbd5e0; border-radius: 12px; padding: 18px; margin-bottom: 18px; }
@@ -115,11 +124,9 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
 .fc-ar { font-size: 13.5px; font-weight: 700; color: #1e293b; direction: rtl; text-align: right; background: #f1f5f9; padding: 6px 10px; border-radius: 6px; margin-bottom: 8px; }
 .fc-example { font-size: 13px; color: #475569; line-height: 1.6; font-style: italic; margin-bottom: 12px; }
 
-/* 5. محاكي كتابة الآيلتس الأكاديمي */
+/* 5. محاكي كتابة المقالات القانونية والتقارير */
 .ielts-textarea { width: 100%; min-height: 220px; padding: 15px; border: 1.5px solid #cbd5e0; border-radius: 10px; direction: ltr; text-align: left; font-family: Georgia, serif; font-size: 15px; line-height: 1.8; margin: 12px 0; }
 .word-counter-bar { display: flex; justify-content: space-between; align-items: center; background: #f8fafc; padding: 8px 14px; border-radius: 8px; border: 1px solid #cbd5e0; font-size: 13px; font-weight: 800; margin-bottom: 12px; }
-.linker-pill { display: inline-block; background: #e2e8f0; color: #0b1a30; padding: 3px 9px; border-radius: 5px; font-size: 12px; font-weight: 700; margin: 3px; cursor: pointer; direction: ltr; }
-.linker-pill:hover { background: #0b1a30; color: #fff; }
 
 /* أزرار الصوت والميكروفون */
 .audio-controls { display: flex; gap: 6px; flex-wrap: wrap; margin-top: auto; padding-top: 10px; border-top: 1px dashed #e2e8f0; }
@@ -133,12 +140,12 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
 
 /* الاختبار */
 .timer-bar { background: #fff5f5; border: 1.5px solid #feb2b2; color: #9b1c1c; padding: 10px 16px; border-radius: 8px; font-weight: 800; font-size: 15px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; position: sticky; top: 10px; z-index: 100; }
-.question-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 16px; margin-bottom: 16px; direction: ltr; text-align: left; }
+.question-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 16px; margin-bottom: 16px; }
 .q-tag { display: inline-block; font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 4px; margin-bottom: 8px; background: #0b1a30; color: #fff; }
 .q-text { font-size: 15px; font-weight: 700; color: #1a202c; margin-bottom: 12px; line-height: 1.6; }
 .option-label { display: block; background: #ffffff; border: 1.5px solid #cbd5e0; padding: 10px 14px; border-radius: 8px; margin-bottom: 8px; cursor: pointer; font-size: 14px; font-weight: 600; transition: 0.2s; }
 .option-label:hover { border-color: #0b1a30; background: #edf2f7; }
-.option-label input { margin-right: 10px; }
+.option-label input { margin: 0 8px; }
 
 .btn-primary { background-color: #0b1a30; color: #ffffff; border: none; padding: 12px 24px; border-radius: 8px; font-size: 15px; font-weight: 800; cursor: pointer; font-family: inherit; width: 100%; transition: 0.2s; }
 .btn-primary:hover { background-color: #d32f2f; }
@@ -171,7 +178,7 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
 .cert-header-logo span { color: #d32f2f; }
 .cert-header-sub { font-size: 12px; font-weight: 800; letter-spacing: 4px; color: #111; margin-top: 4px; }
 .cert-header-sub span { color: #d32f2f; }
-.cert-title { font-family: 'Playfair Display', Georgia, serif; font-size: 32px; font-weight: 900; color: #0b1a30; margin: 22px 0 8px; letter-spacing: 1px; text-transform: uppercase; }
+.cert-title { font-family: 'Playfair Display', Georgia, serif; font-size: 29px; font-weight: 900; color: #0b1a30; margin: 22px 0 8px; letter-spacing: 1px; text-transform: uppercase; }
 .cert-subtitle { font-size: 13px; font-weight: 700; color: #c5a059; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
 .cert-body-text { font-size: 15px; color: #334155; line-height: 1.8; max-width: 720px; margin: 0 auto 14px; }
 .cert-recipient { font-family: 'Playfair Display', Georgia, serif; font-size: 28px; font-weight: 700; color: #0b1a30; border-bottom: 2px solid #c5a059; display: inline-block; padding: 4px 30px; margin: 10px 0 16px; }
@@ -200,8 +207,8 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
     <div class="logo-text">A<span>K</span>H</div>
     <div class="sub-title"><span>/</span> LAW OFFICE</div>
     <div class="est">EST. 2014</div>
-    <div class="portal-title">AKH Executive Legal Academy</div>
-    <div class="portal-sub">أكاديمية AKH للتأهيل القانوني والأكاديمي التنفيذي — مكتب المحامي علي كاظم الهاشمي</div>
+    <div class="portal-title">AKH Practical Legal Training Hub</div>
+    <div class="portal-sub">منصة AKH للتدريب والتطوير المهني القانوني — مكتب المحامي علي كاظم الهاشمي</div>
   </div>
 
   <div id="statusAlert" class="alert-box alert-error"></div>
@@ -215,14 +222,14 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
     <div style="max-width: 280px; margin: 0 auto 16px;">
       <input type="password" id="setupPinInput" class="secret-input pin-mask" placeholder="الرقم السري للمالك (PIN)">
     </div>
-    <button type="button" class="btn-unlock" onclick="performSetup()">تشفير وفتح الأكاديمية 🔒</button>
+    <button type="button" class="btn-unlock" onclick="performSetup()">تشفير وفتح المنصة 🔒</button>
   </div>
 
-  <!-- شاشة تسجيل الدخول المزدوجة (المالك / المتدربون) -->
+  <!-- شاشة تسجيل الدخول المزدوجة (المالك / المشتركين والمتدربين) -->
   <div id="authScreen" class="screen-box" style="display: none;">
     <div class="login-tabs">
       <button type="button" class="login-tab-btn active" onclick="switchLoginMode('owner', this)">👑 دخول المالك (Super Admin)</button>
-      <button type="button" class="login-tab-btn" onclick="switchLoginMode('trainee', this)">🎓 دخول المتدربين (بكود الوصول)</button>
+      <button type="button" class="login-tab-btn" onclick="switchLoginMode('trainee', this)">🎓 دخول المشتركين والمتدربين (بكود خاص)</button>
     </div>
 
     <div id="ownerLoginBox">
@@ -232,7 +239,7 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
     </div>
 
     <div id="traineeLoginBox" style="display: none;">
-      <p class="lock-desc">أدخل كود الوصول الخاص الصادر لك من مكتب المحامي علي كاظم الهاشمي:</p>
+      <p class="lock-desc">أدخل كود الاشتراك الشخصي الصادر لك من مكتب المحامي علي كاظم الهاشمي (مخصص لجهاز واحد فقط):</p>
       <input type="text" id="traineeCodeInput" class="secret-input" placeholder="AKH-2026-XXXX" dir="ltr">
       <button type="button" class="btn-unlock" onclick="attemptTraineeLogin()">دخول البوابة التدريبية ←</button>
     </div>
@@ -243,10 +250,10 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
     <div class="top-nav-bar">
       <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
         <span class="role-badge" id="userRoleBadge">👑 المالك والمشرف العام</span>
-        <div class="accent-switch">
+        <div class="accent-switch" id="accentControlWrapper">
           <span>🗣️ النطق:</span>
           <select id="accentSelect">
-            <option value="en-GB" selected>🇬🇧 البريطانية (IELTS & UK LL.M)</option>
+            <option value="en-GB" selected>🇬🇧 البريطانية (UK Legal)</option>
             <option value="en-US">🇺🇸 الأمريكية (US Business)</option>
           </select>
         </div>
@@ -267,17 +274,17 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
         <div class="stat-sub">يوم حضور منضبط</div>
       </div>
       <div class="stat-card highlight">
-        <div class="stat-label">المستوى التقييمي</div>
+        <div class="stat-label">التقييم الحالي</div>
         <div class="stat-num" id="statLevel">غير محدد</div>
-        <div class="stat-sub" id="statScoreSub">أتمم اختبار تحديد المستوى</div>
+        <div class="stat-sub" id="statScoreSub">أتمم الاختبار التقييمي</div>
       </div>
       <div class="stat-card">
-        <div class="stat-label">رصيد التأجيل الطارئ</div>
-        <div class="stat-num" id="statReschedule">2 / 2</div>
-        <div class="stat-sub">مرتين أسبوعياً</div>
+        <div class="stat-label">المسار / البرنامج</div>
+        <div class="stat-num" style="font-size:14px; padding-top:6px;" id="statTrackName">شامل</div>
+        <div class="stat-sub">مخصص لصاحب الكود</div>
       </div>
       <div class="stat-card">
-        <div class="stat-label">حالة الشهادة</div>
+        <div class="stat-label">شهادة المشاركة والإتمام</div>
         <div class="stat-num" id="statCertStatus">قيد الإنجاز</div>
         <div class="stat-sub">تُمنح عند تحقيق 80%+</div>
       </div>
@@ -287,29 +294,30 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
     <div class="attendance-banner" id="attendanceBanner">
       <div class="att-info">
         <h3 id="attTitle">⚠️ الحضور اليومي غير مثبت بعد</h3>
-        <p id="attDesc">المختبرات مقفلة بنظام الانضباط الصارم. ثبّت حضورك الآن لبدء التدريب.</p>
+        <p id="attDesc">المحتوى التدريبي والتوعوي مقفل بنظام الانضباط الصارم. ثبّت حضورك الآن للبدء.</p>
       </div>
       <div class="att-actions" id="attButtons">
-        <button type="button" class="btn-checkin" onclick="confirmDailyAttendance()">✅ تثبيت الحضور وفتح البوابة</button>
-        <button type="button" class="btn-reschedule" onclick="requestEmergencyReschedule()">⏳ تأجيل لظرف طارئ</button>
+        <button type="button" class="btn-checkin" onclick="confirmDailyAttendance()">✅ تثبيت الحضور وفتح المحتوى</button>
+        <button type="button" class="btn-reschedule" id="btnEmergencyReschedule" onclick="requestEmergencyReschedule()">⏳ تأجيل لظرف طارئ</button>
       </div>
     </div>
 
-    <!-- أزرار التنقل بين المختبرات -->
-    <div class="lab-tabs">
-      <button type="button" class="lab-tab active" onclick="switchLab('tabDiag', this)">📝 1. تحديد المستوى</button>
-      <button type="button" class="lab-tab" onclick="switchLab('tabRoleplay', this)">🎙️ 2. محاكي الموكلين الأجانب</button>
-      <button type="button" class="lab-tab" onclick="switchLab('tabDrafting', this)">⚖️ 3. صياغة العقود</button>
-      <button type="button" class="lab-tab" onclick="switchLab('tabMedia', this)">🎬 4. الفيديو والمصطلحات</button>
-      <button type="button" class="lab-tab" onclick="switchLab('tabIelts', this)">✍️ 5. كتابة الآيلتس</button>
-      <button type="button" class="lab-tab admin-tab" id="adminManageTabBtn" style="display:none;" onclick="switchLab('tabAdminUsers', this)">👥 إدارة المتدربين والأكواد</button>
+    <!-- أزرار التنقل بين البرامج والمختبرات -->
+    <div class="lab-tabs" id="mainLabTabs">
+      <button type="button" class="lab-tab active" data-track="executive" onclick="switchLab('tabDiag', this)">📝 1. تحديد المستوى</button>
+      <button type="button" class="lab-tab" data-track="executive" onclick="switchLab('tabRoleplay', this)">🎙️ 2. محاكي الموكلين الأجانب</button>
+      <button type="button" class="lab-tab" data-track="executive" onclick="switchLab('tabDrafting', this)">⚖️ 3. صياغة العقود</button>
+      <button type="button" class="lab-tab" data-track="executive" onclick="switchLab('tabMedia', this)">🎬 4. الفيديو والمصطلحات</button>
+      <button type="button" class="lab-tab" data-track="executive" onclick="switchLab('tabIelts', this)">✍️ 5. الصياغة التحليلية</button>
+      <button type="button" class="lab-tab marriage-tab" data-track="marriage" onclick="switchLab('tabMarriage', this)">💍 برنامج المقبلين على الزواج</button>
+      <button type="button" class="lab-tab admin-tab" id="adminManageTabBtn" style="display:none;" onclick="switchLab('tabAdminUsers', this)">👥 إدارة المشتركين والبرامج</button>
     </div>
 
     <!-- 1. قسم اختبار تحديد المستوى -->
     <div class="card-section active" id="tabDiag">
       <h2>
         <span>📝 اختبار تحديد المستوى وقياس التحسن (40 دقيقة)</span>
-        <span style="font-size: 12px; color: #d32f2f;">مراسلات عملاء + عقود + آيلتس</span>
+        <span style="font-size: 12px; color: #d32f2f;">مراسلات عملاء + عقود + لغة قانونية</span>
       </h2>
       <div id="diagnosticContent"></div>
     </div>
@@ -341,46 +349,68 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
       <div id="mediaContent"></div>
     </div>
 
-    <!-- 5. قسم محاكي كتابة الآيلتس -->
+    <!-- 5. قسم محاكي الكتابة التحليلية -->
     <div class="card-section" id="tabIelts">
       <h2>
-        <span>✍️ محاكي امتحان الآيلتس الأكاديمي (IELTS Writing Task 2)</span>
+        <span>✍️ مختبر الكتابة التحليلية والتقارير القانونية</span>
         <span style="font-size: 12px; color: #0b1a30;">مؤقت 40 دقيقة + عداد كلمات</span>
       </h2>
       <div id="ieltsContent"></div>
     </div>
 
-    <!-- 6. قسم إدارة المتدربين والأكواد (خاص بالمالك فقط) -->
+    <!-- 6. برنامج التوعية القانونية للمقبلين على الزواج في العراق -->
+    <div class="card-section" id="tabMarriage">
+      <h2>
+        <span>💍 برنامج التوعية القانونية الوقائية للمقبلين على الزواج في العراق</span>
+        <span style="font-size: 12px; color: #be185d;">إعداد: مكتب المحامي علي كاظم الهاشمي</span>
+      </h2>
+      <div id="marriageContent"></div>
+    </div>
+
+    <!-- 7. قسم إدارة المشتركين والبرامج (خاص بالمالك فقط) -->
     <div class="card-section" id="tabAdminUsers">
       <h2>
-        <span>👥 إدارة حسابات المتدربين وإعادة ضبط أكواد الدخول</span>
+        <span>👥 إدارة المشتركين، قفل الأجهزة، وتوليد أكواد البرامج</span>
         <span style="font-size: 12px; color: #b45309;">صلاحية المالك والمشرف العام فقط</span>
       </h2>
+      
+      <!-- إضافة مشترك وتوليد كود -->
       <div style="background:#fffbeb; border:1px solid #fcd34d; padding:16px; border-radius:10px; margin-bottom:18px;">
-        <h3 style="font-size:14.5px; color:#92400e; margin-bottom:10px;">➕ إضافة متدرب جديد وتوليد كود دخول خاص:</h3>
+        <h3 style="font-size:14.5px; color:#92400e; margin-bottom:10px;">➕ إصدار كود اشتراك شخصي (يُقفل تلقائياً على أول جهاز يفتحه):</h3>
         <div class="admin-form-row">
-          <input type="text" id="newTraineeName" class="admin-input" placeholder="الاسم الكامل للمتدرب (بالعربية أو الإنجليزية)">
+          <input type="text" id="newTraineeName" class="admin-input" placeholder="الاسم الكامل للمشترك (كما سيظهر في الشهادة)">
           <select id="newTraineeTrack" class="admin-input">
-            <option value="Commercial Contracts & Legal English">مسار صياغة العقود والمصطلحات القانونية</option>
-            <option value="Corporate Due Diligence & Compliance">مسار الفحص النافي للجهالة والامتثال</option>
-            <option value="Comprehensive Legal & IELTS Program">البرنامج الشامل (عقود + آيلتس)</option>
+            <option value="marriage">💍 برنامج التوعية القانونية للمقبلين على الزواج</option>
+            <option value="executive">⚖️ برنامج صياغة العقود التجارية واللغة القانونية</option>
+            <option value="all">🌟 الصلاحية الشاملة (كافة البرامج والمختبرات)</option>
           </select>
         </div>
-        <button type="button" class="btn-primary" style="background:#b45309;" onclick="createNewTrainee()">توليد كود الدخول وحفظ المتدرب 🔑</button>
+        <button type="button" class="btn-primary" style="background:#b45309;" onclick="createNewTrainee()">توليد كود الاشتراك المخصص 🔑</button>
       </div>
+
+      <!-- إضافة درس جديد لبرنامج المقبلين على الزواج أو البرامج التوعوية -->
+      <div style="background:#f8fafc; border:1.5px solid #cbd5e0; padding:16px; border-radius:10px; margin-bottom:18px;">
+        <h3 style="font-size:14.5px; color:#0b1a30; margin-bottom:10px;">✍️ إضافة محور / درس توعوي جديد لبرنامج المقبلين على الزواج:</h3>
+        <input type="text" id="newLessonTitle" class="admin-input" style="margin-bottom:10px;" placeholder="عنوان المحور (مثال: أحكام الأثاث الزوجي والذهب في القانون العراقي)">
+        <textarea id="newLessonBody" class="admin-input" style="min-height:90px; margin-bottom:10px;" placeholder="اكتب الشرح القانوني المبسط والوقائي للمشتركين..."></textarea>
+        <input type="text" id="newLessonTip" class="admin-input" style="margin-bottom:10px;" placeholder="القاعدة الذهبية / التنبيه الوقائي للمحامي (اختياري)">
+        <button type="button" class="btn-primary" onclick="addCustomMarriageLesson()">إضافة المحور إلى البرنامج فوراً ➕</button>
+      </div>
+
+      <h3 style="font-size:15px; color:#0b1a30; margin-bottom:10px;">📋 قائمة المشتركين وأكواد الدخول النشطة:</h3>
       <div id="traineesListContainer"></div>
     </div>
 
     <!-- سجل التقييمات والدرجات -->
     <div class="card-section active" style="margin-top: 10px;">
-      <h2><span>📊 سجل التقييمات وقياس التحسن الدوري</span></h2>
+      <h2><span>📊 سجل التقييمات وقياس الإنجاز</span></h2>
       <div id="historyContainer">
         <p style="font-size: 13.5px; color: #718096; text-align: center;">لم يتم تسجيل أي اختبارات تقييمية بعد.</p>
       </div>
     </div>
 
     <footer class="portal-footer">
-      AKH Executive Legal Academy — المنصة الأكاديمية والتنفيذية الخاصة بمكتب المحامي علي كاظم الهاشمي © 2026
+      AKH Practical Legal Training Hub — منصة التدريب والتطوير المهني القانوني الخاصة بمكتب المحامي علي كاظم الهاشمي © 2026
     </footer>
   </div>
 </div>
@@ -401,17 +431,17 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
       <div class="cert-header-logo">A<span>K</span>H</div>
       <div class="cert-header-sub"><span>/</span> LAW OFFICE • EST. 2014</div>
       
-      <div class="cert-title">Certificate of Participation & Practical Training</div>
+      <div class="cert-title">Certificate of Completion & Legal Awareness</div>
       <div class="cert-subtitle">Issued by the Law Office of Ali Kadhem Al-Hashimi — Baghdad, Iraq</div>
 
       <p class="cert-body-text">This is to certify that</p>
       <div class="cert-recipient" id="certRecipientName">Ali Kadhem Al-Hashimi</div>
       <p class="cert-body-text">
-        has actively participated in and successfully completed the executive practical training workshop in:
+        has actively participated in and successfully completed the practical legal training & awareness program in:
       </p>
-      <div class="cert-course" id="certCourseTitle">Commercial Contract Drafting, Legal Due Diligence & Executive Legal English</div>
+      <div class="cert-course" id="certCourseTitle">Pre-Marital Legal Awareness & Family Protection in Iraqi Law</div>
       <p class="cert-body-text" style="font-size:13.5px;">
-        Achieving an overall practical assessment score of <strong id="certScoreText">92%</strong>, demonstrating high proficiency in international legal terminology, client consultation protocols, and statutory compliance standards.
+        Achieving an assessment score of <strong id="certScoreText">95%</strong>, demonstrating clear understanding of statutory rights, contractual stipulations, and preventive legal safeguards.
       </p>
 
       <div class="cert-footer-grid">
@@ -442,8 +472,57 @@ const REPO_NAME = 'Site';
 const ACADEMY_DB_FILE = 'academy-database.json';
 
 let ACTIVE_TOKEN = '';
-let CURRENT_MODE = 'owner'; // 'owner' or 'trainee'
+let CURRENT_MODE = 'owner';
 let CURRENT_TRAINEE_CODE = null;
+
+// الدروس الافتراضية لبرنامج المقبلين على الزواج في العراق
+const DEFAULT_MARRIAGE_LESSONS = [
+  {
+    title: "المحور الأول: عقد الزواج الرسمي مقابل العقد الخارجي (مخاطر ضياع الحقوق)",
+    body: "يُعد تسجيل عقد الزواج أمام محكمة الأحوال الشخصية المختصة الضمانة الأولى لحفظ حقوق الزوجين والأبناء مستقبلاً. الزواج الخارجي (غير المسجل رسمياً) يعرّض الزوجة لخطر إنكار الزوجية أو النسب، ويعرّض الزوج للمساءلة الجزائية بموجب قانون الأحوال الشخصية العراقي رقم 188 لسنة 1959 المعدل.",
+    tip: "القاعدة الوقائية: لا تكتفِ بالعقد الشرعي الخارجي؛ بادر لتصديقه في المحكمة فور إجرائه وقبل الدخول لتفادي الغرامات والقيود الإدارية."
+  },
+  {
+    title: "المحور الثاني: الصياغة القانونية للمهر المعجل والمؤجل والشروط التعاقدية",
+    body: "يخطئ الكثيرون في صياغة فقرة المهر المؤجل أو إغفال الشروط الجائزة شرعاً وقانوناً في عقد الزواج. يجيز القانون العراقي للزوجة اشتراط شروط مشروعة في صلب العقد (مثل إكمال الدراسة، أو العمل، أو السكن المستقل، أو التفويض بالطلاق عند الإخلال بشرط جوهري)، وتكون هذه الشروط ملزمة قانوناً متى ما دُوّنت في حجة الزواج.",
+    tip: "القاعدة الوقائية: حدد نوع العملة بدقة في المهر المؤجل، ودوّن أي اتفاق خاص بالمسكن أو العمل داخل حجة الزواج الرسمية وليس شفهياً."
+  },
+  {
+    title: "المحور الثالث: توثيق الأثاث الزوجي والمنقولات (قائمة العفش)",
+    body: "من أكثر النزاعات شيوعاً أمام محاكم الأحوال الشخصية هي دعاوى المطالبة بالأثاث الزوجي (الخشب والذهب). غياب قائمة جرد موقعة من الطرفين يجعل إثبات الملكية أمراً شاقاً وطويلاً أمام القضاء.",
+    tip: "القاعدة الوقائية: نظّم قائمة مفصلة بالأثاث والمنقولات التي أحضرها كل طرف مع فواتير الشراء ومصادقة الشهود عند التأسيس."
+  }
+];
+
+const MARRIAGE_QUIZ = [
+  {
+    q: "ما هو الأثر القانوني لتسجيل الشروط المشروعة (مثل السكن المستقل أو إكمال الدراسة) في صلب حجة الزواج أمام محكمة الأحوال الشخصية؟",
+    options: [
+      "تكون شروطاً أدبية غير ملزمة أمام القضاء.",
+      "تكون شروطاً ملزمة قانوناً ويترتب على الإخلال بها آثار قانونية تحمي الطرف المشترِط.",
+      "تبطل عقد الزواج بالكامل."
+    ],
+    ans: 1
+  },
+  {
+    q: "لماذا يُحذر القانون العراقي من الاكتفاء بعقد الزواج الخارجي دون تصديقه في المحكمة؟",
+    options: [
+      "لأنه يرتب مسؤولية جزائية وغرامة ويعرض حقوق النسب والمهر للنزاع.",
+      "لأن المحكمة تمنع تصديق العقود الخارجية نهائياً.",
+      "لا يوجد أي فرق قانوني بين العقد الخارجي والمصدق."
+    ],
+    ans: 0
+  },
+  {
+    q: "ما هي أفضل وسيلة وقائية لتجنب النزاع حول ملكية الأثاث الزوجي مستقبلاً؟",
+    options: [
+      "الاعتماد على الوعود الشفهية فقط.",
+      "تنظيم قائمة جرد مفصلة موقعة مع الاحتفاظ بفواتير الشراء الرسمية.",
+      "عدم كتابة أي شيء عند الزواج."
+    ],
+    ans: 1
+  }
+];
 
 // قاعدة البيانات المركزية في GitHub
 let ACADEMY_DB = {
@@ -456,13 +535,14 @@ let ACADEMY_DB = {
     initialScore: 0,
     latestScore: 0,
     levelLabel: 'غير محدد',
-    track: 'Commercial Contract Drafting, Legal Due Diligence & IELTS Academic',
+    track: 'all',
     examHistory: []
   },
-  trainees: {} // { "AKH-2026-1234": { name, track, active, streak, lastCheckInDate, latestScore, levelLabel, examHistory } }
+  customMarriageLessons: [],
+  trainees: {}
 };
 
-// البيانات التدريبية
+// بيانات المختبر التنفيذي
 const CLIENT_SCENARIOS = [
   {
     title: "السيناريو الأول: استفسار شركة بريطانية عن سياسة الاستشارة والأتعاب",
@@ -577,7 +657,7 @@ const DIAGNOSTIC_QUESTIONS = [
     ans: 1
   },
   {
-    cat: "IELTS Academic Grammar (القواعد الأكاديمية)",
+    cat: "Professional Grammar (القواعد المتقدمة)",
     q: "Had the foreign enterprise conducted thorough due diligence before signing, it _______ severe administrative penalties.",
     options: [
       "would have avoided",
@@ -587,7 +667,7 @@ const DIAGNOSTIC_QUESTIONS = [
     ans: 0
   },
   {
-    cat: "IELTS Academic Reading Logic (الفهم التحليلي)",
+    cat: "Analytical Reading Logic (الفهم التحليلي)",
     q: "'While recent judicial rulings removed historical bans on foreign ownership, investors remain subject to statutory reciprocity rules.' This implies that:",
     options: [
       "Foreigners can now buy any property in Iraq with zero legal conditions.",
@@ -598,7 +678,16 @@ const DIAGNOSTIC_QUESTIONS = [
   }
 ];
 
-// دوال التشفير
+// توليد بصمة الجهاز الفريدة لقفل الكود على شخص واحد
+function getDeviceFingerprint() {
+  let fp = localStorage.getItem('akh_device_unique_id');
+  if (!fp) {
+    fp = 'DEV-' + Math.random().toString(36).substring(2, 10).toUpperCase() + '-' + navigator.platform.replace(/\s+/g, '');
+    localStorage.setItem('akh_device_unique_id', fp);
+  }
+  return fp;
+}
+
 function utf8_to_b64(str) { return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (m, p1) => String.fromCharCode('0x' + p1))); }
 function b64_to_utf8(str) { return decodeURIComponent(atob(str).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join('')); }
 
@@ -687,18 +776,29 @@ async function attemptOwnerUnlock() {
 
 async function attemptTraineeLogin() {
   const code = document.getElementById('traineeCodeInput').value.trim().toUpperCase();
-  if (!code) { showAlert('يرجى إدخال كود الوصول الخاص بك.', false); return; }
+  if (!code) { showAlert('يرجى إدخال كود الاشتراك الخاص بك.', false); return; }
 
   await loadAcademyDBFromPublicOrLocal();
   const trainee = ACADEMY_DB.trainees[code];
 
   if (!trainee) {
-    showAlert('⛔ كود الوصول غير موجود! تأكد من الكود الصادر لك من المكتب.', false);
+    showAlert('⛔ كود الاشتراك غير موجود! تأكد من الكود الصادر لك من المكتب.', false);
     return;
   }
   if (trainee.active === false) {
-    showAlert('⛔ تم تجميد هذا الحساب من قبل إدارة المكتب.', false);
+    showAlert('⛔ تم إيقاف هذا الاشتراك من قبل إدارة المكتب.', false);
     return;
+  }
+
+  // التحقق من قفل الكود على جهاز واحد فقط
+  const currentDevice = getDeviceFingerprint();
+  if (trainee.lockedDevice && trainee.lockedDevice !== currentDevice) {
+    showAlert('⛔ مرفوض! هذا الكود مخصص لشخص وجهاز واحد فقط، وهو مفعّل حالياً على جهاز آخر. تواصل مع إدارة المكتب لإعادة الضبط.', false);
+    return;
+  }
+  if (!trainee.lockedDevice) {
+    trainee.lockedDevice = currentDevice;
+    localStorage.setItem('akh_academy_central_db', JSON.stringify(ACADEMY_DB));
   }
 
   CURRENT_MODE = 'trainee';
@@ -757,12 +857,12 @@ async function loadAcademyDBFromPublicOrLocal() {
 
 async function saveAcademyDB() {
   localStorage.setItem('akh_academy_central_db', JSON.stringify(ACADEMY_DB));
-  if (!ACTIVE_TOKEN) return; // المتدرب يحفظ محلياً أو عبر التحديث الإداري
+  if (!ACTIVE_TOKEN) return;
 
   try {
     const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${ACADEMY_DB_FILE}`;
     const bodyObj = {
-      message: `Update Academy Database - ${new Date().toISOString()}`,
+      message: `Update Training Hub Database - ${new Date().toISOString()}`,
       content: utf8_to_b64(JSON.stringify(ACADEMY_DB, null, 2)),
       branch: 'main'
     };
@@ -794,19 +894,40 @@ function renderAcademyUI() {
   const today = getTodayStr();
   const isCheckedInToday = (profile.lastCheckInDate === today);
 
-  // ضبط شارة الدور والصلاحيات
+  // إظهار أو إخفاء التبويبات حسب مسار المشترك
+  const userTrack = profile.track || 'all';
+  document.querySelectorAll('#mainLabTabs .lab-tab').forEach(btn => {
+    const btnTrack = btn.getAttribute('data-track');
+    if (!btnTrack) return;
+    if (CURRENT_MODE === 'owner' || userTrack === 'all' || userTrack === btnTrack) {
+      btn.style.display = 'inline-block';
+    } else {
+      btn.style.display = 'none';
+    }
+  });
+
   if (CURRENT_MODE === 'owner') {
     document.getElementById('userRoleBadge').innerText = '👑 المالك والمشرف العام (Super Admin)';
     document.getElementById('adminManageTabBtn').style.display = 'inline-block';
     document.getElementById('btnPreviewCert').style.display = 'inline-flex';
     document.getElementById('btnPreviewCert').innerText = '📜 معاينة الشهادة الرسمية 👁️';
+    document.getElementById('statTrackName').innerText = 'كافة البرامج والمختبرات';
     renderTraineesList();
   } else {
-    document.getElementById('userRoleBadge').innerText = `🎓 المتدرب: ${profile.name}`;
+    document.getElementById('userRoleBadge').innerText = `🎓 المشترك: ${profile.name}`;
     document.getElementById('adminManageTabBtn').style.display = 'none';
+    document.getElementById('statTrackName').innerText = userTrack === 'marriage' ? 'المقبلين على الزواج' : 'العقود واللغة القانونية';
+    
+    // إذا كان مشتركاً في برنامج المقبلين على الزواج، نفتح له تبويب البرنامج تلقائياً
+    if (userTrack === 'marriage') {
+      document.getElementById('accentControlWrapper').style.display = 'none';
+      const marriageBtn = document.querySelector('.marriage-tab');
+      if (marriageBtn) switchLab('tabMarriage', marriageBtn);
+    }
+
     if (profile.latestScore >= 80) {
       document.getElementById('btnPreviewCert').style.display = 'inline-flex';
-      document.getElementById('btnPreviewCert').innerText = '📜 إصدار شهادة المشاركة';
+      document.getElementById('btnPreviewCert').innerText = '📜 إصدار شهادة الإتمام';
     } else {
       document.getElementById('btnPreviewCert').style.display = 'none';
     }
@@ -814,16 +935,15 @@ function renderAcademyUI() {
 
   document.getElementById('statStreak').innerText = profile.streak || 0;
   document.getElementById('statLevel').innerText = profile.levelLabel || 'غير محدد';
-  document.getElementById('statScoreSub').innerText = profile.diagnosticCompleted ? `الدرجة الحالية: ${profile.latestScore}%` : 'أتمم اختبار تحديد المستوى';
-  document.getElementById('statReschedule').innerText = `${profile.reschedulesLeft ?? 2} / 2`;
+  document.getElementById('statScoreSub').innerText = profile.diagnosticCompleted ? `الدرجة الحالية: ${profile.latestScore}%` : 'أتمم الاختبار التقييمي';
   document.getElementById('statCertStatus').innerText = (profile.latestScore >= 80 || CURRENT_MODE === 'owner') ? 'متاحة للطباعة ✅' : 'تتطلب 80%+';
 
   const attBanner = document.getElementById('attendanceBanner');
   if (isCheckedInToday) {
     attBanner.style.background = '#064e3b';
     attBanner.style.borderRightColor = '#10b981';
-    document.getElementById('attTitle').innerText = '✅ تم تثبيت الحضور اليومي بنجاح';
-    document.getElementById('attDesc').innerText = 'جميع المختبرات التنفيذية مفتوحة لك الآن.';
+    document.getElementById('attTitle').innerText = '✅ تم تثبيت حضورك اليومي بنجاح';
+    document.getElementById('attDesc').innerText = 'جميع محتويات البرنامج المخصص لك مفتوحة الآن.';
     document.getElementById('attButtons').innerHTML = `<span style="background:#10b981; color:#fff; padding:8px 14px; border-radius:6px; font-weight:800; font-size:13px;">حضور مؤكد (${today})</span>`;
   }
 
@@ -832,14 +952,103 @@ function renderAcademyUI() {
   renderDraftingLab(isCheckedInToday);
   renderMediaLab(isCheckedInToday);
   renderIeltsLab(isCheckedInToday, profile);
+  renderMarriageProgram(isCheckedInToday, profile);
   renderHistorySection(profile);
 }
 
-// إدارة المتدربين (إنشاء، إعادة ضبط كود، تجميد)
+// عرض برنامج المقبلين على الزواج
+function renderMarriageProgram(isCheckedIn, profile) {
+  const container = document.getElementById('marriageContent');
+  if (!isCheckedIn) {
+    container.innerHTML = `<div class="locked-overlay"><h4>🔒 محتوى البرنامج مقفل</h4><p>يرجى الضغط على زر <strong>تثبيت الحضور</strong> أعلاه لفتح محاور برنامج التوعية القانونية للمقبلين على الزواج.</p></div>`;
+    return;
+  }
+
+  const allLessons = [...DEFAULT_MARRIAGE_LESSONS, ...(ACADEMY_DB.customMarriageLessons || [])];
+  let html = `<p style="font-size:14px; color:#334155; margin-bottom:16px; line-height:1.7;">برنامج توعوي عملي مصمم لحماية الأسرة وتوضيح الحقوق والالتزامات التعاقدية في عقد الزواج وفق القانون العراقي النافذ:</p>`;
+
+  allLessons.forEach((ls, idx) => {
+    html += `
+      <div class="lesson-card">
+        <div class="lesson-title">📌 ${ls.title}</div>
+        <div class="lesson-body">${ls.body}</div>
+        ${ls.tip ? `<div class="legal-tip-box">⚖️ ${ls.tip}</div>` : ''}
+      </div>`;
+  });
+
+  // اختبار إتمام البرنامج لإصدار الشهادة
+  html += `
+    <div style="background:#fdf2f8; border:1.5px solid #f472b6; border-radius:12px; padding:18px; margin-top:22px;">
+      <h3 style="font-size:16px; color:#9d174d; margin-bottom:10px;">📝 التقييم النهائي لبرنامج المقبلين على الزواج (شرط إصدار الشهادة: 80%+)</h3>
+      <form id="marriageQuizForm" onsubmit="submitMarriageQuiz(event)">`;
+
+  MARRIAGE_QUIZ.forEach((item, qIdx) => {
+    html += `<div class="question-box"><div class="q-text">${qIdx + 1}. ${item.q}</div>`;
+    item.options.forEach((opt, oIdx) => {
+      html += `<label class="option-label"><input type="radio" name="mq_${qIdx}" value="${oIdx}" required> ${opt}</label>`;
+    });
+    html += `</div>`;
+  });
+
+  html += `<button type="submit" class="btn-primary" style="background:#be185d;">اعتماد الإجابات وإصدار شهادة إتمام البرنامج 🎓</button></form></div>`;
+  container.innerHTML = html;
+}
+
+function submitMarriageQuiz(e) {
+  e.preventDefault();
+  const profile = getActiveUserProfile();
+  let correct = 0;
+  MARRIAGE_QUIZ.forEach((item, idx) => {
+    const selected = document.querySelector(`input[name="mq_${idx}"]:checked`);
+    if (selected && parseInt(selected.value) === item.ans) correct++;
+  });
+
+  const scorePct = Math.round((correct / MARRIAGE_QUIZ.length) * 100);
+  profile.latestScore = scorePct;
+  profile.levelLabel = scorePct >= 80 ? 'مجتاز بنجاح ✅' : 'يحتاج إعادة';
+  profile.diagnosticCompleted = true;
+
+  profile.examHistory = profile.examHistory || [];
+  profile.examHistory.unshift({
+    date: new Date().toLocaleDateString('ar-IQ'),
+    type: 'اختبار برنامج التوعية القانونية للمقبلين على الزواج',
+    score: `${scorePct}% (${correct}/${MARRIAGE_QUIZ.length})`,
+    level: profile.levelLabel
+  });
+
+  saveAcademyDB();
+  if (scorePct >= 80) {
+    showAlert(`🎉 مبارك! اجتزت البرنامج بنسبة ${scorePct}% وأصبحت شهادة الإتمام متاحة للطباعة في الأعلى.`, true);
+  } else {
+    showAlert(`⚠️ حصلت على ${scorePct}%. يشترط تحقيق 80% فأكثر لإصدار الشهادة. راجع المحاور وأعد المحاولة.`, false);
+  }
+  renderAcademyUI();
+}
+
+function addCustomMarriageLesson() {
+  const title = document.getElementById('newLessonTitle').value.trim();
+  const body = document.getElementById('newLessonBody').value.trim();
+  const tip = document.getElementById('newLessonTip').value.trim();
+
+  if (!title || !body) { alert('يرجى كتابة عنوان المحور ومحتواه القانوني.'); return; }
+
+  ACADEMY_DB.customMarriageLessons = ACADEMY_DB.customMarriageLessons || [];
+  ACADEMY_DB.customMarriageLessons.push({ title, body, tip });
+
+  document.getElementById('newLessonTitle').value = '';
+  document.getElementById('newLessonBody').value = '';
+  document.getElementById('newLessonTip').value = '';
+
+  saveAcademyDB();
+  renderMarriageProgram(true, getActiveUserProfile());
+  alert('✅ تمت إضافة المحور الجديد إلى برنامج المقبلين على الزواج بنجاح!');
+}
+
+// إدارة المشتركين وقفل الأجهزة
 function createNewTrainee() {
   const name = document.getElementById('newTraineeName').value.trim();
   const track = document.getElementById('newTraineeTrack').value;
-  if (!name) { alert('يرجى إدخال اسم المتدرب.'); return; }
+  if (!name) { alert('يرجى إدخال الاسم الكامل للمشترك.'); return; }
 
   const randomNum = Math.floor(1000 + Math.random() * 9000);
   const newCode = `AKH-2026-${randomNum}`;
@@ -848,6 +1057,7 @@ function createNewTrainee() {
     name: name,
     track: track,
     active: true,
+    lockedDevice: null, // يُقفل تلقائياً على أول جهاز يفتح الكود
     streak: 0,
     lastCheckInDate: '',
     reschedulesLeft: 2,
@@ -861,23 +1071,32 @@ function createNewTrainee() {
   document.getElementById('newTraineeName').value = '';
   saveAcademyDB();
   renderTraineesList();
-  alert(`✅ تم إنشاء حساب المتدرب بنجاح!\n\nالاسم: ${name}\nكود الدخول الخاص به: ${newCode}\n\nانسخ الكود وأرسله للمتدرب.`);
+  alert(`✅ تم إصدار كود الاشتراك المخصص!\n\nالمشترك: ${name}\nكود الدخول: ${newCode}\n\nملاحظة: الكود سيُقفل تلقائياً على أول جهاز يستخدمه المشترك لمنع المشاركة.`);
 }
 
 function resetTraineeCode(oldCode) {
   const trainee = ACADEMY_DB.trainees[oldCode];
   if (!trainee) return;
-  if (!confirm(`هل تريد إلغاء الكود القديم (${oldCode}) وتوليد كود جديد للمتدرب "${trainee.name}"؟`)) return;
+  if (!confirm(`هل تريد إلغاء الكود القديم (${oldCode}) وتوليد كود جديد للمشترك "${trainee.name}" وفك قفل الجهاز؟`)) return;
 
   const randomNum = Math.floor(1000 + Math.random() * 9000);
   const newCode = `AKH-2026-${randomNum}`;
 
-  ACADEMY_DB.trainees[newCode] = { ...trainee };
+  ACADEMY_DB.trainees[newCode] = { ...trainee, lockedDevice: null };
   delete ACADEMY_DB.trainees[oldCode];
 
   saveAcademyDB();
   renderTraineesList();
-  alert(`🔄 تم إعادة ضبط كود الدخول بنجاح!\n\nالكود الجديد للمتدرب (${trainee.name}):\n${newCode}`);
+  alert(`🔄 تم إعادة ضبط الكود وفك قفل الجهاز بنجاح!\n\nالكود الجديد للمشترك (${trainee.name}):\n${newCode}`);
+}
+
+function unlockTraineeDevice(code) {
+  const trainee = ACADEMY_DB.trainees[code];
+  if (!trainee) return;
+  trainee.lockedDevice = null;
+  saveAcademyDB();
+  renderTraineesList();
+  alert(`🔓 تم فك ارتباط الجهاز للكود (${code}). يمكن للمشترك الآن الدخول من جهازه الجديد.`);
 }
 
 function toggleTraineeStatus(code) {
@@ -892,7 +1111,7 @@ function renderTraineesList() {
   const container = document.getElementById('traineesListContainer');
   const codes = Object.keys(ACADEMY_DB.trainees);
   if (codes.length === 0) {
-    container.innerHTML = `<p style="font-size:13.5px; color:#64748b; text-align:center; padding:15px;">لا يوجد متدربون مسجلون حالياً. يمكنك إضافة متدرب جديد من النموذج أعلاه.</p>`;
+    container.innerHTML = `<p style="font-size:13.5px; color:#64748b; text-align:center; padding:15px;">لا يوجد مشتركون مسجلون حالياً.</p>`;
     return;
   }
 
@@ -900,17 +1119,21 @@ function renderTraineesList() {
   codes.forEach(code => {
     const t = ACADEMY_DB.trainees[code];
     const statusText = t.active ? '<span style="color:#16a34a; font-weight:800;">🟢 نشط</span>' : '<span style="color:#d32f2f; font-weight:800;">🔴 موقوف</span>';
+    const trackLabel = t.track === 'marriage' ? '💍 المقبلين على الزواج' : (t.track === 'executive' ? '⚖️ العقود واللغة القانونية' : '🌟 شامل');
+    const deviceStatus = t.lockedDevice ? `<span class="device-badge">🔒 مقفل على جهاز واحد</span>` : `<span class="device-badge" style="background:#f1f5f9; color:#475569;">بانتظار التفعيل</span>`;
+
     html += `
       <div class="trainee-card">
         <div>
-          <strong style="font-size:15px; color:#0b1a30;">${t.name}</strong> (${statusText})
-          <div style="font-size:12px; color:#475569; margin-top:3px;">المسار: ${t.track} | الدرجة: <strong>${t.latestScore}%</strong> | الحضور: ${t.streak} أيام</div>
+          <strong style="font-size:15px; color:#0b1a30;">${t.name}</strong> (${statusText}) ${deviceStatus}
+          <div style="font-size:12px; color:#475569; margin-top:3px;">البرنامج: ${trackLabel} | التقييم: <strong>${t.latestScore}%</strong></div>
           <div style="margin-top:6px;">كود الدخول: <span class="code-pill">${code}</span></div>
         </div>
         <div style="display:flex; gap:6px; flex-wrap:wrap;">
-          <button type="button" class="btn-nav" onclick="navigator.clipboard.writeText('${code}'); alert('تم نسخ الكود: ${code}');">📋 نسخ الكود</button>
-          <button type="button" class="btn-nav btn-cal" onclick="resetTraineeCode('${code}')">🔄 إعادة ضبط الكود</button>
-          <button type="button" class="btn-nav btn-lock" onclick="toggleTraineeStatus('${code}')">${t.active ? 'تجميد الحساب' : 'تفعيل الحساب'}</button>
+          <button type="button" class="btn-nav" onclick="navigator.clipboard.writeText('${code}'); alert('تم نسخ الكود: ${code}');">📋 نسخ</button>
+          <button type="button" class="btn-nav btn-cal" onclick="resetTraineeCode('${code}')">🔄 كود جديد</button>
+          ${t.lockedDevice ? `<button type="button" class="btn-nav btn-notif" onclick="unlockTraineeDevice('${code}')">🔓 فك قفل الجهاز</button>` : ''}
+          <button type="button" class="btn-nav btn-lock" onclick="toggleTraineeStatus('${code}')">${t.active ? 'إيقاف' : 'تفعيل'}</button>
         </div>
       </div>`;
   });
@@ -921,7 +1144,12 @@ function renderTraineesList() {
 function openCertificateModal() {
   const profile = getActiveUserProfile();
   document.getElementById('certRecipientName').innerText = profile.name || 'Ali Kadhem Al-Hashimi';
-  document.getElementById('certCourseTitle').innerText = profile.track || 'Commercial Contract Drafting, Legal Due Diligence & Executive Legal English';
+  
+  let courseTitle = 'Commercial Contract Drafting, Legal Due Diligence & Executive Legal English';
+  if (profile.track === 'marriage') {
+    courseTitle = 'Pre-Marital Legal Awareness & Family Protection Workshop (Iraqi Personal Status Law)';
+  }
+  document.getElementById('certCourseTitle').innerText = courseTitle;
   
   const scoreDisplay = (CURRENT_MODE === 'owner' && profile.latestScore === 0) ? '95% (Distinction - Preview Mode)' : `${profile.latestScore}%`;
   document.getElementById('certScoreText').innerText = scoreDisplay;
@@ -939,7 +1167,6 @@ function closeCertificateModal() {
   document.getElementById('certificateModal').style.display = 'none';
 }
 
-// التنقل بين المختبرات
 function switchLab(tabId, btn) {
   document.querySelectorAll('.card-section').forEach(sec => { if (sec.id) sec.classList.remove('active'); });
   document.querySelectorAll('.lab-tab').forEach(t => t.classList.remove('active'));
@@ -954,7 +1181,7 @@ function confirmDailyAttendance() {
     profile.streak = (profile.streak || 0) + 1;
     profile.lastCheckInDate = today;
     saveAcademyDB();
-    showAlert('✅ تم تسجيل حضورك وفتح كافة المختبرات التنفيذية!', true);
+    showAlert('✅ تم تسجيل حضورك وفتح محتوى البرنامج بنجاح!', true);
     renderAcademyUI();
   }
 }
@@ -974,7 +1201,6 @@ function requestEmergencyReschedule() {
   }
 }
 
-// محرك النطق والتصحيح الصوتي
 function speakText(text, rate = 0.95) {
   if (!('speechSynthesis' in window)) return;
   window.speechSynthesis.cancel();
@@ -1042,7 +1268,6 @@ function startPronunciationCheck(targetText, resultBoxId, btnElement, isFreeRepl
   };
 }
 
-// عرض المختبرات
 let diagTimerInterval = null;
 function renderDiagnosticSection(isCheckedIn, profile) {
   const container = document.getElementById('diagnosticContent');
@@ -1058,7 +1283,7 @@ function renderDiagnosticSection(isCheckedIn, profile) {
       </div>`;
   } else {
     container.innerHTML = `
-      <p style="font-size:14px; color:#2d3748; margin-bottom:14px; line-height:1.7;">اختبار موقوت (40 دقيقة) لتحديد مستواك الفعلي في التعامل مع الموكلين الأجانب وصياغة العقود والآيلتس:</p>
+      <p style="font-size:14px; color:#2d3748; margin-bottom:14px; line-height:1.7;">اختبار موقوت (40 دقيقة) لتحديد مستواك الفعلي في التعامل مع الموكلين الأجانب وصياغة العقود واللغة القانونية:</p>
       <button type="button" class="btn-primary" onclick="startDiagnosticTest()">🚀 ابدأ اختبار تحديد المستوى الآن</button>`;
   }
 }
@@ -1067,7 +1292,7 @@ function startDiagnosticTest() {
   const container = document.getElementById('diagnosticContent');
   let html = `<div class="timer-bar"><span>⏱️ الوقت المتبقي:</span><span id="diagTimerDisplay" dir="ltr">40:00</span></div><form id="diagForm" onsubmit="submitDiagnosticTest(event)">`;
   DIAGNOSTIC_QUESTIONS.forEach((item, idx) => {
-    html += `<div class="question-box"><span class="q-tag">${item.cat}</span><div class="q-text">${idx + 1}. ${item.q}</div>`;
+    html += `<div class="question-box" dir="ltr" style="text-align:left;"><span class="q-tag">${item.cat}</span><div class="q-text">${idx + 1}. ${item.q}</div>`;
     item.options.forEach((opt, oIdx) => {
       html += `<label class="option-label"><input type="radio" name="q_${idx}" value="${oIdx}" required> ${opt}</label>`;
     });
@@ -1236,17 +1461,17 @@ function renderMediaLab(isCheckedIn) {
 
 function renderIeltsLab(isCheckedIn, profile) {
   const container = document.getElementById('ieltsContent');
-  if (!isCheckedIn) { container.innerHTML = `<div class="locked-overlay"><h4>🔒 محاكي الآيلتس مقفل</h4><p>ثبّت حضورك اليومي أعلاه.</p></div>`; return; }
+  if (!isCheckedIn) { container.innerHTML = `<div class="locked-overlay"><h4>🔒 مختبر الكتابة مقفل</h4><p>ثبّت حضورك اليومي أعلاه.</p></div>`; return; }
 
   container.innerHTML = `
     <div style="background:#f8fafc; border:1px solid #cbd5e0; padding:14px; border-radius:8px; direction:ltr; text-align:left; margin-bottom:12px;">
-      <strong style="color:#d32f2f; font-size:12px;">IELTS ACADEMIC WRITING TASK 2 (40 MINUTES):</strong>
+      <strong style="color:#d32f2f; font-size:12px;">ANALYTICAL WRITING TASK 2 (40 MINUTES):</strong>
       <p style="font-size:14px; font-weight:700; color:#0b1a30; margin-top:4px; line-height:1.6;">"Strict regulatory compliance and transparency laws may slow down initial business expansion, yet they are essential for sustainable economic growth. Discuss both views and give your own opinion."</p>
     </div>
     <div class="word-counter-bar">
       <span>عدد الكلمات: <strong id="ieltsWordCount" style="color:#d32f2f;">0</strong> / 250 كلمة</span>
     </div>
-    <textarea id="ieltsEssayArea" class="ielts-textarea" oninput="updateIeltsWordCount()" placeholder="Write your academic essay here (minimum 250 words)..."></textarea>
+    <textarea id="ieltsEssayArea" class="ielts-textarea" oninput="updateIeltsWordCount()" placeholder="Write your analytical essay here (minimum 250 words)..."></textarea>
     <button type="button" class="btn-primary" onclick="submitIeltsEssay()">اعتماد المقال وحفظه ✅</button>
   `;
 }
@@ -1267,12 +1492,12 @@ function submitIeltsEssay() {
   profile.examHistory = profile.examHistory || [];
   profile.examHistory.unshift({
     date: new Date().toLocaleDateString('ar-IQ'),
-    type: 'مقال آيلتس أكاديمي (Writing Task 2)',
+    type: 'مقال تحليلي (Analytical Writing Task 2)',
     score: `مكتمل (${count} كلمة)`,
     level: 'مستوفٍ للشرط'
   });
   saveAcademyDB();
-  showAlert('🏆 تم قبول مقالك الأكاديمي وتسجيله!', true);
+  showAlert('🏆 تم قبول مقالك وتسجيله في سجل الإنجازات!', true);
   renderHistorySection(profile);
 }
 
@@ -1291,14 +1516,14 @@ function renderHistorySection(profile) {
 }
 
 function addToGoogleCalendar() {
-  const title = encodeURIComponent("AKH Executive Legal Academy | الجلسة التدريبية اليومية");
+  const title = encodeURIComponent("AKH Practical Legal Training Hub | الجلسة التدريبية اليومية");
   const details = encodeURIComponent("موعد الدراسة والالتزام اليومي: https://akjassem.com/academy");
   window.open(`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&details=${details}&recur=RRULE:FREQ=DAILY`, '_blank');
 }
 
 function enableNotifications() {
   if (!("Notification" in window)) return;
-  Notification.requestPermission().then(p => { if (p === "granted") new Notification("AKH Executive Legal Academy", { body: "تم تفعيل التنبيهات!" }); });
+  Notification.requestPermission().then(p => { if (p === "granted") new Notification("AKH Practical Legal Training Hub", { body: "تم تفعيل التنبيهات!" }); });
 }
 
 function showAlert(msg, isSuccess) {
