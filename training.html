@@ -8,10 +8,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+<!-- محرك قراءة النصوص من الصور (OCR) لقراءة صور القرارات التمييزية -->
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; color: #1a1a1a; padding: 20px 12px; display: flex; justify-content: center; min-height: 100vh; align-items: flex-start; }
-.panel { max-width: 1120px; width: 100%; background: #ffffff; border-radius: 18px; padding: 28px 22px; box-shadow: 0 10px 40px rgba(11,26,48,0.09); border-top: 6px solid #0b1a30; }
+.panel { max-width: 1140px; width: 100%; background: #ffffff; border-radius: 18px; padding: 28px 22px; box-shadow: 0 10px 40px rgba(11,26,48,0.09); border-top: 6px solid #0b1a30; }
 
 /* الهوية البصرية الرسمية للمكتب AKH / LAW OFFICE */
 .brand-section { text-align: center; margin-bottom: 22px; border-bottom: 1.5px solid #edf2f7; padding-bottom: 16px; }
@@ -59,8 +61,8 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
 .btn-cal { background-color: #2b6cb0; }
 .btn-lock { background-color: #d32f2f; }
 
-/* بطاقات الإحصائيات */
-.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; margin-bottom: 22px; }
+/* بطاقات الإحصائيات والـ 90 دقيقة */
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(195px, 1fr)); gap: 12px; margin-bottom: 22px; }
 .stat-card { background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 14px; text-align: center; }
 .stat-card.highlight { border-color: #d32f2f; background: #fff5f5; }
 .stat-card.time-card { border-color: #2b6cb0; background: #eff6ff; }
@@ -77,10 +79,10 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
 .btn-checkin { background: #16a34a; color: #ffffff; border: none; padding: 10px 18px; border-radius: 8px; font-weight: 800; font-size: 13.5px; cursor: pointer; font-family: inherit; }
 .btn-reschedule { background: transparent; color: #f6e05e; border: 1.5px solid #f6e05e; padding: 10px 14px; border-radius: 8px; font-weight: 700; font-size: 12.5px; cursor: pointer; font-family: inherit; }
 
-/* القائمة الرئيسية المتسلسلة للكورسات والأدوات (Course Directory) */
+/* القائمة الرئيسية المستقلة للكورسات والأدوات */
 .directory-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; }
-.courses-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-bottom: 25px; }
-.course-card { background: #ffffff; border: 2px solid #cbd5e0; border-radius: 14px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; transition: 0.2s; position: relative; }
+.courses-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 16px; margin-bottom: 25px; }
+.course-card { background: #ffffff; border: 2px solid #cbd5e0; border-radius: 14px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; transition: 0.2s; }
 .course-card:hover { border-color: #0b1a30; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
 .course-card.statute-card { border-color: #1e3a8a; background: #f8fafc; }
 .course-badge { display: inline-block; font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; width: fit-content; }
@@ -88,24 +90,70 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
 .course-desc { font-size: 13px; color: #475569; line-height: 1.7; margin-bottom: 16px; }
 .course-actions { display: flex; gap: 8px; flex-wrap: wrap; border-top: 1px dashed #cbd5e0; padding-top: 12px; }
 
-/* شريط الرجوع للقائمة الرئيسية عند فتح كورس معين */
+/* شريط الرجوع للقائمة الرئيسية */
 .back-bar { background: #f1f5f9; border: 1.5px solid #cbd5e0; padding: 10px 16px; border-radius: 10px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
 .btn-back { background: #0b1a30; color: #fff; border: none; padding: 7px 15px; border-radius: 8px; font-weight: 800; font-size: 13px; cursor: pointer; font-family: inherit; }
 
-/* تبويبات داخلية خاصة بكورس الإنجليزية فقط */
-.inner-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
-.inner-tab { background: #f8fafc; border: 1.5px solid #cbd5e0; padding: 8px 14px; border-radius: 8px; font-size: 12.5px; font-weight: 800; cursor: pointer; font-family: inherit; }
+/* تبويبات مسار اللغة الإنجليزية (الآيلتس + الماجستير + العمل) */
+.inner-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; }
+.inner-tab { background: #f8fafc; border: 1.5px solid #cbd5e0; padding: 8px 13px; border-radius: 8px; font-size: 12.5px; font-weight: 800; cursor: pointer; font-family: inherit; }
 .inner-tab.active { background: #0b1a30; color: #fff; border-color: #0b1a30; }
 
-/* مختبر المتون القانونية والفهرسة التمييزية */
+/* 1. مختبر الترديد والنطق البطيء */
+.shadowing-box { background: #f8fafc; border: 2px solid #0b1a30; border-radius: 14px; padding: 22px; text-align: center; margin-bottom: 20px; }
+.shadow-term { font-size: 28px; font-weight: 900; color: #0b1a30; direction: ltr; margin: 8px 0; }
+.shadow-phonetic { font-size: 13px; color: #64748b; font-family: monospace; margin-bottom: 8px; direction: ltr; }
+.shadow-meaning { font-size: 15px; font-weight: 700; color: #1e293b; background: #e2e8f0; display: inline-block; padding: 5px 16px; border-radius: 8px; margin-bottom: 12px; }
+
+/* 2. محاكي الموكلين الأجانب */
+.scenario-box { background: #f8fafc; border: 1.5px solid #cbd5e0; border-radius: 12px; padding: 18px; margin-bottom: 18px; }
+.client-msg { background: #0b1a30; color: #fff; padding: 14px 16px; border-radius: 10px; direction: ltr; text-align: left; font-size: 14.5px; line-height: 1.7; margin: 10px 0; border-left: 5px solid #d32f2f; }
+.model-reply { background: #f0fdf4; border: 1.5px solid #86efac; color: #14532d; padding: 12px 15px; border-radius: 8px; direction: ltr; text-align: left; font-size: 13.5px; line-height: 1.6; margin-top: 10px; display: none; }
+
+/* 3. مختبر صياغة وتدقيق العقود */
+.clause-bad { background: #fff5f5; border: 1.5px solid #feb2b2; padding: 14px; border-radius: 8px; direction: ltr; text-align: left; font-family: monospace; font-size: 13.5px; color: #9b1c1c; margin-bottom: 12px; line-height: 1.6; }
+.clause-good { background: #f0fdf4; border: 1.5px solid #86efac; padding: 14px; border-radius: 8px; direction: ltr; text-align: left; font-family: Georgia, serif; font-size: 14px; color: #166534; margin-top: 12px; display: none; line-height: 1.7; }
+
+/* 4. مختبر الفيديو والبطاقات البصرية (Flashcards) */
+.video-lab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; margin-bottom: 20px; }
+.video-card { background: #f8fafc; border: 1.5px solid #cbd5e0; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
+.video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; background: #000; }
+.video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+.video-body { padding: 15px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+.sub-en { font-size: 14px; font-weight: 800; color: #0b1a30; direction: ltr; text-align: left; background: #fff; padding: 10px; border-radius: 8px; border-left: 4px solid #d32f2f; margin-bottom: 8px; line-height: 1.6; }
+.sub-ar { font-size: 13px; color: #4a5568; background: #edf2f7; padding: 8px 10px; border-radius: 6px; margin-bottom: 12px; line-height: 1.5; }
+
+.flashcard-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 16px; }
+.flashcard { background: #ffffff; border: 1.5px solid #cbd5e0; border-radius: 12px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.03); display: flex; flex-direction: column; }
+.fc-img { width: 100%; height: 145px; object-fit: cover; border-bottom: 2px solid #d32f2f; background: #e2e8f0; }
+.fc-content { padding: 15px; direction: ltr; text-align: left; flex: 1; }
+.fc-cat { font-size: 11px; font-weight: 800; color: #d32f2f; text-transform: uppercase; margin-bottom: 4px; }
+.fc-term { font-size: 17px; font-weight: 900; color: #0b1a30; margin-bottom: 6px; }
+.fc-ar { font-size: 13.5px; font-weight: 700; color: #1e293b; direction: rtl; text-align: right; background: #f1f5f9; padding: 6px 10px; border-radius: 6px; margin-bottom: 8px; }
+.fc-example { font-size: 13px; color: #475569; line-height: 1.6; font-style: italic; margin-bottom: 12px; }
+
+/* 5. مختبر كتابة الآيلتس والماجستير */
+.ielts-textarea { width: 100%; min-height: 220px; padding: 15px; border: 1.5px solid #cbd5e0; border-radius: 10px; direction: ltr; text-align: left; font-family: Georgia, serif; font-size: 15px; line-height: 1.8; margin: 12px 0; }
+.word-counter-bar { display: flex; justify-content: space-between; align-items: center; background: #f8fafc; padding: 8px 14px; border-radius: 8px; border: 1px solid #cbd5e0; font-size: 13px; font-weight: 800; margin-bottom: 12px; }
+.linker-pill { display: inline-block; background: #e2e8f0; color: #0b1a30; padding: 3px 9px; border-radius: 5px; font-size: 12px; font-weight: 700; margin: 3px; cursor: pointer; direction: ltr; }
+.linker-pill:hover { background: #0b1a30; color: #fff; }
+
+/* مختبر المتون القانونية وقراءة الصور والملفات */
 .statute-form { background: #f8fafc; border: 1.5px solid #cbd5e0; border-radius: 12px; padding: 18px; margin-bottom: 20px; }
+.ocr-upload-box { background: #eff6ff; border: 2px dashed #2b6cb0; border-radius: 10px; padding: 14px; margin-bottom: 14px; text-align: center; }
 .form-grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 12px; }
 .admin-input { width: 100%; padding: 10px 12px; border: 1.5px solid #cbd5e0; border-radius: 8px; font-family: inherit; font-size: 13.5px; background: #fff; }
 .statute-item { background: #ffffff; border: 1.5px solid #cbd5e0; border-right: 5px solid #1e3a8a; border-radius: 12px; padding: 18px; margin-bottom: 14px; }
-.statute-meta { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
 .law-tag { background: #dbeafe; color: #1e40af; padding: 3px 10px; border-radius: 6px; font-size: 12px; font-weight: 800; }
 .cassation-box { background: #fffbeb; border: 1px solid #fcd34d; padding: 12px; border-radius: 8px; margin-top: 10px; font-size: 13.5px; color: #92400e; line-height: 1.7; }
 .en-sim-box { background: #f0fdf4; border: 1px solid #86efac; padding: 12px; border-radius: 8px; margin-top: 10px; direction: ltr; text-align: left; font-size: 13.5px; color: #166534; display: none; line-height: 1.6; }
+
+/* أزرار الصوت والميكروفون */
+.audio-controls { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; margin-top: 10px; }
+.btn-speak { background: #0b1a30; color: #fff; border: none; padding: 7px 12px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; font-family: 'Cairo', sans-serif; }
+.btn-speak.slow { background: #475569; }
+.btn-mic { background: #d32f2f; color: #fff; border: none; padding: 7px 12px; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; font-family: 'Cairo', sans-serif; }
+.pronounce-result { margin-top: 10px; padding: 8px 10px; border-radius: 6px; font-size: 12.5px; font-weight: 700; display: none; direction: rtl; text-align: right; }
 
 /* العناصر المشتركة */
 .locked-overlay { text-align: center; padding: 30px 15px; background: #f8fafc; border-radius: 10px; border: 1.5px dashed #cbd5e0; color: #4a5568; }
@@ -113,15 +161,6 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
 .lesson-card { background: #ffffff; border: 1.5px solid #cbd5e0; border-right: 5px solid #0b1a30; border-radius: 12px; padding: 18px; margin-bottom: 16px; }
 .lesson-title { font-size: 16px; font-weight: 800; color: #0b1a30; margin-bottom: 8px; }
 .lesson-body { font-size: 14.5px; color: #334155; line-height: 1.85; white-space: pre-line; }
-.legal-tip-box { background: #fffbeb; border: 1px solid #fcd34d; padding: 12px 15px; border-radius: 8px; margin-top: 12px; font-size: 13.5px; color: #92400e; font-weight: 700; }
-
-.shadowing-box { background: #f8fafc; border: 2px solid #0b1a30; border-radius: 14px; padding: 22px; text-align: center; margin-bottom: 20px; }
-.shadow-term { font-size: 28px; font-weight: 900; color: #0b1a30; direction: ltr; margin: 8px 0; }
-.shadow-meaning { font-size: 15px; font-weight: 700; color: #1e293b; background: #e2e8f0; display: inline-block; padding: 5px 16px; border-radius: 8px; margin-bottom: 12px; }
-.audio-controls { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; margin-top: 10px; }
-.btn-speak { background: #0b1a30; color: #fff; border: none; padding: 7px 13px; border-radius: 6px; font-size: 12.5px; font-weight: 700; cursor: pointer; font-family: 'Cairo', sans-serif; }
-.btn-mic { background: #d32f2f; color: #fff; border: none; padding: 7px 13px; border-radius: 6px; font-size: 12.5px; font-weight: 700; cursor: pointer; font-family: 'Cairo', sans-serif; }
-.pronounce-result { margin-top: 10px; padding: 8px 10px; border-radius: 6px; font-size: 12.5px; font-weight: 700; display: none; direction: rtl; text-align: right; }
 
 .question-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 16px; margin-bottom: 16px; }
 .q-text { font-size: 15px; font-weight: 700; color: #1a202c; margin-bottom: 12px; line-height: 1.6; }
@@ -129,6 +168,9 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
 .option-label input { margin: 0 8px; }
 .btn-primary { background-color: #0b1a30; color: #ffffff; border: none; padding: 12px 24px; border-radius: 8px; font-size: 15px; font-weight: 800; cursor: pointer; font-family: inherit; width: 100%; }
 .btn-primary:hover { background-color: #d32f2f; }
+
+.progression-box { background: #f8fafc; border: 2px solid #0b1a30; border-radius: 14px; padding: 20px; margin-top: 25px; text-align: center; }
+.btn-advance { background: #16a34a; color: #ffffff; border: none; padding: 13px 28px; border-radius: 10px; font-size: 15px; font-weight: 800; cursor: pointer; font-family: inherit; }
 
 .trainee-card { background: #f8fafc; border: 1.5px solid #cbd5e0; border-radius: 10px; padding: 14px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
 .code-pill { background: #0b1a30; color: #f6e05e; padding: 3px 10px; border-radius: 6px; font-family: monospace; font-size: 13px; font-weight: 800; }
@@ -205,12 +247,12 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
     <div class="mode-selector-grid">
       <div class="mode-card study" onclick="startOwnerSession('study')">
         <div class="mode-icon">🎓</div>
-        <div class="mode-title">جلسة تدريب وتطوير فعلي</div>
-        <div class="mode-desc">يُشغّل العداد الزمني (هدف 90 دقيقة يومياً) ويسجل حضورك وتقدمك.</div>
+        <div class="mode-title">جلسة تدريب وتطوير فعلي (90 دقيقة)</div>
+        <div class="mode-desc">يُشغّل العداد الزمني (45 صباحاً + 30 مساءً + 15 مراجعة) ويسجل حضورك وتقدمك الصارم.</div>
       </div>
       <div class="mode-card dev" onclick="startOwnerSession('dev')">
         <div class="mode-icon">🛠️</div>
-        <div class="mode-title">إدارة الكورسات وتطوير المنصة</div>
+        <div class="mode-title">إدارة الكورسات وفهرسة المتون</div>
         <div class="mode-desc">يفتح كافة الكورسات وأدوات الفهرسة والتعديل والحذف <strong>دون احتساب أي وقت</strong>.</div>
       </div>
     </div>
@@ -221,7 +263,7 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
     <div class="top-nav-bar">
       <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
         <span class="role-badge" id="userRoleBadge">👑 المالك والمشرف العام</span>
-        <span class="mode-pill study" id="sessionModeBadge">🎓 وضع التدريب</span>
+        <span class="mode-pill study" id="sessionModeBadge">🎓 وضع التدريب (90 دقيقة)</span>
       </div>
       <div style="display: flex; gap: 8px; flex-wrap: wrap;">
         <button type="button" class="btn-nav btn-cert" id="btnPreviewCert" onclick="openCertificateModal()">📜 معاينة الشهادة</button>
@@ -230,12 +272,12 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
       </div>
     </div>
 
-    <!-- مؤشرات التقدم -->
+    <!-- مؤشرات التقدم والـ 90 دقيقة -->
     <div class="stats-grid">
       <div class="stat-card time-card">
         <div class="stat-label">ملخص وقت التدريب اليوم</div>
         <div class="stat-num" id="statDailyTime">00:00</div>
-        <div class="stat-sub">الهدف اليومي: 90 دقيقة</div>
+        <div class="stat-sub">الهدف: 90 د (45 ص + 30 م + 15 مراجعة)</div>
       </div>
       <div class="stat-card">
         <div class="stat-label">أيام الالتزام المتتالية</div>
@@ -243,9 +285,9 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
         <div class="stat-sub">يوم حضور منضبط</div>
       </div>
       <div class="stat-card highlight">
-        <div class="stat-label">الكورس / المسار النشط</div>
-        <div class="stat-num" style="font-size:15px; padding-top:5px;" id="statActiveCourseLabel">قائمة الكورسات</div>
-        <div class="stat-sub" id="statScoreSub">مستقل ومنفصل لكل مسار</div>
+        <div class="stat-label">المرحلة والتقييم</div>
+        <div class="stat-num" style="font-size:16px; padding-top:4px;" id="statLevel">المرحلة 1</div>
+        <div class="stat-sub" id="statScoreSub">أتمم الاختبار التقييمي</div>
       </div>
       <div class="stat-card">
         <div class="stat-label">شهادة الإتمام والمشاركة</div>
@@ -258,15 +300,16 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
     <div class="attendance-banner" id="attendanceBanner">
       <div class="att-info">
         <h3 id="attTitle">⚠️ الحضور اليومي غير مثبت بعد</h3>
-        <p id="attDesc">ثبّت حضورك الآن لبدء عداد التدريب وفتح الكورسات ومختبر المتون القانونية.</p>
+        <p id="attDesc">ثبّت حضورك الآن لبدء عداد الـ 90 دقيقة وفتح الكورسات ومختبر المتون القانونية.</p>
       </div>
       <div class="att-actions" id="attButtons">
-        <button type="button" class="btn-checkin" onclick="confirmDailyAttendance()">✅ تثبيت الحضور وبدء العداد</button>
+        <button type="button" class="btn-checkin" onclick="confirmDailyAttendance()">✅ تثبيت الحضور وبدء عداد الـ 90 دقيقة</button>
+        <button type="button" class="btn-reschedule" onclick="requestEmergencyReschedule()">⏳ تأجيل لظرف طارئ</button>
       </div>
     </div>
 
     <!-- ===================================================================== -->
-    <!-- العرض 1: القائمة الرئيسية المستقلة للكورسات والأدوات (Course Directory) -->
+    <!-- العرض 1: القائمة الرئيسية المستقلة للكورسات والأدوات -->
     <!-- ===================================================================== -->
     <div id="mainDirectoryView">
       <div class="directory-header">
@@ -277,37 +320,48 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
         </div>
       </div>
 
-      <div class="courses-grid" id="coursesCardsContainer">
-        <!-- يتم توليد بطاقات الكورسات المستقلة هنا برمجياً -->
+      <div class="courses-grid" id="coursesCardsContainer"></div>
+
+      <!-- بوابة التقدم للمرحلة التالية -->
+      <div class="progression-box">
+        <h3 style="font-size:16px; color:#0b1a30; margin-bottom:6px;">🚀 بوابة التقدم للمرحلة التالية (Stage Progression Gate)</h3>
+        <p style="font-size:13px; color:#475569; margin-bottom:12px;">يرفض النظام الانتقال للمرحلة التالية ما لم تُتم الحد الأدنى للجلسة اليومية (30 دقيقة) وتجتز التقييم.</p>
+        <button type="button" class="btn-advance" onclick="attemptAdvanceStage()">✅ اعتماد إنجاز اليوم والانتقال للمرحلة التالية</button>
       </div>
     </div>
 
     <!-- ===================================================================== -->
-    <!-- العرض 2: داخل كورس (اللغة الإنجليزية المهنية وصياغة العقود وتحديد المستوى) -->
+    <!-- العرض 2: داخل مسار اللغة الإنجليزية (الآيلتس + الماجستير + العمل المهني) -->
     <!-- ===================================================================== -->
     <div id="executiveCourseView" style="display:none;">
       <div class="back-bar">
-        <button type="button" class="btn-back" onclick="backToDirectory()">→ العودة لقائمة الكورسات الرئيسية</button>
-        <strong style="color:#0b1a30;">⚖️ مسار الصياغة القانونية واللغة الإنجليزية المهنية</strong>
+        <button type="button" class="btn-back" id="btnBackFromExec" onclick="backToDirectory()">→ العودة لقائمة الكورسات</button>
+        <strong style="color:#0b1a30;">⚖️ مسار التحضير للآيلتس والماجستير وصياغة العقود</strong>
         <select id="accentSelect" style="padding:5px 10px; border-radius:6px; border:1px solid #cbd5e0; font-weight:700;">
-          <option value="en-GB" selected>🇬🇧 البريطانية (UK Legal)</option>
+          <option value="en-GB" selected>🇬🇧 البريطانية (IELTS & UK LL.M)</option>
           <option value="en-US">🇺🇸 الأمريكية (US Business)</option>
         </select>
       </div>
 
       <div class="inner-tabs">
-        <button type="button" class="inner-tab active" onclick="switchExecTab('execShadow', this)">🗣️ 1. ترديد المصطلحات</button>
-        <button type="button" class="inner-tab" onclick="switchExecTab('execDiag', this)">📝 2. تحديد المستوى</button>
-        <button type="button" class="inner-tab" onclick="switchExecTab('execDraft', this)">⚖️ 3. صياغة العقود</button>
+        <button type="button" class="inner-tab active" onclick="switchExecTab('execShadow', this)">🗣️ 1. ترديد المصطلحات (نطق بطيء)</button>
+        <button type="button" class="inner-tab" onclick="switchExecTab('execRoleplay', this)">🎙️ 2. محاكي الموكلين الأجانب</button>
+        <button type="button" class="inner-tab" onclick="switchExecTab('execDraft', this)">⚖️ 3. صياغة وتدقيق العقود</button>
+        <button type="button" class="inner-tab" onclick="switchExecTab('execMedia', this)">🎬 4. الفيديو والكارتات البصرية</button>
+        <button type="button" class="inner-tab" onclick="switchExecTab('execIelts', this)">✍️ 5. كتابة الآيلتس والماجستير</button>
+        <button type="button" class="inner-tab" onclick="switchExecTab('execDiag', this)">📝 6. تحديد المستوى</button>
       </div>
 
       <div id="execShadow" class="exec-sub-panel"></div>
-      <div id="execDiag" class="exec-sub-panel" style="display:none;"></div>
+      <div id="execRoleplay" class="exec-sub-panel" style="display:none;"></div>
       <div id="execDraft" class="exec-sub-panel" style="display:none;"></div>
+      <div id="execMedia" class="exec-sub-panel" style="display:none;"></div>
+      <div id="execIelts" class="exec-sub-panel" style="display:none;"></div>
+      <div id="execDiag" class="exec-sub-panel" style="display:none;"></div>
     </div>
 
     <!-- ===================================================================== -->
-    <!-- العرض 3: داخل أي كورس توعوي مستقل (مثل: كورس المقبلين على الزواج) -->
+    <!-- العرض 3: داخل أي كورس مستقل (مثل: كورس المقبلين على الزواج) -->
     <!-- ===================================================================== -->
     <div id="customCourseView" style="display:none;">
       <div class="back-bar">
@@ -319,16 +373,22 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
     </div>
 
     <!-- ===================================================================== -->
-    <!-- العرض 4: مختبر المتون القانونية والفهرسة التمييزية والمحاكاة الإنجليزية -->
+    <!-- العرض 4: مختبر المتون القانونية والفهرسة الذكية (صور + ملفات + بحث) -->
     <!-- ===================================================================== -->
     <div id="statuteIndexerView" style="display:none;">
       <div class="back-bar">
         <button type="button" class="btn-back" onclick="backToDirectory()">→ العودة لقائمة الكورسات</button>
-        <strong style="color:#1e3a8a;">📖 مختبر المتون القانونية والفهرسة التمييزية والمحاكاة</strong>
+        <strong style="color:#1e3a8a;">📖 مختبر المتون القانونية والفهرسة التمييزية الذكية</strong>
       </div>
 
       <div class="statute-form">
-        <h3 style="font-size:15.5px; color:#0b1a30; margin-bottom:12px;">➕ إضافة نص قانوني وفهرسته مع القرارات التمييزية:</h3>
+        <h3 style="font-size:15.5px; color:#0b1a30; margin-bottom:10px;">🤖 الاستيراد الذكي (ارفع صورة قرار تمييزي أو ملف نصي ليتم تحليله تلقائياً):</h3>
+        <div class="ocr-upload-box">
+          <p style="font-size:13px; color:#1e40af; font-weight:700; margin-bottom:8px;">اختر صورة قرار محكمة التمييز (JPG/PNG) أو ملف نصي (TXT) لاستخراج النص واقتراح العنوان تلقائياً:</p>
+          <input type="file" id="smartFileInput" accept="image/*,.txt" onchange="processUploadedLegalFile(event)" style="font-family:inherit; font-size:13px;">
+          <div id="ocrStatusMsg" style="font-size:12.5px; color:#d32f2f; font-weight:800; margin-top:8px;"></div>
+        </div>
+
         <div class="form-grid-2">
           <select id="statuteLawType" class="admin-input">
             <option value="قانون التجارة العراقي رقم 30 لسنة 1984">قانون التجارة العراقي رقم 30 لسنة 1984</option>
@@ -336,33 +396,34 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
             <option value="القانون المدني العراقي رقم 40 لسنة 1951">القانون المدني العراقي رقم 40 لسنة 1951</option>
             <option value="قانون الأحوال الشخصية رقم 188 لسنة 1959">قانون الأحوال الشخصية رقم 188 لسنة 1959</option>
             <option value="قانون المرافعات المدنية رقم 83 لسنة 1969">قانون المرافعات المدنية رقم 83 لسنة 1969</option>
-            <option value="تشريعات أخرى / متون خاصة">تشريعات أخرى / متون خاصة</option>
+            <option value="قرارات تمييزية / متون خاصة">قرارات تمييزية / متون خاصة</option>
           </select>
-          <input type="text" id="statuteArticleNum" class="admin-input" placeholder="رقم المادة وعنوانها (مثال: المادة 218 - مسؤولية المدير المفوض)">
+          <input type="text" id="statuteArticleNum" class="admin-input" placeholder="عنوان المتن / رقم المادة أو القرار التمييزي">
         </div>
-        <textarea id="statuteText" class="admin-input" style="min-height:85px; margin-bottom:10px;" placeholder="الصق نص المادة القانونية أو مقتطف الكتاب هنا..."></textarea>
-        <textarea id="statuteCassation" class="admin-input" style="min-height:75px; margin-bottom:10px;" placeholder="اربط القرارات التمييزية أو السوابق القضائية المتعلقة بهذه المادة (رقم القرار، الهيئة، والمبدأ)..."></textarea>
-        <textarea id="statuteEnglishSim" class="admin-input" style="min-height:70px; margin-bottom:10px;" dir="ltr" placeholder="Optional: English Legal Translation / Courtroom Simulation phrase for this article..."></textarea>
-        <button type="button" class="btn-primary" style="background:#1e3a8a;" onclick="saveStatuteEntry()">فهرسة وحفظ النص والقرار التمييزي 📚</button>
+        <textarea id="statuteText" class="admin-input" style="min-height:85px; margin-bottom:10px;" placeholder="نص المادة القانونية أو نص القرار المستخرج..."></textarea>
+        <textarea id="statuteCassation" class="admin-input" style="min-height:70px; margin-bottom:10px;" placeholder="المبدأ القانوني والقرار التمييزي المرتبط بالمادة..."></textarea>
+        <textarea id="statuteEnglishSim" class="admin-input" style="min-height:65px; margin-bottom:10px;" dir="ltr" placeholder="English Legal Translation / Courtroom Simulation..."></textarea>
+        <button type="button" class="btn-primary" style="background:#1e3a8a;" onclick="saveStatuteEntry()">فهرسة وحفظ في قاعدة المتون والقرارات 📚</button>
       </div>
 
-      <div style="margin-bottom:15px; display:flex; gap:10px; flex-wrap:wrap;">
-        <select id="filterStatuteLaw" class="admin-input" style="max-width:320px;" onchange="renderStatuteList()">
-          <option value="ALL">🔍 عرض كافة القوانين المفهرسة</option>
-          <option value="قانون التجارة العراقي رقم 30 لسنة 1984">قانون التجارة العراقي</option>
-          <option value="قانون الشركات العراقي رقم 21 لسنة 1997">قانون الشركات العراقي</option>
-          <option value="القانون المدني العراقي رقم 40 لسنة 1951">القانون المدني العراقي</option>
-          <option value="قانون الأحوال الشخصية رقم 188 لسنة 1959">قانون الأحوال الشخصية</option>
-          <option value="قانون المرافعات المدنية رقم 83 لسنة 1969">قانون المرافعات المدنية</option>
+      <!-- محرك البحث الفوري بالكلمة المفتاحية -->
+      <div style="background:#f1f5f9; padding:14px; border-radius:10px; margin-bottom:16px; display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+        <strong style="font-size:13.5px; color:#0b1a30;">🔍 ابحث بأي كلمة ليظهر لك القرار التمييزي أو المادة المنطبقة:</strong>
+        <input type="text" id="searchStatuteInput" class="admin-input" style="max-width:340px;" oninput="renderStatuteList()" placeholder="اكتب كلمة (مثل: تضليل، مهر، شركة، تعويض)...">
+        <select id="filterStatuteLaw" class="admin-input" style="max-width:250px;" onchange="renderStatuteList()">
+          <option value="ALL">كافة القوانين</option>
+          <option value="قانون التجارة العراقي رقم 30 لسنة 1984">قانون التجارة</option>
+          <option value="قانون الشركات العراقي رقم 21 لسنة 1997">قانون الشركات</option>
+          <option value="القانون المدني العراقي رقم 40 لسنة 1951">القانون المدني</option>
+          <option value="قانون الأحوال الشخصية رقم 188 لسنة 1959">الأحوال الشخصية</option>
         </select>
-        <input type="text" id="searchStatuteInput" class="admin-input" style="max-width:320px;" oninput="renderStatuteList()" placeholder="بحث في المتون والقرارات التمييزية...">
       </div>
 
       <div id="statuteListContainer"></div>
     </div>
 
     <!-- ===================================================================== -->
-    <!-- العرض 5: إدارة الكورسات (إنشاء كورس جديد، تعديل، وحذف) للمالك فقط -->
+    <!-- العرض 5: إدارة الكورسات (إنشاء / تعديل / مسح) -->
     <!-- ===================================================================== -->
     <div id="courseManagerView" style="display:none;">
       <div class="back-bar">
@@ -373,20 +434,20 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
       <div class="statute-form">
         <input type="hidden" id="editCourseId" value="">
         <h3 style="font-size:15.5px; color:#0b1a30; margin-bottom:12px;" id="courseFormHeader">إنشاء كورس مستقل جديد:</h3>
-        <input type="text" id="courseTitleInput" class="admin-input" style="margin-bottom:10px;" placeholder="عنوان الكورس (مثال: الدليل القانوني للمقبلين على الزواج في العراق)">
-        <textarea id="courseDescInput" class="admin-input" style="min-height:70px; margin-bottom:10px;" placeholder="وصف مختصر للكورس وأهدافه..."></textarea>
+        <input type="text" id="courseTitleInput" class="admin-input" style="margin-bottom:10px;" placeholder="عنوان الكورس">
+        <textarea id="courseDescInput" class="admin-input" style="min-height:70px; margin-bottom:10px;" placeholder="وصف مختصر للكورس..."></textarea>
         <textarea id="courseContentInput" class="admin-input" style="min-height:140px; margin-bottom:10px;" placeholder="محتوى الدروس والمحاور التفصيلية للكورس..."></textarea>
         <input type="text" id="courseQuizQInput" class="admin-input" style="margin-bottom:10px;" placeholder="سؤال التقييم النهائي للكورس">
         <div class="form-grid-2">
           <input type="text" id="courseQuizOpt1" class="admin-input" placeholder="الخيار الأول (الإجابة الصحيحة)">
           <input type="text" id="courseQuizOpt2" class="admin-input" placeholder="الخيار الثاني (خاطئ)">
         </div>
-        <button type="button" class="btn-primary" style="background:#16a34a;" onclick="saveCourseData()">💾 حفظ الكورس في المنصة</button>
+        <button type="button" class="btn-primary" style="background:#16a34a;" onclick="saveCourseData()">💾 حفظ الكورس</button>
       </div>
     </div>
 
     <!-- ===================================================================== -->
-    <!-- العرض 6: إدارة المشتركين والأكواد للمالك فقط -->
+    <!-- العرض 6: إدارة المشتركين والأكواد -->
     <!-- ===================================================================== -->
     <div id="traineeManagerView" style="display:none;">
       <div class="back-bar">
@@ -398,9 +459,7 @@ body { font-family: 'Cairo', system-ui, sans-serif; background-color: #eef2f6; c
         <h3 style="font-size:15px; color:#92400e; margin-bottom:10px;">➕ إصدار كود اشتراك لشخص واحد (مقفل على جهاز واحد):</h3>
         <div class="form-grid-2">
           <input type="text" id="newTraineeName" class="admin-input" placeholder="الاسم الكامل للمشترك (يظهر في الشهادة)">
-          <select id="newTraineeCourseSelect" class="admin-input">
-            <!-- يتم تعبئته تلقائياً بجميع الكورسات المتاحة -->
-          </select>
+          <select id="newTraineeCourseSelect" class="admin-input"></select>
         </div>
         <button type="button" class="btn-primary" style="background:#b45309;" onclick="createNewTrainee()">توليد كود الاشتراك المخصص 🔑</button>
       </div>
@@ -460,7 +519,7 @@ let CURRENT_OPEN_COURSE_ID = null;
 let STUDY_TIMER_INTERVAL = null;
 let CURRENT_SHADOW_INDEX = 0;
 
-// الكورسات الافتراضية المستقلة
+// الكورسات المستقلة
 const DEFAULT_COURSES = [
   {
     id: 'course_marriage',
@@ -473,11 +532,95 @@ const DEFAULT_COURSES = [
   }
 ];
 
+// بيانات مسار اللغة الإنجليزية (الآيلتس + الماجستير + العمل المهني)
 const SHADOWING_TERMS = [
-  { term: "Jurisdiction", ar: "الاختصاص القضائي / الولاية القضائية", ex: "The commercial court in Baghdad holds exclusive jurisdiction over this dispute." },
-  { term: "Indemnification", ar: "التعويض عن الأضرار والمسؤوليات", ex: "The agreement includes a strict indemnification clause protecting the investor." },
-  { term: "Legal Due Diligence", ar: "الفحص القانوني النافي للجهالة", ex: "We completed the legal due diligence prior to signing the share purchase agreement." },
-  { term: "Fiduciary Duty", ar: "الواجب الائتماني للمدير المفوض", ex: "The managing director breached his fiduciary duty toward the shareholders." }
+  { term: "Jurisdiction", phonetic: "/ˌdʒʊərɪsˈdɪkʃn/", ar: "الاختصاص القضائي / الولاية القضائية", ex: "The commercial court in Baghdad holds exclusive jurisdiction over this dispute." },
+  { term: "Indemnification", phonetic: "/ɪnˌdemnɪfɪˈkeɪʃn/", ar: "التعويض عن الأضرار والمسؤوليات", ex: "The agreement includes a strict indemnification clause protecting the investor." },
+  { term: "Legal Due Diligence", phonetic: "/ˈliːɡl djuː ˈdɪlɪdʒəns/", ar: "الفحص القانوني النافي للجهالة", ex: "We completed the legal due diligence prior to signing the share purchase agreement." },
+  { term: "Fiduciary Duty", phonetic: "/fɪˈdjuːʃəri ˈdjuːti/", ar: "الواجب الائتماني للمدير المفوض", ex: "The managing director breached his fiduciary duty toward the shareholders." },
+  { term: "Arbitration Clause", phonetic: "/ˌɑːbɪˈtreɪʃn klɔːz/", ar: "شرط التحكيم التجاري", ex: "Any dispute arising out of this contract shall be settled under the arbitration clause." }
+];
+
+const CLIENT_SCENARIOS = [
+  {
+    title: "السيناريو الأول: استفسار شركة بريطانية عن سياسة الاستشارة والأتعاب",
+    clientRole: "Managing Director - London Energy Tech Ltd.",
+    clientSpeech: "Hello Mr. Hashimi. We are planning to register a branch in Baghdad. Can we have a 30-minute Zoom call today free of charge to discuss the tax and registration requirements before we decide to hire you?",
+    clientAr: "مرحباً أستاذ هاشمي. نخطط لتسجيل فرع لشركتنا في بغداد. هل يمكننا إجراء مكالمة زووم لمدة 30 دقيقة مجاناً اليوم لمناقشة الضرائب ومتطلبات التسجيل قبل أن نقرر توكيلك؟",
+    suggestedReply: "Thank you for reaching out to AKH Law Office. As a matter of strict office policy, all initial legal consultations require a prepaid fee of 55 USD prior to scheduling. However, this fee is fully credited toward your retainer upon formal engagement.",
+    keywords: ["policy", "prepaid", "consultation", "retainer"]
+  },
+  {
+    title: "السيناريو الثاني: تفاوض مستثمر أجنبي حول ضمان نتيجة الدعوى",
+    clientRole: "General Counsel - European Logistics Group",
+    clientSpeech: "If we engage your office to challenge this administrative fine in Baghdad, do you guarantee a 100 percent win in court?",
+    clientAr: "إذا قمنا بتوكيل مكتبكم للطعن في هذه الغرامة الإدارية في بغداد، هل تضمنون لنا الفوز بنسبة 100% في المحكمة؟",
+    suggestedReply: "As independent legal counsel, we do not offer unrealistic guarantees on judicial outcomes. Instead, we provide an objective risk assessment grounded in Iraqi statutory law and ensure rigorous procedural representation to protect your commercial interests.",
+    keywords: ["objective", "risk assessment", "statutory", "representation"]
+  }
+];
+
+const CONTRACT_CLAUSES = [
+  {
+    title: "التدريب الأول: تصحيح بند التحكيم التجاري (Arbitration Clause)",
+    flawDesc: "البند أدناه ركيك وخطير؛ لأنه لم يحدد مقر التحكيم، ولا قواعد التحكيم المعتمدة، ولا لغة التحكيم:",
+    badClause: "If any problem happens between the two companies in this contract, they will go to arbitration somewhere to solve it.",
+    goodClause: "Any dispute, controversy, or claim arising out of or relating to this Agreement, or the breach, termination, or invalidity thereof, shall be finally settled by arbitration in accordance with the ICC Rules of Arbitration. The seat of arbitration shall be London, United Kingdom, and the language of the arbitration shall be English.",
+    requiredTerms: ["dispute", "arbitration", "rules", "language"]
+  },
+  {
+    title: "التدريب الثاني: صياغة بند التعويض وحماية الموكل (Indemnification)",
+    flawDesc: "البند أدناه عام جداً ولا يحمي الشركة من الغرامات الضريبية والعمالية السابقة للتوقيع:",
+    badClause: "The local partner will pay for any old problems if the government asks for money later.",
+    goodClause: "The Local Partner hereby agrees to indemnify, defend, and hold harmless the Foreign Investor from and against any and all legacy tax liabilities, labor claims, administrative penalties, or third-party obligations arising prior to the Execution Date.",
+    requiredTerms: ["indemnify", "liabilities", "prior"]
+  }
+];
+
+const VIDEO_CLIPS = [
+  {
+    title: "UK Supreme Court | مرافعة وقرار قضائي حقيقي",
+    embedUrl: "https://www.youtube.com/embed/P9tKTxbgdkk?start=15&end=75",
+    subtitleEn: "The court must determine whether the executive action complied with statutory authority.",
+    subtitleAr: "يجب على المحكمة أن تقرر ما إذا كان الإجراء التنفيذي متوافقاً مع السلطة التشريعية."
+  },
+  {
+    title: "BBC News | تحليل قانوني واقتصادي حول التشريعات والاستثمار",
+    embedUrl: "https://www.youtube.com/embed/9Auq9mYxFEE?start=0&end=60",
+    subtitleEn: "Strict corporate governance and regulatory compliance remain essential for international investors.",
+    subtitleAr: "تظل الحوكمة الرشيدة والامتثال التنظيمي الصارم ضروريين للمستثمرين الدوليين."
+  }
+];
+
+const VISUAL_FLASHCARDS = [
+  {
+    term: "Legal Due Diligence",
+    cat: "Corporate & Investment Law",
+    img: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=600&q=80",
+    ar: "الفحص القانوني النافي للجهالة (تدقيق عقود وسجلات الشركة قبل الشراكة)",
+    ex: "We conduct comprehensive legal due diligence prior to signing any joint venture agreement."
+  },
+  {
+    term: "Retainer Agreement",
+    cat: "Client Engagement & Fees",
+    img: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=600&q=80",
+    ar: "عقد أتعاب استشاري مسبق (مقابل التمثيل القانوني المستمر)",
+    ex: "Our initial consultation fee is fully credited toward your corporate retainer agreement."
+  },
+  {
+    term: "Arbitration Clause",
+    cat: "Commercial Dispute Resolution",
+    img: "https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=600&q=80",
+    ar: "شرط التحكيم التجاري (لتسوية النزاعات خارج المحاكم التقليدية)",
+    ex: "The parties agreed to resolve any contractual dispute through international arbitration."
+  },
+  {
+    term: "Beneficial Ownership",
+    cat: "Banking & AML Compliance",
+    img: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=600&q=80",
+    ar: "الملكية المستفيدة الحقيقية (الكشف عن المالك الفعلي للشركة)",
+    ex: "Central Bank directives require full transparency regarding ultimate beneficial ownership."
+  }
 ];
 
 const DIAGNOSTIC_QUESTIONS = [
@@ -496,6 +639,14 @@ const DIAGNOSTIC_QUESTIONS = [
       "Canceling a contract without notice."
     ],
     ans: 0
+  },
+  {
+    q: "Had the foreign enterprise conducted thorough due diligence before signing, it _______ severe administrative penalties.",
+    options: [
+      "would have avoided",
+      "will avoid"
+    ],
+    ans: 0
   }
 ];
 
@@ -504,8 +655,11 @@ let TRAINING_DB = {
     name: 'Ali Kadhem Al-Hashimi',
     streak: 0,
     lastCheckInDate: '',
+    reschedulesLeft: 2,
     dailySecondsLog: {},
     latestScore: 0,
+    currentStage: 1,
+    shadowingCompletedCount: 0,
     examHistory: []
   },
   courses: [...DEFAULT_COURSES],
@@ -745,20 +899,26 @@ function renderDashboardState() {
 
   const modePill = document.getElementById('sessionModeBadge');
   modePill.className = 'mode-pill ' + SESSION_PURPOSE;
-  modePill.innerText = SESSION_PURPOSE === 'dev' ? '🛠️ وضع الإدارة والتطوير (الوقت غير محسوب)' : '🎓 وضع التدريب الفعلي';
+  modePill.innerText = SESSION_PURPOSE === 'dev' ? '🛠️ وضع الإدارة والتطوير (الوقت غير محسوب)' : '🎓 وضع التدريب الفعلي (90 دقيقة)';
+
+  profile.dailySecondsLog = profile.dailySecondsLog || {};
+  const secToday = profile.dailySecondsLog[today] || 0;
+  document.getElementById('statDailyTime').innerText = `${Math.floor(secToday/60) < 10 ? '0' : ''}${Math.floor(secToday/60)}:${secToday%60 < 10 ? '0' : ''}${secToday%60}`;
 
   document.getElementById('statStreak').innerText = profile.streak || 0;
-  const attBanner = document.getElementById('attendanceBanner');
+  document.getElementById('statLevel').innerText = `المرحلة ${profile.currentStage || 1}`;
+  document.getElementById('statScoreSub').innerText = profile.latestScore ? `التقييم: ${profile.latestScore}%` : 'أتمم الاختبار التقييمي';
 
+  const attBanner = document.getElementById('attendanceBanner');
   if (SESSION_PURPOSE === 'dev') {
     attBanner.style.background = '#1e3a8a';
     document.getElementById('attTitle').innerText = '🛠️ وضع الإدارة وتطوير الكورسات والمتون';
-    document.getElementById('attDesc').innerText = 'يمكنك فتح وتعديل وحذف أي كورس أو فهرسة القوانين دون احتساب وقت.';
+    document.getElementById('attDesc').innerText = 'يمكنك فتح وتعديل وحذف أي كورس أو فهرسة القوانين والقرارات التمييزية دون احتساب وقت.';
     document.getElementById('attButtons').innerHTML = `<button type="button" class="btn-checkin" onclick="startOwnerSession('study')">التبديل لوضع التدريب 🎓</button>`;
   } else if (profile.lastCheckInDate === today) {
     attBanner.style.background = '#064e3b';
-    document.getElementById('attTitle').innerText = '✅ تم تثبيت حضورك اليومي — العداد نشط';
-    document.getElementById('attDesc').innerText = 'اختر الكورس أو المختبر الذي تود التدرب عليه الآن.';
+    document.getElementById('attTitle').innerText = '✅ تم تثبيت حضورك اليومي — عداد الـ 90 دقيقة نشط';
+    document.getElementById('attDesc').innerText = 'التقسيم المعتمد: 45 دقيقة صباحاً + 30 دقيقة مساءً + 15 دقيقة مراجعة.';
     document.getElementById('attButtons').innerHTML = `<span style="background:#10b981; color:#fff; padding:8px 14px; border-radius:6px; font-weight:800;">حضور مؤكد (${today})</span>`;
   }
 
@@ -771,7 +931,6 @@ function renderDashboardState() {
     document.getElementById('userRoleBadge').innerText = `🎓 المشترك: ${profile.name}`;
     document.getElementById('btnOpenCourseCreator').style.display = 'none';
     document.getElementById('btnOpenTraineeManager').style.display = 'none';
-    // المشترك يدخل مباشرة إلى الكورس المخصص له فقط دون رؤية بقية الكورسات
     if (profile.courseId === 'executive') {
       openExecutiveCourse(isUnlocked, true);
     } else {
@@ -787,43 +946,77 @@ function confirmDailyAttendance() {
     profile.streak = (profile.streak || 0) + 1;
     profile.lastCheckInDate = today;
     saveTrainingDB();
-    showAlert('✅ تم تثبيت حضورك وبدء عداد التدريب!', true);
+    showAlert('✅ تم تثبيت حضورك وبدء عداد الـ 90 دقيقة!', true);
     renderDashboardState();
   }
 }
 
+function requestEmergencyReschedule() {
+  const profile = getActiveUserProfile();
+  if ((profile.reschedulesLeft ?? 2) <= 0) { alert('⛔ مرفوض! استنفدت رصيد التأجيل الطارئ لهذا الأسبوع.'); return; }
+  const reason = prompt('اكتب سبب التأجيل الطارئ لتسجيله:');
+  if (reason && reason.trim().length > 2) {
+    profile.reschedulesLeft = (profile.reschedulesLeft ?? 2) - 1;
+    profile.lastCheckInDate = getTodayStr();
+    saveTrainingDB();
+    renderDashboardState();
+  }
+}
+
+function attemptAdvanceStage() {
+  const profile = getActiveUserProfile();
+  const today = getTodayStr();
+  const minsToday = Math.floor(((profile.dailySecondsLog && profile.dailySecondsLog[today]) || 0) / 60);
+
+  if (SESSION_PURPOSE === 'dev') {
+    alert('🛠️ أنت في وضع التطوير. للتقدم في المراحل ادخل بوضع (جلسة تدريب وتطوير فعلي).');
+    return;
+  }
+
+  let missing = [];
+  if (minsToday < 30) missing.push(`• إتمام 30 دقيقة تدريب على الأقل اليوم (أتممت ${minsToday} دقيقة فقط).`);
+  if ((profile.latestScore || 0) < 70) missing.push(`• اجتياز التقييم بنسبة 70% فأكثر (درجتك الحالية: ${profile.latestScore || 0}%).`);
+
+  if (missing.length > 0) {
+    showAlert(`⛔ تم رفض التقدم للمرحلة التالية! النواقص:\n${missing.join('\n')}`, false);
+    return;
+  }
+
+  profile.currentStage = (profile.currentStage || 1) + 1;
+  saveTrainingDB();
+  showAlert(`🏆 مبارك! تم قبول إنجازك وترقيتك إلى المرحلة ${profile.currentStage}.`, true);
+  renderDashboardState();
+}
+
 // =========================================================================
-// 1. عرض بطاقات الكورسات المستقلة والمتون القانونية
+// 1. القائمة الرئيسية المستقلة للكورسات والمتون
 // =========================================================================
 function renderDirectoryCards(isUnlocked) {
   const container = document.getElementById('coursesCardsContainer');
   let html = `
-    <!-- الكورس التنفيذي الأول: اللغة القانونية وصياغة العقود -->
     <div class="course-card">
       <div>
-        <span class="course-badge" style="background:#dbeafe; color:#1e40af;">مسار تدريبي مستقل</span>
-        <div class="course-title">⚖️ مسار الصياغة القانونية واللغة الإنجليزية المهنية</div>
-        <div class="course-desc">يتضمن: مختبر ترديد المصطلحات بالصوت، اختبار تحديد المستوى، ومختبر صياغة وتدقيق العقود التجارية.</div>
+        <span class="course-badge" style="background:#dbeafe; color:#1e40af;">مسار اللغة الإنجليزية (آيلتس + ماجستير + عمل)</span>
+        <div class="course-title">⚖️ مسار التحضير للآيلتس والماجستير وصياغة العقود</div>
+        <div class="course-desc">يضم 6 مختبرات متكاملة: ترديد المصطلحات بالنطق البطيء، محاكي الموكلين الأجانب، صياغة العقود، الفيديو والكارتات البصرية، كتابة الآيلتس، وتحديد المستوى.</div>
       </div>
       <div class="course-actions">
         <button type="button" class="btn-nav" onclick="openExecutiveCourse(${isUnlocked}, false)">دخول المسار ←</button>
       </div>
     </div>
 
-    <!-- مختبر المتون القانونية والفهرسة التمييزية -->
     <div class="course-card statute-card">
       <div>
-        <span class="course-badge" style="background:#e0e7ff; color:#3730a3;">أداة بحث وتدريب قانوني</span>
+        <span class="course-badge" style="background:#e0e7ff; color:#3730a3;">أداة بحث وتدريب قانوني ذكية</span>
         <div class="course-title">📖 مختبر المتون القانونية والفهرسة التمييزية</div>
-        <div class="course-desc">ارفع نصوص القوانين العراقية، افهرسها حسب المادة، اربطها بالقرارات التمييزية، وحوّلها لمحاكاة مرافعة بالإنجليزية.</div>
+        <div class="course-desc">ارفع صورة قرار تمييزي أو ملف نصي ليتم تحليله تلقائياً، أو اكتب أي كلمة ليظهر لك القرار التمييزي والمادة القانونية المنطبقة مع محاكاة إنجليزية.</div>
       </div>
       <div class="course-actions">
-        <button type="button" class="btn-nav" style="background:#1e3a8a;" onclick="openStatuteIndexer(${isUnlocked})">فتح المختبر القانوني ←</button>
+        <button type="button" class="btn-nav" style="background:#1e3a8a;" onclick="openStatuteIndexer()">فتح المختبر القانوني ←</button>
       </div>
     </div>
   `;
 
-  // الكورسات المستقلة (مثل كورس المقبلين على الزواج وأي كورس تضيفه)
   (TRAINING_DB.courses || []).forEach(c => {
     html += `
       <div class="course-card">
@@ -855,7 +1048,6 @@ function hideAllViews() {
 function backToDirectory() {
   hideAllViews();
   document.getElementById('mainDirectoryView').style.display = 'block';
-  document.getElementById('statActiveCourseLabel').innerText = 'قائمة الكورسات';
   renderDashboardState();
 }
 
@@ -876,7 +1068,399 @@ function openView(viewId) {
 }
 
 // =========================================================================
-// 2. إدارة الكورسات (إنشاء، تعديل، مسح)
+// 2. مسار اللغة الإنجليزية الكامل (6 مختبرات)
+// =========================================================================
+function openExecutiveCourse(isUnlocked, isSingleTraineeMode) {
+  hideAllViews();
+  document.getElementById('executiveCourseView').style.display = 'block';
+  document.getElementById('btnBackFromExec').style.display = isSingleTraineeMode ? 'none' : 'inline-block';
+
+  renderExecShadow(isUnlocked);
+  renderExecRoleplay(isUnlocked);
+  renderExecDraft(isUnlocked);
+  renderExecMedia(isUnlocked);
+  renderExecIelts(isUnlocked);
+  renderExecDiag(isUnlocked);
+}
+
+function switchExecTab(tabId, btn) {
+  document.querySelectorAll('.exec-sub-panel').forEach(p => p.style.display = 'none');
+  document.querySelectorAll('.inner-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById(tabId).style.display = 'block';
+  btn.classList.add('active');
+}
+
+// 2.1 مختبر الترديد والنطق البطيء
+function renderExecShadow(isUnlocked) {
+  const el = document.getElementById('execShadow');
+  if (!isUnlocked) { el.innerHTML = `<div class="locked-overlay"><h4>🔒 مقفل</h4><p>ثبّت حضورك اليومي أعلاه.</p></div>`; return; }
+  const item = SHADOWING_TERMS[CURRENT_SHADOW_INDEX % SHADOWING_TERMS.length];
+  const safeTerm = item.term.replace(/'/g, "\\'");
+  const safeEx = item.ex.replace(/'/g, "\\'");
+  el.innerHTML = `
+    <div class="shadowing-box">
+      <div style="font-size:12px; color:#2b6cb0; font-weight:800;">المصطلح (${(CURRENT_SHADOW_INDEX % SHADOWING_TERMS.length) + 1} من ${SHADOWING_TERMS.length})</div>
+      <div class="shadow-term">${item.term}</div>
+      <div class="shadow-phonetic">${item.phonetic}</div>
+      <div class="shadow-meaning">${item.ar}</div>
+      <p style="font-style:italic; direction:ltr; margin-bottom:14px;">"${item.ex}"</p>
+      <div class="audio-controls">
+        <button type="button" class="btn-speak" onclick="speakText('${safeTerm}', 0.95)">🔊 استمع للمصطلح</button>
+        <button type="button" class="btn-speak slow" onclick="speakText('${safeTerm}', 0.65)">🐢 نطق بطيء</button>
+        <button type="button" class="btn-speak" style="background:#2b6cb0;" onclick="speakText('${safeEx}', 0.9)">🔊 استمع للجملة</button>
+        <button type="button" class="btn-mic" onclick="testShadowVoice('${safeTerm}')">🎙️ ردد بصوتك</button>
+        <button type="button" class="btn-nav" onclick="CURRENT_SHADOW_INDEX++; renderExecShadow(true);">التالي ←</button>
+      </div>
+      <div id="shadowRes" class="pronounce-result"></div>
+    </div>
+  `;
+}
+
+function testShadowVoice(target) {
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) { alert('استخدم متصفح Chrome لتفعيل الميكروفون.'); return; }
+  const box = document.getElementById('shadowRes');
+  box.style.display = 'block';
+  box.style.background = '#fefcbf';
+  box.innerText = '🎙️ تحدث الآن...';
+  const rec = new SR();
+  rec.lang = document.getElementById('accentSelect').value;
+  rec.start();
+  rec.onresult = e => {
+    const spoken = e.results[0][0].transcript;
+    const ok = spoken.toLowerCase().includes(target.toLowerCase());
+    box.style.background = ok ? '#def7ec' : '#fde8e8';
+    box.innerText = ok ? `✅ ممتاز! نطقتها بدقة: "${spoken}"` : `⚠️ حاول مجدداً. سمع النظام: "${spoken}"`;
+  };
+}
+
+// 2.2 محاكي الموكلين الأجانب
+function renderExecRoleplay(isUnlocked) {
+  const el = document.getElementById('execRoleplay');
+  if (!isUnlocked) { el.innerHTML = `<div class="locked-overlay"><h4>🔒 مقفل</h4><p>ثبّت حضورك اليومي أعلاه.</p></div>`; return; }
+  let html = '';
+  CLIENT_SCENARIOS.forEach((sc, idx) => {
+    const safeSpeech = sc.clientSpeech.replace(/'/g, "\\'");
+    const safeModel = sc.suggestedReply.replace(/'/g, "\\'");
+    html += `
+      <div class="scenario-box">
+        <div style="font-size:14.5px; font-weight:800; color:#d32f2f;">${sc.title}</div>
+        <div style="font-size:12px; color:#475569; margin-bottom:6px;">المتحدث: ${sc.clientRole}</div>
+        <div class="client-msg">"${sc.clientSpeech}"</div>
+        <p style="font-size:13px; margin-bottom:10px;"><strong>الترجمة:</strong> ${sc.clientAr}</p>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <button type="button" class="btn-speak" onclick="speakText('${safeSpeech}', 0.95)">🔊 استمع للموكل</button>
+          <button type="button" class="btn-speak slow" onclick="speakText('${safeSpeech}', 0.65)">🐢 نطق بطيء</button>
+          <button type="button" class="btn-mic" onclick="testRoleplayVoice(${idx})">🎙️ ردّ بصوتك</button>
+          <button type="button" class="btn-nav" onclick="document.getElementById('rp_mod_${idx}').style.display='block'">💡 الرد النموذجي</button>
+        </div>
+        <div id="rp_res_${idx}" class="pronounce-result"></div>
+        <div id="rp_mod_${idx}" class="model-reply">
+          <strong>Model Office Response:</strong><br>"${sc.suggestedReply}"
+          <div style="margin-top:6px;"><button type="button" class="btn-speak" onclick="speakText('${safeModel}', 0.9)">🔊 استمع للرد النموذجي</button></div>
+        </div>
+      </div>
+    `;
+  });
+  el.innerHTML = html;
+}
+
+function testRoleplayVoice(idx) {
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) { alert('استخدم Chrome لتفعيل الميكروفون.'); return; }
+  const box = document.getElementById(`rp_res_${idx}`);
+  box.style.display = 'block';
+  box.innerText = '🎙️ تحدث الآن باللغة الإنجليزية...';
+  const rec = new SR();
+  rec.lang = document.getElementById('accentSelect').value;
+  rec.start();
+  rec.onresult = e => {
+    const spoken = e.results[0][0].transcript;
+    box.style.background = '#def7ec';
+    box.innerHTML = `✅ <strong>تم تسجيل ردك:</strong> <em dir="ltr">"${spoken}"</em> — قارنه بالرد النموذجي.`;
+  };
+}
+
+// 2.3 مختبر صياغة وتدقيق العقود
+function renderExecDraft(isUnlocked) {
+  const el = document.getElementById('execDraft');
+  if (!isUnlocked) { el.innerHTML = `<div class="locked-overlay"><h4>🔒 مقفل</h4><p>ثبّت حضورك اليومي أعلاه.</p></div>`; return; }
+  let html = '';
+  CONTRACT_CLAUSES.forEach((cl, idx) => {
+    html += `
+      <div class="scenario-box">
+        <div style="font-size:15px; font-weight:800; color:#0b1a30; margin-bottom:6px;">${cl.title}</div>
+        <p style="font-size:13px; color:#475569; margin-bottom:8px;">${cl.flawDesc}</p>
+        <div class="clause-bad">❌ Weak Clause: "${cl.badClause}"</div>
+        <textarea id="draft_in_${idx}" class="admin-input" style="min-height:95px; direction:ltr; font-family:Georgia, serif; margin-bottom:10px;" placeholder="Re-draft the legal clause professionally in British English..."></textarea>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <button type="button" class="btn-speak" onclick='evalContract(${idx}, ${JSON.stringify(cl.requiredTerms)})'>⚖️ تدقيق صياغتي</button>
+          <button type="button" class="btn-speak slow" onclick="document.getElementById('draft_gd_${idx}').style.display='block'">📜 الصياغة البريطانية المعتمدة</button>
+        </div>
+        <div id="draft_rs_${idx}" class="pronounce-result"></div>
+        <div id="draft_gd_${idx}" class="clause-good">✅ <strong>Model British Legal Clause:</strong><br>"${cl.goodClause}"</div>
+      </div>
+    `;
+  });
+  el.innerHTML = html;
+}
+
+function evalContract(idx, req) {
+  const txt = document.getElementById(`draft_in_${idx}`).value.trim().toLowerCase();
+  const box = document.getElementById(`draft_rs_${idx}`);
+  box.style.display = 'block';
+  const hit = req.filter(w => txt.includes(w));
+  const pct = Math.round((hit.length / req.length) * 100);
+  box.style.background = pct >= 75 ? '#def7ec' : '#fefcbf';
+  box.innerHTML = pct >= 75 ? `✅ <strong>صياغة رصينة (${pct}%)!</strong>` : `⚠️ <strong>ينقصها بعض المصطلحات الجوهرية (${req.join(', ')}).</strong>`;
+}
+
+// 2.4 مختبر الفيديو والكارتات البصرية
+function renderExecMedia(isUnlocked) {
+  const el = document.getElementById('execMedia');
+  if (!isUnlocked) { el.innerHTML = `<div class="locked-overlay"><h4>🔒 مقفل</h4><p>ثبّت حضورك اليومي أعلاه.</p></div>`; return; }
+
+  let html = `<div class="video-lab-grid">`;
+  VIDEO_CLIPS.forEach((clip, idx) => {
+    const safeEn = clip.subtitleEn.replace(/'/g, "\\'");
+    html += `
+      <div class="video-card">
+        <div class="video-wrapper"><iframe src="${clip.embedUrl}" allowfullscreen></iframe></div>
+        <div class="video-body">
+          <div>
+            <div style="font-size:12px; font-weight:800; color:#d32f2f; margin-bottom:6px;">${clip.title}</div>
+            <div class="sub-en">${clip.subtitleEn}</div>
+            <div class="sub-ar">${clip.subtitleAr}</div>
+          </div>
+          <div class="audio-controls">
+            <button type="button" class="btn-speak" onclick="speakText('${safeEn}', 0.95)">🔊 استمع</button>
+            <button type="button" class="btn-speak slow" onclick="speakText('${safeEn}', 0.65)">🐢 بطيء</button>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+
+  html += `</div><div class="flashcard-container">`;
+  VISUAL_FLASHCARDS.forEach((fc, idx) => {
+    const safeTerm = fc.term.replace(/'/g, "\\'");
+    const safeEx = fc.ex.replace(/'/g, "\\'");
+    html += `
+      <div class="flashcard">
+        <img src="${fc.img}" alt="${fc.term}" class="fc-img">
+        <div class="fc-content">
+          <div class="fc-cat">${fc.cat}</div>
+          <div class="fc-term">${fc.term}</div>
+          <div class="fc-ar">${fc.ar}</div>
+          <div class="fc-example">"${fc.ex}"</div>
+          <div class="audio-controls">
+            <button type="button" class="btn-speak" onclick="speakText('${safeTerm}', 0.9)">🔊 المصطلح</button>
+            <button type="button" class="btn-speak slow" onclick="speakText('${safeTerm}', 0.6)">🐢 بطيء</button>
+            <button type="button" class="btn-speak" style="background:#2b6cb0;" onclick="speakText('${safeEx}', 0.9)">🔊 الجملة</button>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+  html += `</div>`;
+  el.innerHTML = html;
+}
+
+// 2.5 مختبر كتابة الآيلتس والماجستير
+function renderExecIelts(isUnlocked) {
+  const el = document.getElementById('execIelts');
+  if (!isUnlocked) { el.innerHTML = `<div class="locked-overlay"><h4>🔒 مقفل</h4><p>ثبّت حضورك اليومي أعلاه.</p></div>`; return; }
+  el.innerHTML = `
+    <div style="background:#f8fafc; border:1px solid #cbd5e0; padding:14px; border-radius:8px; direction:ltr; text-align:left; margin-bottom:12px;">
+      <strong style="color:#d32f2f; font-size:12px;">IELTS & LL.M. WRITING TASK 2 (40 MINUTES):</strong>
+      <p style="font-size:14px; font-weight:700; color:#0b1a30; margin-top:4px; line-height:1.6;">"Strict regulatory compliance and corporate transparency laws may slow down initial business expansion, yet they are essential for sustainable economic growth. Discuss both views and give your own opinion."</p>
+    </div>
+    <div style="margin-bottom:10px;">
+      <span class="linker-pill" onclick="insertLinker('Furthermore, ')">Furthermore,</span>
+      <span class="linker-pill" onclick="insertLinker('Conversely, ')">Conversely,</span>
+      <span class="linker-pill" onclick="insertLinker('Notwithstanding these challenges, ')">Notwithstanding these challenges,</span>
+      <span class="linker-pill" onclick="insertLinker('Consequently, ')">Consequently,</span>
+      <span class="linker-pill" onclick="insertLinker('In conclusion, ')">In conclusion,</span>
+    </div>
+    <div class="word-counter-bar">
+      <span>عدد الكلمات: <strong id="ieltsWordCount" style="color:#d32f2f;">0</strong> / 250 كلمة</span>
+    </div>
+    <textarea id="ieltsEssayArea" class="ielts-textarea" oninput="updateIeltsWords()" placeholder="Write your essay here (minimum 250 words)..."></textarea>
+    <button type="button" class="btn-primary" onclick="submitIeltsEssay()">اعتماد المقال وحفظه ✅</button>
+  `;
+}
+
+function insertLinker(w) {
+  const area = document.getElementById('ieltsEssayArea');
+  area.value += w;
+  area.focus();
+  updateIeltsWords();
+}
+
+function updateIeltsWords() {
+  const txt = document.getElementById('ieltsEssayArea').value.trim();
+  const c = txt ? txt.split(/\s+/).length : 0;
+  const el = document.getElementById('ieltsWordCount');
+  el.innerText = c;
+  el.style.color = c >= 250 ? '#16a34a' : '#d32f2f';
+}
+
+function submitIeltsEssay() {
+  const txt = document.getElementById('ieltsEssayArea').value.trim();
+  const c = txt ? txt.split(/\s+/).length : 0;
+  if (c < 250) { alert(`⛔ مرفوض! كتبت ${c} كلمة فقط. المطلوب 250 كلمة على الأقل.`); return; }
+  showAlert(`🏆 ممتاز! تم قبول مقالك (${c} كلمة) وتسجيله بنجاح.`, true);
+}
+
+// 2.6 تحديد المستوى
+function renderExecDiag(isUnlocked) {
+  const el = document.getElementById('execDiag');
+  if (!isUnlocked) { el.innerHTML = `<div class="locked-overlay"><h4>🔒 مقفل</h4><p>ثبّت حضورك اليومي أعلاه.</p></div>`; return; }
+  let html = `<form onsubmit="submitExecDiag(event)">`;
+  DIAGNOSTIC_QUESTIONS.forEach((q, i) => {
+    html += `<div class="question-box" dir="ltr" style="text-align:left;"><div class="q-text">${i+1}. ${q.q}</div>`;
+    q.options.forEach((o, oi) => {
+      html += `<label class="option-label"><input type="radio" name="ed_${i}" value="${oi}" required> ${o}</label>`;
+    });
+    html += `</div>`;
+  });
+  html += `<button type="submit" class="btn-primary">اعتماد اختبار تحديد المستوى</button></form>`;
+  el.innerHTML = html;
+}
+
+function submitExecDiag(e) {
+  e.preventDefault();
+  let c = 0;
+  DIAGNOSTIC_QUESTIONS.forEach((q, i) => {
+    const sel = document.querySelector(`input[name="ed_${i}"]:checked`);
+    if (sel && parseInt(sel.value) === q.ans) c++;
+  });
+  const pct = Math.round((c / DIAGNOSTIC_QUESTIONS.length) * 100);
+  const profile = getActiveUserProfile();
+  profile.latestScore = pct;
+  profile.activeCertCourse = 'IELTS Preparation, Commercial Contract Drafting & Executive Legal English';
+  saveTrainingDB();
+  showAlert(`🎯 نتيجتك في الاختبار: ${pct}%`, true);
+  renderDashboardState();
+}
+
+// =========================================================================
+// 3. مختبر المتون القانونية وقراءة الصور والملفات (OCR) والبحث الفوري
+// =========================================================================
+function openStatuteIndexer() {
+  hideAllViews();
+  document.getElementById('statuteIndexerView').style.display = 'block';
+  renderStatuteList();
+}
+
+async function processUploadedLegalFile(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const statusEl = document.getElementById('ocrStatusMsg');
+  statusEl.innerText = '⏳ جاري قراءة وتحليل الملف/الصورة واستخراج النص القانوني...';
+
+  if (file.type === 'text/plain') {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const content = e.target.result;
+      document.getElementById('statuteText').value = content;
+      const firstLine = content.split('\n')[0].substring(0, 60);
+      document.getElementById('statuteArticleNum').value = firstLine || 'متن قانوني مستورد';
+      statusEl.innerText = '✅ تم استخراج النص واقتراح العنوان بنجاح!';
+    };
+    reader.readAsText(file);
+  } else if (file.type.startsWith('image/')) {
+    try {
+      const result = await Tesseract.recognize(file, 'ara+eng');
+      const extractedText = result.data.text.trim();
+      document.getElementById('statuteText').value = extractedText;
+      const lines = extractedText.split('\n').filter(l => l.trim().length > 4);
+      document.getElementById('statuteArticleNum').value = lines[0] ? lines[0].substring(0, 65) : 'قرار تمييزي مستخرج من صورة';
+      statusEl.innerText = '✅ تم تحليل الصورة واستخراج النص واقتراح العنوان! راجعه ثم اضغط حفظ.';
+    } catch (err) {
+      statusEl.innerText = '⚠️ تعذرت قراءة الصورة تلقائياً، تأكد من وضوح الصورة.';
+    }
+  }
+}
+
+function saveStatuteEntry() {
+  const law = document.getElementById('statuteLawType').value;
+  const article = document.getElementById('statuteArticleNum').value.trim();
+  const text = document.getElementById('statuteText').value.trim();
+  const cassation = document.getElementById('statuteCassation').value.trim();
+  const englishSim = document.getElementById('statuteEnglishSim').value.trim();
+
+  if (!article || !text) { alert('يرجى إدخال عنوان المتن ونصه.'); return; }
+
+  TRAINING_DB.statutes = TRAINING_DB.statutes || [];
+  TRAINING_DB.statutes.unshift({ id: 'stat_' + Date.now(), law, article, text, cassation, englishSim });
+
+  document.getElementById('statuteArticleNum').value = '';
+  document.getElementById('statuteText').value = '';
+  document.getElementById('statuteCassation').value = '';
+  document.getElementById('statuteEnglishSim').value = '';
+  document.getElementById('ocrStatusMsg').innerText = '';
+
+  saveTrainingDB();
+  showAlert('✅ تمت فهرسة النص والقرار التمييزي بنجاح!', true);
+  renderStatuteList();
+}
+
+function deleteStatute(id) {
+  if (!confirm('حذف هذه المادة المفهرسة؟')) return;
+  TRAINING_DB.statutes = (TRAINING_DB.statutes || []).filter(s => s.id !== id);
+  saveTrainingDB();
+  renderStatuteList();
+}
+
+function renderStatuteList() {
+  const container = document.getElementById('statuteListContainer');
+  const filterLaw = document.getElementById('filterStatuteLaw').value;
+  const searchQuery = document.getElementById('searchStatuteInput').value.trim().toLowerCase();
+
+  let list = TRAINING_DB.statutes || [];
+  if (filterLaw !== 'ALL') list = list.filter(s => s.law === filterLaw);
+  if (searchQuery) {
+    list = list.filter(s =>
+      s.article.toLowerCase().includes(searchQuery) ||
+      s.text.toLowerCase().includes(searchQuery) ||
+      (s.cassation && s.cassation.toLowerCase().includes(searchQuery))
+    );
+  }
+
+  if (list.length === 0) {
+    container.innerHTML = `<p style="text-align:center; color:#64748b; padding:20px;">لا توجد متون مطابقة للكلمة المفتاحية.</p>`;
+    return;
+  }
+
+  let html = '';
+  list.forEach((s, idx) => {
+    const safeEn = (s.englishSim || '').replace(/'/g, "\\'");
+    html += `
+      <div class="statute-item">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <span class="law-tag">${s.law}</span>
+          ${CURRENT_MODE === 'owner' ? `<button type="button" class="btn-nav btn-lock" style="padding:3px 9px; font-size:11px;" onclick="deleteStatute('${s.id}')">حذف ✕</button>` : ''}
+        </div>
+        <div style="font-size:16px; font-weight:900; color:#0b1a30; margin-bottom:6px;">📜 ${s.article}</div>
+        <div style="font-size:14px; color:#1e293b; line-height:1.8; background:#f8fafc; padding:12px; border-radius:8px; border:1px solid #e2e8f0; white-space:pre-line;">${s.text}</div>
+        ${s.cassation ? `<div class="cassation-box"><strong>⚖️ القرار التمييزي / المبدأ القضائي:</strong><br>${s.cassation}</div>` : ''}
+        ${s.englishSim ? `
+          <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
+            <button type="button" class="btn-speak" onclick="document.getElementById('en_sim_${idx}').style.display='block'">🇬🇧 عرض المحاكاة بالإنجليزية</button>
+            <button type="button" class="btn-speak" style="background:#2b6cb0;" onclick="speakText('${safeEn}', 0.9)">🔊 استمع للنطق</button>
+            <button type="button" class="btn-speak slow" onclick="speakText('${safeEn}', 0.65)">🐢 نطق بطيء</button>
+          </div>
+          <div id="en_sim_${idx}" class="en-sim-box"><strong>English Legal Phrasing:</strong><br>"${s.englishSim}"</div>
+        ` : ''}
+      </div>
+    `;
+  });
+  container.innerHTML = html;
+}
+
+// =========================================================================
+// 4. إدارة الكورسات المستقلة والمشتركين
 // =========================================================================
 function saveCourseData() {
   const editId = document.getElementById('editCourseId').value;
@@ -892,16 +1476,13 @@ function saveCourseData() {
   TRAINING_DB.courses = TRAINING_DB.courses || [];
   if (editId) {
     const idx = TRAINING_DB.courses.findIndex(c => c.id === editId);
-    if (idx !== -1) {
-      TRAINING_DB.courses[idx] = { id: editId, title, desc, content, quizQ, quizCorrect: opt1, quizWrong: opt2 };
-    }
+    if (idx !== -1) TRAINING_DB.courses[idx] = { id: editId, title, desc, content, quizQ, quizCorrect: opt1, quizWrong: opt2 };
   } else {
-    const newId = 'course_' + Date.now();
-    TRAINING_DB.courses.push({ id: newId, title, desc, content, quizQ, quizCorrect: opt1, quizWrong: opt2 });
+    TRAINING_DB.courses.push({ id: 'course_' + Date.now(), title, desc, content, quizQ, quizCorrect: opt1, quizWrong: opt2 });
   }
 
   saveTrainingDB();
-  showAlert('✅ تم حفظ الكورس بنجاح في القائمة المستقلة!', true);
+  showAlert('✅ تم حفظ الكورس المستقل بنجاح!', true);
   backToDirectory();
 }
 
@@ -924,16 +1505,13 @@ function editCurrentCourseModal() {
 }
 
 function deleteCourse(courseId) {
-  if (!confirm('⚠️ هل أنت متأكد من مسح هذا الكورس نهائياً من المنصة؟')) return;
+  if (!confirm('⚠️ هل أنت متأكد من مسح هذا الكورس نهائياً؟')) return;
   TRAINING_DB.courses = (TRAINING_DB.courses || []).filter(c => c.id !== courseId);
   saveTrainingDB();
-  showAlert('🗑️ تم مسح الكورس بنجاح.', true);
+  showAlert('🗑️ تم مسح الكورس.', true);
   renderDirectoryCards(true);
 }
 
-// =========================================================================
-// 3. فتح كورس مستقل (مثل المقبلين على الزواج)
-// =========================================================================
 function openCustomCourse(courseId, isUnlocked, isSingleTraineeMode) {
   const course = (TRAINING_DB.courses || []).find(c => c.id === courseId);
   if (!course) { showAlert('الكورس غير موجود.', false); return; }
@@ -942,7 +1520,6 @@ function openCustomCourse(courseId, isUnlocked, isSingleTraineeMode) {
   hideAllViews();
   document.getElementById('customCourseView').style.display = 'block';
   document.getElementById('activeCustomCourseTitle').innerText = course.title;
-  document.getElementById('statActiveCourseLabel').innerText = course.title;
 
   document.getElementById('btnBackFromCourse').style.display = isSingleTraineeMode ? 'none' : 'inline-block';
   document.getElementById('btnEditThisCourse').style.display = CURRENT_MODE === 'owner' ? 'inline-flex' : 'none';
@@ -982,202 +1559,15 @@ function submitCustomCourseQuiz(courseTitle) {
     profile.latestScore = 100;
     profile.activeCertCourse = courseTitle;
     saveTrainingDB();
-    showAlert('🎉 إجابة صحيحة! اجتزت الكورس بنسبة 100% ويمكنك طباعة الشهادة الآن من الأعلى.', true);
+    showAlert('🎉 إجابة صحيحة! اجتزت الكورس بنسبة 100% ويمكنك طباعة الشهادة الآن.', true);
   } else {
     showAlert('⚠️ إجابة غير صحيحة. راجع محتوى الكورس وحاول مجدداً.', false);
   }
 }
 
-// =========================================================================
-// 4. مختبر المتون القانونية والفهرسة التمييزية والمحاكاة الإنجليزية
-// =========================================================================
-function openStatuteIndexer(isUnlocked) {
-  hideAllViews();
-  document.getElementById('statuteIndexerView').style.display = 'block';
-  document.getElementById('statActiveCourseLabel').innerText = 'مختبر المتون والقرارات التمييزية';
-  renderStatuteList();
-}
-
-function saveStatuteEntry() {
-  const law = document.getElementById('statuteLawType').value;
-  const article = document.getElementById('statuteArticleNum').value.trim();
-  const text = document.getElementById('statuteText').value.trim();
-  const cassation = document.getElementById('statuteCassation').value.trim();
-  const englishSim = document.getElementById('statuteEnglishSim').value.trim();
-
-  if (!article || !text) { alert('يرجى إدخال رقم المادة ونص القانون.'); return; }
-
-  TRAINING_DB.statutes = TRAINING_DB.statutes || [];
-  TRAINING_DB.statutes.unshift({
-    id: 'stat_' + Date.now(),
-    law, article, text, cassation, englishSim
-  });
-
-  document.getElementById('statuteArticleNum').value = '';
-  document.getElementById('statuteText').value = '';
-  document.getElementById('statuteCassation').value = '';
-  document.getElementById('statuteEnglishSim').value = '';
-
-  saveTrainingDB();
-  showAlert('✅ تمت فهرسة النص القانوني وربطه بالقرارات التمييزية بنجاح!', true);
-  renderStatuteList();
-}
-
-function deleteStatute(id) {
-  if (!confirm('حذف هذه المادة المفهرسة؟')) return;
-  TRAINING_DB.statutes = (TRAINING_DB.statutes || []).filter(s => s.id !== id);
-  saveTrainingDB();
-  renderStatuteList();
-}
-
-function renderStatuteList() {
-  const container = document.getElementById('statuteListContainer');
-  const filterLaw = document.getElementById('filterStatuteLaw').value;
-  const searchQuery = document.getElementById('searchStatuteInput').value.trim().toLowerCase();
-
-  let list = TRAINING_DB.statutes || [];
-  if (filterLaw !== 'ALL') list = list.filter(s => s.law === filterLaw);
-  if (searchQuery) {
-    list = list.filter(s =>
-      s.article.toLowerCase().includes(searchQuery) ||
-      s.text.toLowerCase().includes(searchQuery) ||
-      (s.cassation && s.cassation.toLowerCase().includes(searchQuery))
-    );
-  }
-
-  if (list.length === 0) {
-    container.innerHTML = `<p style="text-align:center; color:#64748b; padding:20px;">لا توجد متون مطابقة للبحث حالياً.</p>`;
-    return;
-  }
-
-  let html = '';
-  list.forEach((s, idx) => {
-    const safeEn = (s.englishSim || '').replace(/'/g, "\\'");
-    html += `
-      <div class="statute-item">
-        <div class="statute-meta">
-          <span class="law-tag">${s.law}</span>
-          ${CURRENT_MODE === 'owner' ? `<button type="button" class="btn-nav btn-lock" style="padding:3px 9px; font-size:11px;" onclick="deleteStatute('${s.id}')">حذف ✕</button>` : ''}
-        </div>
-        <div style="font-size:16px; font-weight:900; color:#0b1a30; margin-bottom:6px;">📜 ${s.article}</div>
-        <div style="font-size:14px; color:#1e293b; line-height:1.8; background:#f8fafc; padding:12px; border-radius:8px; border:1px solid #e2e8f0;">${s.text}</div>
-        ${s.cassation ? `<div class="cassation-box"><strong>⚖️ القرار التمييزي / السوابق المرتبطة:</strong><br>${s.cassation}</div>` : ''}
-        ${s.englishSim ? `
-          <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
-            <button type="button" class="btn-speak" onclick="document.getElementById('en_sim_${idx}').style.display='block'">🇬🇧 عرض المحاكاة القانونية بالإنجليزية</button>
-            <button type="button" class="btn-speak" style="background:#2b6cb0;" onclick="speakText('${safeEn}')">🔊 استمع للنطق البريطاني</button>
-          </div>
-          <div id="en_sim_${idx}" class="en-sim-box"><strong>English Courtroom / Legal Phrasing:</strong><br>"${s.englishSim}"</div>
-        ` : ''}
-      </div>
-    `;
-  });
-  container.innerHTML = html;
-}
-
-// =========================================================================
-// 5. كورس الصياغة القانونية واللغة الإنجليزية المهنية
-// =========================================================================
-function openExecutiveCourse(isUnlocked, isSingleTraineeMode) {
-  hideAllViews();
-  document.getElementById('executiveCourseView').style.display = 'block';
-  document.getElementById('statActiveCourseLabel').innerText = 'الصياغة القانونية واللغة الإنجليزية';
-  renderExecShadow(isUnlocked);
-  renderExecDiag(isUnlocked);
-  renderExecDraft(isUnlocked);
-}
-
-function switchExecTab(tabId, btn) {
-  document.querySelectorAll('.exec-sub-panel').forEach(p => p.style.display = 'none');
-  document.querySelectorAll('.inner-tab').forEach(b => b.classList.remove('active'));
-  document.getElementById(tabId).style.display = 'block';
-  btn.classList.add('active');
-}
-
-function renderExecShadow(isUnlocked) {
-  const el = document.getElementById('execShadow');
-  if (!isUnlocked) { el.innerHTML = `<div class="locked-overlay"><h4>🔒 مقفل</h4><p>ثبّت حضورك اليومي أعلاه.</p></div>`; return; }
-  const item = SHADOWING_TERMS[CURRENT_SHADOW_INDEX % SHADOWING_TERMS.length];
-  el.innerHTML = `
-    <div class="shadowing-box">
-      <div class="shadow-term">${item.term}</div>
-      <div class="shadow-meaning">${item.ar}</div>
-      <p style="font-style:italic; direction:ltr; margin-bottom:12px;">"${item.ex}"</p>
-      <div class="audio-controls">
-        <button type="button" class="btn-speak" onclick="speakText('${item.term}')">🔊 استمع</button>
-        <button type="button" class="btn-mic" onclick="testShadowVoice('${item.term}')">🎙️ ردد بصوتك</button>
-        <button type="button" class="btn-nav" onclick="CURRENT_SHADOW_INDEX++; renderExecShadow(true);">التالي ←</button>
-      </div>
-      <div id="shadowRes" class="pronounce-result"></div>
-    </div>
-  `;
-}
-
-function testShadowVoice(target) {
-  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  if (!SR) { alert('استخدم متصفح Chrome لتفعيل الميكروفون.'); return; }
-  const box = document.getElementById('shadowRes');
-  box.style.display = 'block';
-  box.innerText = '🎙️ تحدث الآن...';
-  const rec = new SR();
-  rec.lang = document.getElementById('accentSelect').value;
-  rec.start();
-  rec.onresult = e => {
-    const spoken = e.results[0][0].transcript;
-    const ok = spoken.toLowerCase().includes(target.toLowerCase());
-    box.style.background = ok ? '#def7ec' : '#fde8e8';
-    box.innerText = ok ? `✅ ممتاز! نطقتها بدقة: "${spoken}"` : `⚠️ حاول مجدداً. سمع النظام: "${spoken}"`;
-  };
-}
-
-function renderExecDiag(isUnlocked) {
-  const el = document.getElementById('execDiag');
-  if (!isUnlocked) { el.innerHTML = `<div class="locked-overlay"><h4>🔒 مقفل</h4><p>ثبّت حضورك اليومي أعلاه.</p></div>`; return; }
-  let html = `<form onsubmit="submitExecDiag(event)">`;
-  DIAGNOSTIC_QUESTIONS.forEach((q, i) => {
-    html += `<div class="question-box" dir="ltr" style="text-align:left;"><div class="q-text">${i+1}. ${q.q}</div>`;
-    q.options.forEach((o, oi) => {
-      html += `<label class="option-label"><input type="radio" name="ed_${i}" value="${oi}" required> ${o}</label>`;
-    });
-    html += `</div>`;
-  });
-  html += `<button type="submit" class="btn-primary">اعتماد اختبار تحديد المستوى</button></form>`;
-  el.innerHTML = html;
-}
-
-function submitExecDiag(e) {
-  e.preventDefault();
-  let c = 0;
-  DIAGNOSTIC_QUESTIONS.forEach((q, i) => {
-    const sel = document.querySelector(`input[name="ed_${i}"]:checked`);
-    if (sel && parseInt(sel.value) === q.ans) c++;
-  });
-  const pct = Math.round((c / DIAGNOSTIC_QUESTIONS.length) * 100);
-  const profile = getActiveUserProfile();
-  profile.latestScore = pct;
-  profile.activeCertCourse = 'Commercial Contract Drafting & Professional Legal English';
-  saveTrainingDB();
-  showAlert(`🎯 نتيجتك في الاختبار: ${pct}%`, true);
-}
-
-function renderExecDraft(isUnlocked) {
-  const el = document.getElementById('execDraft');
-  if (!isUnlocked) { el.innerHTML = `<div class="locked-overlay"><h4>🔒 مقفل</h4><p>ثبّت حضورك اليومي أعلاه.</p></div>`; return; }
-  el.innerHTML = `
-    <div class="lesson-card">
-      <div class="lesson-title">⚖️ تدريب صياغة شرط التحكيم التجاري (Arbitration Clause)</div>
-      <p style="font-size:13.5px; color:#9b1c1c; margin-bottom:10px;">البند الضعيف: "If any problem happens, we go to arbitration."</p>
-      <textarea class="admin-input" style="min-height:100px; direction:ltr;" placeholder="Re-draft professionally in British legal English..."></textarea>
-    </div>
-  `;
-}
-
-// =========================================================================
-// 6. إدارة المشتركين والأكواد
-// =========================================================================
 function renderTraineeManager() {
   const select = document.getElementById('newTraineeCourseSelect');
-  let opts = `<option value="executive">⚖️ مسار الصياغة القانونية واللغة الإنجليزية المهنية</option>`;
+  let opts = `<option value="executive">⚖️ مسار التحضير للآيلتس والماجستير وصياغة العقود</option>`;
   (TRAINING_DB.courses || []).forEach(c => {
     opts += `<option value="${c.id}">${c.title}</option>`;
   });
@@ -1194,7 +1584,7 @@ function renderTraineeManager() {
   codes.forEach(code => {
     const t = TRAINING_DB.trainees[code];
     const courseObj = (TRAINING_DB.courses || []).find(c => c.id === t.courseId);
-    const courseName = t.courseId === 'executive' ? 'الصياغة القانونية والإنجليزية' : (courseObj ? courseObj.title : 'كورس مخصص');
+    const courseName = t.courseId === 'executive' ? 'مسار اللغة الإنجليزية والعقود' : (courseObj ? courseObj.title : 'كورس مخصص');
     html += `
       <div class="trainee-card">
         <div>
@@ -1244,18 +1634,19 @@ function deleteTrainee(code) {
   renderTraineeManager();
 }
 
-function speakText(text) {
+function speakText(text, rate = 0.95) {
   if (!('speechSynthesis' in window)) return;
   window.speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(text);
   u.lang = document.getElementById('accentSelect').value || 'en-GB';
+  u.rate = rate;
   window.speechSynthesis.speak(u);
 }
 
 function openCertificateModal() {
   const profile = getActiveUserProfile();
   document.getElementById('certRecipientName').innerText = profile.name || 'Ali Kadhem Al-Hashimi';
-  document.getElementById('certCourseTitle').innerText = profile.activeCertCourse || 'Commercial Contract Drafting & Executive Legal English';
+  document.getElementById('certCourseTitle').innerText = profile.activeCertCourse || 'IELTS Preparation, Commercial Contract Drafting & Executive Legal English';
   document.getElementById('certScoreText').innerText = profile.latestScore ? `${profile.latestScore}%` : '95%';
   document.getElementById('certIssueDate').innerText = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
   document.getElementById('certVerifyId').innerText = `AKH-CERT-2026-${Math.floor(1000 + Math.random() * 9000)}`;
@@ -1265,7 +1656,7 @@ function openCertificateModal() {
 function closeCertificateModal() { document.getElementById('certificateModal').style.display = 'none'; }
 
 function addToGoogleCalendar() {
-  const title = encodeURIComponent("AKH Practical Legal Training Hub | الجلسة التدريبية");
+  const title = encodeURIComponent("AKH Practical Legal Training Hub | الجلسة التدريبية (90 دقيقة)");
   const details = encodeURIComponent("رابط المنصة: https://akjassem.com/training");
   window.open(`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&details=${details}&recur=RRULE:FREQ=DAILY`, '_blank');
 }
