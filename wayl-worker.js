@@ -27,7 +27,7 @@ export default {
       return new Response(record, { status: 200, headers });
     }
 
-    // 2. معالجة الطلبات (إنشاء فاتورة جديدة أو توثيق موافقة المراجع على السياسات)
+    // 2. معالجة الطلبات (إنشاء فاتورة جديدة أو توثيق موافقة المراجع أو تثبيت الدفع)
     if (request.method === "POST") {
       try {
         const body = await request.json();
@@ -53,7 +53,21 @@ export default {
           return new Response(JSON.stringify({ ok: false }), { status: 200, headers });
         }
 
-        // ب) إنشاء رابط دفع جديد عبر Wayl وحفظ الفاتورة بالرقم المرجعي
+        // ب) تحديث حالة الفاتورة إلى مدفوعة بعد العودة الناجحة
+        if (body.action === "markPaid" && body.ref) {
+          if (env.AKH_KV) {
+            const existingRaw = await env.AKH_KV.get("inv_" + body.ref);
+            if (existingRaw) {
+              const existing = JSON.parse(existingRaw);
+              existing.status = "paid";
+              existing.paidAt = new Date().toISOString();
+              await env.AKH_KV.put("inv_" + body.ref, JSON.stringify(existing));
+            }
+          }
+          return new Response(JSON.stringify({ ok: true }), { status: 200, headers });
+        }
+
+        // ج) إنشاء رابط دفع جديد عبر Wayl وحفظ الفاتورة بالرقم المرجعي
         const { waylKey, title, amountIQD, invoiceMeta } = body;
         const refId = (invoiceMeta && invoiceMeta.ref) ? invoiceMeta.ref : ("AKH-" + Date.now());
 
