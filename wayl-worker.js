@@ -8,15 +8,27 @@ export default {
     };
     if (request.method === "OPTIONS") return new Response(null, { headers });
     try {
-      const { waylKey, title, amountIQD } = await request.json();
+      const { waylKey, title, amountIQD, clientName } = await request.json();
       const res = await fetch("https://api.thewayl.com/api/v1/links", {
         method: "POST",
-        headers: { "Content-Type": "application/json", "X-WAYL-AUTHENTICATION": waylKey },
+        headers: {
+          "Content-Type": "application/json",
+          "X-WAYL-AUTHENTICATION": waylKey
+        },
         body: JSON.stringify({
           referenceId: "AKH-" + Date.now(),
           total: Number(amountIQD),
           currency: "IQD",
-          lineItem: [{ label: title, amount: Number(amountIQD), type: "increase" }],
+          lineItem: [
+            {
+              label: title,
+              amount: Number(amountIQD),
+              type: "increase",
+              image: "https://akjassem.com/favicon.ico"
+            }
+          ],
+          webhookUrl: "https://akh-payment.akjassem.workers.dev",
+          webhookSecret: "akh_secret_2026",
           redirectionUrl: "https://akjassem.com/payment/?status=success"
         })
       });
