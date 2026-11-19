@@ -694,6 +694,16 @@
         return;
       }
 
+      if (payload.status === 'cancelled') {
+        invSec.style.display = 'none';
+        msgSec.style.display = 'block';
+        msgSec.className = 'status-box status-notice';
+        msgSec.textContent = isAr
+          ? 'إشعار السداد هذا غير متاح حالياً أو تم إغلاقه. يرجى التواصل مع Law Office Of Ali Kadhem Hashimi لإصدار إشعار سداد جديد.'
+          : 'This payment notice is currently unavailable or closed. Please contact Ali Hashimi for Advocacy & Legal Services for a new notice.';
+        return;
+      }
+
       if (payload.u && payload.u.startsWith('https://')) {
         msgSec.style.display = 'none';
         invSec.style.display = 'block';
