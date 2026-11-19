@@ -214,7 +214,6 @@
       font-weight: 700;
     }
 
-    /* نافذة إعداد محضر إثبات التنفيذ بالصور */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -688,7 +687,6 @@
           throw new Error('لم يتم استلام رابط الدفع من البوابة.');
         }
 
-        // رابط نظيف وقصير جداً
         LAST_LINK = `https://akjassem.com/payment/?ref=${encodeURIComponent(refCode)}`;
 
         LAST_ENTRY = {
@@ -822,7 +820,6 @@
       }
     }
 
-    // 1. توليد وطباعة تقرير التوثيق والموافقة الرسمية (PDF)
     async function openConsentReport(idx) {
       const list = JSON.parse(localStorage.getItem(HISTORY_STORAGE_KEY) || '[]');
       const item = list[idx];
@@ -912,7 +909,6 @@
       win.document.close();
     }
 
-    // 2. نافذة محضر إثبات تنفيذ الخدمة بالصور
     function openProofModal(idx) {
       const list = JSON.parse(localStorage.getItem(HISTORY_STORAGE_KEY) || '[]');
       currentProofItem = list[idx];
