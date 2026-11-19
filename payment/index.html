@@ -11,43 +11,56 @@
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Cairo', system-ui, sans-serif; background-color: #f7f9fc; color: #1a1a1a; padding: 25px 14px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-.card { max-width: 460px; width: 100%; background: #ffffff; border-radius: 16px; padding: 32px 24px; box-shadow: 0 8px 30px rgba(11, 26, 48, 0.07); border-top: 6px solid #c5a059; text-align: center; }
-.logo-text { font-size: 40px; font-weight: 800; letter-spacing: 2px; color: #0b1a30; line-height: 1; direction: ltr; }
-.logo-text span { color: #d32f2f; }
-.sub-title { font-size: 12px; font-weight: 700; color: #111; letter-spacing: 3px; margin-top: 5px; direction: ltr; }
-.sub-title span { color: #d32f2f; margin-right: 4px; font-weight: 800; }
-.office-ar { font-size: 16px; font-weight: 800; color: #0b1a30; margin-top: 12px; }
-.office-sub { font-size: 12.5px; color: #64748b; margin-bottom: 22px; border-bottom: 1.5px solid #edf2f7; padding-bottom: 16px; }
+.card { max-width: 480px; width: 100%; background: #ffffff; border-radius: 16px; padding: 26px 24px 30px; box-shadow: 0 4px 25px rgba(0,0,0,0.05); border-top: 6px solid #c5a059; text-align: center; position: relative; }
 
-.invoice-box { background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 18px; text-align: right; margin-bottom: 22px; }
-.inv-row { margin-bottom: 12px; }
-.inv-row:last-child { margin-bottom: 0; border-top: 1px dashed #cbd5e0; padding-top: 12px; }
-.inv-label { font-size: 12.5px; color: #64748b; display: block; font-weight: 600; }
+.lang-bar { display: flex; justify-content: flex-end; margin-bottom: 10px; }
+.lang-toggle { background-color: #f8fafc; border: 1.5px solid #cbd5e0; color: #0b1a30; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 800; cursor: pointer; font-family: inherit; transition: 0.25s; }
+.lang-toggle:hover { background-color: #0b1a30; color: #ffffff; border-color: #0b1a30; }
+
+.brand-section { border-bottom: 1.5px solid #edf2f7; padding-bottom: 18px; margin-bottom: 22px; }
+.logo-text { font-size: 42px; font-weight: 800; letter-spacing: 2px; color: #0b1a30; line-height: 1; direction: ltr; }
+.logo-text span { color: #d32f2f; }
+.sub-title { font-size: 12.5px; font-weight: 700; color: #111; letter-spacing: 3px; margin-top: 6px; direction: ltr; }
+.sub-title span { color: #d32f2f; margin-right: 4px; font-weight: 800; }
+.est { font-size: 10px; color: #777; letter-spacing: 2px; margin-top: 3px; direction: ltr; }
+.office-name { font-size: 16px; font-weight: 800; color: #0b1a30; margin-top: 12px; }
+
+.invoice-box { background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 18px; margin-bottom: 22px; }
+.inv-row { margin-bottom: 14px; }
+.inv-row:last-child { margin-bottom: 0; border-top: 1px dashed #cbd5e0; padding-top: 14px; }
+.inv-label { font-size: 12.5px; color: #64748b; display: block; font-weight: 700; margin-bottom: 2px; }
 .inv-val { font-size: 15px; font-weight: 800; color: #0b1a30; }
 .inv-amount { font-size: 22px; font-weight: 800; color: #0b1a30; margin-top: 2px; }
 
-.btn-pay { display: block; width: 100%; background-color: #0b1a30; color: #ffffff; text-decoration: none; padding: 14px 20px; border-radius: 10px; font-size: 16px; font-weight: 800; transition: 0.3s; box-shadow: 0 4px 12px rgba(11, 26, 48, 0.15); }
+.btn-pay { display: block; width: 100%; background-color: #0b1a30; color: #ffffff; text-decoration: none; padding: 14px 20px; border-radius: 8px; font-size: 15.5px; font-weight: 800; transition: 0.3s; box-shadow: 0 3px 10px rgba(0,0,0,0.08); }
 .btn-pay:hover { background-color: #c5a059; color: #0b1a30; }
 
-.secure-note { margin-top: 18px; font-size: 12px; color: #64748b; line-height: 1.6; }
-.success-box { background: #def7ec; border: 1.5px solid #84e1bc; color: #03543f; padding: 20px; border-radius: 12px; font-size: 15px; font-weight: 700; line-height: 1.7; }
-.empty-box { background: #fef3c7; color: #92400e; padding: 18px; border-radius: 12px; font-size: 14px; font-weight: 700; }
+.secure-note { margin-top: 20px; font-size: 12px; color: #64748b; line-height: 1.6; border-top: 1.5px solid #edf2f7; padding-top: 15px; }
+.secure-note span { display: block; font-size: 11px; color: #94a3b8; margin-top: 4px; }
+.success-box { background: #def7ec; border: 1.5px solid #84e1bc; color: #03543f; padding: 20px; border-radius: 10px; font-size: 14.5px; font-weight: 700; line-height: 1.7; }
+.empty-box { background: #fef3c7; border: 1px solid #fde68a; color: #92400e; padding: 18px; border-radius: 10px; font-size: 14px; font-weight: 700; }
 </style>
 </head>
 <body>
 
 <div class="card">
-<div class="logo-text">A<span>K</span>H</div>
-<div class="sub-title"><span>/</span> LAW OFFICE</div>
-<div class="office-ar">مكتب المحامي علي كاظم الهاشمي</div>
-<div class="office-sub">للمحاماة والخدمات القانونية</div>
+  <div class="lang-bar">
+    <button type="button" class="lang-toggle" id="langBtn" onclick="toggleLanguage()">English 🌐</button>
+  </div>
 
-<div id="viewArea"></div>
+  <div class="brand-section">
+    <div class="logo-text">A<span>K</span>H</div>
+    <div class="sub-title"><span>/</span> LAW OFFICE</div>
+    <div class="est">EST. 2014</div>
+    <div class="office-name" id="officeTitle">مكتب المحامي علي كاظم الهاشمي</div>
+  </div>
 
-<div class="secure-note">
-🔒 معاملة إلكترونية مشفرة وآمنة<br>
-تُقبل بطاقات Visa و MasterCard والمحافظ الإلكترونية المعتمدة
-</div>
+  <div id="viewArea"></div>
+
+  <div class="secure-note" id="secureFooter">
+    🔒 معاملة إلكترونية مشفرة وآمنة
+    <span>جميع الحقوق محفوظة © 2026 | AKH Law Office</span>
+  </div>
 </div>
 
 <script>
@@ -57,43 +70,85 @@ const clientName = params.get('n');
 const title = params.get('t');
 const displayAmount = params.get('d');
 const checkoutUrl = params.get('u');
-const viewArea = document.getElementById('viewArea');
 
-if (status === 'success') {
-viewArea.innerHTML = `
-<div class="success-box">
-✅ تم استلام الدفعة بنجاح.<br>
-شكراً لثقتكم بمكتب المحامي علي كاظم الهاشمي، سيتم تأكيد الإيصال عبر الواتساب.
-</div>
-`;
-} else if (checkoutUrl && title && displayAmount) {
-viewArea.innerHTML = `
-<div class="invoice-box">
-${clientName ? `<div class="inv-row"><span class="inv-label">اسم الموكل:</span><span class="inv-val">${escapeHtml(clientName)}</span></div>` : ''}
-<div class="inv-row">
-<span class="inv-label">البيان / الخدمة القانونية:</span>
-<span class="inv-val">${escapeHtml(title)}</span>
-</div>
-<div class="inv-row">
-<span class="inv-label">المبلغ المستحق للدفع:</span>
-<div class="inv-amount">${escapeHtml(displayAmount)}</div>
-</div>
-</div>
-<a href="${checkoutUrl}" class="btn-pay">الانتقال لإتمام الدفع الإلكتروني ←</a>
-`;
-} else {
-viewArea.innerHTML = `
-<div class="empty-box">
-يرجى استخدام رابط الدفع المباشر المُرسل إليكم من قبل مكتب المحاماة.
-</div>
-`;
+let currentLang = params.get('lang') === 'en' ? 'en' : 'ar';
+
+const UI_TEXT = {
+  ar: {
+    dir: 'rtl',
+    align: 'right',
+    toggleBtn: 'English 🌐',
+    officeName: 'مكتب المحامي علي كاظم الهاشمي',
+    lblClient: 'اسم الموكل:',
+    lblService: 'البيان / الخدمة القانونية:',
+    lblAmount: 'المبلغ المستحق للدفع:',
+    btnPay: 'الانتقال لإتمام الدفع الإلكتروني ←',
+    successMsg: '✅ تم استلام الدفعة بنجاح.<br>شكراً لثقتكم بمكتب المحامي علي كاظم الهاشمي، سيتم تأكيد الإيصال عبر الواتساب.',
+    emptyMsg: 'يرجى استخدام رابط الدفع المباشر المُرسل إليكم من قبل مكتب المحاماة.',
+    footerTop: '🔒 معاملة إلكترونية مشفرة وآمنة (Visa / MasterCard / ZainCash)',
+    footerSub: 'جميع الحقوق محفوظة © 2026 | مكتب المحامي علي كاظم الهاشمي'
+  },
+  en: {
+    dir: 'ltr',
+    align: 'left',
+    toggleBtn: 'العربية 🌐',
+    officeName: 'Office of Ali Kadhim Al-Hashimi',
+    lblClient: 'Client Name:',
+    lblService: 'Legal Service / Description:',
+    lblAmount: 'Amount Due:',
+    btnPay: 'Proceed to Secure Payment →',
+    successMsg: '✅ Payment received successfully.<br>Thank you for choosing the Office of Ali Kadhim Al-Hashimi. Your receipt will be confirmed via WhatsApp.',
+    emptyMsg: 'Please use the direct payment link provided by the law office.',
+    footerTop: '🔒 Encrypted & Secure Electronic Payment (Visa / MasterCard / ZainCash)',
+    footerSub: 'All Rights Reserved © 2026 | Office of Ali Kadhim Al-Hashimi'
+  }
+};
+
+function renderPage() {
+  const t = UI_TEXT[currentLang];
+  document.documentElement.lang = currentLang;
+  document.documentElement.dir = t.dir;
+
+  document.getElementById('langBtn').innerText = t.toggleBtn;
+  document.getElementById('officeTitle').innerText = t.officeName;
+  document.getElementById('secureFooter').innerHTML = `${t.footerTop}<span>${t.footerSub}</span>`;
+
+  const viewArea = document.getElementById('viewArea');
+
+  if (status === 'success') {
+    viewArea.innerHTML = `<div class="success-box">${t.successMsg}</div>`;
+  } else if (checkoutUrl && title && displayAmount) {
+    viewArea.innerHTML = `
+      <div class="invoice-box" style="text-align: ${t.align};">
+        ${clientName ? `<div class="inv-row"><span class="inv-label">${t.lblClient}</span><span class="inv-val">${escapeHtml(clientName)}</span></div>` : ''}
+        <div class="inv-row">
+          <span class="inv-label">${t.lblService}</span>
+          <span class="inv-val">${escapeHtml(title)}</span>
+        </div>
+        <div class="inv-row">
+          <span class="inv-label">${t.lblAmount}</span>
+          <div class="inv-amount">${escapeHtml(displayAmount)}</div>
+        </div>
+      </div>
+      <a href="${checkoutUrl}" class="btn-pay">${t.btnPay}</a>
+    `;
+  } else {
+    viewArea.innerHTML = `<div class="empty-box">${t.emptyMsg}</div>`;
+  }
+}
+
+function toggleLanguage() {
+  currentLang = currentLang === 'ar' ? 'en' : 'ar';
+  renderPage();
 }
 
 function escapeHtml(text) {
-const div = document.createElement('div');
-div.innerText = text;
-return div.innerHTML;
+  const div = document.createElement('div');
+  div.innerText = text;
+  return div.innerHTML;
 }
+
+renderPage();
 </script>
 </body>
 </html>
