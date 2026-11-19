@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>بوابة الدفع الإلكتروني | Law Office Of Ali Kadhem Hashimi</title>
+  <title>بوابة الدفع الإلكتروني | مكتب المحامي علي الكاظم</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -46,8 +46,17 @@
     }
     [dir="ltr"] .lang-btn { left: auto; right: 18px; }
 
-    .logo-text { font-size: 40px; font-weight: 800; color: #0b1c36; letter-spacing: 2px; line-height: 1; margin-top: 10px; direction: ltr; }
-    .logo-text span { color: #d32f2f; }
+    .logo-row {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+      direction: ltr;
+    }
+    .slash-mark { font-size: 38px; font-weight: 800; color: #d32f2f; line-height: 1; }
+    .logo-text { font-size: 40px; font-weight: 800; color: #0b1c36; letter-spacing: 2px; line-height: 1; direction: ltr; }
+    .logo-text .k-red { color: #d32f2f; }
     .sub-title { font-size: 12px; font-weight: 700; color: #64748b; letter-spacing: 3px; margin-top: 6px; direction: ltr; }
     .est { font-size: 11px; color: #94a3b8; margin-top: 2px; direction: ltr; }
     .office-title { font-size: 18px; font-weight: 800; color: #0b1c36; margin-top: 12px; }
@@ -235,8 +244,8 @@
       text-align: start;
     }
     .modal-brand-header {
-      background: #0b1c36;
-      color: #ffffff;
+      background: #ffffff;
+      color: #0b1c36;
       padding: 16px 18px;
       display: flex;
       justify-content: space-between;
@@ -246,16 +255,18 @@
     }
     .modal-logo-wrap { display: flex; align-items: center; gap: 14px; }
     .modal-logo-box { text-align: center; direction: ltr; flex-shrink: 0; }
-    .modal-logo-mark { font-size: 28px; font-weight: 800; color: #ffffff; letter-spacing: 1.5px; line-height: 1; }
-    .modal-logo-mark span { color: #d32f2f; }
-    .modal-logo-sub { font-size: 9px; font-weight: 700; color: #cbd5e1; letter-spacing: 2px; margin-top: 3px; }
+    .modal-logo-row { display: inline-flex; align-items: center; gap: 6px; }
+    .modal-slash { font-size: 26px; font-weight: 800; color: #d32f2f; line-height: 1; }
+    .modal-logo-mark { font-size: 28px; font-weight: 800; color: #0b1c36; letter-spacing: 1.5px; line-height: 1; }
+    .modal-logo-mark .k-red { color: #d32f2f; }
+    .modal-logo-sub { font-size: 9px; font-weight: 700; color: #64748b; letter-spacing: 2px; margin-top: 3px; }
     .modal-logo-est { font-size: 8.5px; color: #94a3b8; margin-top: 1px; }
-    .modal-office-name { font-size: 14.5px; font-weight: 800; color: #ffffff; line-height: 1.4; }
-    .modal-office-desc { font-size: 11.5px; color: #c59b27; font-weight: 700; }
+    .modal-office-name { font-size: 14.5px; font-weight: 800; color: #0b1c36; line-height: 1.4; }
+    .modal-office-desc { font-size: 11.5px; color: #92400e; font-weight: 700; }
     .close-modal {
-      background: rgba(255,255,255,0.12);
-      border: none;
-      color: #ffffff;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      color: #0b1c36;
       width: 34px;
       height: 34px;
       border-radius: 50%;
@@ -322,13 +333,16 @@
   <div class="card">
     <button class="lang-btn" id="lang-toggle" onclick="toggleLang()">English</button>
 
-    <div class="logo-text">A<span>K</span>H</div>
+    <div class="logo-row">
+      <span class="slash-mark">/</span>
+      <div class="logo-text">A<span class="k-red">K</span>H</div>
+    </div>
     <div class="sub-title">/ LAW OFFICE</div>
     <div class="est">EST. 2014</div>
-    <div class="office-title" id="t-office">Law Office Of Ali Kadhem Hashimi</div>
+    <div class="office-title" id="t-office">مكتب المحامي علي الكاظم</div>
 
     <div class="office-intro" id="t-intro">
-      تُخصص هذه المنصة لتسديد أتعاب الجلسات الاستشارية، وصياغة العقود والدراسات القانونية، والأعمال التنفيذية وتأسيس الشركات والدعاوى المقدمة من المكتب وفق أحكام قانون المحاماة العراقي النافذ.
+      تُخصص هذه المنصة لتسديد أتعاب المحاماة والخدمات القانونية، وصياغة العقود والدراسات القانونية، والأعمال التنفيذية وتأسيس الشركات والدعاوى المقدمة من المكتب وفق أحكام قانون المحاماة العراقي النافذ.
     </div>
 
     <div class="divider"></div>
@@ -375,12 +389,12 @@
     </div>
 
     <div id="message-section" class="status-box status-notice">
-      يرجى استخدام رابط الدفع المباشر المرسل إليكم من قبل Law Office Of Ali Kadhem Hashimi.
+      يرجى استخدام رابط الدفع المباشر المرسل إليكم من قبل مكتب المحامي علي الكاظم.
     </div>
 
     <div class="footer-note">
       <div id="t-secure">🔒 معاملات إلكترونية مشفرة وآمنة (ZainCash / MasterCard / Visa)</div>
-      <div id="t-copy">جميع الحقوق محفوظة © 2026 | Law Office Of Ali Kadhem Hashimi</div>
+      <div id="t-copy">جميع الحقوق محفوظة © 2026 | مكتب المحامي علي الكاظم</div>
     </div>
   </div>
 
@@ -389,12 +403,15 @@
       <div class="modal-brand-header">
         <div class="modal-logo-wrap">
           <div class="modal-logo-box">
-            <div class="modal-logo-mark">A<span>K</span>H</div>
+            <div class="modal-logo-row">
+              <span class="modal-slash">/</span>
+              <div class="modal-logo-mark">A<span class="k-red">K</span>H</div>
+            </div>
             <div class="modal-logo-sub">/ LAW OFFICE</div>
             <div class="modal-logo-est">EST. 2014</div>
           </div>
-          <div style="border-inline-start: 1px solid rgba(255,255,255,0.22); padding-inline-start: 12px;">
-            <div class="modal-office-name" id="t-modal-office">Law Office Of Ali Kadhem Hashimi</div>
+          <div style="border-inline-start: 1px solid #cbd5e1; padding-inline-start: 12px;">
+            <div class="modal-office-name" id="t-modal-office">مكتب المحامي علي الكاظم</div>
             <div class="modal-office-desc" id="t-modal-sub">الضوابط والسياسات القانونية المعتمدة</div>
           </div>
         </div>
@@ -426,22 +443,22 @@
       ar: {
         fees: `
           <h3>سياسة الأتعاب والاسترداد وشروط الدفع الإلكتروني</h3>
-          <p>تخضع كافة التعاملات المالية والأتعاب المدفوعة لـ Law Office Of Ali Kadhem Hashimi لأحكام قانون المحاماة العراقي النافذ، وتُعد جميع المبالغ المدفوعة أتعاب محاماة مكتسبة وغير قابلة للاسترداد وفق التفصيل الآتي:</p>
+          <p>تخضع كافة التعاملات المالية والأتعاب المدفوعة لمكتب المحامي علي الكاظم لأحكام قانون المحاماة العراقي النافذ، وتُعد جميع المبالغ المدفوعة أتعاب محاماة مكتسبة وغير قابلة للاسترداد وفق التفصيل الآتي:</p>
           <h4>أولاً: الأعمال التنفيذية والتعاقدية (تأسيس الشركات، المعاملات، والدعاوى)</h4>
           <p>تُستحق الأتعاب المتفق عليها بالكامل من تاريخ تنظيم عقد الأتعاب أو إصدار الوكالة القانونية أو أيهما أسبق، ولا يحق للطرف الثاني المطالبة باسترداد أي مبلغ مدفوع تحت أي سبب أو ظرف بعد التعاقد أو تنظيم الوكالة، وتُطبق أحكام قانون المحاماة والاتفاق المبرم بين الطرفين في تنظيم هذا الاستحقاق.</p>
-          <h4>ثانياً: الجلسات الاستشارية ودراسة الملفات</h4>
-          <p>تُستحق أتعاب الجلسة الاستشارية بمجرد إتمام عملية الدفع وتثبيت الحجز في سجلات المكتب، وذلك لتخصيص الوقت والجهد المهني لدراسة الموضوع. وفي حال عدم التزام المراجع بالموعد المحدد أو تخلفه عن الحضور أو اعتذاره عن الجلسة في أي وقت بعد تثبيت الحجز، لا يُسترد المبلغ المدفوع بأي حال من الأحوال ويُعد أتعاباً مكتسبة غير قابلة للاسترداد، ويقتصر حق المراجع في هذه الحالة على طلب إعادة جدولة الموعد لمرة واحدة فقط وبما يتناسب مع جدول أعمال المكتب.</p>
+          <h4>ثانياً: مراجعة الملفات والمواعيد القانونية</h4>
+          <p>تُستحق أتعاب الخدمة القانونية بمجرد إتمام عملية الدفع وتثبيت الموعد في سجلات المكتب، وذلك لتخصيص الوقت والجهد المهني لدراسة الموضوع. وفي حال عدم التزام المراجع بالموعد المحدد أو تخلفه عن الحضور أو اعتذاره في أي وقت بعد تثبيت الموعد، لا يُسترد المبلغ المدفوع بأي حال من الأحوال ويُعد أتعاباً مكتسبة غير قابلة للاسترداد، ويقتصر حق المراجع في هذه الحالة على طلب إعادة جدولة الموعد لمرة واحدة فقط وبما يتناسب مع جدول أعمال المكتب.</p>
           <h4>ثالثاً: أحكام عامة</h4>
           <p>1/ لا يُعد عدم متابعة المراجع أو عدوله عن إكمال الإجراءات بعد الدفع سبباً لاسترداد الأتعاب أو الأجور.</p>
-          <p>2/ في حال تعذر عقد الجلسة أو المباشرة بالعمل لسبب يعود إلى المكتب حصراً، يلتزم المكتب بإعادة جدولة الموعد أو إصدار طلب إعادة المبلغ المدفوع كاملاً عبر بوابة الدفع الإلكترونية المعتمدة (تُعالج المصارف عادةً عمليات الإرجاع خلال 7 إلى 14 يوم عمل).</p>
+          <p>2/ في حال تعذر المباشرة بالعمل لسبب يعود إلى المكتب حصراً، يلتزم المكتب بإعادة جدولة الموعد أو إصدار طلب إعادة المبلغ المدفوع كاملاً عبر بوابة الدفع الإلكترونية المعتمدة (تُعالج المصارف عادةً عمليات الإرجاع خلال 7 إلى 14 يوم عمل).</p>
           <p>3/ يُعد إتمام عملية الدفع عبر المنصة إقراراً صريحاً من المراجع بالاطلاع على هذه السياسة والموافقة التامة على كافة بنودها.</p>
-          <p>4/ تُعد سجلات وإشعارات بوابة الدفع الإلكترونية المعتمدة وسجلات المكتب حجةً لإثبات إتمام عملية السداد وتثبيت الحجز أو تقديم الخدمة، وتختص محاكم بغداد بالنظر في أي نزاع قد ينشأ عن تفسير أو تطبيق أحكام هذه السياسة.</p>
+          <p>4/ تُعد سجلات وإشعارات بوابة الدفع الإلكترونية المعتمدة وسجلات المكتب حجةً لإثبات إتمام عملية السداد وتثبيت الموعد أو تقديم الخدمة، وتختص محاكم بغداد بالنظر في أي نزاع قد ينشأ عن تفسير أو تطبيق أحكام هذه السياسة.</p>
         `,
         privacy: `
           <h3>سياسة الخصوصية وسرية المعلومات</h3>
-          <p>يلتزم Law Office Of Ali Kadhem Hashimi للمحاماة والخدمات القانونية بأعلى معايير السرية المهنية المنصوص عليها في قانون المحاماة العراقي النافذ، ويكفل حماية كافة البيانات والمعلومات المقدمة من المراجعين والشركات وفق الضوابط الآتي:</p>
+          <p>يلتزم مكتب المحامي علي الكاظم للمحامات والخدمات القانونية بأعلى معايير السرية المهنية المنصوص عليها في قانون المحاماة العراقي النافذ، ويكفل حماية كافة البيانات والمعلومات المقدمة من المراجعين والشركات وفق الضوابط الآتية:</p>
           <h4>أولاً: جمع البيانات والمستندات</h4>
-          <p>يقتصر جمع البيانات والمستندات على المعلومات الضرورية لتقديم الخدمة القانونية أو الاستشارية المطلوبة، ويشمل ذلك البيانات الشخصية، وبيانات الاتصال، وأوليات الشركات، والعقود، وكافة الوثائق ذات الصلة بموضوع الطلب.</p>
+          <p>يقتصر جمع البيانات والمستندات على المعلومات الضرورية لتقديم الخدمة القانونية المطلوبة، ويشمل ذلك البيانات الشخصية، وبيانات الاتصال، وأوليات الشركات، والعقود، وكافة الوثائق ذات الصلة بموضوع الطلب.</p>
           <h4>ثانياً: السرية المهنية وعدم الإفشاء</h4>
           <p>تخضع كافة المعلومات والمراسلات والمستندات المستلمة لالتزام السر المهني للمحامي، ويُحظر إفشاؤها أو مشاركتها أو تداولها مع أي جهة أو طرف ثالث تحت أي ظرف، باستثناء الحالات التي يأذن بها صاحب العلاقة خطياً، أو التي تقتضيها متطلبات إنجاز المعاملة أمام الدوائر الرسمية والقضائية بموجب الوكالة القانونية، أو تنفيذاً لأمر قضائي نافذ.</p>
           <h4>ثالثاً: أمن المعلومات وحفظ البيانات</h4>
@@ -449,17 +466,17 @@
           <h4>رابعاً: البيانات المالية وعمليات الدفع</h4>
           <p>تتم معالجة عمليات الدفع الإلكتروني عبر بوابات دفع مرخصة ومعتمدة، ولا يقوم المكتب بتخزين بيانات البطاقات المصرفية أو الحسابات المالية للمراجعين على خوادمه الخاصة.</p>
           <h4>خامساً: مدة الاحتفاظ بالبيانات وحقوق أصحابها</h4>
-          <p>يحتفظ المكتب بالسجلات والملفات للمدة اللازمة للوفاء بالالتزامات المهنية والمحاسبية والقانونية النافذ، ويحق لصاحب العلاقة طلب الاطلاع على بياناته الشخصية المسجلة لدى المكتب أو تصحيحها أو تحديثها وفق الضوابط القانونية.</p>
+          <p>يحتفظ المكتب بالسجلات والملفات للمدة اللازمة للوفاء بالالتزامات المهنية والمحاسبية والقانونية النافذة، ويحق لصاحب العلاقة طلب الاطلاع على بياناته الشخصية المسجلة لدى المكتب أو تصحيحها أو تحديثها وفق الضوابط القانونية.</p>
           <h4>سادساً: الموافقة على السياسة</h4>
           <p>يُعد استخدام المنصة الإلكترونية للمكتب أو إرسال الأوليات أو إتمام عملية الدفع إقراراً صريحاً بالاطلاع على سياسة الخصوصية هذه والموافقة على كافة أحكامها.</p>
         `,
         delivery: `
           <h3>سياسة تقديم الخدمات وتسليم الأعمال</h3>
-          <p>نظراً لأن نشاط Law Office Of Ali Kadhem Hashimi يختص في المحاماة وتقديم الخدمات القانونية والاستشارية والأعمال التنفيذية القانونية ذات الصلة (ولا يتضمن أي شحن أو توصيل مادي للبضائع)، وتُدار وفق الضوابط الآتي:</p>
+          <p>نظراً لأن نشاط مكتب المحامي علي الكاظم يختص في المحامات وتقديم الخدمات القانونية والأعمال التنفيذية القانونية ذات الصلة (ولا يتضمن أي شحن أو توصيل مادي للبضائع)، وتُدار وفق الضوابط الآتية:</p>
           <h4>أولاً: إثبات السداد والوصل الإلكتروني</h4>
           <p>يُعد إتمام عملية الدفع الإلكتروني وإصدار إشعار السداد عبر البوابة المعتمدة تثبيتاً رسمياً للعملية المالية، ويُسلّم المراجع نسخة إلكترونية من إشعار السداد فور إتمام العملية.</p>
-          <h4>ثانياً: الجلسات الاستشارية (الحضورية والإلكترونية)</h4>
-          <p>يتم تأكيد الحجز وتثبيت موعد الجلسة الاستشارية وإرسال تفاصيل الانضمام أو عنوان الحضور عبر البريد الإلكتروني أو رقم الواتساب المثبت في استمارة الحجز عبر منصة الحجز (https://akjassem.com/booking/) فور إتمام عملية الدفع بنجاح.</p>
+          <h4>ثانياً: المواعيد والمراجعات القانونية</h4>
+          <p>يتم تأكيد الحجز وتثبيت الموعد وإرسال تفاصيل الانضمام أو عنوان الحضور عبر البريد الإلكتروني أو رقم الواتساب المثبت في استمارة الحجز عبر منصة الحجز (https://akjassem.com/booking/) فور إتمام عملية الدفع بنجاح.</p>
           <h4>ثالثاً: العقود والدراسات القانونية</h4>
           <p>تُسلّم مسودات العقود والمذكرات والتقارير القانونية بصيغة إلكترونية عبر البريد الإلكتروني الرسمي للمكتب أو عبر منصة المراسلة المعتمدة، وذلك تباعاً حسب متطلبات العمل وطبيعة كل معاملة.</p>
           <h4>رابعاً: المعاملات التنفيذية والأوراق الرسمية</h4>
@@ -471,22 +488,22 @@
       en: {
         fees: `
           <h3>Legal Fees, Refund Policy & Electronic Payment Terms</h3>
-          <p>All financial transactions and fees paid to Ali Hashimi for Advocacy & Legal Services are governed by the applicable Iraqi Advocacy Law. All paid amounts constitute earned legal fees and are non-refundable, in accordance with the following terms:</p>
+          <p>All financial transactions and fees paid to Law Office of Ali Kadhim Hashimi are governed by the applicable Iraqi Advocacy Law. All paid amounts constitute earned legal fees and are non-refundable, in accordance with the following terms:</p>
           <h4>First: Executive & Contractual Legal Services (Company Incorporation, Transactions, and Lawsuits)</h4>
           <p>Agreed legal fees become fully due and earned as of the date of executing the fee agreement or issuing the Power of Attorney, whichever occurs first. The second party has no right to claim a refund of any paid amount under any reason or circumstance after contracting or issuing the Power of Attorney. The provisions of the Iraqi Advocacy Law and the agreement concluded between the parties shall govern this entitlement.</p>
-          <h4>Second: Legal Consultation Sessions & File Review</h4>
-          <p>Consultation session fees become fully earned upon completion of payment and confirmation of the booking in the Office’s records, in consideration of allocating professional time and effort to review the matter. Should the applicant fail to adhere to the scheduled appointment, fail to attend, or cancel at any time after booking confirmation, the paid amount shall under no circumstances be refunded and shall be deemed earned non-refundable legal fees. In such case, the applicant's sole right is limited to requesting a one-time rescheduling subject to the Office’s schedule availability.</p>
+          <h4>Second: Legal Appointments & File Review</h4>
+          <p>Legal service fees become fully earned upon completion of payment and confirmation of the appointment in the Office’s records, in consideration of allocating professional time and effort to review the matter. Should the applicant fail to adhere to the scheduled appointment, fail to attend, or cancel at any time after booking confirmation, the paid amount shall under no circumstances be refunded and shall be deemed earned non-refundable legal fees. In such case, the applicant's sole right is limited to requesting a one-time rescheduling subject to the Office’s schedule availability.</p>
           <h4>Third: General Provisions</h4>
           <p>1. Failure by the applicant to follow up or withdrawal from completing procedures after payment shall not constitute grounds for refunding any legal fees or remuneration.</p>
-          <p>2. In the event that holding the session or commencing work becomes impossible due to a reason exclusively attributable to the Office, the Office undertakes to reschedule the appointment or initiate a full refund through the authorized electronic payment gateway (banks typically process refunds within 7 to 14 business days).</p>
+          <p>2. In the event that commencing work becomes impossible due to a reason exclusively attributable to the Office, the Office undertakes to reschedule the appointment or initiate a full refund through the authorized electronic payment gateway (banks typically process refunds within 7 to 14 business days).</p>
           <p>3. Completing the payment process through this platform constitutes an explicit acknowledgment by the applicant of having read, understood, and fully agreed to all provisions of this policy.</p>
-          <p>4. The electronic records and confirmations of the authorized payment gateway and the Office’s records shall serve as valid proof of payment completion, booking confirmation, or service delivery, and the courts of Baghdad shall have exclusive jurisdiction over any dispute arising from the interpretation or application of this policy.</p>
+          <p>4. The electronic records and confirmations of the authorized payment gateway and the Office’s records shall serve as valid proof of payment completion, appointment confirmation, or service delivery, and the courts of Baghdad shall have exclusive jurisdiction over any dispute arising from the interpretation or application of this policy.</p>
         `,
         privacy: `
           <h3>Privacy Policy & Confidentiality of Information</h3>
-          <p>Ali Hashimi for Advocacy & Legal Services is committed to the highest standards of professional confidentiality stipulated under the applicable Iraqi Advocacy Law and guarantees the protection of all data and information provided by applicants, clients, and companies in accordance with the following provisions:</p>
+          <p>Law Office of Ali Kadhim Hashimi for Advocacy & Legal Services is committed to the highest standards of professional confidentiality stipulated under the applicable Iraqi Advocacy Law and guarantees the protection of all data and information provided by applicants, clients, and companies in accordance with the following provisions:</p>
           <h4>First: Collection of Data and Documents</h4>
-          <p>The collection of data and documents is strictly limited to the information necessary to provide the requested legal or advisory service, including personal details, contact information, corporate documents, contracts, and all records relevant to the subject matter of the request.</p>
+          <p>The collection of data and documents is strictly limited to the information necessary to provide the requested legal service, including personal details, contact information, corporate documents, contracts, and all records relevant to the subject matter of the request.</p>
           <h4>Second: Professional Confidentiality & Non-Disclosure</h4>
           <p>All received information, correspondence, and documents are subject to the attorney’s duty of professional confidentiality. Disclosing, sharing, or circulating such information to any entity or third party is strictly prohibited under any circumstances, except where expressly authorized in writing by the concerned party, required to complete procedures before official and judicial authorities pursuant to a valid Power of Attorney, or mandated by an enforceable judicial order.</p>
           <h4>Third: Information Security & Data Retention</h4>
@@ -500,13 +517,13 @@
         `,
         delivery: `
           <h3>Service Delivery & Work Handover Policy</h3>
-          <p>As the practice of Ali Hashimi for Advocacy & Legal Services specializes in legal advocacy and providing legal, advisory, and related executive legal services (and involves no physical shipping or merchandise delivery), operations are governed by the following rules:</p>
+          <p>As the practice of Law Office of Ali Kadhim Hashimi specializes in legal advocacy and providing legal and related executive legal services (and involves no physical shipping or merchandise delivery), operations are governed by the following rules:</p>
           <h4>First: Payment Confirmation & Electronic Receipt</h4>
           <p>Completing the electronic payment and generating the payment confirmation via the authorized gateway constitutes official confirmation of the financial transaction, and an electronic copy of the payment receipt is issued to the applicant immediately upon completion.</p>
-          <h4>Second: Legal Consultation Sessions (In-Person & Online)</h4>
+          <h4>Second: Legal Appointments & Follow-ups</h4>
           <p>Booking confirmation, appointment scheduling, and online meeting links or office attendance details are sent via email or the WhatsApp number registered in the booking form via the booking platform (https://akjassem.com/booking/) immediately upon successful payment completion.</p>
           <h4>Third: Contracts & Legal Studies</h4>
-          <p>Draft contracts, legal memoranda, and advisory reports are delivered electronically via the Office’s official email or authorized messaging channel progressively in accordance with work requirements and the nature of each matter.</p>
+          <p>Draft contracts, legal memoranda, and legal reports are delivered electronically via the Office’s official email or authorized messaging channel progressively in accordance with work requirements and the nature of each matter.</p>
           <h4>Fourth: Executive Transactions & Official Documents</h4>
           <p>Electronic copies of official documents, incorporation certificates, and Powers of Attorney are delivered upon issuance by the competent authorities, whereas original hard copies are handed over in person at the Office’s premises to the concerned party or their duly authorized representative.</p>
           <h4>Fifth: Responsibility for Data Accuracy</h4>
@@ -621,11 +638,11 @@
 
       document.getElementById('lang-toggle').textContent = isAr ? 'English' : 'العربية';
       document.getElementById('t-office').textContent = isAr
-        ? 'Law Office Of Ali Kadhem Hashimi'
-        : 'Ali Hashimi for Advocacy & Legal Services';
+        ? 'مكتب المحامي علي الكاظم'
+        : 'Law Office of Ali Kadhim Hashimi';
       document.getElementById('t-intro').textContent = isAr
-        ? 'تُخصص هذه المنصة لتسديد أتعاب الجلسات الاستشارية، وصياغة العقود والدراسات القانونية، والأعمال التنفيذية وتأسيس الشركات والدعاوى المقدمة من المكتب وفق أحكام قانون المحاماة العراقي النافذ.'
-        : 'This platform is dedicated to settling fees for legal consultation sessions, contract drafting, legal studies, company incorporation, lawsuits, and executive legal matters provided by the Office under the applicable Iraqi Advocacy Law.';
+        ? 'تُخصص هذه المنصة لتسديد أتعاب المحاماة والخدمات القانونية، وصياغة العقود والدراسات القانونية، والأعمال التنفيذية وتأسيس الشركات والدعاوى المقدمة من المكتب وفق أحكام قانون المحاماة العراقي النافذ.'
+        : 'This platform is dedicated to settling fees for legal advocacy and legal services, contract drafting, legal studies, company incorporation, lawsuits, and executive legal matters provided by the Office under the applicable Iraqi Advocacy Law.';
       document.getElementById('t-inv-badge').textContent = isAr ? 'إشعار سداد إلكتروني' : 'Electronic Payment Notice';
       document.getElementById('t-client-lbl').textContent = isAr ? 'اسم المراجع / الدافع:' : 'Applicant / Payer Name:';
       document.getElementById('t-service-lbl').textContent = isAr ? 'البيان / الخدمة:' : 'Legal Service:';
@@ -641,8 +658,8 @@
       document.getElementById('tab-delivery').textContent = isAr ? 'تقديم الخدمات وتسليم الأعمال' : 'Service Delivery Policy';
 
       document.getElementById('t-modal-office').textContent = isAr
-        ? 'Law Office Of Ali Kadhem Hashimi'
-        : 'Ali Hashimi for Advocacy & Legal Services';
+        ? 'مكتب المحامي علي الكاظم'
+        : 'Law Office of Ali Kadhim Hashimi';
       document.getElementById('t-modal-sub').textContent = isAr
         ? 'الضوابط والسياسات القانونية المعتمدة'
         : 'Official Legal Policies & Payment Terms';
@@ -651,8 +668,8 @@
         : 'I Have Read & Agree to All Policies ✓';
 
       document.getElementById('t-consent').innerHTML = isAr
-        ? 'أقرّ بأنني اطلعت ووافقت على <a href="javascript:void(0)" class="consent-link" onclick="openPolicyModal(\'fees\'); event.stopPropagation();">سياسة الأتعاب والاسترداد</a>، و<a href="javascript:void(0)" class="consent-link" onclick="openPolicyModal(\'privacy\'); event.stopPropagation();">سياسة الخصوصية وسرية المعلومات</a>، و<a href="javascript:void(0)" class="consent-link" onclick="openPolicyModal(\'delivery\'); event.stopPropagation();">سياسة تقديم الخدمات وتسليم الأعمال</a> الخاصة بـ Law Office Of Ali Kadhem Hashimi.'
-        : 'I acknowledge that I have read and agreed to the <a href="javascript:void(0)" class="consent-link" onclick="openPolicyModal(\'fees\'); event.stopPropagation();">Legal Fees & Refund Policy</a>, <a href="javascript:void(0)" class="consent-link" onclick="openPolicyModal(\'privacy\'); event.stopPropagation();">Privacy & Confidentiality Policy</a>, and <a href="javascript:void(0)" class="consent-link" onclick="openPolicyModal(\'delivery\'); event.stopPropagation();">Service Delivery Policy</a> of Ali Hashimi for Advocacy & Legal Services.';
+        ? 'أقرّ بأنني اطلعت ووافقت على <a href="javascript:void(0)" class="consent-link" onclick="openPolicyModal(\'fees\'); event.stopPropagation();">سياسة الأتعاب والاسترداد</a>، و<a href="javascript:void(0)" class="consent-link" onclick="openPolicyModal(\'privacy\'); event.stopPropagation();">سياسة الخصوصية وسرية المعلومات</a>، و<a href="javascript:void(0)" class="consent-link" onclick="openPolicyModal(\'delivery\'); event.stopPropagation();">سياسة تقديم الخدمات وتسليم الأعمال</a> الخاصة بمكتب المحامي علي الكاظم.'
+        : 'I acknowledge that I have read and agreed to the <a href="javascript:void(0)" class="consent-link" onclick="openPolicyModal(\'fees\'); event.stopPropagation();">Legal Fees & Refund Policy</a>, <a href="javascript:void(0)" class="consent-link" onclick="openPolicyModal(\'privacy\'); event.stopPropagation();">Privacy & Confidentiality Policy</a>, and <a href="javascript:void(0)" class="consent-link" onclick="openPolicyModal(\'delivery\'); event.stopPropagation();">Service Delivery Policy</a> of Law Office of Ali Kadhim Hashimi.';
 
       document.getElementById('pay-link').textContent = isAr
         ? 'الانتقال إلى بوابة الدفع الآمن 💳'
@@ -661,8 +678,8 @@
         ? '🔒 معاملات إلكترونية مشفرة وآمنة (ZainCash / MasterCard / Visa)'
         : '🔒 Encrypted & Secure Transactions (ZainCash / MasterCard / Visa)';
       document.getElementById('t-copy').textContent = isAr
-        ? 'جميع الحقوق محفوظة © 2026 | Law Office Of Ali Kadhem Hashimi'
-        : 'All Rights Reserved © 2026 | Ali Hashimi for Advocacy & Legal Services';
+        ? 'جميع الحقوق محفوظة © 2026 | مكتب المحامي علي الكاظم'
+        : 'All Rights Reserved © 2026 | Law Office of Ali Kadhim Hashimi';
 
       renderModalTab();
     }
@@ -679,8 +696,8 @@
         msgSec.className = 'status-box status-success';
         const refNote = payload.r ? (isAr ? ` (الرقم المرجعي: ${payload.r})` : ` (Ref: ${payload.r})`) : '';
         msgSec.textContent = isAr
-          ? `✅ تم استلام عملية الدفع بنجاح وتثبيتها في سجلات Law Office Of Ali Kadhem Hashimi${refNote}.`
-          : `✅ Payment completed successfully and recorded with Ali Hashimi for Advocacy & Legal Services${refNote}.`;
+          ? `✅ تم استلام عملية الدفع بنجاح وتثبيتها في سجلات مكتب المحامي علي الكاظم${refNote}.`
+          : `✅ Payment completed successfully and recorded with Law Office of Ali Kadhim Hashimi${refNote}.`;
         return;
       }
 
@@ -689,8 +706,8 @@
         msgSec.style.display = 'block';
         msgSec.className = 'status-box status-success';
         msgSec.textContent = isAr
-          ? `✅ تم تسديد هذه الفاتورة مسبقاً في سجلات Law Office Of Ali Kadhem Hashimi (${payload.ref || payload.r || ''}). للاستفسار يرجى التواصل مباشرة مع المكتب.`
-          : `✅ This invoice (${payload.ref || payload.r || ''}) has already been settled with Ali Hashimi for Advocacy & Legal Services. Please contact the office for inquiries.`;
+          ? `✅ تم تسديد هذه الفاتورة مسبقاً في سجلات مكتب المحامي علي الكاظم (${payload.ref || payload.r || ''}). للاستفسار يرجى التواصل مباشرة مع المكتب.`
+          : `✅ This invoice (${payload.ref || payload.r || ''}) has already been settled with Law Office of Ali Kadhim Hashimi. Please contact the office for inquiries.`;
         return;
       }
 
@@ -699,8 +716,8 @@
         msgSec.style.display = 'block';
         msgSec.className = 'status-box status-notice';
         msgSec.textContent = isAr
-          ? 'إشعار السداد هذا غير متاح حالياً أو تم إغلاقه. يرجى التواصل مع Law Office Of Ali Kadhem Hashimi لإصدار إشعار سداد جديد.'
-          : 'This payment notice is currently unavailable or closed. Please contact Ali Hashimi for Advocacy & Legal Services for a new notice.';
+          ? 'إشعار السداد هذا غير متاح حالياً أو تم إغلاقه. يرجى التواصل مع مكتب المحامي علي الكاظم لإصدار إشعار سداد جديد.'
+          : 'This payment notice is currently unavailable or closed. Please contact Law Office of Ali Kadhim Hashimi for a new notice.';
         return;
       }
 
@@ -717,8 +734,8 @@
         }
 
         const serviceText = isAr
-          ? (payload.t || 'أتعاب استشارة وخدمات قانونية')
-          : (payload.te || payload.t || 'Legal Consultation & Services');
+          ? (payload.t || 'أتعاب محاماة وخدمات قانونية')
+          : (payload.te || payload.t || 'Legal Advocacy & Services');
         document.getElementById('v-service').textContent = serviceText;
 
         if (payload.n) {
@@ -744,12 +761,12 @@
         msgSec.className = 'status-box status-notice';
         if (noticeMode === 'unavailable') {
           msgSec.textContent = isAr
-            ? 'إشعار السداد هذا غير متاح حالياً أو انتهت صلاحيته أو تم إغلاقه. يرجى التواصل مع Law Office Of Ali Kadhem Hashimi لإصدار إشعار سداد جديد.'
-            : 'This payment notice is unavailable, expired, or closed. Please contact Ali Hashimi for Advocacy & Legal Services for a new notice.';
+            ? 'إشعار السداد هذا غير متاح حالياً أو انتهت صلاحيته أو تم إغلاقه. يرجى التواصل مع مكتب المحامي علي الكاظم لإصدار إشعار سداد جديد.'
+            : 'This payment notice is unavailable, expired, or closed. Please contact Law Office of Ali Kadhim Hashimi for a new notice.';
         } else {
           msgSec.textContent = isAr
-            ? 'يرجى استخدام رابط الدفع المباشر المرسل إليكم من قبل Law Office Of Ali Kadhem Hashimi.'
-            : 'Please use the direct payment link sent to you by Ali Hashimi for Advocacy & Legal Services.';
+            ? 'يرجى استخدام رابط الدفع المباشر المرسل إليكم من قبل مكتب المحامي علي الكاظم.'
+            : 'Please use the direct payment link sent to you by Law Office of Ali Kadhim Hashimi.';
         }
       }
     }
