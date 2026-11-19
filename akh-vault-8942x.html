@@ -348,22 +348,36 @@ btn.disabled = true;
 btn.innerText = 'جارٍ توليد الرابط الآمن...';
 
 try {
-const response = await fetch('/api/process-link', {
+const response = await fetch('https://api.thewayl.com/api/v1/links', {
 method: 'POST',
-headers: { 'Content-Type': 'application/json' },
+headers: {
+'Content-Type': 'application/json',
+'X-WAYL-AUTHENTICATION': VAULT_DATA.waylKey
+},
 body: JSON.stringify({
-waylKey: VAULT_DATA.waylKey,
-title: fullLabel,
-amountIQD: amountIQD
+referenceId: 'AKH-' + Date.now(),
+total: amountIQD,
+currency: 'IQD',
+lineItem: [
+{
+label: fullLabel,
+amount: amountIQD,
+type: 'increase'
+}
+],
+redirectionUrl: 'https://akjassem.com/payment/?status=success'
 })
 });
 
 const data = await response.json();
-if (!response.ok || !data.url) {
-throw new Error(data.error || 'تعذر توليد رابط الدفع.');
+if (!response.ok) {
+throw new Error(data.message || JSON.stringify(data));
 }
 
-const params = new URLSearchParams({ t: title, d: displayAmount, u: data.url });
+const checkoutUrl = data.data?.url || data.url || data.paymentUrl;
+if (!checkoutUrl) throw new Error('لم يتم استلام رابط الدفع من البوابة.');
+
+const params = new URLSearchParams({ t: title, d: displayAmount, u: checkoutUrl });
 if (clientName) params.set('n', clientName);
 const brandedClientUrl = `https://akjassem.com/payment/?${params.toString()}`;
 
