@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>بوابة الإدارة المالية | AKH Law Office</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Cairo', system-ui, sans-serif; background-color: #f7f9fc; color: #1a1a1a; padding: 25px 12px; display: flex; justify-content: center; min-height: 100vh; align-items: flex-start; }
+.panel { max-width: 760px; width: 100%; background: #ffffff; border-radius: 16px; padding: 30px 24px; box-shadow: 0 4px 25px rgba(0,0,0,0.05); border-top: 6px solid #c5a059; }
+.brand-section { text-align: center; margin-bottom: 25px; border-bottom: 1.5px solid #edf2f7; padding-bottom: 18px; }
+.logo-text { font-size: 42px; font-weight: 800; letter-spacing: 2px; color: #0b1a30; line-height: 1; direction: ltr; }
+.logo-text span { color: #d32f2f; }
+.sub-title { font-size: 12.5px; font-weight: 700; color: #111; letter-spacing: 3px; margin-top: 6px; direction: ltr; }
+.sub-title span { color: #d32f2f; margin-right: 4px; font-weight: 800; }
+.est { font-size: 10px; color: #777; letter-spacing: 2px; margin-top: 3px; direction: ltr; }
+.portal-title { font-size: 18px; font-weight: 800; color: #0b1a30; margin-top: 10px; }
+
+.screen-box { text-align: center; padding: 25px 10px; }
+.lock-desc { font-size: 14.5px; color: #4a5568; margin-bottom: 20px; line-height: 1.6; }
+.secret-input { font-size: 20px; font-weight: 800; text-align: center; max-width: 280px; margin: 0 auto 16px; -webkit-text-security: disc; padding: 11px 14px; border: 1.5px solid #cbd5e0; border-radius: 8px; font-family: inherit; background-color: #fff; }
+.btn-unlock { width: 100%; max-width: 280px; background-color: #0b1a30; color: #ffffff; padding: 13px; border: none; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; font-family: inherit; margin: 0 auto; display: block; transition: 0.3s; }
+.btn-unlock:hover { background-color: #c5a059; color: #0b1a30; }
+.alert-box { padding: 12px 15px; border-radius: 8px; margin-bottom: 18px; font-size: 13.5px; display: none; }
+.alert-error { background-color: #fde8e8; color: #9b1c1c; }
+.alert-success { background-color: #def7ec; color: #03543f; }
+
+.top-nav-bar { display: flex; justify-content: space-between; align-items: center; background-color: #f8fafc; border: 1.5px solid #e2e8f0; padding: 12px 18px; border-radius: 10px; margin-bottom: 25px; flex-wrap: wrap; gap: 10px; }
+.top-nav-bar a, .btn-nav-action { background-color: #0b1a30; color: #ffffff; text-decoration: none; padding: 7px 14px; border-radius: 6px; font-size: 13px; font-weight: 700; border: none; cursor: pointer; font-family: inherit; transition: 0.3s; }
+.top-nav-bar a:hover, .btn-nav-action:hover { background-color: #c5a059; color: #0b1a30; }
+.btn-lock-nav { background-color: #e53e3e; }
+.btn-lock-nav:hover { background-color: #c53030 !important; color: #fff !important; }
+
+.card-section { background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 20px; margin-bottom: 22px; }
+.card-section h2 { font-size: 16px; font-weight: 800; color: #0b1a30; margin-bottom: 15px; border-bottom: 1px dashed #cbd5e0; padding-bottom: 10px; }
+.form-group { margin-bottom: 15px; text-align: right; }
+label { display: block; font-weight: 700; font-size: 13.5px; margin-bottom: 6px; color: #2d3748; }
+select, input[type="text"], input[type="number"], input[type="password"] { width: 100%; padding: 11px 14px; border: 1.5px solid #cbd5e0; border-radius: 8px; font-family: inherit; font-size: 14px; background-color: #fff; }
+.row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 520px) { .row-2 { grid-template-columns: 1fr; } }
+
+.btn-submit { background-color: #0b1a30; color: #ffffff; border: 2px solid #0b1a30; padding: 13px 22px; font-size: 15px; font-weight: 800; border-radius: 8px; cursor: pointer; font-family: inherit; width: 100%; box-shadow: 0 3px 10px rgba(0,0,0,0.08); transition: 0.3s; }
+.btn-submit:hover { background-color: #c5a059; border-color: #c5a059; color: #0b1a30; }
+.btn-submit:disabled { background-color: #94a3b8; border-color: #94a3b8; cursor: not-allowed; }
+
+.result-box { background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 10px; padding: 16px; margin-top: 20px; display: none; }
+.result-box input { direction: ltr; text-align: left; font-weight: 700; color: #0b1a30; margin: 10px 0; background: #fff; }
+.btn-copy { background-color: #16a34a; color: #fff; border: none; padding: 10px 16px; border-radius: 8px; font-weight: 700; font-family: inherit; cursor: pointer; width: 100%; font-size: 14px; }
+.btn-wa { background-color: #25d366; color: #fff; text-decoration: none; display: block; text-align: center; padding: 10px 16px; border-radius: 8px; font-weight: 700; margin-top: 8px; font-size: 14px; }
+
+.history-item { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.portal-footer { text-align: center; padding: 20px 10px 5px 10px; font-size: 12px; color: #64748b; border-top: 1.5px solid #edf2f7; margin-top: 30px; font-weight: 600; }
+.portal-footer span { display: block; margin-top: 4px; font-size: 11px; color: #94a3b8; }
+</style>
+</head>
+<body>
+
+<div class="panel">
+<div class="brand-section">
+<div class="logo-text">A<span>K</span>H</div>
+<div class="sub-title"><span style="color: #d32f2f;">/</span> LAW OFFICE</div>
+<div class="est">EST. 2014</div>
+<div class="portal-title">إدارة روابط الدفع الإلكتروني</div>
+</div>
+
+<div id="statusAlert" class="alert-box alert-error"></div>
+
+<!-- شاشة الإعداد الأولي (3 خيارات) -->
+<div id="setupScreen" class="screen-box" style="display: none;">
+<p class="lock-desc"><strong>إعداد خزنة الأمان الموحدة للمكتب:</strong><br>أدخل المفاتيح والرقم السري لتشفيرها وحفظها في خزنتك:</p>
+
+<div style="max-width: 440px; margin: 0 auto;">
+  <div class="form-group">
+    <label>1. مفتاح الموقع الأصلي (GitHub PAT Token):</label>
+    <input type="password" id="setupGithubInput" placeholder="ghp_xxxxxxxxxxxx" dir="ltr" style="-webkit-text-security: disc;">
+  </div>
+  <div class="form-group">
+    <label>2. مفتاح بوابة الدفع الطويل (Wayl API Key):</label>
+    <input type="password" id="setupWaylInput" placeholder="ألصق مفتاح الدفع الطويل هنا..." dir="ltr" style="-webkit-text-security: disc;">
+  </div>
+  <div class="form-group">
+    <label>3. الرقم السري للدخول (PIN Code):</label>
+    <input type="password" id="setupPinInput" class="secret-input" style="max-width: 100%;" placeholder="••••••••">
+  </div>
+</div>
+
+<button type="button" class="btn-unlock" onclick="performSetup()">تشفير وحفظ الخزنة 🔒</button>
+</div>
+
+<!-- شاشة القفل -->
+<div id="lockScreen" class="screen-box" style="display: none;">
+<p class="lock-desc"><span>الخزنة المشفرة محمية بالرقم السري.</span><br>أدخل الرقم السري لفتح اللوحة:</p>
+<div class="form-group" style="max-width: 280px; margin: 0 auto 16px;">
+<input type="password" id="unlockPinInput" class="secret-input" placeholder="••••••••" autofocus>
+</div>
+<button type="button" class="btn-unlock" onclick="attemptPinUnlock()">دخول آمن ←</button>
+<div style="margin-top: 15px;">
+  <button type="button" onclick="resetVaultPrompt()" style="background:none; border:none; color:#64748b; text-decoration:underline; font-size:12px; cursor:pointer; font-family:inherit;">إعادة إدخال المفاتيح من جديد</button>
+</div>
+</div>
+
+<!-- لوحة التحكم -->
+<div id="dashboardScreen" style="display: none;">
+<div class="top-nav-bar">
+<span style="font-size: 13px; font-weight: 700; color: #2d3748;">🟢 الخزنة متصلة ومشفرة 🛡️</span>
+<div style="display: flex; gap: 8px; flex-wrap: wrap;">
+<button type="button" class="btn-nav-action btn-lock-nav" onclick="lockPortal()">قفل الجلسة 🔒</button>
+<a href="https://akjassem.com/payment/" target="_blank">معاينة واجهة الموكل 🌐</a>
+</div>
+</div>
+
+<div class="card-section">
+<h2>💳 إنشاء رابط دفع مخصص للموكل</h2>
+<form id="paymentForm" onsubmit="createPaymentLink(event)">
+<div class="form-group">
+<label>اسم الموكل (اختياري):</label>
+<input type="text" id="clientName" placeholder="مثال: السيد أحمد محمد علي">
+</div>
+
+<div class="form-group">
+<label>موضوع الاستشارة أو الخدمة القانونية:</label>
+<input type="text" id="serviceTitle" placeholder="مثال: استشارة قانونية - أحوال شخصية" required>
+</div>
+
+<div class="row-2">
+<div class="form-group">
+<label>المبلغ المطلوب:</label>
+<input type="number" id="amountInput" placeholder="مثال: 75000" min="1" step="any" required>
+</div>
+<div class="form-group">
+<label>العملة:</label>
+<select id="currencySelect" onchange="toggleExchangeRate()">
+<option value="IQD" selected>دينار عراقي (IQD)</option>
+<option value="USD">دولار أمريكي (USD)</option>
+</select>
+</div>
+</div>
+
+<div class="form-group" id="rateGroup" style="display: none; background: #fffbeb; padding: 12px; border-radius: 8px; border: 1px solid #fde68a;">
+<label>سعر الصرف المعتمد للتحويل إلى الدينار العراقي:</label>
+<input type="number" id="exchangeRate" value="1320" min="1000">
+</div>
+
+<button type="submit" id="generateBtn" class="btn-submit">توليد رابط الدفع النظيف 🚀</button>
+</form>
+
+<div class="result-box" id="resultBox">
+<div style="font-weight: 800; color: #166534; font-size: 14.5px;">✅ تم إصدار رابط الدفع بنجاح!</div>
+<input type="text" id="finalClientLink" readonly>
+<button type="button" class="btn-copy" onclick="copyGeneratedLink()">📋 نسخ رابط الدفع</button>
+<a id="waShareBtn" class="btn-wa" href="#" target="_blank">🟢 إرسال الرابط مباشرة عبر واتساب</a>
+</div>
+</div>
+
+<div class="card-section">
+<h2>📋 آخر الروابط المُصدرة (متزامنة مع حسابك)</h2>
+<div id="recentLinksList">
+<p style="font-size: 13px; color: #718096; text-align: center;">جارٍ تحميل السجل...</p>
+</div>
+</div>
+
+<div class="card-section">
+<h2>🔐 تحديث المفاتيح والرقم السري</h2>
+<form id="securityForm" onsubmit="updateSecurityVault(event)">
+<div class="form-group">
+<label>الرقم السري الحالي (للتأكيد):</label>
+<input type="password" id="currentPinInput" placeholder="••••••••" required style="-webkit-text-security: disc;">
+</div>
+<div class="form-group">
+<label>1. مفتاح الموقع الأصلي الجديد (GitHub PAT - اتركه فارغاً للإبقاء على الحالي):</label>
+<input type="password" id="newGithubInput" placeholder="ghp_xxxxxxxxxxxx" dir="ltr" style="-webkit-text-security: disc;">
+</div>
+<div class="form-group">
+<label>2. مفتاح بوابة الدفع الجديد (اتركه فارغاً للإبقاء على الحالي):</label>
+<input type="password" id="newWaylInput" placeholder="ألصق المفتاح الجديد..." dir="ltr" style="-webkit-text-security: disc;">
+</div>
+<div class="form-group">
+<label>3. الرقم السري الجديد (PIN - اتركه فارغاً للإبقاء على الحالي):</label>
+<input type="password" id="newPinInput" placeholder="••••••••" style="-webkit-text-security: disc;">
+</div>
+<button type="submit" class="btn-submit" style="background-color: #9b1c1c; border-color: #b91c1c;">تحديث وتشفير الخزنة 🔒</button>
+</form>
+</div>
+
+<footer class="portal-footer">
+  إدارة المدفوعات الإلكترونية — مكتب المحامي علي كاظم الهاشمي
+  <span>جميع الحقوق محفوظة © 2026 | AKH Unified Vault</span>
+</footer>
+</div>
+</div>
+
+<script>
+const REPO_OWNER = 'akjassem-netizen';
+const REPO_NAME = 'Site';
+const BRANCH = 'main';
+const LOG_FILE_PATH = 'payment-records.json';
+
+let VAULT_DATA = { githubToken: '', waylKey: '' };
+
+function utf8_to_b64(str) { return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (_, p1) => String.fromCharCode('0x' + p1))); }
+function b64_to_utf8(str) { return decodeURIComponent(atob(str).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join('')); }
+
+async function deriveKey(pin, salt) {
+const enc = new TextEncoder();
+const keyMaterial = await crypto.subtle.importKey('raw', enc.encode(pin), { name: 'PBKDF2' }, false, ['deriveKey']);
+return crypto.subtle.deriveKey({ name: 'PBKDF2', salt: salt, iterations: 100000, hash: 'SHA-256' }, keyMaterial, { name: 'AES-GCM', length: 256 }, false, ['encrypt', 'decrypt']);
+}
+
+async function encryptVaultObj(obj, pin) {
+const enc = new TextEncoder();
+const salt = crypto.getRandomValues(new Uint8Array(16));
+const iv = crypto.getRandomValues(new Uint8Array(12));
+const key = await deriveKey(pin, salt);
+const encrypted = await crypto.subtle.encrypt({ name: 'AES-GCM', iv: iv }, key, enc.encode(JSON.stringify(obj)));
+return { salt: Array.from(salt), iv: Array.from(iv), data: Array.from(new Uint8Array(encrypted)) };
+}
+
+async function decryptVaultObj(encryptedObj, pin) {
+const salt = new Uint8Array(encryptedObj.salt);
+const iv = new Uint8Array(encryptedObj.iv);
+const data = new Uint8Array(encryptedObj.data);
+const key = await deriveKey(pin, salt);
+const decrypted = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: iv }, key, data);
+return JSON.parse(new TextDecoder().decode(decrypted));
+}
+
+window.onload = function() {
+const sessionVault = sessionStorage.getItem('akh_unified_pay_session');
+const savedVault = localStorage.getItem('akh_unified_pay_vault');
+
+if (sessionVault) {
+VAULT_DATA = JSON.parse(sessionVault);
+document.getElementById('dashboardScreen').style.display = 'block';
+loadSyncHistory();
+} else if (savedVault) {
+document.getElementById('lockScreen').style.display = 'block';
+} else {
+document.getElementById('setupScreen').style.display = 'block';
+}
+};
+
+async function performSetup() {
+const gh = document.getElementById('setupGithubInput').value.trim();
+const wayl = document.getElementById('setupWaylInput').value.trim();
+const pin = document.getElementById('setupPinInput').value.trim();
+
+if (!gh.startsWith('ghp_') && !gh.startsWith('github_pat_')) { showAlert('مفتاح الموقع الأصلي غير صالح.', false); return; }
+if (wayl.length < 10) { showAlert('مفتاح بوابة الدفع غير صالح.', false); return; }
+if (!pin) { showAlert('يرجى إدخال الرقم السري.', false); return; }
+
+try {
+const payload = { githubToken: gh, waylKey: wayl };
+const encrypted = await encryptVaultObj(payload, pin);
+localStorage.setItem('akh_unified_pay_vault', JSON.stringify(encrypted));
+VAULT_DATA = payload;
+sessionStorage.setItem('akh_unified_pay_session', JSON.stringify(payload));
+document.getElementById('setupScreen').style.display = 'none';
+document.getElementById('dashboardScreen').style.display = 'block';
+loadSyncHistory();
+} catch(e) { showAlert('خطأ في التشفير: ' + e.message, false); }
+}
+
+async function attemptPinUnlock() {
+const pin = document.getElementById('unlockPinInput').value.trim();
+try {
+const encrypted = JSON.parse(localStorage.getItem('akh_unified_pay_vault'));
+VAULT_DATA = await decryptVaultObj(encrypted, pin);
+sessionStorage.setItem('akh_unified_pay_session', JSON.stringify(VAULT_DATA));
+document.getElementById('lockScreen').style.display = 'none';
+document.getElementById('dashboardScreen').style.display = 'block';
+loadSyncHistory();
+} catch(e) {
+showAlert('❌ الرقم السري غير صحيح!', false);
+document.getElementById('unlockPinInput').value = '';
+}
+}
+
+function resetVaultPrompt() {
+if (confirm('هل تريد مسح الخزنة من هذا المتصفح وإعادة إدخال المفاتيح؟')) {
+localStorage.removeItem('akh_unified_pay_vault');
+sessionStorage.removeItem('akh_unified_pay_session');
+location.reload();
+}
+}
+
+function lockPortal() {
+sessionStorage.removeItem('akh_unified_pay_session');
+location.reload();
+}
+
+async function updateSecurityVault(e) {
+e.preventDefault();
+const currentPin = document.getElementById('currentPinInput').value.trim();
+const newGh = document.getElementById('newGithubInput').value.trim();
+const newWayl = document.getElementById('newWaylInput').value.trim();
+const newPin = document.getElementById('newPinInput').value.trim();
+
+try {
+const encrypted = JSON.parse(localStorage.getItem('akh_unified_pay_vault'));
+const currentData = await decryptVaultObj(encrypted, currentPin);
+
+const updatedData = {
+githubToken: newGh || currentData.githubToken,
+waylKey: newWayl || currentData.waylKey
+};
+const targetPin = newPin || currentPin;
+
+const newEncrypted = await encryptVaultObj(updatedData, targetPin);
+localStorage.setItem('akh_unified_pay_vault', JSON.stringify(newEncrypted));
+VAULT_DATA = updatedData;
+sessionStorage.setItem('akh_unified_pay_session', JSON.stringify(updatedData));
+document.getElementById('securityForm').reset();
+alert('تم تحديث وتشفير الخزنة بنجاح 🔒');
+} catch(err) {
+alert('❌ الرقم السري الحالي غير صحيح.');
+}
+}
+
+function toggleExchangeRate() {
+const curr = document.getElementById('currencySelect').value;
+document.getElementById('rateGroup').style.display = curr === 'USD' ? 'block' : 'none';
+}
+
+async function createPaymentLink(e) {
+e.preventDefault();
+const btn = document.getElementById('generateBtn');
+const clientName = document.getElementById('clientName').value.trim();
+const title = document.getElementById('serviceTitle').value.trim();
+let rawAmount = parseFloat(document.getElementById('amountInput').value);
+const currency = document.getElementById('currencySelect').value;
+
+let amountIQD = Math.round(rawAmount);
+let displayAmount = `${amountIQD.toLocaleString()} د.ع`;
+
+if (currency === 'USD') {
+const rate = parseFloat(document.getElementById('exchangeRate').value) || 1320;
+amountIQD = Math.round(rawAmount * rate);
+displayAmount = `${rawAmount}$ (${amountIQD.toLocaleString()} د.ع)`;
+}
+
+const fullLabel = clientName ? `${title} - الموكل: ${clientName}` : title;
+
+btn.disabled = true;
+btn.innerText = 'جارٍ توليد الرابط الآمن...';
+
+try {
+const response = await fetch('/api/process-link', {
+method: 'POST',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify({
+waylKey: VAULT_DATA.waylKey,
+title: fullLabel,
+amountIQD: amountIQD
+})
+});
+
+const data = await response.json();
+if (!response.ok || !data.url) {
+throw new Error(data.error || 'تعذر توليد رابط الدفع.');
+}
+
+const params = new URLSearchParams({ t: title, d: displayAmount, u: data.url });
+if (clientName) params.set('n', clientName);
+const brandedClientUrl = `https://akjassem.com/payment/?${params.toString()}`;
+
+document.getElementById('finalClientLink').value = brandedClientUrl;
+const waText = encodeURIComponent(`مكتب المحامي علي كاظم الهاشمي\nالموضوع: ${title}\nالمبلغ المستحق: ${displayAmount}\nرابط الدفع الإلكتروني المباشر:\n${brandedClientUrl}`);
+document.getElementById('waShareBtn').href = `https://api.whatsapp.com/send?text=${waText}`;
+document.getElementById('resultBox').style.display = 'block';
+
+await syncHistoryToGithub({ title, clientName, displayAmount, url: brandedClientUrl, date: new Date().toLocaleString('ar-IQ') });
+} catch (err) {
+alert('❌ خطأ: ' + err.message);
+} finally {
+btn.disabled = false;
+btn.innerText = 'توليد رابط الدفع النظيف 🚀';
+}
+}
+
+function copyGeneratedLink() {
+const inp = document.getElementById('finalClientLink');
+inp.select();
+navigator.clipboard.writeText(inp.value);
+alert('تم نسخ رابط الدفع بنجاح 📋');
+}
+
+async function loadSyncHistory() {
+const container = document.getElementById('recentLinksList');
+try {
+const res = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${LOG_FILE_PATH}?ref=${BRANCH}`, {
+headers: { 'Authorization': `Bearer ${VAULT_DATA.githubToken}` }
+});
+if (!res.ok) {
+container.innerHTML = '<p style="font-size: 13px; color: #718096; text-align: center;">لا توجد روابط مصدرة بعد.</p>';
+return;
+}
+const fileData = await res.json();
+const list = JSON.parse(b64_to_utf8(fileData.content));
+renderHistoryList(list);
+} catch(e) {
+container.innerHTML = '<p style="font-size: 13px; color: #718096; text-align: center;">لا توجد روابط مصدرة بعد.</p>';
+}
+}
+
+async function syncHistoryToGithub(newItem) {
+try {
+const getUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${LOG_FILE_PATH}`;
+let list = [];
+let sha = null;
+
+const res = await fetch(`${getUrl}?ref=${BRANCH}`, {
+headers: { 'Authorization': `Bearer ${VAULT_DATA.githubToken}` }
+});
+
+if (res.ok) {
+const fileData = await res.json();
+sha = fileData.sha;
+list = JSON.parse(b64_to_utf8(fileData.content));
+}
+
+list.unshift(newItem);
+if (list.length > 30) list = list.slice(0, 30);
+
+const body = {
+message: `Log payment: ${newItem.title}`,
+content: utf8_to_b64(JSON.stringify(list, null, 2)),
+branch: BRANCH
+};
+if (sha) body.sha = sha;
+
+await fetch(getUrl, {
+method: 'PUT',
+headers: { 'Authorization': `Bearer ${VAULT_DATA.githubToken}`, 'Content-Type': 'application/json' },
+body: JSON.stringify(body)
+});
+
+renderHistoryList(list);
+} catch(e) {
+console.error('History sync skipped:', e);
+}
+}
+
+function renderHistoryList(list) {
+const container = document.getElementById('recentLinksList');
+if (!list || list.length === 0) {
+container.innerHTML = '<p style="font-size: 13px; color: #718096; text-align: center;">لا توجد روابط مصدرة بعد.</p>';
+return;
+}
+container.innerHTML = '';
+list.forEach(item => {
+container.innerHTML += `
+<div class="history-item">
+<div>
+<strong style="color:#0b1a30; font-size:14px;">${item.title}</strong> ${item.clientName ? `<span style="color:#4a5568; font-size:12.5px;">(${item.clientName})</span>` : ''}
+<div style="font-size:12px; color:#64748b; margin-top:3px;">المبلغ: <strong>${item.displayAmount}</strong> • ${item.date}</div>
+</div>
+<button type="button" onclick="navigator.clipboard.writeText('${item.url}'); alert('تم نسخ الرابط 📋');" style="background:#0b1a30; color:#fff; border:none; padding:6px 12px; border-radius:6px; font-size:12px; font-weight:700; cursor:pointer; font-family:inherit;">نسخ الرابط 📋</button>
+</div>`;
+});
+}
+
+function showAlert(msg, isSuccess) {
+const el = document.getElementById('statusAlert');
+el.className = 'alert-box ' + (isSuccess ? 'alert-success' : 'alert-error');
+el.innerText = msg;
+el.style.display = 'block';
+}
+</script>
+</body>
+</html>
