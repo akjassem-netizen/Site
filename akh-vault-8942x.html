@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow, noarchive">
-  <title>إدارة المدفوعات القانونية | مكتب المحامي علي كاظم الهاشمي</title>
+  <title>إدارة المدفوعات القانونية | Law Office Of Ali Kadhem Hashimi</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -260,7 +260,7 @@
       <div class="logo-text">A<span>K</span>H</div>
       <div class="sub-title">/ LAW OFFICE</div>
       <div class="est">EST. 2014</div>
-      <div class="office-title" id="t-office">مكتب المحامي علي كاظم الهاشمي</div>
+      <div class="office-title" id="t-office">Law Office Of Ali Kadhem Hashimi</div>
     </div>
 
     <!-- شاشة تأسيس البوابة لأول مرة -->
@@ -464,8 +464,8 @@
 
       document.getElementById('admin-lang-btn').textContent = isAr ? 'English' : 'العربية';
       document.getElementById('t-office').textContent = isAr
-        ? 'مكتب المحامي علي كاظم الهاشمي'
-        : 'Ali Hashimi for Advocacy & Legal Services';
+        ? 'Law Office Of Ali Kadhem Hashimi'
+        : 'Law Office Of Ali Kadhem Hashimi';
       document.getElementById('t-locked-title').textContent = isAr ? '🔒 البوابة مقفلة' : '🔒 Gateway Locked';
       document.getElementById('t-pin-lbl').textContent = isAr ? 'أدخل الرقم السري (PIN) لفتح لوحة الإدارة:' : 'Enter Gateway PIN to unlock:';
       document.getElementById('t-unlock-btn').textContent = isAr ? 'فتح البوابة' : 'Unlock Gateway';
@@ -687,7 +687,20 @@
           throw new Error('لم يتم استلام رابط الدفع من البوابة.');
         }
 
-        LAST_LINK = `https://akjassem.com/payment/?ref=${encodeURIComponent(refCode)}`;
+        const directParams = new URLSearchParams({
+          ref: refCode,
+          u: payUrl,
+          t: serviceTitleAr || serviceTitle,
+          te: serviceTitleEn || serviceTitle,
+          c: clientName,
+          n: serviceNotes,
+          a: String(amountIQD),
+          cur: currency,
+          orig: String(rawAmount),
+          rate: String(rate),
+          l: clientLang
+        });
+        LAST_LINK = `https://akjassem.com/payment/?${directParams.toString()}`;
 
         LAST_ENTRY = {
           ref: refCode,
@@ -733,7 +746,7 @@
 
       const msg = [
         `تحية طيبة${e && e.clientName ? ' الأستاذ/ة ' + e.clientName : ''}،`,
-        `مرفق أدناه رابط السداد الإلكتروني الخاص بمكتب المحامي علي كاظم الهاشمي:`,
+        `مرفق أدناه رابط السداد الإلكتروني الخاص بـ Law Office Of Ali Kadhem Hashimi:`,
         e && e.ref ? `• الرقم المرجعي: ${e.ref}` : null,
         e && e.serviceTitle ? `• بيان الخدمة: ${e.serviceTitle}` : null,
         e && e.notes ? `• التفاصيل: ${e.notes}` : null,
@@ -868,7 +881,7 @@
           </div>
           <div class="header">
             <div>
-              <h2 style="font-size:20px; font-weight:800;">مكتب المحامي علي كاظم الهاشمي</h2>
+              <h2 style="font-size:20px; font-weight:800;">Law Office Of Ali Kadhem Hashimi</h2>
               <div style="font-size:13px; color:#64748b;">للمحاماة والخدمات القانونية والاستشارية | بغداد - العراق</div>
             </div>
             <div class="logo">
@@ -893,7 +906,7 @@
 
           <div class="legal-box">
             <strong>خلاصة الإقرار القانوني الموثق إلكترونياً:</strong><br>
-            يُثبت هذا السجل الإلكتروني الصادر عن منصة السداد التابعة لمكتب المحامي علي كاظم الهاشمي (akjassem.com) أن صاحب العلاقة قد اطّلع قبل الانتقال إلى بوابة الدفع الإلكتروني على كافة الضوابط والسياسات المعتمدة للمكتب، وأقرّ صراحةً بالموافقة الكاملة عليها، وهي:<br>
+            يُثبت هذا السجل الإلكتروني الصادر عن منصة السداد التابعة لـ Law Office Of Ali Kadhem Hashimi (akjassem.com) أن صاحب العلاقة قد اطّلع قبل الانتقال إلى بوابة الدفع الإلكتروني على كافة الضوابط والسياسات المعتمدة، وأقرّ صراحةً بالموافقة الكاملة عليها، وهي:<br>
             1. <strong>سياسة الأتعاب والاسترداد وشروط الدفع الإلكتروني</strong> (استحقاق الأتعاب المكتسبة وفق أحكام قانون المحاماة العراقي النافذ).<br>
             2. <strong>سياسة الخصوصية وسرية المعلومات</strong>.<br>
             3. <strong>سياسة تقديم الخدمات وتسليم الأعمال</strong>.
@@ -901,7 +914,7 @@
 
           <div class="stamp">
             <div>تاريخ استخراج الوثيقة: ${new Date().toLocaleDateString('ar-IQ')}</div>
-            <div>مكتب المحامي علي كاظم الهاشمي<br><span style="font-size:12px; color:#64748b;">سجل التوثيق الإلكتروني المعتمد</span></div>
+            <div>Law Office Of Ali Kadhem Hashimi<br><span style="font-size:12px; color:#64748b;">سجل التوثيق الإلكتروني المعتمد</span></div>
           </div>
         </body>
         </html>
@@ -985,7 +998,7 @@
           </div>
           <div class="header">
             <div>
-              <h2 style="font-size:20px; font-weight:800;">مكتب المحامي علي كاظم الهاشمي</h2>
+              <h2 style="font-size:20px; font-weight:800;">Law Office Of Ali Kadhem Hashimi</h2>
               <div style="font-size:13px; color:#64748b;">للمحاماة والخدمات القانونية والاستشارية | بغداد - العراق</div>
             </div>
             <div class="logo">
@@ -1010,7 +1023,7 @@
 
           <div style="margin-top:30px; display:flex; justify-content:space-between; font-size:13.5px; font-weight:700;">
             <div>تاريخ تحرير المحضر: ${new Date().toLocaleDateString('ar-IQ')}</div>
-            <div>مكتب المحامي علي كاظم الهاشمي</div>
+            <div>Law Office Of Ali Kadhem Hashimi</div>
           </div>
         </body>
         </html>
