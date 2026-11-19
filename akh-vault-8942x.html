@@ -21,7 +21,7 @@
       padding: 24px 14px;
     }
     .panel {
-      max-width: 760px;
+      max-width: 780px;
       width: 100%;
       background: #ffffff;
       border-radius: 14px;
@@ -47,10 +47,10 @@
     [dir="ltr"] .lang-btn { left: auto; right: 18px; }
 
     .brand-section { text-align: center; margin-bottom: 24px; }
-    .logo-text { font-size: 38px; font-weight: 800; color: #0b1c36; letter-spacing: 2px; line-height: 1; }
+    .logo-text { font-size: 38px; font-weight: 800; color: #0b1c36; letter-spacing: 2px; line-height: 1; direction: ltr; }
     .logo-text span { color: #d32f2f; }
-    .sub-title { font-size: 12px; font-weight: 700; color: #64748b; letter-spacing: 3px; margin-top: 6px; }
-    .est { font-size: 11px; color: #94a3b8; margin-top: 2px; }
+    .sub-title { font-size: 12px; font-weight: 700; color: #64748b; letter-spacing: 3px; margin-top: 6px; direction: ltr; }
+    .est { font-size: 11px; color: #94a3b8; margin-top: 2px; direction: ltr; }
     .office-title { font-size: 16px; font-weight: 700; color: #0b1c36; margin-top: 10px; }
 
     .card {
@@ -79,7 +79,7 @@
     }
     .form-group { margin-bottom: 14px; }
     label { display: block; font-size: 13.5px; font-weight: 700; color: #1e293b; margin-bottom: 6px; }
-    input, select {
+    input, select, textarea {
       width: 100%;
       padding: 12px 14px;
       border: 1.5px solid #cbd5e1;
@@ -90,7 +90,7 @@
       color: #0b1c36;
       transition: border-color 0.2s;
     }
-    input:focus, select:focus { outline: none; border-color: #c59b27; }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: #c59b27; }
 
     .conv-box {
       display: none;
@@ -121,30 +121,24 @@
     .btn:disabled { opacity: 0.6; cursor: not-allowed; }
     .btn-gold { background: #c59b27; color: #0b1c36; }
     .btn-gold:hover { background: #b0881e; }
-    .btn-outline {
-      background: #ffffff;
+
+    .btn-sm {
+      padding: 7px 11px;
+      border-radius: 7px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
       border: 1.5px solid #cbd5e1;
-      color: #475569;
-      padding: 7px 12px;
-      font-size: 12.5px;
+      background: #ffffff;
+      color: #334155;
       width: auto;
     }
-    .btn-paid {
-      background: #f0fdf4;
-      border: 1.5px solid #86efac;
-      color: #166534;
-      padding: 7px 12px;
-      font-size: 12.5px;
-      width: auto;
-    }
-    .btn-refund {
-      background: #fef2f2;
-      border: 1.5px solid #fecaca;
-      color: #991b1b;
-      padding: 7px 12px;
-      font-size: 12.5px;
-      width: auto;
-    }
+    .btn-sm:hover { border-color: #0b1c36; }
+    .btn-paid { background: #f0fdf4; border-color: #86efac; color: #166534; }
+    .btn-refund { background: #fef2f2; border-color: #fecaca; color: #991b1b; }
+    .btn-report { background: #eff6ff; border-color: #bfdbfe; color: #1e40af; }
+    .btn-proof { background: #fffbeb; border-color: #fde68a; color: #92400e; }
 
     .result-box {
       display: none;
@@ -157,9 +151,9 @@
     .result-link {
       background: #ffffff;
       border: 1px solid #bbf7d0;
-      padding: 10px;
+      padding: 11px;
       border-radius: 6px;
-      font-size: 13px;
+      font-size: 13.5px;
       word-break: break-all;
       direction: ltr;
       text-align: left;
@@ -173,19 +167,30 @@
       background: #ffffff;
       border: 1px solid #e2e8f0;
       border-radius: 10px;
-      padding: 14px;
-      margin-bottom: 10px;
+      padding: 15px;
+      margin-bottom: 12px;
     }
     .hist-top {
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-start;
       flex-wrap: wrap;
       gap: 8px;
       margin-bottom: 6px;
     }
-    .history-title { font-weight: 800; color: #0b1c36; font-size: 14px; }
-    .history-meta { color: #64748b; font-size: 12.5px; margin-bottom: 10px; }
+    .hist-ref {
+      font-family: monospace;
+      font-size: 12.5px;
+      font-weight: 800;
+      color: #c59b27;
+      background: #0b1c36;
+      padding: 2px 8px;
+      border-radius: 5px;
+      direction: ltr;
+    }
+    .history-title { font-weight: 800; color: #0b1c36; font-size: 14.5px; margin-top: 4px; }
+    .history-payer { font-weight: 700; color: #334155; font-size: 13px; margin-top: 2px; }
+    .history-meta { color: #64748b; font-size: 12.5px; margin: 6px 0 10px; }
     .hist-actions { display: flex; flex-wrap: wrap; gap: 6px; }
 
     .status-pill {
@@ -201,12 +206,50 @@
     .hidden { display: none !important; }
     .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
     .badge {
-      background: #fef3c7;
-      color: #92400e;
-      padding: 4px 10px;
+      background: #dcfce7;
+      color: #166534;
+      padding: 5px 12px;
       border-radius: 20px;
-      font-size: 12px;
+      font-size: 12.5px;
       font-weight: 700;
+    }
+
+    /* نافذة إعداد محضر إثبات التنفيذ بالصور */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(11, 28, 54, 0.76);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      padding: 16px;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-card {
+      background: #ffffff;
+      border-top: 5px solid #c59b27;
+      border-radius: 14px;
+      width: 100%;
+      max-width: 600px;
+      max-height: 88vh;
+      overflow-y: auto;
+      padding: 22px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.35);
+    }
+    .img-preview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .img-preview-grid img {
+      width: 100%;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
     }
   </style>
 </head>
@@ -221,14 +264,14 @@
       <div class="office-title" id="t-office">مكتب المحامي علي كاظم الهاشمي</div>
     </div>
 
-    <!-- شاشة إعداد الخزنة لأول مرة -->
+    <!-- شاشة تأسيس البوابة لأول مرة -->
     <div id="setup-view" class="card hidden">
-      <div class="card-title">🔐 تأسيس خزنة الأمان المشفرة (لأول مرة)</div>
+      <div class="card-title">🔐 تأسيس البوابة المشفرة (لأول مرة)</div>
       <p style="font-size: 13px; color: #475569; margin-bottom: 14px;">
         تُشفَّر مفاتيحك محلياً في متصفحك باستخدام خوارزمية PBKDF2 + AES-GCM ولا تُرفع لأي خادم.
       </p>
       <div class="form-group">
-        <label>مفتاح GitHub (Personal Access Token - اختياري للمزامنة):</label>
+        <label>مفتاح GitHub (Personal Access Token - اختياري):</label>
         <input type="password" id="setup-gh" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
       </div>
       <div class="form-group">
@@ -236,63 +279,64 @@
         <input type="password" id="setup-wayl" placeholder="أدخل مفتاح Wayl API الخاص بمكتبك">
       </div>
       <div class="form-group">
-        <label>الرقم السري للخزنة (PIN):</label>
+        <label>الرقم السري للبوابة (PIN):</label>
         <input type="password" id="setup-pin" placeholder="اختر رقماً سرياً (6 أرقام أو أكثر)">
       </div>
-      <button class="btn" onclick="setupVault()">تشفير وحفظ الخزنة</button>
+      <button class="btn" onclick="setupVault()">تشفير وحفظ الإعدادات</button>
     </div>
 
-    <!-- شاشة فتح الخزنة -->
+    <!-- شاشة فتح البوابة -->
     <div id="unlock-view" class="card hidden">
-      <div class="card-title" id="t-locked-title">🔒 الخزنة مقفلة</div>
+      <div class="card-title" id="t-locked-title">🔒 البوابة مقفلة</div>
       <div class="form-group">
         <label id="t-pin-lbl">أدخل الرقم السري (PIN) لفتح لوحة الإدارة:</label>
         <input type="password" id="unlock-pin" placeholder="••••••" onkeypress="if(event.key==='Enter') unlockVault()">
       </div>
-      <button class="btn" id="t-unlock-btn" onclick="unlockVault()">فتح الخزنة</button>
+      <button class="btn" id="t-unlock-btn" onclick="unlockVault()">فتح البوابة</button>
       <div style="text-align: center; margin-top: 12px;">
-        <button class="btn btn-outline" id="t-reset-btn" onclick="resetVault()">إعادة ضبط الخزنة</button>
+        <button class="btn-sm" id="t-reset-btn" onclick="resetVault()">إعادة ضبط البوابة</button>
       </div>
     </div>
 
     <!-- لوحة التحكم الرئيسية -->
     <div id="dashboard-view" class="hidden">
       <div class="top-bar">
-        <span class="badge" id="t-vault-badge">🟢 الخزنة مفتوحة ومؤمّنة</span>
-        <button class="btn btn-outline" id="t-lock-btn" onclick="lockVault()">قفل الخزنة 🔒</button>
+        <span class="badge" id="t-vault-badge">🟢 البوابة نشطة ومؤمّنة</span>
+        <button class="btn-sm" id="t-lock-btn" onclick="lockVault()">قفل البوابة 🔒</button>
       </div>
 
       <div class="card">
-        <div class="card-title" id="t-create-title">💳 إنشاء رابط دفع مخصص للمراجع</div>
+        <div class="card-title" id="t-create-title">💳 إنشاء رابط سداد إلكتروني نظيف</div>
 
+        <!-- 1. اختيار اللغة أولاً -->
         <div class="grid-2">
           <div class="form-group">
-            <label id="t-client-lbl">اسم المراجع / الدافع (اختياري):</label>
-            <input type="text" id="client-name" placeholder="مثال: علي كاظم جاسم">
-          </div>
-          <div class="form-group">
-            <label id="t-client-lang-lbl">لغة صفحة المراجع الافتراضية:</label>
-            <select id="client-lang">
+            <label id="t-client-lang-lbl">لغة الفاتورة وصفحة المراجع:</label>
+            <select id="client-lang" onchange="toggleServiceLangInput()">
               <option value="ar">العربية (Arabic)</option>
               <option value="en">الإنجليزية (English)</option>
             </select>
           </div>
+          <div class="form-group">
+            <label id="t-client-lbl">اسم المراجع / الدافع (اختياري):</label>
+            <input type="text" id="client-name" placeholder="مثال: علي كاظم جاسم">
+          </div>
         </div>
 
-        <div class="grid-2">
-          <div class="form-group">
-            <label id="t-service-ar-lbl">موضوع الاستشارة أو الخدمة (بالعربية) *:</label>
-            <input type="text" id="service-title" placeholder="مثال: أتعاب استشارة قانونية / توكيل دعوى">
-          </div>
-          <div class="form-group">
-            <label id="t-service-en-lbl">موضوع الخدمة (بالإنجليزية - اختياري):</label>
-            <input type="text" id="service-title-en" placeholder="e.g., Legal Consultation Fee" dir="ltr">
-          </div>
+        <!-- 2. موضوع الخدمة حسب اللغة المختارة -->
+        <div class="form-group" id="group-service-ar">
+          <label id="t-service-ar-lbl">موضوع الاستشارة أو الخدمة القانونية *:</label>
+          <input type="text" id="service-title" placeholder="مثال: استشارة قانونية | أحوال شخصية">
+        </div>
+
+        <div class="form-group hidden" id="group-service-en">
+          <label id="t-service-en-lbl">Legal Service Subject (English) *:</label>
+          <input type="text" id="service-title-en" placeholder="e.g., Legal Consultation | Personal Status" dir="ltr">
         </div>
 
         <div class="form-group">
           <label id="t-notes-lbl">تفاصيل إضافية (رقم الدعوى / موعد الجلسة / ملاحظات - اختياري):</label>
-          <input type="text" id="service-notes" placeholder="مثال: إضبارة تأسيس شركة - جلسة حضورية">
+          <input type="text" id="service-notes" placeholder="مثال: جلسة استشارية حضورية - إضبارة رقم 14">
         </div>
 
         <div class="grid-2">
@@ -319,19 +363,19 @@
         <button class="btn btn-gold" id="generate-btn" onclick="createPaymentLink()">توليد رابط الدفع النظيف</button>
 
         <div id="result-box" class="result-box">
-          <div style="font-weight: 700; color: #166534; font-size: 14px;" id="t-gen-ok">✅ تم توليد رابط الدفع النظيف بنجاح:</div>
+          <div style="font-weight: 700; color: #166534; font-size: 14px;" id="t-gen-ok">✅ تم توليد الرابط النظيف بنجاح:</div>
           <div id="generated-url" class="result-link"></div>
           <div style="display: flex; gap: 8px; flex-wrap: wrap;">
             <button class="btn" style="flex: 1;" id="t-copy-btn" onclick="copyGeneratedLink()">نسخ الرابط 📋</button>
-            <button class="btn btn-outline" style="flex: 1;" id="t-wa-btn" onclick="shareWhatsApp()">إرسال عبر واتساب 💬</button>
-            <a id="preview-btn" href="#" target="_blank" class="btn btn-outline" style="flex: 1; text-align: center; text-decoration: none;">معاينة الصفحة 👁️</a>
+            <button class="btn-sm" style="flex: 1; padding: 12px;" id="t-wa-btn" onclick="shareWhatsApp()">إرسال عبر واتساب 💬</button>
+            <a id="preview-btn" href="#" target="_blank" class="btn-sm" style="flex: 1; padding: 12px; text-align: center; text-decoration: none;">معاينة الصفحة 👁️</a>
           </div>
         </div>
       </div>
 
       <div class="card">
-        <div class="card-title" id="t-history-title">📜 سجل الفواتير والروابط المُصدرة</div>
-        <div id="history-list" style="font-size: 13px; color: #64748b;">لا توجد روابط مصدرة بعد.</div>
+        <div class="card-title" id="t-history-title">📜 سجل الفواتير والتوثيق القانوني</div>
+        <div id="history-list" style="font-size: 13px; color: #64748b;">لا توجد فواتير مصدرة بعد.</div>
       </div>
 
       <div class="card">
@@ -353,6 +397,35 @@
     </div>
   </div>
 
+  <!-- نافذة إعداد محضر إثبات تنفيذ الخدمة المدعّم بالصور (محلي بالكامل) -->
+  <div class="modal-overlay" id="proofModal" onclick="closeProofModal()">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; padding-bottom:10px; border-bottom:1px solid #e2e8f0;">
+        <h3 style="color:#0b1c36; font-size:16px;">📎 محضر إثبات تنفيذ الخدمة / الاستشارة</h3>
+        <button type="button" class="btn-sm" onclick="closeProofModal()">✕</button>
+      </div>
+      <p style="font-size:12.5px; color:#475569; margin-bottom:12px; background:#f8fafc; padding:10px; border-radius:8px; border-inline-start:3px solid #c59b27;">
+        🔒 <strong>خصوصية تامة:</strong> تُعالج الصور والمرفقات محلياً داخل متصفحك فقط لتوليد تقرير PDF رسمي جاهز للطباعة أو الحفظ دون رفعها لأي خادم خارجي.
+      </p>
+      <div class="form-group">
+        <label>الرقم المرجعي وبيان المعاملة:</label>
+        <input type="text" id="proof-ref-display" readonly style="background:#f1f5f9; font-weight:700;">
+      </div>
+      <div class="form-group">
+        <label>ملخص ما تم تنفيذه وتسليمه للمراجع:</label>
+        <textarea id="proof-summary" rows="4" placeholder="مثال: تم تثبيت موعد الجلسة الاستشارية بتاريخ ... عبر منصة الحجز akjassem.com/booking، وانعقدت الجلسة في الموعد المحدد وتم تقديم الرأي القانوني / تسليم مسودة العقد عبر البريد الإلكتروني."></textarea>
+      </div>
+      <div class="form-group">
+        <label>إرفاق صور ولقطات شاشة داعمة (إشعار الحجز، محادثة التأكيد، الوصل):</label>
+        <input type="file" id="proof-images" accept="image/*" multiple onchange="previewProofImages(event)">
+        <div class="img-preview-grid" id="proof-img-grid"></div>
+      </div>
+      <div style="display:flex; gap:8px; margin-top:14px;">
+        <button type="button" class="btn btn-gold" onclick="generateProofPDF()">🖨️ إصدار وطباعة محضر الإثبات (PDF)</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     const WORKER_URL = 'https://akh-payment.akjassem.workers.dev';
     const VAULT_STORAGE_KEY = 'akh_encrypted_vault_v1';
@@ -361,6 +434,8 @@
     let LAST_LINK = '';
     let LAST_ENTRY = null;
     let adminLang = 'ar';
+    let currentProofItem = null;
+    let proofImageDataUrls = [];
 
     window.addEventListener('DOMContentLoaded', () => {
       const savedVault = localStorage.getItem(VAULT_STORAGE_KEY);
@@ -370,6 +445,17 @@
         document.getElementById('setup-view').classList.remove('hidden');
       }
     });
+
+    function toggleServiceLangInput() {
+      const l = document.getElementById('client-lang').value;
+      if (l === 'en') {
+        document.getElementById('group-service-ar').classList.add('hidden');
+        document.getElementById('group-service-en').classList.remove('hidden');
+      } else {
+        document.getElementById('group-service-en').classList.add('hidden');
+        document.getElementById('group-service-ar').classList.remove('hidden');
+      }
+    }
 
     function toggleAdminLang() {
       adminLang = adminLang === 'ar' ? 'en' : 'ar';
@@ -381,27 +467,25 @@
       document.getElementById('t-office').textContent = isAr
         ? 'مكتب المحامي علي كاظم الهاشمي'
         : 'Ali Hashimi for Advocacy & Legal Services';
-      document.getElementById('t-locked-title').textContent = isAr ? '🔒 الخزنة مقفلة' : '🔒 Vault Locked';
-      document.getElementById('t-pin-lbl').textContent = isAr ? 'أدخل الرقم السري (PIN) لفتح لوحة الإدارة:' : 'Enter Vault PIN to unlock:';
-      document.getElementById('t-unlock-btn').textContent = isAr ? 'فتح الخزنة' : 'Unlock Vault';
-      document.getElementById('t-reset-btn').textContent = isAr ? 'إعادة ضبط الخزنة' : 'Reset Vault';
-      document.getElementById('t-vault-badge').textContent = isAr ? '🟢 الخزنة مفتوحة ومؤمّنة' : '🟢 Vault Unlocked & Secured';
-      document.getElementById('t-lock-btn').textContent = isAr ? 'قفل الخزنة 🔒' : 'Lock Vault 🔒';
-      document.getElementById('t-create-title').textContent = isAr ? '💳 إنشاء رابط دفع مخصص للمراجع' : '💳 Generate Custom Payment Link';
+      document.getElementById('t-locked-title').textContent = isAr ? '🔒 البوابة مقفلة' : '🔒 Gateway Locked';
+      document.getElementById('t-pin-lbl').textContent = isAr ? 'أدخل الرقم السري (PIN) لفتح لوحة الإدارة:' : 'Enter Gateway PIN to unlock:';
+      document.getElementById('t-unlock-btn').textContent = isAr ? 'فتح البوابة' : 'Unlock Gateway';
+      document.getElementById('t-reset-btn').textContent = isAr ? 'إعادة ضبط البوابة' : 'Reset Gateway';
+      document.getElementById('t-vault-badge').textContent = isAr ? '🟢 البوابة نشطة ومؤمّنة' : '🟢 Gateway Active & Secured';
+      document.getElementById('t-lock-btn').textContent = isAr ? 'قفل البوابة 🔒' : 'Lock Gateway 🔒';
+      document.getElementById('t-create-title').textContent = isAr ? '💳 إنشاء رابط سداد إلكتروني نظيف' : '💳 Generate Clean Payment Link';
+      document.getElementById('t-client-lang-lbl').textContent = isAr ? 'لغة الفاتورة وصفحة المراجع:' : 'Invoice & Client Page Language:';
       document.getElementById('t-client-lbl').textContent = isAr ? 'اسم المراجع / الدافع (اختياري):' : 'Applicant / Payer Name (Optional):';
-      document.getElementById('t-client-lang-lbl').textContent = isAr ? 'لغة صفحة المراجع الافتراضية:' : 'Default Client Page Language:';
-      document.getElementById('t-service-ar-lbl').textContent = isAr ? 'موضوع الاستشارة أو الخدمة (بالعربية) *:' : 'Service Subject (Arabic) *:';
-      document.getElementById('t-service-en-lbl').textContent = isAr ? 'موضوع الخدمة (بالإنجليزية - اختياري):' : 'Service Subject (English - Optional):';
       document.getElementById('t-notes-lbl').textContent = isAr ? 'تفاصيل إضافية (رقم الدعوى / موعد الجلسة / ملاحظات - اختياري):' : 'Additional Details (Case No. / Session / Notes - Optional):';
       document.getElementById('t-currency-lbl').textContent = isAr ? 'العملة:' : 'Currency:';
       document.getElementById('t-amount-lbl').textContent = isAr ? 'المبلغ المطلوب *:' : 'Amount Payable *:';
       document.getElementById('t-rate-lbl').textContent = isAr ? 'سعر صرف الدولار المعتمد (دينار عراقي لكل 1 دولار):' : 'USD Exchange Rate (IQD per 1 USD):';
       document.getElementById('generate-btn').textContent = isAr ? 'توليد رابط الدفع النظيف' : 'Generate Clean Payment Link';
-      document.getElementById('t-gen-ok').textContent = isAr ? '✅ تم توليد رابط الدفع النظيف بنجاح:' : '✅ Clean payment link generated successfully:';
+      document.getElementById('t-gen-ok').textContent = isAr ? '✅ تم توليد الرابط النظيف بنجاح:' : '✅ Clean payment link generated successfully:';
       document.getElementById('t-copy-btn').textContent = isAr ? 'نسخ الرابط 📋' : 'Copy Link 📋';
       document.getElementById('t-wa-btn').textContent = isAr ? 'إرسال عبر واتساب 💬' : 'Send via WhatsApp 💬';
       document.getElementById('preview-btn').textContent = isAr ? 'معاينة الصفحة 👁️' : 'Preview Page 👁️';
-      document.getElementById('t-history-title').textContent = isAr ? '📜 سجل الفواتير والروابط المُصدرة' : '📜 Issued Invoices & Links Log';
+      document.getElementById('t-history-title').textContent = isAr ? '📜 سجل الفواتير والتوثيق القانوني' : '📜 Invoices & Legal Documentation Log';
       document.getElementById('t-keys-title').textContent = isAr ? '🔑 تحديث المفاتيح والرقم السري' : '🔑 Update Keys & PIN';
       document.getElementById('t-cur-pin-lbl').textContent = isAr ? 'الرقم السري الحالي (للتأكيد):' : 'Current PIN (to confirm):';
       document.getElementById('t-new-wayl-lbl').textContent = isAr ? 'مفتاح Wayl API الجديد (اتركه فارغاً للإبقاء على الحالي):' : 'New Wayl API Key (leave blank to keep current):';
@@ -434,15 +518,6 @@
         rateGroup.classList.add('hidden');
         convPreview.style.display = 'none';
       }
-    }
-
-    // تشفير نظيف ومضغوط لبيانات الفاتورة في الرابط (#...)
-    function encodeCleanHash(obj) {
-      const jsonStr = JSON.stringify(obj);
-      const bytes = new TextEncoder().encode(jsonStr);
-      let binStr = '';
-      for (let i = 0; i < bytes.length; i++) binStr += String.fromCharCode(bytes[i]);
-      return btoa(binStr).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
     }
 
     async function deriveKey(pin, salt) {
@@ -521,7 +596,7 @@
     }
 
     function resetVault() {
-      if (confirm('هل أنت متأكد من مسح الخزنة الحالية وإعادة إدخال المفاتيح من جديد؟')) {
+      if (confirm('هل أنت متأكد من مسح إعدادات البوابة الحالية وإعادة إدخال المفاتيح من جديد؟')) {
         localStorage.removeItem(VAULT_STORAGE_KEY);
         location.reload();
       }
@@ -543,17 +618,20 @@
         document.getElementById('update-current-pin').value = '';
         document.getElementById('update-wayl').value = '';
         document.getElementById('update-new-pin').value = '';
-        alert('✅ تم تحديث الخزنة وتشفيرها بنجاح.');
+        alert('✅ تم تحديث المفاتيح وتشفيرها بنجاح.');
       } catch (e) {
         alert('❌ الرقم السري الحالي غير صحيح.');
       }
     }
 
     async function createPaymentLink() {
-      const clientName = document.getElementById('client-name').value.trim();
       const clientLang = document.getElementById('client-lang').value;
-      const serviceTitle = document.getElementById('service-title').value.trim() || 'أتعاب استشارة وخدمات قانونية';
-      const serviceTitleEn = document.getElementById('service-title-en').value.trim() || serviceTitle;
+      const clientName = document.getElementById('client-name').value.trim();
+      const serviceTitleAr = document.getElementById('service-title').value.trim();
+      const serviceTitleEn = document.getElementById('service-title-en').value.trim();
+      const serviceTitle = clientLang === 'en'
+        ? (serviceTitleEn || 'Legal Consultation & Services')
+        : (serviceTitleAr || 'أتعاب استشارة وخدمات قانونية');
       const serviceNotes = document.getElementById('service-notes').value.trim();
       const currency = document.getElementById('currency-select').value;
       const rawAmount = Number(document.getElementById('amount-input').value);
@@ -573,7 +651,7 @@
       const refCode = 'AKH-' + new Date().getFullYear() + '-' + Math.floor(100 + Math.random() * 900);
       const btn = document.getElementById('generate-btn');
       btn.disabled = true;
-      btn.textContent = adminLang === 'ar' ? 'جارٍ توليد الرابط الآمن...' : 'Generating secure link...';
+      btn.textContent = adminLang === 'ar' ? 'جارٍ توليد الرابط النظيف...' : 'Generating clean link...';
 
       const fullLabel = clientName ? `${serviceTitle} - ${clientName}` : serviceTitle;
 
@@ -584,7 +662,18 @@
           body: JSON.stringify({
             waylKey: VAULT_DATA.waylKey,
             title: fullLabel,
-            amountIQD: amountIQD
+            amountIQD: amountIQD,
+            invoiceMeta: {
+              ref: refCode,
+              c: clientName,
+              t: serviceTitleAr || serviceTitle,
+              te: serviceTitleEn || serviceTitle,
+              n: serviceNotes,
+              cur: currency,
+              orig: rawAmount,
+              rate: rate,
+              l: clientLang
+            }
           })
         });
 
@@ -599,32 +688,19 @@
           throw new Error('لم يتم استلام رابط الدفع من البوابة.');
         }
 
-        const cleanHash = encodeCleanHash({
-          u: payUrl,
-          r: refCode,
-          c: clientName,
-          t: serviceTitle,
-          te: serviceTitleEn,
-          n: serviceNotes,
-          a: amountIQD,
-          cur: currency,
-          orig: rawAmount,
-          rate: rate,
-          l: clientLang
-        });
-
-        LAST_LINK = `https://akjassem.com/payment/#${cleanHash}`;
+        // رابط نظيف وقصير جداً
+        LAST_LINK = `https://akjassem.com/payment/?ref=${encodeURIComponent(refCode)}`;
 
         LAST_ENTRY = {
           ref: refCode,
           clientName: clientName || '',
-          serviceTitle,
-          serviceTitleEn,
+          serviceTitle: serviceTitle,
           notes: serviceNotes,
-          currency,
+          currency: currency,
           origAmount: rawAmount,
-          amountIQD,
-          rate,
+          amountIQD: amountIQD,
+          rate: rate,
+          lang: clientLang,
           status: 'pending',
           link: LAST_LINK,
           date: new Date().toLocaleString('ar-IQ')
@@ -647,7 +723,7 @@
     function copyGeneratedLink() {
       if (!LAST_LINK) return;
       navigator.clipboard.writeText(LAST_LINK);
-      alert(adminLang === 'ar' ? '✅ تم نسخ رابط الدفع إلى الحافظة.' : '✅ Payment link copied to clipboard.');
+      alert(adminLang === 'ar' ? '✅ تم نسخ الرابط النظيف إلى الحافظة.' : '✅ Clean link copied to clipboard.');
     }
 
     function shareWhatsApp() {
@@ -664,7 +740,7 @@
         e && e.serviceTitle ? `• بيان الخدمة: ${e.serviceTitle}` : null,
         e && e.notes ? `• التفاصيل: ${e.notes}` : null,
         amtStr ? `• المبلغ المستحق: ${amtStr}` : null,
-        `• رابط الدفع الآمن:\n${LAST_LINK}`
+        `• رابط السداد الآمن:\n${LAST_LINK}`
       ].filter(Boolean).join('\n');
 
       window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
@@ -673,7 +749,7 @@
     function saveToHistory(entry) {
       const list = JSON.parse(localStorage.getItem(HISTORY_STORAGE_KEY) || '[]');
       list.unshift(entry);
-      if (list.length > 50) list.pop();
+      if (list.length > 60) list.pop();
       localStorage.setItem(HISTORY_STORAGE_KEY, JSON.stringify(list));
       renderHistory();
     }
@@ -700,7 +776,7 @@
       const isAr = adminLang === 'ar';
 
       if (!list.length) {
-        container.innerHTML = isAr ? 'لا توجد روابط مصدرة بعد.' : 'No issued links yet.';
+        container.innerHTML = isAr ? 'لا توجد فواتير مصدرة بعد.' : 'No issued invoices yet.';
         return;
       }
 
@@ -718,17 +794,20 @@
         return `
           <div class="history-item">
             <div class="hist-top">
-              <div class="history-title">
-                ${item.ref ? `<span style="color:#c59b27; font-family:monospace;">[${item.ref}]</span> ` : ''}
-                ${item.serviceTitle} ${item.clientName ? `(${item.clientName})` : ''}
+              <div>
+                ${item.ref ? `<span class="hist-ref">${item.ref}</span>` : ''}
+                <div class="history-title">${item.serviceTitle}</div>
+                ${item.clientName ? `<div class="history-payer">${isAr ? 'المراجع:' : 'Applicant:'} ${item.clientName}</div>` : ''}
               </div>
               <span class="status-pill ${stClass}">${stLabel}</span>
             </div>
             <div class="history-meta">${amtDisplay} • ${item.date || ''}</div>
             <div class="hist-actions">
-              <button class="btn btn-outline" onclick="copyHistoryLink(${idx})">${isAr ? 'نسخ الرابط 📋' : 'Copy Link 📋'}</button>
-              <button class="btn btn-paid" onclick="updateHistoryStatus(${idx}, 'paid')">${isAr ? 'تأكيد الاستلام ✓' : 'Mark Paid ✓'}</button>
-              <button class="btn btn-refund" onclick="updateHistoryStatus(${idx}, 'refunded')">${isAr ? 'استرجاع ↩' : 'Refund ↩'}</button>
+              <button class="btn-sm" onclick="copyHistoryLink(${idx})">${isAr ? 'نسخ الرابط 📋' : 'Copy Link 📋'}</button>
+              <button class="btn-sm btn-paid" onclick="updateHistoryStatus(${idx}, 'paid')">${isAr ? 'تأكيد الاستلام ✓' : 'Mark Paid ✓'}</button>
+              <button class="btn-sm btn-refund" onclick="updateHistoryStatus(${idx}, 'refunded')">${isAr ? 'استرجاع ↩' : 'Refund ↩'}</button>
+              <button class="btn-sm btn-report" onclick="openConsentReport(${idx})">${isAr ? '📄 تقرير التوثيق والموافقة' : '📄 Consent Report'}</button>
+              <button class="btn-sm btn-proof" onclick="openProofModal(${idx})">${isAr ? '📎 محضر إنجاز بالصور' : '📎 Proof Report'}</button>
             </div>
           </div>
         `;
@@ -741,6 +820,206 @@
         navigator.clipboard.writeText(list[idx].link);
         alert(adminLang === 'ar' ? '✅ تم نسخ الرابط.' : '✅ Link copied.');
       }
+    }
+
+    // 1. توليد وطباعة تقرير التوثيق والموافقة الرسمية (PDF)
+    async function openConsentReport(idx) {
+      const list = JSON.parse(localStorage.getItem(HISTORY_STORAGE_KEY) || '[]');
+      const item = list[idx];
+      if (!item) return;
+
+      let remoteData = null;
+      if (item.ref) {
+        try {
+          const res = await fetch(`${WORKER_URL}?ref=${encodeURIComponent(item.ref)}`);
+          if (res.ok) remoteData = await res.json();
+        } catch (e) {}
+      }
+
+      const consent = remoteData && remoteData.consent ? remoteData.consent : null;
+      const amtStr = (item.currency === 'USD' && item.origAmount)
+        ? `$${Number(item.origAmount).toLocaleString('en-US')} USD (${Number(item.amountIQD).toLocaleString('en-US')} IQD)`
+        : `${Number(item.amountIQD).toLocaleString('en-US')} IQD`;
+
+      const win = window.open('', '_blank');
+      win.document.write(`
+        <!DOCTYPE html>
+        <html lang="ar" dir="rtl">
+        <head>
+          <meta charset="UTF-8">
+          <title>تقرير توثيق السداد والموافقة القانونية - ${item.ref || 'AKH'}</title>
+          <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+          <style>
+            body { font-family: 'Cairo', sans-serif; color: #0b1c36; padding: 30px; max-width: 800px; margin: 0 auto; line-height: 1.8; }
+            .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #c59b27; padding-bottom: 16px; margin-bottom: 24px; }
+            .logo { direction: ltr; text-align: left; }
+            .logo-main { font-size: 34px; font-weight: 800; line-height: 1; letter-spacing: 2px; }
+            .logo-main span { color: #d32f2f; }
+            .logo-sub { font-size: 11px; color: #64748b; letter-spacing: 2.5px; font-weight: 700; }
+            .doc-title { text-align: center; background: #0b1c36; color: #ffffff; padding: 10px; border-radius: 8px; font-size: 17px; font-weight: 800; margin-bottom: 20px; border-bottom: 3px solid #c59b27; }
+            table { width: 100%; border-collapse: collapse; margin-bottom: 22px; }
+            td, th { border: 1px solid #cbd5e1; padding: 10px 14px; text-align: right; font-size: 14px; }
+            th { background: #f8fafc; width: 32%; color: #475569; }
+            .legal-box { background: #f8fafc; border: 1px solid #cbd5e1; border-right: 4px solid #c59b27; padding: 16px; border-radius: 8px; font-size: 13.5px; margin-bottom: 24px; }
+            .stamp { margin-top: 30px; display: flex; justify-content: space-between; font-size: 13.5px; font-weight: 700; }
+            @media print { .no-print { display: none; } }
+          </style>
+        </head>
+        <body>
+          <div class="no-print" style="margin-bottom:16px; text-align:left;">
+            <button onclick="window.print()" style="background:#0b1c36; color:#fff; border:none; padding:10px 20px; border-radius:8px; font-family:'Cairo'; font-weight:700; cursor:pointer;">🖨️ طباعة / حفظ كملف PDF</button>
+          </div>
+          <div class="header">
+            <div>
+              <h2 style="font-size:20px; font-weight:800;">مكتب المحامي علي كاظم الهاشمي</h2>
+              <div style="font-size:13px; color:#64748b;">للمحاماة والخدمات القانونية والاستشارية | بغداد - العراق</div>
+            </div>
+            <div class="logo">
+              <div class="logo-main">A<span>K</span>H</div>
+              <div class="logo-sub">/ LAW OFFICE • EST. 2014</div>
+            </div>
+          </div>
+
+          <div class="doc-title">وثيقة توثيق إشعار السداد والموافقة الإلكترونية المسبقة</div>
+
+          <table>
+            <tr><th>الرقم المرجعي للمعاملة</th><td style="font-family:monospace; font-weight:800;">${item.ref || 'غير محدد'}</td></tr>
+            <tr><th>اسم المراجع / الدافع</th><td>${item.clientName || 'غير مذكور في الإشعار'}</td></tr>
+            <tr><th>موضوع الخدمة القانونية</th><td>${item.serviceTitle}</td></tr>
+            ${item.notes ? `<tr><th>تفاصيل إضافية</th><td>${item.notes}</td></tr>` : ''}
+            <tr><th>المبلغ المستحق</th><td style="font-weight:800;">${amtStr}</td></tr>
+            <tr><th>تاريخ إصدار الإشعار</th><td>${item.date || ''}</td></tr>
+            <tr><th>حالة الموافقة على السياسات</th><td>${consent ? '✅ تم الإقرار والموافقة الإلكترونية الصريحة قبل الدفع' : '⏳ بانتظار تسجيل إشارة الموافقة أو مدفوع مسبقاً'}</td></tr>
+            ${consent ? `<tr><th>توقيت الموافقة الدقيق</th><td style="direction:ltr; text-align:right;">${consent.localTime} (${consent.timestamp})</td></tr>` : ''}
+            ${consent && consent.ip ? `<tr><th>معرّف الاتصال (IP)</th><td style="direction:ltr; text-align:right; font-family:monospace;">${consent.ip}</td></tr>` : ''}
+          </table>
+
+          <div class="legal-box">
+            <strong>خلاصة الإقرار القانوني الموثق إلكترونياً:</strong><br>
+            يُثبت هذا السجل الإلكتروني الصادر عن منصة السداد التابعة لمكتب المحامي علي كاظم الهاشمي (akjassem.com) أن صاحب العلاقة قد اطّلع قبل الانتقال إلى بوابة الدفع الإلكتروني على كافة الضوابط والسياسات المعتمدة للمكتب، وأقرّ صراحةً بالموافقة الكاملة عليها، وهي:<br>
+            1. <strong>سياسة الأتعاب والاسترداد وشروط الدفع الإلكتروني</strong> (استحقاق الأتعاب المكتسبة وفق أحكام قانون المحاماة العراقي النافذ).<br>
+            2. <strong>سياسة الخصوصية وسرية المعلومات</strong>.<br>
+            3. <strong>سياسة تقديم الخدمات وتسليم الأعمال</strong>.
+          </div>
+
+          <div class="stamp">
+            <div>تاريخ استخراج الوثيقة: ${new Date().toLocaleDateString('ar-IQ')}</div>
+            <div>مكتب المحامي علي كاظم الهاشمي<br><span style="font-size:12px; color:#64748b;">سجل التوثيق الإلكتروني المعتمد</span></div>
+          </div>
+        </body>
+        </html>
+      `);
+      win.document.close();
+    }
+
+    // 2. نافذة محضر إثبات تنفيذ الخدمة بالصور
+    function openProofModal(idx) {
+      const list = JSON.parse(localStorage.getItem(HISTORY_STORAGE_KEY) || '[]');
+      currentProofItem = list[idx];
+      if (!currentProofItem) return;
+
+      proofImageDataUrls = [];
+      document.getElementById('proof-images').value = '';
+      document.getElementById('proof-img-grid').innerHTML = '';
+      document.getElementById('proof-summary').value = '';
+      document.getElementById('proof-ref-display').value =
+        `${currentProofItem.ref || ''} — ${currentProofItem.serviceTitle} ${currentProofItem.clientName ? '(' + currentProofItem.clientName + ')' : ''}`;
+      document.getElementById('proofModal').classList.add('open');
+    }
+
+    function closeProofModal() {
+      document.getElementById('proofModal').classList.remove('open');
+    }
+
+    function previewProofImages(event) {
+      const files = Array.from(event.target.files || []);
+      const grid = document.getElementById('proof-img-grid');
+      grid.innerHTML = '';
+      proofImageDataUrls = [];
+
+      files.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = e => {
+          proofImageDataUrls.push(e.target.result);
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          grid.appendChild(img);
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function generateProofPDF() {
+      if (!currentProofItem) return;
+      const item = currentProofItem;
+      const summary = document.getElementById('proof-summary').value.trim() || 'تم تنفيذ الخدمة القانونية وتثبيت الموعد وتسليم المخرجات وفق الأصول المعتمدة.';
+      const imagesHtml = proofImageDataUrls.map((src, i) => `
+        <div style="margin-bottom:16px; page-break-inside:avoid; border:1px solid #cbd5e1; padding:10px; border-radius:8px;">
+          <div style="font-size:12px; font-weight:700; color:#475569; margin-bottom:6px;">مرفق إثبات رقم (${i + 1}):</div>
+          <img src="${src}" style="max-width:100%; max-height:420px; display:block; margin:0 auto; border-radius:6px;">
+        </div>
+      `).join('');
+
+      const win = window.open('', '_blank');
+      win.document.write(`
+        <!DOCTYPE html>
+        <html lang="ar" dir="rtl">
+        <head>
+          <meta charset="UTF-8">
+          <title>محضر إثبات تنفيذ الخدمة - ${item.ref || 'AKH'}</title>
+          <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+          <style>
+            body { font-family: 'Cairo', sans-serif; color: #0b1c36; padding: 30px; max-width: 800px; margin: 0 auto; line-height: 1.8; }
+            .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #c59b27; padding-bottom: 16px; margin-bottom: 24px; }
+            .logo { direction: ltr; text-align: left; }
+            .logo-main { font-size: 34px; font-weight: 800; line-height: 1; letter-spacing: 2px; }
+            .logo-main span { color: #d32f2f; }
+            .logo-sub { font-size: 11px; color: #64748b; letter-spacing: 2.5px; font-weight: 700; }
+            .doc-title { text-align: center; background: #0b1c36; color: #ffffff; padding: 10px; border-radius: 8px; font-size: 17px; font-weight: 800; margin-bottom: 20px; border-bottom: 3px solid #c59b27; }
+            table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+            td, th { border: 1px solid #cbd5e1; padding: 10px 14px; text-align: right; font-size: 14px; }
+            th { background: #f8fafc; width: 32%; color: #475569; }
+            .summary-box { background: #f8fafc; border: 1px solid #cbd5e1; border-right: 4px solid #0b1c36; padding: 16px; border-radius: 8px; font-size: 14px; margin-bottom: 22px; white-space: pre-line; }
+            @media print { .no-print { display: none; } }
+          </style>
+        </head>
+        <body>
+          <div class="no-print" style="margin-bottom:16px; text-align:left;">
+            <button onclick="window.print()" style="background:#0b1c36; color:#fff; border:none; padding:10px 20px; border-radius:8px; font-family:'Cairo'; font-weight:700; cursor:pointer;">🖨️ طباعة / حفظ محضر الإثبات (PDF)</button>
+          </div>
+          <div class="header">
+            <div>
+              <h2 style="font-size:20px; font-weight:800;">مكتب المحامي علي كاظم الهاشمي</h2>
+              <div style="font-size:13px; color:#64748b;">للمحاماة والخدمات القانونية والاستشارية | بغداد - العراق</div>
+            </div>
+            <div class="logo">
+              <div class="logo-main">A<span>K</span>H</div>
+              <div class="logo-sub">/ LAW OFFICE • EST. 2014</div>
+            </div>
+          </div>
+
+          <div class="doc-title">محضر إثبات تقديم الخدمة القانونية وتسليم المخرجات</div>
+
+          <table>
+            <tr><th>الرقم المرجعي للفاتورة</th><td style="font-family:monospace; font-weight:800;">${item.ref || 'غير محدد'}</td></tr>
+            <tr><th>اسم المراجع / الدافع</th><td>${item.clientName || 'غير مذكور'}</td></tr>
+            <tr><th>موضوع الخدمة</th><td>${item.serviceTitle}</td></tr>
+            <tr><th>تاريخ المعاملة</th><td>${item.date || ''}</td></tr>
+          </table>
+
+          <h4 style="margin-bottom:8px;">بيان تنفيذ الخدمة والتسليم:</h4>
+          <div class="summary-box">${summary}</div>
+
+          ${proofImageDataUrls.length ? `<h4 style="margin-bottom:10px;">المرفقات والوثائق الإلكترونية الداعمة:</h4>${imagesHtml}` : ''}
+
+          <div style="margin-top:30px; display:flex; justify-content:space-between; font-size:13.5px; font-weight:700;">
+            <div>تاريخ تحرير المحضر: ${new Date().toLocaleDateString('ar-IQ')}</div>
+            <div>مكتب المحامي علي كاظم الهاشمي</div>
+          </div>
+        </body>
+        </html>
+      `);
+      win.document.close();
     }
   </script>
 </body>
