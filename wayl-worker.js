@@ -8,7 +8,7 @@ export default {
     };
     if (request.method === "OPTIONS") return new Response(null, { headers });
     try {
-      const { waylKey, title, amountIQD, clientName } = await request.json();
+      const { waylKey, title, amountIQD } = await request.json();
       const res = await fetch("https://api.thewayl.com/api/v1/links", {
         method: "POST",
         headers: {
@@ -32,7 +32,11 @@ export default {
           redirectionUrl: "https://akjassem.com/payment/?status=success"
         })
       });
-      return new Response(await res.text(), { status: res.status, headers });
+      const text = await res.text();
+      if (!res.ok) {
+        return new Response(JSON.stringify({ message: text }), { status: res.status, headers });
+      }
+      return new Response(text, { status: res.status, headers });
     } catch (e) {
       return new Response(JSON.stringify({ message: e.message }), { status: 500, headers });
     }
