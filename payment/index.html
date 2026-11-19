@@ -43,9 +43,7 @@
       font-size: 12.5px;
       font-weight: 700;
       cursor: pointer;
-      transition: 0.2s;
     }
-    .lang-btn:hover { border-color: #c59b27; background: #fffbeb; }
     [dir="ltr"] .lang-btn { left: auto; right: 18px; }
 
     .logo-text { font-size: 40px; font-weight: 800; color: #0b1c36; letter-spacing: 2px; line-height: 1; margin-top: 10px; direction: ltr; }
@@ -133,13 +131,9 @@
       font-size: 12px;
       font-weight: 700;
       cursor: pointer;
-      transition: 0.2s;
       line-height: 1.4;
     }
-    .policy-btn:hover {
-      border-color: #c59b27;
-      background: #fffbeb;
-    }
+    .policy-btn:hover { border-color: #c59b27; background: #fffbeb; }
 
     .consent-box {
       display: flex;
@@ -164,11 +158,7 @@
       cursor: pointer;
       flex-shrink: 0;
     }
-    .consent-link {
-      color: #0b1c36;
-      font-weight: 800;
-      text-decoration: underline;
-    }
+    .consent-link { color: #0b1c36; font-weight: 800; text-decoration: underline; }
 
     .pay-btn {
       display: block;
@@ -183,28 +173,32 @@
       font-size: 16px;
       font-weight: 700;
       cursor: pointer;
-      transition: background 0.2s, opacity 0.2s;
     }
-    .pay-btn:hover:not(:disabled) { background: #162e54; }
-    .pay-btn:disabled {
-      opacity: 0.45;
-      cursor: not-allowed;
-    }
+    .pay-btn:disabled { opacity: 0.45; cursor: not-allowed; }
 
     .status-box {
       background: #f8fafc;
       border: 1px solid #e2e8f0;
+      border-inline-start: 4px solid #c59b27;
       border-radius: 12px;
-      padding: 22px 16px;
-      color: #475569;
-      font-size: 14.5px;
+      padding: 20px 16px;
+      color: #1e293b;
+      font-size: 14px;
       font-weight: 600;
-      line-height: 1.7;
+      line-height: 1.75;
+      text-align: start;
     }
     .status-success {
       background: #f0fdf4;
       border-color: #86efac;
+      border-inline-start-color: #16a34a;
       color: #166534;
+    }
+    .status-notice {
+      background: #fffbeb;
+      border-color: #fde68a;
+      border-inline-start-color: #c59b27;
+      color: #78350f;
     }
     .footer-note {
       margin-top: 22px;
@@ -213,7 +207,6 @@
       line-height: 1.7;
     }
 
-    /* نافذة السياسات القانونية الفاخرة بشعار المكتب الثابت */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -251,47 +244,14 @@
       border-bottom: 3px solid #c59b27;
       flex-shrink: 0;
     }
-    .modal-logo-wrap {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-    .modal-logo-box {
-      text-align: center;
-      direction: ltr;
-      flex-shrink: 0;
-    }
-    .modal-logo-mark {
-      font-size: 28px;
-      font-weight: 800;
-      color: #ffffff;
-      letter-spacing: 1.5px;
-      line-height: 1;
-    }
+    .modal-logo-wrap { display: flex; align-items: center; gap: 14px; }
+    .modal-logo-box { text-align: center; direction: ltr; flex-shrink: 0; }
+    .modal-logo-mark { font-size: 28px; font-weight: 800; color: #ffffff; letter-spacing: 1.5px; line-height: 1; }
     .modal-logo-mark span { color: #d32f2f; }
-    .modal-logo-sub {
-      font-size: 9px;
-      font-weight: 700;
-      color: #cbd5e1;
-      letter-spacing: 2px;
-      margin-top: 3px;
-    }
-    .modal-logo-est {
-      font-size: 8.5px;
-      color: #94a3b8;
-      margin-top: 1px;
-    }
-    .modal-office-name {
-      font-size: 14.5px;
-      font-weight: 800;
-      color: #ffffff;
-      line-height: 1.4;
-    }
-    .modal-office-desc {
-      font-size: 11.5px;
-      color: #c59b27;
-      font-weight: 700;
-    }
+    .modal-logo-sub { font-size: 9px; font-weight: 700; color: #cbd5e1; letter-spacing: 2px; margin-top: 3px; }
+    .modal-logo-est { font-size: 8.5px; color: #94a3b8; margin-top: 1px; }
+    .modal-office-name { font-size: 14.5px; font-weight: 800; color: #ffffff; line-height: 1.4; }
+    .modal-office-desc { font-size: 11.5px; color: #c59b27; font-weight: 700; }
     .close-modal {
       background: rgba(255,255,255,0.12);
       border: none;
@@ -301,10 +261,6 @@
       border-radius: 50%;
       font-size: 20px;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
     }
     .modal-tabs {
       display: flex;
@@ -326,7 +282,6 @@
       font-size: 12px;
       font-weight: 700;
       cursor: pointer;
-      transition: 0.2s;
       text-align: center;
       line-height: 1.45;
     }
@@ -344,33 +299,10 @@
       color: #1e293b;
       line-height: 1.85;
     }
-    .modal-body h3 {
-      color: #0b1c36;
-      font-size: 16px;
-      font-weight: 800;
-      margin-bottom: 10px;
-      padding-bottom: 8px;
-      border-bottom: 2px solid #f1f5f9;
-    }
-    .modal-body h4 {
-      color: #0b1c36;
-      font-size: 14px;
-      font-weight: 800;
-      margin-top: 14px;
-      margin-bottom: 4px;
-    }
-    .modal-body p {
-      margin-bottom: 8px;
-      color: #334155;
-    }
-    .modal-footer {
-      padding: 12px 18px;
-      background: #f8fafc;
-      border-top: 1px solid #e2e8f0;
-      display: flex;
-      justify-content: flex-end;
-      flex-shrink: 0;
-    }
+    .modal-body h3 { color: #0b1c36; font-size: 16px; font-weight: 800; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 2px solid #f1f5f9; }
+    .modal-body h4 { color: #0b1c36; font-size: 14px; font-weight: 800; margin-top: 14px; margin-bottom: 4px; }
+    .modal-body p { margin-bottom: 8px; color: #334155; }
+    .modal-footer { padding: 12px 18px; background: #f8fafc; border-top: 1px solid #e2e8f0; flex-shrink: 0; }
     .agree-btn {
       width: 100%;
       background: #0b1c36;
@@ -401,7 +333,6 @@
 
     <div class="divider"></div>
 
-    <!-- عرض الفاتورة وزر الدفع -->
     <div id="invoice-section" style="display: none;">
       <div class="invoice-box">
         <div class="inv-header">
@@ -429,27 +360,22 @@
         </div>
       </div>
 
-      <!-- أزرار السياسات الثلاث -->
       <div class="policies-bar">
         <button type="button" class="policy-btn" id="t-btn-fees" onclick="openPolicyModal('fees')">سياسة الأتعاب والاسترداد</button>
         <button type="button" class="policy-btn" id="t-btn-privacy" onclick="openPolicyModal('privacy')">الخصوصية وسرية المعلومات</button>
         <button type="button" class="policy-btn" id="t-btn-delivery" onclick="openPolicyModal('delivery')">تقديم الخدمات وتسليم الأعمال</button>
       </div>
 
-      <!-- مربع الموافقة الإلزامي -->
       <label class="consent-box" for="consent-check">
         <input type="checkbox" id="consent-check" onchange="togglePayButton()">
-        <span id="t-consent">
-          أقرّ بأنني اطلعت ووافقت على <a href="javascript:void(0)" class="consent-link" onclick="openPolicyModal('fees'); event.stopPropagation();">سياسة الأتعاب والاسترداد</a>، و<a href="javascript:void(0)" class="consent-link" onclick="openPolicyModal('privacy'); event.stopPropagation();">سياسة الخصوصية وسرية المعلومات</a>، و<a href="javascript:void(0)" class="consent-link" onclick="openPolicyModal('delivery'); event.stopPropagation();">سياسة تقديم الخدمات وتسليم الأعمال</a> الخاصة بمكتب المحامي علي كاظم الهاشمي.
-        </span>
+        <span id="t-consent"></span>
       </label>
 
       <button type="button" id="pay-link" class="pay-btn" disabled onclick="goToPayment()">الانتقال إلى بوابة الدفع الآمن 💳</button>
     </div>
 
-    <!-- رسالة الحالة الافتراضية أو نجاح الدفع -->
-    <div id="message-section" class="status-box">
-      يرجى استخدام رابط الدفع المباشر المرسل إليكم من قبل مكتب المحاماة.
+    <div id="message-section" class="status-box status-notice">
+      يرجى استخدام رابط الدفع المباشر المرسل إليكم من قبل مكتب المحامي علي كاظم الهاشمي.
     </div>
 
     <div class="footer-note">
@@ -458,7 +384,6 @@
     </div>
   </div>
 
-  <!-- نافذة السياسات الثلاث بشعار المكتب الثابت -->
   <div class="modal-overlay" id="policyModal" onclick="closePolicyModal()">
     <div class="modal-card" onclick="event.stopPropagation()">
       <div class="modal-brand-header">
@@ -495,6 +420,7 @@
     let currentLang = 'ar';
     let activeTab = 'fees';
     let payload = {};
+    let noticeMode = 'default';
 
     const policiesData = {
       ar: {
@@ -523,13 +449,13 @@
           <h4>رابعاً: البيانات المالية وعمليات الدفع</h4>
           <p>تتم معالجة عمليات الدفع الإلكتروني عبر بوابات دفع مرخصة ومعتمدة، ولا يقوم المكتب بتخزين بيانات البطاقات المصرفية أو الحسابات المالية للمراجعين على خوادمه الخاصة.</p>
           <h4>خامساً: مدة الاحتفاظ بالبيانات وحقوق أصحابها</h4>
-          <p>يحتفظ المكتب بالسجلات والملفات للمدة اللازمة للوفاء بالالتزامات المهنية والمحاسبية والقانونية النافذة، ويحق لصاحب العلاقة طلب الاطلاع على بياناته الشخصية المسجلة لدى المكتب أو تصحيحها أو تحديثها وفق الضوابط القانونية.</p>
+          <p>يحتفظ المكتب بالسجلات والملفات للمدة اللازمة للوفاء بالالتزامات المهنية والمحاسبية والقانونية النافذ، ويحق لصاحب العلاقة طلب الاطلاع على بياناته الشخصية المسجلة لدى المكتب أو تصحيحها أو تحديثها وفق الضوابط القانونية.</p>
           <h4>سادساً: الموافقة على السياسة</h4>
           <p>يُعد استخدام المنصة الإلكترونية للمكتب أو إرسال الأوليات أو إتمام عملية الدفع إقراراً صريحاً بالاطلاع على سياسة الخصوصية هذه والموافقة على كافة أحكامها.</p>
         `,
         delivery: `
           <h3>سياسة تقديم الخدمات وتسليم الأعمال</h3>
-          <p>نظراً لأن نشاط مكتب المحامي علي كاظم الهاشمي يختص في المحاماة وتقديم الخدمات القانونية والاستشارية والأعمال التنفيذية القانونية ذات الصلة (ولا يتضمن أي شحن أو توصيل مادي للبضائع)، وتُدار وفق الضوابط الآتية:</p>
+          <p>نظراً لأن نشاط مكتب المحامي علي كاظم الهاشمي يختص في المحاماة وتقديم الخدمات القانونية والاستشارية والأعمال التنفيذية القانونية ذات الصلة (ولا يتضمن أي شحن أو توصيل مادي للبضائع)، وتُدار وفق الضوابط الآتي:</p>
           <h4>أولاً: إثبات السداد والوصل الإلكتروني</h4>
           <p>يُعد إتمام عملية الدفع الإلكتروني وإصدار إشعار السداد عبر البوابة المعتمدة تثبيتاً رسمياً للعملية المالية، ويُسلّم المراجع نسخة إلكترونية من إشعار السداد فور إتمام العملية.</p>
           <h4>ثانياً: الجلسات الاستشارية (الحضورية والإلكترونية)</h4>
@@ -595,15 +521,24 @@
       const statusParam = params.get('status');
 
       if (statusParam === 'success') {
+        if (refParam) {
+          try {
+            await fetch(WORKER_URL, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ action: 'markPaid', ref: refParam })
+            });
+          } catch (e) {}
+        }
         payload = { status: 'success', r: refParam || '' };
         renderPage();
         return;
       }
 
-      // 1. جلب الفاتورة النظيفة من Cloudflare KV عبر الرقم المرجعي (?ref=AKH-...)
       if (refParam) {
         const msgSec = document.getElementById('message-section');
-        msgSec.textContent = 'جارٍ تحميل بيانات إشعار السداد...';
+        msgSec.className = 'status-box status-notice';
+        msgSec.textContent = 'جارٍ التحقق من بيانات إشعار السداد...';
         try {
           const res = await fetch(`${WORKER_URL}?ref=${encodeURIComponent(refParam)}`);
           if (res.ok) {
@@ -611,13 +546,18 @@
             if (payload.l === 'en') currentLang = 'en';
             renderPage();
             return;
+          } else {
+            noticeMode = 'unavailable';
+            renderPage();
+            return;
           }
         } catch (e) {
-          console.error('KV fetch error:', e);
+          noticeMode = 'unavailable';
+          renderPage();
+          return;
         }
       }
 
-      // 2. التوافق مع الروابط المضغوطة (#...) أو الروابط القديمة (?u=...)
       const hash = window.location.hash ? window.location.hash.substring(1) : '';
       if (hash) {
         try {
@@ -715,8 +655,18 @@
         msgSec.className = 'status-box status-success';
         const refNote = payload.r ? (isAr ? ` (الرقم المرجعي: ${payload.r})` : ` (Ref: ${payload.r})`) : '';
         msgSec.textContent = isAr
-          ? `✅ تم استلام عملية الدفع بنجاح وتثبيتها في سجلات المكتب${refNote}. شكراً لتعاملكم مع مكتب المحامي علي كاظم الهاشمي.`
-          : `✅ Payment completed successfully and recorded in the Office logs${refNote}. Thank you for choosing Ali Hashimi for Advocacy & Legal Services.`;
+          ? `✅ تم استلام عملية الدفع بنجاح وتثبيتها في سجلات مكتب المحامي علي كاظم الهاشمي${refNote}.`
+          : `✅ Payment completed successfully and recorded with Ali Hashimi for Advocacy & Legal Services${refNote}.`;
+        return;
+      }
+
+      if (payload.status === 'paid') {
+        invSec.style.display = 'none';
+        msgSec.style.display = 'block';
+        msgSec.className = 'status-box status-success';
+        msgSec.textContent = isAr
+          ? `✅ تم تسديد هذه الفاتورة مسبقاً في سجلات مكتب المحامي علي كاظم الهاشمي (${payload.ref || payload.r || ''}). للاستفسار يرجى التواصل مباشرة مع المكتب.`
+          : `✅ This invoice (${payload.ref || payload.r || ''}) has already been settled with Ali Hashimi for Advocacy & Legal Services. Please contact the office for inquiries.`;
         return;
       }
 
@@ -756,9 +706,17 @@
           subEl.style.display = 'none';
         }
       } else {
-        msgSec.textContent = isAr
-          ? 'يرجى استخدام رابط الدفع المباشر المرسل إليكم من قبل مكتب المحاماة.'
-          : 'Please use the direct payment link sent to you by the law office.';
+        msgSec.style.display = 'block';
+        msgSec.className = 'status-box status-notice';
+        if (noticeMode === 'unavailable') {
+          msgSec.textContent = isAr
+            ? 'إشعار السداد هذا غير متاح حالياً أو انتهت صلاحيته أو تم إغلاقه. يرجى التواصل مع مكتب المحامي علي كاظم الهاشمي لإصدار إشعار سداد جديد.'
+            : 'This payment notice is unavailable, expired, or closed. Please contact Ali Hashimi for Advocacy & Legal Services for a new notice.';
+        } else {
+          msgSec.textContent = isAr
+            ? 'يرجى استخدام رابط الدفع المباشر المرسل إليكم من قبل مكتب المحامي علي كاظم الهاشمي.'
+            : 'Please use the direct payment link sent to you by Ali Hashimi for Advocacy & Legal Services.';
+        }
       }
     }
 
