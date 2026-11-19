@@ -1,724 +1,747 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" id="adminHtml">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>لوحة إدارة المدفوعات | مكتب المحامي علي كاظم الهاشمي</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <title>إدارة المدفوعات القانونية | مكتب المحامي علي كاظم الهاشمي</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg-primary: #0b1120;
-      --bg-card: #111827;
-      --bg-input: #1e293b;
-      --gold: #d4af37;
-      --gold-hover: #e5c158;
-      --gold-soft: rgba(212, 175, 55, 0.14);
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --border: rgba(212, 175, 55, 0.25);
-      --success: #10b981;
-      --warning: #f59e0b;
-      --danger: #ef4444;
-    }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
-      font-family: 'Cairo', 'Plus Jakarta Sans', sans-serif;
-      background: var(--bg-primary);
-      color: var(--text-main);
+      font-family: 'Cairo', system-ui, -apple-system, sans-serif;
+      background-color: #f4f6f9;
+      color: #0b1c36;
       min-height: 100vh;
-      padding: 24px 16px;
-      line-height: 1.65;
-    }
-
-    html[dir="ltr"] body {
-      font-family: 'Plus Jakarta Sans', 'Cairo', sans-serif;
-    }
-
-    .wrapper {
-      max-width: 820px;
-      margin: 0 auto;
-    }
-
-    .header {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      padding: 18px 22px;
-      border-radius: 16px;
-      margin-bottom: 20px;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 24px 14px;
     }
-
-    .header h1 {
-      font-size: 1.15rem;
-      color: var(--gold);
-      font-weight: 800;
+    .panel {
+      max-width: 760px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 14px;
+      border-top: 5px solid #c59b27;
+      box-shadow: 0 10px 30px rgba(11, 28, 54, 0.08);
+      padding: 28px 22px;
+      position: relative;
     }
-
-    .header p {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-    }
-
     .lang-btn {
-      background: var(--bg-input);
-      color: var(--gold);
-      border: 1px solid var(--border);
-      padding: 7px 14px;
-      border-radius: 10px;
-      font-family: inherit;
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      background: #f8fafc;
+      border: 1.5px solid #cbd5e1;
+      color: #0b1c36;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 12.5px;
       font-weight: 700;
-      font-size: 0.84rem;
       cursor: pointer;
     }
+    [dir="ltr"] .lang-btn { left: auto; right: 18px; }
+
+    .brand-section { text-align: center; margin-bottom: 24px; }
+    .logo-text { font-size: 38px; font-weight: 800; color: #0b1c36; letter-spacing: 2px; line-height: 1; }
+    .logo-text span { color: #d32f2f; }
+    .sub-title { font-size: 12px; font-weight: 700; color: #64748b; letter-spacing: 3px; margin-top: 6px; }
+    .est { font-size: 11px; color: #94a3b8; margin-top: 2px; }
+    .office-title { font-size: 16px; font-weight: 700; color: #0b1c36; margin-top: 10px; }
 
     .card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 22px;
-      margin-bottom: 22px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 18px;
     }
-
     .card-title {
-      font-size: 1rem;
-      font-weight: 800;
-      color: var(--gold);
-      margin-bottom: 16px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
+      font-size: 16px;
+      font-weight: 700;
+      color: #0b1c36;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-
     .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 14px;
+      gap: 12px;
     }
-
-    @media (max-width: 640px) {
+    @media (max-width: 600px) {
       .grid-2 { grid-template-columns: 1fr; }
     }
-
-    .form-group {
-      margin-bottom: 14px;
-    }
-
-    label {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: #cbd5e1;
-      margin-bottom: 6px;
-    }
-
-    input, select, textarea {
+    .form-group { margin-bottom: 14px; }
+    label { display: block; font-size: 13.5px; font-weight: 700; color: #1e293b; margin-bottom: 6px; }
+    input, select {
       width: 100%;
-      background: var(--bg-input);
-      border: 1px solid rgba(255,255,255,0.12);
-      color: var(--text-main);
-      padding: 11px 13px;
-      border-radius: 10px;
-      font-family: inherit;
-      font-size: 0.92rem;
-      outline: none;
+      padding: 12px 14px;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 8px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 14.5px;
+      background: #ffffff;
+      color: #0b1c36;
+      transition: border-color 0.2s;
     }
+    input:focus, select:focus { outline: none; border-color: #c59b27; }
 
-    input:focus, select:focus, textarea:focus {
-      border-color: var(--gold);
-    }
-
-    .conversion-preview {
-      background: var(--gold-soft);
-      border: 1px solid rgba(212, 175, 55, 0.35);
-      padding: 10px 14px;
-      border-radius: 10px;
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: var(--gold);
-      margin-bottom: 14px;
+    .conv-box {
       display: none;
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      color: #92400e;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 14px;
     }
 
-    .btn-primary {
+    .btn {
       width: 100%;
       padding: 13px;
+      background: #0b1c36;
+      color: #ffffff;
       border: none;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--gold), #b89225);
-      color: #0b1120;
-      font-family: inherit;
-      font-size: 0.98rem;
-      font-weight: 800;
+      border-radius: 8px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
       cursor: pointer;
-      transition: 0.2s;
+      transition: background 0.2s;
     }
-
-    .btn-primary:disabled {
-      opacity: 0.5;
-      cursor: wait;
+    .btn:hover { background: #162e54; }
+    .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+    .btn-gold { background: #c59b27; color: #0b1c36; }
+    .btn-gold:hover { background: #b0881e; }
+    .btn-outline {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      color: #475569;
+      padding: 7px 12px;
+      font-size: 12.5px;
+      width: auto;
+    }
+    .btn-paid {
+      background: #f0fdf4;
+      border: 1.5px solid #86efac;
+      color: #166534;
+      padding: 7px 12px;
+      font-size: 12.5px;
+      width: auto;
+    }
+    .btn-refund {
+      background: #fef2f2;
+      border: 1.5px solid #fecaca;
+      color: #991b1b;
+      padding: 7px 12px;
+      font-size: 12.5px;
+      width: auto;
     }
 
     .result-box {
       display: none;
-      margin-top: 18px;
-      background: #0f172a;
-      border: 1px solid rgba(16, 185, 129, 0.35);
-      border-radius: 14px;
+      background: #f0fdf4;
+      border: 1.5px solid #86efac;
+      border-radius: 10px;
       padding: 16px;
+      margin-top: 16px;
     }
-
-    .result-url {
-      width: 100%;
-      background: var(--bg-input);
+    .result-link {
+      background: #ffffff;
+      border: 1px solid #bbf7d0;
       padding: 10px;
-      border-radius: 8px;
-      font-family: monospace;
-      font-size: 0.82rem;
-      color: #6ee7b7;
-      margin: 10px 0;
-      direction: ltr;
+      border-radius: 6px;
+      font-size: 13px;
       word-break: break-all;
-    }
-
-    .action-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .btn-sm {
-      padding: 8px 14px;
-      border-radius: 9px;
-      border: 1px solid rgba(255,255,255,0.15);
-      background: var(--bg-input);
-      color: var(--text-main);
-      font-family: inherit;
-      font-size: 0.82rem;
+      direction: ltr;
+      text-align: left;
+      margin: 10px 0;
+      color: #166534;
       font-weight: 700;
-      cursor: pointer;
+      font-family: monospace;
     }
 
-    .btn-wa {
-      background: rgba(16, 185, 129, 0.16);
-      border-color: rgba(16, 185, 129, 0.4);
-      color: #6ee7b7;
-    }
-
-    /* History Table / Cards */
     .history-item {
-      background: #0f172a;
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 12px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
       padding: 14px;
-      margin-bottom: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+      margin-bottom: 10px;
     }
-
     .hist-top {
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       gap: 8px;
+      margin-bottom: 6px;
     }
+    .history-title { font-weight: 800; color: #0b1c36; font-size: 14px; }
+    .history-meta { color: #64748b; font-size: 12.5px; margin-bottom: 10px; }
+    .hist-actions { display: flex; flex-wrap: wrap; gap: 6px; }
 
-    .hist-ref {
-      font-family: monospace;
-      font-weight: 700;
-      color: var(--gold);
-      font-size: 0.88rem;
-    }
-
-    .badge {
+    .status-pill {
       padding: 3px 10px;
-      border-radius: 999px;
-      font-size: 0.76rem;
+      border-radius: 20px;
+      font-size: 11.5px;
       font-weight: 700;
     }
+    .st-pending { background: #fef3c7; color: #92400e; }
+    .st-paid { background: #dcfce7; color: #166534; }
+    .st-refunded { background: #fee2e2; color: #991b1b; }
 
-    .badge-pending { background: rgba(245, 158, 11, 0.16); color: #fcd34d; }
-    .badge-paid { background: rgba(16, 185, 129, 0.16); color: #6ee7b7; }
-    .badge-refunded { background: rgba(239, 68, 68, 0.16); color: #fca5a5; }
-
-    .hist-meta {
-      font-size: 0.86rem;
-      color: #cbd5e1;
-    }
-
-    .hist-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 4px;
-    }
-
-    .btn-paid {
-      background: rgba(16, 185, 129, 0.15);
-      border-color: rgba(16, 185, 129, 0.4);
-      color: #6ee7b7;
-    }
-
-    .btn-refund {
-      background: rgba(239, 68, 68, 0.15);
-      border-color: rgba(239, 68, 68, 0.4);
-      color: #fca5a5;
-    }
-
-    /* Lock Screen */
-    #lockScreen {
-      max-width: 420px;
-      margin: 60px auto;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      padding: 28px;
-      border-radius: 18px;
-      text-align: center;
+    .hidden { display: none !important; }
+    .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .badge {
+      background: #fef3c7;
+      color: #92400e;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
     }
   </style>
 </head>
 <body>
+  <div class="panel">
+    <button class="lang-btn" id="admin-lang-btn" onclick="toggleAdminLang()">English</button>
 
-  <!-- PIN Lock Screen -->
-  <div id="lockScreen">
-    <h2 style="color: var(--gold); margin-bottom: 8px;">مكتب المحامي علي كاظم الهاشمي</h2>
-    <p style="color: var(--text-muted); font-size: 0.86rem; margin-bottom: 18px;">أدخل رمز الوصول الخاص بلوحة إدارة المدفوعات</p>
-    <input type="password" id="pinInput" placeholder="••••••" style="text-align:center; font-size:1.2rem; letter-spacing:4px; margin-bottom:14px;" onkeydown="if(event.key==='Enter') unlockVault()" />
-    <button type="button" class="btn-primary" onclick="unlockVault()">دخول</button>
-    <p id="pinError" style="color: var(--danger); font-size: 0.82rem; margin-top: 10px; display:none;">رمز الدخول غير صحيح</p>
-  </div>
-
-  <!-- Main Dashboard -->
-  <div class="wrapper" id="dashboard" style="display:none;">
-    <div class="header">
-      <div>
-        <h1 id="t_dashTitle">لوحة إدارة المدفوعات الإلكترونية</h1>
-        <p id="t_dashSub">مكتب المحامي علي كاظم الهاشمي | AKH Law Office</p>
-      </div>
-      <button type="button" class="lang-btn" id="adminLangBtn" onclick="toggleAdminLang()">English</button>
+    <div class="brand-section">
+      <div class="logo-text">A<span>K</span>H</div>
+      <div class="sub-title">/ LAW OFFICE</div>
+      <div class="est">EST. 2014</div>
+      <div class="office-title" id="t-office">مكتب المحامي علي كاظم الهاشمي</div>
     </div>
 
-    <div class="card">
-      <div class="card-title" id="t_createTitle">إنشاء رابط سداد قانوني جديد</div>
-
-      <div class="grid-2">
-        <div class="form-group">
-          <label id="t_payerLbl">اسم المراجع / الدافع (اختياري)</label>
-          <input type="text" id="payerName" placeholder="مثال: أحمد كريم / شركة النور" />
-        </div>
-        <div class="form-group">
-          <label id="t_langPrefLbl">لغة الواجهة الافتراضية للمراجع</label>
-          <select id="clientLang">
-            <option value="ar">العربية (Arabic)</option>
-            <option value="en">الإنجليزية (English)</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="grid-2">
-        <div class="form-group">
-          <label id="t_serviceArLbl">بيان الخدمة القانونية (بالعربية) *</label>
-          <input type="text" id="serviceAr" placeholder="مثال: أتعاب جلسة استشارية قانونية" />
-        </div>
-        <div class="form-group">
-          <label id="t_serviceEnLbl">بيان الخدمة القانونية (بالإنجليزية)</label>
-          <input type="text" id="serviceEn" placeholder="e.g., Legal Consultation Session Fee" dir="ltr" />
-        </div>
-      </div>
-
+    <!-- شاشة إعداد الخزنة لأول مرة -->
+    <div id="setup-view" class="card hidden">
+      <div class="card-title">🔐 تأسيس خزنة الأمان المشفرة (لأول مرة)</div>
+      <p style="font-size: 13px; color: #475569; margin-bottom: 14px;">
+        تُشفَّر مفاتيحك محلياً في متصفحك باستخدام خوارزمية PBKDF2 + AES-GCM ولا تُرفع لأي خادم.
+      </p>
       <div class="form-group">
-        <label id="t_notesLbl">تفاصيل إضافية (رقم الدعوى / موعد الجلسة / ملاحظات - اختياري)</label>
-        <input type="text" id="serviceNotes" placeholder="مثال: استشارة تأسيس شركة - إضبارة رقم 42" />
+        <label>مفتاح GitHub (Personal Access Token - اختياري للمزامنة):</label>
+        <input type="password" id="setup-gh" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
       </div>
-
-      <div class="grid-2">
-        <div class="form-group">
-          <label id="t_currLbl">عملة الفاتورة</label>
-          <select id="currencySelect" onchange="updateConversionPreview()">
-            <option value="IQD">دينار عراقي (IQD)</option>
-            <option value="USD">دولار أمريكي (USD)</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label id="t_amountLbl">المبلغ المطلوب *</label>
-          <input type="number" id="amountInput" placeholder="مثال: 150000 أو 100" oninput="updateConversionPreview()" />
-        </div>
+      <div class="form-group">
+        <label>مفتاح بوابة الدفع (Wayl API Key):</label>
+        <input type="password" id="setup-wayl" placeholder="أدخل مفتاح Wayl API الخاص بمكتبك">
       </div>
-
-      <div class="form-group" id="rateGroup" style="display:none;">
-        <label id="t_rateLbl">سعر صرف الدولار المعتمد (دينار عراقي لكل 1 دولار)</label>
-        <input type="number" id="exchangeRate" value="1510" oninput="updateConversionPreview()" />
+      <div class="form-group">
+        <label>الرقم السري للخزنة (PIN):</label>
+        <input type="password" id="setup-pin" placeholder="اختر رقماً سرياً (6 أرقام أو أكثر)">
       </div>
+      <button class="btn" onclick="setupVault()">تشفير وحفظ الخزنة</button>
+    </div>
 
-      <div class="conversion-preview" id="conversionPreview"></div>
-
-      <button type="button" class="btn-primary" id="generateBtn" onclick="createPaymentLink()">
-        توليد رابط الدفع الآمن
-      </button>
-
-      <div class="result-box" id="resultBox">
-        <div style="font-size:0.86rem; font-weight:700; color:#6ee7b7;" id="t_readyMsg">✅ تم توليد رابط الفاتورة بنجاح:</div>
-        <div class="result-url" id="generatedUrlDisplay"></div>
-        <div class="action-row">
-          <button type="button" class="btn-sm" onclick="copyGeneratedUrl()" id="t_copyBtn">📋 نسخ الرابط</button>
-          <button type="button" class="btn-sm btn-wa" onclick="copyWhatsAppMsg()" id="t_waBtn">💬 نسخ رسالة واتساب رسمية</button>
-          <a href="#" target="_blank" id="previewLinkBtn" class="btn-sm" style="text-decoration:none;">👁️ معاينة صفحة المراجع</a>
-        </div>
+    <!-- شاشة فتح الخزنة -->
+    <div id="unlock-view" class="card hidden">
+      <div class="card-title" id="t-locked-title">🔒 الخزنة مقفلة</div>
+      <div class="form-group">
+        <label id="t-pin-lbl">أدخل الرقم السري (PIN) لفتح لوحة الإدارة:</label>
+        <input type="password" id="unlock-pin" placeholder="••••••" onkeypress="if(event.key==='Enter') unlockVault()">
+      </div>
+      <button class="btn" id="t-unlock-btn" onclick="unlockVault()">فتح الخزنة</button>
+      <div style="text-align: center; margin-top: 12px;">
+        <button class="btn btn-outline" id="t-reset-btn" onclick="resetVault()">إعادة ضبط الخزنة</button>
       </div>
     </div>
 
-    <!-- Operations Log -->
-    <div class="card">
-      <div class="card-title" id="t_logTitle">سجل الفواتير والعمليات الصادرة</div>
-      <div id="historyList"></div>
+    <!-- لوحة التحكم الرئيسية -->
+    <div id="dashboard-view" class="hidden">
+      <div class="top-bar">
+        <span class="badge" id="t-vault-badge">🟢 الخزنة مفتوحة ومؤمّنة</span>
+        <button class="btn btn-outline" id="t-lock-btn" onclick="lockVault()">قفل الخزنة 🔒</button>
+      </div>
+
+      <div class="card">
+        <div class="card-title" id="t-create-title">💳 إنشاء رابط دفع مخصص للمراجع</div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label id="t-client-lbl">اسم المراجع / الدافع (اختياري):</label>
+            <input type="text" id="client-name" placeholder="مثال: علي كاظم جاسم">
+          </div>
+          <div class="form-group">
+            <label id="t-client-lang-lbl">لغة صفحة المراجع الافتراضية:</label>
+            <select id="client-lang">
+              <option value="ar">العربية (Arabic)</option>
+              <option value="en">الإنجليزية (English)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label id="t-service-ar-lbl">موضوع الاستشارة أو الخدمة (بالعربية) *:</label>
+            <input type="text" id="service-title" placeholder="مثال: أتعاب استشارة قانونية / توكيل دعوى">
+          </div>
+          <div class="form-group">
+            <label id="t-service-en-lbl">موضوع الخدمة (بالإنجليزية - اختياري):</label>
+            <input type="text" id="service-title-en" placeholder="e.g., Legal Consultation Fee" dir="ltr">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label id="t-notes-lbl">تفاصيل إضافية (رقم الدعوى / موعد الجلسة / ملاحظات - اختياري):</label>
+          <input type="text" id="service-notes" placeholder="مثال: إضبارة تأسيس شركة - جلسة حضورية">
+        </div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label id="t-currency-lbl">العملة:</label>
+            <select id="currency-select" onchange="updateCurrencyUI()">
+              <option value="IQD">دينار عراقي (IQD)</option>
+              <option value="USD">دولار أمريكي (USD)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label id="t-amount-lbl">المبلغ المطلوب *:</label>
+            <input type="number" id="amount-input" placeholder="مثال: 75000 أو 100" oninput="updateCurrencyUI()">
+          </div>
+        </div>
+
+        <div class="form-group hidden" id="rate-group">
+          <label id="t-rate-lbl">سعر صرف الدولار المعتمد (دينار عراقي لكل 1 دولار):</label>
+          <input type="number" id="exchange-rate" value="1510" oninput="updateCurrencyUI()">
+        </div>
+
+        <div class="conv-box" id="conv-preview"></div>
+
+        <button class="btn btn-gold" id="generate-btn" onclick="createPaymentLink()">توليد رابط الدفع النظيف</button>
+
+        <div id="result-box" class="result-box">
+          <div style="font-weight: 700; color: #166534; font-size: 14px;" id="t-gen-ok">✅ تم توليد رابط الدفع النظيف بنجاح:</div>
+          <div id="generated-url" class="result-link"></div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <button class="btn" style="flex: 1;" id="t-copy-btn" onclick="copyGeneratedLink()">نسخ الرابط 📋</button>
+            <button class="btn btn-outline" style="flex: 1;" id="t-wa-btn" onclick="shareWhatsApp()">إرسال عبر واتساب 💬</button>
+            <a id="preview-btn" href="#" target="_blank" class="btn btn-outline" style="flex: 1; text-align: center; text-decoration: none;">معاينة الصفحة 👁️</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title" id="t-history-title">📜 سجل الفواتير والروابط المُصدرة</div>
+        <div id="history-list" style="font-size: 13px; color: #64748b;">لا توجد روابط مصدرة بعد.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title" id="t-keys-title">🔑 تحديث المفاتيح والرقم السري</div>
+        <div class="form-group">
+          <label id="t-cur-pin-lbl">الرقم السري الحالي (للتأكيد):</label>
+          <input type="password" id="update-current-pin" placeholder="••••••">
+        </div>
+        <div class="form-group">
+          <label id="t-new-wayl-lbl">مفتاح Wayl API الجديد (اتركه فارغاً للإبقاء على الحالي):</label>
+          <input type="password" id="update-wayl" placeholder="مفتاح Wayl الجديد">
+        </div>
+        <div class="form-group">
+          <label id="t-new-pin-lbl">الرقم السري الجديد (اتركه فارغاً للإبقاء على الحالي):</label>
+          <input type="password" id="update-new-pin" placeholder="الرقم السري الجديد">
+        </div>
+        <button class="btn" id="t-save-keys-btn" onclick="updateVault()">حفظ التحديثات</button>
+      </div>
     </div>
   </div>
 
   <script>
-    const VAULT_PIN = '8942';
     const WORKER_URL = 'https://akh-payment.akjassem.workers.dev';
-    const CLIENT_PAGE_BASE = 'https://akjassem.com/payment/';
-
+    const VAULT_STORAGE_KEY = 'akh_encrypted_vault_v1';
+    const HISTORY_STORAGE_KEY = 'akh_payment_history_v1';
+    let VAULT_DATA = null;
+    let LAST_LINK = '';
+    let LAST_ENTRY = null;
     let adminLang = 'ar';
-    let lastGeneratedRecord = null;
 
-    function unlockVault() {
-      const val = document.getElementById('pinInput').value.trim();
-      if (val === VAULT_PIN) {
-        sessionStorage.setItem('akh_unlocked', '1');
-        document.getElementById('lockScreen').style.display = 'none';
-        document.getElementById('dashboard').style.display = 'block';
-        renderHistory();
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedVault = localStorage.getItem(VAULT_STORAGE_KEY);
+      if (savedVault) {
+        document.getElementById('unlock-view').classList.remove('hidden');
       } else {
-        document.getElementById('pinError').style.display = 'block';
+        document.getElementById('setup-view').classList.remove('hidden');
       }
-    }
-
-    if (sessionStorage.getItem('akh_unlocked') === '1') {
-      document.getElementById('lockScreen').style.display = 'none';
-      document.getElementById('dashboard').style.display = 'block';
-    }
-
-    const adminStrings = {
-      ar: {
-        langBtn: 'English',
-        dashTitle: 'لوحة إدارة المدفوعات الإلكترونية',
-        dashSub: 'مكتب المحامي علي كاظم الهاشمي | AKH Law Office',
-        createTitle: 'إنشاء رابط سداد قانوني جديد',
-        payerLbl: 'اسم المراجع / الدافع (اختياري)',
-        langPrefLbl: 'لغة الواجهة الافتراضية للمراجع',
-        serviceArLbl: 'بيان الخدمة القانونية (بالعربية) *',
-        serviceEnLbl: 'بيان الخدمة القانونية (بالإنجليزية)',
-        notesLbl: 'تفاصيل إضافية (رقم الدعوى / موعد الجلسة / ملاحظات - اختياري)',
-        currLbl: 'عملة الفاتورة',
-        amountLbl: 'المبلغ المطلوب *',
-        rateLbl: 'سعر صرف الدولار المعتمد (دينار عراقي لكل 1 دولار)',
-        genBtn: 'توليد رابط الدفع الآمن',
-        readyMsg: '✅ تم توليد رابط الفاتورة بنجاح:',
-        copyBtn: '📋 نسخ الرابط',
-        waBtn: '💬 نسخ رسالة واتساب رسمية',
-        previewBtn: '👁️ معاينة صفحة المراجع',
-        logTitle: 'سجل الفواتير والعمليات الصادرة',
-        statusPending: '🟡 بانتظار الدفع',
-        statusPaid: '🟢 مستلمة بنجاح',
-        statusRefunded: '🔴 مسترجعة',
-        markPaid: 'تأكيد الاستلام',
-        markRefund: 'استرجاع (Refund)',
-        emptyLog: 'لا توجد فواتير مسجلة في هذا المتصفح بعد.'
-      },
-      en: {
-        langBtn: 'العربية',
-        dashTitle: 'Electronic Payment Management Vault',
-        dashSub: 'Ali Hashimi for Advocacy & Legal Services',
-        createTitle: 'Generate New Legal Payment Link',
-        payerLbl: 'Payer / Applicant Name (Optional)',
-        langPrefLbl: 'Default Client Interface Language',
-        serviceArLbl: 'Legal Service Description (Arabic) *',
-        serviceEnLbl: 'Legal Service Description (English)',
-        notesLbl: 'Additional Details (Case No. / Session / Notes - Optional)',
-        currLbl: 'Invoice Currency',
-        amountLbl: 'Amount Payable *',
-        rateLbl: 'USD Exchange Rate (IQD per 1 USD)',
-        genBtn: 'Generate Secure Payment Link',
-        readyMsg: '✅ Payment link generated successfully:',
-        copyBtn: '📋 Copy Link',
-        waBtn: '💬 Copy Official WhatsApp Message',
-        previewBtn: '👁️ Preview Client Page',
-        logTitle: 'Issued Invoices & Operations Log',
-        statusPending: '🟡 Pending Payment',
-        statusPaid: '🟢 Received Successfully',
-        statusRefunded: '🔴 Refunded',
-        markPaid: 'Mark Paid',
-        markRefund: 'Refund',
-        emptyLog: 'No invoices recorded in this browser yet.'
-      }
-    };
+    });
 
     function toggleAdminLang() {
       adminLang = adminLang === 'ar' ? 'en' : 'ar';
-      const t = adminStrings[adminLang];
-      const htmlEl = document.getElementById('adminHtml');
-      htmlEl.setAttribute('lang', adminLang);
-      htmlEl.setAttribute('dir', adminLang === 'ar' ? 'rtl' : 'ltr');
+      const isAr = adminLang === 'ar';
+      document.documentElement.lang = adminLang;
+      document.documentElement.dir = isAr ? 'rtl' : 'ltr';
 
-      document.getElementById('adminLangBtn').textContent = t.langBtn;
-      document.getElementById('t_dashTitle').textContent = t.dashTitle;
-      document.getElementById('t_dashSub').textContent = t.dashSub;
-      document.getElementById('t_createTitle').textContent = t.createTitle;
-      document.getElementById('t_payerLbl').textContent = t.payerLbl;
-      document.getElementById('t_langPrefLbl').textContent = t.langPrefLbl;
-      document.getElementById('t_serviceArLbl').textContent = t.serviceArLbl;
-      document.getElementById('t_serviceEnLbl').textContent = t.serviceEnLbl;
-      document.getElementById('t_notesLbl').textContent = t.notesLbl;
-      document.getElementById('t_currLbl').textContent = t.currLbl;
-      document.getElementById('t_amountLbl').textContent = t.amountLbl;
-      document.getElementById('t_rateLbl').textContent = t.rateLbl;
-      document.getElementById('generateBtn').textContent = t.genBtn;
-      document.getElementById('t_readyMsg').textContent = t.readyMsg;
-      document.getElementById('t_copyBtn').textContent = t.copyBtn;
-      document.getElementById('t_waBtn').textContent = t.waBtn;
-      document.getElementById('previewLinkBtn').textContent = t.previewBtn;
-      document.getElementById('t_logTitle').textContent = t.logTitle;
+      document.getElementById('admin-lang-btn').textContent = isAr ? 'English' : 'العربية';
+      document.getElementById('t-office').textContent = isAr
+        ? 'مكتب المحامي علي كاظم الهاشمي'
+        : 'Ali Hashimi for Advocacy & Legal Services';
+      document.getElementById('t-locked-title').textContent = isAr ? '🔒 الخزنة مقفلة' : '🔒 Vault Locked';
+      document.getElementById('t-pin-lbl').textContent = isAr ? 'أدخل الرقم السري (PIN) لفتح لوحة الإدارة:' : 'Enter Vault PIN to unlock:';
+      document.getElementById('t-unlock-btn').textContent = isAr ? 'فتح الخزنة' : 'Unlock Vault';
+      document.getElementById('t-reset-btn').textContent = isAr ? 'إعادة ضبط الخزنة' : 'Reset Vault';
+      document.getElementById('t-vault-badge').textContent = isAr ? '🟢 الخزنة مفتوحة ومؤمّنة' : '🟢 Vault Unlocked & Secured';
+      document.getElementById('t-lock-btn').textContent = isAr ? 'قفل الخزنة 🔒' : 'Lock Vault 🔒';
+      document.getElementById('t-create-title').textContent = isAr ? '💳 إنشاء رابط دفع مخصص للمراجع' : '💳 Generate Custom Payment Link';
+      document.getElementById('t-client-lbl').textContent = isAr ? 'اسم المراجع / الدافع (اختياري):' : 'Applicant / Payer Name (Optional):';
+      document.getElementById('t-client-lang-lbl').textContent = isAr ? 'لغة صفحة المراجع الافتراضية:' : 'Default Client Page Language:';
+      document.getElementById('t-service-ar-lbl').textContent = isAr ? 'موضوع الاستشارة أو الخدمة (بالعربية) *:' : 'Service Subject (Arabic) *:';
+      document.getElementById('t-service-en-lbl').textContent = isAr ? 'موضوع الخدمة (بالإنجليزية - اختياري):' : 'Service Subject (English - Optional):';
+      document.getElementById('t-notes-lbl').textContent = isAr ? 'تفاصيل إضافية (رقم الدعوى / موعد الجلسة / ملاحظات - اختياري):' : 'Additional Details (Case No. / Session / Notes - Optional):';
+      document.getElementById('t-currency-lbl').textContent = isAr ? 'العملة:' : 'Currency:';
+      document.getElementById('t-amount-lbl').textContent = isAr ? 'المبلغ المطلوب *:' : 'Amount Payable *:';
+      document.getElementById('t-rate-lbl').textContent = isAr ? 'سعر صرف الدولار المعتمد (دينار عراقي لكل 1 دولار):' : 'USD Exchange Rate (IQD per 1 USD):';
+      document.getElementById('generate-btn').textContent = isAr ? 'توليد رابط الدفع النظيف' : 'Generate Clean Payment Link';
+      document.getElementById('t-gen-ok').textContent = isAr ? '✅ تم توليد رابط الدفع النظيف بنجاح:' : '✅ Clean payment link generated successfully:';
+      document.getElementById('t-copy-btn').textContent = isAr ? 'نسخ الرابط 📋' : 'Copy Link 📋';
+      document.getElementById('t-wa-btn').textContent = isAr ? 'إرسال عبر واتساب 💬' : 'Send via WhatsApp 💬';
+      document.getElementById('preview-btn').textContent = isAr ? 'معاينة الصفحة 👁️' : 'Preview Page 👁️';
+      document.getElementById('t-history-title').textContent = isAr ? '📜 سجل الفواتير والروابط المُصدرة' : '📜 Issued Invoices & Links Log';
+      document.getElementById('t-keys-title').textContent = isAr ? '🔑 تحديث المفاتيح والرقم السري' : '🔑 Update Keys & PIN';
+      document.getElementById('t-cur-pin-lbl').textContent = isAr ? 'الرقم السري الحالي (للتأكيد):' : 'Current PIN (to confirm):';
+      document.getElementById('t-new-wayl-lbl').textContent = isAr ? 'مفتاح Wayl API الجديد (اتركه فارغاً للإبقاء على الحالي):' : 'New Wayl API Key (leave blank to keep current):';
+      document.getElementById('t-new-pin-lbl').textContent = isAr ? 'الرقم السري الجديد (اتركه فارغاً للإبقاء على الحالي):' : 'New PIN (leave blank to keep current):';
+      document.getElementById('t-save-keys-btn').textContent = isAr ? 'حفظ التحديثات' : 'Save Updates';
 
-      updateConversionPreview();
+      updateCurrencyUI();
       renderHistory();
     }
 
-    function updateConversionPreview() {
-      const curr = document.getElementById('currencySelect').value;
-      const amt = parseFloat(document.getElementById('amountInput').value || '0');
-      const rate = parseFloat(document.getElementById('exchangeRate').value || '1510');
-      const rateGroup = document.getElementById('rateGroup');
-      const preview = document.getElementById('conversionPreview');
+    function updateCurrencyUI() {
+      const cur = document.getElementById('currency-select').value;
+      const amt = Number(document.getElementById('amount-input').value || 0);
+      const rate = Number(document.getElementById('exchange-rate').value || 1510);
+      const rateGroup = document.getElementById('rate-group');
+      const convPreview = document.getElementById('conv-preview');
 
-      if (curr === 'USD') {
-        rateGroup.style.display = 'block';
+      if (cur === 'USD') {
+        rateGroup.classList.remove('hidden');
         if (amt > 0) {
           const iqd = Math.round(amt * rate);
-          preview.style.display = 'block';
-          preview.textContent = adminLang === 'ar'
-            ? `سيتم إرسال المبلغ لبوابة الدفع بالدينار العراقي: ${iqd.toLocaleString('en-US')} IQD ($${amt.toLocaleString('en-US')} × ${rate.toLocaleString('en-US')})`
+          convPreview.style.display = 'block';
+          convPreview.textContent = adminLang === 'ar'
+            ? `سيُرسل المبلغ لبوابة الدفع بالدينار العراقي: ${iqd.toLocaleString('en-US')} IQD ($${amt.toLocaleString('en-US')} × ${rate.toLocaleString('en-US')})`
             : `Amount sent to gateway in IQD: ${iqd.toLocaleString('en-US')} IQD ($${amt.toLocaleString('en-US')} × ${rate.toLocaleString('en-US')})`;
         } else {
-          preview.style.display = 'none';
+          convPreview.style.display = 'none';
         }
       } else {
-        rateGroup.style.display = 'none';
-        preview.style.display = 'none';
+        rateGroup.classList.add('hidden');
+        convPreview.style.display = 'none';
+      }
+    }
+
+    // تشفير نظيف ومضغوط لبيانات الفاتورة في الرابط (#...)
+    function encodeCleanHash(obj) {
+      const jsonStr = JSON.stringify(obj);
+      const bytes = new TextEncoder().encode(jsonStr);
+      let binStr = '';
+      for (let i = 0; i < bytes.length; i++) binStr += String.fromCharCode(bytes[i]);
+      return btoa(binStr).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    }
+
+    async function deriveKey(pin, salt) {
+      const enc = new TextEncoder();
+      const keyMaterial = await crypto.subtle.importKey('raw', enc.encode(pin), 'PBKDF2', false, ['deriveKey']);
+      return crypto.subtle.deriveKey(
+        { name: 'PBKDF2', salt: salt, iterations: 100000, hash: 'SHA-256' },
+        keyMaterial,
+        { name: 'AES-GCM', length: 256 },
+        false,
+        ['encrypt', 'decrypt']
+      );
+    }
+
+    async function encryptData(dataObj, pin) {
+      const salt = crypto.getRandomValues(new Uint8Array(16));
+      const iv = crypto.getRandomValues(new Uint8Array(12));
+      const key = await deriveKey(pin, salt);
+      const enc = new TextEncoder();
+      const ciphertext = await crypto.subtle.encrypt({ name: 'AES-GCM', iv: iv }, key, enc.encode(JSON.stringify(dataObj)));
+      return JSON.stringify({
+        salt: Array.from(salt),
+        iv: Array.from(iv),
+        data: Array.from(new Uint8Array(ciphertext))
+      });
+    }
+
+    async function decryptData(encryptedJson, pin) {
+      const parsed = JSON.parse(encryptedJson);
+      const salt = new Uint8Array(parsed.salt);
+      const iv = new Uint8Array(parsed.iv);
+      const data = new Uint8Array(parsed.data);
+      const key = await deriveKey(pin, salt);
+      const decrypted = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: iv }, key, data);
+      return JSON.parse(new TextDecoder().decode(decrypted));
+    }
+
+    async function setupVault() {
+      const ghToken = document.getElementById('setup-gh').value.trim();
+      const waylKey = document.getElementById('setup-wayl').value.trim();
+      const pin = document.getElementById('setup-pin').value.trim();
+
+      if (!waylKey || pin.length < 4) {
+        alert('يرجى إدخال مفتاح Wayl API ورقم سري مكون من 4 أرقام على الأقل.');
+        return;
+      }
+
+      const payload = { ghToken, waylKey };
+      const encrypted = await encryptData(payload, pin);
+      localStorage.setItem(VAULT_STORAGE_KEY, encrypted);
+      VAULT_DATA = payload;
+
+      document.getElementById('setup-view').classList.add('hidden');
+      document.getElementById('dashboard-view').classList.remove('hidden');
+      renderHistory();
+    }
+
+    async function unlockVault() {
+      const pin = document.getElementById('unlock-pin').value.trim();
+      const encrypted = localStorage.getItem(VAULT_STORAGE_KEY);
+      try {
+        VAULT_DATA = await decryptData(encrypted, pin);
+        document.getElementById('unlock-pin').value = '';
+        document.getElementById('unlock-view').classList.add('hidden');
+        document.getElementById('dashboard-view').classList.remove('hidden');
+        renderHistory();
+      } catch (e) {
+        alert('❌ الرقم السري غير صحيح.');
+      }
+    }
+
+    function lockVault() {
+      VAULT_DATA = null;
+      document.getElementById('dashboard-view').classList.add('hidden');
+      document.getElementById('unlock-view').classList.remove('hidden');
+    }
+
+    function resetVault() {
+      if (confirm('هل أنت متأكد من مسح الخزنة الحالية وإعادة إدخال المفاتيح من جديد؟')) {
+        localStorage.removeItem(VAULT_STORAGE_KEY);
+        location.reload();
+      }
+    }
+
+    async function updateVault() {
+      const currentPin = document.getElementById('update-current-pin').value.trim();
+      const newWayl = document.getElementById('update-wayl').value.trim();
+      const newPin = document.getElementById('update-new-pin').value.trim();
+      const encrypted = localStorage.getItem(VAULT_STORAGE_KEY);
+
+      try {
+        const currentData = await decryptData(encrypted, currentPin);
+        if (newWayl) currentData.waylKey = newWayl;
+        const targetPin = newPin.length >= 4 ? newPin : currentPin;
+        const reEncrypted = await encryptData(currentData, targetPin);
+        localStorage.setItem(VAULT_STORAGE_KEY, reEncrypted);
+        VAULT_DATA = currentData;
+        document.getElementById('update-current-pin').value = '';
+        document.getElementById('update-wayl').value = '';
+        document.getElementById('update-new-pin').value = '';
+        alert('✅ تم تحديث الخزنة وتشفيرها بنجاح.');
+      } catch (e) {
+        alert('❌ الرقم السري الحالي غير صحيح.');
       }
     }
 
     async function createPaymentLink() {
-      const payer = document.getElementById('payerName').value.trim();
-      const clientLang = document.getElementById('clientLang').value;
-      const serviceAr = document.getElementById('serviceAr').value.trim();
-      const serviceEn = document.getElementById('serviceEn').value.trim() || serviceAr;
-      const notes = document.getElementById('serviceNotes').value.trim();
-      const curr = document.getElementById('currencySelect').value;
-      const origAmt = parseFloat(document.getElementById('amountInput').value || '0');
-      const rate = parseFloat(document.getElementById('exchangeRate').value || '1510');
+      const clientName = document.getElementById('client-name').value.trim();
+      const clientLang = document.getElementById('client-lang').value;
+      const serviceTitle = document.getElementById('service-title').value.trim() || 'أتعاب استشارة وخدمات قانونية';
+      const serviceTitleEn = document.getElementById('service-title-en').value.trim() || serviceTitle;
+      const serviceNotes = document.getElementById('service-notes').value.trim();
+      const currency = document.getElementById('currency-select').value;
+      const rawAmount = Number(document.getElementById('amount-input').value);
+      const rate = Number(document.getElementById('exchange-rate').value || 1510);
 
-      if (!serviceAr || origAmt <= 0) {
-        alert(adminLang === 'ar' ? 'يرجى إدخال بيان الخدمة والمبلغ بشكل صحيح.' : 'Please enter service description and valid amount.');
+      if (!rawAmount || rawAmount <= 0) {
+        alert(adminLang === 'ar' ? 'يرجى إدخال مبلغ صحيح.' : 'Please enter a valid amount.');
         return;
       }
 
-      const iqdAmount = curr === 'USD' ? Math.round(origAmt * rate) : Math.round(origAmt);
-      const refCode = 'AKH-' + new Date().getFullYear() + '-' + Math.floor(100 + Math.random() * 900);
+      const amountIQD = currency === 'USD' ? Math.round(rawAmount * rate) : Math.round(rawAmount);
+      if (amountIQD < 1000) {
+        alert(adminLang === 'ar' ? 'الحد الأدنى للمبلغ هو 1000 دينار عراقي.' : 'Minimum amount is 1,000 IQD.');
+        return;
+      }
 
-      const btn = document.getElementById('generateBtn');
+      const refCode = 'AKH-' + new Date().getFullYear() + '-' + Math.floor(100 + Math.random() * 900);
+      const btn = document.getElementById('generate-btn');
       btn.disabled = true;
-      btn.textContent = adminLang === 'ar' ? 'جاري الاتصال ببوابة الدفع...' : 'Connecting to gateway...';
+      btn.textContent = adminLang === 'ar' ? 'جارٍ توليد الرابط الآمن...' : 'Generating secure link...';
+
+      const fullLabel = clientName ? `${serviceTitle} - ${clientName}` : serviceTitle;
 
       try {
-        const returnParams = new URLSearchParams({
-          ref: refCode,
-          payer: payer,
-          service_ar: serviceAr,
-          service_en: serviceEn,
-          notes: notes,
-          curr: curr,
-          orig: origAmt,
-          iqd: iqdAmount,
-          rate: rate,
-          lang: clientLang,
-          status: 'paid'
-        });
-        const redirectionUrl = `${CLIENT_PAGE_BASE}?${returnParams.toString()}`;
-
         const response = await fetch(WORKER_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            referenceId: refCode,
-            total: iqdAmount,
-            currency: 'IQD',
-            redirectionUrl: redirectionUrl,
-            lineItem: [{
-              label: serviceAr,
-              amount: iqdAmount,
-              type: 'increase',
-              image: 'https://akjassem.com/favicon.ico'
-            }]
+            waylKey: VAULT_DATA.waylKey,
+            title: fullLabel,
+            amountIQD: amountIQD
           })
         });
 
-        const data = await response.json();
-        const gatewayUrl = data?.data?.url || data?.url || '';
+        const result = await response.json();
 
-        if (!gatewayUrl) {
-          throw new Error(data?.message || 'لم يتم استلام رابط الدفع من البوابة');
+        if (!response.ok) {
+          throw new Error(result.message || 'فشل الاتصال ببوابة الدفع Wayl');
         }
 
-        const clientParams = new URLSearchParams({
-          ref: refCode,
-          payer: payer,
-          service_ar: serviceAr,
-          service_en: serviceEn,
-          notes: notes,
-          curr: curr,
-          orig: origAmt,
-          iqd: iqdAmount,
+        const payUrl = result.data?.url || result.url || result.paymentUrl;
+        if (!payUrl) {
+          throw new Error('لم يتم استلام رابط الدفع من البوابة.');
+        }
+
+        const cleanHash = encodeCleanHash({
+          u: payUrl,
+          r: refCode,
+          c: clientName,
+          t: serviceTitle,
+          te: serviceTitleEn,
+          n: serviceNotes,
+          a: amountIQD,
+          cur: currency,
+          orig: rawAmount,
           rate: rate,
-          lang: clientLang,
-          url: gatewayUrl
+          l: clientLang
         });
 
-        const finalClientUrl = `${CLIENT_PAGE_BASE}?${clientParams.toString()}`;
+        LAST_LINK = `https://akjassem.com/payment/#${cleanHash}`;
 
-        lastGeneratedRecord = {
+        LAST_ENTRY = {
           ref: refCode,
-          payer,
-          serviceAr,
-          serviceEn,
-          notes,
-          curr,
-          origAmt,
-          iqdAmount,
+          clientName: clientName || '',
+          serviceTitle,
+          serviceTitleEn,
+          notes: serviceNotes,
+          currency,
+          origAmount: rawAmount,
+          amountIQD,
           rate,
-          finalClientUrl,
-          gatewayUrl,
           status: 'pending',
-          createdAt: new Date().toLocaleDateString('ar-IQ')
+          link: LAST_LINK,
+          date: new Date().toLocaleString('ar-IQ')
         };
 
-        saveToHistory(lastGeneratedRecord);
+        document.getElementById('generated-url').textContent = LAST_LINK;
+        document.getElementById('preview-btn').href = LAST_LINK;
+        document.getElementById('result-box').style.display = 'block';
 
-        document.getElementById('generatedUrlDisplay').textContent = finalClientUrl;
-        document.getElementById('previewLinkBtn').href = finalClientUrl;
-        document.getElementById('resultBox').style.display = 'block';
+        saveToHistory(LAST_ENTRY);
 
       } catch (err) {
-        alert((adminLang === 'ar' ? 'خطأ أثناء توليد الرابط: ' : 'Error generating link: ') + err.message);
+        alert('❌ خطأ: ' + err.message);
       } finally {
         btn.disabled = false;
-        btn.textContent = adminStrings[adminLang].genBtn;
+        btn.textContent = adminLang === 'ar' ? 'توليد رابط الدفع النظيف' : 'Generate Clean Payment Link';
       }
     }
 
-    function copyGeneratedUrl() {
-      if (!lastGeneratedRecord) return;
-      navigator.clipboard.writeText(lastGeneratedRecord.finalClientUrl);
-      alert(adminLang === 'ar' ? 'تم نسخ رابط الفاتورة بنجاح.' : 'Invoice link copied.');
+    function copyGeneratedLink() {
+      if (!LAST_LINK) return;
+      navigator.clipboard.writeText(LAST_LINK);
+      alert(adminLang === 'ar' ? '✅ تم نسخ رابط الدفع إلى الحافظة.' : '✅ Payment link copied to clipboard.');
     }
 
-    function copyWhatsAppMsg() {
-      if (!lastGeneratedRecord) return;
-      const r = lastGeneratedRecord;
-      const amtText = r.curr === 'USD'
-        ? `$${r.origAmt.toLocaleString('en-US')} USD (${r.iqdAmount.toLocaleString('en-US')} IQD)`
-        : `${r.iqdAmount.toLocaleString('en-US')} IQD`;
+    function shareWhatsApp() {
+      if (!LAST_LINK) return;
+      const e = LAST_ENTRY;
+      const amtStr = (e && e.currency === 'USD')
+        ? `$${Number(e.origAmount).toLocaleString('en-US')} USD (${Number(e.amountIQD).toLocaleString('en-US')} IQD)`
+        : (e ? `${Number(e.amountIQD).toLocaleString('en-US')} IQD` : '');
 
       const msg = [
-        `تحية طيبة${r.payer ? ' الأستاذ/ة ' + r.payer : ''}،`,
-        `مرفق أدناه رابط السداد الإلكتروني الصادر عن *مكتب المحامي علي كاظم الهاشمي*:`,
-        `• *الرقم المرجعي:* ${r.ref}`,
-        `• *بيان الخدمة:* ${r.serviceAr}`,
-        r.notes ? `• *التفاصيل:* ${r.notes}` : null,
-        `• *المبلغ المستحق:* ${amtText}`,
-        `• *رابط الدفع الآمن:* ${r.finalClientUrl}`
+        `تحية طيبة${e && e.clientName ? ' الأستاذ/ة ' + e.clientName : ''}،`,
+        `مرفق أدناه رابط السداد الإلكتروني الخاص بمكتب المحامي علي كاظم الهاشمي:`,
+        e && e.ref ? `• الرقم المرجعي: ${e.ref}` : null,
+        e && e.serviceTitle ? `• بيان الخدمة: ${e.serviceTitle}` : null,
+        e && e.notes ? `• التفاصيل: ${e.notes}` : null,
+        amtStr ? `• المبلغ المستحق: ${amtStr}` : null,
+        `• رابط الدفع الآمن:\n${LAST_LINK}`
       ].filter(Boolean).join('\n');
 
-      navigator.clipboard.writeText(msg);
-      alert(adminLang === 'ar' ? 'تم نسخ رسالة الواتساب الرسمية.' : 'Official WhatsApp message copied.');
+      window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
     }
 
-    function getHistory() {
-      try {
-        return JSON.parse(localStorage.getItem('akh_payment_logs') || '[]');
-      } catch { return []; }
-    }
-
-    function saveToHistory(rec) {
-      const list = getHistory();
-      list.unshift(rec);
-      localStorage.setItem('akh_payment_logs', JSON.stringify(list.slice(0, 50)));
+    function saveToHistory(entry) {
+      const list = JSON.parse(localStorage.getItem(HISTORY_STORAGE_KEY) || '[]');
+      list.unshift(entry);
+      if (list.length > 50) list.pop();
+      localStorage.setItem(HISTORY_STORAGE_KEY, JSON.stringify(list));
       renderHistory();
     }
 
-    function updateStatus(ref, newStatus) {
-      const list = getHistory();
-      const idx = list.findIndex(item => item.ref === ref);
-      if (idx !== -1) {
-        list[idx].status = newStatus;
-        localStorage.setItem('akh_payment_logs', JSON.stringify(list));
-        renderHistory();
+    function updateHistoryStatus(idx, newStatus) {
+      const list = JSON.parse(localStorage.getItem(HISTORY_STORAGE_KEY) || '[]');
+      if (!list[idx]) return;
+      list[idx].status = newStatus;
+      localStorage.setItem(HISTORY_STORAGE_KEY, JSON.stringify(list));
+      renderHistory();
 
-        if (newStatus === 'refunded') {
-          navigator.clipboard.writeText(ref);
-          alert(adminLang === 'ar'
-            ? `تم تحديث حالة الفاتورة (${ref}) إلى (مسترجعة) ونسخ الرقم المرجعي للحافظة.\nيرجى تأكيد رد المبلغ مالياً من لوحة تحكم Wayl.`
-            : `Invoice (${ref}) marked as Refunded and reference copied.\nPlease confirm the financial refund in your Wayl dashboard.`);
-        }
+      if (newStatus === 'refunded') {
+        const ref = list[idx].ref || '';
+        if (ref) navigator.clipboard.writeText(ref);
+        alert(adminLang === 'ar'
+          ? `تم تحديث حالة الفاتورة${ref ? ' (' + ref + ')' : ''} إلى (مسترجعة) ونسخ الرقم المرجعي للحافظة.\nيرجى تأكيد رد المبلغ مالياً من لوحة تحكم Wayl.`
+          : `Invoice${ref ? ' (' + ref + ')' : ''} marked as Refunded and reference copied.\nPlease confirm the financial refund in your Wayl dashboard.`);
       }
     }
 
     function renderHistory() {
-      const t = adminStrings[adminLang];
-      const container = document.getElementById('historyList');
-      const list = getHistory();
+      const container = document.getElementById('history-list');
+      const list = JSON.parse(localStorage.getItem(HISTORY_STORAGE_KEY) || '[]');
+      const isAr = adminLang === 'ar';
 
       if (!list.length) {
-        container.innerHTML = `<p style="color:var(--text-muted); font-size:0.86rem;">${t.emptyLog}</p>`;
+        container.innerHTML = isAr ? 'لا توجد روابط مصدرة بعد.' : 'No issued links yet.';
         return;
       }
 
-      container.innerHTML = list.map(item => {
-        let badgeClass = 'badge-pending';
-        let badgeText = t.statusPending;
-        if (item.status === 'paid') { badgeClass = 'badge-paid'; badgeText = t.statusPaid; }
-        if (item.status === 'refunded') { badgeClass = 'badge-refunded'; badgeText = t.statusRefunded; }
+      container.innerHTML = list.map((item, idx) => {
+        const st = item.status || 'pending';
+        let stClass = 'st-pending';
+        let stLabel = isAr ? '🟡 بانتظار الدفع' : '🟡 Pending';
+        if (st === 'paid') { stClass = 'st-paid'; stLabel = isAr ? '🟢 مستلمة بنجاح' : '🟢 Paid'; }
+        if (st === 'refunded') { stClass = 'st-refunded'; stLabel = isAr ? '🔴 مسترجعة' : '🔴 Refunded'; }
 
-        const amtStr = item.curr === 'USD'
-          ? `$${Number(item.origAmt).toLocaleString('en-US')} (${Number(item.iqdAmount).toLocaleString('en-US')} IQD)`
-          : `${Number(item.iqdAmount).toLocaleString('en-US')} IQD`;
+        const amtDisplay = (item.currency === 'USD' && item.origAmount)
+          ? `$${Number(item.origAmount).toLocaleString('en-US')} (${Number(item.amountIQD).toLocaleString('en-US')} IQD)`
+          : `${Number(item.amountIQD).toLocaleString('en-US')} IQD`;
 
         return `
           <div class="history-item">
             <div class="hist-top">
-              <span class="hist-ref">${item.ref} — ${item.createdAt || ''}</span>
-              <span class="badge ${badgeClass}">${badgeText}</span>
+              <div class="history-title">
+                ${item.ref ? `<span style="color:#c59b27; font-family:monospace;">[${item.ref}]</span> ` : ''}
+                ${item.serviceTitle} ${item.clientName ? `(${item.clientName})` : ''}
+              </div>
+              <span class="status-pill ${stClass}">${stLabel}</span>
             </div>
-            <div class="hist-meta">
-              ${item.payer ? `<strong>${item.payer}</strong> | ` : ''}${item.serviceAr} — <strong style="color:var(--gold);">${amtStr}</strong>
-            </div>
+            <div class="history-meta">${amtDisplay} • ${item.date || ''}</div>
             <div class="hist-actions">
-              <button type="button" class="btn-sm" onclick="navigator.clipboard.writeText('${item.finalClientUrl}')">${t.copyBtn}</button>
-              <button type="button" class="btn-sm btn-paid" onclick="updateStatus('${item.ref}', 'paid')">${t.markPaid}</button>
-              <button type="button" class="btn-sm btn-refund" onclick="updateStatus('${item.ref}', 'refunded')">${t.markRefund}</button>
+              <button class="btn btn-outline" onclick="copyHistoryLink(${idx})">${isAr ? 'نسخ الرابط 📋' : 'Copy Link 📋'}</button>
+              <button class="btn btn-paid" onclick="updateHistoryStatus(${idx}, 'paid')">${isAr ? 'تأكيد الاستلام ✓' : 'Mark Paid ✓'}</button>
+              <button class="btn btn-refund" onclick="updateHistoryStatus(${idx}, 'refunded')">${isAr ? 'استرجاع ↩' : 'Refund ↩'}</button>
             </div>
           </div>
         `;
       }).join('');
     }
 
-    renderHistory();
+    function copyHistoryLink(idx) {
+      const list = JSON.parse(localStorage.getItem(HISTORY_STORAGE_KEY) || '[]');
+      if (list[idx]) {
+        navigator.clipboard.writeText(list[idx].link);
+        alert(adminLang === 'ar' ? '✅ تم نسخ الرابط.' : '✅ Link copied.');
+      }
+    }
   </script>
 </body>
 </html>
