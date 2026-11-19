@@ -687,20 +687,7 @@
           throw new Error('لم يتم استلام رابط الدفع من البوابة.');
         }
 
-        const directParams = new URLSearchParams({
-          ref: refCode,
-          u: payUrl,
-          t: serviceTitleAr || serviceTitle,
-          te: serviceTitleEn || serviceTitle,
-          c: clientName,
-          n: serviceNotes,
-          a: String(amountIQD),
-          cur: currency,
-          orig: String(rawAmount),
-          rate: String(rate),
-          l: clientLang
-        });
-        LAST_LINK = `https://akjassem.com/payment/?${directParams.toString()}`;
+        LAST_LINK = `https://akjassem.com/payment/?ref=${encodeURIComponent(refCode)}`;
 
         LAST_ENTRY = {
           ref: refCode,
