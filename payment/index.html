@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>بوابة الدفع الإلكتروني | مكتب المحامي علي كاظم الهاشمي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Cairo', system-ui, sans-serif; background-color: #f7f9fc; color: #1a1a1a; padding: 25px 14px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+.card { max-width: 460px; width: 100%; background: #ffffff; border-radius: 16px; padding: 32px 24px; box-shadow: 0 8px 30px rgba(11, 26, 48, 0.07); border-top: 6px solid #c5a059; text-align: center; }
+.logo-text { font-size: 40px; font-weight: 800; letter-spacing: 2px; color: #0b1a30; line-height: 1; direction: ltr; }
+.logo-text span { color: #d32f2f; }
+.sub-title { font-size: 12px; font-weight: 700; color: #111; letter-spacing: 3px; margin-top: 5px; direction: ltr; }
+.sub-title span { color: #d32f2f; margin-right: 4px; font-weight: 800; }
+.office-ar { font-size: 16px; font-weight: 800; color: #0b1a30; margin-top: 12px; }
+.office-sub { font-size: 12.5px; color: #64748b; margin-bottom: 22px; border-bottom: 1.5px solid #edf2f7; padding-bottom: 16px; }
+
+.invoice-box { background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 18px; text-align: right; margin-bottom: 22px; }
+.inv-row { margin-bottom: 12px; }
+.inv-row:last-child { margin-bottom: 0; border-top: 1px dashed #cbd5e0; padding-top: 12px; }
+.inv-label { font-size: 12.5px; color: #64748b; display: block; font-weight: 600; }
+.inv-val { font-size: 15px; font-weight: 800; color: #0b1a30; }
+.inv-amount { font-size: 22px; font-weight: 800; color: #0b1a30; margin-top: 2px; }
+
+.btn-pay { display: block; width: 100%; background-color: #0b1a30; color: #ffffff; text-decoration: none; padding: 14px 20px; border-radius: 10px; font-size: 16px; font-weight: 800; transition: 0.3s; box-shadow: 0 4px 12px rgba(11, 26, 48, 0.15); }
+.btn-pay:hover { background-color: #c5a059; color: #0b1a30; }
+
+.secure-note { margin-top: 18px; font-size: 12px; color: #64748b; line-height: 1.6; }
+.success-box { background: #def7ec; border: 1.5px solid #84e1bc; color: #03543f; padding: 20px; border-radius: 12px; font-size: 15px; font-weight: 700; line-height: 1.7; }
+.empty-box { background: #fef3c7; color: #92400e; padding: 18px; border-radius: 12px; font-size: 14px; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<div class="card">
+<div class="logo-text">A<span>K</span>H</div>
+<div class="sub-title"><span>/</span> LAW OFFICE</div>
+<div class="office-ar">مكتب المحامي علي كاظم الهاشمي</div>
+<div class="office-sub">للمحاماة والخدمات القانونية</div>
+
+<div id="viewArea"></div>
+
+<div class="secure-note">
+🔒 معاملة إلكترونية مشفرة وآمنة<br>
+تُقبل بطاقات Visa و MasterCard والمحافظ الإلكترونية المعتمدة
+</div>
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const status = params.get('status');
+const clientName = params.get('n');
+const title = params.get('t');
+const displayAmount = params.get('d');
+const checkoutUrl = params.get('u');
+const viewArea = document.getElementById('viewArea');
+
+if (status === 'success') {
+viewArea.innerHTML = `
+<div class="success-box">
+✅ تم استلام الدفعة بنجاح.<br>
+شكراً لثقتكم بمكتب المحامي علي كاظم الهاشمي، سيتم تأكيد الإيصال عبر الواتساب.
+</div>
+`;
+} else if (checkoutUrl && title && displayAmount) {
+viewArea.innerHTML = `
+<div class="invoice-box">
+${clientName ? `<div class="inv-row"><span class="inv-label">اسم الموكل:</span><span class="inv-val">${escapeHtml(clientName)}</span></div>` : ''}
+<div class="inv-row">
+<span class="inv-label">البيان / الخدمة القانونية:</span>
+<span class="inv-val">${escapeHtml(title)}</span>
+</div>
+<div class="inv-row">
+<span class="inv-label">المبلغ المستحق للدفع:</span>
+<div class="inv-amount">${escapeHtml(displayAmount)}</div>
+</div>
+</div>
+<a href="${checkoutUrl}" class="btn-pay">الانتقال لإتمام الدفع الإلكتروني ←</a>
+`;
+} else {
+viewArea.innerHTML = `
+<div class="empty-box">
+يرجى استخدام رابط الدفع المباشر المُرسل إليكم من قبل مكتب المحاماة.
+</div>
+`;
+}
+
+function escapeHtml(text) {
+const div = document.createElement('div');
+div.innerText = text;
+return div.innerHTML;
+}
+</script>
+</body>
+</html>
