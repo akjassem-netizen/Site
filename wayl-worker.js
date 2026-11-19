@@ -115,7 +115,13 @@ export default {
         }
 
         const parsedWayl = JSON.parse(text);
-        const payUrl = parsedWayl.data?.url || parsedWayl.url || parsedWayl.paymentUrl || "";
+        const payUrl =
+          parsedWayl.data?.url ||
+          parsedWayl.data?.link ||
+          parsedWayl.url ||
+          parsedWayl.link ||
+          parsedWayl.paymentUrl ||
+          "";
 
         // حفظ بيانات الفاتورة في KV ليصبح الرابط قصيراً (?ref=AKH-...)
         if (env.AKH_KV && payUrl) {
