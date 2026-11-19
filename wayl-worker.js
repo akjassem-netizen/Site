@@ -27,7 +27,7 @@ export default {
       return new Response(record, { status: 200, headers });
     }
 
-    // 2. معالجة الطلبات (إنشاء فاتورة جديدة أو توثيق موافقة المراجع أو تثبيت الدفع)
+    // 2. معالجة الطلبات (إنشاء فاتورة جديدة أو توثيق موافقة أو تحديث حالة)
     if (request.method === "POST") {
       try {
         const body = await request.json();
@@ -67,7 +67,21 @@ export default {
           return new Response(JSON.stringify({ ok: true }), { status: 200, headers });
         }
 
-        // ج) إنشاء رابط دفع جديد عبر Wayl وحفظ الفاتورة بالرقم المرجعي
+        // ج) تحديث حالة الفاتورة غير المدفوعة إلى ملغاة / متروكة
+        if (body.action === "markCancelled" && body.ref) {
+          if (env.AKH_KV) {
+            const existingRaw = await env.AKH_KV.get("inv_" + body.ref);
+            if (existingRaw) {
+              const existing = JSON.parse(existingRaw);
+              existing.status = "cancelled";
+              existing.cancelledAt = new Date().toISOString();
+              await env.AKH_KV.put("inv_" + body.ref, JSON.stringify(existing));
+            }
+          }
+          return new Response(JSON.stringify({ ok: true }), { status: 200, headers });
+        }
+
+        // د) إنشاء رابط دفع جديد عبر Wayl وحفظ الفاتورة بالرقم المرجعي
         const { waylKey, title, amountIQD, invoiceMeta } = body;
         const refId = (invoiceMeta && invoiceMeta.ref) ? invoiceMeta.ref : ("AKH-" + Date.now());
 
