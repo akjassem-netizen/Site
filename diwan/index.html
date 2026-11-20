@@ -56,8 +56,9 @@ body {
 .sub-title span { color: #d32f2f; margin-right: 4px; font-weight: 800; }
 .est { font-size: 10px; color: #777; letter-spacing: 2px; margin-top: 3px; direction: ltr; }
 .diwan-ar { font-size: 22px; font-weight: 800; color: #0b1c36; margin-top: 10px; }
-.diwan-en { font-size: 11.5px; font-weight: 700; color: #92400e; letter-spacing: 2px; margin-top: 2px; direction: ltr; }
-.office-subtitle { font-size: 13.5px; font-weight: 700; color: #475569; margin-top: 5px; }
+.diwan-en { font-size: 12.5px; font-weight: 800; color: #92400e; letter-spacing: 2.5px; margin-top: 2px; direction: ltr; }
+.office-ar { font-size: 14.5px; font-weight: 800; color: #0b1c36; margin-top: 8px; }
+.office-en { font-size: 12px; font-weight: 700; color: #475569; margin-top: 2px; direction: ltr; }
 
 .screen-box { text-align: center; padding: 32px 12px; max-width: 440px; margin: 0 auto; }
 .lock-desc { font-size: 14px; color: #475569; margin-bottom: 18px; line-height: 1.7; }
@@ -329,8 +330,9 @@ textarea { min-height: 82px; resize: vertical; line-height: 1.7; }
     <div class="sub-title"><span style="color: #d32f2f;">/</span> LAW OFFICE</div>
     <div class="est">EST. 2014</div>
     <div class="diwan-ar">الديوان</div>
-    <div class="diwan-en">DIWAN • EXECUTIVE OFFICE</div>
-    <div class="office-subtitle">مكتب المحامي علي كاظم الهاشمي — Law Office Of Ali Kadhem Hashimi</div>
+    <div class="diwan-en">DIWAN</div>
+    <div class="office-ar">مكتب المحامي علي كاظم الهاشمي</div>
+    <div class="office-en">Law Office Of Ali Kadhem Hashimi</div>
   </div>
 
   <!-- تأسيس الخزنة لأول مرة -->
@@ -365,7 +367,7 @@ textarea { min-height: 82px; resize: vertical; line-height: 1.7; }
           <input type="file" id="import-backup-file" accept=".json" style="display:none;" onchange="importDiwanBackup(event)">
         </label>
         <a class="btn-sm btn-drive" href="https://drive.google.com/drive/folders/16ONILYXZ5sjwGOk_vYMIBAtlayyenlNh" target="_blank" rel="noopener">☁️ مجلد Drive</a>
-        <button type="button" class="btn-sm btn-gold" onclick="toggleSettingsPanel()">⚙️ الإعدادات (PIN)</button>
+        <button type="button" class="btn-sm btn-gold" onclick="openSettingsPanel()">⚙️ الإعدادات (PIN)</button>
         <button type="button" class="btn-sm btn-lock" onclick="lockVault()">قفل الجلسة 🔒</button>
       </div>
     </div>
@@ -460,7 +462,7 @@ textarea { min-height: 82px; resize: vertical; line-height: 1.7; }
         <div class="quick-sources">
           <a class="source-chip" href="https://www.moj.gov.iq/iraqmag/" target="_blank" rel="noopener">الوقائع العراقية ↗</a>
           <a class="source-chip" href="https://www.sjc.iq/" target="_blank" rel="noopener">مجلس القضاء الأعلى ↗</a>
-          <a class="source-chip" href="https://iraqbar.org/" target="_blank" rel="noopener">نقابة المحامين العراقيين ↗</a>
+          <a class="source-chip" href="https://lawyers.gov.iq/" target="_blank" rel="noopener">نقابة المحامين العراقيين ↗</a>
         </div>
         <div class="form-group">
           <input type="text" id="news-title-input" placeholder="عنوان خبر أو قرار أو مستجد قانوني...">
@@ -476,14 +478,14 @@ textarea { min-height: 82px; resize: vertical; line-height: 1.7; }
     <!-- قسم الإعدادات المحمي بالرقم السري (PIN) -->
     <div class="section-card hidden" id="settings-panel" style="border-top:4px solid #0b1c36;">
       <div class="section-head">
-        <h2>⚙️ إعدادات الديوان والمنصات (محمية بـ PIN)</h2>
-        <button type="button" class="btn-sm btn-light" onclick="toggleSettingsPanel()">إغلاق</button>
+        <h2>⚙️ إعدادات الديوان والمنصات (PIN)</h2>
+        <button type="button" class="btn-sm btn-light" onclick="closeSettingsPanel()">إغلاق</button>
       </div>
 
       <div id="settings-pin-gate">
         <p class="lock-desc" style="margin-bottom:10px;">أدخل الرقم السري (PIN) لفتح إعدادات الروابط والخانات والأمان:</p>
         <div style="display:flex; gap:8px; max-width:340px;">
-          <input type="password" id="settings-pin-input" placeholder="••••••" style="-webkit-text-security: disc;">
+          <input type="password" id="settings-pin-input" placeholder="••••••" style="-webkit-text-security: disc;" onkeypress="if(event.key==='Enter') unlockSettingsPanel()">
           <button type="button" class="btn-sm" onclick="unlockSettingsPanel()">فتح</button>
         </div>
       </div>
@@ -506,16 +508,16 @@ textarea { min-height: 82px; resize: vertical; line-height: 1.7; }
         <button type="button" class="btn-main" style="padding:10px; margin-bottom:18px;" onclick="savePlatformUrls()">حفظ روابط المنصات الأساسية</button>
 
         <div class="section-head">
-          <h2>➕ إضافة خانة منصة جديدة مستقبلاً</h2>
+          <h2>➕ إضافة خانة منصة جديدة</h2>
         </div>
         <div class="grid-2">
           <div class="form-group">
             <label>اسم الخانة:</label>
-            <input type="text" id="new-tile-name" placeholder="مثال: العقود / ملفات القضايا">
+            <input type="text" id="new-tile-name" placeholder="مثال: مجلس القضاء الأعلى">
           </div>
           <div class="form-group">
-            <label>الرابط الأصلي أو المسار:</label>
-            <input type="text" id="new-tile-url" placeholder="مثال: https://akjassem.com/contracts.html" dir="ltr">
+            <label>الرابط الأصلي:</label>
+            <input type="text" id="new-tile-url" placeholder="مثال: https://www.sjc.iq/" dir="ltr">
           </div>
         </div>
         <div class="form-group">
@@ -548,23 +550,23 @@ textarea { min-height: 82px; resize: vertical; line-height: 1.7; }
   </div>
 
   <div class="footer-note">
-    مكتب المحامي علي كاظم الهاشمي — الديوان
-    <span>جميع الحقوق محفوظة © 2026 | noindex, nofollow, noarchive</span>
+    مكتب المحامي علي كاظم الهاشمي
+    <span>جميع الحقوق محفوظة © 2026</span>
   </div>
 </div>
 
 <script>
 const VAULT_KEY = 'akh_diwan_vault_v1';
 const SESSION_TOKEN_KEY = 'akh_diwan_session_token';
-const CFG_URLS_KEY = 'akh_diwan_urls_v2';
+const CFG_URLS_KEY = 'akh_diwan_urls_v3';
 const CUSTOM_TILES_KEY = 'akh_diwan_custom_tiles_v1';
 const NOTES_KEY = 'akh_diwan_notes_v1';
 const NEWS_KEY = 'akh_diwan_news_v1';
 const WEATHER_CITY_KEY = 'akh_diwan_weather_city_v1';
 
 const DEFAULT_URLS = {
-  status: 'https://akjassem.com/portal.html',
-  insights: 'https://akjassem.com/insights-admin.html',
+  status: 'https://akjassem.com/akh-vault-8942x',
+  insights: 'https://www.akjassem.com/admin',
   payments: 'https://akjassem.com/payments-admin.html'
 };
 
@@ -1023,15 +1025,32 @@ function importDiwanBackup(event) {
   reader.readAsText(file, 'utf-8');
 }
 
-function toggleSettingsPanel() {
+function populateSettingsFields() {
+  const cfg = getUrlsConfig();
+  document.getElementById('cfg-url-status').value = cfg.status;
+  document.getElementById('cfg-url-insights').value = cfg.insights;
+  document.getElementById('cfg-url-payments').value = cfg.payments;
+  renderCustomTilesManage();
+}
+
+function openSettingsPanel() {
   const panel = document.getElementById('settings-panel');
-  const isHidden = panel.classList.contains('hidden');
-  panel.classList.toggle('hidden', !isHidden);
-  if (isHidden) {
+  panel.classList.remove('hidden');
+  if (ACTIVE_TOKEN) {
+    document.getElementById('settings-pin-gate').classList.add('hidden');
+    document.getElementById('settings-content').classList.remove('hidden');
+    populateSettingsFields();
+  } else {
     document.getElementById('settings-pin-gate').classList.remove('hidden');
     document.getElementById('settings-content').classList.add('hidden');
     document.getElementById('settings-pin-input').value = '';
+    setTimeout(() => document.getElementById('settings-pin-input').focus(), 50);
   }
+  panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function closeSettingsPanel() {
+  document.getElementById('settings-panel').classList.add('hidden');
 }
 
 async function unlockSettingsPanel() {
@@ -1041,11 +1060,7 @@ async function unlockSettingsPanel() {
     await decryptToken(savedVault, pin);
     document.getElementById('settings-pin-gate').classList.add('hidden');
     document.getElementById('settings-content').classList.remove('hidden');
-    const cfg = getUrlsConfig();
-    document.getElementById('cfg-url-status').value = cfg.status;
-    document.getElementById('cfg-url-insights').value = cfg.insights;
-    document.getElementById('cfg-url-payments').value = cfg.payments;
-    renderCustomTilesManage();
+    populateSettingsFields();
   } catch (e) {
     alert('❌ الرقم السري غير صحيح.');
   }
