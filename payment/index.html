@@ -500,8 +500,17 @@
 
     function normalizePaymentUrl(dataObj) {
       if (!dataObj || typeof dataObj !== 'object') return '';
-      const candidate = dataObj.u || dataObj.url || dataObj.link || dataObj.paymentUrl || dataObj.data?.url || dataObj.data?.link || '';
-      return typeof candidate === 'string' && candidate.trim().startsWith('https://') ? candidate.trim() : '';
+      const candidate =
+        dataObj.u ||
+        dataObj.url ||
+        dataObj.link ||
+        dataObj.paymentUrl ||
+        dataObj.data?.url ||
+        dataObj.data?.link ||
+        '';
+      if (typeof candidate !== 'string') return '';
+      const trimmed = candidate.trim();
+      return /^https?:\/\//i.test(trimmed) ? trimmed : '';
     }
 
     function resetInvoiceRows() {
@@ -541,7 +550,7 @@
           <p>يقتصر جمع البيانات والمستندات على المعلومات الضرورية لتقديم الخدمة القانونية المطلوبة، ويشمل ذلك البيانات الشخصية، وبيانات الاتصال، وأوليات الشركات، والعقود، وكافة الوثائق ذات الصلة بموضوع الطلب.</p>
           <h4>ثانياً: السرية المهنية وعدم الإفشاء</h4>
           <p>تخضع كافة المعلومات والمراسلات والمستندات المستلمة لالتزام السر المهني للمحامي، ويُحظر إفشاؤها أو مشاركتها أو تداولها مع أي جهة أو طرف ثالث تحت أي ظرف، باستثناء الحالات التي يأذن بها صاحب العلاقة خطياً، أو التي تقتضيها متطلبات إنجاز المعاملة أمام الدوائر الرسمية والقضائية بموجب الوكالة القانونية، أو تنفيذاً لأمر قضائي نافذ.</p>
-          <h4>ثالثاً: أمن المعلومات وحفظ البيانات</h4>
+          <h4>ثانياً/ثالثاً: أمن المعلومات وحفظ البيانات</h4>
           <p>يتخذ المكتب كافة التدابير الفنية والتنظيمية اللازمة لحماية الملفات والمستندات الرقمية والورقية من الوصول غير المصرح به أو الضياع أو التلف، وتُستخدم البيانات حصراً للأغراض القانونية المتفق عليها.</p>
           <h4>رابعاً: البيانات المالية وعمليات الدفع</h4>
           <p>تتم معالجة عمليات الدفع الإلكتروني عبر بوابات دفع مرخصة ومعتمدة، ولا يقوم المكتب بتخزين بيانات البطاقات المصرفية أو الحسابات المالية للمراجعين على خوادمه الخاصة.</p>
@@ -615,8 +624,8 @@
     async function initInvoice() {
       noticeMode = 'default';
       const params = new URLSearchParams(window.location.search);
-      const refParam = params.get('ref');
-      const statusParam = params.get('status');
+      const refParam = (params.get('ref') || '').trim();
+      const statusParam = (params.get('status') || '').trim();
 
       if (statusParam === 'success') {
         if (refParam) {
@@ -662,6 +671,7 @@
 
       if (refParam) {
         const msgSec = document.getElementById('message-section');
+        msgSec.style.display = 'block';
         msgSec.className = 'status-box status-notice';
         msgSec.textContent = 'جارٍ التحقق من بيانات إشعار السداد...';
         try {
