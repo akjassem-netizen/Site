@@ -3,7 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>بوابة الدفع الإلكتروني | مكتب المحامي علي الكاظم</title>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="بوابة الدفع الإلكتروني — مكتب المحامي علي كاظم الهاشمي — منصة المدفوعات">
+  <meta property="og:description" content="بوابة إلكترونية معتمدة لتسوية المستحقات والأتعاب والخدمات القانونية أو المتعلقات المرتبطة بالملفات والإشعارات الصادرة عن مكتب المحامي علي كاظم الهاشمي، وفق الأصول المهنية والضوابط القانونية المعتمدة.">
+  <meta property="og:image" content="https://akjassem.com/og-logo.jpg">
+  <meta property="og:image:secure_url" content="https://akjassem.com/og-logo.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://akjassem.com/og-logo.jpg">
+  <title>بوابة الدفع الإلكتروني — مكتب المحامي علي كاظم الهاشمي — منصة المدفوعات</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -20,7 +27,7 @@
       padding: 20px 14px;
     }
     .card {
-      max-width: 520px;
+      max-width: 540px;
       width: 100%;
       background: #ffffff;
       border-radius: 16px;
@@ -46,31 +53,52 @@
     }
     [dir="ltr"] .lang-btn { left: auto; right: 18px; }
 
-    .logo-row {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
+    .logo-text {
+      font-size: 40px;
+      font-weight: 800;
+      color: #0b1c36;
+      letter-spacing: 2px;
+      line-height: 1.05;
       margin-top: 10px;
       direction: ltr;
     }
-    .slash-mark { font-size: 38px; font-weight: 800; color: #d32f2f; line-height: 1; }
-    .logo-text { font-size: 40px; font-weight: 800; color: #0b1c36; letter-spacing: 2px; line-height: 1; direction: ltr; }
     .logo-text .k-red { color: #d32f2f; }
-    .sub-title { font-size: 12px; font-weight: 700; color: #64748b; letter-spacing: 3px; margin-top: 6px; direction: ltr; }
-    .est { font-size: 11px; color: #94a3b8; margin-top: 2px; direction: ltr; }
+    .sub-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #64748b;
+      letter-spacing: 3px;
+      margin-top: 8px;
+      direction: ltr;
+    }
+    .sub-title .slash-red { color: #d32f2f; font-weight: 800; }
+    .est { font-size: 11px; color: #94a3b8; margin-top: 3px; direction: ltr; letter-spacing: 1px; }
     .office-title { font-size: 18px; font-weight: 800; color: #0b1c36; margin-top: 12px; }
+    .platform-tag { font-size: 13px; font-weight: 700; color: #92400e; margin-top: 3px; }
 
     .office-intro {
       margin-top: 14px;
       background: #f8fafc;
       border-inline-start: 3.5px solid #c59b27;
-      padding: 10px 14px;
+      padding: 12px 14px;
       border-radius: 8px;
       font-size: 12.5px;
-      color: #475569;
+      color: #334155;
       text-align: start;
-      line-height: 1.75;
+      line-height: 1.8;
+    }
+
+    .security-strip {
+      margin-top: 10px;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      color: #166534;
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 11.5px;
+      font-weight: 700;
+      text-align: start;
+      line-height: 1.6;
     }
 
     .divider { height: 1px; background: #e2e8f0; margin: 18px 0; }
@@ -87,6 +115,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
       padding-bottom: 10px;
       margin-bottom: 10px;
       border-bottom: 1px solid #e2e8f0;
@@ -94,6 +124,14 @@
     .inv-badge {
       background: #fef3c7;
       color: #92400e;
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+    .inv-status-ready {
+      background: #dcfce7;
+      color: #166534;
       font-size: 11.5px;
       font-weight: 700;
       padding: 3px 10px;
@@ -213,7 +251,7 @@
       margin-top: 22px;
       font-size: 12px;
       color: #64748b;
-      line-height: 1.7;
+      line-height: 1.75;
     }
 
     .modal-overlay {
@@ -255,12 +293,11 @@
     }
     .modal-logo-wrap { display: flex; align-items: center; gap: 14px; }
     .modal-logo-box { text-align: center; direction: ltr; flex-shrink: 0; }
-    .modal-logo-row { display: inline-flex; align-items: center; gap: 6px; }
-    .modal-slash { font-size: 26px; font-weight: 800; color: #d32f2f; line-height: 1; }
-    .modal-logo-mark { font-size: 28px; font-weight: 800; color: #0b1c36; letter-spacing: 1.5px; line-height: 1; }
+    .modal-logo-mark { font-size: 30px; font-weight: 800; color: #0b1c36; letter-spacing: 1.5px; line-height: 1; }
     .modal-logo-mark .k-red { color: #d32f2f; }
-    .modal-logo-sub { font-size: 9px; font-weight: 700; color: #64748b; letter-spacing: 2px; margin-top: 3px; }
-    .modal-logo-est { font-size: 8.5px; color: #94a3b8; margin-top: 1px; }
+    .modal-logo-sub { font-size: 9.5px; font-weight: 700; color: #64748b; letter-spacing: 2px; margin-top: 4px; }
+    .modal-logo-sub .slash-red { color: #d32f2f; font-weight: 800; }
+    .modal-logo-est { font-size: 8.5px; color: #94a3b8; margin-top: 2px; }
     .modal-office-name { font-size: 14.5px; font-weight: 800; color: #0b1c36; line-height: 1.4; }
     .modal-office-desc { font-size: 11.5px; color: #92400e; font-weight: 700; }
     .close-modal {
@@ -333,16 +370,18 @@
   <div class="card">
     <button class="lang-btn" id="lang-toggle" onclick="toggleLang()">English</button>
 
-    <div class="logo-row">
-      <span class="slash-mark">/</span>
-      <div class="logo-text">A<span class="k-red">K</span>H</div>
-    </div>
-    <div class="sub-title">/ LAW OFFICE</div>
+    <div class="logo-text">A<span class="k-red">K</span>H</div>
+    <div class="sub-title"><span class="slash-red">/</span> LAW OFFICE</div>
     <div class="est">EST. 2014</div>
-    <div class="office-title" id="t-office">مكتب المحامي علي الكاظم</div>
+    <div class="office-title" id="t-office">مكتب المحامي علي كاظم الهاشمي</div>
+    <div class="platform-tag" id="t-platform-tag">بوابة الدفع الإلكتروني — منصة المدفوعات</div>
 
     <div class="office-intro" id="t-intro">
-      تُخصص هذه المنصة لتسديد أتعاب المحاماة والخدمات القانونية، وصياغة العقود والدراسات القانونية، والأعمال التنفيذية وتأسيس الشركات والدعاوى المقدمة من المكتب وفق أحكام قانون المحاماة العراقي النافذ.
+      بوابة إلكترونية معتمدة لتسوية المستحقات والأتعاب والخدمات القانونية أو المتعلقات المرتبطة بالملفات والإشعارات الصادرة عن مكتب المحامي علي كاظم الهاشمي، وفق الأصول المهنية والضوابط القانونية المعتمدة.
+    </div>
+
+    <div class="security-strip" id="t-security-strip">
+      🔒 قناة سداد مشفرة وموثقة — لا يتم تخزين بيانات البطاقات المصرفية على خوادم المنصة.
     </div>
 
     <div class="divider"></div>
@@ -350,12 +389,19 @@
     <div id="invoice-section" style="display: none;">
       <div class="invoice-box">
         <div class="inv-header">
-          <span class="inv-badge" id="t-inv-badge">إشعار سداد إلكتروني</span>
+          <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
+            <span class="inv-badge" id="t-inv-badge">إشعار سداد إلكتروني</span>
+            <span class="inv-status-ready" id="t-status-ready">سارٍ وجاهز للسداد</span>
+          </div>
           <span class="inv-ref" id="v-ref">REF: ---</span>
         </div>
         <div class="inv-row" id="client-row" style="display: none;">
-          <span class="inv-label" id="t-client-lbl">اسم المراجع / الدافع:</span>
+          <span class="inv-label" id="t-client-lbl">اسم صاحب العلاقة:</span>
           <span class="inv-val" id="v-client"></span>
+        </div>
+        <div class="inv-row" id="due-ref-row" style="display: none;">
+          <span class="inv-label" id="t-due-ref-lbl">رقم الاستحقاق:</span>
+          <span class="inv-val" id="v-due-ref" dir="ltr"></span>
         </div>
         <div class="inv-row">
           <span class="inv-label" id="t-service-lbl">البيان / الخدمة:</span>
@@ -364,6 +410,10 @@
         <div class="inv-row" id="notes-row" style="display: none;">
           <span class="inv-label" id="t-notes-lbl">تفاصيل إضافية:</span>
           <span class="inv-val" id="v-notes"></span>
+        </div>
+        <div class="inv-row" id="due-date-row" style="display: none;">
+          <span class="inv-label" id="t-due-date-lbl">تاريخ الاستحقاق:</span>
+          <span class="inv-val" id="v-due-date" dir="ltr"></span>
         </div>
         <div class="inv-row">
           <span class="inv-label" id="t-amount-lbl">المبلغ المستحق:</span>
@@ -389,12 +439,14 @@
     </div>
 
     <div id="message-section" class="status-box status-notice">
-      يرجى استخدام رابط الدفع المباشر المرسل إليكم من قبل مكتب المحامي علي الكاظم.
+      يرجى استخدام رابط الدفع المباشر المرسل إليكم من قبل مكتب المحامي علي الكاظم الهاشمي.
     </div>
 
     <div class="footer-note">
-      <div id="t-secure">🔒 معاملات إلكترونية مشفرة وآمنة (ZainCash / MasterCard / Visa)</div>
-      <div id="t-copy">جميع الحقوق محفوظة © 2026 | مكتب المحامي علي الكاظم</div>
+      <div id="t-methods">💳 بطاقات الدفع الإلكتروني (Visa / MasterCard) والمحافظ الإلكترونية المعتمدة</div>
+      <div id="t-contact">intake@akjassem.com | <span dir="ltr">&#x2066;&#x200E;+9647702956021&#x2069;</span></div>
+      <div id="t-address">العراق، بغداد، زيونة، قرب دار الازياء العراقية</div>
+      <div id="t-copy">جميع الحقوق محفوظة © 2026 | مكتب المحامي علي الكاظم الهاشمي</div>
     </div>
   </div>
 
@@ -403,15 +455,12 @@
       <div class="modal-brand-header">
         <div class="modal-logo-wrap">
           <div class="modal-logo-box">
-            <div class="modal-logo-row">
-              <span class="modal-slash">/</span>
-              <div class="modal-logo-mark">A<span class="k-red">K</span>H</div>
-            </div>
-            <div class="modal-logo-sub">/ LAW OFFICE</div>
+            <div class="modal-logo-mark">A<span class="k-red">K</span>H</div>
+            <div class="modal-logo-sub"><span class="slash-red">/</span> LAW OFFICE</div>
             <div class="modal-logo-est">EST. 2014</div>
           </div>
           <div style="border-inline-start: 1px solid #cbd5e1; padding-inline-start: 12px;">
-            <div class="modal-office-name" id="t-modal-office">مكتب المحامي علي الكاظم</div>
+            <div class="modal-office-name" id="t-modal-office">مكتب المحامي علي الكاظم الهاشمي</div>
             <div class="modal-office-desc" id="t-modal-sub">الضوابط والسياسات القانونية المعتمدة</div>
           </div>
         </div>
@@ -443,7 +492,7 @@
       ar: {
         fees: `
           <h3>سياسة الأتعاب والاسترداد وشروط الدفع الإلكتروني</h3>
-          <p>تخضع كافة التعاملات المالية والأتعاب المدفوعة لمكتب المحامي علي الكاظم لأحكام قانون المحاماة العراقي النافذ، وتُعد جميع المبالغ المدفوعة أتعاب محاماة مكتسبة وغير قابلة للاسترداد وفق التفصيل الآتي:</p>
+          <p>تخضع كافة التعاملات المالية والأتعاب المدفوعة لمكتب المحامي علي الكاظم الهاشمي لأحكام قانون المحاماة العراقي النافذ، وتُعد جميع المبالغ المدفوعة أتعاب محاماة مكتسبة وغير قابلة للاسترداد وفق التفصيل الآتي:</p>
           <h4>أولاً: الأعمال التنفيذية والتعاقدية (تأسيس الشركات، المعاملات، والدعاوى)</h4>
           <p>تُستحق الأتعاب المتفق عليها بالكامل من تاريخ تنظيم عقد الأتعاب أو إصدار الوكالة القانونية أو أيهما أسبق، ولا يحق للطرف الثاني المطالبة باسترداد أي مبلغ مدفوع تحت أي سبب أو ظرف بعد التعاقد أو تنظيم الوكالة، وتُطبق أحكام قانون المحاماة والاتفاق المبرم بين الطرفين في تنظيم هذا الاستحقاق.</p>
           <h4>ثانياً: مراجعة الملفات والمواعيد القانونية</h4>
@@ -456,7 +505,7 @@
         `,
         privacy: `
           <h3>سياسة الخصوصية وسرية المعلومات</h3>
-          <p>يلتزم مكتب المحامي علي الكاظم للمحامات والخدمات القانونية بأعلى معايير السرية المهنية المنصوص عليها في قانون المحاماة العراقي النافذ، ويكفل حماية كافة البيانات والمعلومات المقدمة من المراجعين والشركات وفق الضوابط الآتية:</p>
+          <p>يلتزم مكتب المحامي علي الكاظم الهاشمي بأعلى معايير السرية المهنية المنصوص عليها في قانون المحاماة العراقي النافذ، ويكفل حماية كافة البيانات والمعلومات المقدمة من المراجعين والشركات وفق الضوابط الآتية:</p>
           <h4>أولاً: جمع البيانات والمستندات</h4>
           <p>يقتصر جمع البيانات والمستندات على المعلومات الضرورية لتقديم الخدمة القانونية المطلوبة، ويشمل ذلك البيانات الشخصية، وبيانات الاتصال، وأوليات الشركات، والعقود، وكافة الوثائق ذات الصلة بموضوع الطلب.</p>
           <h4>ثانياً: السرية المهنية وعدم الإفشاء</h4>
@@ -472,7 +521,7 @@
         `,
         delivery: `
           <h3>سياسة تقديم الخدمات وتسليم الأعمال</h3>
-          <p>نظراً لأن نشاط مكتب المحامي علي الكاظم يختص في المحامات وتقديم الخدمات القانونية والأعمال التنفيذية القانونية ذات الصلة (ولا يتضمن أي شحن أو توصيل مادي للبضائع)، وتُدار وفق الضوابط الآتية:</p>
+          <p>نظراً لأن نشاط مكتب المحامي علي الكاظم الهاشمي يختص في المحاماة وتقديم الخدمات القانونية والأعمال التنفيذية القانونية ذات الصلة (ولا يتضمن أي شحن أو توصيل مادي للبضائع)، وتُدار وفق الضوابط الآتية:</p>
           <h4>أولاً: إثبات السداد والوصل الإلكتروني</h4>
           <p>يُعد إتمام عملية الدفع الإلكتروني وإصدار إشعار السداد عبر البوابة المعتمدة تثبيتاً رسمياً للعملية المالية، ويُسلّم المراجع نسخة إلكترونية من إشعار السداد فور إتمام العملية.</p>
           <h4>ثانياً: المواعيد والمراجعات القانونية</h4>
@@ -488,7 +537,7 @@
       en: {
         fees: `
           <h3>Legal Fees, Refund Policy & Electronic Payment Terms</h3>
-          <p>All financial transactions and fees paid to Law Office of Ali Kadhim Hashimi are governed by the applicable Iraqi Advocacy Law. All paid amounts constitute earned legal fees and are non-refundable, in accordance with the following terms:</p>
+          <p>All financial transactions and fees paid to Law Office Of Ali Kadhem Hashimi are governed by the applicable Iraqi Advocacy Law. All paid amounts constitute earned legal fees and are non-refundable, in accordance with the following terms:</p>
           <h4>First: Executive & Contractual Legal Services (Company Incorporation, Transactions, and Lawsuits)</h4>
           <p>Agreed legal fees become fully due and earned as of the date of executing the fee agreement or issuing the Power of Attorney, whichever occurs first. The second party has no right to claim a refund of any paid amount under any reason or circumstance after contracting or issuing the Power of Attorney. The provisions of the Iraqi Advocacy Law and the agreement concluded between the parties shall govern this entitlement.</p>
           <h4>Second: Legal Appointments & File Review</h4>
@@ -501,7 +550,7 @@
         `,
         privacy: `
           <h3>Privacy Policy & Confidentiality of Information</h3>
-          <p>Law Office of Ali Kadhim Hashimi for Advocacy & Legal Services is committed to the highest standards of professional confidentiality stipulated under the applicable Iraqi Advocacy Law and guarantees the protection of all data and information provided by applicants, clients, and companies in accordance with the following provisions:</p>
+          <p>Law Office Of Ali Kadhem Hashimi is committed to the highest standards of professional confidentiality stipulated under the applicable Iraqi Advocacy Law and guarantees the protection of all data and information provided by applicants, clients, and companies in accordance with the following provisions:</p>
           <h4>First: Collection of Data and Documents</h4>
           <p>The collection of data and documents is strictly limited to the information necessary to provide the requested legal service, including personal details, contact information, corporate documents, contracts, and all records relevant to the subject matter of the request.</p>
           <h4>Second: Professional Confidentiality & Non-Disclosure</h4>
@@ -517,7 +566,7 @@
         `,
         delivery: `
           <h3>Service Delivery & Work Handover Policy</h3>
-          <p>As the practice of Law Office of Ali Kadhim Hashimi specializes in legal advocacy and providing legal and related executive legal services (and involves no physical shipping or merchandise delivery), operations are governed by the following rules:</p>
+          <p>As the practice of Law Office Of Ali Kadhem Hashimi specializes in legal advocacy and providing legal and related executive legal services (and involves no physical shipping or merchandise delivery), operations are governed by the following rules:</p>
           <h4>First: Payment Confirmation & Electronic Receipt</h4>
           <p>Completing the electronic payment and generating the payment confirmation via the authorized gateway constitutes official confirmation of the financial transaction, and an electronic copy of the payment receipt is issued to the applicant immediately upon completion.</p>
           <h4>Second: Legal Appointments & Follow-ups</h4>
@@ -561,6 +610,8 @@
           r: refParam || params.get('r') || '',
           ref: refParam || params.get('r') || '',
           c: params.get('c') || params.get('client') || '',
+          matterRef: params.get('matterRef') || '',
+          dueDate: params.get('dueDate') || '',
           t: params.get('t') || params.get('title') || '',
           te: params.get('te') || '',
           n: params.get('n') || params.get('notes') || '',
@@ -617,6 +668,8 @@
         u: '',
         r: '',
         c: '',
+        matterRef: '',
+        dueDate: '',
         t: '',
         te: '',
         n: '',
@@ -635,18 +688,33 @@
       const isAr = currentLang === 'ar';
       document.documentElement.lang = currentLang;
       document.documentElement.dir = isAr ? 'rtl' : 'ltr';
+      document.title = isAr
+        ? 'بوابة الدفع الإلكتروني — مكتب المحامي علي كاظم الهاشمي — منصة المدفوعات'
+        : 'Electronic Payment Portal — Law Office Of Ali Kadhem Hashimi — Payment Platform';
 
       document.getElementById('lang-toggle').textContent = isAr ? 'English' : 'العربية';
       document.getElementById('t-office').textContent = isAr
-        ? 'مكتب المحامي علي الكاظم'
-        : 'Law Office of Ali Kadhim Hashimi';
+        ? 'مكتب المحامي علي كاظم الهاشمي'
+        : 'Law Office Of Ali Kadhem Hashimi';
+      document.getElementById('t-platform-tag').textContent = isAr
+        ? 'بوابة الدفع الإلكتروني — منصة المدفوعات'
+        : 'Electronic Payment Portal — Payment Platform';
       document.getElementById('t-intro').textContent = isAr
-        ? 'تُخصص هذه المنصة لتسديد أتعاب المحاماة والخدمات القانونية، وصياغة العقود والدراسات القانونية، والأعمال التنفيذية وتأسيس الشركات والدعاوى المقدمة من المكتب وفق أحكام قانون المحاماة العراقي النافذ.'
-        : 'This platform is dedicated to settling fees for legal advocacy and legal services, contract drafting, legal studies, company incorporation, lawsuits, and executive legal matters provided by the Office under the applicable Iraqi Advocacy Law.';
+        ? 'بوابة إلكترونية معتمدة لتسوية المستحقات والأتعاب والخدمات القانونية أو المتعلقات المرتبطة بالملفات والإشعارات الصادرة عن مكتب المحامي علي كاظم الهاشمي، وفق الأصول المهنية والضوابط القانونية المعتمدة.'
+        : 'An authorized electronic portal for settling dues, legal fees, and legal services or matters related to files and notices issued by Law Office Of Ali Kadhem Hashimi, in accordance with professional standards and applicable legal regulations.';
+      document.getElementById('t-security-strip').textContent = isAr
+        ? '🔒 قناة سداد مشفرة وموثقة — لا يتم تخزين بيانات البطاقات المصرفية على خوادم المنصة.'
+        : '🔒 Encrypted & verified payment channel — Payment card details are not stored on platform servers.';
+
       document.getElementById('t-inv-badge').textContent = isAr ? 'إشعار سداد إلكتروني' : 'Electronic Payment Notice';
-      document.getElementById('t-client-lbl').textContent = isAr ? 'اسم المراجع / الدافع:' : 'Applicant / Payer Name:';
+      document.getElementById('t-status-ready').textContent = isAr ? 'سارٍ وجاهز للسداد' : 'Active & Ready';
+      document.getElementById('t-client-lbl').textContent = isAr
+        ? `${payload.role || 'صاحب العلاقة'}:`
+        : `${payload.role || 'Applicant'}:`;
+      document.getElementById('t-due-ref-lbl').textContent = isAr ? 'رقم الاستحقاق:' : 'Due Reference:';
       document.getElementById('t-service-lbl').textContent = isAr ? 'البيان / الخدمة:' : 'Legal Service:';
       document.getElementById('t-notes-lbl').textContent = isAr ? 'تفاصيل إضافية:' : 'Additional Details:';
+      document.getElementById('t-due-date-lbl').textContent = isAr ? 'تاريخ الاستحقاق:' : 'Due Date:';
       document.getElementById('t-amount-lbl').textContent = isAr ? 'المبلغ المستحق:' : 'Total Amount:';
 
       document.getElementById('t-btn-fees').textContent = isAr ? 'سياسة الأتعاب والاسترداد' : 'Fees & Refund Policy';
@@ -658,8 +726,8 @@
       document.getElementById('tab-delivery').textContent = isAr ? 'تقديم الخدمات وتسليم الأعمال' : 'Service Delivery Policy';
 
       document.getElementById('t-modal-office').textContent = isAr
-        ? 'مكتب المحامي علي الكاظم'
-        : 'Law Office of Ali Kadhim Hashimi';
+        ? 'مكتب المحامي علي كاظم الهاشمي'
+        : 'Law Office Of Ali Kadhem Hashimi';
       document.getElementById('t-modal-sub').textContent = isAr
         ? 'الضوابط والسياسات القانونية المعتمدة'
         : 'Official Legal Policies & Payment Terms';
@@ -668,18 +736,21 @@
         : 'I Have Read & Agree to All Policies ✓';
 
       document.getElementById('t-consent').innerHTML = isAr
-        ? 'أقرّ بأنني اطلعت ووافقت على <a href="javascript:void(0)" class="consent-link" onclick="openPolicyModal(\'fees\'); event.stopPropagation();">سياسة الأتعاب والاسترداد</a>، و<a href="javascript:void(0)" class="consent-link" onclick="openPolicyModal(\'privacy\'); event.stopPropagation();">سياسة الخصوصية وسرية المعلومات</a>، و<a href="javascript:void(0)" class="consent-link" onclick="openPolicyModal(\'delivery\'); event.stopPropagation();">سياسة تقديم الخدمات وتسليم الأعمال</a> الخاصة بمكتب المحامي علي الكاظم.'
-        : 'I acknowledge that I have read and agreed to the <a href="javascript:void(0)" class="consent-link" onclick="openPolicyModal(\'fees\'); event.stopPropagation();">Legal Fees & Refund Policy</a>, <a href="javascript:void(0)" class="consent-link" onclick="openPolicyModal(\'privacy\'); event.stopPropagation();">Privacy & Confidentiality Policy</a>, and <a href="javascript:void(0)" class="consent-link" onclick="openPolicyModal(\'delivery\'); event.stopPropagation();">Service Delivery Policy</a> of Law Office of Ali Kadhim Hashimi.';
+        ? 'أقرّ بأنني اطلعت ووافقت على <a href="javascript:void(0)" class="consent-link" onclick="openPolicyModal(\'fees\'); event.stopPropagation();">سياسة الأتعاب والاسترداد</a>، و<a href="javascript:void(0)" class="consent-link" onclick="openPolicyModal(\'privacy\'); event.stopPropagation();">سياسة الخصوصية وسرية المعلومات</a>، و<a href="javascript:void(0)" class="consent-link" onclick="openPolicyModal(\'delivery\'); event.stopPropagation();">سياسة تقديم الخدمات وتسليم الأعمال</a> الخاصة بمكتب المحامي علي كاظم الهاشمي.'
+        : 'I acknowledge that I have read and agreed to the <a href="javascript:void(0)" class="consent-link" onclick="openPolicyModal(\'fees\'); event.stopPropagation();">Legal Fees & Refund Policy</a>, <a href="javascript:void(0)" class="consent-link" onclick="openPolicyModal(\'privacy\'); event.stopPropagation();">Privacy & Confidentiality Policy</a>, and <a href="javascript:void(0)" class="consent-link" onclick="openPolicyModal(\'delivery\'); event.stopPropagation();">Service Delivery Policy</a> of Law Office Of Ali Kadhem Hashimi.';
 
       document.getElementById('pay-link').textContent = isAr
         ? 'الانتقال إلى بوابة الدفع الآمن 💳'
         : 'Proceed to Secure Payment 💳';
-      document.getElementById('t-secure').textContent = isAr
-        ? '🔒 معاملات إلكترونية مشفرة وآمنة (ZainCash / MasterCard / Visa)'
-        : '🔒 Encrypted & Secure Transactions (ZainCash / MasterCard / Visa)';
+      document.getElementById('t-methods').textContent = isAr
+        ? '💳 بطاقات الدفع الإلكتروني (Visa / MasterCard) والمحافظ الإلكترونية المعتمدة'
+        : '💳 Electronic Payment Cards (Visa / MasterCard) & Approved E-Wallets';
+      document.getElementById('t-address').textContent = isAr
+        ? 'العراق، بغداد، زيونة، قرب دار الازياء العراقية'
+        : 'Iraq, Baghdad, Zayouna, Near Iraqi Fashion House';
       document.getElementById('t-copy').textContent = isAr
-        ? 'جميع الحقوق محفوظة © 2026 | مكتب المحامي علي الكاظم'
-        : 'All Rights Reserved © 2026 | Law Office of Ali Kadhim Hashimi';
+        ? 'جميع الحقوق محفوظة © 2026 | مكتب المحامي علي كاظم الهاشمي'
+        : 'All Rights Reserved © 2026 | Law Office Of Ali Kadhem Hashimi';
 
       renderModalTab();
     }
@@ -696,8 +767,8 @@
         msgSec.className = 'status-box status-success';
         const refNote = payload.r ? (isAr ? ` (الرقم المرجعي: ${payload.r})` : ` (Ref: ${payload.r})`) : '';
         msgSec.textContent = isAr
-          ? `✅ تم استلام عملية الدفع بنجاح وتثبيتها في سجلات مكتب المحامي علي الكاظم${refNote}.`
-          : `✅ Payment completed successfully and recorded with Law Office of Ali Kadhim Hashimi${refNote}.`;
+          ? `✅ تم استلام عملية الدفع بنجاح وتثبيتها في سجلات مكتب المحامي علي كاظم الهاشمي${refNote}.`
+          : `✅ Payment completed successfully and recorded with Law Office Of Ali Kadhem Hashimi${refNote}.`;
         return;
       }
 
@@ -706,8 +777,8 @@
         msgSec.style.display = 'block';
         msgSec.className = 'status-box status-success';
         msgSec.textContent = isAr
-          ? `✅ تم تسديد هذه الفاتورة مسبقاً في سجلات مكتب المحامي علي الكاظم (${payload.ref || payload.r || ''}). للاستفسار يرجى التواصل مباشرة مع المكتب.`
-          : `✅ This invoice (${payload.ref || payload.r || ''}) has already been settled with Law Office of Ali Kadhim Hashimi. Please contact the office for inquiries.`;
+          ? `✅ تم تسديد هذه الفاتورة مسبقاً في سجلات مكتب المحامي علي كاظم الهاشمي (${payload.ref || payload.r || ''}). للاستفسار يرجى التواصل مباشرة مع المكتب.`
+          : `✅ This invoice (${payload.ref || payload.r || ''}) has already been settled with Law Office Of Ali Kadhem Hashimi. Please contact the office for inquiries.`;
         return;
       }
 
@@ -716,8 +787,8 @@
         msgSec.style.display = 'block';
         msgSec.className = 'status-box status-notice';
         msgSec.textContent = isAr
-          ? 'إشعار السداد هذا غير متاح حالياً أو تم إغلاقه. يرجى التواصل مع مكتب المحامي علي الكاظم لإصدار إشعار سداد جديد.'
-          : 'This payment notice is currently unavailable or closed. Please contact Law Office of Ali Kadhim Hashimi for a new notice.';
+          ? 'إشعار السداد هذا غير متاح حالياً أو تم إغلاقه. يرجى التواصل مع مكتب المحامي علي الكاظم الهاشمي لإصدار إشعار سداد جديد.'
+          : 'This payment notice is currently unavailable or closed. Please contact Law Office Of Ali Kadhem Hashimi for a new notice.';
         return;
       }
 
@@ -733,6 +804,11 @@
           document.getElementById('v-client').textContent = payload.c;
         }
 
+        if (payload.matterRef) {
+          document.getElementById('due-ref-row').style.display = 'flex';
+          document.getElementById('v-due-ref').textContent = payload.matterRef;
+        }
+
         const serviceText = isAr
           ? (payload.t || 'أتعاب محاماة وخدمات قانونية')
           : (payload.te || payload.t || 'Legal Advocacy & Services');
@@ -741,6 +817,11 @@
         if (payload.n) {
           document.getElementById('notes-row').style.display = 'flex';
           document.getElementById('v-notes').textContent = payload.n;
+        }
+
+        if (payload.dueDate) {
+          document.getElementById('due-date-row').style.display = 'flex';
+          document.getElementById('v-due-date').textContent = payload.dueDate;
         }
 
         const amtEl = document.getElementById('v-amount');
@@ -761,12 +842,12 @@
         msgSec.className = 'status-box status-notice';
         if (noticeMode === 'unavailable') {
           msgSec.textContent = isAr
-            ? 'إشعار السداد هذا غير متاح حالياً أو انتهت صلاحيته أو تم إغلاقه. يرجى التواصل مع مكتب المحامي علي الكاظم لإصدار إشعار سداد جديد.'
-            : 'This payment notice is unavailable, expired, or closed. Please contact Law Office of Ali Kadhim Hashimi for a new notice.';
+            ? 'إشعار السداد هذا غير متاح حالياً أو انتهت صلاحيته أو تم إغلاقه. يرجى التواصل مع مكتب المحامي علي الكاظم الهاشمي لإصدار إشعار سداد جديد.'
+            : 'This payment notice is unavailable, expired, or closed. Please contact Law Office Of Ali Kadhem Hashimi for a new notice.';
         } else {
           msgSec.textContent = isAr
-            ? 'يرجى استخدام رابط الدفع المباشر المرسل إليكم من قبل مكتب المحامي علي الكاظم.'
-            : 'Please use the direct payment link sent to you by Law Office of Ali Kadhim Hashimi.';
+            ? 'يرجى استخدام رابط الدفع المباشر المرسل إليكم من قبل مكتب المحامي علي الكاظم الهاشمي.'
+            : 'Please use the direct payment link sent to you by Law Office Of Ali Kadhem Hashimi.';
         }
       }
     }
