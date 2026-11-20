@@ -862,6 +862,11 @@
       return `\u2066\u200E${normalized}\u2069`;
     }
 
+    function formatCopyableRef(refCode) {
+      if (!refCode) return '';
+      return `\u2066\u200E${refCode}\u2069\n───────────────`;
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
       const savedWa = localStorage.getItem(WA_TEMPLATE_KEY);
       if (savedWa !== null) document.getElementById('wa-template-input').value = savedWa;
@@ -1401,7 +1406,7 @@
       const partyRole = getActivePartyRole();
       const requestKind = getActiveRequestKind();
       const clientName = document.getElementById('client-name').value.trim();
-      const clientPhone = document.getElementById('client-phone').value.trim().replace(/[^\d]/g, '');
+      const clientPhone = document.getElementById('client-phone').value.trim();
       const clientEmail = document.getElementById('client-email').value.trim();
       const matterRef = document.getElementById('matter-ref').value.trim();
       const transferRef = document.getElementById('transfer-ref').value.trim();
@@ -1536,13 +1541,14 @@
       const amtStr = (e && e.currency === 'USD')
         ? `$${Number(e.origAmount).toLocaleString('en-US')} USD (${Number(e.amountIQD).toLocaleString('en-US')} IQD)`
         : (e ? `${Number(e.amountIQD).toLocaleString('en-US')} IQD` : '');
+      const payUrl = e ? e.link : LAST_LINK;
 
       if (isEn) {
         return [
           `Your invoice has been issued by ${officeName} upon receiving your request confirmed in the booking platform of ${officeName} successfully.`,
           '',
           e && e.clientName ? `• ${e.partyRole || 'Applicant'}: ${e.clientName}` : null,
-          e && e.ref ? `• Invoice Reference: ${e.ref}` : null,
+          e && e.ref ? `• Invoice Reference: ${formatCopyableRef(e.ref)}` : null,
           e && e.requestKind ? `• Purpose: ${e.requestKind}` : null,
           e && e.matterRef ? `• File Ref: ${e.matterRef}` : null,
           e && e.serviceTitle ? `• Subject: ${e.serviceTitle}` : null,
@@ -1551,11 +1557,11 @@
           e && e.appointment ? `• Appointment: ${e.appointment}` : null,
           amtStr ? `• Amount Due: ${amtStr}` : null,
           '',
-          `• Pay Now:\n${e ? e.link : LAST_LINK}`,
-          '',
           getSupportBlockText(true),
           '',
-          `Thank you for choosing our office, with regards ${officeName} — www.akjassem.com`
+          `Thank you for choosing our office, with regards ${officeName} — www.akjassem.com`,
+          '',
+          `Pay Now: ${payUrl}`
         ].filter(x => x !== null).join('\n');
       }
 
@@ -1563,7 +1569,7 @@
         introLine,
         '',
         e && e.clientName ? `• ${e.partyRole || 'صاحب العلاقة'}: ${e.clientName}` : null,
-        e && e.ref ? `• الرقم المرجعي للفاتورة: ${e.ref}` : null,
+        e && e.ref ? `• الرقم المرجعي للفاتورة: ${formatCopyableRef(e.ref)}` : null,
         e && e.requestKind ? `• نوع البيان أو الغرض: ${e.requestKind}` : null,
         e && e.matterRef ? `• رقم الملف: ${e.matterRef}` : null,
         e && e.serviceTitle ? `• البيان: ${e.serviceTitle}` : null,
@@ -1572,11 +1578,11 @@
         e && e.appointment ? `• الموعد: ${e.appointment}` : null,
         amtStr ? `• مبلغ الاستحقاق: ${amtStr}` : null,
         '',
-        `• دفع الآن:\n${e ? e.link : LAST_LINK}`,
-        '',
         getSupportBlockText(false),
         '',
-        closingLine
+        closingLine,
+        '',
+        `دفع الآن: ${payUrl}`
       ].filter(x => x !== null).join('\n');
     }
 
@@ -1604,8 +1610,8 @@
       const link = e ? e.link : LAST_LINK;
       if (!link) return;
       const msg = getMessageForSend(customEntry);
-      const phone = e && e.clientPhone ? e.clientPhone : '';
-      const base = phone ? `https://wa.me/${phone}?text=` : `https://wa.me/?text=`;
+      const cleanPhone = e && e.clientPhone ? String(e.clientPhone).replace(/[^\d]/g, '') : '';
+      const base = cleanPhone ? `https://wa.me/${cleanPhone}?text=` : `https://wa.me/?text=`;
       window.open(base + encodeURIComponent(msg), '_blank');
     }
 
@@ -1635,14 +1641,14 @@
         e.dueDate ? `• تاريخ الاستحقاق: ${e.dueDate}` : null,
         `• مبلغ الاستحقاق: ${Number(e.amountIQD).toLocaleString('en-US')} IQD`,
         '',
-        `• دفع الآن:\n${e.link}`,
-        '',
         getSupportBlockText(false),
         '',
-        (document.getElementById('closing-note-input')?.value || DEFAULT_CLOSING_NOTE).trim()
+        (document.getElementById('closing-note-input')?.value || DEFAULT_CLOSING_NOTE).trim(),
+        '',
+        `دفع الآن: ${e.link}`
       ].filter(x => x !== null).join('\n');
-      const phone = e.clientPhone ? `${e.clientPhone}` : '';
-      const url = phone ? `https://wa.me/${phone}?text=${encodeURIComponent(reminderText)}` : `https://wa.me/?text=${encodeURIComponent(reminderText)}`;
+      const cleanPhone = e.clientPhone ? String(e.clientPhone).replace(/[^\d]/g, '') : '';
+      const url = cleanPhone ? `https://wa.me/${cleanPhone}?text=${encodeURIComponent(reminderText)}` : `https://wa.me/?text=${encodeURIComponent(reminderText)}`;
       window.open(url, '_blank');
     }
 
@@ -2035,8 +2041,8 @@
       const em = (document.getElementById('support-email-input')?.value || DEFAULT_SUPPORT_EMAIL).trim();
       const ph = formatLtrPhone(document.getElementById('support-phone-input')?.value || DEFAULT_SUPPORT_PHONE);
       const baseContact = isEn
-        ? `${addr} | Inquiries & Assistance: ${em} | ${ph}`
-        : `${addr} | للاستفسار والمساعدة: ${em} | ${ph}`;
+        ? `${addr} | ${em} | ${ph}`
+        : `${addr} | ${em} | ${ph}`;
       return customFt ? `${customFt} — ${baseContact}` : baseContact;
     }
 
@@ -2048,7 +2054,7 @@
       const dir = isEn ? 'ltr' : 'rtl';
       const lang = isEn ? 'en' : 'ar';
       const officeName = isEn ? 'Law Office Of Ali Kadhem Hashimi' : 'مكتب المحامي علي كاظم الهاشمي';
-      const subDesc = isEn ? 'Advocacy & Legal Services | Baghdad - Iraq' : 'للمحاماة والخدمات القانونية | العراق، بغداد، زيونة، قرب دار الازياء العراقية';
+      const subDesc = isEn ? 'Advocacy & Legal Services' : 'للمحاماة والخدمات القانونية';
       const amtStr = (item.currency === 'USD' && item.origAmount)
         ? `$${Number(item.origAmount).toLocaleString('en-US')} USD (${Number(item.amountIQD).toLocaleString('en-US')} IQD)`
         : `${Number(item.amountIQD).toLocaleString('en-US')} IQD`;
@@ -2172,7 +2178,7 @@
           <div class="header">
             <div>
               <h2 style="font-size:20px; font-weight:800;">${officeName}</h2>
-              <div style="font-size:13px; color:#64748b;">${isEn ? 'Advocacy & Legal Services | Baghdad - Iraq' : 'للمحاماة والخدمات القانونية | العراق، بغداد، زيونة، قرب دار الازياء العراقية'}</div>
+              <div style="font-size:13px; color:#64748b;">${isEn ? 'Advocacy & Legal Services' : 'للمحاماة والخدمات القانونية'}</div>
             </div>
             <div class="logo">
               <div class="logo-main">A<span class="k-red">K</span>H</div>
@@ -2300,7 +2306,7 @@
           <div class="header">
             <div>
               <h2 style="font-size:20px; font-weight:800;">${officeName}</h2>
-              <div style="font-size:13px; color:#64748b;">${isEn ? 'Advocacy & Legal Services | Baghdad - Iraq' : 'للمحاماة والخدمات القانونية | العراق، بغداد، زيونة، قرب دار الازياء العراقية'}</div>
+              <div style="font-size:13px; color:#64748b;">${isEn ? 'Advocacy & Legal Services' : 'للمحاماة والخدمات القانونية'}</div>
             </div>
             <div class="logo">
               <div class="logo-main">A<span class="k-red">K</span>H</div>
