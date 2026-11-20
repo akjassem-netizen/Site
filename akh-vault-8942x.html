@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow, noarchive">
-  <title>إدارة المدفوعات القانونية | مكتب المحامي علي الكاظم</title>
+  <title>منصة المدفوعات | مكتب المحامي علي كاظم الهاشمي</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -47,19 +47,27 @@
     [dir="ltr"] .lang-btn { left: auto; right: 18px; }
 
     .brand-section { text-align: center; margin-bottom: 24px; }
-    .logo-row {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
+    .logo-text {
+      font-size: 40px;
+      font-weight: 800;
+      color: #0b1c36;
+      letter-spacing: 2px;
+      line-height: 1.05;
       direction: ltr;
     }
-    .slash-mark { font-size: 36px; font-weight: 800; color: #d32f2f; line-height: 1; }
-    .logo-text { font-size: 38px; font-weight: 800; color: #0b1c36; letter-spacing: 2px; line-height: 1; direction: ltr; }
     .logo-text .k-red { color: #d32f2f; }
-    .sub-title { font-size: 12px; font-weight: 700; color: #64748b; letter-spacing: 3px; margin-top: 6px; direction: ltr; }
-    .est { font-size: 11px; color: #94a3b8; margin-top: 2px; direction: ltr; }
-    .office-title { font-size: 16px; font-weight: 700; color: #0b1c36; margin-top: 10px; }
+    .sub-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #64748b;
+      letter-spacing: 3px;
+      margin-top: 8px;
+      direction: ltr;
+    }
+    .sub-title .slash-red { color: #d32f2f; font-weight: 800; }
+    .est { font-size: 11px; color: #94a3b8; margin-top: 3px; direction: ltr; letter-spacing: 1px; }
+    .platform-heading { font-size: 21px; font-weight: 800; color: #0b1c36; margin-top: 12px; }
+    .office-subtitle { font-size: 14.5px; font-weight: 700; color: #475569; margin-top: 4px; }
 
     .card {
       background: #f8fafc;
@@ -347,18 +355,16 @@
     <button class="lang-btn" id="admin-lang-btn" onclick="toggleAdminLang()">English</button>
 
     <div class="brand-section">
-      <div class="logo-row">
-        <span class="slash-mark">/</span>
-        <div class="logo-text">A<span class="k-red">K</span>H</div>
-      </div>
-      <div class="sub-title">/ LAW OFFICE</div>
+      <div class="logo-text">A<span class="k-red">K</span>H</div>
+      <div class="sub-title"><span class="slash-red">/</span> LAW OFFICE</div>
       <div class="est">EST. 2014</div>
-      <div class="office-title" id="t-office">مكتب المحامي علي الكاظم</div>
+      <div class="platform-heading" id="t-platform">منصة المدفوعات</div>
+      <div class="office-subtitle" id="t-office">مكتب المحامي علي كاظم الهاشمي</div>
     </div>
 
     <!-- شاشة تأسيس البوابة لأول مرة -->
     <div id="setup-view" class="card hidden">
-      <div class="card-title">🔐 تأسيس البوابة المشفرة (لأول مرة)</div>
+      <div class="card-title">🔐 تأسيس المنصة المشفرة (لأول مرة)</div>
       <p style="font-size: 13px; color: #475569; margin-bottom: 14px;">
         تُشفَّر مفاتيحك محلياً في متصفحك باستخدام خوارزمية PBKDF2 + AES-GCM ولا تُرفع لأي خادم.
       </p>
@@ -371,33 +377,33 @@
         <input type="password" id="setup-wayl" placeholder="أدخل مفتاح Wayl API الخاص بمكتبك">
       </div>
       <div class="form-group">
-        <label>الرقم السري للبوابة (PIN):</label>
+        <label>الرقم السري للمنصة (PIN):</label>
         <input type="password" id="setup-pin" placeholder="اختر رقماً سرياً (6 أرقام أو أكثر)">
       </div>
       <button class="btn" onclick="setupVault()">تشفير وحفظ الإعدادات</button>
     </div>
 
-    <!-- شاشة فتح البوابة -->
+    <!-- شاشة فتح المنصة -->
     <div id="unlock-view" class="card hidden">
-      <div class="card-title" id="t-locked-title">🔒 البوابة مقفلة</div>
+      <div class="card-title" id="t-locked-title">🔒 المنصة مقفلة</div>
       <div class="form-group">
         <label id="t-pin-lbl">أدخل الرقم السري (PIN) لفتح لوحة الإدارة:</label>
         <input type="password" id="unlock-pin" placeholder="••••••" onkeypress="if(event.key==='Enter') unlockVault()">
       </div>
-      <button class="btn" id="t-unlock-btn" onclick="unlockVault()">فتح البوابة</button>
+      <button class="btn" id="t-unlock-btn" onclick="unlockVault()">فتح المنصة</button>
       <div style="text-align: center; margin-top: 12px;">
-        <button class="btn-sm" id="t-reset-btn" onclick="resetVault()">إعادة ضبط البوابة</button>
+        <button class="btn-sm" id="t-reset-btn" onclick="resetVault()">إعادة ضبط المنصة</button>
       </div>
     </div>
 
     <!-- لوحة التحكم الرئيسية -->
     <div id="dashboard-view" class="hidden">
       <div class="top-bar">
-        <span class="badge" id="t-vault-badge">🟢 البوابة نشطة ومؤمّنة</span>
+        <span class="badge" id="t-vault-badge">🟢 المنصة نشطة ومؤمّنة</span>
         <div style="display:flex; gap:6px; flex-wrap:wrap;">
           <button class="btn-sm" id="test-mode-btn" onclick="toggleTestMode()">🧪 وضع الاختبار: متوقف</button>
           <button class="btn-sm" id="auto-sync-btn" onclick="syncPendingFromKV()">🔄 مزامنة الحالة</button>
-          <button class="btn-sm" id="t-lock-btn" onclick="lockVault()">قفل البوابة 🔒</button>
+          <button class="btn-sm" id="t-lock-btn" onclick="lockVault()">قفل المنصة 🔒</button>
         </div>
       </div>
 
@@ -924,17 +930,23 @@
       const isAr = adminLang === 'ar';
       document.documentElement.lang = adminLang;
       document.documentElement.dir = isAr ? 'rtl' : 'ltr';
+      document.title = isAr
+        ? 'منصة المدفوعات | مكتب المحامي علي كاظم الهاشمي'
+        : 'Payment Platform | Law Office Of Ali Kadhem Hashimi';
 
       document.getElementById('admin-lang-btn').textContent = isAr ? 'English' : 'العربية';
+      document.getElementById('t-platform').textContent = isAr
+        ? 'منصة المدفوعات'
+        : 'Payment Platform';
       document.getElementById('t-office').textContent = isAr
-        ? 'مكتب المحامي علي الكاظم'
-        : 'Law Office of Ali Kadhim Hashimi';
-      document.getElementById('t-locked-title').textContent = isAr ? '🔒 البوابة مقفلة' : '🔒 Gateway Locked';
-      document.getElementById('t-pin-lbl').textContent = isAr ? 'أدخل الرقم السري (PIN) لفتح لوحة الإدارة:' : 'Enter Gateway PIN to unlock:';
-      document.getElementById('t-unlock-btn').textContent = isAr ? 'فتح البوابة' : 'Unlock Gateway';
-      document.getElementById('t-reset-btn').textContent = isAr ? 'إعادة ضبط البوابة' : 'Reset Gateway';
-      document.getElementById('t-vault-badge').textContent = isAr ? '🟢 البوابة نشطة ومؤمّنة' : '🟢 Gateway Active & Secured';
-      document.getElementById('t-lock-btn').textContent = isAr ? 'قفل البوابة 🔒' : 'Lock Gateway 🔒';
+        ? 'مكتب المحامي علي كاظم الهاشمي'
+        : 'Law Office Of Ali Kadhem Hashimi';
+      document.getElementById('t-locked-title').textContent = isAr ? '🔒 المنصة مقفلة' : '🔒 Platform Locked';
+      document.getElementById('t-pin-lbl').textContent = isAr ? 'أدخل الرقم السري (PIN) لفتح لوحة الإدارة:' : 'Enter Platform PIN to unlock:';
+      document.getElementById('t-unlock-btn').textContent = isAr ? 'فتح المنصة' : 'Unlock Platform';
+      document.getElementById('t-reset-btn').textContent = isAr ? 'إعادة ضبط المنصة' : 'Reset Platform';
+      document.getElementById('t-vault-badge').textContent = isAr ? '🟢 المنصة نشطة ومؤمّنة' : '🟢 Platform Active & Secured';
+      document.getElementById('t-lock-btn').textContent = isAr ? 'قفل المنصة 🔒' : 'Lock Platform 🔒';
 
       updateTestModeBtn();
       updateCurrencyUI();
@@ -1042,7 +1054,7 @@
     }
 
     function resetVault() {
-      if (confirm('هل أنت متأكد من مسح إعدادات البوابة الحالية وإعادة إدخال المفاتيح من جديد؟')) {
+      if (confirm('هل أنت متأكد من مسح إعدادات المنصة الحالية وإعادة إدخال المفاتيح من جديد؟')) {
         localStorage.removeItem(VAULT_STORAGE_KEY);
         location.reload();
       }
@@ -1195,7 +1207,7 @@
     function buildFormattedMessage(e) {
       const introLine = (document.getElementById('wa-template-input')?.value || '').trim() || 'صدرت لك فاتورة من مكتب المحامي علي كاظم الهاشمي';
       const isEn = e && e.lang === 'en';
-      const officeName = isEn ? 'Law Office of Ali Kadhim Hashimi' : 'مكتب المحامي علي كاظم الهاشمي';
+      const officeName = isEn ? 'Law Office Of Ali Kadhem Hashimi' : 'مكتب المحامي علي كاظم الهاشمي';
       const amtStr = (e && e.currency === 'USD')
         ? `$${Number(e.origAmount).toLocaleString('en-US')} USD (${Number(e.amountIQD).toLocaleString('en-US')} IQD)`
         : (e ? `${Number(e.amountIQD).toLocaleString('en-US')} IQD` : '');
@@ -1645,7 +1657,7 @@
       const isEn = item.lang === 'en';
       const dir = isEn ? 'ltr' : 'rtl';
       const lang = isEn ? 'en' : 'ar';
-      const officeName = isEn ? 'Law Office of Ali Kadhim Hashimi' : 'مكتب المحامي علي الكاظم';
+      const officeName = isEn ? 'Law Office Of Ali Kadhem Hashimi' : 'مكتب المحامي علي كاظم الهاشمي';
       const subDesc = isEn ? 'Advocacy & Legal Services | Baghdad - Iraq' : 'للمحاماة والخدمات القانونية | بغداد - العراق';
       const amtStr = (item.currency === 'USD' && item.origAmount)
         ? `$${Number(item.origAmount).toLocaleString('en-US')} USD (${Number(item.amountIQD).toLocaleString('en-US')} IQD)`
@@ -1665,11 +1677,10 @@
             body { font-family: 'Cairo', sans-serif; color: #0b1c36; padding: 30px; max-width: 780px; margin: 0 auto; line-height: 1.8; }
             .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #c59b27; padding-bottom: 16px; margin-bottom: 22px; }
             .logo { direction: ltr; text-align: left; }
-            .logo-row { display: inline-flex; align-items: center; gap: 8px; }
-            .slash-mark { font-size: 30px; font-weight: 800; color: #d32f2f; line-height: 1; }
             .logo-main { font-size: 34px; font-weight: 800; line-height: 1; letter-spacing: 2px; }
             .logo-main .k-red { color: #d32f2f; }
-            .logo-sub { font-size: 11px; color: #64748b; letter-spacing: 2.5px; font-weight: 700; }
+            .logo-sub { font-size: 11px; color: #64748b; letter-spacing: 2.5px; font-weight: 700; margin-top: 6px; }
+            .logo-sub .slash-red { color: #d32f2f; font-weight: 800; }
             .doc-title { text-align: center; background: #0b1c36; color: #ffffff; padding: 10px; border-radius: 8px; font-size: 17px; font-weight: 800; margin-bottom: 20px; border-bottom: 3px solid #c59b27; }
             table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
             td, th { border: 1px solid #cbd5e1; padding: 10px 14px; text-align: start; font-size: 14px; }
@@ -1688,8 +1699,8 @@
               <div style="font-size:13px; color:#64748b;">${subDesc}</div>
             </div>
             <div class="logo">
-              <div class="logo-row"><span class="slash-mark">/</span><div class="logo-main">A<span class="k-red">K</span>H</div></div>
-              <div class="logo-sub">/ LAW OFFICE • EST. 2014</div>
+              <div class="logo-main">A<span class="k-red">K</span>H</div>
+              <div class="logo-sub"><span class="slash-red">/</span> LAW OFFICE • EST. 2014</div>
             </div>
           </div>
           <div class="doc-title">${isEn ? 'OFFICIAL PAYMENT RECEIPT' : 'إيصال استلام مالي رسمي'}</div>
@@ -1730,7 +1741,7 @@
       const isEn = item.lang === 'en';
       const dir = isEn ? 'ltr' : 'rtl';
       const lang = isEn ? 'en' : 'ar';
-      const officeName = isEn ? 'Law Office of Ali Kadhim Hashimi' : 'مكتب المحامي علي الكاظم';
+      const officeName = isEn ? 'Law Office Of Ali Kadhem Hashimi' : 'مكتب المحامي علي كاظم الهاشمي';
       const amtStr = (item.currency === 'USD' && item.origAmount)
         ? `$${Number(item.origAmount).toLocaleString('en-US')} USD (${Number(item.amountIQD).toLocaleString('en-US')} IQD)`
         : `${Number(item.amountIQD).toLocaleString('en-US')} IQD`;
@@ -1749,11 +1760,10 @@
             body { font-family: 'Cairo', sans-serif; color: #0b1c36; padding: 30px; max-width: 800px; margin: 0 auto; line-height: 1.8; }
             .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #c59b27; padding-bottom: 16px; margin-bottom: 24px; }
             .logo { direction: ltr; text-align: left; }
-            .logo-row { display: inline-flex; align-items: center; gap: 8px; }
-            .slash-mark { font-size: 30px; font-weight: 800; color: #d32f2f; line-height: 1; }
             .logo-main { font-size: 34px; font-weight: 800; line-height: 1; letter-spacing: 2px; }
             .logo-main .k-red { color: #d32f2f; }
-            .logo-sub { font-size: 11px; color: #64748b; letter-spacing: 2.5px; font-weight: 700; }
+            .logo-sub { font-size: 11px; color: #64748b; letter-spacing: 2.5px; font-weight: 700; margin-top: 6px; }
+            .logo-sub .slash-red { color: #d32f2f; font-weight: 800; }
             .doc-title { text-align: center; background: #0b1c36; color: #ffffff; padding: 10px; border-radius: 8px; font-size: 17px; font-weight: 800; margin-bottom: 20px; border-bottom: 3px solid #c59b27; }
             table { width: 100%; border-collapse: collapse; margin-bottom: 22px; }
             td, th { border: 1px solid #cbd5e1; padding: 10px 14px; text-align: start; font-size: 14px; }
@@ -1774,8 +1784,8 @@
               <div style="font-size:13px; color:#64748b;">${isEn ? 'Advocacy & Legal Services | Baghdad - Iraq' : 'للمحاماة والخدمات القانونية | بغداد - العراق'}</div>
             </div>
             <div class="logo">
-              <div class="logo-row"><span class="slash-mark">/</span><div class="logo-main">A<span class="k-red">K</span>H</div></div>
-              <div class="logo-sub">/ LAW OFFICE • EST. 2014</div>
+              <div class="logo-main">A<span class="k-red">K</span>H</div>
+              <div class="logo-sub"><span class="slash-red">/</span> LAW OFFICE • EST. 2014</div>
             </div>
           </div>
 
@@ -1796,8 +1806,8 @@
 
           <div class="legal-box">
             ${isEn
-              ? `<strong>Electronic Acknowledgment Summary:</strong><br>This electronic record issued by the payment platform of Law Office of Ali Kadhim Hashimi (akjassem.com) confirms that the applicant reviewed and agreed to the applicable policies prior to proceeding to payment: (1) Legal Fees, Refund Policy & Electronic Payment Terms under the applicable Iraqi Advocacy Law, (2) Privacy Policy & Confidentiality of Information, and (3) Service Delivery & Work Handover Policy.`
-              : `<strong>خلاصة الإقرار القانوني الموثق إلكترونياً:</strong><br>يُثبت هذا السجل الإلكتروني الصادر عن منصة السداد التابعة لمكتب المحامي علي الكاظم (akjassem.com) أن صاحب العلاقة قد اطّلع قبل الانتقال إلى بوابة الدفع الإلكتروني على كافة الضوابط والسياسات المعتمدة، وأقرّ صراحةً بالموافقة الكاملة عليها، وهي:<br>1. <strong>سياسة الأتعاب والاسترداد وشروط الدفع الإلكتروني</strong> (استحقاق الأتعاب المكتسبة وفق أحكام قانون المحاماة العراقي النافذ).<br>2. <strong>سياسة الخصوصية وسرية المعلومات</strong>.<br>3. <strong>سياسة تقديم الخدمات وتسليم الأعمال</strong>.`
+              ? `<strong>Electronic Acknowledgment Summary:</strong><br>This electronic record issued by the payment platform of Law Office Of Ali Kadhem Hashimi (akjassem.com) confirms that the applicant reviewed and agreed to the applicable policies prior to proceeding to payment: (1) Legal Fees, Refund Policy & Electronic Payment Terms under the applicable Iraqi Advocacy Law, (2) Privacy Policy & Confidentiality of Information, and (3) Service Delivery & Work Handover Policy.`
+              : `<strong>خلاصة الإقرار القانوني الموثق إلكترونياً:</strong><br>يُثبت هذا السجل الإلكتروني الصادر عن منصة السداد التابعة لمكتب المحامي علي كاظم الهاشمي (akjassem.com) أن صاحب العلاقة قد اطّلع قبل الانتقال إلى بوابة الدفع الإلكتروني على كافة الضوابط والسياسات المعتمدة، وأقرّ صراحةً بالموافقة الكاملة عليها، وهي:<br>1. <strong>سياسة الأتعاب والاسترداد وشروط الدفع الإلكتروني</strong> (استحقاق الأتعاب المكتسبة وفق أحكام قانون المحاماة العراقي النافذ).<br>2. <strong>سياسة الخصوصية وسرية المعلومات</strong>.<br>3. <strong>سياسة تقديم الخدمات وتسليم الأعمال</strong>.`
             }
           </div>
 
@@ -1854,7 +1864,7 @@
       const isEn = item.lang === 'en';
       const dir = isEn ? 'ltr' : 'rtl';
       const lang = isEn ? 'en' : 'ar';
-      const officeName = isEn ? 'Law Office of Ali Kadhim Hashimi' : 'مكتب المحامي علي الكاظم';
+      const officeName = isEn ? 'Law Office Of Ali Kadhem Hashimi' : 'مكتب المحامي علي كاظم الهاشمي';
       const summary = document.getElementById('proof-summary').value.trim() || (isEn
         ? 'The legal service was executed and deliverables were handed over in accordance with applicable standards.'
         : 'تم تنفيذ الخدمة القانونية وتسليم المخرجات وفق الأصول المعتمدة.');
@@ -1879,11 +1889,10 @@
             body { font-family: 'Cairo', sans-serif; color: #0b1c36; padding: 30px; max-width: 800px; margin: 0 auto; line-height: 1.8; }
             .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #c59b27; padding-bottom: 16px; margin-bottom: 24px; }
             .logo { direction: ltr; text-align: left; }
-            .logo-row { display: inline-flex; align-items: center; gap: 8px; }
-            .slash-mark { font-size: 30px; font-weight: 800; color: #d32f2f; line-height: 1; }
             .logo-main { font-size: 34px; font-weight: 800; line-height: 1; letter-spacing: 2px; }
             .logo-main .k-red { color: #d32f2f; }
-            .logo-sub { font-size: 11px; color: #64748b; letter-spacing: 2.5px; font-weight: 700; }
+            .logo-sub { font-size: 11px; color: #64748b; letter-spacing: 2.5px; font-weight: 700; margin-top: 6px; }
+            .logo-sub .slash-red { color: #d32f2f; font-weight: 800; }
             .doc-title { text-align: center; background: #0b1c36; color: #ffffff; padding: 10px; border-radius: 8px; font-size: 17px; font-weight: 800; margin-bottom: 20px; border-bottom: 3px solid #c59b27; }
             table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
             td, th { border: 1px solid #cbd5e1; padding: 10px 14px; text-align: start; font-size: 14px; }
@@ -1903,8 +1912,8 @@
               <div style="font-size:13px; color:#64748b;">${isEn ? 'Advocacy & Legal Services | Baghdad - Iraq' : 'للمحاماة والخدمات القانونية | بغداد - العراق'}</div>
             </div>
             <div class="logo">
-              <div class="logo-row"><span class="slash-mark">/</span><div class="logo-main">A<span class="k-red">K</span>H</div></div>
-              <div class="logo-sub">/ LAW OFFICE • EST. 2014</div>
+              <div class="logo-main">A<span class="k-red">K</span>H</div>
+              <div class="logo-sub"><span class="slash-red">/</span> LAW OFFICE • EST. 2014</div>
             </div>
           </div>
 
