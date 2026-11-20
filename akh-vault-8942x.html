@@ -254,6 +254,16 @@
       gap: 8px;
       margin-bottom: 6px;
     }
+    .seq-badge {
+      font-family: monospace;
+      font-size: 12px;
+      font-weight: 800;
+      color: #0b1c36;
+      background: #e2e8f0;
+      padding: 2px 7px;
+      border-radius: 5px;
+      margin-inline-end: 6px;
+    }
     .hist-ref {
       font-family: monospace;
       font-size: 12.5px;
@@ -519,7 +529,8 @@
             <div class="form-group hidden" id="custom-role-group">
               <label id="t-custom-role-lbl">صفة صاحب العلاقة المخصصة:</label>
               <div style="display:flex; gap:6px;">
-                <input type="text" id="custom-role-input" placeholder="مثال: الطرف المتصالح / المسدد">
+                <input type="text" id="custom-role-input" placeholder="مثال: شريك عمل / الطرف المتصالح">
+                <button type="button" class="btn-sm btn-paid" onclick="saveCustomFieldValue('custom-role-input', 'حفظ الصفة')">حفظ</button>
                 <button type="button" class="btn-sm btn-refund" onclick="clearCustomField('custom-role-input')">حذف</button>
               </div>
             </div>
@@ -527,7 +538,8 @@
             <div class="form-group hidden" id="custom-kind-group">
               <label id="t-custom-kind-lbl">نوع البيان أو الغرض المخصص:</label>
               <div style="display:flex; gap:6px;">
-                <input type="text" id="custom-kind-input" placeholder="مثال: تسوية اتفاقية / دفعة مقدمة">
+                <input type="text" id="custom-kind-input" placeholder="مثال: إيجار مكتب / تسوية اتفاقية">
+                <button type="button" class="btn-sm btn-paid" onclick="saveCustomFieldValue('custom-kind-input', 'حفظ البيان')">حفظ</button>
                 <button type="button" class="btn-sm btn-refund" onclick="clearCustomField('custom-kind-input')">حذف</button>
               </div>
             </div>
@@ -561,7 +573,7 @@
 
           <div class="form-group" id="group-service-ar">
             <label id="t-service-ar-lbl">موضوع الخدمة أو الطلب *:</label>
-            <input type="text" id="service-title" placeholder="مثال: وكالة قانونية / تسوية اتفاقية">
+            <input type="text" id="service-title" placeholder="مثال: تسوية بدل إيجار / وكالة قانونية">
           </div>
 
           <div class="form-group hidden" id="group-service-en">
@@ -629,7 +641,7 @@
 
             <div class="form-group" style="margin-top:10px;">
               <label for="live-message-editor">معاينة وتحرير نص الرسالة قبل الإرسال:</label>
-              <textarea id="live-message-editor" rows="9"></textarea>
+              <textarea id="live-message-editor" rows="10"></textarea>
             </div>
 
             <div style="display: flex; gap: 8px; flex-wrap: wrap;">
@@ -649,7 +661,7 @@
           <span id="t-wa-tpl-title">💬 صيغة الإشعار وربط الحجز (قابلة للتعديل)</span>
           <button type="button" class="btn-sm" onclick="toggleSection('msg-tpl-body')">إظهار / إخفاء</button>
         </div>
-        <div id="msg-tpl-body">
+        <div id="msg-tpl-body" class="hidden">
           <div class="form-group">
             <label id="t-wa-tpl-lbl">العبارة الافتتاحية الترحيبية:</label>
             <input type="text" id="wa-template-input" value="صدرت لك فاتورة من مكتب المحامي علي كاظم الهاشمي بمناسبة استلام طلبكم المثبت في منصة الحجوزات المكتب بنجاح.">
@@ -672,7 +684,7 @@
           <span id="t-support-title">☎️ الاستفسار والمساعدة وبيانات المكتب</span>
           <button type="button" class="btn-sm" onclick="toggleSection('support-body')">إظهار / إخفاء</button>
         </div>
-        <div id="support-body">
+        <div id="support-body" class="hidden">
           <div class="grid-3">
             <div class="form-group">
               <label>بريد الاستفسار والمساعدة:</label>
@@ -715,7 +727,7 @@
         </div>
 
         <div class="grid-3" style="margin-bottom:12px;">
-          <input type="text" id="history-search" placeholder="بحث بالاسم أو الرقم أو الملف أو الوصل..." oninput="renderStatsAndHistory()">
+          <input type="text" id="history-search" placeholder="بحث بالاسم أو الرقم أو الملف أو الوصل (حتى في المحذوفات)..." oninput="renderStatsAndHistory()">
           <select id="history-filter" onchange="renderStatsAndHistory()">
             <option value="all">الكل (النشط)</option>
             <option value="paid">المقبوضات / المدفوعة</option>
@@ -889,16 +901,29 @@
       document.getElementById('custom-kind-group').classList.toggle('hidden', kind !== 'custom');
     }
 
+    function saveCustomFieldValue(inputId, msg) {
+      const val = (document.getElementById(inputId)?.value || '').trim();
+      if (!val) {
+        alert('يرجى كتابة النص أولاً قبل الحفظ.');
+        return;
+      }
+      localStorage.setItem(`akh_saved_${inputId}`, val);
+      refreshLiveEditorFromForm();
+      showToast(`✅ ${msg}: ${val}`);
+    }
+
     function clearCustomField(inputId) {
       const inp = document.getElementById(inputId);
       if (inp) inp.value = '';
-      showToast('🗑️ تم مسح الحقل المخصص.');
+      localStorage.removeItem(`akh_saved_${inputId}`);
+      refreshLiveEditorFromForm();
+      showToast('🗑️ تم حذف الحقل المخصص.');
     }
 
     function getActivePartyRole() {
       const role = document.getElementById('party-role').value;
       if (role === 'custom') {
-        return document.getElementById('custom-role-input').value.trim() || 'صاحب العلاقة';
+        return (document.getElementById('custom-role-input').value.trim() || localStorage.getItem('akh_saved_custom-role-input') || 'صاحب العلاقة');
       }
       return role;
     }
@@ -906,7 +931,7 @@
     function getActiveRequestKind() {
       const kind = document.getElementById('request-kind').value;
       if (kind === 'custom') {
-        return document.getElementById('custom-kind-input').value.trim() || 'أتعاب وخدمات قانونية';
+        return (document.getElementById('custom-kind-input').value.trim() || localStorage.getItem('akh_saved_custom-kind-input') || 'أتعاب وخدمات قانونية');
       }
       return kind;
     }
@@ -1504,6 +1529,7 @@
       if (isEn) {
         return [
           `Your invoice has been issued by ${officeName} upon receiving your request confirmed in the booking platform of ${officeName}.`,
+          '',
           e && e.clientName ? `• ${e.partyRole || 'Applicant'}: ${e.clientName}` : null,
           e && e.ref ? `• Invoice Reference: ${e.ref}` : null,
           e && e.requestKind ? `• Purpose: ${e.requestKind}` : null,
@@ -1514,13 +1540,16 @@
           e && e.appointment ? `• Appointment: ${e.appointment}` : null,
           amtStr ? `• Amount Due: ${amtStr}` : null,
           `• Payment Link:\n${e ? e.link : LAST_LINK}`,
+          '',
           getSupportBlockText(true),
+          '',
           `Regards, ${officeName} — www.akjassem.com`
-        ].filter(Boolean).join('\n');
+        ].filter(x => x !== null).join('\n');
       }
 
       return [
         introLine,
+        '',
         e && e.clientName ? `• ${e.partyRole || 'صاحب العلاقة'}: ${e.clientName}` : null,
         e && e.ref ? `• الرقم المرجعي للفاتورة: ${e.ref}` : null,
         e && e.requestKind ? `• نوع البيان أو الغرض: ${e.requestKind}` : null,
@@ -1531,9 +1560,11 @@
         e && e.appointment ? `• الموعد: ${e.appointment}` : null,
         amtStr ? `• مبلغ الاستحقاق: ${amtStr}` : null,
         `• رابط السداد:\n${e ? e.link : LAST_LINK}`,
+        '',
         getSupportBlockText(false),
+        '',
         closingLine
-      ].filter(Boolean).join('\n');
+      ].filter(x => x !== null).join('\n');
     }
 
     function getMessageForSend(customEntry) {
@@ -1585,14 +1616,17 @@
       if (!e) return;
       const reminderText = [
         `تذكير بسداد الفاتورة المرجعية (${e.ref}) - مكتب المحامي علي كاظم الهاشمي`,
+        '',
         e.clientName ? `• ${e.partyRole || 'صاحب العلاقة'}: ${e.clientName}` : null,
         `• البيان: ${e.serviceTitle}`,
         e.dueDate ? `• تاريخ الاستحقاق: ${e.dueDate}` : null,
         `• مبلغ الاستحقاق: ${Number(e.amountIQD).toLocaleString('en-US')} IQD`,
         `• رابط السداد:\n${e.link}`,
+        '',
         getSupportBlockText(false),
+        '',
         (document.getElementById('closing-note-input')?.value || DEFAULT_CLOSING_NOTE).trim()
-      ].filter(Boolean).join('\n');
+      ].filter(x => x !== null).join('\n');
       const phone = e.clientPhone ? `${e.clientPhone}` : '';
       const url = phone ? `https://wa.me/${phone}?text=${encodeURIComponent(reminderText)}` : `https://wa.me/?text=${encodeURIComponent(reminderText)}`;
       window.open(url, '_blank');
@@ -1784,18 +1818,23 @@
       document.getElementById('sum-top-service').textContent = `الأكثر طلباً: ${topService ? `${topService[0]} (${topService[1]})` : '—'}`;
 
       const indexed = list.map((item, idx) => ({ item, idx })).filter(({ item }) => {
-        if (filterVal === 'trash') {
-          if (!item.deleted) return false;
+        if (q) {
+          const hay = `${item.ref || ''} ${item.clientName || ''} ${item.serviceTitle || ''} ${item.matterRef || ''} ${item.transferRef || ''} ${item.amountIQD || ''}`.toLowerCase();
+          if (!hay.includes(q)) return false;
         } else {
-          if (item.deleted) return false;
-          if (filterVal === 'test') {
-            if (!item.isTest) return false;
-          } else if (filterVal !== 'all') {
-            if (item.isTest) return false;
-            if (filterVal === 'paid') {
-              if (item.status !== 'paid' && item.status !== 'completed') return false;
-            } else if ((item.status || 'pending') !== filterVal) {
-              return false;
+          if (filterVal === 'trash') {
+            if (!item.deleted) return false;
+          } else {
+            if (item.deleted) return false;
+            if (filterVal === 'test') {
+              if (!item.isTest) return false;
+            } else if (filterVal !== 'all') {
+              if (item.isTest) return false;
+              if (filterVal === 'paid') {
+                if (item.status !== 'paid' && item.status !== 'completed') return false;
+              } else if ((item.status || 'pending') !== filterVal) {
+                return false;
+              }
             }
           }
         }
@@ -1803,10 +1842,6 @@
         if (periodVal === 'today' && !isSameDay(item.createdAtMs)) return false;
         if (periodVal === 'month' && !isSameMonth(item.createdAtMs)) return false;
 
-        if (q) {
-          const hay = `${item.ref || ''} ${item.clientName || ''} ${item.serviceTitle || ''} ${item.matterRef || ''} ${item.transferRef || ''} ${item.amountIQD || ''}`.toLowerCase();
-          if (!hay.includes(q)) return false;
-        }
         return true;
       });
 
@@ -1815,7 +1850,7 @@
         return;
       }
 
-      container.innerHTML = indexed.map(({ item, idx }) => {
+      container.innerHTML = indexed.map(({ item, idx }, seqIndex) => {
         const st = item.status || 'pending';
         let stClass = 'st-pending';
         let stLabel = isAr ? '🟡 بانتظار الدفع' : '🟡 Pending';
@@ -1849,6 +1884,7 @@
           <div class="history-item">
             <div class="hist-top">
               <div>
+                <span class="seq-badge">#${seqIndex + 1}</span>
                 ${item.ref ? `<span class="hist-ref">${item.ref}</span>` : ''}
                 ${item.isTest ? `<span class="test-tag">${isAr ? 'اختبار' : 'TEST'}</span>` : ''}
                 ${isNearExpiry ? `<span class="warn-tag">قرب الانتهاء</span>` : ''}
@@ -1916,9 +1952,9 @@
 
     function exportBackupCSV() {
       const list = JSON.parse(localStorage.getItem(HISTORY_STORAGE_KEY) || '[]');
-      const rows = [['Ref', 'Date', 'Role', 'Kind', 'Client', 'Service', 'MatterRef', 'TransferRef', 'DueDate', 'Status', 'Currency', 'OrigAmount', 'AmountIQD', 'PaymentMethod']];
-      list.forEach(i => rows.push([
-        i.ref || '', i.date || '', i.partyRole || '', i.requestKind || '', i.clientName || '',
+      const rows = [['Seq', 'Ref', 'Date', 'Role', 'Kind', 'Client', 'Service', 'MatterRef', 'TransferRef', 'DueDate', 'Status', 'Currency', 'OrigAmount', 'AmountIQD', 'PaymentMethod']];
+      list.forEach((i, sIdx) => rows.push([
+        sIdx + 1, i.ref || '', i.date || '', i.partyRole || '', i.requestKind || '', i.clientName || '',
         i.serviceTitle || '', i.matterRef || '', i.transferRef || '', i.dueDate || '',
         i.status || 'pending', i.currency || 'IQD', i.origAmount || i.amountIQD || '',
         i.amountIQD || '', i.paymentMethod || ''
