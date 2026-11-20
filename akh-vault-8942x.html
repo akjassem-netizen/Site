@@ -392,7 +392,6 @@
       <div class="platform-heading" id="t-platform">منصة المدفوعات</div>
     </div>
 
-    <!-- شاشة تأسيس المنصة لأول مرة -->
     <div id="setup-view" class="card hidden">
       <div class="card-title">🔐 تأسيس المنصة المشفرة (لأول مرة)</div>
       <p style="font-size: 13px; color: #475569; margin-bottom: 14px;">
@@ -413,7 +412,6 @@
       <button class="btn" onclick="setupVault()">تشفير وحفظ الإعدادات</button>
     </div>
 
-    <!-- شاشة فتح المنصة -->
     <div id="unlock-view" class="card hidden">
       <div class="card-title" id="t-locked-title">🔒 المنصة مقفلة</div>
       <div class="form-group">
@@ -423,7 +421,6 @@
       <button class="btn" id="t-unlock-btn" onclick="unlockVault()">فتح المنصة</button>
     </div>
 
-    <!-- لوحة التحكم الرئيسية -->
     <div id="dashboard-view" class="hidden">
       <div class="top-bar">
         <span class="badge" id="t-vault-badge">🟢 المنصة نشطة ومؤمّنة</span>
@@ -435,7 +432,6 @@
         </div>
       </div>
 
-      <!-- إحصائيات المقبوضات والمدفوعات والمسترجعات والمعلقات والملغاة -->
       <div class="stats-grid">
         <div class="stat-box">
           <div class="stat-label" id="st-lbl-paid">إجمالي المقبوضات</div>
@@ -455,7 +451,6 @@
         </div>
       </div>
 
-      <!-- ملخص حسب الفترة والشهر والعملات والخدمات -->
       <div class="summary-strip" id="period-summary-strip">
         <div id="sum-month-text">مقبوضات الشهر الحالي: 0 IQD</div>
         <div id="sum-usd-text">الدولار المقبوض: $0</div>
@@ -472,7 +467,6 @@
         </div>
 
         <div id="create-link-body">
-          <!-- قوالب الخدمات الخاصة بك (فارغة افتراضياً ليضيفها المستخدم ويعدّلها ويحذفها بنفسه) -->
           <div id="templates-sub" class="form-group hidden" style="background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:12px;">
             <div class="grid-2" style="margin-bottom:8px;">
               <div>
@@ -657,7 +651,6 @@
         </div>
       </div>
 
-      <!-- إعداد نص الإشعار وربط الحجز القابل للتعديل من داخل المنصة -->
       <div class="card">
         <div class="card-title">
           <span id="t-wa-tpl-title">💬 صيغة الإشعار وربط الحجز (قابلة للتعديل)</span>
@@ -680,7 +673,6 @@
         </div>
       </div>
 
-      <!-- قسم الاستفسار والمساعدة وتذييل المكتب مع أزرار التحكم -->
       <div class="card">
         <div class="card-title">
           <span id="t-support-title">☎️ الاستفسار والمساعدة وبيانات التواصل</span>
@@ -713,7 +705,6 @@
         </div>
       </div>
 
-      <!-- سجل الفواتير والمدفوعات والمسترجعات مع البحث والفلترة والنسخ الاحتياطي -->
       <div class="card">
         <div class="card-title">
           <span id="t-history-title">📜 سجل الفواتير والمقبوضات والمدفوعات والمسترجعات</span>
@@ -781,7 +772,6 @@
 
   <div class="toast-banner" id="toastBanner"></div>
 
-  <!-- نافذة إدخال PIN للإجراءات الحساسة -->
   <div class="modal-overlay" id="pinModal" onclick="closePinModal(null)">
     <div class="modal-card" style="max-width:380px;" onclick="event.stopPropagation()">
       <h3 style="color:#0b1c36; font-size:16px; margin-bottom:8px;">🔐 تأكيد الرقم السري (PIN)</h3>
@@ -796,7 +786,6 @@
     </div>
   </div>
 
-  <!-- نافذة إعداد محضر إثبات تنفيذ الخدمة المدعّم بالصور -->
   <div class="modal-overlay" id="proofModal" onclick="closeProofModal()">
     <div class="modal-card" onclick="event.stopPropagation()">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; padding-bottom:10px; border-bottom:1px solid #e2e8f0;">
@@ -1234,7 +1223,8 @@
       const year = now.getFullYear();
       const dayMonth = pad2(now.getDate()) + pad2(now.getMonth() + 1);
       const hourMin = pad2(now.getHours()) + pad2(now.getMinutes());
-      return `AKH-${year}-${dayMonth}${hourMin}`;
+      const sec = pad2(now.getSeconds());
+      return `AKH-${year}-${dayMonth}${hourMin}${sec}`;
     }
 
     function toggleServiceLangInput() {
@@ -1443,8 +1433,7 @@
       let refCode = buildTimestampRefCode();
       const existingList = JSON.parse(localStorage.getItem(HISTORY_STORAGE_KEY) || '[]');
       if (existingList.some(item => item.ref === refCode)) {
-        const secSuffix = String(new Date().getSeconds()).padStart(2, '0');
-        refCode = `${refCode}${secSuffix}`;
+        refCode = `${refCode}-${Math.floor(10 + Math.random() * 89)}`;
       }
 
       const btn = document.getElementById('generate-btn');
@@ -1487,10 +1476,15 @@
         const payUrl = result.data?.url || result.data?.link || result.url || result.link || result.paymentUrl;
         if (!payUrl) throw new Error('لم يتم استلام رابط الدفع من البوابة.');
 
-        LAST_LINK = `https://akjassem.com/payment/?ref=${encodeURIComponent(refCode)}`;
+        const finalRef = result.ref || refCode;
+        if (result.kvSaved === false) {
+          throw new Error('تم إنشاء رابط البوابة لكن لم يتم تأكيد حفظ السجل في KV (تحقق من ربط AKH_KV في Worker).');
+        }
+
+        LAST_LINK = `https://akjassem.com/payment/?ref=${encodeURIComponent(finalRef)}`;
 
         LAST_ENTRY = {
-          ref: refCode,
+          ref: finalRef,
           partyRole: partyRole,
           requestKind: requestKind,
           clientName: clientName || '',
@@ -1524,6 +1518,7 @@
         document.getElementById('result-box').style.display = 'block';
 
         saveToHistory(LAST_ENTRY);
+        showToast('✅ تم التوليد والحفظ بنجاح.');
 
       } catch (err) {
         alert('❌ خطأ: ' + err.message);
