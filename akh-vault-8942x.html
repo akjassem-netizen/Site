@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta property="og:title" content="بوابة الدفع الإلكتروني — مكتب المحامي علي كاظم الهاشمي — منصة المدفوعات">
+  <meta property="og:description" content="منصة المدفوعات والفواتير القانونية لمكتب المحامي علي كاظم الهاشمي — للمحاماة والخدمات القانونية">
+  <meta property="og:image" content="https://akjassem.com/og-logo.jpg">
   <title>منصة المدفوعات | مكتب المحامي علي كاظم الهاشمي</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -135,6 +138,21 @@
 
     .form-group { margin-bottom: 14px; }
     label { display: block; font-size: 13.5px; font-weight: 700; color: #1e293b; margin-bottom: 6px; }
+    .check-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #0b1c36;
+      cursor: pointer;
+      user-select: none;
+    }
+    .check-row input[type="checkbox"] {
+      width: auto;
+      accent-color: #c59b27;
+      cursor: pointer;
+    }
     input, select, textarea {
       width: 100%;
       padding: 11px 13px;
@@ -362,7 +380,7 @@
       <div class="office-subtitle" id="t-office">مكتب المحامي علي كاظم الهاشمي</div>
     </div>
 
-    <!-- شاشة تأسيس البوابة لأول مرة -->
+    <!-- شاشة تأسيس المنصة لأول مرة -->
     <div id="setup-view" class="card hidden">
       <div class="card-title">🔐 تأسيس المنصة المشفرة (لأول مرة)</div>
       <p style="font-size: 13px; color: #475569; margin-bottom: 14px;">
@@ -391,9 +409,6 @@
         <input type="password" id="unlock-pin" placeholder="••••••" onkeypress="if(event.key==='Enter') unlockVault()">
       </div>
       <button class="btn" id="t-unlock-btn" onclick="unlockVault()">فتح المنصة</button>
-      <div style="text-align: center; margin-top: 12px;">
-        <button class="btn-sm" id="t-reset-btn" onclick="resetVault()">إعادة ضبط المنصة</button>
-      </div>
     </div>
 
     <!-- لوحة التحكم الرئيسية -->
@@ -402,7 +417,8 @@
         <span class="badge" id="t-vault-badge">🟢 المنصة نشطة ومؤمّنة</span>
         <div style="display:flex; gap:6px; flex-wrap:wrap;">
           <button class="btn-sm" id="test-mode-btn" onclick="toggleTestMode()">🧪 وضع الاختبار: متوقف</button>
-          <button class="btn-sm" id="auto-sync-btn" onclick="syncPendingFromKV()">🔄 مزامنة / تحديث</button>
+          <button class="btn-sm" id="auto-sync-btn" onclick="syncPendingFromKV()">🔄 تحديث</button>
+          <button class="btn-sm" onclick="openTrashFilter()">🗑️ سلة المحذوفات (<span id="trash-count-badge">0</span>)</button>
           <button class="btn-sm" id="t-lock-btn" onclick="lockVault()">قفل المنصة 🔒</button>
         </div>
       </div>
@@ -436,170 +452,193 @@
 
       <div class="card">
         <div class="card-title">
-          <span id="t-create-title">💳 إنشاء رابط سداد إلكتروني نظيف</span>
-          <button type="button" class="btn-sm" onclick="toggleSection('templates-sub')">⚡ قوالب الخدمات</button>
+          <span id="t-create-title">💳 إنشاء رابط دفع</span>
+          <div style="display:flex; gap:6px; flex-wrap:wrap;">
+            <button type="button" class="btn-sm" onclick="toggleSection('templates-sub')">⚡ قوالب الخدمات</button>
+            <button type="button" class="btn-sm" onclick="toggleSection('create-link-body')">إظهار / إخفاء</button>
+          </div>
         </div>
 
-        <!-- قوالب الخدمات الخاصة بك (فارغة افتراضياً ليضيفها المستخدم ويعدّلها ويحذفها بنفسه) -->
-        <div id="templates-sub" class="form-group" style="background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:12px;">
-          <div class="grid-2" style="margin-bottom:8px;">
-            <div>
-              <label id="t-tpl-select-lbl">اختر من قوالبك المحفوظة:</label>
-              <select id="service-template-select" onchange="applySelectedTemplate()">
-                <option value="">— لا توجد قوالب مضافة بعد أو اختر قالباً —</option>
+        <div id="create-link-body">
+          <!-- قوالب الخدمات الخاصة بك (فارغة افتراضياً ليضيفها المستخدم ويعدّلها ويحذفها بنفسه) -->
+          <div id="templates-sub" class="form-group hidden" style="background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:12px;">
+            <div class="grid-2" style="margin-bottom:8px;">
+              <div>
+                <label id="t-tpl-select-lbl">اختر من قوالبك المحفوظة:</label>
+                <select id="service-template-select" onchange="applySelectedTemplate()">
+                  <option value="">— لا توجد قوالب مضافة بعد —</option>
+                </select>
+              </div>
+              <div>
+                <label id="t-custom-tpl-lbl">إدارة قالب خدمة:</label>
+                <div style="display:flex; gap:6px;">
+                  <input type="text" id="new-tpl-name" placeholder="اسم القالب (مثال: وكالة / تسوية)">
+                  <button type="button" class="btn-sm" onclick="saveCurrentAsTemplate()">حفظ</button>
+                </div>
+                <label class="check-row" style="margin-top:8px;">
+                  <input type="checkbox" id="save-as-template-check">
+                  <span>حفظ كقالب ضمن القوالب الجاهزة عند التوليد</span>
+                </label>
+              </div>
+            </div>
+            <div id="custom-tpl-chips" style="display:flex; gap:6px; flex-wrap:wrap;"></div>
+          </div>
+
+          <div class="grid-3">
+            <div class="form-group">
+              <label id="t-client-lang-lbl">لغة الفاتورة وصفحة المراجع:</label>
+              <select id="client-lang" onchange="toggleServiceLangInput()">
+                <option value="ar">العربية (Arabic)</option>
+                <option value="en">الإنجليزية (English)</option>
               </select>
             </div>
-            <div>
-              <label id="t-custom-tpl-lbl">إضافة / تحديث قالب خدمة من الحقول الحالية:</label>
+            <div class="form-group">
+              <label id="t-party-role-lbl">صفة صاحب العلاقة:</label>
+              <select id="party-role" onchange="toggleCustomRoleInput()">
+                <option value="طالب الخدمة">طالب الخدمة</option>
+                <option value="المراجع">المراجع</option>
+                <option value="الموكل">الموكل</option>
+                <option value="طالب الخدمة / المراجع">طالب الخدمة / المراجع</option>
+                <option value="الطرف الآخر / المعني بالتسوية">الطرف الآخر / المعني بالتسوية</option>
+                <option value="custom">مخصصة</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label id="t-request-kind-lbl">نوع البيان أو الغرض:</label>
+              <select id="request-kind" onchange="toggleCustomKindInput()">
+                <option value="أتعاب وخدمات قانونية">أتعاب وخدمات قانونية</option>
+                <option value="مبلغ تسوية">مبلغ تسوية</option>
+                <option value="دفعة مستحقة">دفعة مستحقة</option>
+                <option value="رسوم ومصاريف إجرائية">رسوم ومصاريف إجرائية</option>
+                <option value="custom">مخصصة</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="form-group hidden" id="custom-role-group">
+              <label id="t-custom-role-lbl">صفة صاحب العلاقة المخصصة:</label>
               <div style="display:flex; gap:6px;">
-                <input type="text" id="new-tpl-name" placeholder="اسم القالب (مثال: وكالة / تسوية)">
-                <button type="button" class="btn-sm" onclick="saveCurrentAsTemplate()">حفظ القالب</button>
+                <input type="text" id="custom-role-input" placeholder="مثال: الطرف المتصالح / المسدد">
+                <button type="button" class="btn-sm btn-refund" onclick="clearCustomField('custom-role-input')">حذف</button>
+              </div>
+            </div>
+
+            <div class="form-group hidden" id="custom-kind-group">
+              <label id="t-custom-kind-lbl">نوع البيان أو الغرض المخصص:</label>
+              <div style="display:flex; gap:6px;">
+                <input type="text" id="custom-kind-input" placeholder="مثال: تسوية اتفاقية / دفعة مقدمة">
+                <button type="button" class="btn-sm btn-refund" onclick="clearCustomField('custom-kind-input')">حذف</button>
               </div>
             </div>
           </div>
-          <div id="custom-tpl-chips" style="display:flex; gap:6px; flex-wrap:wrap;"></div>
-        </div>
 
-        <div class="grid-3">
+          <div class="grid-2">
+            <div class="form-group">
+              <label id="t-client-lbl">اسم صاحب العلاقة / الدافع (اختياري):</label>
+              <input type="text" id="client-name" placeholder="مثال: علي كاظم جاسم">
+            </div>
+            <div class="form-group">
+              <label id="t-client-phone-lbl">رقم واتساب صاحب العلاقة (اختياري):</label>
+              <input type="text" id="client-phone" placeholder="مثال: 9647700000000" dir="ltr">
+            </div>
+          </div>
+
+          <div class="grid-3">
+            <div class="form-group">
+              <label id="t-client-email-lbl">بريد صاحب العلاقة الإلكتروني (اختياري):</label>
+              <input type="email" id="client-email" placeholder="client@example.com" dir="ltr">
+            </div>
+            <div class="form-group">
+              <label id="t-matter-ref-lbl">رقم إضبارة / ملف داخلي (اختياري):</label>
+              <input type="text" id="matter-ref" placeholder="مثال: FILE-2026-14">
+            </div>
+            <div class="form-group">
+              <label id="t-transfer-ref-lbl">رقم وصل / حوالة مرجعي (اختياري):</label>
+              <input type="text" id="transfer-ref" placeholder="مثال: TXN-99812">
+            </div>
+          </div>
+
+          <div class="form-group" id="group-service-ar">
+            <label id="t-service-ar-lbl">موضوع الخدمة أو الطلب *:</label>
+            <input type="text" id="service-title" placeholder="مثال: وكالة قانونية / تسوية اتفاقية">
+          </div>
+
+          <div class="form-group hidden" id="group-service-en">
+            <label id="t-service-en-lbl">Subject / Service Description (English) *:</label>
+            <input type="text" id="service-title-en" placeholder="e.g., Legal Service / Settlement Amount" dir="ltr">
+          </div>
+
           <div class="form-group">
-            <label id="t-client-lang-lbl">لغة الفاتورة وصفحة المراجع:</label>
-            <select id="client-lang" onchange="toggleServiceLangInput()">
-              <option value="ar">العربية (Arabic)</option>
-              <option value="en">الإنجليزية (English)</option>
-            </select>
+            <label id="t-notes-lbl">تفاصيل إضافية (رقم الدعوى / موعد الجلسة / ملاحظات - اختياري):</label>
+            <input type="text" id="service-notes" placeholder="مثال: متابعة ملف - إضبارة رقم 14">
           </div>
+
           <div class="form-group">
-            <label id="t-party-role-lbl">صفة صاحب العلاقة:</label>
-            <select id="party-role" onchange="toggleCustomRoleInput()">
-              <option value="طالب الخدمة">طالب الخدمة</option>
-              <option value="المراجع">المراجع</option>
-              <option value="الموكل">الموكل</option>
-              <option value="طالب الخدمة / المراجع">طالب الخدمة / المراجع</option>
-              <option value="الطرف الآخر / المعني بالتسوية">الطرف الآخر / المعني بالتسوية</option>
-              <option value="custom">صفة مخصصة</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label id="t-request-kind-lbl">نوع البيان / الغرض:</label>
-            <select id="request-kind">
-              <option value="أتعاب وخدمات قانونية">أتعاب وخدمات قانونية</option>
-              <option value="مبلغ تسوية">مبلغ تسوية</option>
-              <option value="دفعة مستحقة">دفعة مستحقة</option>
-              <option value="رسوم ومصاريف إجرائية">رسوم ومصاريف إجرائية</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form-group hidden" id="custom-role-group">
-          <label id="t-custom-role-lbl">تحديد صفة مخصصة:</label>
-          <input type="text" id="custom-role-input" placeholder="مثال: الطرف المتصالح / المسدد">
-        </div>
-
-        <div class="grid-2">
-          <div class="form-group">
-            <label id="t-client-lbl">اسم صاحب العلاقة / الدافع (اختياري):</label>
-            <input type="text" id="client-name" placeholder="مثال: علي كاظم جاسم">
-          </div>
-          <div class="form-group">
-            <label id="t-client-phone-lbl">رقم واتساب صاحب العلاقة (اختياري):</label>
-            <input type="text" id="client-phone" placeholder="مثال: 9647700000000" dir="ltr">
-          </div>
-        </div>
-
-        <div class="grid-3">
-          <div class="form-group">
-            <label id="t-client-email-lbl">بريد صاحب العلاقة الإلكتروني (اختياري):</label>
-            <input type="email" id="client-email" placeholder="client@example.com" dir="ltr">
-          </div>
-          <div class="form-group">
-            <label id="t-matter-ref-lbl">رقم إضبارة / ملف داخلي (اختياري):</label>
-            <input type="text" id="matter-ref" placeholder="مثال: FILE-2026-14">
-          </div>
-          <div class="form-group">
-            <label id="t-transfer-ref-lbl">رقم وصل / حوالة مرجعي (اختياري):</label>
-            <input type="text" id="transfer-ref" placeholder="مثال: TXN-99812">
-          </div>
-        </div>
-
-        <div class="form-group" id="group-service-ar">
-          <label id="t-service-ar-lbl">موضوع الخدمة أو الطلب *:</label>
-          <input type="text" id="service-title" placeholder="مثال: وكالة قانونية / تسوية اتفاقية">
-        </div>
-
-        <div class="form-group hidden" id="group-service-en">
-          <label id="t-service-en-lbl">Subject / Service Description (English) *:</label>
-          <input type="text" id="service-title-en" placeholder="e.g., Legal Service / Settlement Amount" dir="ltr">
-        </div>
-
-        <div class="form-group">
-          <label id="t-notes-lbl">تفاصيل إضافية (رقم الدعوى / موعد الجلسة / ملاحظات - اختياري):</label>
-          <input type="text" id="service-notes" placeholder="مثال: متابعة ملف - إضبارة رقم 14">
-        </div>
-
-        <div class="form-group">
-          <label id="t-internal-notes-lbl">ملاحظات داخلية خاصة بالمكتب فقط (لا تظهر للمراجع):</label>
-          <input type="text" id="internal-notes" placeholder="ملاحظة خاصة بك أو بمرجع التحويل">
-        </div>
-
-        <div class="grid-3">
-          <div class="form-group">
-            <label id="t-currency-lbl">العملة:</label>
-            <select id="currency-select" onchange="updateCurrencyUI(); saveDefaultsPref();">
-              <option value="IQD">دينار عراقي (IQD)</option>
-              <option value="USD">دولار أمريكي (USD)</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label id="t-amount-lbl">المبلغ المطلوب *:</label>
-            <input type="number" id="amount-input" placeholder="مثال: 75000 أو 100" oninput="updateCurrencyUI()">
-          </div>
-          <div class="form-group">
-            <label id="t-due-date-lbl">تاريخ استحقاق واضح (اختياري):</label>
-            <input type="date" id="due-date-input">
-          </div>
-        </div>
-
-        <div class="grid-2">
-          <div class="form-group">
-            <label id="t-expiry-mode-lbl">صلاحية الرابط:</label>
-            <select id="expiry-mode" onchange="toggleCustomExpiryInput()">
-              <option value="none">بدون انتهاء تلقائي</option>
-              <option value="24h">24 ساعة</option>
-              <option value="48h">48 ساعة</option>
-              <option value="7d">7 أيام</option>
-              <option value="custom">تاريخ ووقت محدد</option>
-            </select>
-          </div>
-          <div class="form-group hidden" id="custom-expiry-group">
-            <label id="t-custom-expiry-lbl">تاريخ ووقت انتهاء الصلاحية:</label>
-            <input type="datetime-local" id="custom-expiry-input">
-          </div>
-        </div>
-
-        <div class="form-group hidden" id="rate-group">
-          <label id="t-rate-lbl">سعر صرف الدولار المعتمد (دينار عراقي لكل 1 دولار):</label>
-          <input type="number" id="exchange-rate" value="1510" oninput="updateCurrencyUI(); saveDefaultsPref();">
-        </div>
-
-        <div class="conv-box" id="conv-preview"></div>
-
-        <button class="btn btn-gold" id="generate-btn" onclick="createPaymentLink()">توليد رابط الدفع النظيف</button>
-
-        <div id="result-box" class="result-box">
-          <div style="font-weight: 700; color: #166534; font-size: 14px;" id="t-gen-ok">✅ تم توليد الرابط النظيف بنجاح:</div>
-          <div id="generated-url" class="result-link"></div>
-
-          <div class="form-group" style="margin-top:10px;">
-            <label for="live-message-editor">معاينة وتحرير نص الرسالة قبل الإرسال:</label>
-            <textarea id="live-message-editor" rows="8"></textarea>
+            <label id="t-internal-notes-lbl">ملاحظات داخلية خاصة بالمكتب فقط (لا تظهر للمراجع):</label>
+            <input type="text" id="internal-notes" placeholder="ملاحظة خاصة بك أو بمرجع التحويل">
           </div>
 
-          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-            <button class="btn" style="flex: 1;" id="t-copy-btn" onclick="copyGeneratedLink()">نسخ الرابط 📋</button>
-            <button class="btn-sm" style="flex: 1; padding: 12px;" id="t-copy-msg-btn" onclick="copyFormattedMessage()">نسخ الرسالة ✉️</button>
-            <button class="btn-sm" style="flex: 1; padding: 12px;" id="t-wa-btn" onclick="shareWhatsApp()">واتساب 💬</button>
-            <button class="btn-sm" style="flex: 1; padding: 12px;" id="t-mail-btn" onclick="shareEmail()">إيميل 📧</button>
-            <a id="preview-btn" href="#" target="_blank" class="btn-sm" style="flex: 1; padding: 12px; text-align: center; text-decoration: none;">معاينة 👁️</a>
+          <div class="grid-3">
+            <div class="form-group">
+              <label id="t-currency-lbl">العملة:</label>
+              <select id="currency-select" onchange="updateCurrencyUI(); saveDefaultsPref();">
+                <option value="IQD">دينار عراقي (IQD)</option>
+                <option value="USD">دولار أمريكي (USD)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label id="t-amount-lbl">المبلغ المطلوب *:</label>
+              <input type="number" id="amount-input" placeholder="مثال: 75000 أو 100" oninput="updateCurrencyUI()">
+            </div>
+            <div class="form-group">
+              <label id="t-due-date-lbl">تاريخ استحقاق واضح (اختياري):</label>
+              <input type="date" id="due-date-input">
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="form-group">
+              <label id="t-expiry-mode-lbl">صلاحية الرابط:</label>
+              <select id="expiry-mode" onchange="toggleCustomExpiryInput()">
+                <option value="none">بدون انتهاء تلقائي</option>
+                <option value="24h">24 ساعة</option>
+                <option value="48h">48 ساعة</option>
+                <option value="7d">7 أيام</option>
+                <option value="custom">تاريخ ووقت محدد</option>
+              </select>
+            </div>
+            <div class="form-group hidden" id="custom-expiry-group">
+              <label id="t-custom-expiry-lbl">تاريخ ووقت انتهاء الصلاحية:</label>
+              <input type="datetime-local" id="custom-expiry-input">
+            </div>
+          </div>
+
+          <div class="form-group hidden" id="rate-group">
+            <label id="t-rate-lbl">سعر صرف الدولار المعتمد (دينار عراقي لكل 1 دولار):</label>
+            <input type="number" id="exchange-rate" value="1510" oninput="updateCurrencyUI(); saveDefaultsPref();">
+          </div>
+
+          <div class="conv-box" id="conv-preview"></div>
+
+          <button class="btn btn-gold" id="generate-btn" onclick="createPaymentLink()">توليد رابط الدفع</button>
+
+          <div id="result-box" class="result-box">
+            <div style="font-weight: 700; color: #166534; font-size: 14px;" id="t-gen-ok">✅ تم توليد الرابط بنجاح:</div>
+            <div id="generated-url" class="result-link"></div>
+
+            <div class="form-group" style="margin-top:10px;">
+              <label for="live-message-editor">معاينة وتحرير نص الرسالة قبل الإرسال:</label>
+              <textarea id="live-message-editor" rows="9"></textarea>
+            </div>
+
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <button class="btn" style="flex: 1;" id="t-copy-btn" onclick="copyGeneratedLink()">نسخ الرابط 📋</button>
+              <button class="btn-sm" style="flex: 1; padding: 12px;" id="t-copy-msg-btn" onclick="copyFormattedMessage()">نسخ الرسالة ✉️</button>
+              <button class="btn-sm" style="flex: 1; padding: 12px;" id="t-wa-btn" onclick="shareWhatsApp()">واتساب 💬</button>
+              <button class="btn-sm" style="flex: 1; padding: 12px;" id="t-mail-btn" onclick="shareEmail()">إيميل 📧</button>
+              <a id="preview-btn" href="#" target="_blank" class="btn-sm" style="flex: 1; padding: 12px; text-align: center; text-decoration: none;">معاينة 👁️</a>
+            </div>
           </div>
         </div>
       </div>
@@ -612,16 +651,12 @@
         </div>
         <div id="msg-tpl-body">
           <div class="form-group">
-            <label id="t-wa-tpl-lbl">العبارة الافتتاحية عند صدور الفاتورة:</label>
-            <input type="text" id="wa-template-input" value="صدرت لك فاتورة من مكتب المحامي علي كاظم الهاشمي وفق التفاصيل المدرجة أدناه.">
+            <label id="t-wa-tpl-lbl">العبارة الافتتاحية الترحيبية:</label>
+            <input type="text" id="wa-template-input" value="صدرت لك فاتورة من مكتب المحامي علي كاظم الهاشمي بمناسبة استلام طلبكم المثبت في منصة الحجوزات المكتب بنجاح.">
           </div>
           <div class="form-group">
-            <label id="t-booking-note-lbl">عبارة ربط طلب الحجز (توضح سبب صدور الفاتورة دون تناقض):</label>
-            <input type="text" id="booking-link-note-input" value="تم استلام طلبكم المثبت في منصة الحجوزات لدى مكتب المحامي علي كاظم الهاشمي.">
-          </div>
-          <div class="form-group">
-            <label id="t-closing-note-lbl">العبارة الختامية المختصرة:</label>
-            <input type="text" id="closing-note-input" value="شكراً لاختياركم مكتبنا.">
+            <label id="t-closing-note-lbl">العبارة الختامية والموقع الإلكتروني:</label>
+            <input type="text" id="closing-note-input" value="تحيات مكتب المحامي علي كاظم الهاشمي — www.akjassem.com">
           </div>
           <div style="display:flex; gap:8px; flex-wrap:wrap;">
             <button type="button" class="btn-sm btn-paid" id="t-save-wa-btn" onclick="saveWaTemplate()">حفظ ✓</button>
@@ -654,7 +689,7 @@
           </div>
           <div class="form-group">
             <label id="t-footer-tpl-lbl">توقيع أو تذييل إضافي للتقارير والإيصالات (اختياري):</label>
-            <input type="text" id="report-footer-input" placeholder="مثال: بغداد، العراق — بغداد زيونة قرب دار الأزياء العراقية | للاستفسار: intake@akjassem.com | +9647702956021">
+            <input type="text" id="report-footer-input" placeholder="تحيات مكتب المحامي علي كاظم الهاشمي — www.akjassem.com">
           </div>
           <div style="display:flex; gap:8px; flex-wrap:wrap;">
             <button type="button" class="btn-sm btn-paid" onclick="saveSupportSettings()">حفظ ✓</button>
@@ -705,10 +740,10 @@
 
       <div class="card">
         <div class="card-title">
-          <span id="t-keys-title">🔑 تحديث المفاتيح والرقم السري</span>
+          <span id="t-keys-title">🔑 تحديث المفاتيح وإعدادات المنصة</span>
           <button type="button" class="btn-sm" onclick="toggleSection('keys-body')">إظهار / إخفاء</button>
         </div>
-        <div id="keys-body">
+        <div id="keys-body" class="hidden">
           <div class="form-group">
             <label id="t-cur-pin-lbl">الرقم السري الحالي (للتأكيد):</label>
             <input type="password" id="update-current-pin" placeholder="••••••">
@@ -721,7 +756,10 @@
             <label id="t-new-pin-lbl">الرقم السري الجديد (اتركه فارغاً للإبقاء على الحالي):</label>
             <input type="password" id="update-new-pin" placeholder="الرقم السري الجديد">
           </div>
-          <button class="btn" id="t-save-keys-btn" onclick="updateVault()">حفظ التحديثات</button>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button class="btn" style="flex:2;" id="t-save-keys-btn" onclick="updateVault()">حفظ التحديثات</button>
+            <button type="button" class="btn-sm btn-refund" style="flex:1; padding:12px;" id="t-reset-btn" onclick="resetVault()">إعادة ضبط المنصة</button>
+          </div>
         </div>
       </div>
     </div>
@@ -778,7 +816,6 @@
     const VAULT_STORAGE_KEY = 'akh_encrypted_vault_v1';
     const HISTORY_STORAGE_KEY = 'akh_payment_history_v1';
     const WA_TEMPLATE_KEY = 'akh_wa_template_v1';
-    const BOOKING_NOTE_KEY = 'akh_booking_note_v1';
     const CLOSING_NOTE_KEY = 'akh_closing_note_v1';
     const SUPPORT_EMAIL_KEY = 'akh_support_email_v1';
     const SUPPORT_PHONE_KEY = 'akh_support_phone_v1';
@@ -787,9 +824,8 @@
     const CUSTOM_TPL_KEY = 'akh_custom_templates_v1';
     const DEFAULTS_KEY = 'akh_admin_defaults_v1';
 
-    const DEFAULT_WA_INTRO = 'صدرت لك فاتورة من مكتب المحامي علي كاظم الهاشمي وفق التفاصيل المدرجة أدناه.';
-    const DEFAULT_BOOKING_NOTE = 'تم استلام طلبكم المثبت في منصة الحجوزات لدى مكتب المحامي علي كاظم الهاشمي.';
-    const DEFAULT_CLOSING_NOTE = 'شكراً لاختياركم مكتبنا.';
+    const DEFAULT_WA_INTRO = 'صدرت لك فاتورة من مكتب المحامي علي كاظم الهاشمي بمناسبة استلام طلبكم المثبت في منصة الحجوزات المكتب بنجاح.';
+    const DEFAULT_CLOSING_NOTE = 'تحيات مكتب المحامي علي كاظم الهاشمي — www.akjassem.com';
     const DEFAULT_SUPPORT_EMAIL = 'intake@akjassem.com';
     const DEFAULT_SUPPORT_PHONE = '+9647702956021';
     const DEFAULT_OFFICE_ADDRESS = 'بغداد، العراق — بغداد زيونة قرب دار الأزياء العراقية';
@@ -806,9 +842,6 @@
     window.addEventListener('DOMContentLoaded', () => {
       const savedWa = localStorage.getItem(WA_TEMPLATE_KEY);
       if (savedWa !== null) document.getElementById('wa-template-input').value = savedWa;
-
-      const savedBooking = localStorage.getItem(BOOKING_NOTE_KEY);
-      if (savedBooking !== null) document.getElementById('booking-link-note-input').value = savedBooking;
 
       const savedClosing = localStorage.getItem(CLOSING_NOTE_KEY);
       if (savedClosing !== null) document.getElementById('closing-note-input').value = savedClosing;
@@ -851,12 +884,40 @@
       document.getElementById('custom-role-group').classList.toggle('hidden', role !== 'custom');
     }
 
+    function toggleCustomKindInput() {
+      const kind = document.getElementById('request-kind').value;
+      document.getElementById('custom-kind-group').classList.toggle('hidden', kind !== 'custom');
+    }
+
+    function clearCustomField(inputId) {
+      const inp = document.getElementById(inputId);
+      if (inp) inp.value = '';
+      showToast('🗑️ تم مسح الحقل المخصص.');
+    }
+
     function getActivePartyRole() {
       const role = document.getElementById('party-role').value;
       if (role === 'custom') {
         return document.getElementById('custom-role-input').value.trim() || 'صاحب العلاقة';
       }
       return role;
+    }
+
+    function getActiveRequestKind() {
+      const kind = document.getElementById('request-kind').value;
+      if (kind === 'custom') {
+        return document.getElementById('custom-kind-input').value.trim() || 'أتعاب وخدمات قانونية';
+      }
+      return kind;
+    }
+
+    function openTrashFilter() {
+      const sel = document.getElementById('history-filter');
+      if (sel) {
+        sel.value = 'trash';
+        renderStatsAndHistory();
+        sel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
     }
 
     function saveDefaultsPref() {
@@ -932,26 +993,30 @@
       }
     }
 
-    function saveCurrentAsTemplate() {
-      const name = document.getElementById('new-tpl-name').value.trim();
-      const titleAr = document.getElementById('service-title').value.trim();
-      const titleEn = document.getElementById('service-title-en').value.trim() || titleAr;
-      const amt = Number(document.getElementById('amount-input').value || 0);
-      const cur = document.getElementById('currency-select').value;
-      const kind = document.getElementById('request-kind').value;
-      const role = getActivePartyRole();
-      if (!name || !titleAr || amt <= 0) {
-        alert('أدخل اسم القالب وموضوع الخدمة/الطلب والمبلغ أولاً.');
-        return;
-      }
+    function saveTemplateRecord(name, titleAr, titleEn, amt, cur, kind, role) {
       const list = JSON.parse(localStorage.getItem(CUSTOM_TPL_KEY) || '[]');
       const existingIdx = list.findIndex(t => t.name === name);
       const tplObj = { name, ar: titleAr, en: titleEn, amount: amt, currency: cur, kind, role };
       if (existingIdx >= 0) list[existingIdx] = tplObj;
       else list.push(tplObj);
       localStorage.setItem(CUSTOM_TPL_KEY, JSON.stringify(list));
-      document.getElementById('new-tpl-name').value = '';
       renderCustomTemplateChips();
+    }
+
+    function saveCurrentAsTemplate() {
+      const name = document.getElementById('new-tpl-name').value.trim();
+      const titleAr = document.getElementById('service-title').value.trim();
+      const titleEn = document.getElementById('service-title-en').value.trim() || titleAr;
+      const amt = Number(document.getElementById('amount-input').value || 0);
+      const cur = document.getElementById('currency-select').value;
+      const kind = getActiveRequestKind();
+      const role = getActivePartyRole();
+      if (!name || !titleAr || amt <= 0) {
+        alert('أدخل اسم القالب وموضوع الخدمة/الطلب والمبلغ أولاً.');
+        return;
+      }
+      saveTemplateRecord(name, titleAr, titleEn, amt, cur, kind, role);
+      document.getElementById('new-tpl-name').value = '';
       showToast('✅ تم حفظ القالب.');
     }
 
@@ -1002,7 +1067,20 @@
       document.getElementById('service-title-en').value = t.en;
       document.getElementById('currency-select').value = t.currency;
       document.getElementById('amount-input').value = t.amount;
-      if (t.kind) document.getElementById('request-kind').value = t.kind;
+
+      if (t.kind) {
+        const kSel = document.getElementById('request-kind');
+        const hasKind = Array.from(kSel.options).some(o => o.value === t.kind);
+        if (hasKind) {
+          kSel.value = t.kind;
+          toggleCustomKindInput();
+        } else {
+          kSel.value = 'custom';
+          toggleCustomKindInput();
+          document.getElementById('custom-kind-input').value = t.kind;
+        }
+      }
+
       if (t.role) {
         const sel = document.getElementById('party-role');
         const hasOpt = Array.from(sel.options).some(o => o.value === t.role);
@@ -1038,10 +1116,8 @@
 
     function saveWaTemplate() {
       const val = document.getElementById('wa-template-input').value.trim() || DEFAULT_WA_INTRO;
-      const bookingVal = document.getElementById('booking-link-note-input').value.trim() || DEFAULT_BOOKING_NOTE;
       const closingVal = document.getElementById('closing-note-input').value.trim() || DEFAULT_CLOSING_NOTE;
       localStorage.setItem(WA_TEMPLATE_KEY, val);
-      localStorage.setItem(BOOKING_NOTE_KEY, bookingVal);
       localStorage.setItem(CLOSING_NOTE_KEY, closingVal);
       refreshLiveEditorFromForm();
       showToast('✅ تم حفظ صيغة الإشعار.');
@@ -1049,10 +1125,8 @@
 
     function resetMessageTemplates() {
       document.getElementById('wa-template-input').value = DEFAULT_WA_INTRO;
-      document.getElementById('booking-link-note-input').value = DEFAULT_BOOKING_NOTE;
       document.getElementById('closing-note-input').value = DEFAULT_CLOSING_NOTE;
       localStorage.setItem(WA_TEMPLATE_KEY, DEFAULT_WA_INTRO);
-      localStorage.setItem(BOOKING_NOTE_KEY, DEFAULT_BOOKING_NOTE);
       localStorage.setItem(CLOSING_NOTE_KEY, DEFAULT_CLOSING_NOTE);
       refreshLiveEditorFromForm();
       showToast('↺ تمت استعادة الصيغة الافتراضية.');
@@ -1254,11 +1328,11 @@
       document.getElementById('unlock-view').classList.remove('hidden');
     }
 
-    function resetVault() {
-      if (confirm('هل أنت متأكد من مسح إعدادات المنصة الحالية وإعادة إدخال المفاتيح من جديد؟')) {
-        localStorage.removeItem(VAULT_STORAGE_KEY);
-        location.reload();
-      }
+    async function resetVault() {
+      const ok = await requestPinConfirmation('تأكيد الرقم السري (PIN) لإعادة ضبط المنصة.');
+      if (!ok) return;
+      localStorage.removeItem(VAULT_STORAGE_KEY);
+      location.reload();
     }
 
     async function updateVault() {
@@ -1289,7 +1363,7 @@
     async function createPaymentLink() {
       const clientLang = document.getElementById('client-lang').value;
       const partyRole = getActivePartyRole();
-      const requestKind = document.getElementById('request-kind').value;
+      const requestKind = getActiveRequestKind();
       const clientName = document.getElementById('client-name').value.trim();
       const clientPhone = document.getElementById('client-phone').value.trim().replace(/[^\d]/g, '');
       const clientEmail = document.getElementById('client-email').value.trim();
@@ -1307,6 +1381,7 @@
       const rate = Number(document.getElementById('exchange-rate').value || 1510);
       const dueDate = document.getElementById('due-date-input').value || '';
       const expiresAt = computeExpiresAt();
+      const shouldSaveTpl = Boolean(document.getElementById('save-as-template-check')?.checked);
 
       if (!rawAmount || rawAmount <= 0) {
         alert(adminLang === 'ar' ? 'يرجى إدخال مبلغ صحيح.' : 'Please enter a valid amount.');
@@ -1319,6 +1394,11 @@
         return;
       }
 
+      if (shouldSaveTpl) {
+        const tplName = document.getElementById('new-tpl-name').value.trim() || serviceTitle;
+        saveTemplateRecord(tplName, serviceTitleAr || serviceTitle, serviceTitleEn || serviceTitle, rawAmount, currency, requestKind, partyRole);
+      }
+
       let refCode = buildTimestampRefCode();
       const existingList = JSON.parse(localStorage.getItem(HISTORY_STORAGE_KEY) || '[]');
       if (existingList.some(item => item.ref === refCode)) {
@@ -1328,7 +1408,7 @@
 
       const btn = document.getElementById('generate-btn');
       btn.disabled = true;
-      btn.textContent = adminLang === 'ar' ? 'جارٍ توليد الرابط النظيف...' : 'Generating clean link...';
+      btn.textContent = adminLang === 'ar' ? 'جارٍ توليد الرابط...' : 'Generating link...';
 
       const fullLabel = clientName ? `${serviceTitle} - ${clientName}` : serviceTitle;
 
@@ -1408,13 +1488,12 @@
         alert('❌ خطأ: ' + err.message);
       } finally {
         btn.disabled = false;
-        btn.textContent = adminLang === 'ar' ? 'توليد رابط الدفع النظيف' : 'Generate Clean Payment Link';
+        btn.textContent = adminLang === 'ar' ? 'توليد رابط الدفع' : 'Generate Payment Link';
       }
     }
 
     function buildFormattedMessage(e) {
       const introLine = (document.getElementById('wa-template-input')?.value || '').trim() || DEFAULT_WA_INTRO;
-      const bookingLine = (document.getElementById('booking-link-note-input')?.value || '').trim() || DEFAULT_BOOKING_NOTE;
       const closingLine = (document.getElementById('closing-note-input')?.value || '').trim() || DEFAULT_CLOSING_NOTE;
       const isEn = e && e.lang === 'en';
       const officeName = isEn ? 'Law Office Of Ali Kadhem Hashimi' : 'مكتب المحامي علي كاظم الهاشمي';
@@ -1424,9 +1503,7 @@
 
       if (isEn) {
         return [
-          `Issued by ${officeName}`,
-          `Your invoice has been issued by ${officeName} according to the details below.`,
-          bookingLine,
+          `Your invoice has been issued by ${officeName} upon receiving your request confirmed in the booking platform of ${officeName}.`,
           e && e.clientName ? `• ${e.partyRole || 'Applicant'}: ${e.clientName}` : null,
           e && e.ref ? `• Invoice Reference: ${e.ref}` : null,
           e && e.requestKind ? `• Purpose: ${e.requestKind}` : null,
@@ -1436,26 +1513,23 @@
           e && e.dueDate ? `• Due Date: ${e.dueDate}` : null,
           e && e.appointment ? `• Appointment: ${e.appointment}` : null,
           amtStr ? `• Amount Due: ${amtStr}` : null,
-          `• Issuing Entity: ${officeName}`,
           `• Payment Link:\n${e ? e.link : LAST_LINK}`,
           getSupportBlockText(true),
-          closingLine
+          `Regards, ${officeName} — www.akjassem.com`
         ].filter(Boolean).join('\n');
       }
 
       return [
         introLine,
-        bookingLine,
         e && e.clientName ? `• ${e.partyRole || 'صاحب العلاقة'}: ${e.clientName}` : null,
         e && e.ref ? `• الرقم المرجعي للفاتورة: ${e.ref}` : null,
-        e && e.requestKind ? `• نوع الطلب: ${e.requestKind}` : null,
+        e && e.requestKind ? `• نوع البيان أو الغرض: ${e.requestKind}` : null,
         e && e.matterRef ? `• رقم الملف: ${e.matterRef}` : null,
         e && e.serviceTitle ? `• البيان: ${e.serviceTitle}` : null,
         e && e.notes ? `• التفاصيل: ${e.notes}` : null,
         e && e.dueDate ? `• تاريخ الاستحقاق: ${e.dueDate}` : null,
         e && e.appointment ? `• الموعد: ${e.appointment}` : null,
         amtStr ? `• مبلغ الاستحقاق: ${amtStr}` : null,
-        `• الجهة: ${officeName}`,
         `• رابط السداد:\n${e ? e.link : LAST_LINK}`,
         getSupportBlockText(false),
         closingLine
@@ -1666,6 +1740,9 @@
       const q = (document.getElementById('history-search')?.value || '').trim().toLowerCase();
       const isAr = adminLang === 'ar';
 
+      const trashBadge = document.getElementById('trash-count-badge');
+      if (trashBadge) trashBadge.textContent = String(list.filter(i => i.deleted).length);
+
       const now = new Date();
       const isSameDay = ts => {
         if (!ts) return false;
@@ -1822,7 +1899,6 @@
         exportedAt: new Date().toISOString(),
         history: JSON.parse(localStorage.getItem(HISTORY_STORAGE_KEY) || '[]'),
         waTemplate: localStorage.getItem(WA_TEMPLATE_KEY) || '',
-        bookingNote: localStorage.getItem(BOOKING_NOTE_KEY) || '',
         closingNote: localStorage.getItem(CLOSING_NOTE_KEY) || '',
         supportEmail: localStorage.getItem(SUPPORT_EMAIL_KEY) || '',
         supportPhone: localStorage.getItem(SUPPORT_PHONE_KEY) || '',
@@ -1870,10 +1946,6 @@
         if (typeof parsed.waTemplate === 'string') {
           localStorage.setItem(WA_TEMPLATE_KEY, parsed.waTemplate);
           document.getElementById('wa-template-input').value = parsed.waTemplate;
-        }
-        if (typeof parsed.bookingNote === 'string') {
-          localStorage.setItem(BOOKING_NOTE_KEY, parsed.bookingNote);
-          document.getElementById('booking-link-note-input').value = parsed.bookingNote;
         }
         if (typeof parsed.closingNote === 'string') {
           localStorage.setItem(CLOSING_NOTE_KEY, parsed.closingNote);
@@ -1975,10 +2047,10 @@
           <table>
             <tr><th>${isEn ? 'Reference Number' : 'الرقم المرجعي'}</th><td style="font-family:monospace; font-weight:800;">${item.ref || ''}</td></tr>
             ${item.clientName ? `<tr><th>${item.partyRole || (isEn ? 'Applicant / Payer' : 'اسم صاحب العلاقة')}</th><td>${item.clientName}</td></tr>` : ''}
-            ${item.requestKind ? `<tr><th>${isEn ? 'Purpose' : 'نوع البيان / الغرض'}</th><td>${item.requestKind}</td></tr>` : ''}
+            ${item.requestKind ? `<tr><th>${isEn ? 'Purpose' : 'نوع البيان أو الغرض'}</th><td>${item.requestKind}</td></tr>` : ''}
             ${item.matterRef ? `<tr><th>${isEn ? 'File Reference' : 'رقم الملف / الإضبارة'}</th><td>${item.matterRef}</td></tr>` : ''}
             ${item.transferRef ? `<tr><th>${isEn ? 'Transfer / Receipt Ref' : 'رقم الوصل / الحوالة'}</th><td>${item.transferRef}</td></tr>` : ''}
-            <tr><th>${isEn ? 'Subject / Service' : 'موضوع الخدمة / الطلب'}</th><td>${svcText}</td></tr>
+            <tr><th>${isEn ? 'Subject / Service' : 'موضوع الخدمة أو الطلب'}</th><td>${svcText}</td></tr>
             <tr><th>${isEn ? 'Amount' : 'المبلغ'}</th><td style="font-weight:800;">${amtStr}</td></tr>
             ${item.currency === 'USD' ? `<tr><th>${isEn ? 'Exchange Rate' : 'سعر الصرف'}</th><td>${Number(item.rate || 1510).toLocaleString('en-US')} IQD / USD</td></tr>` : ''}
             <tr><th>${isEn ? 'Status' : 'الحالة'}</th><td>${item.status || 'pending'}</td></tr>
@@ -2063,7 +2135,7 @@
           <table>
             <tr><th>${isEn ? 'Reference Number' : 'الرقم المرجعي للمعاملة'}</th><td style="font-family:monospace; font-weight:800;">${item.ref || ''}</td></tr>
             <tr><th>${item.partyRole || (isEn ? 'Applicant / Payer' : 'اسم صاحب العلاقة')}</th><td>${item.clientName || (isEn ? 'Not specified' : 'غير مذكور في الإشعار')}</td></tr>
-            <tr><th>${isEn ? 'Subject / Service' : 'موضوع الخدمة / الطلب'}</th><td>${svcText}</td></tr>
+            <tr><th>${isEn ? 'Subject / Service' : 'موضوع الخدمة أو الطلب'}</th><td>${svcText}</td></tr>
             ${item.notes ? `<tr><th>${isEn ? 'Details' : 'تفاصيل إضافية'}</th><td>${item.notes}</td></tr>` : ''}
             <tr><th>${isEn ? 'Amount Due' : 'المبلغ المستحق'}</th><td style="font-weight:800;">${amtStr}</td></tr>
             ${item.currency === 'USD' ? `<tr><th>${isEn ? 'Exchange Rate' : 'سعر الصرف المعتمد'}</th><td>${Number(item.rate || 1510).toLocaleString('en-US')} IQD / USD</td></tr>` : ''}
@@ -2191,7 +2263,7 @@
           <table>
             <tr><th>${isEn ? 'Invoice Reference' : 'الرقم المرجعي للفاتورة'}</th><td style="font-family:monospace; font-weight:800;">${item.ref || ''}</td></tr>
             <tr><th>${item.partyRole || (isEn ? 'Applicant / Payer' : 'اسم صاحب العلاقة')}</th><td>${item.clientName || (isEn ? 'Not specified' : 'غير مذكور')}</td></tr>
-            <tr><th>${isEn ? 'Subject / Service' : 'موضوع الخدمة / الطلب'}</th><td>${isEn ? (item.serviceTitleEn || item.serviceTitle) : (item.serviceTitleAr || item.serviceTitle)}</td></tr>
+            <tr><th>${isEn ? 'Subject / Service' : 'موضوع الخدمة أو الطلب'}</th><td>${isEn ? (item.serviceTitleEn || item.serviceTitle) : (item.serviceTitleAr || item.serviceTitle)}</td></tr>
             <tr><th>${isEn ? 'Date' : 'تاريخ المعاملة'}</th><td>${item.date || ''}</td></tr>
           </table>
 
