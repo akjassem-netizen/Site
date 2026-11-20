@@ -11,7 +11,7 @@
   <meta property="og:image:secure_url" content="https://akjassem.com/og-logo.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://akjassem.com/og-logo.jpg">
-  <title>بوابة الدفع الإلكتروني — مكتب المحامي علي كاظم الهاشمي — منصة المدفوعات</title>
+  <title>منصة المدفوعات | مكتب المحامي علي كاظم الهاشمي</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -73,27 +73,8 @@
     }
     .sub-title .slash-red { color: #d32f2f; font-weight: 800; }
     .est { font-size: 11px; color: #94a3b8; margin-top: 3px; direction: ltr; letter-spacing: 1px; }
-    .platform-heading { font-size: 20px; font-weight: 800; color: #0b1c36; margin-top: 12px; }
+    .platform-heading { font-size: 21px; font-weight: 800; color: #0b1c36; margin-top: 12px; }
     .office-subtitle { font-size: 14.5px; font-weight: 700; color: #475569; margin-top: 4px; }
-    .share-logo-preview {
-      margin-top: 10px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      padding: 5px 10px;
-      border-radius: 10px;
-      font-size: 11.5px;
-      color: #475569;
-    }
-    .share-logo-preview img {
-      width: 28px;
-      height: 28px;
-      object-fit: cover;
-      border-radius: 6px;
-      border: 1px solid #cbd5e1;
-    }
 
     .card {
       background: #f8fafc;
@@ -409,12 +390,8 @@
       <div class="logo-text">A<span class="k-red">K</span>H</div>
       <div class="sub-title"><span class="slash-red">/</span> LAW OFFICE</div>
       <div class="est">EST. 2014</div>
-      <div class="platform-heading" id="t-platform">بوابة الدفع الإلكتروني — مكتب المحامي علي كاظم الهاشمي — منصة المدفوعات</div>
+      <div class="platform-heading" id="t-platform">منصة المدفوعات</div>
       <div class="office-subtitle" id="t-office">مكتب المحامي علي كاظم الهاشمي — للمحاماة والخدمات القانونية</div>
-      <div class="share-logo-preview">
-        <img src="https://akjassem.com/og-logo.jpg" alt="شعار المكتب">
-        <span>og-logo.jpg</span>
-      </div>
     </div>
 
     <!-- شاشة تأسيس المنصة لأول مرة -->
@@ -579,7 +556,7 @@
             </div>
             <div class="form-group">
               <label id="t-client-phone-lbl">رقم واتساب صاحب العلاقة (اختياري):</label>
-              <input type="text" id="client-phone" placeholder="مثال: 9647700000000" dir="ltr">
+              <input type="text" id="client-phone" placeholder="مثال: +9647700000000" dir="ltr">
             </div>
           </div>
 
@@ -668,7 +645,7 @@
 
             <div class="form-group" style="margin-top:10px;">
               <label for="live-message-editor">معاينة وتحرير نص الرسالة قبل الإرسال:</label>
-              <textarea id="live-message-editor" rows="13"></textarea>
+              <textarea id="live-message-editor" rows="12"></textarea>
             </div>
 
             <div style="display: flex; gap: 8px; flex-wrap: wrap;">
@@ -691,7 +668,7 @@
         <div id="msg-tpl-body" class="hidden">
           <div class="form-group">
             <label id="t-wa-tpl-lbl">الرسالة الترحيبية وربط طلب الحجز:</label>
-            <input type="text" id="wa-template-input" value="صدرت لك فاتورة من مكتب المحامي علي كاظم الهاشمي بمناسبة استلام طلبكم المثبت في منصة الحجوزات لدى مكتب المحامي علي كاظم الهاشمي بنجاح.">
+            <input type="text" id="wa-template-input" value="صدرت لك فاتورة من مكتب المحامي علي كاظم الهاشمي بمناسبة استلام طلبكم المثبت في منصة حجوزات المكتب بنجاح.">
           </div>
           <div class="form-group">
             <label id="t-closing-note-lbl">العبارة الختامية والموقع الإلكتروني:</label>
@@ -723,7 +700,7 @@
             </div>
             <div class="form-group">
               <label>عنوان المكتب المعتمد:</label>
-              <input type="text" id="office-address-input" value="بغداد، العراق — بغداد زيونة قرب دار الأزياء العراقية">
+              <input type="text" id="office-address-input" value="العراق، بغداد، زيونة، قرب دار الازياء العراقية">
             </div>
           </div>
           <div class="form-group">
@@ -863,11 +840,11 @@
     const CUSTOM_TPL_KEY = 'akh_custom_templates_v1';
     const DEFAULTS_KEY = 'akh_admin_defaults_v1';
 
-    const DEFAULT_WA_INTRO = 'صدرت لك فاتورة من مكتب المحامي علي كاظم الهاشمي بمناسبة استلام طلبكم المثبت في منصة الحجوزات لدى مكتب المحامي علي كاظم الهاشمي بنجاح.';
+    const DEFAULT_WA_INTRO = 'صدرت لك فاتورة من مكتب المحامي علي كاظم الهاشمي بمناسبة استلام طلبكم المثبت في منصة حجوزات المكتب بنجاح.';
     const DEFAULT_CLOSING_NOTE = 'شكراً لاختياركم مكتبنا، مع تحياتنا مكتب المحامي علي كاظم الهاشمي — www.akjassem.com';
     const DEFAULT_SUPPORT_EMAIL = 'intake@akjassem.com';
     const DEFAULT_SUPPORT_PHONE = '+9647702956021';
-    const DEFAULT_OFFICE_ADDRESS = 'بغداد، العراق — بغداد زيونة قرب دار الأزياء العراقية';
+    const DEFAULT_OFFICE_ADDRESS = 'العراق، بغداد، زيونة، قرب دار الازياء العراقية';
 
     let VAULT_DATA = null;
     let LAST_LINK = '';
@@ -877,6 +854,13 @@
     let currentProofItem = null;
     let proofImageDataUrls = [];
     let pendingPinResolve = null;
+
+    function formatLtrPhone(rawPhone) {
+      const cleaned = String(rawPhone || '').trim();
+      if (!cleaned) return '';
+      const normalized = cleaned.startsWith('+') ? cleaned : `+${cleaned.replace(/[^\d]/g, '')}`;
+      return `\u2066\u200E${normalized}\u2069`;
+    }
 
     window.addEventListener('DOMContentLoaded', () => {
       const savedWa = localStorage.getItem(WA_TEMPLATE_KEY);
@@ -1208,7 +1192,7 @@
 
     function getSupportBlockText(isEn = false) {
       const em = (document.getElementById('support-email-input')?.value || DEFAULT_SUPPORT_EMAIL).trim();
-      const ph = (document.getElementById('support-phone-input')?.value || DEFAULT_SUPPORT_PHONE).trim();
+      const ph = formatLtrPhone(document.getElementById('support-phone-input')?.value || DEFAULT_SUPPORT_PHONE);
       if (isEn) {
         return `For inquiries or assistance, feel free to contact us via the billing email (${em}) or call/WhatsApp (${ph}).`;
       }
@@ -1258,13 +1242,13 @@
       document.documentElement.lang = adminLang;
       document.documentElement.dir = isAr ? 'rtl' : 'ltr';
       document.title = isAr
-        ? 'بوابة الدفع الإلكتروني — مكتب المحامي علي كاظم الهاشمي — منصة المدفوعات'
-        : 'Electronic Payment Portal — Law Office Of Ali Kadhem Hashimi — Payment Platform';
+        ? 'منصة المدفوعات | مكتب المحامي علي كاظم الهاشمي'
+        : 'Payment Platform | Law Office Of Ali Kadhem Hashimi';
 
       document.getElementById('admin-lang-btn').textContent = isAr ? 'English' : 'العربية';
       document.getElementById('t-platform').textContent = isAr
-        ? 'بوابة الدفع الإلكتروني — مكتب المحامي علي كاظم الهاشمي — منصة المدفوعات'
-        : 'Electronic Payment Portal — Law Office Of Ali Kadhem Hashimi — Payment Platform';
+        ? 'منصة المدفوعات'
+        : 'Payment Platform';
       document.getElementById('t-office').textContent = isAr
         ? 'مكتب المحامي علي كاظم الهاشمي — للمحاماة والخدمات القانونية'
         : 'Law Office Of Ali Kadhem Hashimi — Advocacy & Legal Services';
@@ -1555,7 +1539,6 @@
 
       if (isEn) {
         return [
-          `Electronic Payment Portal — ${officeName} — Payment Platform`,
           `Your invoice has been issued by ${officeName} upon receiving your request confirmed in the booking platform of ${officeName} successfully.`,
           '',
           e && e.clientName ? `• ${e.partyRole || 'Applicant'}: ${e.clientName}` : null,
@@ -1568,7 +1551,7 @@
           e && e.appointment ? `• Appointment: ${e.appointment}` : null,
           amtStr ? `• Amount Due: ${amtStr}` : null,
           '',
-          `• Payment Link:\n${e ? e.link : LAST_LINK}`,
+          `• Pay Now:\n${e ? e.link : LAST_LINK}`,
           '',
           getSupportBlockText(true),
           '',
@@ -1577,7 +1560,6 @@
       }
 
       return [
-        `بوابة الدفع الإلكتروني — ${officeName} — منصة المدفوعات`,
         introLine,
         '',
         e && e.clientName ? `• ${e.partyRole || 'صاحب العلاقة'}: ${e.clientName}` : null,
@@ -1590,7 +1572,7 @@
         e && e.appointment ? `• الموعد: ${e.appointment}` : null,
         amtStr ? `• مبلغ الاستحقاق: ${amtStr}` : null,
         '',
-        `• رابط السداد:\n${e ? e.link : LAST_LINK}`,
+        `• دفع الآن:\n${e ? e.link : LAST_LINK}`,
         '',
         getSupportBlockText(false),
         '',
@@ -1634,8 +1616,8 @@
       const isEn = e && e.lang === 'en';
       const refPart = e && e.ref ? e.ref : '';
       const subject = encodeURIComponent(isEn
-        ? `Invoice Notice ${refPart} — Electronic Payment Portal — Law Office Of Ali Kadhem Hashimi`
-        : `إشعار فاتورة ${refPart} — بوابة الدفع الإلكتروني — مكتب المحامي علي كاظم الهاشمي`);
+        ? `Invoice Notice ${refPart} - Law Office Of Ali Kadhem Hashimi`
+        : `إشعار فاتورة ${refPart} - مكتب المحامي علي كاظم الهاشمي`);
       const body = encodeURIComponent(getMessageForSend(customEntry));
       const to = e && e.clientEmail ? encodeURIComponent(e.clientEmail) : '';
       window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
@@ -1646,15 +1628,14 @@
       const e = list[idx];
       if (!e) return;
       const reminderText = [
-        `بوابة الدفع الإلكتروني — مكتب المحامي علي كاظم الهاشمي — منصة المدفوعات`,
-        `تذكير بسداد الفاتورة المرجعية (${e.ref})`,
+        `تذكير بسداد الفاتورة المرجعية (${e.ref}) - مكتب المحامي علي كاظم الهاشمي`,
         '',
         e.clientName ? `• ${e.partyRole || 'صاحب العلاقة'}: ${e.clientName}` : null,
         `• البيان: ${e.serviceTitle}`,
         e.dueDate ? `• تاريخ الاستحقاق: ${e.dueDate}` : null,
         `• مبلغ الاستحقاق: ${Number(e.amountIQD).toLocaleString('en-US')} IQD`,
         '',
-        `• رابط السداد:\n${e.link}`,
+        `• دفع الآن:\n${e.link}`,
         '',
         getSupportBlockText(false),
         '',
@@ -2052,7 +2033,7 @@
       const customFt = (document.getElementById('report-footer-input')?.value || '').trim();
       const addr = (document.getElementById('office-address-input')?.value || DEFAULT_OFFICE_ADDRESS).trim();
       const em = (document.getElementById('support-email-input')?.value || DEFAULT_SUPPORT_EMAIL).trim();
-      const ph = (document.getElementById('support-phone-input')?.value || DEFAULT_SUPPORT_PHONE).trim();
+      const ph = formatLtrPhone(document.getElementById('support-phone-input')?.value || DEFAULT_SUPPORT_PHONE);
       const baseContact = isEn
         ? `${addr} | Inquiries & Assistance: ${em} | ${ph}`
         : `${addr} | للاستفسار والمساعدة: ${em} | ${ph}`;
@@ -2067,7 +2048,7 @@
       const dir = isEn ? 'ltr' : 'rtl';
       const lang = isEn ? 'en' : 'ar';
       const officeName = isEn ? 'Law Office Of Ali Kadhem Hashimi' : 'مكتب المحامي علي كاظم الهاشمي';
-      const subDesc = isEn ? 'Advocacy & Legal Services | Baghdad - Iraq' : 'للمحاماة والخدمات القانونية | بغداد - العراق';
+      const subDesc = isEn ? 'Advocacy & Legal Services | Baghdad - Iraq' : 'للمحاماة والخدمات القانونية | العراق، بغداد، زيونة، قرب دار الازياء العراقية';
       const amtStr = (item.currency === 'USD' && item.origAmount)
         ? `$${Number(item.origAmount).toLocaleString('en-US')} USD (${Number(item.amountIQD).toLocaleString('en-US')} IQD)`
         : `${Number(item.amountIQD).toLocaleString('en-US')} IQD`;
@@ -2191,7 +2172,7 @@
           <div class="header">
             <div>
               <h2 style="font-size:20px; font-weight:800;">${officeName}</h2>
-              <div style="font-size:13px; color:#64748b;">${isEn ? 'Advocacy & Legal Services | Baghdad - Iraq' : 'للمحاماة والخدمات القانونية | بغداد - العراق'}</div>
+              <div style="font-size:13px; color:#64748b;">${isEn ? 'Advocacy & Legal Services | Baghdad - Iraq' : 'للمحاماة والخدمات القانونية | العراق، بغداد، زيونة، قرب دار الازياء العراقية'}</div>
             </div>
             <div class="logo">
               <div class="logo-main">A<span class="k-red">K</span>H</div>
@@ -2319,7 +2300,7 @@
           <div class="header">
             <div>
               <h2 style="font-size:20px; font-weight:800;">${officeName}</h2>
-              <div style="font-size:13px; color:#64748b;">${isEn ? 'Advocacy & Legal Services | Baghdad - Iraq' : 'للمحاماة والخدمات القانونية | بغداد - العراق'}</div>
+              <div style="font-size:13px; color:#64748b;">${isEn ? 'Advocacy & Legal Services | Baghdad - Iraq' : 'للمحاماة والخدمات القانونية | العراق، بغداد، زيونة، قرب دار الازياء العراقية'}</div>
             </div>
             <div class="logo">
               <div class="logo-main">A<span class="k-red">K</span>H</div>
