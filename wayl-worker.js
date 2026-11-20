@@ -11,7 +11,7 @@ export default {
 
     const url = new URL(request.url);
 
-    // 1. جلب بيانات الفاتورة النظيفة عبر الرقم المرجعي (?ref=AKH-...)
+    // 1. جلب بيانات الفاتورة عبر الرقم المرجعي (?ref=AKH-...)
     if (request.method === "GET") {
       const ref = url.searchParams.get("ref");
       if (!ref) {
@@ -20,17 +20,56 @@ export default {
       if (!env.AKH_KV) {
         return new Response(JSON.stringify({ message: "KV not bound" }), { status: 500, headers });
       }
-      const record = await env.AKH_KV.get("inv_" + ref);
-      if (!record) {
+      const recordRaw = await env.AKH_KV.get("inv_" + ref);
+      if (!recordRaw) {
         return new Response(JSON.stringify({ message: "Invoice not found" }), { status: 404, headers });
       }
-      return new Response(record, { status: 200, headers });
+
+      try {
+        const record = JSON.parse(recordRaw);
+        if (
+          record.status === "pending" &&
+          record.expiresAt &&
+          Number(record.expiresAt) > 0 &&
+          Date.now() > Number(record.expiresAt)
+        ) {
+          record.status = "cancelled";
+          record.expiredAt = new Date().toISOString();
+          await env.AKH_KV.put("inv_" + ref, JSON.stringify(record));
+        }
+        return new Response(JSON.stringify(record), { status: 200, headers });
+      } catch (e) {
+        return new Response(recordRaw, { status: 200, headers });
+      }
     }
 
-    // 2. معالجة الطلبات (إنشاء فاتورة جديدة أو توثيق موافقة أو تحديث حالة)
+    // 2. معالجة الطلبات (Webhook / إنشاء فاتورة / توثيق موافقة / تحديث حالة)
     if (request.method === "POST") {
       try {
         const body = await request.json();
+
+        // استقبال إشعار Webhook من Wayl عند إتمام الدفع تلقائياً
+        const webhookRef =
+          body.referenceId ||
+          body.data?.referenceId ||
+          body.payment?.referenceId ||
+          null;
+        const webhookStatus = String(
+          body.status || body.data?.status || body.event || ""
+        ).toLowerCase();
+
+        if (!body.action && !body.waylKey && webhookRef && (webhookStatus.includes("paid") || webhookStatus.includes("success") || webhookStatus.includes("completed"))) {
+          if (env.AKH_KV) {
+            const existingRaw = await env.AKH_KV.get("inv_" + webhookRef);
+            if (existingRaw) {
+              const existing = JSON.parse(existingRaw);
+              existing.status = "paid";
+              existing.paidAt = new Date().toISOString();
+              await env.AKH_KV.put("inv_" + webhookRef, JSON.stringify(existing));
+            }
+          }
+          return new Response(JSON.stringify({ ok: true, ref: webhookRef }), { status: 200, headers });
+        }
 
         // أ) توثيق موافقة المراجع على السياسات الثلاث بالوقت والتاريخ
         if (body.action === "consent" && body.ref) {
@@ -100,7 +139,7 @@ export default {
                 label: title,
                 amount: Number(amountIQD),
                 type: "increase",
-                image: "https://akjassem.com/favicon.ico"
+                image: "https://akjassem.com/og-logo.jpg"
               }
             ],
             webhookUrl: "https://akh-payment.akjassem.workers.dev",
@@ -123,7 +162,7 @@ export default {
           parsedWayl.paymentUrl ||
           "";
 
-        // حفظ بيانات الفاتورة في KV ليصبح الرابط قصيراً (?ref=AKH-...)
+        // حفظ بيانات الفاتورة الكاملة في KV ليصبح الرابط قصيراً (?ref=AKH-...)
         if (env.AKH_KV && payUrl) {
           const fullRecord = {
             ...(invoiceMeta || {}),
