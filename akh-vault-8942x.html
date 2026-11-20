@@ -21,7 +21,7 @@
       padding: 24px 14px;
     }
     .panel {
-      max-width: 820px;
+      max-width: 900px;
       width: 100%;
       background: #ffffff;
       border-radius: 14px;
@@ -84,17 +84,22 @@
       grid-template-columns: 1fr 1fr;
       gap: 12px;
     }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 10px;
       margin-bottom: 14px;
     }
-    @media (max-width: 680px) {
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 720px) {
+      .stats-grid, .grid-3 { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 600px) {
-      .grid-2 { grid-template-columns: 1fr; }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
     }
     .stat-box {
       background: #ffffff;
@@ -104,17 +109,31 @@
       text-align: center;
     }
     .stat-label { font-size: 12px; color: #64748b; font-weight: 700; }
-    .stat-val { font-size: 16px; font-weight: 800; color: #0b1c36; margin-top: 4px; }
+    .stat-val { font-size: 15px; font-weight: 800; color: #0b1c36; margin-top: 4px; }
+
+    .summary-strip {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 14px;
+      font-size: 12.5px;
+      color: #334155;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+    }
 
     .form-group { margin-bottom: 14px; }
     label { display: block; font-size: 13.5px; font-weight: 700; color: #1e293b; margin-bottom: 6px; }
     input, select, textarea {
       width: 100%;
-      padding: 12px 14px;
+      padding: 11px 13px;
       border: 1.5px solid #cbd5e1;
       border-radius: 8px;
       font-family: 'Cairo', sans-serif;
-      font-size: 14.5px;
+      font-size: 14px;
       background: #ffffff;
       color: #0b1c36;
       transition: border-color 0.2s;
@@ -228,9 +247,19 @@
       border-radius: 6px;
       margin-inline-start: 6px;
     }
+    .warn-tag {
+      background: #fff7ed;
+      color: #c2410c;
+      border: 1px solid #fed7aa;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 6px;
+      margin-inline-start: 6px;
+    }
     .history-title { font-weight: 800; color: #0b1c36; font-size: 14.5px; margin-top: 4px; }
     .history-payer { font-weight: 700; color: #334155; font-size: 13px; margin-top: 2px; }
-    .history-meta { color: #64748b; font-size: 12.5px; margin: 6px 0 10px; }
+    .history-meta { color: #64748b; font-size: 12.5px; margin: 6px 0 10px; line-height: 1.6; }
     .hist-actions { display: flex; flex-wrap: wrap; gap: 6px; }
 
     .status-pill {
@@ -240,9 +269,13 @@
       font-weight: 700;
     }
     .st-pending { background: #fef3c7; color: #92400e; }
+    .st-review { background: #e0f2fe; color: #075985; }
     .st-paid { background: #dcfce7; color: #166534; }
+    .st-completed { background: #d1fae5; color: #065f46; }
+    .st-partial_refund { background: #ffedd5; color: #9a3412; }
     .st-refunded { background: #fee2e2; color: #991b1b; }
     .st-cancelled { background: #f1f5f9; color: #475569; }
+    .st-trash { background: #ffe4e6; color: #9f1239; }
 
     .hidden { display: none !important; }
     .top-bar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
@@ -267,7 +300,7 @@
       border-radius: 10px;
       font-size: 13px;
       font-weight: 700;
-      z-index: 1200;
+      z-index: 1300;
       box-shadow: 0 10px 25px rgba(11, 28, 54, 0.25);
     }
 
@@ -288,7 +321,7 @@
       border-top: 5px solid #c59b27;
       border-radius: 14px;
       width: 100%;
-      max-width: 600px;
+      max-width: 620px;
       max-height: 88vh;
       overflow-y: auto;
       padding: 22px;
@@ -363,34 +396,69 @@
         <span class="badge" id="t-vault-badge">🟢 البوابة نشطة ومؤمّنة</span>
         <div style="display:flex; gap:6px; flex-wrap:wrap;">
           <button class="btn-sm" id="test-mode-btn" onclick="toggleTestMode()">🧪 وضع الاختبار: متوقف</button>
+          <button class="btn-sm" id="auto-sync-btn" onclick="syncPendingFromKV()">🔄 مزامنة الحالة</button>
           <button class="btn-sm" id="t-lock-btn" onclick="lockVault()">قفل البوابة 🔒</button>
         </div>
       </div>
 
-      <!-- إحصائيات المدفوعات والمتحصلات (تستثني فواتير وضع الاختبار) -->
+      <!-- إحصائيات المقبوضات والمدفوعات والمسترجعات والمعلقات والملغاة -->
       <div class="stats-grid">
         <div class="stat-box">
-          <div class="stat-label" id="st-lbl-paid">إجمالي المدفوع</div>
+          <div class="stat-label" id="st-lbl-paid">إجمالي المقبوضات</div>
           <div class="stat-val" id="st-val-paid">0 IQD</div>
         </div>
         <div class="stat-box">
-          <div class="stat-label" id="st-lbl-pending">بانتظار الدفع</div>
+          <div class="stat-label" id="st-lbl-refunded">المسترجعات / الجزئية</div>
+          <div class="stat-val" id="st-val-refunded">0 IQD</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label" id="st-lbl-pending">بانتظار الدفع / مراجعة</div>
           <div class="stat-val" id="st-val-pending">0 IQD</div>
         </div>
         <div class="stat-box">
-          <div class="stat-label" id="st-lbl-cancelled">ملغاة / متروكة</div>
-          <div class="stat-val" id="st-val-cancelled">0</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-label" id="st-lbl-count">عدد الفواتير الفعلية</div>
-          <div class="stat-val" id="st-val-count">0</div>
+          <div class="stat-label" id="st-lbl-cancelled">ملغاة / عدد الفواتير</div>
+          <div class="stat-val" id="st-val-cancelled">0 / 0</div>
         </div>
       </div>
 
-      <div class="card">
-        <div class="card-title" id="t-create-title">💳 إنشاء رابط سداد إلكتروني نظيف</div>
+      <!-- ملخص حسب الفترة والشهر والعملات والخدمات -->
+      <div class="summary-strip" id="period-summary-strip">
+        <div id="sum-month-text">مقبوضات الشهر الحالي: 0 IQD</div>
+        <div id="sum-usd-text">الدولار المقبوض: $0</div>
+        <div id="sum-top-service">الأكثر طلباً: —</div>
+      </div>
 
-        <div class="grid-2">
+      <div class="card">
+        <div class="card-title">
+          <span id="t-create-title">💳 إنشاء رابط سداد إلكتروني نظيف</span>
+          <button type="button" class="btn-sm" onclick="toggleSection('templates-sub')">⚡ قوالب الخدمات</button>
+        </div>
+
+        <!-- قوالب الخدمات الجاهزة والمخصصة -->
+        <div id="templates-sub" class="form-group" style="background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:12px;">
+          <div class="grid-2" style="margin-bottom:8px;">
+            <div>
+              <label id="t-tpl-select-lbl">اختر قالب خدمة جاهز:</label>
+              <select id="service-template-select" onchange="applyServiceTemplate()">
+                <option value="">— اختر قالباً للتعبئة السريعة —</option>
+                <option value="appt">حجز موعد ودراسة أوليات (75,000 IQD)</option>
+                <option value="company">تأسيس شركة وتصديق عقود (500,000 IQD)</option>
+                <option value="contract">صياغة ومراجعة عقد قانوني (250,000 IQD)</option>
+                <option value="lawsuit">أتعاب متابعة دعوى وملف قانوني ($500 USD)</option>
+              </select>
+            </div>
+            <div>
+              <label id="t-custom-tpl-lbl">أو حفظ القالب الحالي كقالب جديد:</label>
+              <div style="display:flex; gap:6px;">
+                <input type="text" id="new-tpl-name" placeholder="اسم القالب (مثال: وكالة)">
+                <button type="button" class="btn-sm" onclick="saveCurrentAsTemplate()">حفظ</button>
+              </div>
+            </div>
+          </div>
+          <div id="custom-tpl-chips" style="display:flex; gap:6px; flex-wrap:wrap;"></div>
+        </div>
+
+        <div class="grid-3">
           <div class="form-group">
             <label id="t-client-lang-lbl">لغة الفاتورة وصفحة المراجع:</label>
             <select id="client-lang" onchange="toggleServiceLangInput()">
@@ -401,6 +469,25 @@
           <div class="form-group">
             <label id="t-client-lbl">اسم المراجع / الدافع (اختياري):</label>
             <input type="text" id="client-name" placeholder="مثال: علي كاظم جاسم">
+          </div>
+          <div class="form-group">
+            <label id="t-client-phone-lbl">رقم واتساب المراجع (اختياري):</label>
+            <input type="text" id="client-phone" placeholder="مثال: 9647700000000" dir="ltr">
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <div class="form-group">
+            <label id="t-client-email-lbl">بريد المراجع الإلكتروني (اختياري):</label>
+            <input type="email" id="client-email" placeholder="client@example.com" dir="ltr">
+          </div>
+          <div class="form-group">
+            <label id="t-matter-ref-lbl">رقم إضبارة / ملف داخلي (اختياري):</label>
+            <input type="text" id="matter-ref" placeholder="مثال: FILE-2026-14">
+          </div>
+          <div class="form-group">
+            <label id="t-transfer-ref-lbl">رقم وصل / حوالة مرجعي (اختياري):</label>
+            <input type="text" id="transfer-ref" placeholder="مثال: TXN-99812">
           </div>
         </div>
 
@@ -419,10 +506,15 @@
           <input type="text" id="service-notes" placeholder="مثال: متابعة ملف - إضبارة رقم 14">
         </div>
 
-        <div class="grid-2">
+        <div class="form-group">
+          <label id="t-internal-notes-lbl">ملاحظات داخلية خاصة بالمكتب فقط (لا تظهر للمراجع):</label>
+          <input type="text" id="internal-notes" placeholder="ملاحظة خاصة بك أو بمرجع التحويل">
+        </div>
+
+        <div class="grid-3">
           <div class="form-group">
             <label id="t-currency-lbl">العملة:</label>
-            <select id="currency-select" onchange="updateCurrencyUI()">
+            <select id="currency-select" onchange="updateCurrencyUI(); saveDefaultsPref();">
               <option value="IQD">دينار عراقي (IQD)</option>
               <option value="USD">دولار أمريكي (USD)</option>
             </select>
@@ -431,11 +523,32 @@
             <label id="t-amount-lbl">المبلغ المطلوب *:</label>
             <input type="number" id="amount-input" placeholder="مثال: 75000 أو 100" oninput="updateCurrencyUI()">
           </div>
+          <div class="form-group">
+            <label id="t-due-date-lbl">تاريخ استحقاق واضح (اختياري):</label>
+            <input type="date" id="due-date-input">
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label id="t-expiry-mode-lbl">صلاحية الرابط:</label>
+            <select id="expiry-mode" onchange="toggleCustomExpiryInput()">
+              <option value="none">بدون انتهاء تلقائي</option>
+              <option value="24h">24 ساعة</option>
+              <option value="48h">48 ساعة</option>
+              <option value="7d">7 أيام</option>
+              <option value="custom">تاريخ ووقت محدد</option>
+            </select>
+          </div>
+          <div class="form-group hidden" id="custom-expiry-group">
+            <label id="t-custom-expiry-lbl">تاريخ ووقت انتهاء الصلاحية:</label>
+            <input type="datetime-local" id="custom-expiry-input">
+          </div>
         </div>
 
         <div class="form-group hidden" id="rate-group">
           <label id="t-rate-lbl">سعر صرف الدولار المعتمد (دينار عراقي لكل 1 دولار):</label>
-          <input type="number" id="exchange-rate" value="1510" oninput="updateCurrencyUI()">
+          <input type="number" id="exchange-rate" value="1510" oninput="updateCurrencyUI(); saveDefaultsPref();">
         </div>
 
         <div class="conv-box" id="conv-preview"></div>
@@ -447,61 +560,112 @@
           <div id="generated-url" class="result-link"></div>
           <div style="display: flex; gap: 8px; flex-wrap: wrap;">
             <button class="btn" style="flex: 1;" id="t-copy-btn" onclick="copyGeneratedLink()">نسخ الرابط 📋</button>
-            <button class="btn-sm" style="flex: 1; padding: 12px;" id="t-wa-btn" onclick="shareWhatsApp()">إرسال عبر واتساب 💬</button>
-            <a id="preview-btn" href="#" target="_blank" class="btn-sm" style="flex: 1; padding: 12px; text-align: center; text-decoration: none;">معاينة الصفحة 👁️</a>
+            <button class="btn-sm" style="flex: 1; padding: 12px;" id="t-copy-msg-btn" onclick="copyFormattedMessage()">نسخ الرسالة ✉️</button>
+            <button class="btn-sm" style="flex: 1; padding: 12px;" id="t-wa-btn" onclick="shareWhatsApp()">واتساب 💬</button>
+            <button class="btn-sm" style="flex: 1; padding: 12px;" id="t-mail-btn" onclick="shareEmail()">إيميل 📧</button>
+            <a id="preview-btn" href="#" target="_blank" class="btn-sm" style="flex: 1; padding: 12px; text-align: center; text-decoration: none;">معاينة 👁️</a>
           </div>
         </div>
       </div>
 
-      <!-- إعداد نص رسالة واتساب القابل للتعديل من داخل المنصة -->
-      <div class="card">
-        <div class="card-title" id="t-wa-tpl-title">💬 نص رسالة الواتساب (قابل للتعديل من المنصة)</div>
-        <div class="form-group">
-          <label id="t-wa-tpl-lbl">العبارة الافتتاحية عند إرسال الفاتورة عبر واتساب:</label>
-          <input type="text" id="wa-template-input" value="صدرت لديك فاتورة من مكتب المحامي علي الكاظم">
-        </div>
-        <button class="btn-sm" id="t-save-wa-btn" onclick="saveWaTemplate()">حفظ نص الرسالة ✓</button>
-      </div>
-
-      <!-- سجل الفواتير مع الفلترة والحذف والتصفير -->
+      <!-- إعداد نص رسالة واتساب والإيميل والتذييل القابل للتعديل من داخل المنصة -->
       <div class="card">
         <div class="card-title">
-          <span id="t-history-title">📜 سجل الفواتير والتوثيق القانوني</span>
+          <span id="t-wa-tpl-title">💬 قوالب الرسائل والتذييل المعتمد</span>
+          <button type="button" class="btn-sm" onclick="toggleSection('msg-tpl-body')">إظهار / إخفاء</button>
+        </div>
+        <div id="msg-tpl-body">
+          <div class="form-group">
+            <label id="t-wa-tpl-lbl">العبارة الافتتاحية عند إرسال الفاتورة (واتساب / نسخ / إيميل):</label>
+            <input type="text" id="wa-template-input" value="صدرت لك فاتورة من مكتب المحامي علي كاظم الهاشمي">
+          </div>
+          <div class="form-group">
+            <label id="t-footer-tpl-lbl">توقيع أو تذييل ثابت للتقارير والإيصالات (اختياري):</label>
+            <input type="text" id="report-footer-input" placeholder="مثال: بغداد - الكرادة / للاستفسار: +964 770 295 6021">
+          </div>
+          <button class="btn-sm" id="t-save-wa-btn" onclick="saveWaTemplate()">حفظ الإعدادات ✓</button>
+        </div>
+      </div>
+
+      <!-- سجل الفواتير والمدفوعات والمسترجعات مع البحث والفلترة والنسخ الاحتياطي -->
+      <div class="card">
+        <div class="card-title">
+          <span id="t-history-title">📜 سجل الفواتير والمقبوضات والمدفوعات والمسترجعات</span>
           <div style="display:flex; gap:6px; flex-wrap:wrap;">
-            <select id="history-filter" class="btn-sm" onchange="renderHistory()">
-              <option value="all">الكل</option>
-              <option value="paid">المدفوعة</option>
-              <option value="pending">بانتظار الدفع</option>
-              <option value="cancelled">الملغاة</option>
-              <option value="refunded">المسترجعة</option>
-              <option value="test">فواتير الاختبار</option>
-            </select>
-            <button class="btn-sm btn-refund" id="t-clear-all-btn" onclick="clearAllHistory()">حذف الكل 🗑️</button>
+            <button class="btn-sm" onclick="exportBackupJSON()">تصدير نسخة JSON</button>
+            <button class="btn-sm" onclick="exportBackupCSV()">تصدير CSV</button>
+            <label class="btn-sm" style="margin:0; cursor:pointer;">
+              استيراد نسخة
+              <input type="file" accept=".json" style="display:none;" onchange="importBackupJSON(event)">
+            </label>
+            <button class="btn-sm btn-refund" id="t-clear-all-btn" onclick="clearAllHistory()">تصفير الكل 🗑️</button>
           </div>
         </div>
+
+        <div class="grid-3" style="margin-bottom:12px;">
+          <input type="text" id="history-search" placeholder="بحث بالاسم أو الرقم أو الملف أو الوصل..." oninput="renderStatsAndHistory()">
+          <select id="history-filter" onchange="renderStatsAndHistory()">
+            <option value="all">الكل (النشط)</option>
+            <option value="paid">المقبوضات / المدفوعة</option>
+            <option value="completed">مكتملة التسليم</option>
+            <option value="pending">بانتظار الدفع</option>
+            <option value="review">قيد المراجعة</option>
+            <option value="cancelled">الملغاة</option>
+            <option value="partial_refund">مسترجع جزئي</option>
+            <option value="refunded">المسترجعات</option>
+            <option value="test">فواتير الاختبار</option>
+            <option value="trash">سلة المحذوفات 🗑️</option>
+          </select>
+          <select id="period-filter" onchange="renderStatsAndHistory()">
+            <option value="all">كل الفترات</option>
+            <option value="month">الشهر الحالي</option>
+            <option value="today">اليوم</option>
+          </select>
+        </div>
+
         <div id="history-list" style="font-size: 13px; color: #64748b;">لا توجد فواتير مصدرة بعد.</div>
       </div>
 
       <div class="card">
-        <div class="card-title" id="t-keys-title">🔑 تحديث المفاتيح والرقم السري</div>
-        <div class="form-group">
-          <label id="t-cur-pin-lbl">الرقم السري الحالي (للتأكيد):</label>
-          <input type="password" id="update-current-pin" placeholder="••••••">
+        <div class="card-title">
+          <span id="t-keys-title">🔑 تحديث المفاتيح والرقم السري</span>
+          <button type="button" class="btn-sm" onclick="toggleSection('keys-body')">إظهار / إخفاء</button>
         </div>
-        <div class="form-group">
-          <label id="t-new-wayl-lbl">مفتاح Wayl API الجديد (اتركه فارغاً للإبقاء على الحالي):</label>
-          <input type="password" id="update-wayl" placeholder="مفتاح Wayl الجديد">
+        <div id="keys-body">
+          <div class="form-group">
+            <label id="t-cur-pin-lbl">الرقم السري الحالي (للتأكيد):</label>
+            <input type="password" id="update-current-pin" placeholder="••••••">
+          </div>
+          <div class="form-group">
+            <label id="t-new-wayl-lbl">مفتاح Wayl API الجديد (اتركه فارغاً للإبقاء على الحالي):</label>
+            <input type="password" id="update-wayl" placeholder="مفتاح Wayl الجديد">
+          </div>
+          <div class="form-group">
+            <label id="t-new-pin-lbl">الرقم السري الجديد (اتركه فارغاً للإبقاء على الحالي):</label>
+            <input type="password" id="update-new-pin" placeholder="الرقم السري الجديد">
+          </div>
+          <button class="btn" id="t-save-keys-btn" onclick="updateVault()">حفظ التحديثات</button>
         </div>
-        <div class="form-group">
-          <label id="t-new-pin-lbl">الرقم السري الجديد (اتركه فارغاً للإبقاء على الحالي):</label>
-          <input type="password" id="update-new-pin" placeholder="الرقم السري الجديد">
-        </div>
-        <button class="btn" id="t-save-keys-btn" onclick="updateVault()">حفظ التحديثات</button>
       </div>
     </div>
   </div>
 
   <div class="toast-banner" id="toastBanner"></div>
+
+  <!-- نافذة إدخال PIN للإجراءات الحساسة -->
+  <div class="modal-overlay" id="pinModal" onclick="closePinModal(null)">
+    <div class="modal-card" style="max-width:380px;" onclick="event.stopPropagation()">
+      <h3 style="color:#0b1c36; font-size:16px; margin-bottom:8px;">🔐 تأكيد الرقم السري (PIN)</h3>
+      <p id="pin-modal-desc" style="font-size:12.5px; color:#475569; margin-bottom:12px;">أدخل الرقم السري لتأكيد هذا الإجراء.</p>
+      <div class="form-group">
+        <input type="password" id="action-pin-input" placeholder="••••••" onkeypress="if(event.key==='Enter') submitPinModal()">
+      </div>
+      <div style="display:flex; gap:8px;">
+        <button type="button" class="btn btn-gold" onclick="submitPinModal()">تأكيد</button>
+        <button type="button" class="btn-sm" style="padding:12px;" onclick="closePinModal(null)">إلغاء</button>
+      </div>
+    </div>
+  </div>
 
   <!-- نافذة إعداد محضر إثبات تنفيذ الخدمة المدعّم بالصور -->
   <div class="modal-overlay" id="proofModal" onclick="closeProofModal()">
@@ -537,6 +701,10 @@
     const VAULT_STORAGE_KEY = 'akh_encrypted_vault_v1';
     const HISTORY_STORAGE_KEY = 'akh_payment_history_v1';
     const WA_TEMPLATE_KEY = 'akh_wa_template_v1';
+    const FOOTER_TEMPLATE_KEY = 'akh_report_footer_v1';
+    const CUSTOM_TPL_KEY = 'akh_custom_templates_v1';
+    const DEFAULTS_KEY = 'akh_admin_defaults_v1';
+
     let VAULT_DATA = null;
     let LAST_LINK = '';
     let LAST_ENTRY = null;
@@ -544,12 +712,31 @@
     let testMode = false;
     let currentProofItem = null;
     let proofImageDataUrls = [];
+    let pendingPinResolve = null;
+
+    const BUILTIN_TEMPLATES = {
+      appt: { ar: 'حجز موعد ودراسة أوليات', en: 'Legal Appointment & Case Review', amount: 75000, currency: 'IQD' },
+      company: { ar: 'تأسيس شركة وتصديق عقود', en: 'Company Incorporation & Contracts', amount: 500000, currency: 'IQD' },
+      contract: { ar: 'صياغة ومراجعة عقد قانوني', en: 'Contract Drafting & Review', amount: 250000, currency: 'IQD' },
+      lawsuit: { ar: 'أتعاب متابعة دعوى وملف قانوني', en: 'Legal Case Representation & Follow-up', amount: 500, currency: 'USD' }
+    };
 
     window.addEventListener('DOMContentLoaded', () => {
       const savedWa = localStorage.getItem(WA_TEMPLATE_KEY);
-      if (savedWa !== null) {
-        document.getElementById('wa-template-input').value = savedWa;
+      if (savedWa !== null) document.getElementById('wa-template-input').value = savedWa;
+
+      const savedFooter = localStorage.getItem(FOOTER_TEMPLATE_KEY);
+      if (savedFooter !== null) document.getElementById('report-footer-input').value = savedFooter;
+
+      const savedDef = JSON.parse(localStorage.getItem(DEFAULTS_KEY) || 'null');
+      if (savedDef) {
+        if (savedDef.currency) document.getElementById('currency-select').value = savedDef.currency;
+        if (savedDef.rate) document.getElementById('exchange-rate').value = savedDef.rate;
+        updateCurrencyUI();
       }
+
+      renderCustomTemplateChips();
+
       const savedVault = localStorage.getItem(VAULT_STORAGE_KEY);
       if (savedVault) {
         document.getElementById('unlock-view').classList.remove('hidden');
@@ -558,12 +745,61 @@
       }
     });
 
+    function toggleSection(id) {
+      document.getElementById(id)?.classList.toggle('hidden');
+    }
+
+    function saveDefaultsPref() {
+      localStorage.setItem(DEFAULTS_KEY, JSON.stringify({
+        currency: document.getElementById('currency-select').value,
+        rate: Number(document.getElementById('exchange-rate').value || 1510)
+      }));
+    }
+
     function showToast(msg) {
       const el = document.getElementById('toastBanner');
       el.textContent = msg;
       el.style.display = 'block';
       clearTimeout(window._toastTimer);
       window._toastTimer = setTimeout(() => { el.style.display = 'none'; }, 2600);
+    }
+
+    function requestPinConfirmation(descText) {
+      return new Promise(resolve => {
+        pendingPinResolve = resolve;
+        document.getElementById('pin-modal-desc').textContent = descText || 'أدخل الرقم السري (PIN) لتأكيد الإجراء.';
+        const inp = document.getElementById('action-pin-input');
+        inp.value = '';
+        document.getElementById('pinModal').classList.add('open');
+        setTimeout(() => inp.focus(), 60);
+      });
+    }
+
+    async function submitPinModal() {
+      const pin = document.getElementById('action-pin-input').value.trim();
+      const encrypted = localStorage.getItem(VAULT_STORAGE_KEY);
+      if (!encrypted || !pin) {
+        alert('❌ يرجى إدخال الرقم السري.');
+        return;
+      }
+      try {
+        await decryptData(encrypted, pin);
+        const resolver = pendingPinResolve;
+        pendingPinResolve = null;
+        document.getElementById('pinModal').classList.remove('open');
+        if (resolver) resolver(true);
+      } catch (e) {
+        alert('❌ الرقم السري غير صحيح.');
+      }
+    }
+
+    function closePinModal(val) {
+      document.getElementById('pinModal').classList.remove('open');
+      if (pendingPinResolve) {
+        const resolver = pendingPinResolve;
+        pendingPinResolve = null;
+        resolver(Boolean(val));
+      }
     }
 
     function toggleTestMode() {
@@ -586,11 +822,81 @@
       }
     }
 
+    function applyServiceTemplate() {
+      const key = document.getElementById('service-template-select').value;
+      const tpl = BUILTIN_TEMPLATES[key];
+      if (!tpl) return;
+      document.getElementById('service-title').value = tpl.ar;
+      document.getElementById('service-title-en').value = tpl.en;
+      document.getElementById('currency-select').value = tpl.currency;
+      document.getElementById('amount-input').value = tpl.amount;
+      updateCurrencyUI();
+      saveDefaultsPref();
+    }
+
+    function saveCurrentAsTemplate() {
+      const name = document.getElementById('new-tpl-name').value.trim();
+      const titleAr = document.getElementById('service-title').value.trim();
+      const titleEn = document.getElementById('service-title-en').value.trim() || titleAr;
+      const amt = Number(document.getElementById('amount-input').value || 0);
+      const cur = document.getElementById('currency-select').value;
+      if (!name || !titleAr || amt <= 0) {
+        alert('أدخل اسم القالب وموضوع الخدمة والمبلغ أولاً.');
+        return;
+      }
+      const list = JSON.parse(localStorage.getItem(CUSTOM_TPL_KEY) || '[]');
+      list.push({ name, ar: titleAr, en: titleEn, amount: amt, currency: cur });
+      localStorage.setItem(CUSTOM_TPL_KEY, JSON.stringify(list));
+      document.getElementById('new-tpl-name').value = '';
+      renderCustomTemplateChips();
+      showToast('✅ تم حفظ القالب.');
+    }
+
+    function renderCustomTemplateChips() {
+      const box = document.getElementById('custom-tpl-chips');
+      const list = JSON.parse(localStorage.getItem(CUSTOM_TPL_KEY) || '[]');
+      if (!list.length) { box.innerHTML = ''; return; }
+      box.innerHTML = list.map((t, i) => `
+        <button type="button" class="btn-sm" onclick="useCustomTpl(${i})">${t.name} (${t.amount.toLocaleString('en-US')} ${t.currency})</button>
+      `).join('');
+    }
+
+    function useCustomTpl(i) {
+      const list = JSON.parse(localStorage.getItem(CUSTOM_TPL_KEY) || '[]');
+      const t = list[i];
+      if (!t) return;
+      document.getElementById('service-title').value = t.ar;
+      document.getElementById('service-title-en').value = t.en;
+      document.getElementById('currency-select').value = t.currency;
+      document.getElementById('amount-input').value = t.amount;
+      updateCurrencyUI();
+    }
+
+    function toggleCustomExpiryInput() {
+      const mode = document.getElementById('expiry-mode').value;
+      document.getElementById('custom-expiry-group').classList.toggle('hidden', mode !== 'custom');
+    }
+
+    function computeExpiresAt() {
+      const mode = document.getElementById('expiry-mode').value;
+      const now = Date.now();
+      if (mode === '24h') return now + 24 * 3600 * 1000;
+      if (mode === '48h') return now + 48 * 3600 * 1000;
+      if (mode === '7d') return now + 7 * 24 * 3600 * 1000;
+      if (mode === 'custom') {
+        const val = document.getElementById('custom-expiry-input').value;
+        return val ? new Date(val).getTime() : null;
+      }
+      return null;
+    }
+
     function saveWaTemplate() {
-      const val = document.getElementById('wa-template-input').value.trim() || 'صدرت لديك فاتورة من مكتب المحامي علي الكاظم';
+      const val = document.getElementById('wa-template-input').value.trim() || 'صدرت لك فاتورة من مكتب المحامي علي كاظم الهاشمي';
+      const footerVal = document.getElementById('report-footer-input').value.trim();
       document.getElementById('wa-template-input').value = val;
       localStorage.setItem(WA_TEMPLATE_KEY, val);
-      showToast(adminLang === 'ar' ? '✅ تم حفظ نص رسالة الواتساب.' : '✅ WhatsApp message template saved.');
+      localStorage.setItem(FOOTER_TEMPLATE_KEY, footerVal);
+      showToast(adminLang === 'ar' ? '✅ تم حفظ إعدادات الرسائل والتذييل.' : '✅ Templates & footer saved.');
     }
 
     function buildTimestampRefCode() {
@@ -629,38 +935,6 @@
       document.getElementById('t-reset-btn').textContent = isAr ? 'إعادة ضبط البوابة' : 'Reset Gateway';
       document.getElementById('t-vault-badge').textContent = isAr ? '🟢 البوابة نشطة ومؤمّنة' : '🟢 Gateway Active & Secured';
       document.getElementById('t-lock-btn').textContent = isAr ? 'قفل البوابة 🔒' : 'Lock Gateway 🔒';
-
-      document.getElementById('st-lbl-paid').textContent = isAr ? 'إجمالي المدفوع' : 'Total Paid';
-      document.getElementById('st-lbl-pending').textContent = isAr ? 'بانتظار الدفع' : 'Pending';
-      document.getElementById('st-lbl-cancelled').textContent = isAr ? 'ملغاة / متروكة' : 'Cancelled';
-      document.getElementById('st-lbl-count').textContent = isAr ? 'عدد الفواتير الفعلية' : 'Live Invoices';
-
-      document.getElementById('t-create-title').textContent = isAr ? '💳 إنشاء رابط سداد إلكتروني نظيف' : '💳 Generate Clean Payment Link';
-      document.getElementById('t-client-lang-lbl').textContent = isAr ? 'لغة الفاتورة وصفحة المراجع:' : 'Invoice & Client Page Language:';
-      document.getElementById('t-client-lbl').textContent = isAr ? 'اسم المراجع / الدافع (اختياري):' : 'Applicant / Payer Name (Optional):';
-      document.getElementById('t-service-ar-lbl').textContent = isAr ? 'موضوع الخدمة القانونية *:' : 'Legal Service Subject (Arabic) *:';
-      document.getElementById('t-service-en-lbl').textContent = isAr ? 'موضوع الخدمة القانونية (بالإنجليزية) *:' : 'Legal Service Subject (English) *:';
-      document.getElementById('t-notes-lbl').textContent = isAr ? 'تفاصيل إضافية (رقم الدعوى / موعد الجلسة / ملاحظات - اختياري):' : 'Additional Details (Case No. / Notes - Optional):';
-      document.getElementById('t-currency-lbl').textContent = isAr ? 'العملة:' : 'Currency:';
-      document.getElementById('t-amount-lbl').textContent = isAr ? 'المبلغ المطلوب *:' : 'Amount Payable *:';
-      document.getElementById('t-rate-lbl').textContent = isAr ? 'سعر صرف الدولار المعتمد (دينار عراقي لكل 1 دولار):' : 'USD Exchange Rate (IQD per 1 USD):';
-      document.getElementById('generate-btn').textContent = isAr ? 'توليد رابط الدفع النظيف' : 'Generate Clean Payment Link';
-      document.getElementById('t-gen-ok').textContent = isAr ? '✅ تم توليد الرابط النظيف بنجاح:' : '✅ Clean payment link generated successfully:';
-      document.getElementById('t-copy-btn').textContent = isAr ? 'نسخ الرابط 📋' : 'Copy Link 📋';
-      document.getElementById('t-wa-btn').textContent = isAr ? 'إرسال عبر واتساب 💬' : 'Send via WhatsApp 💬';
-      document.getElementById('preview-btn').textContent = isAr ? 'معاينة الصفحة 👁️' : 'Preview Page 👁️';
-
-      document.getElementById('t-wa-tpl-title').textContent = isAr ? '💬 نص رسالة الواتساب (قابل للتعديل من المنصة)' : '💬 WhatsApp Message Template (Editable)';
-      document.getElementById('t-wa-tpl-lbl').textContent = isAr ? 'العبارة الافتتاحية عند إرسال الفاتورة عبر واتساب:' : 'Opening line when sending invoice via WhatsApp:';
-      document.getElementById('t-save-wa-btn').textContent = isAr ? 'حفظ نص الرسالة ✓' : 'Save Template ✓';
-
-      document.getElementById('t-history-title').textContent = isAr ? '📜 سجل الفواتير والتوثيق القانوني' : '📜 Invoices & Legal Documentation Log';
-      document.getElementById('t-clear-all-btn').textContent = isAr ? 'حذف الكل 🗑️' : 'Clear All 🗑️';
-      document.getElementById('t-keys-title').textContent = isAr ? '🔑 تحديث المفاتيح والرقم السري' : '🔑 Update Keys & PIN';
-      document.getElementById('t-cur-pin-lbl').textContent = isAr ? 'الرقم السري الحالي (للتأكيد):' : 'Current PIN (to confirm):';
-      document.getElementById('t-new-wayl-lbl').textContent = isAr ? 'مفتاح Wayl API الجديد (اتركه فارغاً للإبقاء على الحالي):' : 'New Wayl API Key (leave blank to keep current):';
-      document.getElementById('t-new-pin-lbl').textContent = isAr ? 'الرقم السري الجديد (اتركه فارغاً للإبقاء على الحالي):' : 'New PIN (leave blank to keep current):';
-      document.getElementById('t-save-keys-btn').textContent = isAr ? 'حفظ التحديثات' : 'Save Updates';
 
       updateTestModeBtn();
       updateCurrencyUI();
@@ -755,6 +1029,7 @@
         document.getElementById('unlock-view').classList.add('hidden');
         document.getElementById('dashboard-view').classList.remove('hidden');
         renderStatsAndHistory();
+        syncPendingFromKV(true);
       } catch (e) {
         alert('❌ الرقم السري غير صحيح.');
       }
@@ -774,6 +1049,9 @@
     }
 
     async function updateVault() {
+      const ok = await requestPinConfirmation('تأكيد الرقم السري الحالي لتحديث المفاتيح أو الرقم السري.');
+      if (!ok) return;
+
       const currentPin = document.getElementById('update-current-pin').value.trim();
       const newWayl = document.getElementById('update-wayl').value.trim();
       const newPin = document.getElementById('update-new-pin').value.trim();
@@ -798,15 +1076,22 @@
     async function createPaymentLink() {
       const clientLang = document.getElementById('client-lang').value;
       const clientName = document.getElementById('client-name').value.trim();
+      const clientPhone = document.getElementById('client-phone').value.trim().replace(/[^\d]/g, '');
+      const clientEmail = document.getElementById('client-email').value.trim();
+      const matterRef = document.getElementById('matter-ref').value.trim();
+      const transferRef = document.getElementById('transfer-ref').value.trim();
       const serviceTitleAr = document.getElementById('service-title').value.trim();
       const serviceTitleEn = document.getElementById('service-title-en').value.trim();
       const serviceTitle = clientLang === 'en'
         ? (serviceTitleEn || 'Legal Advocacy & Services')
         : (serviceTitleAr || 'أتعاب محاماة وخدمات قانونية');
       const serviceNotes = document.getElementById('service-notes').value.trim();
+      const internalNotes = document.getElementById('internal-notes').value.trim();
       const currency = document.getElementById('currency-select').value;
       const rawAmount = Number(document.getElementById('amount-input').value);
       const rate = Number(document.getElementById('exchange-rate').value || 1510);
+      const dueDate = document.getElementById('due-date-input').value || '';
+      const expiresAt = computeExpiresAt();
 
       if (!rawAmount || rawAmount <= 0) {
         alert(adminLang === 'ar' ? 'يرجى إدخال مبلغ صحيح.' : 'Please enter a valid amount.');
@@ -846,40 +1131,50 @@
               t: serviceTitleAr || serviceTitle,
               te: serviceTitleEn || serviceTitle,
               n: serviceNotes,
+              matterRef: matterRef,
+              transferRef: transferRef,
+              dueDate: dueDate,
               cur: currency,
               orig: rawAmount,
               rate: rate,
-              l: clientLang
+              l: clientLang,
+              expiresAt: expiresAt
             }
           })
         });
 
         const result = await response.json();
+        if (!response.ok) throw new Error(result.message || 'فشل الاتصال ببوابة الدفع Wayl');
 
-        if (!response.ok) {
-          throw new Error(result.message || 'فشل الاتصال ببوابة الدفع Wayl');
-        }
-
-        const payUrl = result.data?.url || result.url || result.paymentUrl;
-        if (!payUrl) {
-          throw new Error('لم يتم استلام رابط الدفع من البوابة.');
-        }
+        const payUrl = result.data?.url || result.data?.link || result.url || result.link || result.paymentUrl;
+        if (!payUrl) throw new Error('لم يتم استلام رابط الدفع من البوابة.');
 
         LAST_LINK = `https://akjassem.com/payment/?ref=${encodeURIComponent(refCode)}`;
 
         LAST_ENTRY = {
           ref: refCode,
           clientName: clientName || '',
+          clientPhone: clientPhone || '',
+          clientEmail: clientEmail || '',
+          matterRef: matterRef || '',
+          transferRef: transferRef || '',
+          dueDate: dueDate || '',
           serviceTitle: serviceTitle,
+          serviceTitleAr: serviceTitleAr || serviceTitle,
+          serviceTitleEn: serviceTitleEn || serviceTitle,
           notes: serviceNotes,
+          internalNotes: internalNotes,
           currency: currency,
           origAmount: rawAmount,
           amountIQD: amountIQD,
           rate: rate,
           lang: clientLang,
+          expiresAt: expiresAt,
           isTest: testMode,
           status: 'pending',
+          deleted: false,
           link: LAST_LINK,
+          createdAtMs: Date.now(),
           date: new Date().toLocaleString('ar-IQ')
         };
 
@@ -897,106 +1192,300 @@
       }
     }
 
-    function copyGeneratedLink() {
-      if (!LAST_LINK) return;
-      navigator.clipboard.writeText(LAST_LINK);
-      showToast(adminLang === 'ar' ? '✅ تم نسخ الرابط النظيف.' : '✅ Clean link copied.');
-    }
-
-    function shareWhatsApp() {
-      if (!LAST_LINK) return;
-      const e = LAST_ENTRY;
-      const introLine = (document.getElementById('wa-template-input')?.value || '').trim() || 'صدرت لديك فاتورة من مكتب المحامي علي الكاظم';
-      const officeName = e && e.lang === 'en' ? 'Law Office of Ali Kadhim Hashimi' : 'مكتب المحامي علي الكاظم';
+    function buildFormattedMessage(e) {
+      const introLine = (document.getElementById('wa-template-input')?.value || '').trim() || 'صدرت لك فاتورة من مكتب المحامي علي كاظم الهاشمي';
+      const isEn = e && e.lang === 'en';
+      const officeName = isEn ? 'Law Office of Ali Kadhim Hashimi' : 'مكتب المحامي علي كاظم الهاشمي';
       const amtStr = (e && e.currency === 'USD')
         ? `$${Number(e.origAmount).toLocaleString('en-US')} USD (${Number(e.amountIQD).toLocaleString('en-US')} IQD)`
         : (e ? `${Number(e.amountIQD).toLocaleString('en-US')} IQD` : '');
 
-      const msg = [
+      if (isEn) {
+        return [
+          introLine,
+          e && e.clientName ? `• Applicant: ${e.clientName}` : null,
+          e && e.ref ? `• Reference: ${e.ref}` : null,
+          e && e.matterRef ? `• File Ref: ${e.matterRef}` : null,
+          e && e.serviceTitle ? `• Service: ${e.serviceTitle}` : null,
+          e && e.notes ? `• Details: ${e.notes}` : null,
+          e && e.dueDate ? `• Due Date: ${e.dueDate}` : null,
+          e && e.appointment ? `• Appointment: ${e.appointment}` : null,
+          amtStr ? `• Amount Due: ${amtStr}` : null,
+          `• Office: ${officeName}`,
+          `• Payment Link:\n${e ? e.link : LAST_LINK}`
+        ].filter(Boolean).join('\n');
+      }
+
+      return [
         introLine,
         e && e.clientName ? `• المراجع: ${e.clientName}` : null,
         e && e.ref ? `• الرقم المرجعي: ${e.ref}` : null,
+        e && e.matterRef ? `• رقم الملف: ${e.matterRef}` : null,
         e && e.serviceTitle ? `• البيان: ${e.serviceTitle}` : null,
         e && e.notes ? `• التفاصيل: ${e.notes}` : null,
+        e && e.dueDate ? `• تاريخ الاستحقاق: ${e.dueDate}` : null,
+        e && e.appointment ? `• الموعد: ${e.appointment}` : null,
         amtStr ? `• المبلغ المستحق: ${amtStr}` : null,
         `• الجهة: ${officeName}`,
-        `• رابط السداد:\n${LAST_LINK}`
+        `• رابط السداد:\n${e ? e.link : LAST_LINK}`
       ].filter(Boolean).join('\n');
+    }
 
-      window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
+    function copyGeneratedLink() {
+      if (!LAST_LINK) return;
+      navigator.clipboard.writeText(LAST_LINK);
+      showToast('✅ تم نسخ الرابط.');
+    }
+
+    function copyFormattedMessage() {
+      if (!LAST_LINK) return;
+      navigator.clipboard.writeText(buildFormattedMessage(LAST_ENTRY));
+      showToast('✅ تم نسخ نص الرسالة كاملاً.');
+    }
+
+    function shareWhatsApp(customEntry) {
+      const e = customEntry || LAST_ENTRY;
+      const link = e ? e.link : LAST_LINK;
+      if (!link) return;
+      const msg = buildFormattedMessage(e);
+      const phone = e && e.clientPhone ? e.clientPhone : '';
+      const base = phone ? `https://wa.me/${phone}?text=` : `https://wa.me/?text=`;
+      window.open(base + encodeURIComponent(msg), '_blank');
+    }
+
+    function shareEmail(customEntry) {
+      const e = customEntry || LAST_ENTRY;
+      const link = e ? e.link : LAST_LINK;
+      if (!link) return;
+      const subject = encodeURIComponent(`إشعار فاتورة ${e && e.ref ? e.ref : ''} - مكتب المحامي علي كاظم الهاشمي`);
+      const body = encodeURIComponent(buildFormattedMessage(e));
+      const to = e && e.clientEmail ? encodeURIComponent(e.clientEmail) : '';
+      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+    }
+
+    function sendReminder(idx) {
+      const list = JSON.parse(localStorage.getItem(HISTORY_STORAGE_KEY) || '[]');
+      const e = list[idx];
+      if (!e) return;
+      const reminderText = [
+        `تذكير بموعد سداد الفاتورة المرجعية (${e.ref}) - مكتب المحامي علي كاظم الهاشمي`,
+        e.clientName ? `• المراجع: ${e.clientName}` : null,
+        `• البيان: ${e.serviceTitle}`,
+        e.dueDate ? `• تاريخ الاستحقاق: ${e.dueDate}` : null,
+        `• المبلغ: ${Number(e.amountIQD).toLocaleString('en-US')} IQD`,
+        `• رابط السداد:\n${e.link}`
+      ].filter(Boolean).join('\n');
+      const phone = e.clientPhone ? `${e.clientPhone}` : '';
+      const url = phone ? `https://wa.me/${phone}?text=${encodeURIComponent(reminderText)}` : `https://wa.me/?text=${encodeURIComponent(reminderText)}`;
+      window.open(url, '_blank');
     }
 
     function saveToHistory(entry) {
       const list = JSON.parse(localStorage.getItem(HISTORY_STORAGE_KEY) || '[]');
       list.unshift(entry);
-      if (list.length > 80) list.pop();
+      if (list.length > 150) list.pop();
       localStorage.setItem(HISTORY_STORAGE_KEY, JSON.stringify(list));
       renderStatsAndHistory();
+    }
+
+    async function syncPendingFromKV(silent = false) {
+      const list = JSON.parse(localStorage.getItem(HISTORY_STORAGE_KEY) || '[]');
+      let updated = false;
+      for (let i = 0; i < list.length; i++) {
+        const item = list[i];
+        if (!item.deleted && (item.status || 'pending') === 'pending' && item.ref) {
+          try {
+            const res = await fetch(`${WORKER_URL}?ref=${encodeURIComponent(item.ref)}`);
+            if (res.ok) {
+              const remote = await res.json();
+              if (remote.status && remote.status !== item.status) {
+                list[i].status = remote.status;
+                updated = true;
+              }
+            }
+          } catch (e) {}
+        }
+      }
+      if (updated) {
+        localStorage.setItem(HISTORY_STORAGE_KEY, JSON.stringify(list));
+        renderStatsAndHistory();
+        if (!silent) showToast('🔄 تم تحديث حالة الفواتير من السجل.');
+      } else if (!silent) {
+        showToast('✓ السجل محدّث.');
+      }
     }
 
     async function updateHistoryStatus(idx, newStatus) {
       const list = JSON.parse(localStorage.getItem(HISTORY_STORAGE_KEY) || '[]');
-      if (!list[idx]) return;
-      list[idx].status = newStatus;
+      const item = list[idx];
+      if (!item) return;
+
+      if (['paid', 'cancelled', 'refunded', 'partial_refund', 'completed'].includes(newStatus)) {
+        const ok = await requestPinConfirmation(`تأكيد تغيير حالة الفاتورة (${item.ref}) إلى: ${newStatus}`);
+        if (!ok) return;
+      }
+
+      item.prevStatus = item.status || 'pending';
+      item.status = newStatus;
+
+      if (newStatus === 'paid' || newStatus === 'completed') {
+        const method = prompt('وسيلة الدفع (بوابة الدفع / زين كاش / نقداً / تحويل):', item.paymentMethod || 'بوابة الدفع الإلكترونية');
+        if (method !== null) item.paymentMethod = method;
+        const appt = prompt('تثبيت موعد للمراجع بعد الدفع (اختياري - مثال: الأحد 11:00 ص):', item.appointment || '');
+        if (appt !== null) item.appointment = appt;
+      }
+
+      if (newStatus === 'partial_refund') {
+        const pAmt = prompt('المبلغ المسترجع جزئياً (بالدينار أو الدولار):', item.partialRefundAmount || '');
+        if (pAmt !== null) item.partialRefundAmount = pAmt;
+        const pReason = prompt('سبب الاسترجاع الجزئي (اختياري):', item.refundNote || '');
+        if (pReason !== null) item.refundNote = pReason;
+      }
+
+      if (newStatus === 'refunded') {
+        const reason = prompt('ملاحظة أو سبب الاسترجاع (اختياري):', item.refundNote || '');
+        if (reason !== null) item.refundNote = reason;
+      }
+
       localStorage.setItem(HISTORY_STORAGE_KEY, JSON.stringify(list));
       renderStatsAndHistory();
 
-      if (newStatus === 'cancelled' && list[idx].ref) {
+      if (newStatus === 'cancelled' && item.ref) {
         try {
           await fetch(WORKER_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ action: 'markCancelled', ref: list[idx].ref })
+            body: JSON.stringify({ action: 'markCancelled', ref: item.ref })
           });
         } catch (e) {}
       }
 
-      if (newStatus === 'refunded') {
-        const ref = list[idx].ref || '';
-        if (ref) navigator.clipboard.writeText(ref);
-        showToast(adminLang === 'ar'
-          ? `تم تحديث الفاتورة${ref ? ' (' + ref + ')' : ''} إلى مسترجعة`
-          : `Invoice${ref ? ' (' + ref + ')' : ''} marked Refunded`);
+      if ((newStatus === 'refunded' || newStatus === 'partial_refund') && item.ref) {
+        navigator.clipboard.writeText(item.ref);
+        showToast(`تم تحديث الفاتورة (${item.ref})`);
       }
     }
 
-    function deleteHistoryItem(idx) {
+    function undoHistoryStatus(idx) {
       const list = JSON.parse(localStorage.getItem(HISTORY_STORAGE_KEY) || '[]');
-      if (!list[idx]) return;
-      if (!confirm(adminLang === 'ar' ? 'هل تريد حذف هذا السجل نهائياً؟' : 'Delete this record permanently?')) return;
+      if (!list[idx] || !list[idx].prevStatus) return;
+      list[idx].status = list[idx].prevStatus;
+      localStorage.setItem(HISTORY_STORAGE_KEY, JSON.stringify(list));
+      renderStatsAndHistory();
+      showToast('↩ تم التراجع عن تغيير الحالة.');
+    }
+
+    async function deleteHistoryItem(idx) {
+      const list = JSON.parse(localStorage.getItem(HISTORY_STORAGE_KEY) || '[]');
+      const item = list[idx];
+      if (!item) return;
+
+      if (!item.deleted) {
+        item.deleted = true;
+        localStorage.setItem(HISTORY_STORAGE_KEY, JSON.stringify(list));
+        renderStatsAndHistory();
+        showToast('🗑️ نُقل السجل إلى سلة المحذوفات.');
+        return;
+      }
+
+      const ok = await requestPinConfirmation('إدخال الرقم السري (PIN) لتفريغ / حذف هذا السجل نهائياً من سلة المحذوفات.');
+      if (!ok) return;
       list.splice(idx, 1);
       localStorage.setItem(HISTORY_STORAGE_KEY, JSON.stringify(list));
       renderStatsAndHistory();
-      showToast(adminLang === 'ar' ? '🗑️ تم حذف السجل.' : '🗑️ Record deleted.');
+      showToast('🗑️ تم الحذف النهائي.');
     }
 
-    function clearAllHistory() {
-      if (!confirm(adminLang === 'ar' ? 'هل أنت متأكد من حذف جميع السجلات وتصفير القائمة؟' : 'Clear all invoice records?')) return;
+    function restoreHistoryItem(idx) {
+      const list = JSON.parse(localStorage.getItem(HISTORY_STORAGE_KEY) || '[]');
+      if (!list[idx]) return;
+      list[idx].deleted = false;
+      localStorage.setItem(HISTORY_STORAGE_KEY, JSON.stringify(list));
+      renderStatsAndHistory();
+      showToast('♻️ تم استعادة السجل.');
+    }
+
+    async function clearAllHistory() {
+      const ok = await requestPinConfirmation('أدخل الرقم السري (PIN) لتأكيد تصفير السجل بالكامل.');
+      if (!ok) return;
       localStorage.setItem(HISTORY_STORAGE_KEY, '[]');
       renderStatsAndHistory();
-      showToast(adminLang === 'ar' ? '🗑️ تم تصفير السجل بالكامل.' : '🗑️ History cleared.');
+      showToast('🗑️ تم تصفير السجل بالكامل.');
     }
 
     function renderStatsAndHistory() {
       const container = document.getElementById('history-list');
       const list = JSON.parse(localStorage.getItem(HISTORY_STORAGE_KEY) || '[]');
       const filterVal = document.getElementById('history-filter')?.value || 'all';
+      const periodVal = document.getElementById('period-filter')?.value || 'all';
+      const q = (document.getElementById('history-search')?.value || '').trim().toLowerCase();
       const isAr = adminLang === 'ar';
 
-      const liveItems = list.filter(i => !i.isTest);
-      const paidTotal = liveItems.filter(i => i.status === 'paid').reduce((s, i) => s + Number(i.amountIQD || 0), 0);
-      const pendingTotal = liveItems.filter(i => (i.status || 'pending') === 'pending').reduce((s, i) => s + Number(i.amountIQD || 0), 0);
-      const cancelledCount = liveItems.filter(i => i.status === 'cancelled').length;
+      const now = new Date();
+      const isSameDay = ts => {
+        if (!ts) return false;
+        const d = new Date(ts);
+        return d.getFullYear() === now.getFullYear() && d.getMonth() === now.getMonth() && d.getDate() === now.getDate();
+      };
+      const isSameMonth = ts => {
+        if (!ts) return false;
+        const d = new Date(ts);
+        return d.getFullYear() === now.getFullYear() && d.getMonth() === now.getMonth();
+      };
+
+      const activeLive = list.filter(i => !i.deleted && !i.isTest);
+      const paidItems = activeLive.filter(i => i.status === 'paid' || i.status === 'completed');
+      const refundedItems = activeLive.filter(i => i.status === 'refunded' || i.status === 'partial_refund');
+      const pendingItems = activeLive.filter(i => (i.status || 'pending') === 'pending' || i.status === 'review');
+      const cancelledCount = activeLive.filter(i => i.status === 'cancelled').length;
+
+      const paidTotal = paidItems.reduce((s, i) => s + Number(i.amountIQD || 0), 0);
+      const refundedTotal = refundedItems.reduce((s, i) => s + Number(i.amountIQD || 0), 0);
+      const pendingTotal = pendingItems.reduce((s, i) => s + Number(i.amountIQD || 0), 0);
 
       document.getElementById('st-val-paid').textContent = `${paidTotal.toLocaleString('en-US')} IQD`;
+      document.getElementById('st-val-refunded').textContent = `${refundedTotal.toLocaleString('en-US')} IQD`;
       document.getElementById('st-val-pending').textContent = `${pendingTotal.toLocaleString('en-US')} IQD`;
-      document.getElementById('st-val-cancelled').textContent = String(cancelledCount);
-      document.getElementById('st-val-count').textContent = String(liveItems.length);
+      document.getElementById('st-val-cancelled').textContent = `${cancelledCount} / ${activeLive.length}`;
+
+      const monthPaid = paidItems.filter(i => isSameMonth(i.createdAtMs)).reduce((s, i) => s + Number(i.amountIQD || 0), 0);
+      const usdPaid = paidItems.filter(i => i.currency === 'USD').reduce((s, i) => s + Number(i.origAmount || 0), 0);
+      const serviceCounts = {};
+      activeLive.forEach(i => {
+        const k = i.serviceTitle || 'خدمة';
+        serviceCounts[k] = (serviceCounts[k] || 0) + 1;
+      });
+      const topService = Object.entries(serviceCounts).sort((a, b) => b[1] - a[1])[0];
+
+      document.getElementById('sum-month-text').textContent = `مقبوضات الشهر الحالي: ${monthPaid.toLocaleString('en-US')} IQD`;
+      document.getElementById('sum-usd-text').textContent = `الدولار المقبوض: $${usdPaid.toLocaleString('en-US')}`;
+      document.getElementById('sum-top-service').textContent = `الأكثر طلباً: ${topService ? `${topService[0]} (${topService[1]})` : '—'}`;
 
       const indexed = list.map((item, idx) => ({ item, idx })).filter(({ item }) => {
-        if (filterVal === 'all') return true;
-        if (filterVal === 'test') return Boolean(item.isTest);
-        return (item.status || 'pending') === filterVal && !item.isTest;
+        if (filterVal === 'trash') {
+          if (!item.deleted) return false;
+        } else {
+          if (item.deleted) return false;
+          if (filterVal === 'test') {
+            if (!item.isTest) return false;
+          } else if (filterVal !== 'all') {
+            if (item.isTest) return false;
+            if (filterVal === 'paid') {
+              if (item.status !== 'paid' && item.status !== 'completed') return false;
+            } else if ((item.status || 'pending') !== filterVal) {
+              return false;
+            }
+          }
+        }
+
+        if (periodVal === 'today' && !isSameDay(item.createdAtMs)) return false;
+        if (periodVal === 'month' && !isSameMonth(item.createdAtMs)) return false;
+
+        if (q) {
+          const hay = `${item.ref || ''} ${item.clientName || ''} ${item.serviceTitle || ''} ${item.matterRef || ''} ${item.transferRef || ''} ${item.amountIQD || ''}`.toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        return true;
       });
 
       if (!indexed.length) {
@@ -1008,13 +1497,30 @@
         const st = item.status || 'pending';
         let stClass = 'st-pending';
         let stLabel = isAr ? '🟡 بانتظار الدفع' : '🟡 Pending';
-        if (st === 'paid') { stClass = 'st-paid'; stLabel = isAr ? '🟢 مستلمة بنجاح' : '🟢 Paid'; }
+        if (st === 'review') { stClass = 'st-review'; stLabel = isAr ? '🔵 قيد المراجعة' : '🔵 In Review'; }
+        if (st === 'paid') { stClass = 'st-paid'; stLabel = isAr ? '🟢 مقبوضة / مدفوعة' : '🟢 Paid'; }
+        if (st === 'completed') { stClass = 'st-completed'; stLabel = isAr ? '✅ مكتملة التسليم' : '✅ Completed'; }
+        if (st === 'partial_refund') { stClass = 'st-partial_refund'; stLabel = isAr ? '🟠 مسترجع جزئي' : '🟠 Partial Refund'; }
         if (st === 'refunded') { stClass = 'st-refunded'; stLabel = isAr ? '🔴 مسترجعة' : '🔴 Refunded'; }
-        if (st === 'cancelled') { stClass = 'st-cancelled'; stLabel = isAr ? '⚪ ملغاة / متروكة' : '⚪ Cancelled'; }
+        if (st === 'cancelled') { stClass = 'st-cancelled'; stLabel = isAr ? '⚪ ملغاة' : '⚪ Cancelled'; }
+        if (item.deleted) { stClass = 'st-trash'; stLabel = isAr ? '🗑️ سلة المحذوفات' : '🗑️ Trash'; }
 
         const amtDisplay = (item.currency === 'USD' && item.origAmount)
           ? `$${Number(item.origAmount).toLocaleString('en-US')} (${Number(item.amountIQD).toLocaleString('en-US')} IQD)`
           : `${Number(item.amountIQD).toLocaleString('en-US')} IQD`;
+
+        const isNearExpiry = item.expiresAt && st === 'pending' && (item.expiresAt - Date.now() < 6 * 3600 * 1000);
+        const expiryText = item.expiresAt ? ` • صلاحية: ${new Date(item.expiresAt).toLocaleString('ar-IQ')}` : '';
+        const extraMeta = [
+          item.dueDate ? `استحقاق: ${item.dueDate}` : null,
+          item.matterRef ? `ملف: ${item.matterRef}` : null,
+          item.transferRef ? `وصل/حوالة: ${item.transferRef}` : null,
+          item.paymentMethod ? `وسيلة: ${item.paymentMethod}` : null,
+          item.appointment ? `موعد: ${item.appointment}` : null,
+          item.partialRefundAmount ? `مبلغ مسترجع جزئياً: ${item.partialRefundAmount}` : null,
+          item.refundNote ? `سبب الاسترجاع: ${item.refundNote}` : null,
+          item.internalNotes ? `ملاحظة داخلية: ${item.internalNotes}` : null
+        ].filter(Boolean).join(' • ');
 
         return `
           <div class="history-item">
@@ -1022,20 +1528,32 @@
               <div>
                 ${item.ref ? `<span class="hist-ref">${item.ref}</span>` : ''}
                 ${item.isTest ? `<span class="test-tag">${isAr ? 'اختبار' : 'TEST'}</span>` : ''}
+                ${isNearExpiry ? `<span class="warn-tag">قرب الانتهاء</span>` : ''}
                 <div class="history-title">${item.serviceTitle}</div>
                 ${item.clientName ? `<div class="history-payer">${isAr ? 'المراجع:' : 'Applicant:'} ${item.clientName}</div>` : ''}
               </div>
               <span class="status-pill ${stClass}">${stLabel}</span>
             </div>
-            <div class="history-meta">${amtDisplay} • ${item.date || ''}</div>
+            <div class="history-meta">${amtDisplay} • ${item.date || ''}${expiryText}${extraMeta ? `<br>${extraMeta}` : ''}</div>
             <div class="hist-actions">
-              <button class="btn-sm" onclick="copyHistoryLink(${idx})">${isAr ? 'نسخ الرابط 📋' : 'Copy Link 📋'}</button>
-              <button class="btn-sm btn-paid" onclick="updateHistoryStatus(${idx}, 'paid')">${isAr ? 'تأكيد الاستلام ✓' : 'Mark Paid ✓'}</button>
-              <button class="btn-sm btn-skip" onclick="updateHistoryStatus(${idx}, 'cancelled')">${isAr ? 'تجاوز / إلغاء ✕' : 'Cancel / Skip ✕'}</button>
-              <button class="btn-sm btn-refund" onclick="updateHistoryStatus(${idx}, 'refunded')">${isAr ? 'استرجاع ↩' : 'Refund ↩'}</button>
-              <button class="btn-sm btn-report" onclick="openConsentReport(${idx})">${isAr ? '📄 تقرير التوثيق والموافقة' : '📄 Consent Report'}</button>
-              <button class="btn-sm btn-proof" onclick="openProofModal(${idx})">${isAr ? '📎 محضر إنجاز بالصور' : '📎 Proof Report'}</button>
-              <button class="btn-sm btn-refund" onclick="deleteHistoryItem(${idx})">${isAr ? 'حذف 🗑️' : 'Delete 🗑️'}</button>
+              <button class="btn-sm" onclick="copyHistoryLink(${idx})">نسخ الرابط 📋</button>
+              <button class="btn-sm" onclick="shareWhatsApp(JSON.parse(localStorage.getItem('${HISTORY_STORAGE_KEY}'))[${idx}])">واتساب 💬</button>
+              ${st === 'pending' ? `<button class="btn-sm" onclick="sendReminder(${idx})">تذكير ⏰</button>` : ''}
+              ${!item.deleted ? `
+                <button class="btn-sm btn-paid" onclick="updateHistoryStatus(${idx}, 'paid')">مقبوضة ✓</button>
+                <button class="btn-sm btn-paid" onclick="updateHistoryStatus(${idx}, 'completed')">مكتملة ✅</button>
+                <button class="btn-sm btn-skip" onclick="updateHistoryStatus(${idx}, 'review')">مراجعة</button>
+                <button class="btn-sm btn-skip" onclick="updateHistoryStatus(${idx}, 'cancelled')">إلغاء ✕</button>
+                <button class="btn-sm btn-refund" onclick="updateHistoryStatus(${idx}, 'partial_refund')">مسترجع جزئي</button>
+                <button class="btn-sm btn-refund" onclick="updateHistoryStatus(${idx}, 'refunded')">مسترجعة ↩</button>
+                ${item.prevStatus ? `<button class="btn-sm" onclick="undoHistoryStatus(${idx})">تراجع ↶</button>` : ''}
+                <button class="btn-sm btn-paid" onclick="openReceiptPDF(${idx})">🧾 إيصال</button>
+                <button class="btn-sm btn-report" onclick="openConsentReport(${idx})">📄 موافقة</button>
+                <button class="btn-sm btn-proof" onclick="openProofModal(${idx})">📎 محضر</button>
+              ` : `
+                <button class="btn-sm btn-paid" onclick="restoreHistoryItem(${idx})">استعادة ♻️</button>
+              `}
+              <button class="btn-sm btn-refund" onclick="deleteHistoryItem(${idx})">${item.deleted ? 'حذف نهائي (PIN) 🗑️' : 'حذف 🗑️'}</button>
             </div>
           </div>
         `;
@@ -1046,8 +1564,153 @@
       const list = JSON.parse(localStorage.getItem(HISTORY_STORAGE_KEY) || '[]');
       if (list[idx]) {
         navigator.clipboard.writeText(list[idx].link);
-        showToast(adminLang === 'ar' ? '✅ تم نسخ الرابط.' : '✅ Link copied.');
+        showToast('✅ تم نسخ الرابط.');
       }
+    }
+
+    async function exportBackupJSON() {
+      const ok = await requestPinConfirmation('تأكيد الرقم السري لتصدير نسخة احتياطية كاملة.');
+      if (!ok) return;
+      const data = {
+        exportedAt: new Date().toISOString(),
+        history: JSON.parse(localStorage.getItem(HISTORY_STORAGE_KEY) || '[]'),
+        waTemplate: localStorage.getItem(WA_TEMPLATE_KEY) || '',
+        footerTemplate: localStorage.getItem(FOOTER_TEMPLATE_KEY) || '',
+        customTemplates: JSON.parse(localStorage.getItem(CUSTOM_TPL_KEY) || '[]')
+      };
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `akh-backup-${new Date().toISOString().slice(0, 10)}.json`;
+      a.click();
+      showToast('✅ تم تصدير النسخة الاحتياطية.');
+    }
+
+    function exportBackupCSV() {
+      const list = JSON.parse(localStorage.getItem(HISTORY_STORAGE_KEY) || '[]');
+      const rows = [['Ref', 'Date', 'Client', 'Service', 'MatterRef', 'TransferRef', 'DueDate', 'Status', 'Currency', 'OrigAmount', 'AmountIQD', 'PaymentMethod']];
+      list.forEach(i => rows.push([
+        i.ref || '', i.date || '', i.clientName || '', i.serviceTitle || '', i.matterRef || '',
+        i.transferRef || '', i.dueDate || '', i.status || 'pending', i.currency || 'IQD',
+        i.origAmount || i.amountIQD || '', i.amountIQD || '', i.paymentMethod || ''
+      ]));
+      const csv = '\uFEFF' + rows.map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(',')).join('\n');
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `akh-invoices-${new Date().toISOString().slice(0, 10)}.csv`;
+      a.click();
+      showToast('✅ تم تصدير ملف CSV.');
+    }
+
+    async function importBackupJSON(event) {
+      const file = event.target.files?.[0];
+      if (!file) return;
+      const ok = await requestPinConfirmation('تأكيد الرقم السري لاستيراد النسخة الاحتياطية.');
+      if (!ok) { event.target.value = ''; return; }
+      try {
+        const text = await file.text();
+        const parsed = JSON.parse(text);
+        if (Array.isArray(parsed.history)) {
+          localStorage.setItem(HISTORY_STORAGE_KEY, JSON.stringify(parsed.history));
+        }
+        if (typeof parsed.waTemplate === 'string') {
+          localStorage.setItem(WA_TEMPLATE_KEY, parsed.waTemplate);
+          document.getElementById('wa-template-input').value = parsed.waTemplate;
+        }
+        if (typeof parsed.footerTemplate === 'string') {
+          localStorage.setItem(FOOTER_TEMPLATE_KEY, parsed.footerTemplate);
+          document.getElementById('report-footer-input').value = parsed.footerTemplate;
+        }
+        if (Array.isArray(parsed.customTemplates)) {
+          localStorage.setItem(CUSTOM_TPL_KEY, JSON.stringify(parsed.customTemplates));
+          renderCustomTemplateChips();
+        }
+        renderStatsAndHistory();
+        showToast('✅ تم استيراد النسخة الاحتياطية بنجاح.');
+      } catch (e) {
+        alert('❌ ملف النسخة الاحتياطية غير صالح.');
+      }
+      event.target.value = '';
+    }
+
+    function getFooterText() {
+      return (document.getElementById('report-footer-input')?.value || '').trim();
+    }
+
+    function openReceiptPDF(idx) {
+      const list = JSON.parse(localStorage.getItem(HISTORY_STORAGE_KEY) || '[]');
+      const item = list[idx];
+      if (!item) return;
+      const isEn = item.lang === 'en';
+      const dir = isEn ? 'ltr' : 'rtl';
+      const lang = isEn ? 'en' : 'ar';
+      const officeName = isEn ? 'Law Office of Ali Kadhim Hashimi' : 'مكتب المحامي علي الكاظم';
+      const subDesc = isEn ? 'Advocacy & Legal Services | Baghdad - Iraq' : 'للمحاماة والخدمات القانونية | بغداد - العراق';
+      const amtStr = (item.currency === 'USD' && item.origAmount)
+        ? `$${Number(item.origAmount).toLocaleString('en-US')} USD (${Number(item.amountIQD).toLocaleString('en-US')} IQD)`
+        : `${Number(item.amountIQD).toLocaleString('en-US')} IQD`;
+      const svcText = isEn ? (item.serviceTitleEn || item.serviceTitle) : (item.serviceTitleAr || item.serviceTitle);
+      const footer = getFooterText();
+
+      const win = window.open('', '_blank');
+      win.document.write(`
+        <!DOCTYPE html>
+        <html lang="${lang}" dir="${dir}">
+        <head>
+          <meta charset="UTF-8">
+          <title>${isEn ? 'Payment Receipt' : 'إيصال استلام رسمي'} - ${item.ref || 'AKH'}</title>
+          <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+          <style>
+            body { font-family: 'Cairo', sans-serif; color: #0b1c36; padding: 30px; max-width: 780px; margin: 0 auto; line-height: 1.8; }
+            .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #c59b27; padding-bottom: 16px; margin-bottom: 22px; }
+            .logo { direction: ltr; text-align: left; }
+            .logo-row { display: inline-flex; align-items: center; gap: 8px; }
+            .slash-mark { font-size: 30px; font-weight: 800; color: #d32f2f; line-height: 1; }
+            .logo-main { font-size: 34px; font-weight: 800; line-height: 1; letter-spacing: 2px; }
+            .logo-main .k-red { color: #d32f2f; }
+            .logo-sub { font-size: 11px; color: #64748b; letter-spacing: 2.5px; font-weight: 700; }
+            .doc-title { text-align: center; background: #0b1c36; color: #ffffff; padding: 10px; border-radius: 8px; font-size: 17px; font-weight: 800; margin-bottom: 20px; border-bottom: 3px solid #c59b27; }
+            table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+            td, th { border: 1px solid #cbd5e1; padding: 10px 14px; text-align: start; font-size: 14px; }
+            th { background: #f8fafc; width: 34%; color: #475569; }
+            .footer-note { margin-top: 24px; padding-top: 12px; border-top: 1px dashed #cbd5e1; font-size: 12.5px; color: #475569; text-align: center; }
+            @media print { .no-print { display: none; } }
+          </style>
+        </head>
+        <body>
+          <div class="no-print" style="margin-bottom:16px;">
+            <button onclick="window.print()" style="background:#0b1c36; color:#fff; border:none; padding:10px 20px; border-radius:8px; font-family:'Cairo'; font-weight:700; cursor:pointer;">🖨️ ${isEn ? 'Print / Save PDF' : 'طباعة / حفظ كملف PDF'}</button>
+          </div>
+          <div class="header">
+            <div>
+              <h2 style="font-size:20px; font-weight:800;">${officeName}</h2>
+              <div style="font-size:13px; color:#64748b;">${subDesc}</div>
+            </div>
+            <div class="logo">
+              <div class="logo-row"><span class="slash-mark">/</span><div class="logo-main">A<span class="k-red">K</span>H</div></div>
+              <div class="logo-sub">/ LAW OFFICE • EST. 2014</div>
+            </div>
+          </div>
+          <div class="doc-title">${isEn ? 'OFFICIAL PAYMENT RECEIPT' : 'إيصال استلام مالي رسمي'}</div>
+          <table>
+            <tr><th>${isEn ? 'Reference Number' : 'الرقم المرجعي'}</th><td style="font-family:monospace; font-weight:800;">${item.ref || ''}</td></tr>
+            ${item.clientName ? `<tr><th>${isEn ? 'Applicant / Payer' : 'اسم المراجع / الدافع'}</th><td>${item.clientName}</td></tr>` : ''}
+            ${item.matterRef ? `<tr><th>${isEn ? 'File Reference' : 'رقم الملف / الإضبارة'}</th><td>${item.matterRef}</td></tr>` : ''}
+            ${item.transferRef ? `<tr><th>${isEn ? 'Transfer / Receipt Ref' : 'رقم الوصل / الحوالة'}</th><td>${item.transferRef}</td></tr>` : ''}
+            <tr><th>${isEn ? 'Legal Service' : 'موضوع الخدمة القانونية'}</th><td>${svcText}</td></tr>
+            <tr><th>${isEn ? 'Amount' : 'المبلغ'}</th><td style="font-weight:800;">${amtStr}</td></tr>
+            ${item.currency === 'USD' ? `<tr><th>${isEn ? 'Exchange Rate' : 'سعر الصرف'}</th><td>${Number(item.rate || 1510).toLocaleString('en-US')} IQD / USD</td></tr>` : ''}
+            <tr><th>${isEn ? 'Status' : 'الحالة'}</th><td>${item.status || 'pending'}</td></tr>
+            ${item.paymentMethod ? `<tr><th>${isEn ? 'Payment Method' : 'وسيلة الدفع'}</th><td>${item.paymentMethod}</td></tr>` : ''}
+            ${item.appointment ? `<tr><th>${isEn ? 'Appointment' : 'الموعد المثبت'}</th><td>${item.appointment}</td></tr>` : ''}
+            <tr><th>${isEn ? 'Issue Date' : 'تاريخ الإصدار'}</th><td>${item.date || ''}</td></tr>
+          </table>
+          ${footer ? `<div class="footer-note">${footer}</div>` : ''}
+        </body>
+        </html>
+      `);
+      win.document.close();
     }
 
     async function openConsentReport(idx) {
@@ -1064,17 +1727,23 @@
       }
 
       const consent = remoteData && remoteData.consent ? remoteData.consent : null;
+      const isEn = item.lang === 'en';
+      const dir = isEn ? 'ltr' : 'rtl';
+      const lang = isEn ? 'en' : 'ar';
+      const officeName = isEn ? 'Law Office of Ali Kadhim Hashimi' : 'مكتب المحامي علي الكاظم';
       const amtStr = (item.currency === 'USD' && item.origAmount)
         ? `$${Number(item.origAmount).toLocaleString('en-US')} USD (${Number(item.amountIQD).toLocaleString('en-US')} IQD)`
         : `${Number(item.amountIQD).toLocaleString('en-US')} IQD`;
+      const svcText = isEn ? (item.serviceTitleEn || item.serviceTitle) : (item.serviceTitleAr || item.serviceTitle);
+      const footer = getFooterText();
 
       const win = window.open('', '_blank');
       win.document.write(`
         <!DOCTYPE html>
-        <html lang="ar" dir="rtl">
+        <html lang="${lang}" dir="${dir}">
         <head>
           <meta charset="UTF-8">
-          <title>تقرير توثيق السداد والموافقة القانونية - ${item.ref || 'AKH'}</title>
+          <title>${isEn ? 'Consent & Payment Report' : 'تقرير توثيق السداد والموافقة القانونية'} - ${item.ref || 'AKH'}</title>
           <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
           <style>
             body { font-family: 'Cairo', sans-serif; color: #0b1c36; padding: 30px; max-width: 800px; margin: 0 auto; line-height: 1.8; }
@@ -1087,21 +1756,22 @@
             .logo-sub { font-size: 11px; color: #64748b; letter-spacing: 2.5px; font-weight: 700; }
             .doc-title { text-align: center; background: #0b1c36; color: #ffffff; padding: 10px; border-radius: 8px; font-size: 17px; font-weight: 800; margin-bottom: 20px; border-bottom: 3px solid #c59b27; }
             table { width: 100%; border-collapse: collapse; margin-bottom: 22px; }
-            td, th { border: 1px solid #cbd5e1; padding: 10px 14px; text-align: right; font-size: 14px; }
+            td, th { border: 1px solid #cbd5e1; padding: 10px 14px; text-align: start; font-size: 14px; }
             th { background: #f8fafc; width: 32%; color: #475569; }
-            .legal-box { background: #f8fafc; border: 1px solid #cbd5e1; border-right: 4px solid #c59b27; padding: 16px; border-radius: 8px; font-size: 13.5px; margin-bottom: 24px; }
+            .legal-box { background: #f8fafc; border: 1px solid #cbd5e1; border-inline-start: 4px solid #c59b27; padding: 16px; border-radius: 8px; font-size: 13.5px; margin-bottom: 24px; }
             .stamp { margin-top: 30px; display: flex; justify-content: space-between; font-size: 13.5px; font-weight: 700; }
+            .footer-note { margin-top: 20px; padding-top: 10px; border-top: 1px dashed #cbd5e1; font-size: 12px; color: #64748b; text-align: center; }
             @media print { .no-print { display: none; } }
           </style>
         </head>
         <body>
-          <div class="no-print" style="margin-bottom:16px; text-align:left;">
-            <button onclick="window.print()" style="background:#0b1c36; color:#fff; border:none; padding:10px 20px; border-radius:8px; font-family:'Cairo'; font-weight:700; cursor:pointer;">🖨️ طباعة / حفظ كملف PDF</button>
+          <div class="no-print" style="margin-bottom:16px;">
+            <button onclick="window.print()" style="background:#0b1c36; color:#fff; border:none; padding:10px 20px; border-radius:8px; font-family:'Cairo'; font-weight:700; cursor:pointer;">🖨️ ${isEn ? 'Print / Save PDF' : 'طباعة / حفظ كملف PDF'}</button>
           </div>
           <div class="header">
             <div>
-              <h2 style="font-size:20px; font-weight:800;">مكتب المحامي علي الكاظم</h2>
-              <div style="font-size:13px; color:#64748b;">للمحامات والخدمات القانونية | بغداد - العراق</div>
+              <h2 style="font-size:20px; font-weight:800;">${officeName}</h2>
+              <div style="font-size:13px; color:#64748b;">${isEn ? 'Advocacy & Legal Services | Baghdad - Iraq' : 'للمحاماة والخدمات القانونية | بغداد - العراق'}</div>
             </div>
             <div class="logo">
               <div class="logo-row"><span class="slash-mark">/</span><div class="logo-main">A<span class="k-red">K</span>H</div></div>
@@ -1109,32 +1779,33 @@
             </div>
           </div>
 
-          <div class="doc-title">وثيقة توثيق إشعار السداد والموافقة الإلكترونية المسبقة</div>
+          <div class="doc-title">${isEn ? 'PAYMENT & ELECTRONIC POLICY CONSENT REPORT' : 'وثيقة توثيق إشعار السداد والموافقة الإلكترونية المسبقة'}</div>
 
           <table>
-            <tr><th>الرقم المرجعي للمعاملة</th><td style="font-family:monospace; font-weight:800;">${item.ref || 'غير محدد'}</td></tr>
-            <tr><th>اسم المراجع / الدافع</th><td>${item.clientName || 'غير مذكور في الإشعار'}</td></tr>
-            <tr><th>موضوع الخدمة القانونية</th><td>${item.serviceTitle}</td></tr>
-            ${item.notes ? `<tr><th>تفاصيل إضافية</th><td>${item.notes}</td></tr>` : ''}
-            <tr><th>المبلغ المستحق</th><td style="font-weight:800;">${amtStr}</td></tr>
-            <tr><th>تاريخ إصدار الإشعار</th><td>${item.date || ''}</td></tr>
-            <tr><th>حالة الموافقة على السياسات</th><td>${consent ? '✅ تم الإقرار والموافقة الإلكترونية الصريحة قبل الدفع' : '⏳ بانتظار تسجيل إشارة الموافقة أو مدفوع مسبقاً'}</td></tr>
-            ${consent ? `<tr><th>توقيت الموافقة الدقيق</th><td style="direction:ltr; text-align:right;">${consent.localTime} (${consent.timestamp})</td></tr>` : ''}
-            ${consent && consent.ip ? `<tr><th>معرّف الاتصال (IP)</th><td style="direction:ltr; text-align:right; font-family:monospace;">${consent.ip}</td></tr>` : ''}
+            <tr><th>${isEn ? 'Reference Number' : 'الرقم المرجعي للمعاملة'}</th><td style="font-family:monospace; font-weight:800;">${item.ref || ''}</td></tr>
+            <tr><th>${isEn ? 'Applicant / Payer' : 'اسم المراجع / الدافع'}</th><td>${item.clientName || (isEn ? 'Not specified' : 'غير مذكور في الإشعار')}</td></tr>
+            <tr><th>${isEn ? 'Legal Service' : 'موضوع الخدمة القانونية'}</th><td>${svcText}</td></tr>
+            ${item.notes ? `<tr><th>${isEn ? 'Details' : 'تفاصيل إضافية'}</th><td>${item.notes}</td></tr>` : ''}
+            <tr><th>${isEn ? 'Amount Due' : 'المبلغ المستحق'}</th><td style="font-weight:800;">${amtStr}</td></tr>
+            ${item.currency === 'USD' ? `<tr><th>${isEn ? 'Exchange Rate' : 'سعر الصرف المعتمد'}</th><td>${Number(item.rate || 1510).toLocaleString('en-US')} IQD / USD</td></tr>` : ''}
+            <tr><th>${isEn ? 'Issue Date' : 'تاريخ إصدار الإشعار'}</th><td>${item.date || ''}</td></tr>
+            <tr><th>${isEn ? 'Policy Consent Status' : 'حالة الموافقة على السياسات'}</th><td>${consent ? (isEn ? '✅ Explicit electronic consent recorded before payment' : '✅ تم الإقرار والموافقة الإلكترونية الصريحة قبل الدفع') : (isEn ? '⏳ Pending consent signal or already settled' : '⏳ بانتظار تسجيل إشارة الموافقة أو مدفوع مسبقاً')}</td></tr>
+            ${consent ? `<tr><th>${isEn ? 'Consent Timestamp' : 'توقيت الموافقة الدقيق'}</th><td style="direction:ltr; text-align:start;">${consent.localTime} (${consent.timestamp})</td></tr>` : ''}
+            ${consent && consent.ip ? `<tr><th>IP Address</th><td style="direction:ltr; text-align:start; font-family:monospace;">${consent.ip}</td></tr>` : ''}
           </table>
 
           <div class="legal-box">
-            <strong>خلاصة الإقرار القانوني الموثق إلكترونياً:</strong><br>
-            يُثبت هذا السجل الإلكتروني الصادر عن منصة السداد التابعة لمكتب المحامي علي الكاظم (akjassem.com) أن صاحب العلاقة قد اطّلع قبل الانتقال إلى بوابة الدفع الإلكتروني على كافة الضوابط والسياسات المعتمدة، وأقرّ صراحةً بالموافقة الكاملة عليها، وهي:<br>
-            1. <strong>سياسة الأتعاب والاسترداد وشروط الدفع الإلكتروني</strong> (استحقاق الأتعاب المكتسبة وفق أحكام قانون المحاماة العراقي النافذ).<br>
-            2. <strong>سياسة الخصوصية وسرية المعلومات</strong>.<br>
-            3. <strong>سياسة تقديم الخدمات وتسليم الأعمال</strong>.
+            ${isEn
+              ? `<strong>Electronic Acknowledgment Summary:</strong><br>This electronic record issued by the payment platform of Law Office of Ali Kadhim Hashimi (akjassem.com) confirms that the applicant reviewed and agreed to the applicable policies prior to proceeding to payment: (1) Legal Fees, Refund Policy & Electronic Payment Terms under the applicable Iraqi Advocacy Law, (2) Privacy Policy & Confidentiality of Information, and (3) Service Delivery & Work Handover Policy.`
+              : `<strong>خلاصة الإقرار القانوني الموثق إلكترونياً:</strong><br>يُثبت هذا السجل الإلكتروني الصادر عن منصة السداد التابعة لمكتب المحامي علي الكاظم (akjassem.com) أن صاحب العلاقة قد اطّلع قبل الانتقال إلى بوابة الدفع الإلكتروني على كافة الضوابط والسياسات المعتمدة، وأقرّ صراحةً بالموافقة الكاملة عليها، وهي:<br>1. <strong>سياسة الأتعاب والاسترداد وشروط الدفع الإلكتروني</strong> (استحقاق الأتعاب المكتسبة وفق أحكام قانون المحاماة العراقي النافذ).<br>2. <strong>سياسة الخصوصية وسرية المعلومات</strong>.<br>3. <strong>سياسة تقديم الخدمات وتسليم الأعمال</strong>.`
+            }
           </div>
 
           <div class="stamp">
-            <div>تاريخ استخراج الوثيقة: ${new Date().toLocaleDateString('ar-IQ')}</div>
-            <div>مكتب المحامي علي الكاظم<br><span style="font-size:12px; color:#64748b;">سجل التوثيق الإلكتروني المعتمد</span></div>
+            <div>${isEn ? 'Report Date:' : 'تاريخ استخراج الوثيقة:'} ${new Date().toLocaleDateString(isEn ? 'en-US' : 'ar-IQ')}</div>
+            <div>${officeName}<br><span style="font-size:12px; color:#64748b;">${isEn ? 'Official Electronic Record' : 'سجل التوثيق الإلكتروني المعتمد'}</span></div>
           </div>
+          ${footer ? `<div class="footer-note">${footer}</div>` : ''}
         </body>
         </html>
       `);
@@ -1180,10 +1851,18 @@
     function generateProofPDF() {
       if (!currentProofItem) return;
       const item = currentProofItem;
-      const summary = document.getElementById('proof-summary').value.trim() || 'تم تنفيذ الخدمة القانونية وتسليم المخرجات وفق الأصول المعتمدة.';
+      const isEn = item.lang === 'en';
+      const dir = isEn ? 'ltr' : 'rtl';
+      const lang = isEn ? 'en' : 'ar';
+      const officeName = isEn ? 'Law Office of Ali Kadhim Hashimi' : 'مكتب المحامي علي الكاظم';
+      const summary = document.getElementById('proof-summary').value.trim() || (isEn
+        ? 'The legal service was executed and deliverables were handed over in accordance with applicable standards.'
+        : 'تم تنفيذ الخدمة القانونية وتسليم المخرجات وفق الأصول المعتمدة.');
+      const footer = getFooterText();
+
       const imagesHtml = proofImageDataUrls.map((src, i) => `
         <div style="margin-bottom:16px; page-break-inside:avoid; border:1px solid #cbd5e1; padding:10px; border-radius:8px;">
-          <div style="font-size:12px; font-weight:700; color:#475569; margin-bottom:6px;">مرفق إثبات رقم (${i + 1}):</div>
+          <div style="font-size:12px; font-weight:700; color:#475569; margin-bottom:6px;">${isEn ? 'Attachment' : 'مرفق إثبات رقم'} (${i + 1}):</div>
           <img src="${src}" style="max-width:100%; max-height:420px; display:block; margin:0 auto; border-radius:6px;">
         </div>
       `).join('');
@@ -1191,10 +1870,10 @@
       const win = window.open('', '_blank');
       win.document.write(`
         <!DOCTYPE html>
-        <html lang="ar" dir="rtl">
+        <html lang="${lang}" dir="${dir}">
         <head>
           <meta charset="UTF-8">
-          <title>محضر إثبات تنفيذ الخدمة - ${item.ref || 'AKH'}</title>
+          <title>${isEn ? 'Service Execution Report' : 'محضر إثبات تنفيذ الخدمة'} - ${item.ref || 'AKH'}</title>
           <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
           <style>
             body { font-family: 'Cairo', sans-serif; color: #0b1c36; padding: 30px; max-width: 800px; margin: 0 auto; line-height: 1.8; }
@@ -1207,20 +1886,21 @@
             .logo-sub { font-size: 11px; color: #64748b; letter-spacing: 2.5px; font-weight: 700; }
             .doc-title { text-align: center; background: #0b1c36; color: #ffffff; padding: 10px; border-radius: 8px; font-size: 17px; font-weight: 800; margin-bottom: 20px; border-bottom: 3px solid #c59b27; }
             table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
-            td, th { border: 1px solid #cbd5e1; padding: 10px 14px; text-align: right; font-size: 14px; }
+            td, th { border: 1px solid #cbd5e1; padding: 10px 14px; text-align: start; font-size: 14px; }
             th { background: #f8fafc; width: 32%; color: #475569; }
-            .summary-box { background: #f8fafc; border: 1px solid #cbd5e1; border-right: 4px solid #0b1c36; padding: 16px; border-radius: 8px; font-size: 14px; margin-bottom: 22px; white-space: pre-line; }
+            .summary-box { background: #f8fafc; border: 1px solid #cbd5e1; border-inline-start: 4px solid #0b1c36; padding: 16px; border-radius: 8px; font-size: 14px; margin-bottom: 22px; white-space: pre-line; }
+            .footer-note { margin-top: 20px; padding-top: 10px; border-top: 1px dashed #cbd5e1; font-size: 12px; color: #64748b; text-align: center; }
             @media print { .no-print { display: none; } }
           </style>
         </head>
         <body>
-          <div class="no-print" style="margin-bottom:16px; text-align:left;">
-            <button onclick="window.print()" style="background:#0b1c36; color:#fff; border:none; padding:10px 20px; border-radius:8px; font-family:'Cairo'; font-weight:700; cursor:pointer;">🖨️ طباعة / حفظ محضر الإثبات (PDF)</button>
+          <div class="no-print" style="margin-bottom:16px;">
+            <button onclick="window.print()" style="background:#0b1c36; color:#fff; border:none; padding:10px 20px; border-radius:8px; font-family:'Cairo'; font-weight:700; cursor:pointer;">🖨️ ${isEn ? 'Print / Save PDF' : 'طباعة / حفظ محضر الإثبات (PDF)'}</button>
           </div>
           <div class="header">
             <div>
-              <h2 style="font-size:20px; font-weight:800;">مكتب المحامي علي الكاظم</h2>
-              <div style="font-size:13px; color:#64748b;">للمحامات والخدمات القانونية | بغداد - العراق</div>
+              <h2 style="font-size:20px; font-weight:800;">${officeName}</h2>
+              <div style="font-size:13px; color:#64748b;">${isEn ? 'Advocacy & Legal Services | Baghdad - Iraq' : 'للمحاماة والخدمات القانونية | بغداد - العراق'}</div>
             </div>
             <div class="logo">
               <div class="logo-row"><span class="slash-mark">/</span><div class="logo-main">A<span class="k-red">K</span>H</div></div>
@@ -1228,24 +1908,25 @@
             </div>
           </div>
 
-          <div class="doc-title">محضر إثبات تقديم الخدمة القانونية وتسليم المخرجات</div>
+          <div class="doc-title">${isEn ? 'SERVICE EXECUTION & HANDOVER REPORT' : 'محضر إثبات تقديم الخدمة القانونية وتسليم المخرجات'}</div>
 
           <table>
-            <tr><th>الرقم المرجعي للفاتورة</th><td style="font-family:monospace; font-weight:800;">${item.ref || 'غير محدد'}</td></tr>
-            <tr><th>اسم المراجع / الدافع</th><td>${item.clientName || 'غير مذكور'}</td></tr>
-            <tr><th>موضوع الخدمة</th><td>${item.serviceTitle}</td></tr>
-            <tr><th>تاريخ المعاملة</th><td>${item.date || ''}</td></tr>
+            <tr><th>${isEn ? 'Invoice Reference' : 'الرقم المرجعي للفاتورة'}</th><td style="font-family:monospace; font-weight:800;">${item.ref || ''}</td></tr>
+            <tr><th>${isEn ? 'Applicant / Payer' : 'اسم المراجع / الدافع'}</th><td>${item.clientName || (isEn ? 'Not specified' : 'غير مذكور')}</td></tr>
+            <tr><th>${isEn ? 'Legal Service' : 'موضوع الخدمة'}</th><td>${isEn ? (item.serviceTitleEn || item.serviceTitle) : (item.serviceTitleAr || item.serviceTitle)}</td></tr>
+            <tr><th>${isEn ? 'Date' : 'تاريخ المعاملة'}</th><td>${item.date || ''}</td></tr>
           </table>
 
-          <h4 style="margin-bottom:8px;">بيان تنفيذ الخدمة والتسليم:</h4>
+          <h4 style="margin-bottom:8px;">${isEn ? 'Execution & Delivery Statement:' : 'بيان تنفيذ الخدمة والتسليم:'}</h4>
           <div class="summary-box">${summary}</div>
 
-          ${proofImageDataUrls.length ? `<h4 style="margin-bottom:10px;">المرفقات والوثائق الإلكترونية الداعمة:</h4>${imagesHtml}` : ''}
+          ${proofImageDataUrls.length ? `<h4 style="margin-bottom:10px;">${isEn ? 'Supporting Attachments:' : 'المرفقات والوثائق الإلكترونية الداعمة:'}</h4>${imagesHtml}` : ''}
 
           <div style="margin-top:30px; display:flex; justify-content:space-between; font-size:13.5px; font-weight:700;">
-            <div>تاريخ تحرير المحضر: ${new Date().toLocaleDateString('ar-IQ')}</div>
-            <div>مكتب المحامي علي الكاظم</div>
+            <div>${isEn ? 'Report Date:' : 'تاريخ تحرير المحضر:'} ${new Date().toLocaleDateString(isEn ? 'en-US' : 'ar-IQ')}</div>
+            <div>${officeName}</div>
           </div>
+          ${footer ? `<div class="footer-note">${footer}</div>` : ''}
         </body>
         </html>
       `);
