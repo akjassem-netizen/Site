@@ -16,6 +16,11 @@ export default {
       return /^[A-Za-z0-9_-]{4,64}$/.test(cleaned) ? cleaned : "";
     };
 
+    const isValidExpiryMs = (val) => {
+      const num = Number(val);
+      return Number.isFinite(num) && num > 1e11;
+    };
+
     const url = new URL(request.url);
 
     // 1. جلب بيانات الفاتورة عبر الرقم المرجعي (?ref=AKH-...)
@@ -35,10 +40,12 @@ export default {
 
       try {
         const record = JSON.parse(recordRaw);
+        if (!record.status) {
+          record.status = "pending";
+        }
         if (
           record.status === "pending" &&
-          record.expiresAt &&
-          Number(record.expiresAt) > 0 &&
+          isValidExpiryMs(record.expiresAt) &&
           Date.now() > Number(record.expiresAt)
         ) {
           record.status = "cancelled";
@@ -219,7 +226,7 @@ export default {
           parsedWayl.paymentUrl ||
           "";
 
-        // حفظ بيانات الفاتورة الكاملة في KV ليصبح الرابط قصيراً (?ref=AKH-...)
+        let kvSaved = false;
         if (env.AKH_KV && payUrl) {
           const fullRecord = {
             ...invoiceMeta,
@@ -230,9 +237,14 @@ export default {
             status: "pending"
           };
           await env.AKH_KV.put("inv_" + refId, JSON.stringify(fullRecord));
+          kvSaved = true;
         }
 
-        return new Response(text, { status: res.status, headers: corsHeaders });
+        const outputObj = typeof parsedWayl === "object" && parsedWayl !== null
+          ? { ...parsedWayl, ref: refId, kvSaved }
+          : { raw: text, ref: refId, kvSaved };
+
+        return new Response(JSON.stringify(outputObj), { status: res.status, headers: corsHeaders });
       } catch (e) {
         return new Response(JSON.stringify({ message: e.message }), { status: 500, headers: corsHeaders });
       }
