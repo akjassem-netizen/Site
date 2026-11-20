@@ -242,6 +242,24 @@
       font-weight: 700;
       font-family: monospace;
     }
+    .pay-now-colored-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #c59b27, #e0b63c);
+      color: #0b1c36;
+      font-weight: 800;
+      font-size: 14px;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: 1.5px solid #0b1c36;
+      box-shadow: 0 4px 12px rgba(197, 155, 39, 0.3);
+      margin-top: 8px;
+    }
+    .pay-now-colored-link:hover {
+      background: linear-gradient(135deg, #b0881e, #c59b27);
+    }
 
     .history-item {
       background: #ffffff;
@@ -566,8 +584,8 @@
               <input type="email" id="client-email" placeholder="client@example.com" dir="ltr">
             </div>
             <div class="form-group">
-              <label id="t-matter-ref-lbl">رقم إضبارة / ملف داخلي (اختياري):</label>
-              <input type="text" id="matter-ref" placeholder="مثال: FILE-2026-14">
+              <label id="t-matter-ref-lbl">رقم الاستحقاق / ملف داخلي (اختياري):</label>
+              <input type="text" id="matter-ref" placeholder="مثال: DUE-2026-14">
             </div>
             <div class="form-group">
               <label id="t-transfer-ref-lbl">رقم وصل / حوالة مرجعي (اختياري):</label>
@@ -646,6 +664,10 @@
             <div class="form-group" style="margin-top:10px;">
               <label for="live-message-editor">معاينة وتحرير نص الرسالة قبل الإرسال:</label>
               <textarea id="live-message-editor" rows="12"></textarea>
+            </div>
+
+            <div style="margin-bottom:12px;">
+              <a id="pay-now-colored-btn" href="#" target="_blank" class="pay-now-colored-link">دفع الآن</a>
             </div>
 
             <div style="display: flex; gap: 8px; flex-wrap: wrap;">
@@ -1520,6 +1542,7 @@
 
         document.getElementById('generated-url').textContent = LAST_LINK;
         document.getElementById('live-message-editor').value = buildFormattedMessage(LAST_ENTRY);
+        document.getElementById('pay-now-colored-btn').href = LAST_LINK;
         document.getElementById('preview-btn').href = LAST_LINK;
         document.getElementById('result-box').style.display = 'block';
 
@@ -1549,13 +1572,14 @@
           '',
           e && e.clientName ? `• ${e.partyRole || 'Applicant'}: ${e.clientName}` : null,
           e && e.ref ? `• Invoice Reference: ${formatCopyableRef(e.ref)}` : null,
+          e && e.matterRef ? `• Due / File Number: \u2066\u200E${e.matterRef}\u2069` : null,
           e && e.requestKind ? `• Purpose: ${e.requestKind}` : null,
-          e && e.matterRef ? `• File Ref: ${e.matterRef}` : null,
           e && e.serviceTitle ? `• Subject: ${e.serviceTitle}` : null,
           e && e.notes ? `• Details: ${e.notes}` : null,
           e && e.dueDate ? `• Due Date: ${e.dueDate}` : null,
           e && e.appointment ? `• Appointment: ${e.appointment}` : null,
           amtStr ? `• Amount Due: ${amtStr}` : null,
+          payUrl ? `• Payment Link: ${payUrl}` : null,
           '',
           getSupportBlockText(true),
           '',
@@ -1570,13 +1594,14 @@
         '',
         e && e.clientName ? `• ${e.partyRole || 'صاحب العلاقة'}: ${e.clientName}` : null,
         e && e.ref ? `• الرقم المرجعي للفاتورة: ${formatCopyableRef(e.ref)}` : null,
+        e && e.matterRef ? `• رقم الاستحقاق: \u2066\u200E${e.matterRef}\u2069` : null,
         e && e.requestKind ? `• نوع البيان أو الغرض: ${e.requestKind}` : null,
-        e && e.matterRef ? `• رقم الملف: ${e.matterRef}` : null,
         e && e.serviceTitle ? `• البيان: ${e.serviceTitle}` : null,
         e && e.notes ? `• التفاصيل: ${e.notes}` : null,
         e && e.dueDate ? `• تاريخ الاستحقاق: ${e.dueDate}` : null,
         e && e.appointment ? `• الموعد: ${e.appointment}` : null,
         amtStr ? `• مبلغ الاستحقاق: ${amtStr}` : null,
+        payUrl ? `• رابط الدفع: ${payUrl}` : null,
         '',
         getSupportBlockText(false),
         '',
@@ -1638,8 +1663,10 @@
         '',
         e.clientName ? `• ${e.partyRole || 'صاحب العلاقة'}: ${e.clientName}` : null,
         `• البيان: ${e.serviceTitle}`,
+        e.matterRef ? `• رقم الاستحقاق: \u2066\u200E${e.matterRef}\u2069` : null,
         e.dueDate ? `• تاريخ الاستحقاق: ${e.dueDate}` : null,
         `• مبلغ الاستحقاق: ${Number(e.amountIQD).toLocaleString('en-US')} IQD`,
+        `• رابط الدفع: ${e.link}`,
         '',
         getSupportBlockText(false),
         '',
@@ -1891,7 +1918,7 @@
         const extraMeta = [
           item.requestKind ? `النوع: ${item.requestKind}` : null,
           item.dueDate ? `استحقاق: ${item.dueDate}` : null,
-          item.matterRef ? `ملف: ${item.matterRef}` : null,
+          item.matterRef ? `رقم الاستحقاق: ${item.matterRef}` : null,
           item.transferRef ? `وصل/حوالة: ${item.transferRef}` : null,
           item.paymentMethod ? `وسيلة: ${item.paymentMethod}` : null,
           item.appointment ? `موعد: ${item.appointment}` : null,
@@ -1972,7 +1999,7 @@
 
     function exportBackupCSV() {
       const list = JSON.parse(localStorage.getItem(HISTORY_STORAGE_KEY) || '[]');
-      const rows = [['Seq', 'Ref', 'Date', 'Role', 'Kind', 'Client', 'Service', 'MatterRef', 'TransferRef', 'DueDate', 'Status', 'Currency', 'OrigAmount', 'AmountIQD', 'PaymentMethod']];
+      const rows = [['Seq', 'Ref', 'Date', 'Role', 'Kind', 'Client', 'Service', 'DueRef', 'TransferRef', 'DueDate', 'Status', 'Currency', 'OrigAmount', 'AmountIQD', 'PaymentMethod']];
       list.forEach((i, sIdx) => rows.push([
         sIdx + 1, i.ref || '', i.date || '', i.partyRole || '', i.requestKind || '', i.clientName || '',
         i.serviceTitle || '', i.matterRef || '', i.transferRef || '', i.dueDate || '',
@@ -2040,9 +2067,7 @@
       const addr = (document.getElementById('office-address-input')?.value || DEFAULT_OFFICE_ADDRESS).trim();
       const em = (document.getElementById('support-email-input')?.value || DEFAULT_SUPPORT_EMAIL).trim();
       const ph = formatLtrPhone(document.getElementById('support-phone-input')?.value || DEFAULT_SUPPORT_PHONE);
-      const baseContact = isEn
-        ? `${addr} | ${em} | ${ph}`
-        : `${addr} | ${em} | ${ph}`;
+      const baseContact = `${addr} | ${em} | ${ph}`;
       return customFt ? `${customFt} — ${baseContact}` : baseContact;
     }
 
@@ -2103,8 +2128,8 @@
           <table>
             <tr><th>${isEn ? 'Reference Number' : 'الرقم المرجعي'}</th><td style="font-family:monospace; font-weight:800;">${item.ref || ''}</td></tr>
             ${item.clientName ? `<tr><th>${item.partyRole || (isEn ? 'Applicant / Payer' : 'اسم صاحب العلاقة')}</th><td>${item.clientName}</td></tr>` : ''}
+            ${item.matterRef ? `<tr><th>${isEn ? 'Due / File Number' : 'رقم الاستحقاق'}</th><td>${item.matterRef}</td></tr>` : ''}
             ${item.requestKind ? `<tr><th>${isEn ? 'Purpose' : 'نوع البيان أو الغرض'}</th><td>${item.requestKind}</td></tr>` : ''}
-            ${item.matterRef ? `<tr><th>${isEn ? 'File Reference' : 'رقم الملف / الإضبارة'}</th><td>${item.matterRef}</td></tr>` : ''}
             ${item.transferRef ? `<tr><th>${isEn ? 'Transfer / Receipt Ref' : 'رقم الوصل / الحوالة'}</th><td>${item.transferRef}</td></tr>` : ''}
             <tr><th>${isEn ? 'Subject / Service' : 'موضوع الخدمة أو الطلب'}</th><td>${svcText}</td></tr>
             <tr><th>${isEn ? 'Amount' : 'المبلغ'}</th><td style="font-weight:800;">${amtStr}</td></tr>
