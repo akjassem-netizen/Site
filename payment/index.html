@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive">
   <meta property="og:type" content="website">
   <meta property="og:title" content="بوابة الدفع الإلكتروني | مكتب المحامي علي كاظم الهاشمي | منصة المدفوعات">
   <meta property="og:description" content="بوابة إلكترونية معتمدة لتسوية المستحقات والأتعاب وأجور الخدمات القانونية أو المتعلقات المرتبطة بالأعمال القانونية الصادرة عن مكتب المحامي علي كاظم الهاشمي، وفق الأصول المهنية والضوابط القانونية المعتمدة.">
@@ -445,7 +446,7 @@
     <div class="footer-note">
       <div id="t-methods">💳 بطاقات الدفع الإلكتروني (Visa / MasterCard) والمحافظ الإلكترونية المعتمدة</div>
       <div id="t-contact">intake@akjassem.com | <span dir="ltr">&#x2066;&#x200E;+9647702956021&#x2069;</span></div>
-      <div id="t-address">العراق، بغداد، زيونة، قرب دار الازياء العراقية</div>
+      <div id="t-address">العراق، بغداد، زيونة، قرب دار الأزياء العراقية</div>
       <div id="t-copy">جميع الحقوق محفوظة © 2026 | مكتب المحامي علي كاظم الهاشمي</div>
     </div>
   </div>
@@ -487,6 +488,36 @@
     let activeTab = 'fees';
     let payload = {};
     let noticeMode = 'default';
+
+    function escapeHtml(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function normalizePaymentUrl(dataObj) {
+      if (!dataObj || typeof dataObj !== 'object') return '';
+      const candidate = dataObj.u || dataObj.url || dataObj.link || dataObj.paymentUrl || dataObj.data?.url || dataObj.data?.link || '';
+      return typeof candidate === 'string' && candidate.trim().startsWith('https://') ? candidate.trim() : '';
+    }
+
+    function resetInvoiceRows() {
+      ['client-row', 'due-ref-row', 'notes-row', 'due-date-row', 'v-amount-sub'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+      });
+      document.getElementById('v-client').textContent = '';
+      document.getElementById('v-due-ref').textContent = '';
+      document.getElementById('v-notes').textContent = '';
+      document.getElementById('v-due-date').textContent = '';
+      document.getElementById('v-amount').textContent = '';
+      document.getElementById('v-amount-sub').textContent = '';
+      document.getElementById('consent-check').checked = false;
+      document.getElementById('pay-link').disabled = true;
+    }
 
     const policiesData = {
       ar: {
@@ -582,6 +613,7 @@
     };
 
     async function initInvoice() {
+      noticeMode = 'default';
       const params = new URLSearchParams(window.location.search);
       const refParam = params.get('ref');
       const statusParam = params.get('status');
@@ -596,7 +628,7 @@
             });
           } catch (e) {}
         }
-        payload = { status: 'success', r: refParam || '' };
+        payload = { status: 'success', r: refParam || '', ref: refParam || '' };
         renderPage();
         return;
       }
@@ -609,6 +641,7 @@
           u: directUrlParam,
           r: refParam || params.get('r') || '',
           ref: refParam || params.get('r') || '',
+          role: params.get('role') || '',
           c: params.get('c') || params.get('client') || '',
           matterRef: params.get('matterRef') || '',
           dueDate: params.get('dueDate') || '',
@@ -634,7 +667,13 @@
         try {
           const res = await fetch(`${WORKER_URL}?ref=${encodeURIComponent(refParam)}`);
           if (res.ok) {
-            payload = await res.json();
+            const remoteData = await res.json();
+            payload = {
+              ...remoteData,
+              ref: remoteData.ref || refParam,
+              r: remoteData.r || remoteData.ref || refParam,
+              u: normalizePaymentUrl(remoteData)
+            };
             if (payload.l === 'en') currentLang = 'en';
             renderPage();
             return;
@@ -657,7 +696,8 @@
           const binStr = atob(b64);
           const bytes = new Uint8Array(binStr.length);
           for (let i = 0; i < binStr.length; i++) bytes[i] = binStr.charCodeAt(i);
-          payload = JSON.parse(new TextDecoder().decode(bytes));
+          const hashData = JSON.parse(new TextDecoder().decode(bytes));
+          payload = { ...hashData, u: normalizePaymentUrl(hashData) };
           if (payload.l === 'en') currentLang = 'en';
           renderPage();
           return;
@@ -708,9 +748,10 @@
 
       document.getElementById('t-inv-badge').textContent = isAr ? 'إشعار سداد إلكتروني' : 'Electronic Payment Notice';
       document.getElementById('t-status-ready').textContent = isAr ? 'سارٍ وجاهز للسداد' : 'Active & Ready';
+      const cleanRole = escapeHtml(payload.role || '');
       document.getElementById('t-client-lbl').textContent = isAr
-        ? `${payload.role || 'صاحب العلاقة'}:`
-        : `${payload.role || 'Applicant'}:`;
+        ? `${cleanRole || 'صاحب العلاقة'}:`
+        : `${cleanRole || 'Applicant'}:`;
       document.getElementById('t-due-ref-lbl').textContent = isAr ? 'رقم الاستحقاق:' : 'Due Reference:';
       document.getElementById('t-service-lbl').textContent = isAr ? 'البيان / الخدمة:' : 'Legal Service:';
       document.getElementById('t-notes-lbl').textContent = isAr ? 'تفاصيل إضافية:' : 'Additional Details:';
@@ -746,7 +787,7 @@
         ? '💳 بطاقات الدفع الإلكتروني (Visa / MasterCard) والمحافظ الإلكترونية المعتمدة'
         : '💳 Electronic Payment Cards (Visa / MasterCard) & Approved E-Wallets';
       document.getElementById('t-address').textContent = isAr
-        ? 'العراق، بغداد، زيونة، قرب دار الازياء العراقية'
+        ? 'العراق، بغداد، زيونة، قرب دار الأزياء العراقية'
         : 'Iraq, Baghdad, Zayouna, Near Iraqi Fashion House';
       document.getElementById('t-copy').textContent = isAr
         ? 'جميع الحقوق محفوظة © 2026 | مكتب المحامي علي كاظم الهاشمي'
@@ -757,6 +798,7 @@
 
     function renderPage() {
       applyLanguageTexts();
+      resetInvoiceRows();
       const invSec = document.getElementById('invoice-section');
       const msgSec = document.getElementById('message-section');
       const isAr = currentLang === 'ar';
@@ -765,7 +807,8 @@
         invSec.style.display = 'none';
         msgSec.style.display = 'block';
         msgSec.className = 'status-box status-success';
-        const refNote = payload.r ? (isAr ? ` (الرقم المرجعي: ${payload.r})` : ` (Ref: ${payload.r})`) : '';
+        const refRaw = payload.r || payload.ref || '';
+        const refNote = refRaw ? (isAr ? ` (الرقم المرجعي: ${refRaw})` : ` (Ref: ${refRaw})`) : '';
         msgSec.textContent = isAr
           ? `✅ تم استلام عملية الدفع بنجاح وتثبيتها في سجلات مكتب المحامي علي كاظم الهاشمي${refNote}.`
           : `✅ Payment completed successfully and recorded with Law Office Of Ali Kadhem Hashimi${refNote}.`;
@@ -776,9 +819,10 @@
         invSec.style.display = 'none';
         msgSec.style.display = 'block';
         msgSec.className = 'status-box status-success';
+        const refRaw = payload.ref || payload.r || '';
         msgSec.textContent = isAr
-          ? `✅ تم تسديد هذه الفاتورة مسبقاً في سجلات مكتب المحامي علي كاظم الهاشمي (${payload.ref || payload.r || ''}). للاستفسار يرجى التواصل مباشرة مع المكتب.`
-          : `✅ This invoice (${payload.ref || payload.r || ''}) has already been settled with Law Office Of Ali Kadhem Hashimi. Please contact the office for inquiries.`;
+          ? `✅ تم تسديد هذه الفاتورة مسبقاً في سجلات مكتب المحامي علي كاظم الهاشمي (${refRaw}). للاستفسار يرجى التواصل مباشرة مع المكتب.`
+          : `✅ This invoice (${refRaw}) has already been settled with Law Office Of Ali Kadhem Hashimi. Please contact the office for inquiries.`;
         return;
       }
 
@@ -792,7 +836,9 @@
         return;
       }
 
-      if (payload.u && payload.u.startsWith('https://')) {
+      const payUrl = normalizePaymentUrl(payload);
+      if (payUrl) {
+        payload.u = payUrl;
         msgSec.style.display = 'none';
         invSec.style.display = 'block';
 
@@ -838,6 +884,7 @@
           subEl.style.display = 'none';
         }
       } else {
+        invSec.style.display = 'none';
         msgSec.style.display = 'block';
         msgSec.className = 'status-box status-notice';
         if (noticeMode === 'unavailable') {
@@ -892,7 +939,8 @@
 
     async function goToPayment() {
       if (!document.getElementById('consent-check').checked) return;
-      if (payload.u && payload.u.startsWith('https://')) {
+      const targetPayUrl = normalizePaymentUrl(payload);
+      if (targetPayUrl) {
         const btn = document.getElementById('pay-link');
         btn.disabled = true;
         btn.textContent = currentLang === 'ar' ? 'جارٍ توثيق الموافقة والانتقال...' : 'Recording consent & redirecting...';
@@ -913,7 +961,7 @@
           } catch (e) {}
         }
 
-        window.location.href = payload.u;
+        window.location.href = targetPayUrl;
       }
     }
 
