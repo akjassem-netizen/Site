@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive">
 <title>بوابة ديوان مكتب المحامي علي كاظم الهاشمي</title>
 
 <script id="gaDynamicScript"></script>
@@ -558,7 +559,7 @@ async function performPortalSetup() {
   try {
     const encrypted = await encryptToken(token, pin);
     localStorage.setItem('akh_portal_vault', JSON.stringify(encrypted));
-    localStorage.setItem('akh_portal_saved_pin', pin);
+    localStorage.removeItem('akh_portal_saved_pin');
     ACTIVE_TOKEN = token;
     sessionStorage.setItem('akh_portal_active_token', token);
     
@@ -593,7 +594,7 @@ async function updateSecurityVault(e) {
 
     const encrypted = await encryptToken(targetToken, targetPin);
     localStorage.setItem('akh_portal_vault', JSON.stringify(encrypted));
-    localStorage.setItem('akh_portal_saved_pin', targetPin);
+    localStorage.removeItem('akh_portal_saved_pin');
     ACTIVE_TOKEN = targetToken;
     sessionStorage.setItem('akh_portal_active_token', targetToken);
 
@@ -616,7 +617,7 @@ async function attemptPortalPinUnlock() {
     const vaultObj = JSON.parse(savedVault);
     const token = await decryptToken(vaultObj, pin);
     
-    localStorage.setItem('akh_portal_saved_pin', pin);
+    localStorage.removeItem('akh_portal_saved_pin');
     ACTIVE_TOKEN = token;
     sessionStorage.setItem('akh_portal_active_token', token);
 
@@ -673,8 +674,8 @@ async function submitPinModal() {
 }
 
 async function autoUnlockSession() {
+  localStorage.removeItem('akh_portal_saved_pin');
   const savedVault = localStorage.getItem('akh_portal_vault');
-  const savedPin = localStorage.getItem('akh_portal_saved_pin');
   const savedToken = sessionStorage.getItem('akh_portal_active_token');
 
   initGoogleAnalytics("G-553701597");
@@ -683,18 +684,6 @@ async function autoUnlockSession() {
     ACTIVE_TOKEN = savedToken;
     document.getElementById('portalMainContent').style.display = 'block';
     loadPortalData();
-  } else if (savedVault && savedPin) {
-    try {
-      const vaultObj = JSON.parse(savedVault);
-      const token = await decryptToken(vaultObj, savedPin);
-      ACTIVE_TOKEN = token;
-      sessionStorage.setItem('akh_portal_active_token', token);
-      document.getElementById('portalMainContent').style.display = 'block';
-      loadPortalData();
-    } catch(e) {
-      localStorage.removeItem('akh_portal_saved_pin');
-      document.getElementById('portalLockScreen').style.display = 'block';
-    }
   } else if (savedVault) {
     document.getElementById('portalLockScreen').style.display = 'block';
   } else {
