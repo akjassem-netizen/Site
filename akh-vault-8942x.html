@@ -853,6 +853,15 @@
     let proofImageDataUrls = [];
     let pendingPinResolve = null;
 
+    function escapeHtml(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
     function formatLtrPhone(rawPhone) {
       const cleaned = String(rawPhone || '').trim();
       if (!cleaned) return '';
@@ -1075,7 +1084,7 @@
 
       if (select) {
         select.innerHTML = `<option value="">${list.length ? '— اختر قالباً من قوالبك —' : '— لا توجد قوالب مضافة بعد —'}</option>` +
-          list.map((t, i) => `<option value="${i}">${t.name} (${Number(t.amount).toLocaleString('en-US')} ${t.currency})</option>`).join('');
+          list.map((t, i) => `<option value="${i}">${escapeHtml(t.name)} (${Number(t.amount).toLocaleString('en-US')} ${escapeHtml(t.currency)})</option>`).join('');
       }
 
       if (!box) return;
@@ -1085,7 +1094,7 @@
       }
       box.innerHTML = list.map((t, i) => `
         <span style="display:inline-flex; align-items:center; gap:4px; background:#f8fafc; border:1px solid #cbd5e1; border-radius:7px; padding:4px 8px;">
-          <button type="button" class="btn-sm" style="padding:3px 7px; border:none; background:transparent;" onclick="useCustomTpl(${i})">${t.name} (${Number(t.amount).toLocaleString('en-US')} ${t.currency})</button>
+          <button type="button" class="btn-sm" style="padding:3px 7px; border:none; background:transparent;" onclick="useCustomTpl(${i})">${escapeHtml(t.name)} (${Number(t.amount).toLocaleString('en-US')} ${escapeHtml(t.currency)})</button>
           <button type="button" class="btn-sm btn-refund" style="padding:2px 6px;" onclick="deleteCustomTemplate(${i})">✕</button>
         </span>
       `).join('');
@@ -1823,7 +1832,7 @@
 
       document.getElementById('sum-month-text').textContent = `مقبوضات الشهر الحالي: ${monthPaid.toLocaleString('en-US')} IQD`;
       document.getElementById('sum-usd-text').textContent = `الدولار المقبوض: $${usdPaid.toLocaleString('en-US')}`;
-      document.getElementById('sum-top-service').textContent = `الأكثر طلباً: ${topService ? `${topService[0]} (${topService[1]})` : '—'}`;
+      document.getElementById('sum-top-service').textContent = `الأكثر طلباً: ${topService ? `${escapeHtml(topService[0])} (${topService[1]})` : '—'}`;
 
       const indexed = list.map((item, idx) => ({ item, idx })).filter(({ item }) => {
         if (q) {
@@ -1875,17 +1884,17 @@
           : `${Number(item.amountIQD).toLocaleString('en-US')} IQD`;
 
         const isNearExpiry = item.expiresAt && st === 'pending' && (item.expiresAt - Date.now() < 6 * 3600 * 1000);
-        const expiryText = item.expiresAt ? ` • صلاحية: ${new Date(item.expiresAt).toLocaleString('ar-IQ')}` : '';
+        const expiryText = item.expiresAt ? ` • صلاحية: ${escapeHtml(new Date(item.expiresAt).toLocaleString('ar-IQ'))}` : '';
         const extraMeta = [
-          item.requestKind ? `النوع: ${item.requestKind}` : null,
-          item.dueDate ? `استحقاق: ${item.dueDate}` : null,
-          item.matterRef ? `رقم الاستحقاق: ${item.matterRef}` : null,
-          item.transferRef ? `وصل/حوالة: ${item.transferRef}` : null,
-          item.paymentMethod ? `وسيلة: ${item.paymentMethod}` : null,
-          item.appointment ? `موعد: ${item.appointment}` : null,
-          item.partialRefundAmount ? `مبلغ مسترجع جزئياً: ${item.partialRefundAmount}` : null,
-          item.refundNote ? `سبب الاسترجاع: ${item.refundNote}` : null,
-          item.internalNotes ? `ملاحظة داخلية: ${item.internalNotes}` : null
+          item.requestKind ? `النوع: ${escapeHtml(item.requestKind)}` : null,
+          item.dueDate ? `استحقاق: ${escapeHtml(item.dueDate)}` : null,
+          item.matterRef ? `رقم الاستحقاق: ${escapeHtml(item.matterRef)}` : null,
+          item.transferRef ? `وصل/حوالة: ${escapeHtml(item.transferRef)}` : null,
+          item.paymentMethod ? `وسيلة: ${escapeHtml(item.paymentMethod)}` : null,
+          item.appointment ? `موعد: ${escapeHtml(item.appointment)}` : null,
+          item.partialRefundAmount ? `مبلغ مسترجع جزئياً: ${escapeHtml(item.partialRefundAmount)}` : null,
+          item.refundNote ? `سبب الاسترجاع: ${escapeHtml(item.refundNote)}` : null,
+          item.internalNotes ? `ملاحظة داخلية: ${escapeHtml(item.internalNotes)}` : null
         ].filter(Boolean).join(' • ');
 
         return `
@@ -1893,15 +1902,15 @@
             <div class="hist-top">
               <div>
                 <span class="seq-badge">#${seqIndex + 1}</span>
-                ${item.ref ? `<span class="hist-ref">${item.ref}</span>` : ''}
+                ${item.ref ? `<span class="hist-ref">${escapeHtml(item.ref)}</span>` : ''}
                 ${item.isTest ? `<span class="test-tag">${isAr ? 'اختبار' : 'TEST'}</span>` : ''}
                 ${isNearExpiry ? `<span class="warn-tag">قرب الانتهاء</span>` : ''}
-                <div class="history-title">${item.serviceTitle}</div>
-                ${item.clientName ? `<div class="history-payer">${item.partyRole || (isAr ? 'صاحب العلاقة' : 'Applicant')}: ${item.clientName}</div>` : ''}
+                <div class="history-title">${escapeHtml(item.serviceTitle)}</div>
+                ${item.clientName ? `<div class="history-payer">${escapeHtml(item.partyRole || (isAr ? 'صاحب العلاقة' : 'Applicant'))}: ${escapeHtml(item.clientName)}</div>` : ''}
               </div>
               <span class="status-pill ${stClass}">${stLabel}</span>
             </div>
-            <div class="history-meta">${amtDisplay} • ${item.date || ''}${expiryText}${extraMeta ? `<br>${extraMeta}` : ''}</div>
+            <div class="history-meta">${amtDisplay} • ${escapeHtml(item.date || '')}${expiryText}${extraMeta ? `<br>${extraMeta}` : ''}</div>
             <div class="hist-actions">
               <button class="btn-sm" onclick="copyHistoryLink(${idx})">نسخ الرابط 📋</button>
               <button class="btn-sm" onclick="shareWhatsApp(JSON.parse(localStorage.getItem('${HISTORY_STORAGE_KEY}'))[${idx}])">واتساب 💬</button>
@@ -2052,7 +2061,7 @@
         <html lang="${lang}" dir="${dir}">
         <head>
           <meta charset="UTF-8">
-          <title>${isEn ? 'Payment Receipt' : 'إيصال استلام رسمي'} - ${item.ref || 'AKH'}</title>
+          <title>${isEn ? 'Payment Receipt' : 'إيصال استلام رسمي'} - ${escapeHtml(item.ref || 'AKH')}</title>
           <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
           <style>
             body { font-family: 'Cairo', sans-serif; color: #0b1c36; padding: 30px; max-width: 780px; margin: 0 auto; line-height: 1.8; }
@@ -2085,20 +2094,20 @@
           </div>
           <div class="doc-title">${isEn ? 'OFFICIAL PAYMENT RECEIPT' : 'إيصال استلام مالي رسمي'}</div>
           <table>
-            <tr><th>${isEn ? 'Reference Number' : 'الرقم المرجعي'}</th><td style="font-family:monospace; font-weight:800;">${item.ref || ''}</td></tr>
-            ${item.clientName ? `<tr><th>${item.partyRole || (isEn ? 'Applicant / Payer' : 'اسم صاحب العلاقة')}</th><td>${item.clientName}</td></tr>` : ''}
-            ${item.matterRef ? `<tr><th>${isEn ? 'Due Number' : 'رقم الاستحقاق'}</th><td>${item.matterRef}</td></tr>` : ''}
-            ${item.requestKind ? `<tr><th>${isEn ? 'Purpose' : 'نوع البيان أو الغرض'}</th><td>${item.requestKind}</td></tr>` : ''}
-            ${item.transferRef ? `<tr><th>${isEn ? 'Transfer / Receipt Ref' : 'رقم الوصل / الحوالة'}</th><td>${item.transferRef}</td></tr>` : ''}
-            <tr><th>${isEn ? 'Subject / Service' : 'موضوع الخدمة أو الطلب'}</th><td>${svcText}</td></tr>
-            <tr><th>${isEn ? 'Amount' : 'المبلغ'}</th><td style="font-weight:800;">${amtStr}</td></tr>
+            <tr><th>${isEn ? 'Reference Number' : 'الرقم المرجعي'}</th><td style="font-family:monospace; font-weight:800;">${escapeHtml(item.ref || '')}</td></tr>
+            ${item.clientName ? `<tr><th>${escapeHtml(item.partyRole || (isEn ? 'Applicant / Payer' : 'اسم صاحب العلاقة'))}</th><td>${escapeHtml(item.clientName)}</td></tr>` : ''}
+            ${item.matterRef ? `<tr><th>${isEn ? 'Due Number' : 'رقم الاستحقاق'}</th><td>${escapeHtml(item.matterRef)}</td></tr>` : ''}
+            ${item.requestKind ? `<tr><th>${isEn ? 'Purpose' : 'نوع البيان أو الغرض'}</th><td>${escapeHtml(item.requestKind)}</td></tr>` : ''}
+            ${item.transferRef ? `<tr><th>${isEn ? 'Transfer / Receipt Ref' : 'رقم الوصل / الحوالة'}</th><td>${escapeHtml(item.transferRef)}</td></tr>` : ''}
+            <tr><th>${isEn ? 'Subject / Service' : 'موضوع الخدمة أو الطلب'}</th><td>${escapeHtml(svcText)}</td></tr>
+            <tr><th>${isEn ? 'Amount' : 'المبلغ'}</th><td style="font-weight:800;">${escapeHtml(amtStr)}</td></tr>
             ${item.currency === 'USD' ? `<tr><th>${isEn ? 'Exchange Rate' : 'سعر الصرف'}</th><td>${Number(item.rate || 1510).toLocaleString('en-US')} IQD / USD</td></tr>` : ''}
-            <tr><th>${isEn ? 'Status' : 'الحالة'}</th><td>${item.status || 'pending'}</td></tr>
-            ${item.paymentMethod ? `<tr><th>${isEn ? 'Payment Method' : 'وسيلة الدفع'}</th><td>${item.paymentMethod}</td></tr>` : ''}
-            ${item.appointment ? `<tr><th>${isEn ? 'Appointment' : 'الموعد المثبت'}</th><td>${item.appointment}</td></tr>` : ''}
-            <tr><th>${isEn ? 'Issue Date' : 'تاريخ الإصدار'}</th><td>${item.date || ''}</td></tr>
+            <tr><th>${isEn ? 'Status' : 'الحالة'}</th><td>${escapeHtml(item.status || 'pending')}</td></tr>
+            ${item.paymentMethod ? `<tr><th>${isEn ? 'Payment Method' : 'وسيلة الدفع'}</th><td>${escapeHtml(item.paymentMethod)}</td></tr>` : ''}
+            ${item.appointment ? `<tr><th>${isEn ? 'Appointment' : 'الموعد المثبت'}</th><td>${escapeHtml(item.appointment)}</td></tr>` : ''}
+            <tr><th>${isEn ? 'Issue Date' : 'تاريخ الإصدار'}</th><td>${escapeHtml(item.date || '')}</td></tr>
           </table>
-          <div class="footer-note">${footer}</div>
+          <div class="footer-note">${escapeHtml(footer)}</div>
         </body>
         </html>
       `);
@@ -2135,7 +2144,7 @@
         <html lang="${lang}" dir="${dir}">
         <head>
           <meta charset="UTF-8">
-          <title>${isEn ? 'Consent & Payment Report' : 'تقرير توثيق السداد والموافقة'} - ${item.ref || 'AKH'}</title>
+          <title>${isEn ? 'Consent & Payment Report' : 'تقرير توثيق السداد والموافقة'} - ${escapeHtml(item.ref || 'AKH')}</title>
           <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
           <style>
             body { font-family: 'Cairo', sans-serif; color: #0b1c36; padding: 30px; max-width: 800px; margin: 0 auto; line-height: 1.8; }
@@ -2172,16 +2181,16 @@
           <div class="doc-title">${isEn ? 'PAYMENT & ELECTRONIC POLICY CONSENT REPORT' : 'وثيقة توثيق إشعار السداد والموافقة الإلكترونية المسبقة'}</div>
 
           <table>
-            <tr><th>${isEn ? 'Reference Number' : 'الرقم المرجعي للمعاملة'}</th><td style="font-family:monospace; font-weight:800;">${item.ref || ''}</td></tr>
-            <tr><th>${item.partyRole || (isEn ? 'Applicant / Payer' : 'اسم صاحب العلاقة')}</th><td>${item.clientName || (isEn ? 'Not specified' : 'غير مذكور في الإشعار')}</td></tr>
-            <tr><th>${isEn ? 'Subject / Service' : 'موضوع الخدمة أو الطلب'}</th><td>${svcText}</td></tr>
-            ${item.notes ? `<tr><th>${isEn ? 'Details' : 'تفاصيل إضافية'}</th><td>${item.notes}</td></tr>` : ''}
-            <tr><th>${isEn ? 'Amount Due' : 'المبلغ المستحق'}</th><td style="font-weight:800;">${amtStr}</td></tr>
+            <tr><th>${isEn ? 'Reference Number' : 'الرقم المرجعي للمعاملة'}</th><td style="font-family:monospace; font-weight:800;">${escapeHtml(item.ref || '')}</td></tr>
+            <tr><th>${escapeHtml(item.partyRole || (isEn ? 'Applicant / Payer' : 'اسم صاحب العلاقة'))}</th><td>${escapeHtml(item.clientName || (isEn ? 'Not specified' : 'غير مذكور في الإشعار'))}</td></tr>
+            <tr><th>${isEn ? 'Subject / Service' : 'موضوع الخدمة أو الطلب'}</th><td>${escapeHtml(svcText)}</td></tr>
+            ${item.notes ? `<tr><th>${isEn ? 'Details' : 'تفاصيل إضافية'}</th><td>${escapeHtml(item.notes)}</td></tr>` : ''}
+            <tr><th>${isEn ? 'Amount Due' : 'المبلغ المستحق'}</th><td style="font-weight:800;">${escapeHtml(amtStr)}</td></tr>
             ${item.currency === 'USD' ? `<tr><th>${isEn ? 'Exchange Rate' : 'سعر الصرف المعتمد'}</th><td>${Number(item.rate || 1510).toLocaleString('en-US')} IQD / USD</td></tr>` : ''}
-            <tr><th>${isEn ? 'Issue Date' : 'تاريخ إصدار الإشعار'}</th><td>${item.date || ''}</td></tr>
+            <tr><th>${isEn ? 'Issue Date' : 'تاريخ إصدار الإشعار'}</th><td>${escapeHtml(item.date || '')}</td></tr>
             <tr><th>${isEn ? 'Policy Consent Status' : 'حالة الموافقة على السياسات'}</th><td>${consent ? (isEn ? '✅ Explicit electronic consent recorded before payment' : '✅ تم الإقرار والموافقة الإلكترونية الصريحة قبل الدفع') : (isEn ? '⏳ Pending consent signal or already settled' : '⏳ بانتظار تسجيل إشارة الموافقة أو مدفوع مسبقاً')}</td></tr>
-            ${consent ? `<tr><th>${isEn ? 'Consent Timestamp' : 'توقيت الموافقة الدقيق'}</th><td style="direction:ltr; text-align:start;">${consent.localTime} (${consent.timestamp})</td></tr>` : ''}
-            ${consent && consent.ip ? `<tr><th>IP Address</th><td style="direction:ltr; text-align:start; font-family:monospace;">${consent.ip}</td></tr>` : ''}
+            ${consent ? `<tr><th>${isEn ? 'Consent Timestamp' : 'توقيت الموافقة الدقيق'}</th><td style="direction:ltr; text-align:start;">${escapeHtml(consent.localTime || '')} (${escapeHtml(consent.timestamp || '')})</td></tr>` : ''}
+            ${consent && consent.ip ? `<tr><th>IP Address</th><td style="direction:ltr; text-align:start; font-family:monospace;">${escapeHtml(consent.ip)}</td></tr>` : ''}
           </table>
 
           <div class="legal-box">
@@ -2195,7 +2204,7 @@
             <div>${isEn ? 'Report Date:' : 'تاريخ استخراج الوثيقة:'} ${new Date().toLocaleDateString(isEn ? 'en-US' : 'ar-IQ')}</div>
             <div>${platformTitle}<br><span style="font-size:12px; color:#64748b;">${isEn ? 'Official Electronic Record' : 'سجل التوثيق الإلكتروني المعتمد'}</span></div>
           </div>
-          <div class="footer-note">${footer}</div>
+          <div class="footer-note">${escapeHtml(footer)}</div>
         </body>
         </html>
       `);
@@ -2263,7 +2272,7 @@
         <html lang="${lang}" dir="${dir}">
         <head>
           <meta charset="UTF-8">
-          <title>${isEn ? 'Service Execution Report' : 'محضر إثبات تنفيذ الخدمة'} - ${item.ref || 'AKH'}</title>
+          <title>${isEn ? 'Service Execution Report' : 'محضر إثبات تنفيذ الخدمة'} - ${escapeHtml(item.ref || 'AKH')}</title>
           <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
           <style>
             body { font-family: 'Cairo', sans-serif; color: #0b1c36; padding: 30px; max-width: 800px; margin: 0 auto; line-height: 1.8; }
@@ -2299,14 +2308,14 @@
           <div class="doc-title">${isEn ? 'SERVICE EXECUTION & HANDOVER REPORT' : 'محضر إثبات تقديم الخدمة وتسليم المخرجات'}</div>
 
           <table>
-            <tr><th>${isEn ? 'Invoice Reference' : 'الرقم المرجعي للفاتورة'}</th><td style="font-family:monospace; font-weight:800;">${item.ref || ''}</td></tr>
-            <tr><th>${item.partyRole || (isEn ? 'Applicant / Payer' : 'اسم صاحب العلاقة')}</th><td>${item.clientName || (isEn ? 'Not specified' : 'غير مذكور')}</td></tr>
-            <tr><th>${isEn ? 'Subject / Service' : 'موضوع الخدمة أو الطلب'}</th><td>${isEn ? (item.serviceTitleEn || item.serviceTitle) : (item.serviceTitleAr || item.serviceTitle)}</td></tr>
-            <tr><th>${isEn ? 'Date' : 'تاريخ المعاملة'}</th><td>${item.date || ''}</td></tr>
+            <tr><th>${isEn ? 'Invoice Reference' : 'الرقم المرجعي للفاتورة'}</th><td style="font-family:monospace; font-weight:800;">${escapeHtml(item.ref || '')}</td></tr>
+            <tr><th>${escapeHtml(item.partyRole || (isEn ? 'Applicant / Payer' : 'اسم صاحب العلاقة'))}</th><td>${escapeHtml(item.clientName || (isEn ? 'Not specified' : 'غير مذكور'))}</td></tr>
+            <tr><th>${isEn ? 'Subject / Service' : 'موضوع الخدمة أو الطلب'}</th><td>${escapeHtml(isEn ? (item.serviceTitleEn || item.serviceTitle) : (item.serviceTitleAr || item.serviceTitle))}</td></tr>
+            <tr><th>${isEn ? 'Date' : 'تاريخ المعاملة'}</th><td>${escapeHtml(item.date || '')}</td></tr>
           </table>
 
           <h4 style="margin-bottom:8px;">${isEn ? 'Execution & Delivery Statement:' : 'بيان تنفيذ الخدمة والتسليم:'}</h4>
-          <div class="summary-box">${summary}</div>
+          <div class="summary-box">${escapeHtml(summary)}</div>
 
           ${proofImageDataUrls.length ? `<h4 style="margin-bottom:10px;">${isEn ? 'Supporting Attachments:' : 'المرفقات والوثائق الإلكترونية الداعمة:'}</h4>${imagesHtml}` : ''}
 
@@ -2314,7 +2323,7 @@
             <div>${isEn ? 'Report Date:' : 'تاريخ تحرير المحضر:'} ${new Date().toLocaleDateString(isEn ? 'en-US' : 'ar-IQ')}</div>
             <div>${platformTitle}</div>
           </div>
-          <div class="footer-note">${footer}</div>
+          <div class="footer-note">${escapeHtml(footer)}</div>
         </body>
         </html>
       `);
