@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow, noarchive">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="بوابة الدفع الإلكتروني — مكتب المحامي علي كاظم الهاشمي — منصة المدفوعات">
-  <meta property="og:description" content="منصة المدفوعات والفواتير القانونية لمكتب المحامي علي كاظم الهاشمي — للمحاماة والخدمات القانونية">
+  <meta property="og:title" content="منصة المدفوعات">
+  <meta property="og:description" content="منصة المدفوعات">
   <meta property="og:image" content="https://akjassem.com/og-logo.jpg">
   <meta property="og:image:secure_url" content="https://akjassem.com/og-logo.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://akjassem.com/og-logo.jpg">
-  <title>منصة المدفوعات | مكتب المحامي علي كاظم الهاشمي</title>
+  <title>منصة المدفوعات</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -73,8 +73,7 @@
     }
     .sub-title .slash-red { color: #d32f2f; font-weight: 800; }
     .est { font-size: 11px; color: #94a3b8; margin-top: 3px; direction: ltr; letter-spacing: 1px; }
-    .platform-heading { font-size: 21px; font-weight: 800; color: #0b1c36; margin-top: 12px; }
-    .office-subtitle { font-size: 14.5px; font-weight: 700; color: #475569; margin-top: 4px; }
+    .platform-heading { font-size: 22px; font-weight: 800; color: #0b1c36; margin-top: 12px; }
 
     .card {
       background: #f8fafc;
@@ -242,24 +241,6 @@
       font-weight: 700;
       font-family: monospace;
     }
-    .pay-now-colored-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #c59b27, #e0b63c);
-      color: #0b1c36;
-      font-weight: 800;
-      font-size: 14px;
-      text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      border: 1.5px solid #0b1c36;
-      box-shadow: 0 4px 12px rgba(197, 155, 39, 0.3);
-      margin-top: 8px;
-    }
-    .pay-now-colored-link:hover {
-      background: linear-gradient(135deg, #b0881e, #c59b27);
-    }
 
     .history-item {
       background: #ffffff;
@@ -409,7 +390,6 @@
       <div class="sub-title"><span class="slash-red">/</span> LAW OFFICE</div>
       <div class="est">EST. 2014</div>
       <div class="platform-heading" id="t-platform">منصة المدفوعات</div>
-      <div class="office-subtitle" id="t-office">مكتب المحامي علي كاظم الهاشمي — للمحاماة والخدمات القانونية</div>
     </div>
 
     <!-- شاشة تأسيس المنصة لأول مرة -->
@@ -666,10 +646,6 @@
               <textarea id="live-message-editor" rows="12"></textarea>
             </div>
 
-            <div style="margin-bottom:12px;">
-              <a id="pay-now-colored-btn" href="#" target="_blank" class="pay-now-colored-link">دفع الآن</a>
-            </div>
-
             <div style="display: flex; gap: 8px; flex-wrap: wrap;">
               <button class="btn" style="flex: 1;" id="t-copy-btn" onclick="copyGeneratedLink()">نسخ الرابط 📋</button>
               <button class="btn-sm" style="flex: 1; padding: 12px;" id="t-copy-msg-btn" onclick="copyFormattedMessage()">نسخ الرسالة ✉️</button>
@@ -690,11 +666,11 @@
         <div id="msg-tpl-body" class="hidden">
           <div class="form-group">
             <label id="t-wa-tpl-lbl">الرسالة الترحيبية وربط طلب الحجز:</label>
-            <input type="text" id="wa-template-input" value="صدرت لك فاتورة من مكتب المحامي علي كاظم الهاشمي بمناسبة استلام طلبكم المثبت في منصة حجوزات المكتب بنجاح.">
+            <input type="text" id="wa-template-input" value="صدرت لك فاتورة بمناسبة استلام طلبكم المثبت في منصة الحجوزات بنجاح.">
           </div>
           <div class="form-group">
             <label id="t-closing-note-lbl">العبارة الختامية والموقع الإلكتروني:</label>
-            <input type="text" id="closing-note-input" value="شكراً لاختياركم مكتبنا، مع تحياتنا مكتب المحامي علي كاظم الهاشمي — www.akjassem.com">
+            <input type="text" id="closing-note-input" value="شكراً لاختياركم — www.akjassem.com">
           </div>
           <div style="display:flex; gap:8px; flex-wrap:wrap;">
             <button type="button" class="btn-sm btn-paid" id="t-save-wa-btn" onclick="saveWaTemplate()">حفظ ✓</button>
@@ -707,7 +683,7 @@
       <!-- قسم الاستفسار والمساعدة وتذييل المكتب مع أزرار التحكم -->
       <div class="card">
         <div class="card-title">
-          <span id="t-support-title">☎️ الاستفسار والمساعدة وبيانات المكتب</span>
+          <span id="t-support-title">☎️ الاستفسار والمساعدة وبيانات التواصل</span>
           <button type="button" class="btn-sm" onclick="toggleSection('support-body')">إظهار / إخفاء</button>
         </div>
         <div id="support-body" class="hidden">
@@ -721,13 +697,13 @@
               <input type="text" id="support-phone-input" value="+9647702956021" dir="ltr">
             </div>
             <div class="form-group">
-              <label>عنوان المكتب المعتمد:</label>
+              <label>العنوان المعتمد:</label>
               <input type="text" id="office-address-input" value="العراق، بغداد، زيونة، قرب دار الازياء العراقية">
             </div>
           </div>
           <div class="form-group">
-            <label id="t-footer-tpl-lbl">توقيع أو تذييل إضافي للتقارير والإيصالات (اختياري):</label>
-            <input type="text" id="report-footer-input" placeholder="شكراً لاختياركم مكتبنا، مع تحياتنا مكتب المحامي علي كاظم الهاشمي — www.akjassem.com">
+            <label id="t-footer-tpl-lbl">تذييل إضافي للتقارير والإيصالات (اختياري):</label>
+            <input type="text" id="report-footer-input" placeholder="شكراً لاختياركم — www.akjassem.com">
           </div>
           <div style="display:flex; gap:8px; flex-wrap:wrap;">
             <button type="button" class="btn-sm btn-paid" onclick="saveSupportSettings()">حفظ ✓</button>
@@ -862,8 +838,8 @@
     const CUSTOM_TPL_KEY = 'akh_custom_templates_v1';
     const DEFAULTS_KEY = 'akh_admin_defaults_v1';
 
-    const DEFAULT_WA_INTRO = 'صدرت لك فاتورة من مكتب المحامي علي كاظم الهاشمي بمناسبة استلام طلبكم المثبت في منصة حجوزات المكتب بنجاح.';
-    const DEFAULT_CLOSING_NOTE = 'شكراً لاختياركم مكتبنا، مع تحياتنا مكتب المحامي علي كاظم الهاشمي — www.akjassem.com';
+    const DEFAULT_WA_INTRO = 'صدرت لك فاتورة بمناسبة استلام طلبكم المثبت في منصة الحجوزات بنجاح.';
+    const DEFAULT_CLOSING_NOTE = 'شكراً لاختياركم — www.akjassem.com';
     const DEFAULT_SUPPORT_EMAIL = 'intake@akjassem.com';
     const DEFAULT_SUPPORT_PHONE = '+9647702956021';
     const DEFAULT_OFFICE_ADDRESS = 'العراق، بغداد، زيونة، قرب دار الازياء العراقية';
@@ -886,7 +862,7 @@
 
     function formatCopyableRef(refCode) {
       if (!refCode) return '';
-      return `\u2066\u200E${refCode}\u2069\n───────────────`;
+      return `\u2066\u200E${refCode}\u2069`;
     }
 
     window.addEventListener('DOMContentLoaded', () => {
@@ -1221,9 +1197,9 @@
       const em = (document.getElementById('support-email-input')?.value || DEFAULT_SUPPORT_EMAIL).trim();
       const ph = formatLtrPhone(document.getElementById('support-phone-input')?.value || DEFAULT_SUPPORT_PHONE);
       if (isEn) {
-        return `For inquiries or assistance, feel free to contact us via the billing email (${em}) or call/WhatsApp (${ph}).`;
+        return `For inquiries or assistance, contact us via the billing email (${em}) or call/WhatsApp (${ph}).`;
       }
-      return `في حال الاستفسار أو المساعدة، لا تتردد بالتواصل معنا عبر البريد الإلكتروني (${em}) المخصص لأغراض الفوترة أو الاتصال والمراسلة على الرقم (${ph}).`;
+      return `في حال الاستفسار أو المساعدة، تواصل معنا عبر البريد الإلكتروني (${em}) المخصص لأغراض الفوترة أو الاتصال والمراسلة على الرقم (${ph}).`;
     }
 
     function insertSupportIntoLiveEditor() {
@@ -1268,17 +1244,10 @@
       const isAr = adminLang === 'ar';
       document.documentElement.lang = adminLang;
       document.documentElement.dir = isAr ? 'rtl' : 'ltr';
-      document.title = isAr
-        ? 'منصة المدفوعات | مكتب المحامي علي كاظم الهاشمي'
-        : 'Payment Platform | Law Office Of Ali Kadhem Hashimi';
+      document.title = isAr ? 'منصة المدفوعات' : 'Payment Platform';
 
       document.getElementById('admin-lang-btn').textContent = isAr ? 'English' : 'العربية';
-      document.getElementById('t-platform').textContent = isAr
-        ? 'منصة المدفوعات'
-        : 'Payment Platform';
-      document.getElementById('t-office').textContent = isAr
-        ? 'مكتب المحامي علي كاظم الهاشمي — للمحاماة والخدمات القانونية'
-        : 'Law Office Of Ali Kadhem Hashimi — Advocacy & Legal Services';
+      document.getElementById('t-platform').textContent = isAr ? 'منصة المدفوعات' : 'Payment Platform';
       document.getElementById('t-locked-title').textContent = isAr ? '🔒 المنصة مقفلة' : '🔒 Platform Locked';
       document.getElementById('t-pin-lbl').textContent = isAr ? 'أدخل الرقم السري (PIN) لفتح لوحة الإدارة:' : 'Enter Platform PIN to unlock:';
       document.getElementById('t-unlock-btn').textContent = isAr ? 'فتح المنصة' : 'Unlock Platform';
@@ -1542,7 +1511,6 @@
 
         document.getElementById('generated-url').textContent = LAST_LINK;
         document.getElementById('live-message-editor').value = buildFormattedMessage(LAST_ENTRY);
-        document.getElementById('pay-now-colored-btn').href = LAST_LINK;
         document.getElementById('preview-btn').href = LAST_LINK;
         document.getElementById('result-box').style.display = 'block';
 
@@ -1560,7 +1528,6 @@
       const introLine = (document.getElementById('wa-template-input')?.value || '').trim() || DEFAULT_WA_INTRO;
       const closingLine = (document.getElementById('closing-note-input')?.value || '').trim() || DEFAULT_CLOSING_NOTE;
       const isEn = e && e.lang === 'en';
-      const officeName = isEn ? 'Law Office Of Ali Kadhem Hashimi' : 'مكتب المحامي علي كاظم الهاشمي';
       const amtStr = (e && e.currency === 'USD')
         ? `$${Number(e.origAmount).toLocaleString('en-US')} USD (${Number(e.amountIQD).toLocaleString('en-US')} IQD)`
         : (e ? `${Number(e.amountIQD).toLocaleString('en-US')} IQD` : '');
@@ -1568,11 +1535,11 @@
 
       if (isEn) {
         return [
-          `Your invoice has been issued by ${officeName} upon receiving your request confirmed in the booking platform of ${officeName} successfully.`,
+          `Your invoice has been issued upon receiving your request confirmed in the booking platform successfully.`,
           '',
           e && e.clientName ? `• ${e.partyRole || 'Applicant'}: ${e.clientName}` : null,
           e && e.ref ? `• Invoice Reference: ${formatCopyableRef(e.ref)}` : null,
-          e && e.matterRef ? `• Due / File Number: \u2066\u200E${e.matterRef}\u2069` : null,
+          e && e.matterRef ? `• Due Number: \u2066\u200E${e.matterRef}\u2069` : null,
           e && e.requestKind ? `• Purpose: ${e.requestKind}` : null,
           e && e.serviceTitle ? `• Subject: ${e.serviceTitle}` : null,
           e && e.notes ? `• Details: ${e.notes}` : null,
@@ -1583,9 +1550,7 @@
           '',
           getSupportBlockText(true),
           '',
-          `Thank you for choosing our office, with regards ${officeName} — www.akjassem.com`,
-          '',
-          `Pay Now: ${payUrl}`
+          `Thank you for choosing us — www.akjassem.com`
         ].filter(x => x !== null).join('\n');
       }
 
@@ -1605,9 +1570,7 @@
         '',
         getSupportBlockText(false),
         '',
-        closingLine,
-        '',
-        `دفع الآن: ${payUrl}`
+        closingLine
       ].filter(x => x !== null).join('\n');
     }
 
@@ -1647,8 +1610,8 @@
       const isEn = e && e.lang === 'en';
       const refPart = e && e.ref ? e.ref : '';
       const subject = encodeURIComponent(isEn
-        ? `Invoice Notice ${refPart} - Law Office Of Ali Kadhem Hashimi`
-        : `إشعار فاتورة ${refPart} - مكتب المحامي علي كاظم الهاشمي`);
+        ? `Invoice Notice ${refPart} - Payment Platform`
+        : `إشعار فاتورة ${refPart} - منصة المدفوعات`);
       const body = encodeURIComponent(getMessageForSend(customEntry));
       const to = e && e.clientEmail ? encodeURIComponent(e.clientEmail) : '';
       window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
@@ -1659,7 +1622,7 @@
       const e = list[idx];
       if (!e) return;
       const reminderText = [
-        `تذكير بسداد الفاتورة المرجعية (${e.ref}) - مكتب المحامي علي كاظم الهاشمي`,
+        `تذكير بسداد الفاتورة المرجعية (${e.ref}) - منصة المدفوعات`,
         '',
         e.clientName ? `• ${e.partyRole || 'صاحب العلاقة'}: ${e.clientName}` : null,
         `• البيان: ${e.serviceTitle}`,
@@ -1670,9 +1633,7 @@
         '',
         getSupportBlockText(false),
         '',
-        (document.getElementById('closing-note-input')?.value || DEFAULT_CLOSING_NOTE).trim(),
-        '',
-        `دفع الآن: ${e.link}`
+        (document.getElementById('closing-note-input')?.value || DEFAULT_CLOSING_NOTE).trim()
       ].filter(x => x !== null).join('\n');
       const cleanPhone = e.clientPhone ? String(e.clientPhone).replace(/[^\d]/g, '') : '';
       const url = cleanPhone ? `https://wa.me/${cleanPhone}?text=${encodeURIComponent(reminderText)}` : `https://wa.me/?text=${encodeURIComponent(reminderText)}`;
@@ -2078,8 +2039,7 @@
       const isEn = item.lang === 'en';
       const dir = isEn ? 'ltr' : 'rtl';
       const lang = isEn ? 'en' : 'ar';
-      const officeName = isEn ? 'Law Office Of Ali Kadhem Hashimi' : 'مكتب المحامي علي كاظم الهاشمي';
-      const subDesc = isEn ? 'Advocacy & Legal Services' : 'للمحاماة والخدمات القانونية';
+      const platformTitle = isEn ? 'Payment Platform' : 'منصة المدفوعات';
       const amtStr = (item.currency === 'USD' && item.origAmount)
         ? `$${Number(item.origAmount).toLocaleString('en-US')} USD (${Number(item.amountIQD).toLocaleString('en-US')} IQD)`
         : `${Number(item.amountIQD).toLocaleString('en-US')} IQD`;
@@ -2116,8 +2076,7 @@
           </div>
           <div class="header">
             <div>
-              <h2 style="font-size:20px; font-weight:800;">${officeName}</h2>
-              <div style="font-size:13px; color:#64748b;">${subDesc}</div>
+              <h2 style="font-size:20px; font-weight:800;">${platformTitle}</h2>
             </div>
             <div class="logo">
               <div class="logo-main">A<span class="k-red">K</span>H</div>
@@ -2128,7 +2087,7 @@
           <table>
             <tr><th>${isEn ? 'Reference Number' : 'الرقم المرجعي'}</th><td style="font-family:monospace; font-weight:800;">${item.ref || ''}</td></tr>
             ${item.clientName ? `<tr><th>${item.partyRole || (isEn ? 'Applicant / Payer' : 'اسم صاحب العلاقة')}</th><td>${item.clientName}</td></tr>` : ''}
-            ${item.matterRef ? `<tr><th>${isEn ? 'Due / File Number' : 'رقم الاستحقاق'}</th><td>${item.matterRef}</td></tr>` : ''}
+            ${item.matterRef ? `<tr><th>${isEn ? 'Due Number' : 'رقم الاستحقاق'}</th><td>${item.matterRef}</td></tr>` : ''}
             ${item.requestKind ? `<tr><th>${isEn ? 'Purpose' : 'نوع البيان أو الغرض'}</th><td>${item.requestKind}</td></tr>` : ''}
             ${item.transferRef ? `<tr><th>${isEn ? 'Transfer / Receipt Ref' : 'رقم الوصل / الحوالة'}</th><td>${item.transferRef}</td></tr>` : ''}
             <tr><th>${isEn ? 'Subject / Service' : 'موضوع الخدمة أو الطلب'}</th><td>${svcText}</td></tr>
@@ -2163,7 +2122,7 @@
       const isEn = item.lang === 'en';
       const dir = isEn ? 'ltr' : 'rtl';
       const lang = isEn ? 'en' : 'ar';
-      const officeName = isEn ? 'Law Office Of Ali Kadhem Hashimi' : 'مكتب المحامي علي كاظم الهاشمي';
+      const platformTitle = isEn ? 'Payment Platform' : 'منصة المدفوعات';
       const amtStr = (item.currency === 'USD' && item.origAmount)
         ? `$${Number(item.origAmount).toLocaleString('en-US')} USD (${Number(item.amountIQD).toLocaleString('en-US')} IQD)`
         : `${Number(item.amountIQD).toLocaleString('en-US')} IQD`;
@@ -2176,7 +2135,7 @@
         <html lang="${lang}" dir="${dir}">
         <head>
           <meta charset="UTF-8">
-          <title>${isEn ? 'Consent & Payment Report' : 'تقرير توثيق السداد والموافقة القانونية'} - ${item.ref || 'AKH'}</title>
+          <title>${isEn ? 'Consent & Payment Report' : 'تقرير توثيق السداد والموافقة'} - ${item.ref || 'AKH'}</title>
           <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
           <style>
             body { font-family: 'Cairo', sans-serif; color: #0b1c36; padding: 30px; max-width: 800px; margin: 0 auto; line-height: 1.8; }
@@ -2202,8 +2161,7 @@
           </div>
           <div class="header">
             <div>
-              <h2 style="font-size:20px; font-weight:800;">${officeName}</h2>
-              <div style="font-size:13px; color:#64748b;">${isEn ? 'Advocacy & Legal Services' : 'للمحاماة والخدمات القانونية'}</div>
+              <h2 style="font-size:20px; font-weight:800;">${platformTitle}</h2>
             </div>
             <div class="logo">
               <div class="logo-main">A<span class="k-red">K</span>H</div>
@@ -2228,14 +2186,14 @@
 
           <div class="legal-box">
             ${isEn
-              ? `<strong>Electronic Acknowledgment Summary:</strong><br>This electronic record issued by the payment platform of Law Office Of Ali Kadhem Hashimi (akjassem.com) confirms that the applicant reviewed and agreed to the applicable policies prior to proceeding to payment: (1) Legal Fees, Refund Policy & Electronic Payment Terms under the applicable Iraqi Advocacy Law, (2) Privacy Policy & Confidentiality of Information, and (3) Service Delivery & Work Handover Policy.`
-              : `<strong>خلاصة الإقرار القانوني الموثق إلكترونياً:</strong><br>يُثبت هذا السجل الإلكتروني الصادر عن منصة السداد التابعة لمكتب المحامي علي كاظم الهاشمي (akjassem.com) أن صاحب العلاقة قد اطّلع قبل الانتقال إلى بوابة الدفع الإلكتروني على كافة الضوابط والسياسات المعتمدة، وأقرّ صراحةً بالموافقة الكاملة عليها، وهي:<br>1. <strong>سياسة الأتعاب والاسترداد وشروط الدفع الإلكتروني</strong> (استحقاق الأتعاب المكتسبة وفق أحكام قانون المحاماة العراقي النافذ).<br>2. <strong>سياسة الخصوصية وسرية المعلومات</strong>.<br>3. <strong>سياسة تقديم الخدمات وتسليم الأعمال</strong>.`
+              ? `<strong>Electronic Acknowledgment Summary:</strong><br>This electronic record issued by the payment platform (akjassem.com) confirms that the applicant reviewed and agreed to the applicable policies prior to proceeding to payment: (1) Fees, Refund Policy & Electronic Payment Terms, (2) Privacy Policy & Confidentiality of Information, and (3) Service Delivery & Work Handover Policy.`
+              : `<strong>خلاصة الإقرار الموثق إلكترونياً:</strong><br>يُثبت هذا السجل الإلكتروني الصادر عن منصة المدفوعات (akjassem.com) أن صاحب العلاقة قد اطّلع قبل الانتقال إلى بوابة الدفع الإلكتروني على كافة الضوابط والسياسات المعتمدة، وأقرّ صراحةً بالموافقة الكاملة عليها، وهي:<br>1. <strong>سياسة الأتعاب والاسترداد وشروط الدفع الإلكتروني</strong>.<br>2. <strong>سياسة الخصوصية وسرية المعلومات</strong>.<br>3. <strong>سياسة تقديم الخدمات وتسليم الأعمال</strong>.`
             }
           </div>
 
           <div class="stamp">
             <div>${isEn ? 'Report Date:' : 'تاريخ استخراج الوثيقة:'} ${new Date().toLocaleDateString(isEn ? 'en-US' : 'ar-IQ')}</div>
-            <div>${officeName}<br><span style="font-size:12px; color:#64748b;">${isEn ? 'Official Electronic Record' : 'سجل التوثيق الإلكتروني المعتمد'}</span></div>
+            <div>${platformTitle}<br><span style="font-size:12px; color:#64748b;">${isEn ? 'Official Electronic Record' : 'سجل التوثيق الإلكتروني المعتمد'}</span></div>
           </div>
           <div class="footer-note">${footer}</div>
         </body>
@@ -2286,10 +2244,10 @@
       const isEn = item.lang === 'en';
       const dir = isEn ? 'ltr' : 'rtl';
       const lang = isEn ? 'en' : 'ar';
-      const officeName = isEn ? 'Law Office Of Ali Kadhem Hashimi' : 'مكتب المحامي علي كاظم الهاشمي';
+      const platformTitle = isEn ? 'Payment Platform' : 'منصة المدفوعات';
       const summary = document.getElementById('proof-summary').value.trim() || (isEn
-        ? 'The legal service was executed and deliverables were handed over in accordance with applicable standards.'
-        : 'تم تنفيذ الخدمة القانونية وتسليم المخرجات وفق الأصول المعتمدة.');
+        ? 'The service was executed and deliverables were handed over in accordance with applicable standards.'
+        : 'تم تنفيذ الخدمة وتسليم المخرجات وفق الأصول المعتمدة.');
       const footer = getFooterText(isEn);
 
       const imagesHtml = proofImageDataUrls.map((src, i) => `
@@ -2330,8 +2288,7 @@
           </div>
           <div class="header">
             <div>
-              <h2 style="font-size:20px; font-weight:800;">${officeName}</h2>
-              <div style="font-size:13px; color:#64748b;">${isEn ? 'Advocacy & Legal Services' : 'للمحاماة والخدمات القانونية'}</div>
+              <h2 style="font-size:20px; font-weight:800;">${platformTitle}</h2>
             </div>
             <div class="logo">
               <div class="logo-main">A<span class="k-red">K</span>H</div>
@@ -2339,7 +2296,7 @@
             </div>
           </div>
 
-          <div class="doc-title">${isEn ? 'SERVICE EXECUTION & HANDOVER REPORT' : 'محضر إثبات تقديم الخدمة القانونية وتسليم المخرجات'}</div>
+          <div class="doc-title">${isEn ? 'SERVICE EXECUTION & HANDOVER REPORT' : 'محضر إثبات تقديم الخدمة وتسليم المخرجات'}</div>
 
           <table>
             <tr><th>${isEn ? 'Invoice Reference' : 'الرقم المرجعي للفاتورة'}</th><td style="font-family:monospace; font-weight:800;">${item.ref || ''}</td></tr>
@@ -2355,7 +2312,7 @@
 
           <div style="margin-top:30px; display:flex; justify-content:space-between; font-size:13.5px; font-weight:700;">
             <div>${isEn ? 'Report Date:' : 'تاريخ تحرير المحضر:'} ${new Date().toLocaleDateString(isEn ? 'en-US' : 'ar-IQ')}</div>
-            <div>${officeName}</div>
+            <div>${platformTitle}</div>
           </div>
           <div class="footer-note">${footer}</div>
         </body>
