@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="portalHtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="منصة إدارة ومتابعة المكتب | مكتب المحامي علي كاظم الهاشمي">
+  <meta property="og:image" content="https://akjassem.com/og-logo.jpg">
+  <title>منصة إدارة ومتابعة المكتب | مكتب المحامي علي كاظم الهاشمي</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Cairo', system-ui, -apple-system, sans-serif;
+      background-color: #f4f6f9;
+      color: #0b1c36;
+      min-height: 100vh;
+      padding: 20px 14px 40px;
+    }
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 16px;
+      border-top: 6px solid #c59b27;
+      box-shadow: 0 12px 36px rgba(11, 28, 54, 0.08);
+      padding: 28px 24px;
+    }
+    .brand-header {
+      text-align: center;
+      padding-bottom: 18px;
+      border-bottom: 1px solid #e2e8f0;
+      margin-bottom: 20px;
+    }
+    .logo-text {
+      font-size: 40px;
+      font-weight: 900;
+      color: #0b1c36;
+      letter-spacing: 2px;
+      line-height: 1.05;
+      direction: ltr;
+    }
+    .logo-text .k-red { color: #d32f2f; }
+    .sub-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #64748b;
+      letter-spacing: 3px;
+      margin-top: 6px;
+      direction: ltr;
+    }
+    .sub-title .slash-red { color: #d32f2f; font-weight: 800; }
+    .est { font-size: 11px; color: #94a3b8; margin-top: 2px; direction: ltr; letter-spacing: 1px; }
+    .office-heading { font-size: 20px; font-weight: 800; color: #0b1c36; margin-top: 10px; }
+    .system-subtitle { font-size: 13.5px; font-weight: 700; color: #92400e; margin-top: 2px; }
+
+    .card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+    .card-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #0b1c36;
+      margin-bottom: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .top-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+      background: #0b1c36;
+      color: #ffffff;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border-bottom: 3px solid #c59b27;
+    }
+    .badge-secure {
+      background: rgba(255,255,255,0.12);
+      color: #fde68a;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 12.5px;
+      font-weight: 700;
+    }
+    .toolbar-actions { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    @media (max-width: 900px) { .stats-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 550px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    .stat-box {
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 12px 10px;
+      text-align: center;
+    }
+    .stat-label { font-size: 12px; color: #64748b; font-weight: 700; }
+    .stat-val { font-size: 16px; font-weight: 900; color: #0b1c36; margin-top: 4px; }
+
+    .nav-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 12px;
+    }
+    .nav-tab {
+      background: #f8fafc;
+      border: 1.5px solid #cbd5e1;
+      color: #334155;
+      padding: 9px 16px;
+      border-radius: 9px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 13.5px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .nav-tab.active {
+      background: #0b1c36;
+      color: #ffffff;
+      border-color: #0b1c36;
+      border-bottom: 3px solid #c59b27;
+    }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    @media (max-width: 780px) { .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 560px) { .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; } }
+
+    .form-group { margin-bottom: 12px; }
+    label { display: block; font-size: 13px; font-weight: 700; color: #1e293b; margin-bottom: 5px; }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 8px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 13.5px;
+      background: #ffffff;
+      color: #0b1c36;
+    }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: #c59b27; }
+
+    .btn {
+      padding: 11px 18px;
+      background: #0b1c36;
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .btn:hover { background: #162e54; }
+    .btn-gold { background: #c59b27; color: #0b1c36; }
+    .btn-gold:hover { background: #b0881e; }
+
+    .btn-sm {
+      padding: 6px 11px;
+      border-radius: 7px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1.5px solid #cbd5e1;
+      background: #ffffff;
+      color: #0b1c36;
+    }
+    .btn-sm:hover { border-color: #c59b27; }
+    .btn-dark-bar { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.28); color: #ffffff; }
+    .btn-dark-bar:hover { background: #c59b27; color: #0b1c36; border-color: #c59b27; }
+    .btn-green { background: #f0fdf4; border-color: #86efac; color: #166534; }
+    .btn-red { background: #fef2f2; border-color: #fecaca; color: #991b1b; }
+    .btn-blue { background: #eff6ff; border-color: #bfdbfe; color: #1e40af; }
+
+    .record-card {
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 12px;
+      transition: border-color 0.2s;
+    }
+    .record-card:hover { border-color: #c59b27; }
+    .rec-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .ref-badge {
+      font-family: monospace;
+      font-size: 12.5px;
+      font-weight: 800;
+      background: #0b1c36;
+      color: #c59b27;
+      padding: 3px 9px;
+      border-radius: 6px;
+      direction: ltr;
+      display: inline-block;
+    }
+    .type-badge {
+      font-size: 12px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 6px;
+      background: #f1f5f9;
+      color: #0b1c36;
+      border: 1px solid #cbd5e1;
+    }
+    .stage-pill {
+      font-size: 12px;
+      font-weight: 800;
+      padding: 3px 11px;
+      border-radius: 20px;
+    }
+    .st-consult { background: #e0f2fe; color: #075985; }
+    .st-signing { background: #fef3c7; color: #92400e; }
+    .st-active { background: #dcfce7; color: #166534; }
+    .st-waiting { background: #ffedd5; color: #9a3412; }
+    .st-completed { background: #d1fae5; color: #065f46; }
+    .st-closed { background: #f1f5f9; color: #475569; }
+    .st-open-cmp { background: #fee2e2; color: #991b1b; }
+
+    .rec-title { font-size: 15.5px; font-weight: 800; color: #0b1c36; margin: 4px 0; }
+    .rec-meta { font-size: 13px; color: #475569; line-height: 1.7; margin-bottom: 10px; }
+    .fin-bar {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 9px 12px;
+      font-size: 12.5px;
+      font-weight: 700;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 10px;
+    }
+    .rec-actions { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .hidden { display: none !important; }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(11, 28, 54, 0.75);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      padding: 16px;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-card {
+      background: #ffffff;
+      border-top: 5px solid #c59b27;
+      border-radius: 14px;
+      width: 100%;
+      max-width: 720px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 22px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.35);
+    }
+    .modal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 10px;
+      margin-bottom: 14px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .sub-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0;
+      font-size: 12.5px;
+    }
+    .sub-table th, .sub-table td {
+      border: 1px solid #cbd5e1;
+      padding: 7px 9px;
+      text-align: start;
+    }
+    .sub-table th { background: #f1f5f9; color: #0b1c36; }
+
+    .toast-banner {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      inset-inline-end: 20px;
+      background: #0b1c36;
+      color: #ffffff;
+      border-bottom: 3px solid #c59b27;
+      padding: 11px 18px;
+      border-radius: 10px;
+      font-size: 13.5px;
+      font-weight: 700;
+      z-index: 1500;
+      box-shadow: 0 10px 25px rgba(11, 28, 54, 0.25);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="brand-header">
+      <div class="logo-text">A<span class="k-red">K</span>H</div>
+      <div class="sub-title"><span class="slash-red">/</span> LAW OFFICE</div>
+      <div class="est">EST. 2014</div>
+      <div class="office-heading">مكتب المحامي علي كاظم الهاشمي</div>
+      <div class="system-subtitle">منظومة إدارة ومتابعة الملفات القانونية وضبط الجودة (ISO)</div>
+    </div>
+
+    <!-- شاشة التأسيس الأولي -->
+    <div id="setup-view" class="card hidden" style="max-width:480px; margin:20px auto;">
+      <div class="card-title">🔐 تأسيس منظومة المكتب (لأول مرة)</div>
+      <p style="font-size:13px; color:#475569; margin-bottom:14px;">
+        هذا النظام مستقل تماماً عن منصة المدفوعات والحجوزات، ومحمى برقم سري خاص لإدارة الموكلين، الاستشارات، الدعاوى، المعاملات، وتجزئة الأتعاب.
+      </p>
+      <div class="form-group">
+        <label>اختر الرقم السري للدخول (PIN - 4 أرقام أو أكثر):</label>
+        <input type="password" id="setup-pin" placeholder="••••••">
+      </div>
+      <button class="btn btn-gold" style="width:100%;" onclick="setupPortalVault()">تفعيل وحفظ الرقم السري</button>
+    </div>
+
+    <!-- شاشة القفل -->
+    <div id="unlock-view" class="card hidden" style="max-width:440px; margin:20px auto;">
+      <div class="card-title">🔒 المنظومة مقفلة</div>
+      <div class="form-group">
+        <label>أدخل الرقم السري (PIN) لفتح سجلات المكتب:</label>
+        <input type="password" id="unlock-pin" placeholder="••••••" onkeypress="if(event.key==='Enter') unlockPortalVault()">
+      </div>
+      <button class="btn" style="width:100%;" onclick="unlockPortalVault()">دخول إلى المنظومة</button>
+    </div>
+
+    <!-- لوحة الإدارة الرئيسية -->
+    <div id="main-dashboard" class="hidden">
+      <div class="top-toolbar">
+        <span class="badge-secure">🟢 السجل نشط ومؤمّن — أرشفة مفتوحة المدة</span>
+        <div class="toolbar-actions">
+          <button class="btn-sm btn-dark-bar" onclick="exportFullBackupJSON()">تصدير نسخة احتياطية JSON</button>
+          <button class="btn-sm btn-dark-bar" onclick="exportMattersCSV()">تصدير كشف CSV</button>
+          <label class="btn-sm btn-dark-bar" style="cursor:pointer; margin:0;">
+            استيراد نسخة
+            <input type="file" accept=".json" style="display:none;" onchange="importFullBackupJSON(event)">
+          </label>
+          <button class="btn-sm btn-dark-bar" onclick="printAuditSummary()">🖨️ كشف التدقيق والجودة</button>
+          <button class="btn-sm btn-dark-bar" onclick="lockPortalVault()">قفل 🔒</button>
+        </div>
+      </div>
+
+      <!-- الإحصائيات الفورية -->
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="stat-label">الموكلون الدائمون</div>
+          <div class="stat-val" id="stat-clients">0</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">قيد الاستشارة / التوقيع</div>
+          <div class="stat-val" id="stat-intake">0</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">ملفات جارية بالعمل</div>
+          <div class="stat-val" id="stat-active">0</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">مغلقة ومؤرشفة مرجعياً</div>
+          <div class="stat-val" id="stat-closed">0</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">الشكاوى المفتوحة</div>
+          <div class="stat-val" id="stat-complaints">0</div>
+        </div>
+      </div>
+
+      <!-- التبويبات الرئيسية -->
+      <div class="nav-tabs">
+        <button class="nav-tab active" id="tab-btn-matters" onclick="switchMainTab('matters')">📁 الملفات (استشارة / دعوى / معاملة)</button>
+        <button class="nav-tab" id="tab-btn-clients" onclick="switchMainTab('clients')">👤 سجل الموكلين الدائم</button>
+        <button class="nav-tab" id="tab-btn-complaints" onclick="switchMainTab('complaints')">⚖️ سجل الشكاوى والملاحظات</button>
+      </div>
+
+      <!-- القسم 1: الملفات (استشارة / دعوى / معاملة) -->
+      <div id="sec-matters">
+        <div class="card">
+          <div class="card-title">
+            <span>➕ فتح ملف جديد (استشارة / دعوى قضائية / معاملة إجرائية)</span>
+            <button class="btn-sm" onclick="toggleBox('new-matter-form')">إظهار / إخفاء النموذج</button>
+          </div>
+          <div id="new-matter-form">
+            <div class="grid-3">
+              <div class="form-group">
+                <label>الباب / التصنيف الرئيسي *:</label>
+                <select id="m-category" onchange="updateCategoryFields()">
+                  <option value="consultation">استشارة قانونية (Consultation)</option>
+                  <option value="lawsuit">دعوى قضائية (Lawsuit)</option>
+                  <option value="transaction">معاملة إجرائية / عقد (Transaction)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>مرحلة الملف الحالية *:</label>
+                <select id="m-stage">
+                  <option value="consultation">1. استشارة وتقييم الطلب</option>
+                  <option value="signing">2. قيد التوقيع والتوكيل / صياغة العقد</option>
+                  <option value="active">3. جاري العمل والمباشرة بالإجراءات</option>
+                  <option value="waiting">4. بانتظار إجراء / تبليغ / دائرة</option>
+                  <option value="completed">5. منجز ومسلّم</option>
+                  <option value="closed">6. مغلق ومؤرشف مرجعياً</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>اختر من سجل الموكلين (أو أضف جديداً أدناه):</label>
+                <select id="m-client-select" onchange="fillClientFromSelect()">
+                  <option value="">— موكّل / مراجع جديد —</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="grid-3">
+              <div class="form-group">
+                <label>اسم المراجع / الموكل *:</label>
+                <input type="text" id="m-client-name" placeholder="الاسم الكامل أو اسم الشركة">
+              </div>
+              <div class="form-group">
+                <label>صفة المراجع / الموكل:</label>
+                <select id="m-client-type">
+                  <option value="فرد عراقي">فرد عراقي</option>
+                  <option value="شركة عراقية">شركة عراقية</option>
+                  <option value="فرد أجنبي">فرد أجنبي</option>
+                  <option value="شركة أجنبية">شركة أجنبية</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>رقم الهاتف / واتساب:</label>
+                <input type="text" id="m-client-phone" placeholder="+9647700000000" dir="ltr">
+              </div>
+            </div>
+
+            <div class="grid-2">
+              <div class="form-group">
+                <label>موضوع الاستشارة / الدعوى / المعاملة *:</label>
+                <input type="text" id="m-title" placeholder="مثال: تأسيس شركة / دعوى إزالة شيوع / تسجيل علامة تجارية">
+              </div>
+              <div class="form-group">
+                <label id="lbl-m-forum">الجهة / المحكمة / الدائرة المختصة:</label>
+                <input type="text" id="m-forum" placeholder="مثال: مسجل الشركات - وزارة التجارة / علامات تجارية - وزارة الصناعة والمعادن / محكمة بداءة الكرادة">
+              </div>
+            </div>
+
+            <div class="grid-4">
+              <div class="form-group">
+                <label>رقم الحجز أو الدعوى / الإضبارة:</label>
+                <input type="text" id="m-case-no" placeholder="رقم الدعوى أو الإضبارة">
+              </div>
+              <div class="form-group">
+                <label>حالة وتاريخ العقد:</label>
+                <input type="text" id="m-contract-info" placeholder="مثال: موقّع بتاريخ 2026-11-21">
+              </div>
+              <div class="form-group">
+                <label>رقم وتاريخ الوكالة:</label>
+                <input type="text" id="m-poa-info" placeholder="مثال: وكالة عامة رقم 1245">
+              </div>
+              <div class="form-group">
+                <label>موعد المرافعة / المراجعة القادم:</label>
+                <input type="date" id="m-next-date">
+              </div>
+            </div>
+
+            <div class="grid-3">
+              <div class="form-group">
+                <label>العملة المعتمدة للاتفاق:</label>
+                <select id="m-currency">
+                  <option value="IQD">دينار عراقي (IQD)</option>
+                  <option value="USD">دولار أمريكي (USD)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>إجمالي الأتعاب المتفق عليها (السقف المالي):</label>
+                <input type="number" id="m-total-fee" placeholder="0">
+              </div>
+              <div class="form-group">
+                <label>رقم فاتورة الدفعة الأولى (من منصة المدفوعات - اختياري):</label>
+                <input type="text" id="m-first-inv" placeholder="AKH-2026-...">
+              </div>
+            </div>
+
+            <div class="grid-2">
+              <div class="form-group">
+                <label>مبلغ الدفعة الأولى المستلمة (إن وُجد):</label>
+                <input type="number" id="m-first-paid" placeholder="0">
+              </div>
+              <div class="form-group">
+                <label>ملاحظات التوثيق، مرفقات العقد، أو مستجدات المتابعة:</label>
+                <input type="text" id="m-notes" placeholder="تفاصيل ما تم إنجازه أو المستندات المستلمة">
+              </div>
+            </div>
+
+            <button class="btn btn-gold" onclick="addNewMatter()">حفظ الملف في السجل الدائم ✓</button>
+          </div>
+        </div>
+
+        <!-- فلاتر البحث والتصفية مفتوحة المدة -->
+        <div class="card">
+          <div class="card-title"><span>🔍 البحث والتصفية (أرشيف مفتوح المدة)</span></div>
+          <div class="grid-4">
+            <input type="text" id="f-search" placeholder="بحث بالاسم، الرقم المرجعي، المحكمة، الفاتورة..." oninput="renderAll()">
+            <select id="f-category" onchange="renderAll()">
+              <option value="all">كل الأبواب (استشارة / دعوى / معاملة)</option>
+              <option value="consultation">الاستشارات فقط</option>
+              <option value="lawsuit">الدعاوى القضائية فقط</option>
+              <option value="transaction">المعاملات الإجرائية والعقود فقط</option>
+            </select>
+            <select id="f-stage" onchange="renderAll()">
+              <option value="all">كل المراحل</option>
+              <option value="consultation">1. استشارة وتقييم</option>
+              <option value="signing">2. قيد التوقيع والتوكيل</option>
+              <option value="active">3. جاري العمل</option>
+              <option value="waiting">4. بانتظار إجراء / دائرة</option>
+              <option value="completed">5. منجز ومسلّم</option>
+              <option value="closed">6. مغلق ومؤرشف</option>
+            </select>
+            <select id="f-year" onchange="renderAll()">
+              <option value="all">كل السنوات (مفتوح المدة)</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="matters-list"></div>
+      </div>
+
+      <!-- القسم 2: سجل الموكلين الدائم -->
+      <div id="sec-clients" class="hidden">
+        <div class="card">
+          <div class="card-title"><span>👤 سجل الموكلين الدائم (ملفات مستمرة عبر السنوات)</span></div>
+          <div class="form-group">
+            <input type="text" id="c-search" placeholder="ابحث باسم الموكل أو رقم الملف الدائم (CL-...) أو الهاتف..." oninput="renderClients()">
+          </div>
+          <div id="clients-list"></div>
+        </div>
+      </div>
+
+      <!-- القسم 3: سجل الشكاوى والملاحظات -->
+      <div id="sec-complaints" class="hidden">
+        <div class="card">
+          <div class="card-title"><span>⚖️ تسجيل شكوى أو ملاحظة متابعة (ضبط الجودة)</span></div>
+          <div class="grid-3">
+            <div class="form-group">
+              <label>اسم المراجع / الموكل *:</label>
+              <input type="text" id="cmp-client" placeholder="اسم صاحب الملاحظة أو الشكوى">
+            </div>
+            <div class="form-group">
+              <label>رقم الملف أو الفاتورة المرتبطة (اختياري):</label>
+              <input type="text" id="cmp-ref" placeholder="CASE-2026-... أو AKH-2026-...">
+            </div>
+            <div class="form-group">
+              <label>تصنيف الملاحظة / الشكوى:</label>
+              <select id="cmp-type">
+                <option value="طلب استفسار أو متابعة">طلب استفسار أو متابعة</option>
+                <option value="تأخر إجراء خارجي / دائرة">تأخر إجراء خارجي / دائرة</option>
+                <option value="ملاحظة مالية / فواتير">ملاحظة مالية / فواتير</option>
+                <option value="طلب إعادة جدولة موعد">طلب إعادة جدولة موعد</option>
+                <option value="شكوى جودة خدمة">شكوى جودة خدمة</option>
+              </select>
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="form-group">
+              <label>تفاصيل الشكوى أو الملاحظة *:</label>
+              <textarea id="cmp-desc" rows="2" placeholder="وصف دقيق للملاحظة وتاريخ ورودها..."></textarea>
+            </div>
+            <div class="form-group">
+              <label>الإجراء التصحيحي المتخذ من المكتب:</label>
+              <textarea id="cmp-action" rows="2" placeholder="ما تم اتخاذه لمعالجة الملاحظة وإرضاء الموكل..."></textarea>
+            </div>
+          </div>
+          <button class="btn btn-gold" onclick="addComplaint()">تثبيت في سجل الشكاوى والملاحظات ✓</button>
+        </div>
+
+        <div id="complaints-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- نافذة إدارة تفاصيل الملف والدفعات المجزأة وسجل المتابعة -->
+  <div class="modal-overlay" id="matterModal" onclick="closeMatterModal()">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <div class="modal-head">
+        <h3 id="modal-matter-title" style="font-size:16.5px; font-weight:800;">تفاصيل الملف</h3>
+        <button class="btn-sm" onclick="closeMatterModal()">✕</button>
+      </div>
+      <div id="modal-matter-body"></div>
+    </div>
+  </div>
+
+  <div class="toast-banner" id="toastBanner"></div>
+
+  <script>
+    const PORTAL_VAULT_KEY = 'akh_office_portal_vault_v1';
+    const PORTAL_DATA_KEY = 'akh_office_portal_data_v1';
+
+    let unlocked = false;
+    let portalState = {
+      clients: [],
+      matters: [],
+      complaints: []
+    };
+    let activeMatterId = null;
+
+    function escapeHtml(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function showToast(msg) {
+      const el = document.getElementById('toastBanner');
+      el.textContent = msg;
+      el.style.display = 'block';
+      clearTimeout(window._tTimer);
+      window._tTimer = setTimeout(() => { el.style.display = 'none'; }, 2800);
+    }
+
+    function toggleBox(id) {
+      document.getElementById(id)?.classList.toggle('hidden');
+    }
+
+    async function deriveKey(pin, salt) {
+      const enc = new TextEncoder();
+      const km = await crypto.subtle.importKey('raw', enc.encode(pin), 'PBKDF2', false, ['deriveKey']);
+      return crypto.subtle.deriveKey(
+        { name: 'PBKDF2', salt, iterations: 100000, hash: 'SHA-256' },
+        km,
+        { name: 'AES-GCM', length: 256 },
+        false,
+        ['encrypt', 'decrypt']
+      );
+    }
+
+    async function encryptPinCheck(pin) {
+      const salt = crypto.getRandomValues(new Uint8Array(16));
+      const iv = crypto.getRandomValues(new Uint8Array(12));
+      const key = await deriveKey(pin, salt);
+      const ct = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, new TextEncoder().encode('AKH_PORTAL_OK'));
+      return JSON.stringify({ salt: Array.from(salt), iv: Array.from(iv), data: Array.from(new Uint8Array(ct)) });
+    }
+
+    async function verifyPinCheck(encJson, pin) {
+      const parsed = JSON.parse(encJson);
+      const key = await deriveKey(pin, new Uint8Array(parsed.salt));
+      const dec = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: new Uint8Array(parsed.iv) }, key, new Uint8Array(parsed.data));
+      return new TextDecoder().decode(dec) === 'AKH_PORTAL_OK';
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const vault = localStorage.getItem(PORTAL_VAULT_KEY);
+      if (vault) {
+        document.getElementById('unlock-view').classList.remove('hidden');
+      } else {
+        document.getElementById('setup-view').classList.remove('hidden');
+      }
+    });
+
+    async function setupPortalVault() {
+      const pin = document.getElementById('setup-pin').value.trim();
+      if (pin.length < 4) {
+        alert('يرجى اختيار رقم سري مكون من 4 أرقام أو أكثر.');
+        return;
+      }
+      const enc = await encryptPinCheck(pin);
+      localStorage.setItem(PORTAL_VAULT_KEY, enc);
+      loadPortalData();
+      unlocked = true;
+      document.getElementById('setup-view').classList.add('hidden');
+      document.getElementById('main-dashboard').classList.remove('hidden');
+      renderAll();
+    }
+
+    async function unlockPortalVault() {
+      const pin = document.getElementById('unlock-pin').value.trim();
+      const enc = localStorage.getItem(PORTAL_VAULT_KEY);
+      try {
+        const ok = await verifyPinCheck(enc, pin);
+        if (!ok) throw new Error('Invalid');
+        document.getElementById('unlock-pin').value = '';
+        loadPortalData();
+        unlocked = true;
+        document.getElementById('unlock-view').classList.add('hidden');
+        document.getElementById('main-dashboard').classList.remove('hidden');
+        renderAll();
+      } catch (e) {
+        alert('❌ الرقم السري غير صحيح.');
+      }
+    }
+
+    function lockPortalVault() {
+      unlocked = false;
+      document.getElementById('main-dashboard').classList.add('hidden');
+      document.getElementById('unlock-view').classList.remove('hidden');
+    }
+
+    function loadPortalData() {
+      const raw = JSON.parse(localStorage.getItem(PORTAL_DATA_KEY) || 'null');
+      if (raw && typeof raw === 'object') {
+        portalState = {
+          clients: Array.isArray(raw.clients) ? raw.clients : [],
+          matters: Array.isArray(raw.matters) ? raw.matters : [],
+          complaints: Array.isArray(raw.complaints) ? raw.complaints : []
+        };
+      }
+    }
+
+    function savePortalData() {
+      localStorage.setItem(PORTAL_DATA_KEY, JSON.stringify(portalState));
+      renderAll();
+    }
+
+    function switchMainTab(tab) {
+      ['matters', 'clients', 'complaints'].forEach(t => {
+        document.getElementById('sec-' + t).classList.toggle('hidden', t !== tab);
+        document.getElementById('tab-btn-' + t).classList.toggle('active', t === tab);
+      });
+      renderAll();
+    }
+
+    function nextSeqCode(prefix, list) {
+      const yr = new Date().getFullYear();
+      const num = String(list.length + 1).padStart(4, '0');
+      return `${prefix}-${yr}-${num}`;
+    }
+
+    function ensureClientRecord(name, type, phone) {
+      const cleanName = name.trim();
+      let existing = portalState.clients.find(c => c.name.toLowerCase() === cleanName.toLowerCase());
+      if (!existing) {
+        existing = {
+          id: 'c_' + Date.now() + '_' + Math.floor(Math.random() * 100),
+          code: nextSeqCode('CL', portalState.clients),
+          name: cleanName,
+          type: type || 'فرد عراقي',
+          phone: phone || '',
+          createdAt: new Date().toISOString()
+        };
+        portalState.clients.unshift(existing);
+      } else if (phone && !existing.phone) {
+        existing.phone = phone;
+      }
+      return existing;
+    }
+
+    function fillClientFromSelect() {
+      const cid = document.getElementById('m-client-select').value;
+      if (!cid) return;
+      const c = portalState.clients.find(x => x.id === cid);
+      if (c) {
+        document.getElementById('m-client-name').value = c.name;
+        document.getElementById('m-client-type').value = c.type;
+        document.getElementById('m-client-phone').value = c.phone || '';
+      }
+    }
+
+    function updateCategoryFields() {
+      const cat = document.getElementById('m-category').value;
+      const lbl = document.getElementById('lbl-m-forum');
+      if (cat === 'consultation') lbl.textContent = 'مجال الاستشارة / الجهة ذات الصلة:';
+      else if (cat === 'lawsuit') lbl.textContent = 'اسم المحكمة المختصة:';
+      else lbl.textContent = 'الدائرة / الوزارة / جهة التنفيذ:';
+    }
+
+    function addNewMatter() {
+      const category = document.getElementById('m-category').value;
+      const stage = document.getElementById('m-stage').value;
+      const clientName = document.getElementById('m-client-name').value.trim();
+      const clientType = document.getElementById('m-client-type').value;
+      const clientPhone = document.getElementById('m-client-phone').value.trim();
+      const title = document.getElementById('m-title').value.trim();
+      const forum = document.getElementById('m-forum').value.trim();
+      const caseNo = document.getElementById('m-case-no').value.trim();
+      const contractInfo = document.getElementById('m-contract-info').value.trim();
+      const poaInfo = document.getElementById('m-poa-info').value.trim();
+      const nextDate = document.getElementById('m-next-date').value;
+      const currency = document.getElementById('m-currency').value;
+      const totalFee = Number(document.getElementById('m-total-fee').value || 0);
+      const firstInv = document.getElementById('m-first-inv').value.trim();
+      const firstPaid = Number(document.getElementById('m-first-paid').value || 0);
+      const notes = document.getElementById('m-notes').value.trim();
+
+      if (!clientName || !title) {
+        alert('يرجى إدخال اسم المراجع/الموكل وموضوع الطلب.');
+        return;
+      }
+
+      const client = ensureClientRecord(clientName, clientType, clientPhone);
+      const prefix = category === 'consultation' ? 'CNS' : (category === 'lawsuit' ? 'CASE' : 'TRN');
+      const nowIso = new Date().toISOString();
+      const nowLocal = new Date().toLocaleString('ar-IQ');
+
+      const payments = [];
+      if (firstPaid > 0 || firstInv) {
+        payments.push({
+          id: 'pay_' + Date.now(),
+          kind: 'fees',
+          label: 'الدفعة الأولى / مقدمة',
+          amount: firstPaid,
+          invoiceRef: firstInv,
+          date: new Date().toISOString().slice(0, 10)
+        });
+      }
+
+      const timeline = [{
+        date: nowLocal,
+        text: `تم فتح الملف (${getCategoryLabel(category)}) بحالة: ${getStageLabel(stage)}.${notes ? ' ملاحظة: ' + notes : ''}`
+      }];
+
+      const matter = {
+        id: 'm_' + Date.now(),
+        code: nextSeqCode(prefix, portalState.matters),
+        year: String(new Date().getFullYear()),
+        clientId: client.id,
+        clientCode: client.code,
+        clientName: client.name,
+        clientType: client.type,
+        clientPhone: client.phone,
+        category,
+        stage,
+        title,
+        forum,
+        caseNo,
+        contractInfo,
+        poaInfo,
+        nextDate,
+        currency,
+        totalFee,
+        payments,
+        timeline,
+        createdAt: nowIso,
+        closedAt: stage === 'closed' ? nowLocal : ''
+      };
+
+      portalState.matters.unshift(matter);
+      savePortalData();
+
+      ['m-title', 'm-forum', 'm-case-no', 'm-contract-info', 'm-poa-info', 'm-next-date', 'm-total-fee', 'm-first-inv', 'm-first-paid', 'm-notes'].forEach(id => {
+        document.getElementById(id).value = '';
+      });
+      showToast(`✅ تم حفظ الملف برقم ${matter.code}`);
+    }
+
+    function getCategoryLabel(cat) {
+      if (cat === 'consultation') return 'استشارة قانونية';
+      if (cat === 'lawsuit') return 'دعوى قضائية';
+      return 'معاملة إجرائية / عقد';
+    }
+
+    function getStageLabel(st) {
+      const map = {
+        consultation: '1. استشارة وتقييم',
+        signing: '2. قيد التوقيع والتوكيل',
+        active: '3. جاري العمل',
+        waiting: '4. بانتظار إجراء / دائرة',
+        completed: '5. منجز ومسلّم',
+        closed: '6. مغلق ومؤرشف مرجعياً'
+      };
+      return map[st] || st;
+    }
+
+    function getStageClass(st) {
+      const map = {
+        consultation: 'st-consult',
+        signing: 'st-signing',
+        active: 'st-active',
+        waiting: 'st-waiting',
+        completed: 'st-completed',
+        closed: 'st-closed'
+      };
+      return map[st] || 'st-consult';
+    }
+
+    function computeMatterFinance(m) {
+      const feesPaid = (m.payments || []).filter(p => p.kind !== 'gov').reduce((s, p) => s + Number(p.amount || 0), 0);
+      const govFees = (m.payments || []).filter(p => p.kind === 'gov').reduce((s, p) => s + Number(p.amount || 0), 0);
+      const remaining = Math.max(0, Number(m.totalFee || 0) - feesPaid);
+      return { feesPaid, govFees, remaining };
+    }
+
+    function convertConsultationToWork(matterId, targetCat) {
+      const m = portalState.matters.find(x => x.id === matterId);
+      if (!m) return;
+      m.category = targetCat;
+      m.stage = 'signing';
+      m.timeline.unshift({
+        date: new Date().toLocaleString('ar-IQ'),
+        text: `تم تحويل الاستشارة إلى (${getCategoryLabel(targetCat)}) وانتقلت إلى مرحلة التوقيع والتوكيل.`
+      });
+      savePortalData();
+      showToast('✅ تم تحويل الاستشارة إلى ملف عمل قيد التوقيع والتوكيل.');
+    }
+
+    function openMatterModal(matterId) {
+      activeMatterId = matterId;
+      const m = portalState.matters.find(x => x.id === matterId);
+      if (!m) return;
+
+      const fin = computeMatterFinance(m);
+      document.getElementById('modal-matter-title').textContent = `${m.code} — ${m.title} (${m.clientName})`;
+
+      const payRows = (m.payments || []).map((p, idx) => `
+        <tr>
+          <td>${escapeHtml(p.date || '')}</td>
+          <td>${p.kind === 'gov' ? 'رسوم ومصاريف حكومية' : 'أتعاب محاماة'}</td>
+          <td>${escapeHtml(p.label || '')}</td>
+          <td style="font-weight:800;">${Number(p.amount || 0).toLocaleString('en-US')} ${escapeHtml(m.currency)}</td>
+          <td style="font-family:monospace;">${escapeHtml(p.invoiceRef || '—')}</td>
+          <td><button class="btn-sm btn-red" onclick="removePaymentRow(${idx})">حذف</button></td>
+        </tr>
+      `).join('');
+
+      const logRows = (m.timeline || []).map(l => `
+        <div style="padding:7px 10px; background:#f8fafc; border-inline-start:3px solid #c59b27; margin-bottom:6px; border-radius:6px; font-size:12.5px;">
+          <strong style="color:#64748b;">${escapeHtml(l.date)}:</strong> ${escapeHtml(l.text)}
+        </div>
+      `).join('');
+
+      document.getElementById('modal-matter-body').innerHTML = `
+        <div class="fin-bar">
+          <span>إجمالي الاتفاق: ${Number(m.totalFee || 0).toLocaleString('en-US')} ${escapeHtml(m.currency)}</span>
+          <span style="color:#166534;">الأتعاب المقبوضة: ${fin.feesPaid.toLocaleString('en-US')} ${escapeHtml(m.currency)}</span>
+          <span style="color:#991b1b;">المتبقي: ${fin.remaining.toLocaleString('en-US')} ${escapeHtml(m.currency)}</span>
+          <span style="color:#1e40af;">الرسوم الحكومية: ${fin.govFees.toLocaleString('en-US')} ${escapeHtml(m.currency)}</span>
+        </div>
+
+        <div class="card" style="padding:14px;">
+          <div style="font-weight:800; margin-bottom:8px;">🔄 تحديث مرحلة الملف وبيانات التعاقد والوكالة</div>
+          <div class="grid-3">
+            <div class="form-group">
+              <label>مرحلة الملف:</label>
+              <select id="edit-m-stage">
+                <option value="consultation" ${m.stage==='consultation'?'selected':''}>1. استشارة وتقييم</option>
+                <option value="signing" ${m.stage==='signing'?'selected':''}>2. قيد التوقيع والتوكيل</option>
+                <option value="active" ${m.stage==='active'?'selected':''}>3. جاري العمل</option>
+                <option value="waiting" ${m.stage==='waiting'?'selected':''}>4. بانتظار إجراء / دائرة</option>
+                <option value="completed" ${m.stage==='completed'?'selected':''}>5. منجز ومسلّم</option>
+                <option value="closed" ${m.stage==='closed'?'selected':''}>6. مغلق ومؤرشف مرجعياً</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>حالة وتاريخ العقد:</label>
+              <input type="text" id="edit-m-contract" value="${escapeHtml(m.contractInfo || '')}" placeholder="موقّع / مرفق بتاريخ...">
+            </div>
+            <div class="form-group">
+              <label>رقم وتاريخ الوكالة:</label>
+              <input type="text" id="edit-m-poa" value="${escapeHtml(m.poaInfo || '')}" placeholder="رقم الوكالة وتاريخها">
+            </div>
+          </div>
+          <div class="grid-3">
+            <div class="form-group">
+              <label>الموعد القادم:</label>
+              <input type="date" id="edit-m-next" value="${escapeHtml(m.nextDate || '')}">
+            </div>
+            <div class="form-group">
+              <label>إجمالي الأتعاب المتفق عليها:</label>
+              <input type="number" id="edit-m-total" value="${Number(m.totalFee || 0)}">
+            </div>
+            <div class="form-group">
+              <label>إضافة ملاحظة متابعة جديدة:</label>
+              <input type="text" id="edit-m-note" placeholder="ما تم إنجازه أو المطلوب...">
+            </div>
+          </div>
+          <button class="btn btn-gold" onclick="saveMatterUpdates()">حفظ التحديثات ✓</button>
+        </div>
+
+        <div class="card" style="padding:14px;">
+          <div style="font-weight:800; margin-bottom:8px;">💳 تسجيل دفعة مجزأة أو رسم حكومي (ربط برقم فاتورة المدفوعات)</div>
+          <div class="grid-4">
+            <select id="new-pay-kind">
+              <option value="fees">أتعاب محاماة</option>
+              <option value="gov">رسوم ومصاريف حكومية</option>
+            </select>
+            <input type="text" id="new-pay-label" placeholder="البيان (دفعة ثانية / رسم نشر)">
+            <input type="number" id="new-pay-amount" placeholder="المبلغ">
+            <input type="text" id="new-pay-inv" placeholder="رقم الفاتورة AKH-2026-...">
+          </div>
+          <button class="btn" style="margin-top:8px;" onclick="addPaymentToMatter()">إضافة الدفعة / الرسم +</button>
+
+          <table class="sub-table">
+            <thead>
+              <tr><th>التاريخ</th><th>النوع</th><th>البيان</th><th>المبلغ</th><th>فاتورة المدفوعات</th><th>إجراء</th></tr>
+            </thead>
+            <tbody>${payRows || '<tr><td colspan="6" style="text-align:center; color:#64748b;">لا توجد دفعات مسجلة بعد.</td></tr>'}</tbody>
+          </table>
+        </div>
+
+        <div style="font-weight:800; margin-bottom:6px;">📜 سجل سير العمل والملاحظات الزمني:</div>
+        ${logRows}
+      `;
+
+      document.getElementById('matterModal').classList.add('open');
+    }
+
+    function closeMatterModal() {
+      document.getElementById('matterModal').classList.remove('open');
+      activeMatterId = null;
+    }
+
+    function saveMatterUpdates() {
+      const m = portalState.matters.find(x => x.id === activeMatterId);
+      if (!m) return;
+      const newStage = document.getElementById('edit-m-stage').value;
+      const newContract = document.getElementById('edit-m-contract').value.trim();
+      const newPoa = document.getElementById('edit-m-poa').value.trim();
+      const newNext = document.getElementById('edit-m-next').value;
+      const newTotal = Number(document.getElementById('edit-m-total').value || 0);
+      const note = document.getElementById('edit-m-note').value.trim();
+
+      const changes = [];
+      if (newStage !== m.stage) changes.push(`تغيير المرحلة إلى (${getStageLabel(newStage)})`);
+      if (newContract !== (m.contractInfo || '')) changes.push(`تحديث العقد: ${newContract}`);
+      if (newPoa !== (m.poaInfo || '')) changes.push(`تحديث الوكالة: ${newPoa}`);
+      if (note) changes.push(note);
+
+      m.stage = newStage;
+      m.contractInfo = newContract;
+      m.poaInfo = newPoa;
+      m.nextDate = newNext;
+      m.totalFee = newTotal;
+      if (newStage === 'closed' && !m.closedAt) m.closedAt = new Date().toLocaleString('ar-IQ');
+
+      if (changes.length) {
+        m.timeline.unshift({
+          date: new Date().toLocaleString('ar-IQ'),
+          text: changes.join(' — ')
+        });
+      }
+
+      savePortalData();
+      openMatterModal(m.id);
+      showToast('✅ تم تحديث الملف بنجاح.');
+    }
+
+    function addPaymentToMatter() {
+      const m = portalState.matters.find(x => x.id === activeMatterId);
+      if (!m) return;
+      const kind = document.getElementById('new-pay-kind').value;
+      const label = document.getElementById('new-pay-label').value.trim() || (kind === 'gov' ? 'رسوم ومصاريف إجرائية' : 'دفعة أتعاب');
+      const amount = Number(document.getElementById('new-pay-amount').value || 0);
+      const invoiceRef = document.getElementById('new-pay-inv').value.trim();
+
+      if (amount <= 0) {
+        alert('يرجى إدخال مبلغ صحيح.');
+        return;
+      }
+
+      m.payments.push({
+        id: 'pay_' + Date.now(),
+        kind,
+        label,
+        amount,
+        invoiceRef,
+        date: new Date().toISOString().slice(0, 10)
+      });
+
+      m.timeline.unshift({
+        date: new Date().toLocaleString('ar-IQ'),
+        text: `تسجيل ${kind === 'gov' ? 'رسم حكومي' : 'دفعة أتعاب'} (${label}) بمبلغ ${amount.toLocaleString('en-US')} ${m.currency}${invoiceRef ? ' — فاتورة: ' + invoiceRef : ''}.`
+      });
+
+      savePortalData();
+      openMatterModal(m.id);
+      showToast('✅ تم تسجيل الدفعة وربطها بالملف.');
+    }
+
+    function removePaymentRow(idx) {
+      const m = portalState.matters.find(x => x.id === activeMatterId);
+      if (!m || !m.payments[idx]) return;
+      m.payments.splice(idx, 1);
+      savePortalData();
+      openMatterModal(m.id);
+    }
+
+    function addComplaint() {
+      const client = document.getElementById('cmp-client').value.trim();
+      const ref = document.getElementById('cmp-ref').value.trim();
+      const type = document.getElementById('cmp-type').value;
+      const desc = document.getElementById('cmp-desc').value.trim();
+      const action = document.getElementById('cmp-action').value.trim();
+
+      if (!client || !desc) {
+        alert('يرجى إدخال اسم المراجع وتفاصيل الملاحظة أو الشكوى.');
+        return;
+      }
+
+      portalState.complaints.unshift({
+        id: 'cmp_' + Date.now(),
+        code: nextSeqCode('CMP', portalState.complaints),
+        client,
+        ref,
+        type,
+        desc,
+        action,
+        status: action ? 'resolved' : 'open',
+        createdAt: new Date().toLocaleString('ar-IQ'),
+        closedAt: action ? new Date().toLocaleString('ar-IQ') : ''
+      });
+
+      ['cmp-client', 'cmp-ref', 'cmp-desc', 'cmp-action'].forEach(id => document.getElementById(id).value = '');
+      savePortalData();
+      showToast('✅ تم تسجيل الملاحظة في سجل الشكاوى.');
+    }
+
+    function resolveComplaint(id) {
+      const c = portalState.complaints.find(x => x.id === id);
+      if (!c) return;
+      const act = prompt('اكتب الإجراء التصحيحي المتخذ لإغلاق الملاحظة/الشكوى:', c.action || '');
+      if (act === null) return;
+      c.action = act.trim() || 'تمت المعالجة والتواصل مع صاحب العلاقة.';
+      c.status = 'resolved';
+      c.closedAt = new Date().toLocaleString('ar-IQ');
+      savePortalData();
+      showToast('✅ تم إغلاق الشكوى وتوثيق الإجراء التصحيحي.');
+    }
+
+    function renderAll() {
+      // تحديث الإحصائيات
+      document.getElementById('stat-clients').textContent = portalState.clients.length;
+      document.getElementById('stat-intake').textContent = portalState.matters.filter(m => m.stage === 'consultation' || m.stage === 'signing').length;
+      document.getElementById('stat-active').textContent = portalState.matters.filter(m => m.stage === 'active' || m.stage === 'waiting').length;
+      document.getElementById('stat-closed').textContent = portalState.matters.filter(m => m.stage === 'completed' || m.stage === 'closed').length;
+      document.getElementById('stat-complaints').textContent = portalState.complaints.filter(c => c.status === 'open').length;
+
+      // تحديث قائمة اختيار الموكلين
+      const cSel = document.getElementById('m-client-select');
+      const curSel = cSel.value;
+      cSel.innerHTML = '<option value="">— موكّل / مراجع جديد —</option>' +
+        portalState.clients.map(c => `<option value="${c.id}">${escapeHtml(c.code)} — ${escapeHtml(c.name)}</option>`).join('');
+      cSel.value = curSel;
+
+      // تحديث قائمة السنوات (مفتوحة المدة)
+      const years = Array.from(new Set([String(new Date().getFullYear()), ...portalState.matters.map(m => m.year).filter(Boolean)])).sort().reverse();
+      const ySel = document.getElementById('f-year');
+      const curY = ySel.value;
+      ySel.innerHTML = '<option value="all">كل السنوات (مفتوح المدة)</option>' + years.map(y => `<option value="${y}">سنة ${y}</option>`).join('');
+      if (years.includes(curY) || curY === 'all') ySel.value = curY;
+
+      renderMatters();
+      renderClients();
+      renderComplaints();
+    }
+
+    function renderMatters() {
+      const box = document.getElementById('matters-list');
+      const q = (document.getElementById('f-search')?.value || '').trim().toLowerCase();
+      const cat = document.getElementById('f-category')?.value || 'all';
+      const st = document.getElementById('f-stage')?.value || 'all';
+      const yr = document.getElementById('f-year')?.value || 'all';
+
+      const filtered = portalState.matters.filter(m => {
+        if (cat !== 'all' && m.category !== cat) return false;
+        if (st !== 'all' && m.stage !== st) return false;
+        if (yr !== 'all' && m.year !== yr) return false;
+        if (q) {
+          const invs = (m.payments || []).map(p => p.invoiceRef || '').join(' ');
+          const hay = `${m.code} ${m.clientCode} ${m.clientName} ${m.title} ${m.forum} ${m.caseNo} ${invs}`.toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        return true;
+      });
+
+      if (!filtered.length) {
+        box.innerHTML = '<div class="card" style="text-align:center; color:#64748b;">لا توجد ملفات مطابقة للعرض حالياً.</div>';
+        return;
+      }
+
+      box.innerHTML = filtered.map(m => {
+        const fin = computeMatterFinance(m);
+        return `
+          <div class="record-card">
+            <div class="rec-top">
+              <div>
+                <span class="ref-badge">${escapeHtml(m.code)}</span>
+                <span class="type-badge">${escapeHtml(getCategoryLabel(m.category))}</span>
+                <span class="type-badge">${escapeHtml(m.clientCode)}</span>
+              </div>
+              <span class="stage-pill ${getStageClass(m.stage)}">${escapeHtml(getStageLabel(m.stage))}</span>
+            </div>
+            <div class="rec-title">${escapeHtml(m.title)} — <span style="color:#475569; font-weight:700;">${escapeHtml(m.clientName)}</span></div>
+            <div class="rec-meta">
+              ${m.forum ? `<strong>الجهة/المحكمة:</strong> ${escapeHtml(m.forum)} • ` : ''}
+              ${m.caseNo ? `<strong>رقم الدعوى/الإضبارة:</strong> ${escapeHtml(m.caseNo)} • ` : ''}
+              ${m.contractInfo ? `<strong>العقد:</strong> ${escapeHtml(m.contractInfo)} • ` : ''}
+              ${m.poaInfo ? `<strong>الوكالة:</strong> ${escapeHtml(m.poaInfo)} • ` : ''}
+              ${m.nextDate ? `<strong>الموعد القادم:</strong> <span style="color:#d32f2f; font-weight:800;">${escapeHtml(m.nextDate)}</span>` : ''}
+            </div>
+            <div class="fin-bar">
+              <span>إجمالي الاتفاق: ${Number(m.totalFee || 0).toLocaleString('en-US')} ${escapeHtml(m.currency)}</span>
+              <span style="color:#166534;">المدفوع: ${fin.feesPaid.toLocaleString('en-US')} ${escapeHtml(m.currency)}</span>
+              <span style="color:#991b1b;">المتبقي: ${fin.remaining.toLocaleString('en-US')} ${escapeHtml(m.currency)}</span>
+              <span>الدفعات: ${(m.payments || []).length}</span>
+            </div>
+            <div class="rec-actions">
+              <button class="btn-sm btn-blue" onclick="openMatterModal('${m.id}')">📂 فتح الملف والدفعات والمتابعة</button>
+              ${m.category === 'consultation' ? `
+                <button class="btn-sm btn-green" onclick="convertConsultationToWork('${m.id}', 'lawsuit')">⚖️ تحويل إلى دعوى</button>
+                <button class="btn-sm btn-green" onclick="convertConsultationToWork('${m.id}', 'transaction')">📑 تحويل إلى معاملة / عقد</button>
+              ` : ''}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderClients() {
+      const box = document.getElementById('clients-list');
+      const q = (document.getElementById('c-search')?.value || '').trim().toLowerCase();
+      const filtered = portalState.clients.filter(c => {
+        if (!q) return true;
+        return `${c.code} ${c.name} ${c.phone} ${c.type}`.toLowerCase().includes(q);
+      });
+
+      if (!filtered.length) {
+        box.innerHTML = '<div style="color:#64748b; text-align:center; padding:12px;">لا يوجد موكلون مسجلون بعد.</div>';
+        return;
+      }
+
+      box.innerHTML = filtered.map(c => {
+        const clientMatters = portalState.matters.filter(m => m.clientId === c.id);
+        return `
+          <div class="record-card">
+            <div class="rec-top">
+              <div>
+                <span class="ref-badge">${escapeHtml(c.code)}</span>
+                <span class="type-badge">${escapeHtml(c.type)}</span>
+              </div>
+              <span style="font-size:12.5px; font-weight:700; color:#475569;">عدد الملفات المرتبطة: ${clientMatters.length}</span>
+            </div>
+            <div class="rec-title">${escapeHtml(c.name)}</div>
+            <div class="rec-meta">${c.phone ? `الهاتف: <span dir="ltr">${escapeHtml(c.phone)}</span> • ` : ''}تاريخ فتح الملف الدائم: ${escapeHtml(c.createdAt.slice(0, 10))}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderComplaints() {
+      const box = document.getElementById('complaints-list');
+      if (!portalState.complaints.length) {
+        box.innerHTML = '<div class="card" style="text-align:center; color:#64748b;">سجل الشكاوى والملاحظات نظيف حالياً.</div>';
+        return;
+      }
+
+      box.innerHTML = portalState.complaints.map(c => `
+        <div class="record-card">
+          <div class="rec-top">
+            <div>
+              <span class="ref-badge">${escapeHtml(c.code)}</span>
+              <span class="type-badge">${escapeHtml(c.type)}</span>
+              ${c.ref ? `<span class="type-badge">مرجع: ${escapeHtml(c.ref)}</span>` : ''}
+            </div>
+            <span class="stage-pill ${c.status === 'resolved' ? 'st-completed' : 'st-open-cmp'}">${c.status === 'resolved' ? '✅ مغلقة ومعالجة' : '🔴 قيد المعالجة'}</span>
+          </div>
+          <div class="rec-title">${escapeHtml(c.client)}</div>
+          <div class="rec-meta">
+            <strong>الملاحظة/الشكوى (${escapeHtml(c.createdAt)}):</strong> ${escapeHtml(c.desc)}<br>
+            ${c.action ? `<strong>الإجراء التصحيحي (${escapeHtml(c.closedAt)}):</strong> ${escapeHtml(c.action)}` : ''}
+          </div>
+          ${c.status !== 'resolved' ? `<button class="btn-sm btn-green" onclick="resolveComplaint('${c.id}')">توثيق الإجراء التصحيحي وإغلاق ✓</button>` : ''}
+        </div>
+      `).join('');
+    }
+
+    function exportFullBackupJSON() {
+      const payload = {
+        exportedAt: new Date().toISOString(),
+        office: 'Law Office Of Ali Kadhem Hashimi',
+        data: portalState
+      };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `akh-office-archive-${new Date().toISOString().slice(0, 10)}.json`;
+      a.click();
+      showToast('✅ تم تصدير النسخة الاحتياطية الكاملة.');
+    }
+
+    function exportMattersCSV() {
+      const rows = [['MatterCode', 'ClientCode', 'ClientName', 'Category', 'Stage', 'Title', 'Forum', 'CaseNo', 'Contract', 'POA', 'Currency', 'TotalFee', 'FeesPaid', 'Remaining', 'GovFees']];
+      portalState.matters.forEach(m => {
+        const fin = computeMatterFinance(m);
+        rows.push([
+          m.code, m.clientCode, m.clientName, getCategoryLabel(m.category), getStageLabel(m.stage),
+          m.title, m.forum || '', m.caseNo || '', m.contractInfo || '', m.poaInfo || '',
+          m.currency, m.totalFee, fin.feesPaid, fin.remaining, fin.govFees
+        ]);
+      });
+      const csv = '\uFEFF' + rows.map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(',')).join('\n');
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `akh-matters-report-${new Date().toISOString().slice(0, 10)}.csv`;
+      a.click();
+      showToast('✅ تم تصدير كشف الملفات CSV.');
+    }
+
+    async function importFullBackupJSON(event) {
+      const file = event.target.files?.[0];
+      if (!file) return;
+      try {
+        const parsed = JSON.parse(await file.text());
+        if (parsed && parsed.data && Array.isArray(parsed.data.matters)) {
+          portalState = {
+            clients: parsed.data.clients || [],
+            matters: parsed.data.matters || [],
+            complaints: parsed.data.complaints || []
+          };
+          savePortalData();
+          showToast('✅ تم استيراد الأرشيف بنجاح.');
+        } else {
+          alert('❌ ملف غير صالح.');
+        }
+      } catch (e) {
+        alert('❌ تعذر قراءة الملف.');
+      }
+      event.target.value = '';
+    }
+
+    function printAuditSummary() {
+      const win = window.open('', '_blank');
+      const rows = portalState.matters.map(m => {
+        const fin = computeMatterFinance(m);
+        return `
+          <tr>
+            <td>${escapeHtml(m.code)}</td>
+            <td>${escapeHtml(m.clientName)}</td>
+            <td>${escapeHtml(getCategoryLabel(m.category))}</td>
+            <td>${escapeHtml(m.title)}</td>
+            <td>${escapeHtml(getStageLabel(m.stage))}</td>
+            <td>${Number(m.totalFee || 0).toLocaleString('en-US')} ${escapeHtml(m.currency)}</td>
+            <td>${fin.feesPaid.toLocaleString('en-US')}</td>
+            <td>${fin.remaining.toLocaleString('en-US')}</td>
+          </tr>
+        `;
+      }).join('');
+
+      win.document.write(`
+        <!DOCTYPE html>
+        <html lang="ar" dir="rtl">
+        <head>
+          <meta charset="UTF-8">
+          <title>كشف متابعة الملفات وضبط الجودة - مكتب المحامي علي كاظم الهاشمي</title>
+          <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+          <style>
+            body { font-family: 'Cairo', sans-serif; color: #0b1c36; padding: 28px; max-width: 1000px; margin: 0 auto; }
+            .head { display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #c59b27; padding-bottom: 12px; margin-bottom: 18px; }
+            table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+            th, td { border: 1px solid #cbd5e1; padding: 8px; text-align: start; }
+            th { background: #0b1c36; color: #ffffff; }
+            @media print { .no-print { display: none; } }
+          </style>
+        </head>
+        <body>
+          <div class="no-print" style="margin-bottom:14px;">
+            <button onclick="window.print()" style="background:#0b1c36; color:#fff; border:none; padding:9px 18px; border-radius:7px; font-family:'Cairo'; font-weight:700; cursor:pointer;">🖨️ طباعة / حفظ PDF</button>
+          </div>
+          <div class="head">
+            <div>
+              <h2>مكتب المحامي علي كاظم الهاشمي</h2>
+              <div>كشف متابعة الملفات القانونية والأتعاب وضبط الجودة (ISO)</div>
+            </div>
+            <div style="direction:ltr; text-align:left;">
+              <strong style="font-size:26px;">A<span style="color:#d32f2f;">K</span>H</strong><br>
+              <small>/ LAW OFFICE • EST. 2014</small>
+            </div>
+          </div>
+          <table>
+            <thead>
+              <tr><th>رمز الملف</th><th>الموكل</th><th>التصنيف</th><th>الموضوع</th><th>المرحلة</th><th>الاتفاق</th><th>المدفوع</th><th>المتبقي</th></tr>
+            </thead>
+            <tbody>${rows || '<tr><td colspan="8" style="text-align:center;">لا توجد بيانات</td></tr>'}</tbody>
+          </table>
+        </body>
+        </html>
+      `);
+      win.document.close();
+    }
+  </script>
+</body>
+</html>
