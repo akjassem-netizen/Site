@@ -48,6 +48,10 @@
       unicode-bidi: isolate;
     }
 
+    .slash-red {
+      color: var(--crimson);
+    }
+
     /* Lock / Setup Screen */
     .lock-wrap {
       min-height: 100vh;
@@ -68,7 +72,7 @@
       text-align: center;
     }
 
-    /* Official AKH Logo Box: A black, K red, H black */
+    /* Official AKH Logo Box */
     .logo-box {
       background: #ffffff;
       border: 1px solid #ece8df;
@@ -87,7 +91,7 @@
       color: var(--navy);
       direction: ltr;
     }
-    .akh-word .k-red {
+    .akh-word .h-red {
       color: var(--crimson);
     }
     .akh-law {
@@ -169,7 +173,7 @@
       letter-spacing: 0.8px;
       color: var(--navy);
     }
-    .mini-logo-box .m-akh .k-red {
+    .mini-logo-box .m-akh .h-red {
       color: var(--crimson);
     }
     .mini-logo-box .m-law {
@@ -482,8 +486,8 @@
   <div id="lockScreen" class="lock-wrap">
     <div class="lock-card">
       <div class="logo-box">
-        <div class="akh-word">A<span class="k-red">K</span>H</div>
-        <div class="akh-law">/ LAW OFFICE</div>
+        <div class="akh-word">AK<span class="h-red">H</span></div>
+        <div class="akh-law"><span class="slash-red">/</span> LAW OFFICE</div>
         <div class="akh-est">EST. 2014</div>
       </div>
 
@@ -525,8 +529,8 @@
       <div class="topbar-inner">
         <div class="topbar-brand-wrap">
           <div class="mini-logo-box">
-            <div class="m-akh">A<span class="k-red">K</span>H</div>
-            <div class="m-law">/ LAW OFFICE</div>
+            <div class="m-akh">AK<span class="h-red">H</span></div>
+            <div class="m-law"><span class="slash-red">/</span> LAW OFFICE</div>
           </div>
           <div class="topbar-brand">
             <h1>مكتب المحامي علي كاظم الهاشمي — <span class="en">Law Office Of Ali Kadhem Hashimi</span></h1>
@@ -780,8 +784,8 @@
   <div id="toast" class="toast"></div>
 
   <script>
-    const STORAGE_KEY = 'akh_matter_portal_v5';
-    const AUTH_KEY = 'akh_matter_portal_auth_v5';
+    const STORAGE_KEY = 'akh_matter_portal_v6';
+    const AUTH_KEY = 'akh_matter_portal_auth_v6';
 
     const STAGES = [
       { id: 'incoming', ar: 'وارد جديد', en: 'Intake' },
