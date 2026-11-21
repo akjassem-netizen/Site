@@ -13,12 +13,11 @@
       --bg: #f6f5f2;
       --surface: #ffffff;
       --surface-soft: #faf9f6;
-      --navy: #0c1424;
-      --navy-2: #18253d;
+      --ink: #111827;
+      --navy: #14213d;
       --gold: #c69a3f;
-      --gold-soft: #f7f2e6;
-      --crimson: #c81e2b;
-      --text: #182030;
+      --gold-soft: #f8f3e6;
+      --red: #c81e2b;
       --muted: #647084;
       --border: #e5e0d6;
       --ok: #157347;
@@ -29,15 +28,15 @@
       --danger-bg: #feeceb;
       --info: #1d4ed8;
       --info-bg: #eff6ff;
-      --radius: 14px;
-      --shadow: 0 8px 28px rgba(12, 20, 36, 0.06);
+      --radius: 16px;
+      --shadow: 0 8px 24px rgba(17, 24, 39, 0.05);
     }
 
     * { box-sizing: border-box; }
     body {
       margin: 0;
       background: var(--bg);
-      color: var(--text);
+      color: var(--ink);
       font-family: 'Cairo', 'Plus Jakarta Sans', sans-serif;
       line-height: 1.6;
     }
@@ -48,157 +47,97 @@
       unicode-bidi: isolate;
     }
 
-    .k-red, .slash-red {
-      color: var(--crimson);
-    }
+    .k-red, .slash-red { color: var(--red); }
 
-    /* Lock / Setup Screen */
-    .lock-wrap {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-    .lock-card {
-      width: 100%;
-      max-width: 450px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-top: 5px solid var(--gold);
+    /* Clean Light Brand Card (Matches site & lock screen) */
+    .brand-card {
+      background: #ffffff;
+      border: 1px solid #ece8df;
+      border-top: 4px solid var(--gold);
       border-radius: 18px;
-      padding: 28px 24px;
+      padding: 20px 18px;
       box-shadow: var(--shadow);
       text-align: center;
     }
-
-    /* Official AKH Logo Box */
-    .logo-box {
+    .logo-frame {
       background: #ffffff;
-      border: 1px solid #ece8df;
+      border: 1px solid #eeeae0;
       border-radius: 14px;
-      padding: 18px 16px;
-      margin: 0 auto 14px;
-      max-width: 260px;
-      box-shadow: 0 2px 10px rgba(12, 20, 36, 0.03);
+      padding: 14px 16px;
+      margin: 0 auto 12px;
+      max-width: 250px;
+      direction: ltr;
     }
-    .akh-word {
+    .akh-letters {
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-weight: 800;
-      font-size: 36px;
+      font-size: 34px;
       letter-spacing: 1px;
       line-height: 1.05;
-      color: var(--navy);
-      direction: ltr;
+      color: var(--ink);
     }
-    .akh-law {
+    .akh-law-line {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 800;
       letter-spacing: 2.2px;
-      color: var(--navy);
-      margin-top: 6px;
-      direction: ltr;
+      color: var(--ink);
+      margin-top: 5px;
     }
-    .akh-est {
+    .akh-est-line {
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 10px;
       font-weight: 700;
       letter-spacing: 2px;
       color: #6b7280;
-      margin-top: 4px;
-      direction: ltr;
+      margin-top: 3px;
     }
-
-    .office-title {
-      font-size: 21px;
+    .office-name {
+      font-size: 20px;
       font-weight: 800;
-      color: var(--navy);
-      margin: 8px 0 4px;
+      color: var(--ink);
+      margin: 6px 0 2px;
     }
-    .portal-subtitle {
-      font-size: 13.5px;
+    .portal-tag {
+      font-size: 13px;
       font-weight: 700;
       color: var(--gold);
-      margin-bottom: 18px;
+    }
+
+    /* Lock Screen */
+    .lock-wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
     }
     .lock-box {
-      background: var(--surface-soft);
+      width: 100%;
+      max-width: 440px;
+    }
+    .lock-panel {
+      margin-top: 14px;
+      background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 16px;
       padding: 18px;
+      box-shadow: var(--shadow);
       text-align: right;
     }
 
-    /* Main Layout */
-    .topbar {
-      background: var(--navy);
-      color: #fff;
-      border-bottom: 3px solid var(--gold);
-      padding: 14px 20px;
-      position: sticky;
-      top: 0;
-      z-index: 40;
-    }
-    .topbar-inner {
-      max-width: 1280px;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-    .topbar-brand-wrap {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .mini-logo-box {
-      background: #ffffff;
-      border-radius: 10px;
-      padding: 6px 10px;
-      text-align: center;
-      line-height: 1.05;
-      border: 1px solid var(--gold);
-      direction: ltr;
-    }
-    .mini-logo-box .m-akh {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-weight: 800;
-      font-size: 16px;
-      letter-spacing: 0.8px;
-      color: var(--navy);
-    }
-    .mini-logo-box .m-law {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-weight: 800;
-      font-size: 7.5px;
-      letter-spacing: 1px;
-      color: var(--navy);
-      margin-top: 2px;
-    }
-    .topbar-brand h1 {
-      margin: 0;
-      font-size: 17px;
-      font-weight: 800;
-      color: #fff;
-    }
-    .topbar-brand span {
-      font-size: 12px;
-      color: #e6c989;
-      font-weight: 600;
-    }
-    .topbar-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
+    /* Container & Light Header */
     .container {
-      max-width: 1280px;
-      margin: 22px auto 60px;
-      padding: 0 16px;
+      max-width: 1220px;
+      margin: 18px auto 60px;
+      padding: 0 14px;
+    }
+    .header-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 14px;
     }
 
     /* Buttons */
@@ -206,97 +145,73 @@
       font-family: inherit;
       font-size: 13px;
       font-weight: 700;
-      border-radius: 10px;
+      border-radius: 11px;
       padding: 9px 14px;
       border: 1px solid transparent;
       cursor: pointer;
-      transition: 0.18s ease;
+      transition: 0.16s ease;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 6px;
       text-decoration: none;
     }
+    .btn-dark { background: var(--ink); color: #fff; }
+    .btn-dark:hover { background: #222d42; }
     .btn-gold { background: var(--gold); color: #fff; }
-    .btn-gold:hover { filter: brightness(0.95); }
-    .btn-navy { background: var(--navy); color: #fff; }
-    .btn-navy:hover { background: var(--navy-2); }
-    .btn-outline {
-      background: #fff;
-      color: var(--navy);
-      border-color: var(--border);
-    }
-    .btn-outline:hover { background: var(--surface-soft); }
-    .btn-ghost {
-      background: rgba(255,255,255,0.1);
-      color: #fff;
-      border-color: rgba(255,255,255,0.18);
-    }
-    .btn-ghost:hover { background: rgba(255,255,255,0.18); }
+    .btn-gold:hover { filter: brightness(0.96); }
+    .btn-light { background: #fff; color: var(--ink); border-color: var(--border); }
+    .btn-light:hover { background: var(--surface-soft); }
     .btn-ok { background: var(--ok); color: #fff; }
     .btn-danger { background: var(--danger); color: #fff; }
     .btn-sm { padding: 6px 10px; font-size: 12px; border-radius: 8px; }
 
-    /* Stats Grid */
+    /* Stats */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
-      gap: 12px;
-      margin-bottom: 20px;
+      gap: 10px;
+      margin: 16px 0;
     }
     .stat-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 14px 16px;
+      border-radius: 14px;
+      padding: 13px 15px;
       box-shadow: var(--shadow);
     }
-    .stat-label {
-      font-size: 12px;
-      color: var(--muted);
-      font-weight: 700;
-    }
-    .stat-en {
-      display: block;
-      font-size: 10.5px;
-      color: var(--gold);
-      font-family: 'Plus Jakarta Sans', sans-serif;
-    }
-    .stat-val {
-      font-size: 22px;
-      font-weight: 800;
-      color: var(--navy);
-      margin-top: 4px;
-    }
+    .stat-title { font-size: 12px; font-weight: 700; color: var(--muted); }
+    .stat-sub { font-size: 10.5px; color: var(--gold); font-family: 'Plus Jakarta Sans', sans-serif; display: block; }
+    .stat-num { font-size: 21px; font-weight: 800; color: var(--ink); margin-top: 4px; }
 
     /* Tabs */
     .tabs {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
     .tab-btn {
       background: var(--surface);
       color: var(--muted);
       border: 1px solid var(--border);
-      padding: 10px 16px;
+      padding: 9px 14px;
       border-radius: 11px;
     }
     .tab-btn.active {
-      background: var(--navy);
+      background: var(--ink);
       color: #fff;
-      border-color: var(--navy);
+      border-color: var(--ink);
     }
 
-    /* Cards & Forms */
+    /* Panels & Forms */
     .panel {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 18px;
+      padding: 16px;
       box-shadow: var(--shadow);
-      margin-bottom: 18px;
+      margin-bottom: 14px;
     }
     .panel-head {
       display: flex;
@@ -305,22 +220,18 @@
       justify-content: space-between;
       gap: 10px;
       border-bottom: 1px solid var(--border);
-      padding-bottom: 12px;
-      margin-bottom: 16px;
+      padding-bottom: 10px;
+      margin-bottom: 14px;
     }
-    .panel-head h2 {
-      margin: 0;
-      font-size: 16px;
-      color: var(--navy);
-    }
+    .panel-head h2 { margin: 0; font-size: 15.5px; color: var(--ink); }
 
     .form-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+      gap: 10px;
     }
     .field { display: flex; flex-direction: column; gap: 5px; }
-    .field label { font-size: 12.5px; font-weight: 700; color: var(--navy); }
+    .field label { font-size: 12.5px; font-weight: 700; color: var(--ink); }
     input, select, textarea {
       width: 100%;
       padding: 10px 12px;
@@ -329,21 +240,18 @@
       font-family: inherit;
       font-size: 13.5px;
       background: #fff;
-      color: var(--text);
+      color: var(--ink);
     }
-    input:focus, select:focus, textarea:focus {
-      outline: none;
-      border-color: var(--gold);
-    }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--gold); }
 
-    /* Matter Cards */
-    .matter-list { display: grid; gap: 14px; }
+    /* Matter Cards + Barcode */
+    .matter-list { display: grid; gap: 12px; }
     .matter-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-right: 4px solid var(--gold);
       border-radius: var(--radius);
-      padding: 16px;
+      padding: 15px;
       box-shadow: var(--shadow);
     }
     .matter-top {
@@ -356,14 +264,43 @@
     .ref-pill {
       display: inline-block;
       background: var(--gold-soft);
-      color: var(--navy);
-      border: 1px solid #e3cfa3;
+      color: var(--ink);
+      border: 1px solid #e4d0a2;
       padding: 2px 9px;
       border-radius: 7px;
       font-size: 12px;
       font-weight: 700;
       font-family: 'Plus Jakarta Sans', sans-serif;
     }
+    .barcode-box {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 6px 10px;
+      text-align: center;
+      min-width: 130px;
+    }
+    .barcode-bars {
+      height: 26px;
+      background: repeating-linear-gradient(
+        90deg,
+        #111827 0px, #111827 2px,
+        transparent 2px, transparent 4px,
+        #111827 4px, #111827 5px,
+        transparent 5px, transparent 8px,
+        #111827 8px, #111827 11px,
+        transparent 11px, transparent 13px
+      );
+    }
+    .barcode-code {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--muted);
+      margin-top: 2px;
+      letter-spacing: 0.6px;
+    }
+
     .badge {
       display: inline-block;
       padding: 3px 10px;
@@ -376,12 +313,11 @@
     .b-ok { background: var(--ok-bg); color: var(--ok); }
     .b-danger { background: var(--danger-bg); color: var(--danger); }
 
-    /* Lifecycle Stepper */
     .lifecycle {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin: 12px 0;
+      margin: 10px 0;
       padding: 8px;
       background: var(--surface-soft);
       border-radius: 10px;
@@ -396,7 +332,7 @@
       font-weight: 700;
     }
     .step-chip.done { background: var(--ok-bg); color: var(--ok); }
-    .step-chip.current { background: var(--navy); color: #fff; }
+    .step-chip.current { background: var(--ink); color: #fff; }
     .step-chip.cancelled { background: var(--danger-bg); color: var(--danger); }
 
     .meta-row {
@@ -405,14 +341,14 @@
       gap: 14px;
       font-size: 12.5px;
       color: var(--muted);
-      margin-top: 8px;
+      margin-top: 6px;
     }
     .card-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
       margin-top: 12px;
-      padding-top: 12px;
+      padding-top: 10px;
       border-top: 1px dashed var(--border);
     }
 
@@ -420,7 +356,7 @@
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(12, 20, 36, 0.55);
+      background: rgba(17, 24, 39, 0.5);
       display: none;
       align-items: center;
       justify-content: center;
@@ -436,31 +372,22 @@
       overflow-y: auto;
       border-radius: 16px;
       padding: 20px;
-      border-top: 5px solid var(--gold);
+      border-top: 4px solid var(--gold);
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 13px;
-      margin-top: 10px;
-    }
-    th, td {
-      border: 1px solid var(--border);
-      padding: 8px 10px;
-      text-align: right;
-    }
-    th { background: var(--surface-soft); color: var(--navy); }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+    th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: right; }
+    th { background: var(--surface-soft); color: var(--ink); }
 
     .hidden { display: none !important; }
     .toast {
       position: fixed;
-      bottom: 20px;
-      left: 20px;
-      background: var(--navy);
+      bottom: 18px;
+      left: 18px;
+      background: var(--ink);
       color: #fff;
       border-right: 4px solid var(--gold);
-      padding: 12px 16px;
+      padding: 11px 15px;
       border-radius: 10px;
       font-size: 13px;
       z-index: 120;
@@ -468,31 +395,32 @@
     }
 
     @media print {
-      .topbar, .tabs, .no-print, .card-actions { display: none !important; }
+      .tabs, .no-print, .card-actions, .header-actions { display: none !important; }
       body { background: #fff; }
-      .panel, .matter-card { box-shadow: none; border: 1px solid #ccc; }
+      .panel, .matter-card, .brand-card { box-shadow: none; border: 1px solid #ccc; }
     }
   </style>
 </head>
 <body>
 
-  <!-- LOCK / SETUP SCREEN -->
+  <!-- LOCK / SETUP -->
   <div id="lockScreen" class="lock-wrap">
-    <div class="lock-card">
-      <div class="logo-box">
-        <div class="akh-word">A<span class="k-red">K</span>H</div>
-        <div class="akh-law"><span class="slash-red">/</span> LAW OFFICE</div>
-        <div class="akh-est">EST. 2014</div>
+    <div class="lock-box">
+      <div class="brand-card">
+        <div class="logo-frame">
+          <div class="akh-letters">A<span class="k-red">K</span>H</div>
+          <div class="akh-law-line"><span class="slash-red">/</span> LAW OFFICE</div>
+          <div class="akh-est-line">EST. 2014</div>
+        </div>
+        <div class="office-name">مكتب المحامي علي كاظم الهاشمي</div>
+        <div class="portal-tag"><span class="en">Matter &amp; Client Portal</span> — بوابة الملفات والموكلين</div>
       </div>
 
-      <div class="office-title">مكتب المحامي علي كاظم الهاشمي</div>
-      <div class="portal-subtitle"><span class="en">Matter &amp; Client Portal</span> — بوابة الملفات والموكلين</div>
-
-      <div class="lock-box">
+      <div class="lock-panel">
         <div id="setupModeText">
           <strong>تأسيس البوابة (لأول مرة)</strong>
           <p style="font-size:12.5px; color:var(--muted); margin:6px 0 12px;">
-            بوابة مستقلة لإدارة الملفات والاستشارات والفوترة والأرشيف، محمية برقم سري خاص وممنوعة من الأرشفة.
+            بوابة مستقلة لإدارة دورة حياة الملفات وربط الحجز والباركود والفوترة، محمية برقم سري وممنوعة من الأرشفة.
           </p>
         </div>
         <div id="unlockModeText" class="hidden">
@@ -512,61 +440,59 @@
           <input type="password" id="ghTokenInput" placeholder="اتركه فارغاً للحفظ المحلي أو ألصق ghp_..." autocomplete="off" />
         </div>
 
-        <button class="btn-navy" style="width:100%;" onclick="handleAuth()">فتح البوابة الآن</button>
+        <button class="btn-dark" style="width:100%;" onclick="handleAuth()">فتح البوابة الآن</button>
       </div>
     </div>
   </div>
 
   <!-- MAIN PORTAL -->
   <div id="appShell" class="hidden">
-    <header class="topbar">
-      <div class="topbar-inner">
-        <div class="topbar-brand-wrap">
-          <div class="mini-logo-box">
-            <div class="m-akh">A<span class="k-red">K</span>H</div>
-            <div class="m-law"><span class="slash-red">/</span> LAW OFFICE</div>
-          </div>
-          <div class="topbar-brand">
-            <h1>مكتب المحامي علي كاظم الهاشمي — <span class="en">Law Office Of Ali Kadhem Hashimi</span></h1>
-            <span><span class="en">Matter &amp; Client Portal</span> — بوابة الملفات والموكلين</span>
-          </div>
-        </div>
-        <div class="topbar-actions">
-          <button class="btn-gold" onclick="openNewMatterModal()">+ ملف / وارد جديد</button>
-          <button class="btn-ghost" onclick="window.print()">طباعة السجل</button>
-          <button class="btn-ghost" onclick="exportBackup()">نسخة الأرشيف JSON</button>
-          <button class="btn-ghost" onclick="openSettingsModal()">الإعدادات والربط</button>
-          <button class="btn-ghost" onclick="lockApp()">قفل</button>
-        </div>
-      </div>
-    </header>
-
     <main class="container">
+      <!-- Clean Brand Header -->
+      <section class="brand-card">
+        <div class="logo-frame">
+          <div class="akh-letters">A<span class="k-red">K</span>H</div>
+          <div class="akh-law-line"><span class="slash-red">/</span> LAW OFFICE</div>
+          <div class="akh-est-line">EST. 2014</div>
+        </div>
+        <div class="office-name">مكتب المحامي علي كاظم الهاشمي — <span class="en">Law Office Of Ali Kadhem Hashimi</span></div>
+        <div class="portal-tag"><span class="en">Matter &amp; Client Portal</span> — بوابة الملفات والموكلين</div>
+
+        <div class="header-actions">
+          <button class="btn-gold" onclick="openNewMatterModal()">+ حجز / ملف جديد (باركود)</button>
+          <a class="btn btn-light" href="https://akjassem.com/booking" target="_blank" rel="noopener">صفحة الحجز (Booking AR/EN)</a>
+          <button class="btn btn-light" onclick="window.print()">طباعة السجل</button>
+          <button class="btn btn-light" onclick="exportBackup()">نسخة الأرشيف JSON</button>
+          <button class="btn btn-light" onclick="openSettingsModal()">الإعدادات والربط</button>
+          <button class="btn btn-dark" onclick="lockApp()">قفل</button>
+        </div>
+      </section>
+
       <!-- STATS -->
       <section class="stats-grid">
         <div class="stat-card">
-          <div class="stat-label">الموكلون الدائمون <span class="stat-en">Permanent Clients</span></div>
-          <div class="stat-val" id="stClients">0</div>
+          <div class="stat-title">الموكلون الدائمون <span class="stat-sub">Permanent Clients</span></div>
+          <div class="stat-num" id="stClients">0</div>
         </div>
         <div class="stat-card">
-          <div class="stat-label">الوارد / بانتظار القبول <span class="stat-en">Incoming / Pending</span></div>
-          <div class="stat-val" id="stIncoming">0</div>
+          <div class="stat-title">الوارد / بانتظار القبول <span class="stat-sub">Incoming / Pending</span></div>
+          <div class="stat-num" id="stIncoming">0</div>
         </div>
         <div class="stat-card">
-          <div class="stat-label">ملفات قيد العمل <span class="stat-en">Active Matters</span></div>
-          <div class="stat-val" id="stActive">0</div>
+          <div class="stat-title">ملفات قيد العمل <span class="stat-sub">Active Matters</span></div>
+          <div class="stat-num" id="stActive">0</div>
         </div>
         <div class="stat-card">
-          <div class="stat-label">ملفات ملغية / لم تُدفع <span class="stat-en">Cancelled / Unpaid</span></div>
-          <div class="stat-val" id="stCancelled">0</div>
+          <div class="stat-title">ملفات ملغية / لم تُدفع <span class="stat-sub">Cancelled / Unpaid</span></div>
+          <div class="stat-num" id="stCancelled">0</div>
         </div>
         <div class="stat-card">
-          <div class="stat-label">الفواتير المدفوعة <span class="stat-en">Paid Invoices</span></div>
-          <div class="stat-val" id="stPaidCount">0</div>
+          <div class="stat-title">الفواتير المدفوعة <span class="stat-sub">Paid Invoices</span></div>
+          <div class="stat-num" id="stPaidCount">0</div>
         </div>
         <div class="stat-card">
-          <div class="stat-label">مجموع المدفوعات <span class="stat-en">Total Collected</span></div>
-          <div class="stat-val" id="stCollected" style="font-size:17px;">0 IQD</div>
+          <div class="stat-title">مجموع المدفوعات <span class="stat-sub">Total Collected</span></div>
+          <div class="stat-num" id="stCollected" style="font-size:17px;">0 IQD</div>
         </div>
       </section>
 
@@ -585,7 +511,7 @@
       <div class="panel no-print" style="padding:12px 16px;">
         <div class="form-grid">
           <div class="field">
-            <input type="text" id="searchInput" placeholder="بحث بالاسم، الرقم المرجعي، رقم الفاتورة، أو الهاتف..." oninput="render()" />
+            <input type="text" id="searchInput" placeholder="بحث بالاسم، الرقم المرجعي، الباركود، الفاتورة، أو الهاتف..." oninput="render()" />
           </div>
           <div class="field">
             <select id="stageFilter" onchange="render()">
@@ -606,7 +532,7 @@
       <!-- MAIN LIST VIEW -->
       <section id="mattersSection" class="matter-list"></section>
 
-      <!-- CLIENTS DIRECTORY VIEW -->
+      <!-- CLIENTS VIEW -->
       <section id="clientsSection" class="panel hidden">
         <div class="panel-head">
           <h2>سجل الموكلين الدائم — <span class="en">Permanent Client Directory</span></h2>
@@ -627,11 +553,11 @@
         </div>
       </section>
 
-      <!-- CLIENT NOTES / FEEDBACK VIEW -->
+      <!-- NOTES VIEW -->
       <section id="notesSection" class="panel hidden">
         <div class="panel-head">
           <h2>ملاحظات المراجعين والمتابعة — <span class="en">Client Feedback &amp; Resolution Log</span></h2>
-          <button class="btn-navy btn-sm" onclick="toggleFeedbackForm()">+ تسجيل ملاحظة / متابعة</button>
+          <button class="btn-dark btn-sm" onclick="toggleFeedbackForm()">+ تسجيل ملاحظة / متابعة</button>
         </div>
 
         <form id="feedbackForm" class="hidden" style="margin-bottom:16px; background:var(--surface-soft); padding:14px; border-radius:12px; border:1px solid var(--border);" onsubmit="saveFeedback(event)">
@@ -665,7 +591,7 @@
           </div>
           <div style="margin-top:10px; display:flex; gap:8px;">
             <button type="submit" class="btn-gold">حفظ في السجل</button>
-            <button type="button" class="btn-outline" onclick="toggleFeedbackForm()">إلغاء</button>
+            <button type="button" class="btn-light" onclick="toggleFeedbackForm()">إلغاء</button>
           </div>
         </form>
 
@@ -674,15 +600,23 @@
     </main>
   </div>
 
-  <!-- NEW MATTER / INTAKE MODAL -->
+  <!-- NEW MATTER / BOOKING MODAL -->
   <div id="newMatterModal" class="modal-backdrop">
     <div class="modal">
       <div class="panel-head">
-        <h2>فتح ملف أو تسجيل وارد جديد — <span class="en">New Matter / Intake</span></h2>
-        <button class="btn-outline btn-sm" onclick="closeModal('newMatterModal')">إغلاق</button>
+        <h2>تسجيل حجز / ملف جديد وتوليد باركود — <span class="en">New Booking &amp; Barcode</span></h2>
+        <button class="btn-light btn-sm" onclick="closeModal('newMatterModal')">إغلاق</button>
       </div>
       <form onsubmit="createMatter(event)">
         <div class="form-grid">
+          <div class="field">
+            <label>لغة الحجز / المصدر <span class="en">(Booking Source)</span></label>
+            <select id="mLang" onchange="updateRefPreview()">
+              <option value="AR">حجز عربي — akjassem.com (AR)</option>
+              <option value="EN">حجز إنجليزي — akjassem.com (EN)</option>
+              <option value="DIRECT">إدخال مباشر بالمكتب (Direct)</option>
+            </select>
+          </div>
           <div class="field">
             <label>الباب / التصنيف <span class="en">(Category)</span></label>
             <select id="mCategory" onchange="updateRefPreview()">
@@ -700,7 +634,7 @@
             </select>
           </div>
           <div class="field">
-            <label>الرقم المرجعي التلقائي <span class="en">(Auto Reference)</span></label>
+            <label>الرقم المرجعي والباركود التلقائي <span class="en">(Ref &amp; Barcode)</span></label>
             <input type="text" id="mRefPreview" readonly style="background:var(--gold-soft); font-weight:700;" />
           </div>
           <div class="field">
@@ -712,7 +646,7 @@
             <input type="text" id="mPhone" placeholder="07..." required />
           </div>
           <div class="field">
-            <label>موضوع الملف / الدعوى / الاستشارة</label>
+            <label>موضوع الحجز / الملف / الاستشارة</label>
             <input type="text" id="mSubject" required />
           </div>
           <div class="field">
@@ -727,33 +661,33 @@
             </select>
           </div>
           <div class="field">
-            <label>موعد الجلسة أو المراجعة القادم</label>
+            <label>موعد الحجز / الجلسة / المراجعة</label>
             <input type="date" id="mNextDate" />
           </div>
         </div>
         <div class="field" style="margin-top:10px;">
-          <label>ملاحظات أولية أو تفاصيل الوارد</label>
+          <label>ملاحظات أولية أو تفاصيل الحجز</label>
           <textarea id="mNotes" rows="2"></textarea>
         </div>
         <div style="margin-top:14px; display:flex; gap:8px; justify-content:flex-end;">
-          <button type="button" class="btn-outline" onclick="closeModal('newMatterModal')">إلغاء</button>
-          <button type="submit" class="btn-gold">حفظ وتثبيت الرقم المرجعي</button>
+          <button type="button" class="btn-light" onclick="closeModal('newMatterModal')">إلغاء</button>
+          <button type="submit" class="btn-gold">حفظ وتوليد الباركود</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- MATTER DETAILS & BILLING MODAL -->
+  <!-- DETAIL MODAL -->
   <div id="detailModal" class="modal-backdrop">
     <div class="modal" id="detailModalBody"></div>
   </div>
 
-  <!-- SETTINGS & LINKING MODAL -->
+  <!-- SETTINGS MODAL -->
   <div id="settingsModal" class="modal-backdrop">
     <div class="modal">
       <div class="panel-head">
         <h2>إعدادات الربط والنسخ الاحتياطي — <span class="en">Portal Settings</span></h2>
-        <button class="btn-outline btn-sm" onclick="closeModal('settingsModal')">إغلاق</button>
+        <button class="btn-light btn-sm" onclick="closeModal('settingsModal')">إغلاق</button>
       </div>
       <div class="form-grid">
         <div class="field">
@@ -767,7 +701,7 @@
       </div>
       <div style="margin-top:14px; display:flex; flex-wrap:wrap; gap:8px;">
         <button class="btn-gold" onclick="saveSettings()">حفظ الإعدادات</button>
-        <label class="btn btn-outline" style="cursor:pointer;">
+        <label class="btn btn-light" style="cursor:pointer;">
           استعادة نسخة احتياطية JSON
           <input type="file" accept=".json" style="display:none;" onchange="importBackup(event)" />
         </label>
@@ -778,8 +712,8 @@
   <div id="toast" class="toast"></div>
 
   <script>
-    const STORAGE_KEY = 'akh_matter_portal_v7';
-    const AUTH_KEY = 'akh_matter_portal_auth_v7';
+    const STORAGE_KEY = 'akh_matter_portal_v8';
+    const AUTH_KEY = 'akh_matter_portal_auth_v8';
 
     const STAGES = [
       { id: 'incoming', ar: 'وارد جديد', en: 'Intake' },
@@ -874,11 +808,18 @@
       render();
     }
 
-    function generateMatterRef(category) {
+    function generateMatterRef(category, lang) {
       const year = new Date().getFullYear();
       const prefix = category === 'litigation' ? 'CASE' : category === 'transaction' ? 'TRN' : 'CNS';
+      const langTag = lang === 'EN' ? 'EN' : lang === 'AR' ? 'AR' : 'OF';
       const count = state.matters.filter(m => m.category === category).length + 1;
-      return `${prefix}-${year}-${String(count).padStart(4, '0')}`;
+      return `${prefix}-${langTag}-${year}-${String(count).padStart(4, '0')}`;
+    }
+
+    function generateBarcodeToken(ref) {
+      const clean = ref.replace(/[^A-Z0-9]/g, '');
+      const suffix = Math.floor(1000 + Math.random() * 9000);
+      return `BC-${clean}-${suffix}`;
     }
 
     function generateClientId() {
@@ -900,7 +841,8 @@
 
     function updateRefPreview() {
       const cat = document.getElementById('mCategory').value;
-      document.getElementById('mRefPreview').value = generateMatterRef(cat);
+      const lang = document.getElementById('mLang').value;
+      document.getElementById('mRefPreview').value = generateMatterRef(cat, lang);
     }
 
     function closeModal(id) {
@@ -909,6 +851,7 @@
 
     function createMatter(e) {
       e.preventDefault();
+      const lang = document.getElementById('mLang').value;
       const category = document.getElementById('mCategory').value;
       const stage = document.getElementById('mStage').value;
       const clientName = document.getElementById('mClientName').value.trim();
@@ -930,10 +873,14 @@
         state.clients.push(client);
       }
 
-      const ref = generateMatterRef(category);
+      const ref = generateMatterRef(category, lang);
+      const barcode = generateBarcodeToken(ref);
+
       const matter = {
         id: Date.now().toString(),
         ref,
+        barcode,
+        lang,
         clientId: client.id,
         clientName: client.name,
         phone: client.phone,
@@ -947,7 +894,7 @@
         timeline: [
           {
             date: new Date().toLocaleString('ar-IQ'),
-            text: `تم فتح الملف بالرقم المرجعي ${ref} (${stageLabel(stage)})` + (notes ? ` — ${notes}` : '')
+            text: `تم إنشاء الملف بالرقم ${ref} والباركود ${barcode} (${stageLabel(stage)})` + (notes ? ` — ${notes}` : '')
           }
         ]
       };
@@ -956,7 +903,14 @@
       saveState();
       e.target.reset();
       closeModal('newMatterModal');
-      showToast(`تم تسجيل الملف بالرقم المرجعي ${ref}`);
+      showToast(`تم إنشاء الملف والباركود: ${barcode}`);
+    }
+
+    function copyBarcode(code) {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(code).catch(() => {});
+      }
+      showToast(`تم نسخ الباركود: ${code}`);
     }
 
     function stageLabel(stageId) {
@@ -1014,7 +968,7 @@
       });
       saveState();
 
-      const copyPayload = `${m.clientName} | ${m.ref} | ${invNo} | ${amount} ${m.currency}`;
+      const copyPayload = `${m.clientName} | ${m.ref} | ${m.barcode || ''} | ${invNo} | ${amount} ${m.currency}`;
       if (navigator.clipboard) {
         navigator.clipboard.writeText(copyPayload).catch(() => {});
       }
@@ -1074,7 +1028,7 @@
 
       const logsHtml = m.timeline.map(t => `
         <div style="padding:8px 10px; border-bottom:1px solid var(--border); font-size:12.5px;">
-          <strong style="color:var(--navy);">${t.date}:</strong> ${t.text}
+          <strong style="color:var(--ink);">${t.date}:</strong> ${t.text}
         </div>
       `).join('');
 
@@ -1082,9 +1036,10 @@
         <div class="panel-head">
           <div>
             <span class="ref-pill">${m.ref}</span>
+            <span class="ref-pill" style="background:#eef2ff;">${m.barcode || ''}</span>
             <h2 style="margin-top:6px;">${m.subject} — ${m.clientName}</h2>
           </div>
-          <button class="btn-outline btn-sm" onclick="closeModal('detailModal')">إغلاق</button>
+          <button class="btn-light btn-sm" onclick="closeModal('detailModal')">إغلاق</button>
         </div>
 
         <div class="form-grid" style="margin-bottom:14px;">
@@ -1129,7 +1084,7 @@
           <strong>سجل سير العمل والملاحظات — <span class="en">Workflow Log</span></strong>
           <div style="display:flex; gap:8px; margin-top:8px;">
             <input type="text" id="newLogNote" placeholder="أضف إجراءً جديداً، نتيجة جلسة، أو ملاحظة متابعة..." />
-            <button class="btn-navy btn-sm" onclick="addTimelineNote('${m.id}')">إضافة</button>
+            <button class="btn-dark btn-sm" onclick="addTimelineNote('${m.id}')">إضافة</button>
           </div>
           <div style="margin-top:10px; border:1px solid var(--border); border-radius:10px; max-height:190px; overflow-y:auto;">
             ${logsHtml}
@@ -1230,7 +1185,7 @@
         if (['consultation', 'litigation', 'transaction'].includes(currentTab) && m.category !== currentTab) return false;
         if (stFilter && m.stage !== stFilter) return false;
         if (q) {
-          const hay = `${m.ref} ${m.clientName} ${m.phone} ${m.subject} ${(m.invoices || []).map(i => i.invNo).join(' ')}`.toLowerCase();
+          const hay = `${m.ref} ${m.barcode || ''} ${m.clientName} ${m.phone} ${m.subject} ${(m.invoices || []).map(i => i.invNo).join(' ')}`.toLowerCase();
           if (!hay.includes(q)) return false;
         }
         return true;
@@ -1238,7 +1193,7 @@
 
       const sec = document.getElementById('mattersSection');
       if (!filtered.length) {
-        sec.innerHTML = `<div class="panel" style="text-align:center; color:var(--muted);">لا توجد ملفات مطابقة حالياً. اضغط <strong>"+ ملف / وارد جديد"</strong> للبدء.</div>`;
+        sec.innerHTML = `<div class="panel" style="text-align:center; color:var(--muted);">لا توجد ملفات مطابقة حالياً. اضغط <strong>"+ حجز / ملف جديد (باركود)"</strong> للبدء.</div>`;
       } else {
         sec.innerHTML = filtered.map(m => {
           const currentIdx = STAGES.findIndex(s => s.id === m.stage);
@@ -1253,6 +1208,8 @@
             : m.stage === 'cancelled' ? 'b-danger'
             : m.stage === 'pending_payment' || m.stage === 'incoming' ? 'b-warn' : 'b-info';
 
+          const bc = m.barcode || `BC-${m.ref}`;
+
           return `
             <article class="matter-card">
               <div class="matter-top">
@@ -1260,10 +1217,16 @@
                   <span class="ref-pill">${m.ref}</span>
                   <span class="ref-pill" style="background:#f1f5f9;">${m.clientId}</span>
                   <span style="font-size:12px; color:var(--muted); margin-right:6px;">${categoryLabel(m.category)}</span>
-                  <h3 style="margin:6px 0 2px; font-size:16px; color:var(--navy);">${m.subject}</h3>
+                  <h3 style="margin:6px 0 2px; font-size:16px; color:var(--ink);">${m.subject}</h3>
                   <div style="font-size:13.5px; font-weight:700;">الموكل: ${m.clientName} <span class="en" style="color:var(--muted); font-weight:500;">(${m.phone})</span></div>
                 </div>
-                <span class="badge ${badgeCls}">${stageLabel(m.stage)}</span>
+                <div style="display:flex; flex-direction:column; align-items:flex-end; gap:6px;">
+                  <span class="badge ${badgeCls}">${stageLabel(m.stage)}</span>
+                  <div class="barcode-box" onclick="copyBarcode('${bc}')" title="نسخ الباركود" style="cursor:pointer;">
+                    <div class="barcode-bars"></div>
+                    <div class="barcode-code">${bc}</div>
+                  </div>
+                </div>
               </div>
 
               <div class="lifecycle">${stepperHtml}</div>
@@ -1277,8 +1240,8 @@
               <div class="card-actions">
                 ${m.stage === 'incoming' ? `<button class="btn-ok btn-sm" onclick="advanceStage('${m.id}','accepted','تم قبول الطلب الوارد ونقله إلى مرحلة الفوترة')">تم القبول (Accept)</button>` : ''}
                 <button class="btn-gold btn-sm" onclick="triggerPaymentPortal('${m.id}')">تحرير فاتورة / منصة المدفوعات</button>
-                <button class="btn-navy btn-sm" onclick="openDetailModal('${m.id}')">فتح الملف والمتابعة</button>
-                ${m.stage !== 'archived' ? `<button class="btn-outline btn-sm" onclick="advanceStage('${m.id}','archived','تم أرشفة الملف ونقله إلى السجل المرجعي')">أرشفة</button>` : ''}
+                <button class="btn-dark btn-sm" onclick="openDetailModal('${m.id}')">فتح الملف والمتابعة</button>
+                ${m.stage !== 'archived' ? `<button class="btn-light btn-sm" onclick="advanceStage('${m.id}','archived','تم أرشفة الملف ونقله إلى السجل المرجعي')">أرشفة</button>` : ''}
               </div>
             </article>
           `;
