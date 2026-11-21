@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow, noarchive" />
-  <title>Matter & Client Portal | Law Office Of Ali Kadhem Hashimi</title>
+  <title>Matter & Client Portal | بوابة الملفات والموكلين</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
       --bg: #f6f5f2;
@@ -17,6 +17,7 @@
       --navy-2: #1c2f4a;
       --gold: #b68b38;
       --gold-soft: #f7f1e3;
+      --crimson: #c81e2b;
       --text: #1a2230;
       --muted: #647084;
       --border: #e4dfd5;
@@ -66,19 +67,37 @@
       box-shadow: var(--shadow);
       text-align: center;
     }
-    .brand-mark {
+    .akh-logo {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      margin-bottom: 6px;
+    }
+    .akh-main {
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-weight: 800;
-      font-size: 28px;
-      letter-spacing: 2px;
+      font-size: 32px;
+      letter-spacing: 1px;
+      color: var(--navy);
+      line-height: 1.05;
+    }
+    .akh-law-row {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: 2.2px;
       color: var(--navy);
     }
-    .brand-sub {
+    .akh-law-row .law-red {
+      color: var(--crimson);
+    }
+    .akh-est {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 11px;
-      letter-spacing: 2px;
-      color: var(--gold);
+      font-size: 10.5px;
       font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--muted);
       margin-top: 2px;
     }
     .office-title {
@@ -88,7 +107,7 @@
       margin: 12px 0 4px;
     }
     .portal-subtitle {
-      font-size: 13px;
+      font-size: 13.5px;
       font-weight: 700;
       color: var(--gold);
       margin-bottom: 18px;
@@ -120,9 +139,36 @@
       justify-content: space-between;
       gap: 12px;
     }
+    .topbar-brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .mini-logo {
+      background: #fff;
+      color: var(--navy);
+      padding: 6px 10px;
+      border-radius: 10px;
+      text-align: center;
+      line-height: 1.1;
+      border: 1px solid var(--gold);
+    }
+    .mini-logo .m-top {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 15px;
+      letter-spacing: 1px;
+    }
+    .mini-logo .m-sub {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 8px;
+      letter-spacing: 1px;
+    }
+    .mini-logo .m-sub .law-red { color: var(--crimson); }
     .topbar-brand h1 {
       margin: 0;
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 800;
       color: #fff;
     }
@@ -421,16 +467,19 @@
   <!-- LOCK / SETUP SCREEN -->
   <div id="lockScreen" class="lock-wrap">
     <div class="lock-card">
-      <div class="brand-mark">AKH</div>
-      <div class="brand-sub">LAW OFFICE • EST. 2014</div>
+      <div class="akh-logo">
+        <div class="akh-main">AKH</div>
+        <div class="akh-law-row">/ <span class="law-red">LAW</span> OFFICE</div>
+        <div class="akh-est">EST. 2014</div>
+      </div>
       <div class="office-title">مكتب المحامي علي كاظم الهاشمي</div>
-      <div class="portal-subtitle en">Matter &amp; Client Portal | بوابة الملفات والموكلين</div>
+      <div class="portal-subtitle"><span class="en">Matter &amp; Client Portal</span> — بوابة الملفات والموكلين</div>
 
       <div class="lock-box">
         <div id="setupModeText">
           <strong>تأسيس البوابة (لأول مرة)</strong>
           <p style="font-size:12.5px; color:var(--muted); margin:6px 0 12px;">
-            بوابة مستقلة لإدارة دورة حياة الملفات والاستشارات والفوترة والأرشيف، محمية برقم سري خاص وممنوعة من الأرشفة.
+            بوابة مستقلة لإدارة الملفات والاستشارات والفوترة والأرشيف، محمية برقم سري خاص وممنوعة من الأرشفة.
           </p>
         </div>
         <div id="unlockModeText" class="hidden">
@@ -459,9 +508,15 @@
   <div id="appShell" class="hidden">
     <header class="topbar">
       <div class="topbar-inner">
-        <div class="topbar-brand">
-          <h1>مكتب المحامي علي كاظم الهاشمي — <span class="en">Law Office Of Ali Kadhem Hashimi</span></h1>
-          <span class="en">Matter &amp; Client Portal | إدارة دورة حياة الملفات والاستشارات</span>
+        <div class="topbar-brand-wrap">
+          <div class="mini-logo">
+            <div class="m-top">AKH</div>
+            <div class="m-sub">/ <span class="law-red">LAW</span> OFFICE</div>
+          </div>
+          <div class="topbar-brand">
+            <h1>مكتب المحامي علي كاظم الهاشمي — <span class="en">Law Office Of Ali Kadhem Hashimi</span></h1>
+            <span><span class="en">Matter &amp; Client Portal</span> — بوابة الملفات والموكلين</span>
+          </div>
         </div>
         <div class="topbar-actions">
           <button class="btn-gold" onclick="openNewMatterModal()">+ ملف / وارد جديد</button>
@@ -521,8 +576,8 @@
           </div>
           <div class="field">
             <select id="stageFilter" onchange="render()">
-              <option value="">كل مراحل دورة الحياة (All Stages)</option>
-              <option value="incoming">وارد جديد (Incoming)</option>
+              <option value="">كل مراحل الملف (All Stages)</option>
+              <option value="incoming">وارد جديد (Intake)</option>
               <option value="accepted">تم القبول - بانتظار الفاتورة (Accepted)</option>
               <option value="pending_payment">قيد الدفع (Pending Payment)</option>
               <option value="paid">تم الدفع - تحديد موعد (Paid)</option>
@@ -626,7 +681,7 @@
           <div class="field">
             <label>المرحلة الابتدائية <span class="en">(Initial Stage)</span></label>
             <select id="mStage">
-              <option value="incoming">وارد جديد - بانتظار القبول (Incoming)</option>
+              <option value="incoming">وارد جديد - بانتظار القبول (Intake)</option>
               <option value="accepted">تم القبول - جاهز للفاتورة (Accepted)</option>
               <option value="in_progress">مباشرة مباشرة بالعمل (In Progress)</option>
             </select>
@@ -710,8 +765,8 @@
   <div id="toast" class="toast"></div>
 
   <script>
-    const STORAGE_KEY = 'akh_matter_portal_v2';
-    const AUTH_KEY = 'akh_matter_portal_auth_v2';
+    const STORAGE_KEY = 'akh_matter_portal_v3';
+    const AUTH_KEY = 'akh_matter_portal_auth_v3';
 
     const STAGES = [
       { id: 'incoming', ar: 'وارد جديد', en: 'Intake' },
@@ -733,7 +788,6 @@
       feedbacks: []
     };
 
-    // Simple SHA-256 helper for PIN & Token encryption
     async function sha256(text) {
       const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
       return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
@@ -1022,7 +1076,7 @@
 
         <div class="form-grid" style="margin-bottom:14px;">
           <div class="field">
-            <label>تغيير مرحلة دورة الحياة <span class="en">(Lifecycle Stage)</span></label>
+            <label>تغيير مرحلة الملف <span class="en">(Stage)</span></label>
             <select onchange="advanceStage('${m.id}', this.value); openDetailModal('${m.id}')">
               ${STAGES.map(s => `<option value="${s.id}" ${m.stage === s.id ? 'selected' : ''}>${s.ar} (${s.en})</option>`).join('')}
               <option value="cancelled" ${m.stage === 'cancelled' ? 'selected' : ''}>ملغى / لم يُدفع (Cancelled)</option>
@@ -1132,7 +1186,6 @@
     }
 
     function render() {
-      // Update Stats
       document.getElementById('stClients').textContent = state.clients.length;
       document.getElementById('stIncoming').textContent = state.matters.filter(m => m.stage === 'incoming').length;
       document.getElementById('stActive').textContent = state.matters.filter(m => ['accepted', 'pending_payment', 'paid', 'in_progress'].includes(m.stage)).length;
@@ -1156,7 +1209,6 @@
       if (usdSum > 0) sums.push(`${usdSum.toLocaleString()} USD`);
       document.getElementById('stCollected').textContent = sums.join(' + ');
 
-      // Filter Matters
       const q = document.getElementById('searchInput').value.trim().toLowerCase();
       const stFilter = document.getElementById('stageFilter').value;
 
@@ -1220,7 +1272,6 @@
         }).join('');
       }
 
-      // Render Clients Table
       document.getElementById('clientsTableBody').innerHTML = state.clients.map(c => {
         const count = state.matters.filter(m => m.clientId === c.id).length;
         return `
@@ -1234,7 +1285,6 @@
         `;
       }).join('') || '<tr><td colspan="5" style="text-align:center; color:var(--muted);">لا يوجد موكلون مسجلون بعد</td></tr>';
 
-      // Render Feedback List
       document.getElementById('feedbackList').innerHTML = state.feedbacks.map(f => `
         <div class="matter-card" style="border-right-color:${f.status === 'open' ? 'var(--warn)' : 'var(--ok)'};">
           <div class="matter-top">
